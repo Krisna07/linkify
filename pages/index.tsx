@@ -2,6 +2,9 @@ import { useState } from "react";
 import shortid from "shortid";
 import { FaPlus, FaEdit, FaTrash } from "react-icons/fa";
 
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const HomePage = () => {
   const [linkItems, setLinkItems] = useState<LinkItem[]>([]);
   const [titleInput, setTitleInput] = useState<string>("");
@@ -21,12 +24,30 @@ const HomePage = () => {
 
   const handleAddLink = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    setLinkItems([
-      ...linkItems,
-      { id: shortid.generate(), title: titleInput, link: linkInput },
-    ]);
-    setTitleInput("");
-    setLinkInput("");
+
+    // Regex pattern to validate URLs
+    const urlPattern = new RegExp(
+      "^https?:\\/\\/[\\w\\d\\-]+(\\.[\\w\\d\\-]+)*(\\/[\\w\\d\\-\\./?%&=]*)?$"
+    );
+
+    // Check if link input matches the URL pattern
+    if (urlPattern.test(linkInput)) {
+      // Add "https://" to link input if it doesn't have it
+      if (
+        !linkInput.startsWith("http://") &&
+        !linkInput.startsWith("https://")
+      ) {
+        setLinkInput("https://" + linkInput);
+      }
+
+      setLinkItems([
+        ...linkItems,
+        { id: shortid.generate(), title: titleInput, link: linkInput },
+      ]);
+      setTitleInput("");
+    } else {
+      toast.error("Invalid URL");
+    }
   };
 
   const handleEditClick = (linkId: string) => {
@@ -87,12 +108,13 @@ const HomePage = () => {
           />
         </div>
         <button
-          className="py-2 px-4 bg-purple-500 text-white rounded-md hover:bg-purple-600 flex items-center justify-center"
+          className="py-2 px-4 bg-purple-500 text-white rounded-md hover:bg-purple-600 flex items-center justify-center "
           onClick={handleAddLink}
         >
           <FaPlus className="mr-2" />
           Add Link
         </button>
+        <ToastContainer />
         {/* Render each link item */}
         {linkItems.map((link) => (
           <div key={link.id} className="flex items-center gap-2">
@@ -101,9 +123,9 @@ const HomePage = () => {
                 href={link.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-500 hover:text-blue-700"
+                className="text-white hover:text-blue-700  font-bold bg-blue-400 px-4 py-2 rounded"
               >
-                {link.title}
+                {link.title.toUpperCase()}
               </a>
             </div>
             <button
@@ -125,7 +147,7 @@ const HomePage = () => {
           <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
             <div className="bg-white rounded-lg p-8">
               <h2 className="text-2xl font-bold mb-4">Edit Link</h2>
-              <div className="grid grid-cols-1">
+              <div className="grid grid-cols-1 p-4">
                 <input
                   type="text"
                   placeholder="Title"
@@ -149,7 +171,7 @@ const HomePage = () => {
                   Cancel
                 </button>
                 <button
-                  className="py-2 px-4 bg-green-500 text-white rounded-md hover:bg-green-600"
+                  className="py-2 px-4 bg-green-500 text-white rounded-md hover:bg-green-600 flex gap-8"
                   onClick={handleSaveEditLink}
                 >
                   Save
