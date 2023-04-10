@@ -1,12 +1,21 @@
+"use client";
+
 import { useState } from "react";
 import shortid from "shortid";
-import { FaPlus, FaEdit, FaTrash } from "react-icons/fa";
-
+import {
+  FaPlus,
+  FaEdit,
+  FaTrash,
+  FaArrowAltCircleLeft,
+  FaArrowLeft,
+  FaChevronLeft,
+} from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const HomePage = () => {
   const [linkItems, setLinkItems] = useState<LinkItem[]>([]);
+  const [btnicon, setBtnicon] = useState<any>(<FaChevronLeft />);
   const [titleInput, setTitleInput] = useState<string>("");
   const [linkInput, setLinkInput] = useState<string>("");
   const [showEditModal, setShowEditModal] = useState<boolean>(false);
@@ -88,7 +97,15 @@ const HomePage = () => {
   };
 
   return (
-    <div className=" min-h-screen flex flex-col justify-center items-center">
+    <div className="  flex flex-col justify-center items-center bg-[#f3e8b9] p-4 rounded ">
+      <button
+        className="flex gap-2 bg-[#f3a4d5] items-center p-2 absolute top-8 right-8 rounded font-bold"
+        onMouseOver={() => setBtnicon(<FaArrowLeft />)}
+        onMouseLeave={() => setBtnicon(<FaChevronLeft />)}
+      >
+        {btnicon}
+        Home
+      </button>
       <h1 className="text-4xl font-bold  mb-4 ">Linkify</h1>
       <div className="bg-white rounded-lg p-8 grid gap-4">
         <div className="grid grid-cols-1  ">
