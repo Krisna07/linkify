@@ -12,6 +12,7 @@ import {
 } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Link from "next/link";
 
 const HomePage = () => {
   const [linkItems, setLinkItems] = useState<LinkItem[]>([]);
@@ -98,14 +99,16 @@ const HomePage = () => {
 
   return (
     <div className="  flex flex-col justify-center items-center bg-[#f3e8b9] p-4 rounded ">
-      <button
+      <Link
+        href={"./"}
         className="flex gap-2 bg-[#f3a4d5] items-center p-2 absolute top-8 right-8 rounded font-bold"
         onMouseOver={() => setBtnicon(<FaArrowLeft />)}
         onMouseLeave={() => setBtnicon(<FaChevronLeft />)}
       >
+        {" "}
         {btnicon}
         Home
-      </button>
+      </Link>
       <h1 className="text-4xl font-bold  mb-4 ">Linkify</h1>
       <div className="bg-white rounded-lg p-8 grid gap-4">
         <div className="grid grid-cols-1  ">
