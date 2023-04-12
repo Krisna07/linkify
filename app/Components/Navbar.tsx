@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaLeaf, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,8 +19,8 @@ const Navbar = () => {
         <div className="h-full flex items-center justify-between  p-4">
           <div className="flex items-center">
             <Link href="/">
-              <span className="text-white text-lg font-bold">
-                My Linkify App
+              <span className="text-white text-lg font-bold flex items-center gap-2">
+                Linkify <FaLeaf className="text-green-500" />
               </span>
             </Link>
           </div>
