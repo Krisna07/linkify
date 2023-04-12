@@ -16,7 +16,7 @@ const Navbar = () => {
       className={`bg-gray-800  absolute grid place-items-center min-w-full top-0  `}
     >
       <div className="w-full h-full">
-        <div className="h-full flex items-center justify-between bg-gray-500 p-4">
+        <div className="h-full flex items-center justify-between  p-4">
           <div className="flex items-center">
             <Link href="/">
               <span className="text-white text-lg font-bold">
