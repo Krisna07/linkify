@@ -1,6 +1,7 @@
 import Head from "next/head";
 import React from "react";
 import "../styles/globals.css";
+import Navbar from "./Components/Navbar";
 
 export default function RootLayout({
   children,
@@ -10,13 +11,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {" "}
         <div className="bg-gradient-to-r from-green-400 to-blue-500 min-h-screen flex items-center justify-center">
-          <Head>
+          {/* <Head>
             <title></title>
             <meta name="description" content="My awesome app" />
             <link rel="icon" href="/favicon.ico" />
-          </Head>
+          </Head> */}
+          <Navbar />
           {children}
         </div>
       </body>
