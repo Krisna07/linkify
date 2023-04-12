@@ -10,7 +10,7 @@ const HomePage = () => {
           <Link href={"/user_auth/signup"}> Sign up</Link>
         </button>
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          <Link href={"/user_auth/signin"}> Sign up</Link>
+          <Link href={"/user_auth/signin"}> Sign in</Link>
         </button>
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           <Link href="/demo"> Demo</Link>

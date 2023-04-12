@@ -20,6 +20,8 @@ const SignInForm: React.FC<SignInProps> = ({ onSignUpClick }) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const user = { email, password };
+    console.log(user);
     // handle sign-in logic
   };
 
