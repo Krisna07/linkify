@@ -21,14 +21,16 @@ const Signup = () => {
     console.log(
       `Username: ${username}, Email: ${email}, Password: ${password}, Password Confirmation: ${passwordConfirmation}`
     );
-    // Here you can add your own logic to handle the form submission, e.g. send data to server
   };
   const handleRecaptchaChange = (value: string | null) => {
     setRecaptchaValue(value || "");
   };
 
   return (
-    <div className=" flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 rounded bg-[#f3d4a5]">
+    <div
+      className="flex items-center justify-center bg-gray-50 bg-opacity-80 py-12 px-4 sm:px-6 lg:px-8 rounded-lg"
+      style={{ backgroundColor: "#ADD8E6" }}
+    >
       <div className="max-w-md w-full space-y-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
@@ -81,10 +83,10 @@ const Signup = () => {
               </div>
             </div>
           ))}
-          <ReCAPTCHA
+          {/* <ReCAPTCHA
             sitekey="your_site_key_here"
             onChange={handleRecaptchaChange}
-          />
+          /> */}
           <div>
             <button
               type="submit"

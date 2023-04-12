@@ -35,14 +35,11 @@ const HomePage = () => {
   const handleAddLink = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
-    // Regex pattern to validate URLs
     const urlPattern = new RegExp(
       "^https?:\\/\\/[\\w\\d\\-]+(\\.[\\w\\d\\-]+)*(\\/[\\w\\d\\-\\./?%&=]*)?$"
     );
 
-    // Check if link input matches the URL pattern
     if (urlPattern.test(linkInput)) {
-      // Add "https://" to link input if it doesn't have it
       if (
         !linkInput.startsWith("http://") &&
         !linkInput.startsWith("https://")
@@ -100,12 +97,11 @@ const HomePage = () => {
   return (
     <div className="  flex flex-col justify-center items-center bg-[#f3e8b9] p-4 rounded ">
       <Link
-        href={"./"}
+        href={"/"}
         className="flex gap-2 bg-[#f3a4d5] items-center p-2 absolute top-8 right-8 rounded font-bold"
         onMouseOver={() => setBtnicon(<FaArrowLeft />)}
         onMouseLeave={() => setBtnicon(<FaChevronLeft />)}
       >
-        {" "}
         {btnicon}
         Home
       </Link>
