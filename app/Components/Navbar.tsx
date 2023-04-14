@@ -13,7 +13,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`bg-gray-800  absolute grid place-items-center min-w-full top-0  `}
+      className={`bg-gray-800  fixed grid place-items-center min-w-full top-0  `}
     >
       <div className="w-full h-full">
         <div className="h-full flex items-center justify-between  p-4">
