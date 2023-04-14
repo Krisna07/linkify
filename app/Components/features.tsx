@@ -1,5 +1,10 @@
 import Image from "next/image";
-import { FaExpandAlt, FaLink, FaShareSquare } from "react-icons/fa";
+import {
+  FaChevronUp,
+  FaExpandAlt,
+  FaLink,
+  FaShareSquare,
+} from "react-icons/fa";
 import { GiAutoRepair, GiDiploma } from "react-icons/gi";
 
 const features = [
@@ -72,6 +77,24 @@ const FeaturesSection = () => {
               <p className="text-gray-600">{features.description}</p>
             </div>
           ))}
+        </div>
+        <div className="flex items-center justify-between gap-8">
+          <div className="w-[50%] bg-blue-500 box-border p-4 rounded">
+            <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
+              Users <FaChevronUp />
+            </h3>
+            <h3 className=" text-lg font-bold mb-2 flex items-center">
+              {Math.floor(Math.random() * 10000)}
+            </h3>
+          </div>
+          <div className="w-[50%] bg-blue-500 box-border p-4 rounded">
+            <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
+              Request <FaChevronUp />
+            </h3>
+            <h3 className=" text-lg font-bold mb-2 flex items-center">
+              {Math.floor(Math.random() * 10000)}
+            </h3>
+          </div>
         </div>
       </div>
     </section>
