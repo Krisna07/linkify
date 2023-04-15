@@ -120,23 +120,23 @@ const FeaturesSection = () => {
             </div>
           ))}
         </div>
-        <div className="grid grid-cols-3 gap-4">
-          <div className=" bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-pink-300 via-purple-300 to-indigo-400 box-border p-4 rounded">
+        <div className="grid grid-cols-3 gap-4 text-white">
+          <div className=" bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black box-border p-4 rounded">
             <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
               Users
             </h3>
-            <h3 className=" text-xl font-bold mb-2 flex items-center gap-4">
+            <h3 className=" text-xl font-bold mb-2 flex items-center gap-4 text-gray-400">
               {count}{" "}
               <span>
                 <FaUser />
               </span>
             </h3>
           </div>
-          <div className=" bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 box-border p-4 rounded">
+          <div className=" bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black box-border p-4 rounded">
             <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
               Request
             </h3>
-            <h3 className=" text-xl font-bold mb-2 flex items-center gap-4">
+            <h3 className=" text-xl font-bold mb-2 flex items-center gap-4 text-gray-400">
               {req}
               <span>
                 {" "}
@@ -144,11 +144,11 @@ const FeaturesSection = () => {
               </span>
             </h3>
           </div>
-          <div className=" bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 box-border p-4 rounded">
+          <div className=" bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black box-border p-4 rounded">
             <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
               Downloads
             </h3>
-            <h3 className=" text-xl font-bold mb-2 flex items-center gap-4">
+            <h3 className=" text-xl font-bold mb-2 flex items-center gap-4 text-gray-400">
               {download}
               <span>
                 <BsTriangleFill />
