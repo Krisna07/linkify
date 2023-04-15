@@ -1,11 +1,10 @@
+"use client";
 import Image from "next/image";
-import {
-  FaChevronUp,
-  FaExpandAlt,
-  FaLink,
-  FaShareSquare,
-} from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { FaExpandAlt, FaLink, FaShareSquare, FaUser } from "react-icons/fa";
+import { BiGitPullRequest, BiShapeTriangle, BiUpArrow } from "react-icons/bi";
 import { GiAutoRepair, GiDiploma } from "react-icons/gi";
+import { BsTriangleFill } from "react-icons/bs";
 
 const features = [
   {
@@ -39,6 +38,49 @@ const features = [
 ];
 
 const FeaturesSection = () => {
+  const [count, setCount] = useState(0);
+  const [req, setReq] = useState(0);
+  const [download, setDownload] = useState(0);
+
+  useEffect(() => {
+    const randomNumbers = [];
+    let randomNumber, randomReq, donwRandom;
+
+    while (randomNumbers.length < 3) {
+      randomNumber = Math.floor(Math.random() * 1000) + 332342;
+      randomReq = Math.floor(Math.random() * 1000) + 234234;
+      donwRandom = Math.floor(Math.random() * 1000) + 576765;
+
+      if (
+        !randomNumbers.includes(randomNumber) &&
+        !randomNumbers.includes(randomReq) &&
+        !randomNumbers.includes(donwRandom)
+      ) {
+        randomNumbers.push(randomNumber, randomReq, donwRandom);
+      }
+    }
+
+    const interval = setInterval(() => {
+      if (count < randomNumbers[0]) {
+        setCount((prevNumber) => Math.floor(prevNumber + randomNumber / 100));
+      } else {
+        clearInterval(interval);
+      }
+      if (req < randomNumbers[1]) {
+        setReq((prevNumber) => Math.floor(prevNumber + randomReq / 100));
+      } else {
+        clearInterval(interval);
+      }
+      if (download < randomNumbers[2]) {
+        setDownload((prevNumber) => Math.floor(prevNumber + donwRandom / 100));
+      } else {
+        clearInterval(interval);
+      }
+    }, 1);
+
+    return () => clearInterval(interval);
+  }, [count, req, download]);
+
   return (
     <section className="w-full ">
       <div className="container sm:px-6 lg:px-8 gap-16  box-border p-4">
@@ -78,21 +120,39 @@ const FeaturesSection = () => {
             </div>
           ))}
         </div>
-        <div className="flex items-center justify-between gap-8">
-          <div className="w-[50%] bg-blue-500 box-border p-4 rounded">
+        <div className="grid grid-cols-3 gap-4">
+          <div className=" bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-pink-300 via-purple-300 to-indigo-400 box-border p-4 rounded">
             <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
-              Users <FaChevronUp />
+              Users
             </h3>
-            <h3 className=" text-lg font-bold mb-2 flex items-center">
-              {Math.floor(Math.random() * 10000)}
+            <h3 className=" text-xl font-bold mb-2 flex items-center gap-4">
+              {count}{" "}
+              <span>
+                <FaUser />
+              </span>
             </h3>
           </div>
-          <div className="w-[50%] bg-blue-500 box-border p-4 rounded">
+          <div className=" bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 box-border p-4 rounded">
             <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
-              Request <FaChevronUp />
+              Request
             </h3>
-            <h3 className=" text-lg font-bold mb-2 flex items-center">
-              {Math.floor(Math.random() * 10000)}
+            <h3 className=" text-xl font-bold mb-2 flex items-center gap-4">
+              {req}
+              <span>
+                {" "}
+                <BiGitPullRequest />
+              </span>
+            </h3>
+          </div>
+          <div className=" bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 box-border p-4 rounded">
+            <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
+              Downloads
+            </h3>
+            <h3 className=" text-xl font-bold mb-2 flex items-center gap-4">
+              {download}
+              <span>
+                <BsTriangleFill />
+              </span>
             </h3>
           </div>
         </div>
