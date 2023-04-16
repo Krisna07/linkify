@@ -85,16 +85,15 @@ const FeaturesSection = () => {
     <section className="w-full ">
       <div className="container sm:px-6 lg:px-8 gap-16  box-border p-4">
         <div className="flex items-center justify-between box-border gap-16 ">
-          <div className="w-3/5">
-            <h2 className="text-3xl sm:text-4xl font-bold leading-tight text-gray-900 mb-8 text-gray-700">
-              Features
+          <div className="w-3/5 h-full flex flex-col justify-between gap-8 ">
+            <h3 className="font-bold">Worry less</h3>
+            <h2 className="text-xl w-3/4 sm:text-2xl font-bold leading-tight text-gray-900 mb-8 text-gray-700">
+              Let Linkify deliver you the most awsome user experience
             </h2>
-            <p>
+            <p className="w-4/5">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               Architecto magnam nostrum enim quod maxime! Nemo similique optio
               veniam sunt ex. Lorem, ipsum dolor sit amet consectetur
-              adipisicing elit. Repellendus libero eveniet tempora sunt commodi.
-              Ut ea eos cupiditate rerum eligendi explicabo quibusdam totam
             </p>
           </div>
           <div className="w-2/5 box-border rounded flex">
@@ -110,7 +109,7 @@ const FeaturesSection = () => {
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((features) => (
             <div
-              className="min-h-fit p-6 box-border bg-red-100/50 rounded hover:scale-[1.1] transition"
+              className="min-h-fit p-6 box-border bg-red-100/50 rounded hover:scale-[1.1] transition hover:shadow-lg"
               key={features.id}
             >
               <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
