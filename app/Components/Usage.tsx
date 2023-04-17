@@ -2,13 +2,21 @@ import React from "react";
 
 const Usage = () => {
   return (
-    <div className=" box-borde py-16 flex flex-row">
+    <div className=" box-borde py-16 flex flex-row items-center gap-8">
       <div className="w-1/2 h-[fit-content] flex items-center gap-4">
-        <div className="flex-col flex gap-2 font-[600]">
-          <span className="bg-gray-500/25  px-4 py-2 ">Get your key</span>
-          <span className="bg-gray-500/25  px-4 py-2">Add links</span>
-          <span className="bg-gray-500/25  px-4  py-2">Share </span>
-          <span className="bg-gray-500/25  px-4  py-2">View insights</span>
+        <div className="w-1/2 flex-col flex gap-2 font-[600]">
+          <span className="bg-gray-500/25  px-4 py-2 rounded hover:bg-gray-500 hover:border-l-2 hover:border-red-500">
+            Get your key
+          </span>
+          <span className="bg-gray-500/25  px-4 py-2 hover:bg-gray-500 hover:border-l-2 hover:border-red-500 rounded">
+            Add links
+          </span>
+          <span className="bg-gray-500/25  px-4  py-2 hover:bg-gray-500 hover:border-l-2 hover:border-red-500 rounded">
+            Share{" "}
+          </span>
+          <span className="bg-gray-500/25  px-4  py-2 hover:bg-gray-500 hover:border-l-2 hover:border-red-500 rounded">
+            View insights
+          </span>
         </div>
         <div className="w-1/2 min-h-[150px] bg-gray-100 hover:shadow-lg border-l-2 border-red-300 box-border p-4 text-center flex flex-col items-center justify-center rounded">
           Here is your link key : <br />
@@ -24,7 +32,10 @@ const Usage = () => {
             quia porro fugit nobis dolorum itaque?
           </p>
         </div>
-        <div className="w-1/2 h-48 bg-gray-100 rounded"></div>
+        <div className="w-1/2 h-48 bg-gray-100 rounded text-center">
+          Image goes here <br />
+          200X200
+        </div>
       </div>
     </div>
   );
