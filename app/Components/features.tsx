@@ -11,29 +11,27 @@ const features = [
     id: 1,
     icon: <FaExpandAlt className=" text-gray-800" />,
     title: "Scalable",
-    description:
-      "Linkify can handle any number of links you throw at it. Whether you have just a few social media accounts or a hundred, Linkify can manage them all with ease.",
+    description: "Linkify can handle any number of links you throw at it. ",
   },
   {
     id: 2,
     icon: <FaLink className=" text-gray-800" />,
     title: "Easy to Use",
-    description:
-      "Linkify has a simple and intuitive interface that allows you to add, remove, and reorder links quickly and easily.",
+    description: "Linkify has a simple and intuitive interface t",
   },
   {
     id: 3,
     icon: <GiAutoRepair className=" text-gray-800" />,
     title: "Automatic Link Repair",
     description:
-      "Linkify automatically detects broken links and removes them from your list. You don't have to worry about manually checking and updating your links.",
+      "Linkify automatically detects broken links and removes them from your list.",
   },
   {
     id: 4,
     icon: <FaShareSquare className=" text-gray-800" />,
     title: "Share Everywhere",
     description:
-      "Linkify provides you with a single link that you can share on all your social media accounts. This makes it easy for your followers to find and connect with you on all platforms.",
+      "Linkify provides you with a single link that you can share on all platforms.",
   },
 ];
 

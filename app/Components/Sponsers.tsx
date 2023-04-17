@@ -69,12 +69,9 @@ const SponsorsSection = () => {
       <div className="w-full text-center grid place-items-center">
         <h2 className=" text-center text-3xl font-bold mb-8">Our Sponsors</h2>
         <p className="w-[60%]">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat
-          sint eaque incidunt, dolor non a beatae corporis rem laborum nisi sed
-          officia soluta vel nulla, aliquam deserunt repudiandae nam in facilis
-          maiores enim numquam eligendi. Nobis fugit, mollitia eligendi tenetur
-          fuga debitis cum corrupti labore necessitatibus corporis eum saepe
-          qui.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae,
+          nostrum eum! Odit ex ut vel?Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Dicta, doloremque.
         </p>
       </div>
       <div className="marquee-container overflow-hidden mx-auto box-border">
