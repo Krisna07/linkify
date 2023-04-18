@@ -78,8 +78,22 @@ const Usage = () => {
               </span>
             ))}
           </div>
-          <div className="w-[300px] h-52  bg-gray-100 hover:shadow-lg border-l-2 border-red-300 box-border p-4 text-center flex flex-col items-center justify-center rounded">
-            {des}
+          <div className="w-[300px] h-[200px]  bg-gray-100 hover:shadow-lg border-l-2 border-red-300 box-border text-center flex flex-col  rounded realtive  relative  overflow-hidden ">
+            {usages.map((usuage) => (
+              <div
+                className={`w-full min-h-[200px] bg-gray-200  flex flex-col top-0 items-center justify-center rounded p-4 relative transition-all `}
+                style={{
+                  top: `-${index * 200}px`,
+                }}
+                key={usuage.title}
+                onClick={() => {
+                  setDes(usuage.des);
+                  setIndex(usages.indexOf(usuage));
+                }}
+              >
+                {usuage.des}
+              </div>
+            ))}
           </div>
         </div>
       </div>
