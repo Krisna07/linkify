@@ -11,7 +11,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="w-full bg-gradient-to-r from-green-400 to-blue-500 min-h-screen flex items-center justify-center">
+        <div className="w-full  min-h-screen flex items-center justify-center">
           {/* <Head>
             <title></title>
             <meta name="description" content="My awesome app" />

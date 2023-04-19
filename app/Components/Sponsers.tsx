@@ -65,7 +65,7 @@ const SponsorsSection = () => {
   ];
 
   return (
-    <div className=" w-[100%] overflow-hidden grid gap-8">
+    <div className=" w-[100%] overflow-hidden grid gap-8 py-8">
       <div className="w-full text-center grid place-items-center">
         <h2 className=" text-center text-3xl font-bold mb-8">Our Sponsors</h2>
         <p className="w-[60%]">

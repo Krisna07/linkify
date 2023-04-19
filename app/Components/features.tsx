@@ -80,7 +80,7 @@ const FeaturesSection = () => {
   }, [count, req, download]);
 
   return (
-    <section className="w-full ">
+    <section className="w-full flex items-center justify-center bg-gray-200 py-8">
       <div className="container sm:px-6 lg:px-8 gap-16  box-border p-4">
         <div className="flex items-center justify-between box-border gap-16 ">
           <div className="w-3/5 h-full flex flex-col justify-between gap-8 ">

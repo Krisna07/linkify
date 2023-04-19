@@ -105,7 +105,7 @@ const HeroSection = () => {
             Connect with your audience
             <br /> <span className="text-3xl">like never before</span>
           </h1>
-          <p className="text-lg mb-8 text-gray-700">
+          <p className=" mb-8 text-gray-700">
             Linkify is the easiest way to share all your social media profiles
             with your followers. Simply add your links to Linkify, and we'll
             generate a single link that you can share anywhere.
