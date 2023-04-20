@@ -13,13 +13,13 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`bg-gray-800  fixed grid place-items-center min-w-full top-0  `}
+      className={`bg-white  fixed grid place-items-center min-w-full top-0 shadow-lg z-10  `}
     >
       <div className="w-full h-full">
         <div className="h-full flex items-center justify-between  p-4">
           <div className="flex items-center">
             <Link href="/">
-              <span className="text-white text-lg font-bold flex items-center gap-2">
+              <span className=" text-lg font-bold flex items-center gap-2">
                 Linkify <FaLeaf className="text-green-500" />
               </span>
             </Link>
@@ -28,25 +28,23 @@ const Navbar = () => {
             <ul className="flex items-center space-x-6">
               <li>
                 <Link href="/">
-                  <span className="text-gray-300 hover:text-white">Home</span>
+                  <span className=" hover:text-white">Home</span>
                 </Link>
               </li>
               <li>
                 <Link href="/about">
-                  <span className="text-gray-300 hover:text-white">About</span>
+                  <span className=" hover:text-white">About</span>
                 </Link>
               </li>
               <li>
                 <Link href="/contact">
-                  <span className="text-gray-300 hover:text-white">
-                    Contact
-                  </span>
+                  <span className=" hover:text-white">Contact</span>
                 </Link>
               </li>
             </ul>
           </div>
           <div className="hidden md:block">
-            <button className="bg-white text-gray-800 font-semibold py-2 px-4 rounded-full">
+            <button className="bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-full">
               <Link href="/user_auth/signin">
                 <span className=" ">Sing in</span>
               </Link>

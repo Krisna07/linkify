@@ -98,14 +98,14 @@ import Link from "next/link";
 
 const HeroSection = () => {
   return (
-    <section className="flex justify-center items-center py-16">
-      <div className="w-[80%    ] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
-        <div className="md:w-1/2 lg:w-3/5">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 mb-8">
+    <section className=" flex justify-center items-center my-32 relative">
+      <div className="md:w-[80%] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
+        <div className="md:w-1/2 lg:w-2/4 grid gap-8">
+          <h3 className="text-xl font-[600]">Linkify</h3>
+          <h1 className="text-2xl sm:text-2xl lg:text-3xl font-bold leading-tight text-gray-900 mb-8">
             Connect with your audience
-            <br /> <span className="text-3xl">like never before</span>
           </h1>
-          <p className=" mb-8 text-gray-700">
+          <p className=" mb-8 text-gray-700 lg:w-4/5">
             Linkify is the easiest way to share all your social media profiles
             with your followers. Simply add your links to Linkify, and we'll
             generate a single link that you can share anywhere.
@@ -116,12 +116,12 @@ const HeroSection = () => {
             </span>
           </Link>
         </div>
-        <div className="md:w-1/2 lg:w-2/5 mt-8 md:mt-0">
+        <div className="md:w-1/2 md:mt-0 md:flex hidden absolute opacity-[0.5] top-0 z-[-1] md:relative">
           <img
-            src="https://assets-global.website-files.com/5e39e095596498a8b9624af1/5f6e93d250a6d04f4eae9f02_Backgrounds-WFU-thumbnail-(size).jpg"
+            src="https://static.vecteezy.com/system/resources/previews/015/643/003/original/online-mobile-app-payment-3d-gradient-web-illustrations-suitable-for-ui-ux-web-mobile-banner-and-infographic-vector.jpg"
             alt="Linkify app screenshot"
-            width={800}
-            height={600}
+            width={"100%"}
+            // height={"100%"}
           />
         </div>
       </div>

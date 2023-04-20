@@ -80,12 +80,12 @@ const FeaturesSection = () => {
   }, [count, req, download]);
 
   return (
-    <section className="w-full flex items-center justify-center bg-gray-200 py-8">
-      <div className="w-[80%] sm:px-6 lg:px-8 grid  gap-16  box-border p-4">
+    <section className="w-full flex items-center justify-center bg-gray-200 py-12 -skew-y-3">
+      <div className="md:w-[80%] p-4  grid  gap-16  box-border  skew-y-3">
         <div className="flex items-center justify-between box-border gap-8 ">
-          <div className="w-3/5 h-full flex flex-col items-start justify-center gap-8">
+          <div className="md:w-3/5 h-full flex flex-col items-start justify-center gap-8">
             <h3 className="font-bold">Worry less</h3>
-            <h2 className="text-xl w-3/4 sm:text-2xl font-bold leading-tight text-gray-900 mb-8 text-gray-700">
+            <h2 className="text-xl w-full md:w-3/4 sm:text-2xl font-bold leading-tight text-gray-900 mb-8 text-gray-700">
               Let Linkify deliver you the most awsome user experience
             </h2>
             <p className="w-4/5">
@@ -94,7 +94,7 @@ const FeaturesSection = () => {
               veniam sunt ex. Lorem, ipsum dolor sit amet consectetur
             </p>
           </div>
-          <div className="w-2/5 max-h-full box-border rounded flex">
+          <div className="w-2/5 max-h-full box-border rounded flex hidden md:flex">
             <img
               src={
                 "https://cdn.dribbble.com/users/239075/screenshots/6128789/media/9419c0a3cba0175c78dcb3c339160427.gif"
@@ -107,7 +107,7 @@ const FeaturesSection = () => {
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((features) => (
             <div
-              className="min-h-fit p-6 box-border bg-red-100/50 rounded hover:scale-[1.1] transition hover:shadow-lg"
+              className="min-h-fit p-6 box-border bg-white rounded hover:scale-[1.1] transition hover:shadow-lg"
               key={features.id}
             >
               <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
@@ -117,7 +117,7 @@ const FeaturesSection = () => {
             </div>
           ))}
         </div>
-        <div className="grid grid-cols-3 gap-4 text-white">
+        <div className="grid md:grid-cols-3 gap-4 text-white">
           <div className=" bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black box-border p-4 rounded">
             <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
               Users

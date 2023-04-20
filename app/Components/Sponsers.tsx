@@ -66,9 +66,9 @@ const SponsorsSection = () => {
 
   return (
     <div className=" w-[100%] overflow-hidden grid gap-8 py-8">
-      <div className="w-full text-center grid place-items-center">
+      <div className="w-full text-center grid place-items-center p-4">
         <h2 className=" text-center text-3xl font-bold mb-8">Our Sponsors</h2>
-        <p className="w-[60%]">
+        <p className="md:w-[60%]">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae,
           nostrum eum! Odit ex ut vel?Lorem ipsum dolor sit amet consectetur
           adipisicing elit. Dicta, doloremque.
@@ -78,7 +78,10 @@ const SponsorsSection = () => {
         <div className="w-full  flex items-center justify-between">
           <Marquee gradient={false} pauseOnClick={true} speed={100}>
             {sponsers.map((sponsor) => (
-              <div className="w-[10%] sponsor text-[50px]" key={sponsor.name}>
+              <div
+                className="md:w-[10%] w-[100px] sponsor text-[50px]"
+                key={sponsor.name}
+              >
                 {sponsor.logoUrl}
               </div>
             ))}

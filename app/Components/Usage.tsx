@@ -80,7 +80,7 @@ const Usage = () => {
   console.log(index);
   return (
     <div className="w-full flex items-center justify-center  py-8">
-      <div className="w-full md:w-[80%] lg:container-flex lg:flex grid items-center sm:px-6 lg:px-8 gap-16  box-border p-4">
+      <div className="w-full md:w-[80%] lg:container-flex lg:flex grid items-center sm:px-6 lg:px-8 gap-4  box-border p-4">
         <div className="lg:w-1/2 w-full  flex flex-col p-2  box-border gap-8  ">
           <h2 className="text-3xl font-[700] ">Usuage</h2>
           <div className="flex items-center gap-4">
@@ -138,9 +138,12 @@ const Usage = () => {
               Excepturi quia porro fugit nobis dolorum itaque?
             </p>
           </div>
-          <div className="w-2/5 h-48 bg-gray-100 rounded text-center hover:shadow-lg">
-            Image goes here <br />
-            200X200
+          <div className="w-2/5  bg-gray-100 rounded text-center hover:shadow-lg">
+            <img
+              src="https://img.freepik.com/free-vector/image-viewer-concept-illustration_114360-4532.jpg?w=826&t=st=1681968634~exp=1681969234~hmac=28c31796a43307c4988128c10cb50b02137fb2e4b2ef1996b2e5dbed22cf4f54"
+              alt=""
+              width={"100%"}
+            />
           </div>
         </div>
       </div>
