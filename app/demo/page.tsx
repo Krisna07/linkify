@@ -14,7 +14,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 
-const HomePage = () => {
+const Demo = () => {
   const [linkItems, setLinkItems] = useState<LinkItem[]>([]);
   const [btnicon, setBtnicon] = useState<any>(<FaChevronLeft />);
   const [titleInput, setTitleInput] = useState<string>("");
@@ -201,4 +201,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default Demo;

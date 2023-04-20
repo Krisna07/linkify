@@ -81,9 +81,9 @@ const FeaturesSection = () => {
 
   return (
     <section className="w-full flex items-center justify-center bg-gray-200 py-8">
-      <div className="container sm:px-6 lg:px-8 gap-16  box-border p-4">
-        <div className="flex items-center justify-between box-border gap-16 ">
-          <div className="w-3/5 h-full flex flex-col justify-between gap-8 ">
+      <div className="w-[80%] sm:px-6 lg:px-8 grid  gap-16  box-border p-4">
+        <div className="flex items-center justify-between box-border gap-8 ">
+          <div className="w-3/5 h-full flex flex-col items-start justify-center gap-8">
             <h3 className="font-bold">Worry less</h3>
             <h2 className="text-xl w-3/4 sm:text-2xl font-bold leading-tight text-gray-900 mb-8 text-gray-700">
               Let Linkify deliver you the most awsome user experience
@@ -94,7 +94,7 @@ const FeaturesSection = () => {
               veniam sunt ex. Lorem, ipsum dolor sit amet consectetur
             </p>
           </div>
-          <div className="w-2/5 box-border rounded flex">
+          <div className="w-2/5 max-h-full box-border rounded flex">
             <img
               src={
                 "https://cdn.dribbble.com/users/239075/screenshots/6128789/media/9419c0a3cba0175c78dcb3c339160427.gif"

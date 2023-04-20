@@ -99,7 +99,7 @@ import Link from "next/link";
 const HeroSection = () => {
   return (
     <section className="flex justify-center items-center py-16">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
+      <div className="w-[80%    ] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
         <div className="md:w-1/2 lg:w-3/5">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 mb-8">
             Connect with your audience
