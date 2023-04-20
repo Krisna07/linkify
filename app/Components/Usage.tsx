@@ -98,7 +98,11 @@ const Usage = () => {
               </span>
               {usages.map((usuage, x) => (
                 <span
-                  className="bg-gray-500/25  px-4 py-2 my-2 rounded hover:bg-gray-500 hover:text-white hover:shadow-[4px_4px_0px_0px_red] "
+                  className={
+                    index == usages.indexOf(usuage)
+                      ? "  px-4 py-2 my-2 rounded bg-gray-500 text-white shadow-[4px_4px_0px_0px_red]"
+                      : "bg-gray-500/25  px-4 py-2 my-2 rounded hover:bg-gray-500 hover:text-white hover:shadow-[4px_4px_0px_0px_red]"
+                  }
                   key={usages.indexOf(usuage)}
                   onClick={() => {
                     setDes(usuage.des);
