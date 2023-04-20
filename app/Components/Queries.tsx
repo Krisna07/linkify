@@ -1,6 +1,7 @@
 import React from "react";
 import {
   FaAlgolia,
+  FaChevronRight,
   FaCloudscale,
   FaPenSquare,
   FaSync,
@@ -43,6 +44,9 @@ const Queries = () => {
                 Interactive APIs
               </h2>
             </div>
+            <button className="flex gap-4 items-center bg-white px-4 py-2 font-bold rounded hover:shadow-lg">
+              Learn More <FaChevronRight />
+            </button>
           </div>
           <div className="w-2/5 max-h-full box-border rounded md:flex hidden">
             <img
