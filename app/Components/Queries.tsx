@@ -4,7 +4,7 @@ import { FaAlgolia, FaPenSquare, FaSync, FaUserAlt } from "react-icons/fa";
 const Queries = () => {
   return (
     <section className="w-full flex items-center justify-center bg-gray-200 py-8 -skew-y-3">
-      <div className="w-[80%] sm:px-6 lg:px-8 grid  gap-16  box-border p-4 skew-y-3">
+      <div className="w-[80%] sm:px-6 lg:px-8 grid  gap-16  box-border p-8 skew-y-3">
         <div className="flex items-center justify-between box-border gap-8 ">
           <div className="w-3/5 h-full flex flex-col items-start justify-center gap-8 ">
             <div className="grid items-start justify-center gap-4">
