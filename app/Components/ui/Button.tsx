@@ -5,7 +5,8 @@ import { cn } from "../../../lib/utils";
 const buttonVarients = cva("active:", {
   variants: {
     variant: {
-      default: "bg-slate-900 text-white hover:bg-slate-800",
+      default:
+        "bg-slate-900 text-white hover:bg-slate-800 px-4 py-2 rounded-full",
       ghost: "bg-transparent hover:text-slate-900 hover:bg-slate-200",
     },
 

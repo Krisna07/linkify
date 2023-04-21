@@ -112,9 +112,7 @@ const HeroSection = () => {
             generate a single link that you can share anywhere.
           </p>
           <Link href="/user_auth/signup">
-            <Button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition duration-200">
-              Sign up for free
-            </Button>
+            <Button variant={"default"}>Sign up for free</Button>
           </Link>
         </div>
         <div className="md:w-1/2 md:mt-0 md:flex hidden absolute opacity-[0.5] top-0 z-[-1] md:relative">

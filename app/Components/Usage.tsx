@@ -1,5 +1,6 @@
 "use client";
-import { Button } from "@chakra-ui/react";
+
+import { ChevronRight } from "lucide-react";
 import React, { useState } from "react";
 import {
   FaEye,
@@ -12,6 +13,7 @@ import {
   FaTwitterSquare,
 } from "react-icons/fa";
 import Demo from "../demo/page";
+import Button from "./ui/Button";
 
 const addLinks = (
   <div>
@@ -116,7 +118,7 @@ const Usage = () => {
             <div className="w-1/2 h-[200px]  bg-gray-100 hover:shadow-lg border-l-2 border-red-300 box-border text-center flex flex-col  rounded realtive  relative  overflow-hidden  ">
               {usages.map((usuage) => (
                 <div
-                  className={`w-full min-h-[200px] bg-gray-200  flex flex-col top-0 items-center justify-center rounded p-4 relative transition-all 9 `}
+                  className={`w-full min-h-[200px] bg-gray-200  flex flex-col top-0 items-center justify-center rounded p-4 relative transition-all overflow-hidden `}
                   style={{
                     top: `-${index * 200}px`,
                   }}
@@ -142,6 +144,9 @@ const Usage = () => {
               Lorem ipsum, dolor sit amet consectetur adipisicing elit.
               Excepturi quia porro fugit nobis dolorum itaque?
             </p>
+            <Button variant={"default"} className={"flex w-fit"}>
+              Learn more <ChevronRight />
+            </Button>
           </div>
           <div className="w-2/5  bg-gray-100 rounded text-center hover:shadow-lg">
             <img
