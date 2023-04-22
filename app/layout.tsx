@@ -1,9 +1,9 @@
+// components/RootLayout.js
+
 import Head from "next/head";
 import React from "react";
-import "../styles/globals.css";
-import Navbar from "./Components/Navbar";
-import LandingPageLayout from "./Components/LandingpageLayout";
-import WebAppLayout from "./Components/LinkifyLayout";
+import LandingPageLayout from "./Layouts/LandingpageLayout";
+import Linkify from "./Layouts/LinkifyLayout";
 
 export default function RootLayout({
   children,
@@ -13,21 +13,18 @@ export default function RootLayout({
   isLandingPage?: boolean;
 }) {
   return (
-    <html lang="en">
+    <>
       <Head>
-        <title>Linkify</title>
-        <meta name="description" content="" />
+        <title>My App</title>
+        <meta name="description" content="My awesome app" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       {isLandingPage ? (
-        <LandingPageLayout children={undefined} pageTitle={undefined}>
-          {children}
-        </LandingPageLayout>
+        <LandingPageLayout>{children}</LandingPageLayout>
       ) : (
-        <WebAppLayout children={undefined} pageTitle={undefined}>
-          {children}
-        </WebAppLayout>
+        <Linkify>{children}</Linkify>
       )}
-    </html>
+    </>
   );
 }
