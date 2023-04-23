@@ -2,7 +2,7 @@
 
 import Head from "next/head";
 import React from "react";
-import Navbar from "../Navbar";
+import Navbar from "../Landingpage/Components/Navbar";
 
 export default function LandingPageLayout({ children }) {
   return (
@@ -15,7 +15,7 @@ export default function LandingPageLayout({ children }) {
 
       <Navbar />
 
-      <div className="mt-[100px]">{children}</div>
+      <div className="mt-[70px]">{children}</div>
     </>
   );
 }

@@ -2,8 +2,8 @@
 
 import Head from "next/head";
 import React from "react";
-import LandingPageLayout from "./Components/layouts/LandingpageLayout";
-import Linkify from "./Components/layouts/LinkifyLayout";
+import LandingPageLayout from "./layouts/LandingpageLayout";
+import Linkify from "./layouts/LinkifyLayout";
 import "../styles/globals.css";
 export default function RootLayout({
   children,

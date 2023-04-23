@@ -1,11 +1,10 @@
 import React from "react";
-import FeaturesSection from "../Components/features";
-import HeroSection from "../Components/Hero";
-import Navbar from "../Components/Navbar";
-import Queries from "../Components/Queries";
-import SponsorsSection from "../Components/Sponsers";
-import Usage from "../Components/Usage";
-import LandingPageLayout from "../Components/layouts/LandingpageLayout";
+import FeaturesSection from "../Landingpage/Components/features";
+import HeroSection from "../Landingpage/Components/Hero";
+
+import Queries from "../Landingpage/Components/Queries";
+import SponsorsSection from "../Landingpage/Components/Sponsers";
+import Usage from "../Landingpage/Components/Usage";
 import RootLayout from "../Layout";
 
 export default function LandingPage() {

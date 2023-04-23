@@ -12,7 +12,7 @@ import {
   FaShare,
   FaTwitterSquare,
 } from "react-icons/fa";
-import Demo from "../demo/page";
+import Demo from "../../Dashboard/demo/page";
 import Button from "./ui/Button";
 
 const addLinks = (
