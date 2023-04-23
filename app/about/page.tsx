@@ -1,7 +1,12 @@
 import React from "react";
+import LandingPageLayout from "../Components/layouts/LandingpageLayout";
 
 const page = () => {
-  return <div>page</div>;
+  return (
+    <LandingPageLayout>
+      <div className="w-full"> about</div>
+    </LandingPageLayout>
+  );
 };
 
 export default page;

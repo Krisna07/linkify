@@ -11,7 +11,7 @@ export default function Linkify({ children }) {
         <meta name="description" content="My awesome web app" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="web-app-layout">{children}</div>
+      <div className="web-app-layout bg-red-200">{children}</div>
     </>
   );
 }

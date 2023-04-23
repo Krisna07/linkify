@@ -1,5 +1,6 @@
 import React from "react";
-import Linkify from "../Layouts/LinkifyLayout";
+import Linkify from "../Components/layouts/LinkifyLayout";
+// import Linkify from "../Layouts/LinkifyLayo";
 
 export default function Dashboard() {
   return (

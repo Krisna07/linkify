@@ -2,9 +2,9 @@
 
 import Head from "next/head";
 import React from "react";
-import LandingPageLayout from "./Layouts/LandingpageLayout";
-import Linkify from "./Layouts/LinkifyLayout";
-
+import LandingPageLayout from "./Components/layouts/LandingpageLayout";
+import Linkify from "./Components/layouts/LinkifyLayout";
+import "../styles/globals.css";
 export default function RootLayout({
   children,
   isLandingPage,
