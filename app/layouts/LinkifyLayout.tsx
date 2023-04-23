@@ -1,10 +1,8 @@
-// components/WebAppLayout.js
-
 import Head from "next/head";
 import React from "react";
-import Sidenav from "../Dashboard/components/Sidenav";
+import Sidenav from "../Dashboard/components/sidenav";
 
-export default function Linkify({ children }) {
+export default function Linkify({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Head>

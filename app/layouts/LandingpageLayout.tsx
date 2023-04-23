@@ -4,7 +4,11 @@ import Head from "next/head";
 import React from "react";
 import Navbar from "../Landingpage/Components/Navbar";
 
-export default function LandingPageLayout({ children }) {
+export default function LandingPageLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <>
       <Head>
