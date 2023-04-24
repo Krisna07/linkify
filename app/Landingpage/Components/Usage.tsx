@@ -12,14 +12,10 @@ import {
   FaShare,
   FaTwitterSquare,
 } from "react-icons/fa";
-import Demo from "../../Dashboard/demo/page";
+
 import Button from "./ui/Button";
 
-const addLinks = (
-  <div>
-    <Demo />
-  </div>
-);
+const addLinks = <div>{/* <Demo /> */}</div>;
 const share = (
   <div className="grid place-items-center gap-4">
     <h2 className="font-[600]"> Share to any platform</h2>

@@ -2,9 +2,8 @@
 
 import Head from "next/head";
 import React from "react";
-import LandingPageLayout from "./layouts/LandingpageLayout";
-import Linkify from "./layouts/LinkifyLayout";
 import "../styles/globals.css";
+import Navbar from "./Landingpage/Components/Navbar";
 export default function RootLayout({
   children,
   isLandingPage,
@@ -19,12 +18,9 @@ export default function RootLayout({
         <meta name="description" content="My awesome app" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Navbar />
 
-      {isLandingPage ? (
-        <LandingPageLayout>{children}</LandingPageLayout>
-      ) : (
-        <Linkify>{children}</Linkify>
-      )}
+      {children}
     </>
   );
 }
