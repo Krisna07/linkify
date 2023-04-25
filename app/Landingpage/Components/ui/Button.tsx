@@ -33,6 +33,7 @@ const Button = ({
   variant,
   isLoading,
   size,
+  icon,
   ...props
 }) => {
   return (
@@ -43,6 +44,7 @@ const Button = ({
     >
       {isLoading ? <Loader2 className="mr-2 h-4 w-5 animate-spin" /> : null}
       {children}
+      {icon}
     </button>
   );
 };
