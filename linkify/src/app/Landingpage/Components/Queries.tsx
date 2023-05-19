@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  FaAlgolia,
   FaChevronRight,
   FaCloudscale,
   FaPenSquare,

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { FaBars, FaLeaf, FaTimes } from "react-icons/fa";
 
@@ -10,10 +10,18 @@ const Navbar = () => {
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
-
+  const [navigationHeight, setNavigationHeight] = useState();
+  const navHeight = useRef(0);
+  // useEffect(() => {
+  //   setNavigationHeight(
+  //     navHeight ? navHeight.current.getBoundingClientRect().height : ""
+  //   );
+  // });
+  console.log(navigationHeight);
   return (
     <nav
       className={`bg-white  fixed grid place-items-center min-w-full top-0 shadow-lg z-10  `}
+      // ref={navHeight}
     >
       <div className="w-full h-full">
         <div className="h-full flex items-center justify-between  p-4">

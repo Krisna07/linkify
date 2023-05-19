@@ -6,10 +6,8 @@ import "../styles/globals.css";
 import Navbar from "./Landingpage/Components/Navbar";
 export default function RootLayout({
   children,
-  isLandingPage,
 }: {
   children: React.ReactNode;
-  isLandingPage?: boolean;
 }) {
   return (
     <>

@@ -1,7 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
-import Image from "next/image";
-import marquee from "marquee";
+
 import {
   FaAmazon,
   FaAndroid,
@@ -17,7 +15,7 @@ import {
   FaStripe,
   FaStripeS,
 } from "react-icons/fa";
-import { BsSlack } from "react-icons/bs";
+
 import Marquee from "react-fast-marquee";
 
 const SponsorsSection = () => {
@@ -75,11 +73,16 @@ const SponsorsSection = () => {
         </p>
       </div>
       <div className="marquee-container overflow-hidden mx-auto box-border">
-        <div className="w-full  flex items-center justify-between">
-          <Marquee gradient={false} pauseOnClick={true} speed={100}>
+        <div className="w-[100%] bg-gray-400 flex items-center justify-between">
+          <Marquee
+            gradient={false}
+            pauseOnClick={true}
+            speed={100}
+            className="w-full flex items-center justify-between"
+          >
             {sponsers.map((sponsor) => (
               <div
-                className="md:w-[10%] w-[100px] sponsor text-[50px]"
+                className="md:w-[10%] w-[200px] sponsor text-[50px]"
                 key={sponsor.name}
               >
                 {sponsor.logoUrl}

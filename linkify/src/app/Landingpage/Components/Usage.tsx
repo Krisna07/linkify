@@ -1,8 +1,8 @@
 "use client";
 
-import { ChevronRight } from "lucide-react";
 import React, { useState } from "react";
 import {
+  FaChevronRight,
   FaEye,
   FaFacebookSquare,
   FaInstagramSquare,
@@ -141,7 +141,7 @@ const Usage = () => {
               Excepturi quia porro fugit nobis dolorum itaque?
             </p>
             <Button variant={"default"} className={"flex w-fit"}>
-              Learn more <ChevronRight />
+              Learn more <FaChevronRight />
             </Button>
           </div>
           <div className="w-2/5  bg-gray-100 rounded text-center hover:shadow-lg">
