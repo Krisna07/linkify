@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  FaAirbnb,
   FaAmazon,
   FaAndroid,
   FaBattleNet,
@@ -64,7 +65,7 @@ const SponsorsSection = () => {
   ];
 
   return (
-    <div className=" w-[100%] overflow-hidden grid gap-8 py-8">
+    <div className=" w-[100%] overflow-hidden grid place-items-center gap-8 py-8">
       <div className="w-full text-center grid place-items-center p-4">
         <h2 className=" text-center text-3xl font-bold mb-8">Our Sponsors</h2>
         <p className="md:w-[60%]">
@@ -74,16 +75,14 @@ const SponsorsSection = () => {
         </p>
       </div>
 
-      <div className=" w-full overflow-hidden mx-auto box-border bg-red-200">
-        <div className="w-[100%]  flex items-center justify-between ">
-          <Marquee className=" flex gap-20 ">
-            {sponsers.map((sponsor) => (
-              <div key={sponsor.name} className="w-[10%] text-[50px]">
-                {sponsor.logoUrl}
-              </div>
-            ))}
-          </Marquee>
-        </div>
+      <div className="w-[1200px]  gap-[100px] ">
+        <Marquee>
+          {sponsers.map((sponser) => (
+            <div className="w-[200px] px-8 text-[50px]" key={sponser.name}>
+              {sponser.logoUrl}
+            </div>
+          ))}
+        </Marquee>
       </div>
     </div>
   );

@@ -40,44 +40,44 @@ const FeaturesSection = () => {
   const [req, setReq] = useState(0);
   const [download, setDownload] = useState(0);
 
-  // useEffect(() => {
-  //   const randomNumbers = [];
-  //   let randomNumber, randomReq, donwRandom;
+  useEffect(() => {
+    const randomNumbers = [];
+    let randomNumber, randomReq, donwRandom;
 
-  //   while (randomNumbers.length < 3) {
-  //     randomNumber = Math.floor(Math.random() * 1000) + 332342;
-  //     randomReq = Math.floor(Math.random() * 1000) + 234234;
-  //     donwRandom = Math.floor(Math.random() * 1000) + 576765;
+    while (randomNumbers.length < 3) {
+      randomNumber = Math.floor(Math.random() * 1000) + 332342;
+      randomReq = Math.floor(Math.random() * 1000) + 234234;
+      donwRandom = Math.floor(Math.random() * 1000) + 576765;
 
-  //     if (
-  //       !randomNumbers.includes(randomNumber) &&
-  //       !randomNumbers.includes(randomReq) &&
-  //       !randomNumbers.includes(donwRandom)
-  //     ) {
-  //       randomNumbers.push(randomNumber, randomReq, donwRandom);
-  //     }
-  //   }
+      if (
+        !randomNumbers.includes(randomNumber) &&
+        !randomNumbers.includes(randomReq) &&
+        !randomNumbers.includes(donwRandom)
+      ) {
+        randomNumbers.push(randomNumber, randomReq, donwRandom);
+      }
+    }
 
-  //   const interval = setInterval(() => {
-  //     if (count < randomNumbers[0]) {
-  //       setCount((prevNumber) => Math.floor(prevNumber + randomNumber / 100));
-  //     } else {
-  //       clearInterval(interval);
-  //     }
-  //     if (req < randomNumbers[1]) {
-  //       setReq((prevNumber) => Math.floor(prevNumber + randomReq / 100));
-  //     } else {
-  //       clearInterval(interval);
-  //     }
-  //     if (download < randomNumbers[2]) {
-  //       setDownload((prevNumber) => Math.floor(prevNumber + donwRandom / 100));
-  //     } else {
-  //       clearInterval(interval);
-  //     }
-  //   }, 1);
+    const interval = setInterval(() => {
+      if (count < randomNumbers[0]) {
+        setCount((prevNumber) => Math.floor(prevNumber + randomNumber / 100));
+      } else {
+        clearInterval(interval);
+      }
+      if (req < randomNumbers[1]) {
+        setReq((prevNumber) => Math.floor(prevNumber + randomReq / 100));
+      } else {
+        clearInterval(interval);
+      }
+      if (download < randomNumbers[2]) {
+        setDownload((prevNumber) => Math.floor(prevNumber + donwRandom / 100));
+      } else {
+        clearInterval(interval);
+      }
+    }, 1);
 
-  //   return () => clearInterval(interval);
-  // }, [count, req, download]);
+    return () => clearInterval(interval);
+  }, [count, req, download]);
 
   return (
     <section className="w-full flex items-center justify-center bg-gray-200 py-12 -skew-y-3">

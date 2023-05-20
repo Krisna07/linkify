@@ -76,7 +76,6 @@ const Usage = () => {
   const [des, setDes] = useState(usages[0].des);
   const [index, setIndex] = useState(0);
 
-  console.log(index);
   return (
     <div className="w-full flex items-center justify-center  py-8">
       <div className="w-full md:w-[80%] lg:container-flex lg:flex grid items-center sm:px-6 lg:px-8 gap-4  box-border p-4">
@@ -86,7 +85,7 @@ const Usage = () => {
             <div className="w-1/2 h-fit flex-col flex  font-[600] relative">
               <span className="w-[2px] absolute h-full bg-black -left-4 flex items-center justify-center">
                 <span
-                  className={`w-[4px] h-1/4 bg-red-200 absolute  transition-all transition-ease`}
+                  className={`w-[4px] h-1/4 bg-red-600 absolute  transition-all transition-ease`}
                   style={{
                     top: `${index ? (index / 4) * 100 : 0}%`,
                   }}
@@ -138,8 +137,8 @@ const Usage = () => {
               Lorem ipsum, dolor sit amet consectetur adipisicing elit.
               Excepturi quia porro fugit nobis dolorum itaque?
             </p>
-            <Button variant={"default"} className={"flex w-fit"}>
-              Learn more <FaChevronRight />
+            <Button variant={"default"} className={"flex w-fit"} icon={true}>
+              Learn more
             </Button>
           </div>
           <div className="w-2/5  bg-gray-100 rounded text-center hover:shadow-lg">

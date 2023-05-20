@@ -5,24 +5,25 @@ import Link from "next/link";
 import { FaBars, FaLeaf, FaTimes } from "react-icons/fa";
 import Button from "./ui/Button";
 
-const Navbar = () => {
+const Navbar = ({ setNavigationHeight }: any) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
-  const [navigationHeight, setNavigationHeight] = useState();
   const navHeight = useRef(0);
-  // useEffect(() => {
-  //   setNavigationHeight(
-  //     navHeight ? navHeight.current.getBoundingClientRect().height : ""
-  //   );
-  // });
+  useEffect(() => {
+    const navigation = navHeight.current;
+
+    setNavigationHeight(
+      navigation ? navigation.getBoundingClientRect().height : "72"
+    );
+  }, [navHeight]);
 
   return (
     <nav
-      className={`bg-white  fixed grid place-items-center min-w-full top-0 shadow-lg z-10  `}
-      // ref={navHeight}
+      className={`bg-white fixed grid place-items-center min-w-full top-0 shadow-lg z-10  `}
+      ref={navHeight}
     >
       <div className="w-full h-full">
         <div className="h-full flex items-center justify-between  p-4">
@@ -54,7 +55,7 @@ const Navbar = () => {
           </div>
           <div className="hidden md:block">
             <Link href="/user_auth/signin">
-              <Button children={"Sing in"} variant={"primary"} icon={false} />
+              <Button children={"Sign in"} variant={"default"} icon={false} />
               {/* <span className=" ">Sign in</span> */}
             </Link>
           </div>
