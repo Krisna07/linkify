@@ -17,6 +17,7 @@ import {
 } from "react-icons/fa";
 
 import Marquee from "react-fast-marquee";
+import Button from "./ui/Button";
 
 const SponsorsSection = () => {
   const sponsers = [
@@ -72,19 +73,12 @@ const SponsorsSection = () => {
           adipisicing elit. Dicta, doloremque.
         </p>
       </div>
-      <div className="marquee-container overflow-hidden mx-auto box-border">
-        <div className="w-[100%] bg-gray-400 flex items-center justify-between">
-          <Marquee
-            gradient={false}
-            pauseOnClick={true}
-            speed={100}
-            className="w-full flex items-center justify-between"
-          >
+
+      <div className=" w-full overflow-hidden mx-auto box-border bg-red-200">
+        <div className="w-[100%]  flex items-center justify-between ">
+          <Marquee className=" flex gap-20 ">
             {sponsers.map((sponsor) => (
-              <div
-                className="md:w-[10%] w-[200px] sponsor text-[50px]"
-                key={sponsor.name}
-              >
+              <div key={sponsor.name} className="w-[10%] text-[50px]">
                 {sponsor.logoUrl}
               </div>
             ))}

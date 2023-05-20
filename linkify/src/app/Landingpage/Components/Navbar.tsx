@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { FaBars, FaLeaf, FaTimes } from "react-icons/fa";
+import Button from "./ui/Button";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +18,7 @@ const Navbar = () => {
   //     navHeight ? navHeight.current.getBoundingClientRect().height : ""
   //   );
   // });
-  console.log(navigationHeight);
+
   return (
     <nav
       className={`bg-white  fixed grid place-items-center min-w-full top-0 shadow-lg z-10  `}
@@ -52,11 +53,10 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="hidden md:block">
-            <button className="bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-full">
-              <Link href="/user_auth/signin">
-                <span className=" ">Sign in</span>
-              </Link>
-            </button>
+            <Link href="/user_auth/signin">
+              <Button children={"Sing in"} variant={"primary"} icon={false} />
+              {/* <span className=" ">Sign in</span> */}
+            </Link>
           </div>
           <div className="md:hidden">
             <button
