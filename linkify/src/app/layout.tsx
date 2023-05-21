@@ -1,3 +1,4 @@
+"use client";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Navbar from "./Landingpage/Components/Navbar";
@@ -15,9 +16,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const [navigationHeight, setNavigationHeight] = useState<string>("");
+  console.log(navigationHeight);
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Navbar setNavigationHeight={setNavigationHeight} />
+        <div className={` relative top-[${navigationHeight}px]`}>
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
