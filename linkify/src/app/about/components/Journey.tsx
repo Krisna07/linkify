@@ -2,7 +2,7 @@ import Button from "@/app/Landingpage/Components/ui/Button";
 
 export default function Journey() {
   return (
-    <div className="journeyContainer w-5/6 flex items-center gap-8 ">
+    <div className="journeyContainer w-5/6 flex items-center gap-8  ">
       <div className="w-2/4 grid gap-8">
         <h3 className="text-xl font-semibold">Our stories</h3>
         <h2 className="text-2xl font-bold">Humble but not subtle</h2>
