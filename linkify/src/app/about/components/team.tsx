@@ -1,3 +1,4 @@
+import Button from "@/app/Landingpage/Components/ui/Button";
 import React from "react";
 
 const OurTeam: React.FC = () => {
@@ -23,7 +24,9 @@ const OurTeam: React.FC = () => {
     <section className="w-5/6 py-12 grid  ">
       <div className="w-full mx-auto grid  gap-8 text-center">
         <div className="w-full grid place-items-center gap-8">
-          <h2 className="text-3xl font-bold">Our Team</h2>
+          <h2 className="text-3xl font-bold grid after:w-full after:h-1 after:bg-gray-900">
+            Our Team
+          </h2>
           <p className="md:w-3/4">
             A team a elite enginners working together to grasp the potential of
             the link sharing platform. We will ensure that our customers made
@@ -34,12 +37,13 @@ const OurTeam: React.FC = () => {
           {teamMembers.map((member, index) => (
             <div
               key={index}
-              className="bg-white shadow-md rounded-lg p-6 grid place-items-center"
+              className="bg-gradient-to-b from-white to-slate-200 shadow-md rounded-lg p-6 grid place-items-center gap-4"
             >
-              <div className="w-12 h-12 bg-gray-700 rounded-full border-2 border-red-200"></div>
-              <h3 className="text-lg font-semibold mb-2">{member.name}</h3>
-              <p className="text-gray-600 mb-4">{member.position}</p>
+              <div className="w-12 h-12 bg-gradient-to-r from-gray-600 to-red-100 rounded-full border-2 border-red-200"></div>
+              <h3 className="text-lg font-semibold ">{member.name}</h3>
+              <p className="text-gray-600 ">{member.position}</p>
               <p className="text-gray-800">{member.bio}</p>
+              <Button variant={"default"} children={"Connect"} icon={"true"} />
             </div>
           ))}
         </div>
