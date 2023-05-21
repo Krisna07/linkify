@@ -5,7 +5,6 @@ const Footer: React.FC = () => {
   return (
     <footer className="w-full  text-black py-4 grid place-items-center">
       <div className="w-3/4  flex items-center justify-between">
-        {/* First Column */}
         <div className="grid  justify-start gap-4">
           <h2 className="text-lg font-bold">
             <a
@@ -26,7 +25,6 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Second Column */}
         <div className="flex flex-col gap-4">
           <a href="#" className=" hover:text-gray-500 font-semibold">
             About Us
@@ -45,7 +43,6 @@ const Footer: React.FC = () => {
           </a>
         </div>
 
-        {/* Third Column */}
         <div className="flex flex-col gap-4">
           <a href="#" className=" hover:text-gray-500 font-semibold">
             Careers
