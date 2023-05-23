@@ -1,13 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import Marquee from "react-fast-marquee";
-import { FaAirbnb } from "react-icons/fa";
-
 import FeaturesSection from "./Landingpage/Components/features";
 import Footer from "./Landingpage/Components/Footer";
 import HeroSection from "./Landingpage/Components/Hero";
 import Herosection from "./Landingpage/Components/Herosection";
-
 import Newsletter from "./Landingpage/Components/Newsletter";
 import PricingTable from "./Landingpage/Components/Pricing";
 import Queries from "./Landingpage/Components/Queries";

@@ -1,6 +1,9 @@
 "use client";
+import Button from "@/app/Landingpage/Components/ui/Button";
 import Link from "next/link";
 import { useState } from "react";
+import { FaFacebook } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 
 interface SignInProps {
   onSignUpClick: () => void;
@@ -26,63 +29,78 @@ const SignInForm: React.FC<SignInProps> = ({ onSignUpClick }) => {
   };
 
   return (
-    <form className="mx-auto max-w-lg" onSubmit={handleSubmit}>
-      <div className="">
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Signin to your account
-        </h2>
-      </div>
-      <div className="my-4">
-        <label className="block text-gray-700 font-bold mb-2" htmlFor="email">
-          Email
-        </label>
-        <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id="email"
-          type="email"
-          placeholder="Enter email"
-          value={email}
-          onChange={handleEmailChange}
-          required
-        />
-      </div>
-      <div className="my-4">
-        <label
-          className="block text-gray-700 font-bold mb-2"
-          htmlFor="password"
+    <div className="w-full h-[100vh]  flex items-center justify-center bg-gradient-to-r from-red-400 to-slate-800 animate-text">
+      <div className="md:w-[60%] flex items-center justify-center bg-black  p-4 rounded  ">
+        <form
+          className="md:w-3/6 bg-white rounded rounded-b-none shadow-lg box-border px-4 py-8 relative -bottom-4"
+          onSubmit={handleSubmit}
         >
-          Password
-        </label>
-        <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id="password"
-          type="password"
-          placeholder="Enter password"
-          value={password}
-          onChange={handlePasswordChange}
-          required
-        />
+          <div className="">
+            <h2 className="mt-6 text-center text-2xl font-extrabold text-gray-900">
+              Signin
+            </h2>
+          </div>
+          <div className="my-4">
+            <label
+              className="block text-gray-700 font-bold mb-2"
+              htmlFor="email"
+            >
+              Email
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="email"
+              type="email"
+              placeholder="Enter email"
+              value={email}
+              onChange={handleEmailChange}
+              required
+            />
+          </div>
+          <div className="my-4">
+            <label
+              className="block text-gray-700 font-bold mb-2"
+              htmlFor="password"
+            >
+              Password
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="password"
+              type="password"
+              placeholder="Enter password"
+              value={password}
+              onChange={handlePasswordChange}
+              required
+            />
+          </div>
+          <div className="my-4">
+            <button
+              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="submit"
+            >
+              Sign In
+            </button>
+          </div>
+          <div className="text-center">
+            <p className="grid place-items-center text-gray-700 gap-4 ">
+              Don't have an account?
+              <Button children={"Sign up"} variant={"default"} />
+            </p>
+          </div>
+          <div className="w-full flex items-center justify-center gap-4 text-xl absolute -bottom-4 ">
+            <span className="p-2 bg-white rounded-full shadow-bs hover:animate-bounce">
+              {" "}
+              <FcGoogle />
+            </span>
+            <span className="p-2 bg-white rounded-full shadow-bs hover:animate-bounce">
+              {" "}
+              <FaFacebook color="blue" />
+            </span>
+          </div>
+        </form>
       </div>
-      <div className="my-4">
-        <button
-          className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          type="submit"
-        >
-          Sign In
-        </button>
-      </div>
-      <div className="text-center">
-        <p className="text-gray-700">
-          Don't have an account?{" "}
-          <button
-            className="text-white hover:underline focus:outline-none"
-            type="button"
-          >
-            <Link href={"/user_auth/signup"}> Sign up</Link>
-          </button>
-        </p>
-      </div>
-    </form>
+    </div>
   );
 };
 

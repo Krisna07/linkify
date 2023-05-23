@@ -28,7 +28,7 @@ const OurTeam: React.FC = () => {
             Our Team
           </h2>
           <p className="md:w-3/4">
-            A team a elite enginners working together to grasp the potential of
+            A team of elite enginners working together to grasp the potential of
             the link sharing platform. We will ensure that our customers made
             the right decison by choosing us.
           </p>
