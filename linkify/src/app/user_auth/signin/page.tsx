@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import { Toast } from "react-toastify/dist/components";
 
 interface SignInProps {
   onSignUpClick: () => void;
@@ -25,11 +26,10 @@ const SignInForm: React.FC<SignInProps> = ({ onSignUpClick }) => {
     event.preventDefault();
     const user = { email, password };
     console.log(user);
-    // handle sign-in logic
   };
 
   return (
-    <div className="w-full h-[100vh]  flex items-center justify-center bg-gradient-to-r from-red-400 to-slate-800 animate-text">
+    <div className="w-full min-h-[100vh]  flex items-center justify-center bg-gradient-to-r from-red-400 to-slate-800 animate-text">
       <div className="md:w-[60%] flex items-center justify-center bg-black  p-4 rounded  ">
         <form
           className="md:w-3/6 bg-white rounded rounded-b-none shadow-lg box-border px-4 py-8 relative -bottom-4"
@@ -42,13 +42,13 @@ const SignInForm: React.FC<SignInProps> = ({ onSignUpClick }) => {
           </div>
           <div className="my-4">
             <label
-              className="block text-gray-700 font-bold mb-2"
+              className="block text-gray-700 font-semibold mb-2"
               htmlFor="email"
             >
               Email
             </label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-bs"
               id="email"
               type="email"
               placeholder="Enter email"
@@ -59,13 +59,13 @@ const SignInForm: React.FC<SignInProps> = ({ onSignUpClick }) => {
           </div>
           <div className="my-4">
             <label
-              className="block text-gray-700 font-bold mb-2"
+              className="block text-gray-700 font-semibold mb-2"
               htmlFor="password"
             >
               Password
             </label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-bs"
               id="password"
               type="password"
               placeholder="Enter password"
@@ -76,7 +76,7 @@ const SignInForm: React.FC<SignInProps> = ({ onSignUpClick }) => {
           </div>
           <div className="my-4">
             <button
-              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="w-full bg-indigo-600 hover:bg-indigo-700 hover:shadow-bs text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
             >
               Sign In
