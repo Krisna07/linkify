@@ -3,6 +3,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import Navbar from "./Landingpage/Components/Navbar";
 import { useState } from "react";
+import Footer from "./Landingpage/Components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Navbar setNavigationHeight={setNavigationHeight} />
         <div className={`relative top-[${navigationHeight}px]`}>{children}</div>
+        <Footer />
       </body>
     </html>
   );

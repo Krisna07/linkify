@@ -1,7 +1,14 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import { FaFacebook, FaFlagUsa, FaLeaf } from "react-icons/fa";
+import CountryList from "./ui/countries";
 
 const Footer: React.FC = () => {
+  const [country, setCountry] = useState({
+    name: "English",
+    flag: <FaFlagUsa />,
+  });
+
   return (
     <footer className="w-full  text-black py-4 grid place-items-center">
       <div className="w-3/4  flex items-center justify-between">
@@ -14,14 +21,13 @@ const Footer: React.FC = () => {
               Linkify <FaLeaf />
             </a>
           </h2>
-          <div className="relative inline-flex">
-            <select className="appearance-none bg-gray-700 text-gray-500 font-semibold py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-gray-600">
-              <option selected>
-                English <FaFacebook color="gray-500 font-semibold" />
-              </option>
-              <option value="fr">French</option>
-              <option value="es">Spanish</option>
-            </select>
+          <div className=" inline-flex relative">
+            <div className="w-fit flex items-center gap-2 p-2 px-4 shadow-bs rounded text-semi-old">
+              <span>{country.name}</span>
+              <span> {country.flag}</span>
+            </div>
+
+            <CountryList setCountry={setCountry} />
           </div>
         </div>
 

@@ -21,7 +21,6 @@ const page = () => {
       <Queries />
       <PricingTable />
       <Newsletter />
-      <Footer />
     </div>
   );
 };

@@ -1,17 +1,40 @@
-export default function Contact() {
-  return (
-    <section className="bg-white py-12 relative top-[56px]">
-      <div className="md:w-[80%] mx-auto">
-        <h2 className="text-3xl font-semibold mb-8">Contact Us</h2>
+import Button from "../Landingpage/Components/ui/Button";
 
-        <div className="grid grid-cols-2 gap-8">
-          <div>
+export default function Contact() {
+  const issues = [
+    "Adding removing links",
+    "Billings and plans",
+    "Connection trouble",
+    "Notifications",
+    "Login issue",
+  ];
+  return (
+    <section className="bg-white py-12 relative grid  gap-4 ">
+      <div className="w-full  h-[600px] grid place-items-center relative bg-gradient-to-t from-[#076585] to-[#fff">
+        {" "}
+        <h2 className="text-4xl font-bold">Contact Us</h2>
+      </div>
+      <div className="grid place-items-center w-full ">
+        <div className="grid md:grid-cols-2 place-items-center   ">
+          <div className="md:w-[600px] w-[90%]  md:h-[600px] shadow-bs bg-white rounded p-8 -top-[200px] relative">
             <h3 className="text-xl font-semibold mb-4">Get in Touch</h3>
             <p className="text-gray-600 mb-4">
               We'd love to hear from you. Send us a message and we'll get back
               to you as soon as possible.
             </p>
-            <form>
+            <form className=" grid gap-4">
+              <h3 className="text-xl font-semibold mb-4">Select topics</h3>
+              <div className="flex flex-wrap gap-4 items-center">
+                {issues.map((issue) => (
+                  <div
+                    className=" w-fit p-2 px-4 bg-gray-200 rounded-full shadow hover:shadow-bs font-semibold text-sm"
+                    key={issue}
+                  >
+                    {issue}
+                  </div>
+                ))}
+              </div>
+
               <div className="mb-4">
                 <label
                   htmlFor="name"
@@ -38,37 +61,19 @@ export default function Contact() {
                   className="border border-gray-300 rounded-md px-4 py-2 w-full"
                 />
               </div>
-              <div className="mb-4">
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  rows={4}
-                  className="border border-gray-300 rounded-md px-4 py-2 w-full"
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md"
-              >
-                Submit
-              </button>
+
+              <Button
+                children={"Submit"}
+                variant={"default"}
+                className="grid place-items-center"
+              />
             </form>
           </div>
-          <div>
-            <h3 className="text-xl font-semibold mb-4">Contact Information</h3>
-            <p className="text-gray-600 mb-4">
-              You can also reach out to us using the contact information below:
-            </p>
-            <ul className="list-disc ml-6">
-              <li>Email: info@example.com</li>
-              <li>Phone: +1 123 456 7890</li>
-              <li>Address: 123 Main St, City, State, ZIP</li>
-            </ul>
+          <div className="relative top-0 z-[5] md:flex hidden">
+            <img
+              src="https://img.freepik.com/free-vector/contact-us-concept-illustration_114360-3147.jpg?w=826&t=st=1684905058~exp=1684905658~hmac=480349469f57add4648619a45b58d6470457f9f984d6ae9b4fdafaa8b8cff344"
+              alt=""
+            />
           </div>
         </div>
       </div>
