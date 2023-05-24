@@ -4,10 +4,57 @@ import { FaFacebook, FaFlagUsa, FaLeaf } from "react-icons/fa";
 import CountryList from "./ui/countries";
 
 const Footer: React.FC = () => {
-  const [country, setCountry] = useState({
-    name: "English",
-    flag: <FaFlagUsa />,
-  });
+  const [country, setCountry] = useState();
+  const [location, setLocation] = useState();
+  const [langauge, setLangauge] = useState();
+  const [countries, setCountries] = useState([]);
+  const [langOptions, setLangOptions] = useState();
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const response = await fetch("https://restcountries.com/v3.1/all");
+        const data = await response.json();
+        setCountries(data);
+      } catch (error) {
+        console.error("Error fetching countries:", error);
+      }
+    };
+
+    fetchCountries();
+  }, []);
+  const getUserCountryName = (place: any) => {
+    const selectedCountry = countries
+      ? countries.find((county: any) => county.name.common === place)
+      : "";
+    return setCountry(selectedCountry);
+  };
+  useEffect(() => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+
+          try {
+            const response = await fetch(
+              `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
+            );
+            const data = await response.json();
+            const countryCode = data.address.country_code;
+
+            getUserCountryName(data.address.country);
+          } catch (error) {
+            console.error("Error getting country:", error);
+          }
+        },
+        (error) => {
+          console.error("Error getting location:", error);
+        }
+      );
+    } else {
+      console.log("Geolocation is not supported by your browser.");
+    }
+  }, []);
 
   return (
     <footer className="w-full  text-black py-4 grid place-items-center">
@@ -21,13 +68,32 @@ const Footer: React.FC = () => {
               Linkify <FaLeaf />
             </a>
           </h2>
-          <div className=" inline-flex relative">
-            <div className="w-fit flex items-center gap-2 p-2 px-4 shadow-bs rounded text-semi-old">
-              <span>{country.name}</span>
-              <span> {country.flag}</span>
-            </div>
+          <div className="w-full inline-flex relative">
+            {
+              <div
+                className="w-fit flex items-center gap-2 p-2 px-4 shadow-bs rounded font-semibold"
+                onClick={() => setLangOptions(!langOptions)}
+              >
+                <img
+                  src={country ? country.flags.png : ""}
+                  alt={country ? country.name.common : ""}
+                  width={24}
+                  height={16}
+                />
+                {country ? country.name.common : "English"}
+              </div>
+            }
 
-            <CountryList setCountry={setCountry} />
+            {langOptions ? (
+              <CountryList
+                countries={countries}
+                getCountry={getUserCountryName}
+                setLangOptions={setLangOptions}
+                langOptions={langOptions}
+              />
+            ) : (
+              ""
+            )}
           </div>
         </div>
 
