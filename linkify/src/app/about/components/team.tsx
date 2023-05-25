@@ -1,28 +1,87 @@
+"use client";
 import Button from "@/app/Landingpage/Components/ui/Button";
-import React from "react";
+import React, { useState } from "react";
 
 const OurTeam: React.FC = () => {
   const teamMembers = [
     {
       name: "John Doe",
       position: "CEO",
-      bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      image: "https://random.imagecdn.app/500/150",
+      bio: "John is a visionary leader with a track record of driving business growth and innovation. As the CEO, he provides strategic direction to the company and ensures our mission and values are upheld.",
     },
     {
       name: "Jane Smith",
       position: "CTO",
-      bio: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+      image: "https://random.imagecdn.app/500/150",
+      bio: "Jane is a technology expert with a passion for leveraging cutting-edge solutions. She leads our technical team, driving the development of innovative products and overseeing the implementation of robust systems.",
     },
     {
       name: "Michael Johnson",
       position: "Lead Developer",
-      bio: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+      image: "https://random.imagecdn.app/500/150",
+      bio: "Michael is a seasoned developer who leads our talented team of developers. With his expertise in coding and problem-solving, he plays a crucial role in delivering high-quality software solutions.",
+    },
+    {
+      name: "Sarah Thompson",
+      position: "Marketing Manager",
+      image: "https://random.imagecdn.app/500/150",
+      bio: "Sarah is a results-driven marketing professional who develops and executes effective marketing strategies. She drives brand awareness, leads generation, and customer engagement through creative campaigns.",
+    },
+    {
+      name: "David Lee",
+      position: "Senior Designer",
+      image: "https://random.imagecdn.app/500/150",
+      bio: "David is a creative and detail-oriented designer who brings our brand and product vision to life. He creates visually appealing and user-friendly designs that enhance the overall user experience.",
+    },
+    {
+      name: "Emily Rodriguez",
+      position: "Customer Success Manager",
+      image: "https://random.imagecdn.app/500/150",
+      bio: "Emily is dedicated to ensuring our customers' success and satisfaction. She builds strong relationships with clients, provides personalized support, and helps them maximize the value of our products and services.",
+    },
+    {
+      name: "Robert Williams",
+      position: "Sales Director",
+      image: "https://random.imagecdn.app/500/150",
+      bio: "Robert is a dynamic sales leader who drives revenue growth and builds strategic partnerships. He leads our sales team, identifies new business opportunities, and fosters strong relationships with key stakeholders.",
+    },
+    {
+      name: "Jennifer Davis",
+      position: "Finance Manager",
+      image: "https://random.imagecdn.app/500/150",
+      bio: "Jennifer is a detail-oriented finance professional who oversees our financial operations. She ensures financial accuracy, manages budgets, and provides valuable insights for effective decision-making.",
+    },
+    {
+      name: "Daniel Wilson",
+      position: "Operations Manager",
+      image: "https://random.imagecdn.app/500/150",
+      bio: "Daniel is a process-driven professional who optimizes our operations for efficiency and productivity. He streamlines workflows, manages resources, and ensures smooth day-to-day business operations.",
+    },
+    {
+      name: "Olivia Brown",
+      position: "Human Resources Specialist",
+      image: "https://random.imagecdn.app/500/150",
+      bio: "Olivia is a people-oriented HR specialist who fosters a positive work environment and supports the professional growth of our team. She handles recruitment, employee relations, and talent development initiatives.",
+    },
+    {
+      name: "William Thompson",
+      position: "Quality Assurance Engineer",
+      image: "https://random.imagecdn.app/500/150",
+      bio: "William is a meticulous QA engineer who ensures the high quality and reliability of our products. He performs rigorous testing, identifies and resolves issues, and maintains our product's exceptional standards.",
+    },
+    {
+      name: "Sophia Harris",
+      position: "Project Manager",
+      image: "https://random.imagecdn.app/500/150",
+      bio: "Sophia is a highly organized and proactive project manager who oversees the successful execution of our projects. She coordinates cross-functional teams, manages timelines, and ensures timely project delivery.",
     },
   ];
+  const [show, setShow] = useState(3);
 
   return (
-    <section className="w-5/6 py-12 grid  ">
-      <div className="w-full mx-auto grid  gap-8 text-center">
+    <section className="w-5/6 py-12 grid  place-items-center gap-8 ">
+      <div className="w-full mx-auto grid   gap-8 text-center">
         <div className="w-full grid place-items-center gap-8">
           <h2 className="text-3xl font-bold grid after:w-full after:h-1 after:bg-gray-900">
             Our Team
@@ -33,21 +92,35 @@ const OurTeam: React.FC = () => {
             the right decison by choosing us.
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 ">
-          {teamMembers.map((member, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 ">
+          {teamMembers.slice(0, show).map((member, index) => (
             <div
               key={index}
-              className="bg-gradient-to-b from-white to-slate-200 shadow-md rounded-lg p-6 grid place-items-center gap-4"
+              className="bg-gradient-to-b from-white to-slate-200 shadow-md rounded-lg p-6 grid place-items-left gap-4"
             >
-              <div className="w-12 h-12 bg-gradient-to-r from-gray-600 to-red-100 rounded-full border-2 border-red-200"></div>
+              <div className="w-full bg-gradient-to-r from-gray-600 to-red-100 rounded-full border-2 border-red-200">
+                <img src="" alt="" width={"100%"} />
+              </div>
               <h3 className="text-lg font-semibold ">{member.name}</h3>
               <p className="text-gray-600 ">{member.position}</p>
-              <p className="text-gray-800">{member.bio}</p>
-              <Button variant={"default"} children={"Connect"} icon={"true"} />
+              {/* <p className="text-gray-800">{member.bio}</p> */}
+              <Button
+                variant={"default"}
+                children={"Connect"}
+                icon={"true"}
+                className={"w-fit"}
+              />
             </div>
           ))}
         </div>
       </div>
+      <Button
+        children={show === 3 ? "View more" : "Show less"}
+        variant={"default"}
+        className={"w-fit "}
+        icon={"true"}
+        onClick={() => setShow(show === 3 ? 13 : 3)}
+      />
     </section>
   );
 };

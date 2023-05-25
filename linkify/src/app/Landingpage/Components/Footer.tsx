@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { FaFacebook, FaFlagUsa, FaLeaf } from "react-icons/fa";
+import { FaLeaf } from "react-icons/fa";
 import CountryList from "./ui/countries";
 
 const Footer: React.FC = () => {

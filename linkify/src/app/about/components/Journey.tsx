@@ -7,10 +7,10 @@ export default function Journey() {
         <h3 className="text-xl font-semibold">Our stories</h3>
         <h2 className="text-2xl font-bold">Humble but not subtle</h2>
         <p className="font-[500]">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis
-          error ab blanditiis labore ea possimus nostrum doloremque sit et quas
-          ullam nisi, quisquam iste odit soluta. Suscipit minima cumque
-          possimus.
+          We didn't started from the garage or a studio room. But when the
+          people of good vision combines the thought together a solution is
+          created. A story that starts with people combinig the thought as we
+          more tha me.
         </p>
         <Button
           children={"Read"}
