@@ -4,8 +4,8 @@ import OurTeam from "./components/team";
 import Testimonials from "./components/Testimonial";
 export default function page() {
   return (
-    <div className="w-full grid place-items-center gap-8 bg-gray-200">
-      <div className="w-full h-[500px] flex flex-col items-center gap-4 justify-center bg-gradient-to-t from-slate-300 to-slate-500">
+    <div className="w-full grid place-items-center gap-8">
+      <div className="w-full h-[500px] flex flex-col items-center gap-4 justify-center bg-yellow-200">
         {" "}
         <div className="md:w-[600px] text-center grid gap-4">
           {" "}
