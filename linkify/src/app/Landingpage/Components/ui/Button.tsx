@@ -8,7 +8,7 @@ const buttonVarients = cva("active:", {
   variants: {
     variant: {
       default:
-        "flex  items-center gap-2 bg-slate-900 text-white hover:bg-slate-800 px-4 py-2 rounded-full",
+        "flex  items-center gap-2 bg-slate-900 text-white hover:bg-red-800 px-4 py-2",
       ghost: "bg-transparent hover:text-slate-900 hover:bg-slate-200",
       primary: "bg-gray-500 gap-2 px-4 py-2 rounded-full text-white",
     },
