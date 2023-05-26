@@ -30,9 +30,9 @@ const SignInForm: React.FC<SignInProps> = ({ onSignUpClick }) => {
 
   return (
     <div className="w-full min-h-[100vh]  flex items-center justify-center bg-gradient-to-r from-red-400 to-slate-800 animate-text">
-      <div className="md:w-[60%] flex items-center justify-center bg-black  p-4 rounded  ">
+      <div className="md:w-[60%] flex items-center justify-center bg-white  p-4   ">
         <form
-          className="md:w-3/6 bg-white rounded rounded-b-none shadow-lg box-border px-4 py-8 relative -bottom-4"
+          className="md:w-3/6 bg-white  rounded-b-none shadow-bs box-border px-4 py-8 relative -bottom-4"
           onSubmit={handleSubmit}
         >
           <div className="">
