@@ -19,7 +19,14 @@ const Navbar = ({ setNavigationHeight }: any) => {
       navigation ? navigation.getBoundingClientRect().height : "72"
     );
   }, [navHeight]);
-
+  const NavItems = [
+    "Services",
+    "Marketplace",
+    "Pricings",
+    "Templates",
+    "About",
+    "Contact",
+  ];
   return (
     <nav
       className={`bg-white fixed grid place-items-center min-w-full top-0 shadow-lg z-10  `}
@@ -36,7 +43,17 @@ const Navbar = ({ setNavigationHeight }: any) => {
           </div>
           <div className="hidden md:block">
             <ul className="flex items-center space-x-6">
-              <li>
+              {NavItems.map((menu) => (
+                <li>
+                  <Link
+                    href={`/${menu.toLowerCase()}`}
+                    className="font-semibold hover:text-gray-500 active:text-gray-500"
+                  >
+                    {menu}
+                  </Link>
+                </li>
+              ))}
+              {/* <li>
                 <Link href="/">
                   <span className=" hover:text-gray-500">Home</span>
                 </Link>
@@ -50,7 +67,7 @@ const Navbar = ({ setNavigationHeight }: any) => {
                 <Link href="/contact">
                   <span className=" hover:text-gray-500">Contact</span>
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
           <div className="hidden md:block">
