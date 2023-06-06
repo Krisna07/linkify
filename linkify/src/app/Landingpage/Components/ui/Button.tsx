@@ -48,7 +48,7 @@ const Button = ({
       className={cn(buttonVarients({ variant, size, className }))}
       disabled={isLoading}
       {...props}
-      onMouseOver={() => {
+      onMouseDown={() => {
         setHover(!hover);
       }}
       onMouseLeave={() => setHover(!hover)}
