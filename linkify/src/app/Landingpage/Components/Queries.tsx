@@ -10,13 +10,13 @@ import Button from "./ui/Button";
 
 const Queries = () => {
   return (
-    <section className="w-full flex items-center justify-center bg-gray-200 py-8 -skew-y-3">
+    <section className="w-full flex items-center justify-center bg-sky-900 py-8 text-sky-100 -skew-y-3">
       <div className="md:w-[80%] sm:px-6 lg:px-8 grid  gap-16  box-border p-8 skew-y-3">
         <div className="md:flex items-center justify-between box-border gap-8 ">
           <div className="md:w-3/5 h-full flex flex-col items-start justify-center gap-8 ">
             <div className="grid items-start justify-center gap-4">
               <h3 className="font-bold">Traffic</h3>
-              <h2 className="text-xl w-3/4 sm:text-3xl font-bold leading-tight text-gray-900 mb-8 text-gray-700">
+              <h2 className="text-xl w-3/4 sm:text-3xl font-bold leading-tight text-white mb-8 ">
                 Stage reporting with 50k queries
               </h2>
               <p className="w-4/5">

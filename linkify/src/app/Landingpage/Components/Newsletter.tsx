@@ -13,14 +13,14 @@ const Newsletter: React.FC = () => {
   };
 
   return (
-    <div className="w-full grid place-items-center bg-gray-500 py-16 text-white ">
+    <div className="w-full grid place-items-center bg-sky-900 py-16 text-white ">
       <div className="w-fit text-center">
         <h2 className="text-3xl font-bold mb-4">Subscribe to our Newsletter</h2>
         <form className="flex gap-4" onSubmit={handleSubmit}>
           <input
             type="email"
             placeholder="Enter your email"
-            className="py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 flex-grow"
+            className="py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 flex-grow text-slate-900"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required

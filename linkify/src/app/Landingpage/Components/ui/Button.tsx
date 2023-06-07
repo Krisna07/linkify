@@ -9,7 +9,7 @@ const buttonVarients = cva("active:", {
   variants: {
     variant: {
       default:
-        "flex relative  items-center gap-2 bg-slate-900 text-white  px-4 py-2 button ",
+        "flex relative  items-center gap-2 bg-slate-900 text-sky-100  px-4 py-2 button rounded-full overflow-hidden",
       ghost: "bg-transparent hover:text-slate-900 hover:bg-slate-200",
       primary: "bg-gray-500 gap-2 px-4 py-2 rounded-full text-white",
     },
@@ -48,7 +48,7 @@ const Button = ({
       className={cn(buttonVarients({ variant, size, className }))}
       disabled={isLoading}
       {...props}
-      onMouseDown={() => {
+      onMouseOver={() => {
         setHover(!hover);
       }}
       onMouseLeave={() => setHover(!hover)}

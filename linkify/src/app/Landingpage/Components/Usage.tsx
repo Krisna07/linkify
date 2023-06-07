@@ -29,7 +29,7 @@ const share = (
 );
 const insigth = (
   <div>
-    <h2>Your insights</h2>
+    <h2 className="font-semibold ">Your insights</h2>
     Daily visits:{Math.floor((Math.random() + 1) * 10)}
   </div>
 );
@@ -85,7 +85,7 @@ const Usage = () => {
             <div className="w-1/2 h-fit flex-col flex  font-[600] relative">
               <span className="w-[2px] absolute h-full bg-black -left-4 flex items-center justify-center">
                 <span
-                  className={`w-[4px] h-1/4 bg-red-600 absolute  transition-all transition-ease`}
+                  className={`w-[4px] h-1/4 bg-sky-900 absolute  transition-all transition-ease`}
                   style={{
                     top: `${index ? (index / 4) * 100 : 0}%`,
                   }}
@@ -95,8 +95,8 @@ const Usage = () => {
                 <span
                   className={
                     index === usages.indexOf(usuage)
-                      ? "  px-4 py-2 my-2 rounded bg-gray-500 text-white shadow-[4px_4px_0px_0px_red]"
-                      : "bg-gray-500/25  px-4 py-2 my-2 rounded hover:bg-gray-500 hover:text-white hover:shadow-[4px_4px_0px_0px_red]"
+                      ? "  px-4 py-2 my-2 rounded bg-sky-500 text-white shadow-[4px_4px_0px_0px_blue]"
+                      : "bg-sky-500/25  px-4 py-2 my-2 rounded hover:bg-sky-500 hover:text-white hover:shadow-[4px_4px_0px_0px_blue]"
                   }
                   key={usages.indexOf(usuage)}
                   onClick={() => {
@@ -108,10 +108,10 @@ const Usage = () => {
                 </span>
               ))}
             </div>
-            <div className="w-1/2 h-[200px]  bg-gray-100 hover:shadow-lg border-l-2 border-red-300 box-border text-center flex flex-col  rounded realtive  relative  overflow-hidden  ">
+            <div className="w-1/2 h-[200px] bg-sky-100 hover:shadow-lg border-l-2 border-sky-900 box-border text-center flex flex-col rounded realtive relative overflow-hidden">
               {usages.map((usuage) => (
                 <div
-                  className={`w-full min-h-[200px] bg-gray-200  flex flex-col top-0 items-center justify-center rounded p-4 relative transition-all overflow-hidden `}
+                  className={`w-full min-h-[200px]  flex flex-col top-0 items-center justify-center rounded p-4 relative transition-all overflow-hidden `}
                   style={{
                     top: `-${index * 200}px`,
                   }}

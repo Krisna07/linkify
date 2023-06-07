@@ -44,9 +44,16 @@ const PricingTable: React.FC = () => {
       <div className="md:w-fit bg-white   flex items-center justify-between md:gap-16 gap-32 ">
         {pricings.map((pricing) => (
           <div
-            className="w-fit py-16 px-8 grid place-items-center gap-4 shadow-bs rounded-lg hover:scale-[1.1] transition-all"
+            className={`w-fit py-16 px-8 grid place-items-center gap-4 shadow-bs rounded-lg hover:scale-[1.1] transition-all hover:bg-sky-200 ${
+              pricings.indexOf(pricing) == 1 ? "scale-[1.1] bg-sky-200" : ""
+            }`}
             key={pricing.type}
           >
+            {pricings.indexOf(pricing) == 1 ? (
+              <h2 className="text-sm font-bold color-sky-600">Recommended</h2>
+            ) : (
+              ""
+            )}
             <h3 className="text-lg font-semibold mb-2">{pricing.type}</h3>
             <p className="text-gray-600 mb-4 text-center">
               {pricing.des.map((des) => (
