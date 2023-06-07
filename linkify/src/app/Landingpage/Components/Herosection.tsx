@@ -5,10 +5,10 @@ export default function Herosection() {
   return (
     <div className="md:w-full animate-text h-[600px] lg:px-8 p-4 bg-white grid place-items-center gap-4 bg-gradient-to-t from-sky-900 to-rose-900">
       <div className="w-fit grid place-items-center gap-4">
-        <h2 className="animate-text  text-6xl font-extrabold text-transparent leading-relaxed  bg-clip-text bg-gradient-to-t from-slate-100 to-slate-400">
+        <h2 className="animate-text text-center  text-6xl font-extrabold text-transparent leading-relaxed  bg-clip-text bg-gradient-to-t from-slate-100 to-slate-400">
           A place for your links
         </h2>
-        <p className="w-[50%] text-center text-slate-100">
+        <p className="md:w-[50%] text-center text-slate-100">
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate
           maiores perferendis dignissimos quod facere odit quo accusantium
           provident neque quia deserunt at, nulla tenetur explicabo labore, hic

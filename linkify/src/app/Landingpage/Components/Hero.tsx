@@ -200,7 +200,7 @@ const HeroSection = () => {
 
             <div className="w-1/4 h-6 bg-black absolute top-4 rounded-[16px] hover:w-2/5 transition-all"></div>
             <div className="w-2/4 h-1 bg-white absolute bottom-4 rounded-[16px] hover:w-2/5 transition-all shadow animate-pulse "></div>
-            <div className="w-fit absolute text-white top-4 left-4 font-bold flex text-sm text-center ">
+            <div className="w-fit absolute top-4 left-5 font-bold flex  text-white items-center justify-center gap-[4px] text-center text-[14px]">
               {new Date().getHours()} :
               {new Date().getUTCMinutes() << 10
                 ? `0${new Date().getUTCMinutes()}`

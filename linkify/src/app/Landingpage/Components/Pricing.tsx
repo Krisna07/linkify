@@ -41,7 +41,7 @@ const PricingTable: React.FC = () => {
           nesciunt mollitia!
         </p>
       </div>
-      <div className="md:w-fit bg-white   flex items-center justify-between md:gap-16 gap-32 ">
+      <div className="md:w-fit bg-white flex md:flex-row flex-col items-center justify-between md:gap-16 gap-32 ">
         {pricings.map((pricing) => (
           <div
             className={`w-fit py-16 px-8 grid place-items-center gap-4 shadow-bs rounded-lg hover:scale-[1.1] transition-all hover:bg-sky-200 ${

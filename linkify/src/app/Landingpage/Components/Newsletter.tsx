@@ -14,9 +14,14 @@ const Newsletter: React.FC = () => {
 
   return (
     <div className="w-full grid place-items-center bg-sky-900 py-16 text-white ">
-      <div className="w-fit text-center">
-        <h2 className="text-3xl font-bold mb-4">Subscribe to our Newsletter</h2>
-        <form className="flex gap-4" onSubmit={handleSubmit}>
+      <div className="md:w-fit w-full text-center">
+        <h2 className="w-fit text-3xl font-bold mb-4">
+          Subscribe to our Newsletter
+        </h2>
+        <form
+          className="flex gap-4 md:flex-row flex-col items-center justify-center"
+          onSubmit={handleSubmit}
+        >
           <input
             type="email"
             placeholder="Enter your email"
@@ -25,7 +30,12 @@ const Newsletter: React.FC = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <Button type="submit" variant={"default"} children={"Subscribe"} />
+          <Button
+            type="submit"
+            variant={"default"}
+            children={"Subscribe"}
+            className="w-fit"
+          />
         </form>
       </div>
     </div>

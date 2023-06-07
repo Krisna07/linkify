@@ -22,25 +22,25 @@ const Queries = () => {
               <p className="w-4/5">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 Architecto magnam nostrum enim quod maxime! Nemo similique optio
-                veniam sunt ex. Lorem, ipsum dolor sit amet consectetur
+                veniam sunt ex. Lorem, ipsum dolor sit amet consectetur.
               </p>
             </div>
 
             <div className=" w-full grid md:grid-cols-2 items-center justify-between gap-8">
               <h2 className="font-[600] text-xl flex items-center gap-4  p-2">
-                <FaPenSquare className="w-[50px] h-[50px] rounded-[50%] text-[50px] shadow-lg " />{" "}
+                <FaPenSquare className="w-[50px] h-[50px] rounded-[50%] text-[50px] shadow-lg" />
                 Carefully Desinged
               </h2>
               <h2 className="font-[600] text-xl flex items-center gap-4  p-2">
-                <FaUserAlt className="w-[50px] h-[50px] rounded-[50%] text-[50px] shadow-lg text-red-500 " />{" "}
+                <FaUserAlt className="w-[50px] h-[50px] rounded-[50%] text-[50px] shadow-lg text-red-500" />
                 User Interactive
               </h2>
               <h2 className="font-[600] text-xl flex items-center gap-4  p-2">
-                <FaSync className="w-[50px] h-[50px] rounded-[50%] text-[50px] shadow-lg text-blue-500 " />{" "}
+                <FaSync className="w-[50px] h-[50px] rounded-[50%] text-[50px] shadow-lg text-blue-500" />
                 Seemlesly sync
               </h2>
               <h2 className="font-[600] text-xl flex items-center gap-4  p-2">
-                <FaCloudscale className="w-[50px] h-[50px] rounded-[50%] text-[50px] shadow-lg " />{" "}
+                <FaCloudscale className="w-[50px] h-[50px] rounded-[50%] text-[50px] shadow-lg" />
                 Interactive APIs
               </h2>
             </div>

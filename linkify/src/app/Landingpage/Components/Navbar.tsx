@@ -53,21 +53,6 @@ const Navbar = ({ setNavigationHeight }: any) => {
                   </Link>
                 </li>
               ))}
-              {/* <li>
-                <Link href="/">
-                  <span className=" hover:text-gray-500">Home</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/about">
-                  <span className=" hover:text-gray-500">About</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact">
-                  <span className=" hover:text-gray-500">Contact</span>
-                </Link>
-              </li> */}
             </ul>
           </div>
           <div className="hidden md:block">
@@ -86,24 +71,20 @@ const Navbar = ({ setNavigationHeight }: any) => {
           </div>
         </div>
       </div>
+      {/* w-full hover:bg-red-300 flex items-center py-2 */}
       {isOpen && (
         <div className="w-full md:hidden h-100% p-4">
           <ul className="flex flex-col items-center space-y-3">
-            <li className="w-full hover:bg-red-300 flex items-center py-2">
-              <Link href="/">
-                <span className="text-gray-500 hover:text-white">Home</span>
-              </Link>
-            </li>
-            <li className="w-full hover:bg-red-300 flex items-center py-2">
-              <Link href="/about">
-                <span className="text-gray-500 hover:text-white">About</span>
-              </Link>
-            </li>
-            <li className="w-full hover:bg-red-300 flex items-center py-2">
-              <Link href="/contact">
-                <span className="text-gray-500 hover:text-white">Contact</span>
-              </Link>
-            </li>
+            {NavItems.map((menu) => (
+              <li className="w-full hover:bg-red-300 flex items-center py-2">
+                <Link
+                  href={`/${menu.toLowerCase()}`}
+                  className="font-semibold hover:text-gray-500 active:text-gray-500"
+                >
+                  {menu}
+                </Link>
+              </li>
+            ))}
             <li>
               <button className="bg-white text-gray-800 font-semibold py-2 px-4 rounded-full">
                 Sign In

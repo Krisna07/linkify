@@ -1,11 +1,37 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { FaExpandAlt, FaLink, FaShareSquare, FaUser } from "react-icons/fa";
+import {
+  FaExpandAlt,
+  FaFacebook,
+  FaInstagram,
+  FaLink,
+  FaShareSquare,
+  FaSnapchat,
+  FaTiktok,
+  FaTwitter,
+  FaUser,
+} from "react-icons/fa";
 import { BiGitPullRequest, BiShapeTriangle, BiUpArrow } from "react-icons/bi";
 import { GiAutoRepair, GiDiploma } from "react-icons/gi";
 import { BsTriangleFill } from "react-icons/bs";
+import profile from "./Images/profile.png";
 
+const Profilecard = ({ z, icon, bg }: any) => {
+  return (
+    <div
+      className={`w-60 h-60 bg-[${bg}] rounded-[10px] p-4 flex justify-between absolute bottom-0 left-0 z-[${z}]`}
+    >
+      <div className="w-20 h-20 rounded-full bg-rose-200 overflow-hidden">
+        <img
+          src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA1LzUwNC1meC0xMy1qb2IxNzU4XzEucG5n.png"
+          alt=""
+        />
+      </div>
+      <div>{icon}</div>
+    </div>
+  );
+};
 const features = [
   {
     id: 1,
@@ -94,14 +120,47 @@ const FeaturesSection = () => {
               veniam sunt ex. Lorem, ipsum dolor sit amet consectetur
             </p>
           </div>
-          <div className="w-2/5 max-h-full box-border rounded flex hidden md:flex">
-            <img
-              src={
-                "https://cdn.dribbble.com/users/239075/screenshots/6128789/media/9419c0a3cba0175c78dcb3c339160427.gif"
-              }
-              width={"100%"}
-              className="box-border  rounded"
+          <div className="w-2/5 max-h-full box-border rounded flex hidden md:flex relative h-80">
+            <Profilecard
+              z="50"
+              icon={<FaTiktok color="white" size={"36"} />}
+              bg={"#ef4444"}
             />
+            {/* <div className="w-60 h-60 bg-red-600 rounded-[10px] p-4 flex justify-between absolute bottom-0 left-0 z-[50]">
+              <div className="w-20 h-20 rounded-full bg-rose-200 overflow-hidden">
+                <img
+                  src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA1LzUwNC1meC0xMy1qb2IxNzU4XzEucG5n.png"
+                  alt=""
+                />
+              </div>
+              <div>
+                <FaTiktok color="white" size={"36"} />
+              </div>
+            </div> */}
+            <div className="w-60 h-60 bg-sky-600 rounded-[10px] p-4 flex justify-between absolute bottom-12 left-12 z-[40]">
+              <div className="w-20 h-20 rounded-full bg-rose-200"></div>
+              <div>
+                <FaFacebook color="white" size={"36"} />
+              </div>
+            </div>
+            <div className="w-60 h-60 bg-yellow-400 rounded-[10px] p-4 flex justify-between absolute bottom-24 left-24 z-[30] ">
+              <div className="w-20 h-20 rounded-full bg-rose-200"></div>
+              <div>
+                <FaSnapchat color="white" size={"36"} />
+              </div>
+            </div>
+            <div className="w-60 h-60 bg-sky-400 rounded-[10px] p-4 flex justify-between absolute bottom-36 left-36 z-[20]">
+              <div className="w-20 h-20 rounded-full bg-rose-200"></div>
+              <div>
+                <FaTwitter color="white" size={"36"} />
+              </div>
+            </div>
+            <div className="w-60 h-60 bg-gray-400 rounded-[10px] p-4 flex justify-between absolute bottom-48 left-48 z-[10] ">
+              <div className="w-20 h-20 rounded-full bg-rose-200"></div>
+              <div>
+                <FaInstagram color="white" size={"36"} />
+              </div>
+            </div>
           </div>
         </div>
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
