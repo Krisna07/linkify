@@ -17,10 +17,11 @@ import { GiAutoRepair, GiDiploma } from "react-icons/gi";
 import { BsTriangleFill } from "react-icons/bs";
 import profile from "./Images/profile.png";
 
-const Profilecard = ({ z, icon, bg }: any) => {
+const Profilecard = ({ cardStyle, icon, key }: any) => {
   return (
     <div
-      className={`w-60 h-60 bg-[${bg}] rounded-[10px] p-4 flex justify-between absolute bottom-0 left-0 z-[${z}]`}
+      className={`w-60 h-60 ${cardStyle} rounded-[10px] p-4 flex justify-between absolute left-0 bottom-0 transition:all`}
+      key={key}
     >
       <div className="w-20 h-20 rounded-full bg-rose-200 overflow-hidden">
         <img
@@ -105,6 +106,33 @@ const FeaturesSection = () => {
     return () => clearInterval(interval);
   }, [count, req, download]);
 
+  const profiles = [
+    {
+      cardStyle: "bg-red-600 z-50 bottom-0 left-0",
+      icon: <FaTiktok size={32} />,
+    },
+    {
+      cardStyle:
+        "bg-sky-600 z-40 bottom-12 left-12 z-40 hover:translate-y-[-40px] transition-all",
+      icon: <FaFacebook size={32} />,
+    },
+    {
+      cardStyle:
+        "bg-yellow-400 bottom-24 left-24 z-30 hover:translate-y-[-40px] transition-all",
+      icon: <FaSnapchat size={32} />,
+    },
+    {
+      cardStyle:
+        "bg-sky-400 bottom-36 left-36 z-20 hover:translate-y-[-40px] transition-all",
+      icon: <FaTwitter size={32} />,
+    },
+    {
+      cardStyle:
+        "bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bottom-48 left-48 z-10 hover:translate-y-[-40px] transition-all",
+      icon: <FaInstagram size={32} />,
+    },
+  ];
+
   return (
     <section className="w-full flex items-center justify-center bg-sky-900 py-12 -skew-y-3 text-sky-100">
       <div className="md:w-[80%] p-4  grid  gap-16  box-border  skew-y-3">
@@ -121,46 +149,13 @@ const FeaturesSection = () => {
             </p>
           </div>
           <div className="w-2/5 max-h-full box-border rounded flex hidden md:flex relative h-80">
-            <Profilecard
-              z="50"
-              icon={<FaTiktok color="white" size={"36"} />}
-              bg={"#ef4444"}
-            />
-            {/* <div className="w-60 h-60 bg-red-600 rounded-[10px] p-4 flex justify-between absolute bottom-0 left-0 z-[50]">
-              <div className="w-20 h-20 rounded-full bg-rose-200 overflow-hidden">
-                <img
-                  src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA1LzUwNC1meC0xMy1qb2IxNzU4XzEucG5n.png"
-                  alt=""
-                />
-              </div>
-              <div>
-                <FaTiktok color="white" size={"36"} />
-              </div>
-            </div> */}
-            <div className="w-60 h-60 bg-sky-600 rounded-[10px] p-4 flex justify-between absolute bottom-12 left-12 z-[40]">
-              <div className="w-20 h-20 rounded-full bg-rose-200"></div>
-              <div>
-                <FaFacebook color="white" size={"36"} />
-              </div>
-            </div>
-            <div className="w-60 h-60 bg-yellow-400 rounded-[10px] p-4 flex justify-between absolute bottom-24 left-24 z-[30] ">
-              <div className="w-20 h-20 rounded-full bg-rose-200"></div>
-              <div>
-                <FaSnapchat color="white" size={"36"} />
-              </div>
-            </div>
-            <div className="w-60 h-60 bg-sky-400 rounded-[10px] p-4 flex justify-between absolute bottom-36 left-36 z-[20]">
-              <div className="w-20 h-20 rounded-full bg-rose-200"></div>
-              <div>
-                <FaTwitter color="white" size={"36"} />
-              </div>
-            </div>
-            <div className="w-60 h-60 bg-gray-400 rounded-[10px] p-4 flex justify-between absolute bottom-48 left-48 z-[10] ">
-              <div className="w-20 h-20 rounded-full bg-rose-200"></div>
-              <div>
-                <FaInstagram color="white" size={"36"} />
-              </div>
-            </div>
+            {profiles.map((card: any, count: any) => (
+              <Profilecard
+                key={count}
+                cardStyle={card.cardStyle}
+                icon={card.icon}
+              />
+            ))}
           </div>
         </div>
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">

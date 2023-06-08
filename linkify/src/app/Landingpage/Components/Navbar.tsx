@@ -44,7 +44,7 @@ const Navbar = ({ setNavigationHeight }: any) => {
           <div className="hidden md:block">
             <ul className="flex items-center space-x-6">
               {NavItems.map((menu) => (
-                <li>
+                <li key={menu}>
                   <Link
                     href={`/${menu.toLowerCase()}`}
                     className="font-semibold hover:text-gray-500 active:text-gray-500"
@@ -76,7 +76,10 @@ const Navbar = ({ setNavigationHeight }: any) => {
         <div className="w-full md:hidden h-100% p-4">
           <ul className="flex flex-col items-center space-y-3">
             {NavItems.map((menu) => (
-              <li className="w-full hover:bg-red-300 flex items-center py-2">
+              <li
+                className="w-full hover:bg-red-300 flex items-center py-2"
+                key={menu}
+              >
                 <Link
                   href={`/${menu.toLowerCase()}`}
                   className="font-semibold hover:text-gray-500 active:text-gray-500"
