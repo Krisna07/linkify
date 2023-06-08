@@ -40,87 +40,96 @@ const Button: FC<ButtonProps> = ({
   icon,
   ...props
 }) => {
-  const [enterDirection, setEnterDirection] = useState<string | null>(null);
+  const [hover, setHover] = useState(false);
+  // const [enterDirection, setEnterDirection] = useState<string | null>(null);
 
-  const handleMouseEnter = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const direction = calculateEnterDirection(event);
-    setEnterDirection(direction);
-  };
+  // const handleMouseEnter = (event: React.MouseEvent<HTMLButtonElement>) => {
+  //   const direction = calculateEnterDirection(event);
+  //   setEnterDirection(direction);
+  // };
 
-  const handleMouseLeave = () => {
-    setEnterDirection(null);
-  };
+  // const handleMouseLeave = () => {
+  //   setEnterDirection(null);
+  // };
 
-  const calculateEnterDirection = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ): string | null => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    const { left, top, width, height } = rect;
+  // const calculateEnterDirection = (
+  //   event: React.MouseEvent<HTMLButtonElement>
+  // ): string | null => {
+  //   const rect = event.currentTarget.getBoundingClientRect();
+  //   const { left, top, width, height } = rect;
 
-    const { clientX, clientY } = event;
+  //   const { clientX, clientY } = event;
 
-    const x = clientX - left;
-    const y = clientY - top;
+  //   const x = clientX - left;
+  //   const y = clientY - top;
 
-    if (x < 0 || x > width || y < 0 || y > height) {
-      return null; // Mouse is outside the button boundaries
-    }
+  //   if (x < 0 || x > width || y < 0 || y > height) {
+  //     return null; // Mouse is outside the button boundaries
+  //   }
 
-    const centerX = width / 2;
-    const centerY = height / 2;
+  //   const centerX = width / 2;
+  //   const centerY = height / 2;
 
-    const deltaX = x - centerX;
-    const deltaY = y - centerY;
+  //   const deltaX = x - centerX;
+  //   const deltaY = y - centerY;
 
-    if (Math.abs(deltaX) > Math.abs(deltaY)) {
-      if (deltaX > 0) {
-        return "right";
-      } else {
-        return "left";
-      }
-    } else {
-      if (deltaY > 0) {
-        return "bottom";
-      } else {
-        return "top";
-      }
-    }
-  };
+  //   if (Math.abs(deltaX) > Math.abs(deltaY)) {
+  //     if (deltaX > 0) {
+  //       return "right";
+  //     } else {
+  //       return "left";
+  //     }
+  //   } else {
+  //     if (deltaY > 0) {
+  //       return "bottom";
+  //     } else {
+  //       return "top";
+  //     }
+  //   }
+  // };
 
-  const getBackgroundClassName = (direction: string | null): string => {
-    switch (direction) {
-      case "left":
-        return " w-[100%] left-0";
-      case "right":
-        return " right-0 w-[100%]";
-      case "top":
-        return " top-0 h-[100%] left-0";
-      case "bottom":
-        return " bottom-0 h-[100%] left-0";
-      default:
-        return "";
-    }
-  };
+  // const getBackgroundClassName = (direction: string | null): string => {
+  //   switch (direction) {
+  //     case "left":
+  //       return " w-[100%] left-0";
+  //     case "right":
+  //       return " right-0 w-[100%]";
+  //     case "top":
+  //       return " top-0 h-[100%] left-0";
+  //     case "bottom":
+  //       return " bottom-0 h-[100%] left-0";
+  //     default:
+  //       return "";
+  //   }
+  // };
 
-  const backgroundClassName = getBackgroundClassName(enterDirection);
-  console.log(enterDirection);
-  enterDirection === "left" || enterDirection === "right"
-    ? console.log("w-0 h-[100%]")
-    : console.log("w-[100%] h-[0%]");
+  // const backgroundClassName = getBackgroundClassName(enterDirection);
+  // console.log(enterDirection);
+  // enterDirection === "left" || enterDirection === "right"
+  //   ? console.log("w-0 h-[100%]")
+  //   : console.log("w-[100%] h-[0%]");
 
   return (
     <button
       className={cn(buttonVarients({ variant, size, className }))}
       disabled={isLoading}
       {...props}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseOver={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
     >
       <div className="flex items-center justify-center gap-2 relative z-[99]">
         {children}
-        {icon ? <FaChevronRight /> : null}
+        {icon ? (
+          <span>{hover ? <FaArrowRight /> : <FaChevronRight />}</span>
+        ) : null}
       </div>
-      {enterDirection && (
+      <div
+        className={`h-full w-[${
+          hover ? "100%" : "0%"
+        }]  left-0  absolute bg-sky-500 transition-all `}
+      />
+
+      {/* {enterDirection && (
         <div
           className={`btmmm
           ${backgroundClassName}
@@ -135,7 +144,7 @@ const Button: FC<ButtonProps> = ({
           } bg-green-500 transition-all
       `}
         />
-      )}
+      )} */}
     </button>
   );
 };

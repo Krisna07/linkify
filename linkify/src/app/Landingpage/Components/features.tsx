@@ -137,15 +137,16 @@ const FeaturesSection = () => {
     <section className="w-full flex items-center justify-center bg-sky-900 py-12 -skew-y-3 text-sky-100">
       <div className="md:w-[80%] p-4  grid  gap-16  box-border  skew-y-3">
         <div className="flex items-center justify-between box-border gap-8 ">
-          <div className="md:w-3/5 h-full flex flex-col items-start justify-center gap-8">
-            <h3 className="font-bold">Worry less</h3>
-            <h2 className="text-xl w-full md:w-3/4 sm:text-2xl font-bold leading-tight text-white mb-8 text-gray-700">
-              Let Linkify deliver you the most awsome user experience
+          <div className="md:w-3/5 h-full flex flex-col items-start justify-center gap-2">
+            <h3 className="font-bold">Seamless</h3>
+            <h2 className="text-4xl w-full md:w-3/4 sm:text-2xl font-bold text-white mb-8 text-gray-700">
+              Share your Linktree from your Instagram, TikTok, Twitter and other
+              bios
             </h2>
             <p className="w-4/5">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Architecto magnam nostrum enim quod maxime! Nemo similique optio
-              veniam sunt ex. Lorem, ipsum dolor sit amet consectetur
+              Add your unique Linktree URL to all the platforms and places you
+              find your audience. Then use your QR code to drive your offline
+              traffic online.
             </p>
           </div>
           <div className="w-2/5 max-h-full box-border rounded flex hidden md:flex relative h-80">
