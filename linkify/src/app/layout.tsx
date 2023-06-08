@@ -23,7 +23,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Navbar setNavigationHeight={setNavigationHeight} />
-        <div className={`relative top-[${navigationHeight}px]`}>{children}</div>
+        <div className={`relative top-[${navigationHeight + "px"}] py-4`}>
+          {children}
+        </div>
         <Footer />
       </body>
     </html>
