@@ -96,8 +96,8 @@ const page = () => {
             </div>
           </div>
           <div className="w-1/2 grid gap-4">
-            <div className="w-full p-4  bg-orange-600 rounded-[50px] grid place-items-center relative">
-              <div className="p-4 rounded-full bg-rose-400">
+            <div className="w-full p-4  bg-slate-900 rounded-[50px] grid place-items-center relative overflow-hidden">
+              <div className="p-4 rounded-full bg-rose-400 ">
                 <FaRedditAlien size={200} color={"white"} />
               </div>
               <BiLoader
