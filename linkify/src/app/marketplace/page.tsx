@@ -114,7 +114,7 @@ const page = () => {
                 className="absolute bottom-8 right-24 text-yellow-100"
                 size={100}
               />
-              <div className="w-20 h-20 bg-yellow-300 rounded-full absolute left-[30%] bottom-[10%]"></div>
+              <div className="w-[800px] h-[800px] bg-white rounded-full absolute top-[-750px] right-[-300px]"></div>
               <div className="w-10 h-10 bg-yellow-100 rounded-full absolute left-[20%] top-[10%]"></div>
             </div>
             <div className="flex gap-4">
