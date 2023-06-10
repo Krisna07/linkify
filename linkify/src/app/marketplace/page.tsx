@@ -1,16 +1,150 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import { BiDoughnutChart, BiLoader, BiSearch } from "react-icons/bi";
 import { BsTiktok } from "react-icons/bs";
 import {
+  FaAirbnb,
+  FaAmazon,
+  FaDiscord,
   FaDollarSign,
+  FaDropbox,
+  FaFacebookF,
+  FaGithub,
+  FaLinkedinIn,
+  FaMediumM,
+  FaPinterestP,
   FaRedditAlien,
   FaRedditSquare,
   FaSearch,
+  FaSlackHash,
+  FaSnapchatGhost,
   FaTiktok,
+  FaTwitch,
+  FaUber,
+  FaWhatsapp,
+  FaYoutube,
 } from "react-icons/fa";
-import { FcDoughnutChart } from "react-icons/fc";
+
+import { RiNetflixFill } from "react-icons/ri";
 
 const page = () => {
+  const apps = [
+    {
+      name: "YouTube",
+      des: "Watch and share videos",
+      logo: <FaYoutube color="white" />,
+      accent: "red-500",
+    },
+    {
+      name: "TikTok",
+      des: "Create and discover short videos",
+      logo: <FaTiktok color="white" />,
+      accent: "slate-900",
+    },
+    {
+      name: "Reddit",
+      des: "Join the online community",
+      logo: <FaRedditAlien color="white" />,
+      accent: "orange-600",
+    },
+    {
+      name: "Netflix",
+      des: "Watch movies and shows online",
+      logo: <RiNetflixFill color="red" />,
+      accent: "red-700",
+    },
+    {
+      name: "Facebook",
+      des: "Connect with friends and family",
+      logo: <FaFacebookF color="white" />,
+      accent: "blue-600",
+    },
+    {
+      name: "Amazon",
+      des: "Shop online for anything",
+      logo: <FaAmazon color="white" />,
+      accent: "yellow-500",
+    },
+    {
+      name: "LinkedIn",
+      des: "Build your professional network",
+      logo: <FaLinkedinIn color="white" />,
+      accent: "blue-800",
+    },
+    {
+      name: "Snapchat",
+      des: "Send and receive fun snaps",
+      logo: <FaSnapchatGhost color="white" />,
+      accent: "yellow-400",
+    },
+    {
+      name: "Pinterest",
+      des: "Discover and save ideas",
+      logo: <FaPinterestP color="white" />,
+      accent: "red-600",
+    },
+    {
+      name: "Discord",
+      des: "Chat with your friends and communities",
+      logo: <FaDiscord color="white" />,
+      accent: "purple-600",
+    },
+    {
+      name: "WhatsApp",
+      des: "Message and call securely",
+      logo: <FaWhatsapp color="white" />,
+      accent: "green-600",
+    },
+    // {
+    //   name: "Zoom",
+    //   des: "Meet and collaborate online",
+    //   logo: <SiZoom color="white" />,
+    //   accent: "blue-500",
+    // },
+    {
+      name: "Airbnb",
+      des: "Find and book unique places to stay",
+      logo: <FaAirbnb color="white" />,
+      accent: "red-500",
+    },
+    {
+      name: "Uber",
+      des: "Get a ride or become a driver",
+      logo: <FaUber color="white" />,
+      accent: "black",
+    },
+    {
+      name: "Twitch",
+      des: "Watch and stream live games",
+      logo: <FaTwitch color="white" />,
+      accent: "purple-500",
+    },
+    {
+      name: "Medium",
+      des: "Read and write stories that matter",
+      logo: <FaMediumM color="white" />,
+      accent: "green-700",
+    },
+    {
+      name: "GitHub",
+      des: "Host and review code, manage projects, and build software",
+      logo: <FaGithub color="white" />,
+      accent: "black",
+    },
+    {
+      name: "Slack",
+      des: "Communicate and collaborate with your team",
+      logo: <FaSlackHash color="white" />,
+      accent: "indigo-700",
+    },
+    {
+      name: "Dropbox",
+      des: "Store and share your files online",
+      logo: <FaDropbox color="white" />,
+      accent: "sky-700",
+    },
+  ];
+  const [showapp, setShowapp] = useState(false);
   return (
     <div className="w-full grid place-items-center ">
       <div className="w-full md:h-[80vh] bg-sky-800 text-rose-200 py-16 px-4 md:flex grid gap-4 items-center justify-center">
@@ -97,14 +231,22 @@ const page = () => {
           </div>
           <div className="w-1/2 grid gap-4">
             <div className="w-full p-4  bg-slate-900 rounded-[50px] grid place-items-center relative overflow-hidden">
-              <div className="p-4 rounded-full bg-rose-400 ">
-                <FaRedditAlien size={200} color={"white"} />
+              <div className="p-4 rounded-full ">
+                <div className="bg-gray-300 rounded-[20px] grid  gap-2 place-items-center p-2 relative z-20">
+                  <div className="h-20 w-20 rounded-full overflow-hidden">
+                    <img
+                      src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA1LzUwNC1meC0xMy1qb2IxNzU4XzEucG5n.png"
+                      alt=""
+                    />
+                  </div>
+                  <div className="h-8 w-40 bg-slate-800 rounded-full  "></div>
+                  <div className="h-8 w-40 bg-slate-800 rounded-full"></div>
+                  <div className="h-8 w-40 bg-slate-800 rounded-full"></div>
+                </div>
               </div>
-              <BiLoader
-                className="absolute top-10 right-10 "
-                size={100}
-                color={"yellow"}
-              />
+              <div className="p-8 absolute bg-rose-300/90 rounded left-[25%] top-[10%] z-10 ">
+                <FaTiktok size="52" className="" />
+              </div>
               <BiLoader
                 className="absolute bottom-10 left-10 "
                 size={100}
@@ -132,6 +274,32 @@ const page = () => {
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+        <div className="w-full grid gap-8">
+          <div className="flex w-full justify-between items-center">
+            <h2 className="text-2xl font-bold">Browse apps</h2>
+            <button
+              className=" font-semibold text-slate-800 cursor-pointer hover:text-sky-600"
+              onClick={() => setShowapp(true)}
+            >
+              + see more {showapp ? 4 : apps.length - 4} apps
+            </button>
+          </div>
+          <div className="w-full grid grid-cols-4 gap-4 ">
+            {apps.slice(0, showapp ? apps.length : 4).map((app) => (
+              <div className="flex gap-4">
+                <div
+                  className={`bg-${app.accent} rounded text-3xl p-4 grid place-items-center shadow-bs`}
+                >
+                  {app.logo}
+                </div>
+                <div className="">
+                  <h2 className="text-xl font-bold">{app.name}</h2>
+                  <p className="font-semibold">{app.des}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
