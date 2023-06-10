@@ -57,8 +57,8 @@ const Footer: React.FC = () => {
   }, []);
 
   return (
-    <footer className="w-full  text-black py-4 grid place-items-center">
-      <div className="md:w-3/4  flex  justify-between">
+    <footer className="w-full  text-black py-4 grid place-items-center box-border">
+      <div className="md:w-3/4  flex gap-4 justify-between">
         <div className="flex flex-col  justify-start gap-4 ">
           <h2 className="text-lg font-bold">
             <a
@@ -80,7 +80,10 @@ const Footer: React.FC = () => {
                   width={24}
                   height={16}
                 />
-                {country ? country.name.common : "English"}
+                <div className="md:block hidden">
+                  {" "}
+                  {country ? country.name.common : "English"}
+                </div>
               </div>
             }
 
@@ -97,7 +100,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex gap-32">
+        <div className="flex md:gap-32 gap-8">
           <div className="flex flex-col gap-4">
             <a href="#" className=" hover:text-gray-500 font-semibold">
               About Us

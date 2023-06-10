@@ -169,11 +169,10 @@ const page = () => {
   ];
   const [showapp, setShowapp] = useState(false);
   return (
-    <div className="w-full grid place-items-center gap-8 ">
+    <div className="w-full grid place-items-center gap-8 box-border overflow-hidden ">
       <div className="w-full  bg-sky-800 grid place-items-center">
-        {" "}
-        <div className="w-[80%] text-rose-200 py-16 px-4 md:flex grid gap-4 items-center justify-center">
-          <div className="md:w-1/2 p-4 grid gap-8">
+        <div className="md:w-[80%] w-full text-rose-200 py-16 px-4 md:flex grid gap-4 items-center justify-center box-border">
+          <div className="md:w-1/2 p-4 grid gap-8 box-boder">
             <h2 className="text-6xl font-bold  ">
               Connect <br /> more of you
             </h2>
@@ -181,7 +180,7 @@ const page = () => {
               Bring the best experiences across the internet to one place: your
               Linktree
             </p>
-            <div className="w-fit p-4 text-black text-xl font-semibold bg-white rounded flex items-center gap-4">
+            <div className="w-fit p-4 text-black text-xl font-semibold bg-white rounded flex items-center gap-4 box-border">
               <FaSearch size={32} />
               <input className="outline-none border-none w-fit" />
             </div>
@@ -221,7 +220,7 @@ const page = () => {
           </div>
         </div>
       </div>
-      <div className="w-[80%] grid gap-8">
+      <div className="w-[80%] grid gap-8 box-border">
         <div className="w-full box-border py-4 md:flex grid gap-8">
           <div className="md:w-1/2 w-full grid gap-4">
             <div className="w-full p-4  bg-orange-600 rounded-[50px] grid place-items-center relative">
@@ -255,7 +254,7 @@ const page = () => {
               </div>
             </div>
           </div>
-          <div className="md:w-1/2 grid gap-4">
+          <div className="md:w-1/2 grid gap-4 box-border">
             <div className="w-full p-4  bg-slate-900 rounded-[50px] grid place-items-center relative overflow-hidden">
               <div className="p-4 rounded-full ">
                 <div className="bg-gray-300 rounded-[20px] grid  gap-2 place-items-center p-2 relative z-[3]">
@@ -302,7 +301,7 @@ const page = () => {
             </div>
           </div>
         </div>
-        <div className="w-full grid gap-8">
+        <div className="w-full grid gap-8 box-border">
           <div className="flex w-full justify-between items-center">
             <h2 className="text-2xl font-bold">Create and Share</h2>
             <button
@@ -314,7 +313,7 @@ const page = () => {
           </div>
           <div className="w-full grid md:grid-cols-2 lg:grid-cols-3 gap-4 ">
             {apps.slice(0, showapp ? apps.length : 6).map((app) => (
-              <div className="w-full flex gap-4 cursor-default">
+              <div className="w-full flex gap-4 cursor-default" key={app.name}>
                 <div
                   className={`bg-${app.accent} rounded text-3xl p-4 grid place-items-center shadow-bs`}
                 >

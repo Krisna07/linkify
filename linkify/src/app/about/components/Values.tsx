@@ -47,11 +47,13 @@ const Values = () => {
               </div>
             ))}
           </div>
-          <div className="w-1/4 h-full bg-gradient-to-r from-yellow-600 to-sky-200 animate-text rounded-[40px] relative">
-            <div className="w-4 h-4 bg-black rounded-full absolute transition-all randomball "></div>
-            <div className="w-4 h-4 bg-black rounded-full absolute transition-all randomball "></div>
-            <div className="w-4 h-4 bg-black rounded-full absolute transition-all randomball  "></div>
-            <div className="w-4 h-4 bg-black rounded-full absolute transition-all randomball "></div>
+          <div className="w-1/4 h-full hidden bg-gradient-to-r from-yellow-600 to-sky-200 animate-text rounded-[40px] relative md:grid place-items-center">
+            <div className="w-[100px] h-[100px] relative animate-spin">
+              <div className="w-4 h-4 bg-red-900 rounded-full absolute top-0 right-0 transition-all  "></div>
+              <div className="w-4 h-4 bg-black rounded-full absolute top-0 left-0 transition-all  "></div>
+              <div className="w-4 h-4 bg-red-900 rounded-full absolute bottom-0 left-0 transition-all   "></div>
+              <div className="w-4 h-4 bg-black rounded-full absolute bottom-0 right-0 transition-all  "></div>
+            </div>
           </div>
         </div>
       </div>

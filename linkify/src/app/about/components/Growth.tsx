@@ -2,7 +2,7 @@ import React from "react";
 
 const Growth = () => {
   return (
-    <div className="md:w-[60%] md:flex  grid align-items-center justify-between gap-8 relative">
+    <div className="md:w-[60%] md:flex  grid align-items-center justify-between gap-8 relative p-4 box-border">
       <div className="w-[600px] h-[600px] absolute bg-sky-500 rounded-full z-[-1] grid place-items-center -left-40 -top-80">
         <div className="w-[590px] h-[590px] rounded-full bg-white"></div>
       </div>
