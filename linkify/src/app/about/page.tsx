@@ -25,7 +25,7 @@ export default function page() {
       <Journey />
       <Values />
       <Growth />
-      <SponsorsSection />
+
       <OurTeam />
       <Testimonials />
     </div>
