@@ -12,20 +12,25 @@ import {
   FaGithub,
   FaLinkedinIn,
   FaMediumM,
+  FaPaypal,
   FaPinterestP,
   FaRedditAlien,
   FaRedditSquare,
   FaSearch,
+  FaSkype,
   FaSlackHash,
   FaSnapchatGhost,
   FaTiktok,
   FaTwitch,
   FaUber,
   FaWhatsapp,
+  FaWikipediaW,
+  FaYelp,
   FaYoutube,
 } from "react-icons/fa";
 
 import { RiNetflixFill } from "react-icons/ri";
+import Button from "../Landingpage/Components/ui/Button";
 
 const page = () => {
   const apps = [
@@ -57,25 +62,25 @@ const page = () => {
       name: "Facebook",
       des: "Connect with friends and family",
       logo: <FaFacebookF color="white" />,
-      accent: "blue-600",
+      accent: "blue-400",
     },
     {
       name: "Amazon",
       des: "Shop online for anything",
-      logo: <FaAmazon color="white" />,
-      accent: "yellow-500",
+      logo: <FaAmazon color="black" />,
+      accent: "white",
     },
     {
       name: "LinkedIn",
       des: "Build your professional network",
       logo: <FaLinkedinIn color="white" />,
-      accent: "blue-800",
+      accent: "sky-600",
     },
     {
       name: "Snapchat",
       des: "Send and receive fun snaps",
       logo: <FaSnapchatGhost color="white" />,
-      accent: "yellow-400",
+      accent: "yellow-300",
     },
     {
       name: "Pinterest",
@@ -86,14 +91,14 @@ const page = () => {
     {
       name: "Discord",
       des: "Chat with your friends and communities",
-      logo: <FaDiscord color="white" />,
-      accent: "purple-600",
+      logo: <FaDiscord color="purple" />,
+      accent: "white",
     },
     {
       name: "WhatsApp",
       des: "Message and call securely",
-      logo: <FaWhatsapp color="white" />,
-      accent: "green-600",
+      logo: <FaWhatsapp color="black" />,
+      accent: "white",
     },
     // {
     //   name: "Zoom",
@@ -122,12 +127,12 @@ const page = () => {
     {
       name: "Medium",
       des: "Read and write stories that matter",
-      logo: <FaMediumM color="white" />,
-      accent: "green-700",
+      logo: <FaMediumM color="black" />,
+      accent: "white",
     },
     {
       name: "GitHub",
-      des: "Host and review code, manage projects, and build software",
+      des: "Host and review code, manage projects and software",
       logo: <FaGithub color="white" />,
       accent: "black",
     },
@@ -135,69 +140,90 @@ const page = () => {
       name: "Slack",
       des: "Communicate and collaborate with your team",
       logo: <FaSlackHash color="white" />,
-      accent: "indigo-700",
+      accent: "black",
     },
     {
       name: "Dropbox",
       des: "Store and share your files online",
       logo: <FaDropbox color="white" />,
-      accent: "sky-700",
+      accent: "black",
+    },
+    {
+      name: "Wikipedia",
+      des: "The free encyclopedia that anyone can edit",
+      logo: <FaWikipediaW color="white" />,
+      accent: "black",
+    },
+    {
+      name: "PayPal",
+      des: "Send and receive money online",
+      logo: <FaPaypal color="white" />,
+      accent: "blue-400",
+    },
+    {
+      name: "Skype",
+      des: "Make free video and voice calls",
+      logo: <FaSkype color="white" />,
+      accent: "blue-400",
     },
   ];
   const [showapp, setShowapp] = useState(false);
   return (
-    <div className="w-full grid place-items-center ">
-      <div className="w-full md:h-[80vh] bg-sky-800 text-rose-200 py-16 px-4 md:flex grid gap-4 items-center justify-center">
-        <div className="md:w-1/2 p-4 grid gap-8">
-          <h2 className="text-6xl font-bold  ">
-            Connect <br /> more of you
-          </h2>
-          <p className="text-xl font-semibold">
-            Bring the best experiences across the internet to one place: your
-            Linktree
-          </p>
-          <div className="w-fit p-4 text-black text-xl font-semibold bg-white rounded flex items-center gap-4">
-            <FaSearch size={32} />
-            <input className="outline-none border-none w-fit" />
+    <div className="w-full grid place-items-center gap-8 ">
+      <div className="w-full  bg-sky-800 grid place-items-center">
+        {" "}
+        <div className="w-[80%] text-rose-200 py-16 px-4 md:flex grid gap-4 items-center justify-center">
+          <div className="md:w-1/2 p-4 grid gap-8">
+            <h2 className="text-6xl font-bold  ">
+              Connect <br /> more of you
+            </h2>
+            <p className="text-xl font-semibold">
+              Bring the best experiences across the internet to one place: your
+              Linktree
+            </p>
+            <div className="w-fit p-4 text-black text-xl font-semibold bg-white rounded flex items-center gap-4">
+              <FaSearch size={32} />
+              <input className="outline-none border-none w-fit" />
+            </div>
           </div>
-        </div>
-        <div className="md:w-1/2 p-4 relative grid place-items-center">
-          <div className="w-[300px] h-[500px] relative skew-x-[-5deg] skew-y-[5deg] flex flex-col items-center  rounded shadow-bs bg-yellow-600 p-4 place-items-center gap-2 ">
-            <div className="grid place-items-center gap-2">
-              <div className="w-40 h-40 rounded-full bg-rose-200 overflow-hidden">
-                <img
-                  src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA1LzUwNC1meC0xMy1qb2IxNzU4XzEucG5n.png"
-                  alt=""
-                />
-              </div>
-              <h2 className="text-xl font-semibold">Justin Styles</h2>
-              <p>Funk R&B</p>
-            </div>
-            <div className="w-full p-2 font-semibold text-center bg-rose-500 rounded-full  ">
-              Listen to Justin Styles
-            </div>
-            <div className="w-full p-2 text-center font-semibold bg-rose-500 rounded-full  ">
-              New Merch
-            </div>
-            <div className="w-full p-2 text-center bg-rose-500 font-semibold rounded-full  ">
-              Harvest Tour
-            </div>
-            <div className="absolute grid place-items-center w-[200px] h-[200px] bg-yellow-400 text-black left-[-150px] rounded">
-              <div className="w-full text-center grid place-items-center gap-2">
-                {" "}
-                <div className="p-8 rounded-full bg-yellow-300">
-                  <FaDollarSign size={32} className="text-center" />
+          <div className="md:w-1/2 p-4 relative grid place-items-center">
+            <div className="w-[300px] h-[500px] relative skew-x-[-5deg] skew-y-[5deg] flex flex-col items-center  rounded shadow-bs bg-yellow-600 p-4 place-items-center gap-2 ">
+              <div className="grid place-items-center gap-2">
+                <div className="w-40 h-40 rounded-full bg-rose-200 overflow-hidden">
+                  <img
+                    src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA1LzUwNC1meC0xMy1qb2IxNzU4XzEucG5n.png"
+                    alt=""
+                  />
                 </div>
-                <div>$1800</div>
-                <p>Total revenue</p>
+                <h2 className="text-xl font-semibold">Justin Styles</h2>
+                <p>Funk R&B</p>
+              </div>
+              <div className="w-full p-2 font-semibold text-center bg-rose-500 rounded-full  ">
+                Listen to Justin Styles
+              </div>
+              <div className="w-full p-2 text-center font-semibold bg-rose-500 rounded-full  ">
+                New Merch
+              </div>
+              <div className="w-full p-2 text-center bg-rose-500 font-semibold rounded-full  ">
+                Harvest Tour
+              </div>
+              <div className="absolute grid place-items-center w-[200px] h-[200px] bg-yellow-400 text-black left-[-150px] rounded">
+                <div className="w-full text-center grid place-items-center gap-2">
+                  {" "}
+                  <div className="p-8 rounded-full bg-yellow-300">
+                    <FaDollarSign size={32} className="text-center" />
+                  </div>
+                  <div>$1800</div>
+                  <p>Total revenue</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="w-[80%]">
-        <div className="w-full box-border py-4 flex gap-8">
-          <div className="w-1/2 grid gap-4">
+      <div className="w-[80%] grid gap-8">
+        <div className="w-full box-border py-4 md:flex grid gap-8">
+          <div className="md:w-1/2 w-full grid gap-4">
             <div className="w-full p-4  bg-orange-600 rounded-[50px] grid place-items-center relative">
               <div className="p-4 rounded-full bg-rose-400">
                 <FaRedditAlien size={200} color={"white"} />
@@ -229,10 +255,10 @@ const page = () => {
               </div>
             </div>
           </div>
-          <div className="w-1/2 grid gap-4">
+          <div className="md:w-1/2 grid gap-4">
             <div className="w-full p-4  bg-slate-900 rounded-[50px] grid place-items-center relative overflow-hidden">
               <div className="p-4 rounded-full ">
-                <div className="bg-gray-300 rounded-[20px] grid  gap-2 place-items-center p-2 relative z-20">
+                <div className="bg-gray-300 rounded-[20px] grid  gap-2 place-items-center p-2 relative z-[3]">
                   <div className="h-20 w-20 rounded-full overflow-hidden">
                     <img
                       src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA1LzUwNC1meC0xMy1qb2IxNzU4XzEucG5n.png"
@@ -244,7 +270,7 @@ const page = () => {
                   <div className="h-8 w-40 bg-slate-800 rounded-full"></div>
                 </div>
               </div>
-              <div className="p-8 absolute bg-rose-300/90 rounded left-[25%] top-[10%] z-10 ">
+              <div className="p-8 absolute bg-rose-300/90 rounded left-[25%] top-[10%] z-[2] ">
                 <FaTiktok size="52" className="" />
               </div>
               <BiLoader
@@ -278,28 +304,45 @@ const page = () => {
         </div>
         <div className="w-full grid gap-8">
           <div className="flex w-full justify-between items-center">
-            <h2 className="text-2xl font-bold">Browse apps</h2>
+            <h2 className="text-2xl font-bold">Create and Share</h2>
             <button
               className=" font-semibold text-slate-800 cursor-pointer hover:text-sky-600"
-              onClick={() => setShowapp(true)}
+              onClick={() => setShowapp(!showapp)}
             >
-              + see more {showapp ? 4 : apps.length - 4} apps
+              + see {showapp ? 3 : ` more ${apps.length - 3}`} apps
             </button>
           </div>
-          <div className="w-full grid grid-cols-4 gap-4 ">
-            {apps.slice(0, showapp ? apps.length : 4).map((app) => (
-              <div className="flex gap-4">
+          <div className="w-full grid md:grid-cols-2 lg:grid-cols-3 gap-4 ">
+            {apps.slice(0, showapp ? apps.length : 6).map((app) => (
+              <div className="w-full flex gap-4">
                 <div
                   className={`bg-${app.accent} rounded text-3xl p-4 grid place-items-center shadow-bs`}
                 >
                   {app.logo}
                 </div>
-                <div className="">
+                <div>
                   <h2 className="text-xl font-bold">{app.name}</h2>
                   <p className="font-semibold">{app.des}</p>
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </div>
+      <div className="w-full bg-slate-200 grid place-items-center">
+        <div className="md:w-60% p-4 md:flex items-center  gap-8">
+          <div className="w-fit grid gap-4 ">
+            <h2 className="text-6xl font-bold">Join our team</h2>
+            <p className="text-xl font-semibold">We are expanding</p>
+            <Button
+              icon={"true"}
+              children={"Register"}
+              variant={"default"}
+              className="w-fit"
+            />
+          </div>
+          <div className="p-4">
+            <div className="w-[400px] h-[400px] bg-gradient-to-r animate-text from-red-200 to-sky-300 rounded-[20px]  "></div>
           </div>
         </div>
       </div>
