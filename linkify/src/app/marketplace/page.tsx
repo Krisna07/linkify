@@ -314,7 +314,7 @@ const page = () => {
           </div>
           <div className="w-full grid md:grid-cols-2 lg:grid-cols-3 gap-4 ">
             {apps.slice(0, showapp ? apps.length : 6).map((app) => (
-              <div className="w-full flex gap-4">
+              <div className="w-full flex gap-4 cursor-default">
                 <div
                   className={`bg-${app.accent} rounded text-3xl p-4 grid place-items-center shadow-bs`}
                 >
