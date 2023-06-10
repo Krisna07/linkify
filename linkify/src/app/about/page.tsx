@@ -7,7 +7,7 @@ import Testimonials from "./components/Testimonial";
 import Values from "./components/Values";
 export default function page() {
   return (
-    <div className="w-full grid place-items-center gap-8">
+    <div className="w-full grid place-items-center gap-8 overflow-hidden">
       <div className="w-full h-[500px] flex flex-col items-center gap-4 justify-center bg-yellow-200">
         {" "}
         <div className="md:w-[600px] text-center grid gap-4">
