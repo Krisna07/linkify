@@ -82,9 +82,9 @@ const OurTeam: React.FC = () => {
   const [show, setShow] = useState(4);
 
   return (
-    <section className="w-5/6 py-12 grid  place-items-center gap-8  ">
-      <div className="w-full mx-auto grid bg-yellow-200  gap-8  border-[1px] p-4 border-red-600">
-        <div className="w-full grid place-items-left gap-8 ">
+    <section className="w-full py-12 grid  place-items-center gap-8 bg-slate-100  relative ">
+      <div className="w-[80%] mx-auto grid   gap-8  ">
+        <div className="w-full grid place-items-left gap-4 ">
           <h2 className="text-3xl font-bold grid">Our Team</h2>
           <p className="md:w-3/4">
             A team of elite enginners working together to grasp the potential of
@@ -96,7 +96,7 @@ const OurTeam: React.FC = () => {
           {teamMembers.slice(0, show).map((member, index) => (
             <div
               key={index}
-              className="bg-white  shadow-md  p-2  grid text-left gap-2"
+              className="bg-white  shadow-bs  p-4 rounded-[20px]  grid text-left gap-2"
             >
               <div className="w-full bg-gradient-to-r from-gray-600 to-red-100">
                 <img src={member.image} alt="" width={"100%"} />
@@ -111,19 +111,23 @@ const OurTeam: React.FC = () => {
                 variant={"default"}
                 children={"Connect"}
                 icon={"true"}
-                className={"w-fit text-[12px] py-1 px-2 bg-red-600"}
+                className={"w-fit text-[12px] py-1 px-2 bg-slate-600"}
               />
             </div>
           ))}
         </div>
       </div>
-      <Button
-        children={show === 3 ? "View more" : "Show less"}
-        variant={"default"}
-        className={"w-fit "}
-        icon={"true"}
-        onClick={() => setShow(show === 4 ? 13 : 4)}
-      />
+      <div className="w-[80%] flex justify-between">
+        {" "}
+        <Button
+          children={show === 4 ? "View more" : "Show less"}
+          variant={"default"}
+          className={"w-fit"}
+          icon={"true"}
+          onClick={() => setShow(show === 4 ? 13 : 4)}
+        />
+        <Button children={"Join our team"} variant={"default"} icon={"true"} />
+      </div>
     </section>
   );
 };

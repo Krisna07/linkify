@@ -12,7 +12,7 @@ import Usage from "./Landingpage/Components/Usage";
 
 const page = () => {
   return (
-    <div className="w-full flex flex-col items-center justify-center gap-8">
+    <div className="w-full flex flex-col items-center justify-center gap-8 overflow-hidden">
       <Herosection />
       <HeroSection />
       <FeaturesSection />

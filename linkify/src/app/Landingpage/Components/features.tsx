@@ -140,11 +140,11 @@ const FeaturesSection = () => {
           <div className="md:w-3/5 h-full flex flex-col items-start justify-center gap-2">
             <h3 className="font-bold">Seamless</h3>
             <h2 className="text-4xl w-full md:w-3/4 sm:text-2xl font-bold text-white mb-8 text-gray-700">
-              Share your Linktree from your Instagram, TikTok, Twitter and other
+              Share your Linkify from your Instagram, TikTok, Twitter and other
               bios
             </h2>
             <p className="w-4/5">
-              Add your unique Linktree URL to all the platforms and places you
+              Add your unique Linkify URL to all the platforms and places you
               find your audience. Then use your QR code to drive your offline
               traffic online.
             </p>

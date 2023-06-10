@@ -1,7 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import Marquee from "react-fast-marquee";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import {
+  FaChevronLeft,
+  FaChevronRight,
+  FaComment,
+  FaCommentAlt,
+} from "react-icons/fa";
 
 const Testimonials: React.FC = () => {
   const testimonials = [
@@ -79,21 +84,22 @@ const Testimonials: React.FC = () => {
 
         <div className="w-full relative ">
           <div
-            className={`w-[100%]  flex  space-x-8 transition-transform ease-in-out duration-300 transform 
+            className={`w-[100%]  flex p-4 space-x-8 transition-transform ease-in-out duration-300 transform 
          `}
           >
-            <Marquee>
+            <Marquee className="p-4">
               {" "}
               {testimonials.map((testimonial, index) => (
                 <div
                   key={index}
-                  className="w-[400px] h-[200px] bg-white shadow-md text-center p-6 overflow-hidden mx-4 rounded-lg "
+                  className="w-[400px] h-full  bg-white shadow-bs text-center text-align-center grid place-items-center gap-2  overflow-hidden p-4 mx-4 rounded-lg "
                 >
                   <h3 className="text-lg font-semibold mb-2">
                     {testimonial.name}
                   </h3>
                   <p className="text-gray-600 mb-2">{testimonial.company}</p>
                   <p className="text-gray-800">{testimonial.quote}</p>
+                  <FaCommentAlt size={24} />
                 </div>
               ))}
             </Marquee>

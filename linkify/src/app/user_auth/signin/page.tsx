@@ -29,10 +29,10 @@ const SignInForm: React.FC<SignInProps> = ({ onSignUpClick }) => {
   };
 
   return (
-    <div className="w-full min-h-[100vh]  flex items-center justify-center bg-gradient-to-r from-red-400 to-slate-800 animate-text">
-      <div className="md:w-[60%] flex items-center justify-center bg-white  p-4   ">
+    <div className="w-full md:h-[80vh]  grid place-items-center   animate-text">
+      <div className="md:w-[60%] flex items-center justify-center bg-white ">
         <form
-          className="md:w-3/6 bg-white  rounded-b-none shadow-bs box-border px-4 py-8 relative -bottom-4"
+          className="md:w-3/6 bg-white  rounded-b-none shadow-bs box-border px-4 py-8 relative"
           onSubmit={handleSubmit}
         >
           <div className="">
@@ -85,10 +85,12 @@ const SignInForm: React.FC<SignInProps> = ({ onSignUpClick }) => {
           <div className="text-center">
             <p className="grid place-items-center text-gray-700 gap-4 ">
               Don't have an account?
-              <Button children={"Sign up"} variant={"default"} />
+              <Link href="./user_auth/signup">
+                <Button children={"Sign up"} variant={"default"} />
+              </Link>
             </p>
           </div>
-          <div className="w-full flex items-center justify-center gap-4 text-xl absolute -bottom-4 ">
+          <div className="w-full flex items-center justify-center gap-4 text-xl relative -bottom-4 ">
             <span className="p-2 bg-white rounded-full shadow-bs hover:animate-bounce">
               {" "}
               <FcGoogle />
