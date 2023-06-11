@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+
 import { useEffect, useState } from "react";
 import {
   FaExpandAlt,
@@ -15,13 +15,11 @@ import {
 import { BiGitPullRequest, BiShapeTriangle, BiUpArrow } from "react-icons/bi";
 import { GiAutoRepair, GiDiploma } from "react-icons/gi";
 import { BsTriangleFill } from "react-icons/bs";
-import profile from "./Images/profile.png";
 
-const Profilecard = ({ cardStyle, icon, key }: any) => {
+const Profilecard = ({ cardStyle, icon }: any) => {
   return (
     <div
       className={`w-60 h-60 ${cardStyle} rounded-[10px] p-4 flex justify-between absolute left-0 bottom-0 transition:all`}
-      key={key}
     >
       <div className="w-20 h-20 rounded-full bg-rose-200 overflow-hidden">
         <img
@@ -134,7 +132,7 @@ const FeaturesSection = () => {
   ];
 
   return (
-    <section className="w-full flex items-center justify-center bg-sky-900 py-12 -skew-y-3 text-sky-100">
+    <div className="w-full flex items-center justify-center bg-sky-900 py-12 -skew-y-3 text-sky-100">
       <div className="md:w-[80%] p-4  grid  gap-16  box-border  skew-y-3">
         <div className="flex items-center justify-between box-border gap-8 ">
           <div className="md:w-3/5 h-full flex flex-col items-start justify-center gap-2">
@@ -150,9 +148,9 @@ const FeaturesSection = () => {
             </p>
           </div>
           <div className="w-2/5 max-h-full box-border rounded flex hidden md:flex relative h-80">
-            {profiles.map((card: any, count: any) => (
+            {profiles.map((card: any, x) => (
               <Profilecard
-                key={count}
+                key={x}
                 cardStyle={card.cardStyle}
                 icon={card.icon}
               />
@@ -210,7 +208,7 @@ const FeaturesSection = () => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

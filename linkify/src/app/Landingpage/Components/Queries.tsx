@@ -10,7 +10,7 @@ import Button from "./ui/Button";
 
 const Queries = () => {
   return (
-    <section className="w-full flex items-center justify-center bg-sky-900 py-8 text-sky-100 -skew-y-3">
+    <div className="w-full flex items-center justify-center bg-sky-900 py-8 text-sky-100 -skew-y-3">
       <div className="md:w-[80%] sm:px-6 lg:px-8 grid  gap-16  box-border p-8 skew-y-3">
         <div className="md:flex items-center justify-between box-border gap-8 ">
           <div className="md:w-3/5 h-full flex flex-col items-start justify-center gap-8 ">
@@ -44,8 +44,8 @@ const Queries = () => {
                 Interactive APIs
               </h2>
             </div>
-            <Button variant={"default"} size={"default"}>
-              Learn More <FaChevronRight />
+            <Button variant={"default"} size={"default"} icon={true}>
+              Learn More
             </Button>
             {/* <button className="flex gap-4 items-center bg-white px-4 py-2 font-bold rounded hover:shadow-lg"></button> */}
           </div>
@@ -60,7 +60,7 @@ const Queries = () => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

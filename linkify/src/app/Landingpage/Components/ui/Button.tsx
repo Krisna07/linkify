@@ -27,92 +27,24 @@ const buttonVarients = cva("active:", {
 
 export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  isLoading?: boolean;
+    VariantProps<typeof buttonVarients> {
+  icon: Boolean;
 }
 
 const Button: FC<ButtonProps> = ({
   className,
   children,
   variant,
-  isLoading,
+
   size,
   icon,
   ...props
 }) => {
   const [hover, setHover] = useState(false);
-  // const [enterDirection, setEnterDirection] = useState<string | null>(null);
-
-  // const handleMouseEnter = (event: React.MouseEvent<HTMLButtonElement>) => {
-  //   const direction = calculateEnterDirection(event);
-  //   setEnterDirection(direction);
-  // };
-
-  // const handleMouseLeave = () => {
-  //   setEnterDirection(null);
-  // };
-
-  // const calculateEnterDirection = (
-  //   event: React.MouseEvent<HTMLButtonElement>
-  // ): string | null => {
-  //   const rect = event.currentTarget.getBoundingClientRect();
-  //   const { left, top, width, height } = rect;
-
-  //   const { clientX, clientY } = event;
-
-  //   const x = clientX - left;
-  //   const y = clientY - top;
-
-  //   if (x < 0 || x > width || y < 0 || y > height) {
-  //     return null; // Mouse is outside the button boundaries
-  //   }
-
-  //   const centerX = width / 2;
-  //   const centerY = height / 2;
-
-  //   const deltaX = x - centerX;
-  //   const deltaY = y - centerY;
-
-  //   if (Math.abs(deltaX) > Math.abs(deltaY)) {
-  //     if (deltaX > 0) {
-  //       return "right";
-  //     } else {
-  //       return "left";
-  //     }
-  //   } else {
-  //     if (deltaY > 0) {
-  //       return "bottom";
-  //     } else {
-  //       return "top";
-  //     }
-  //   }
-  // };
-
-  // const getBackgroundClassName = (direction: string | null): string => {
-  //   switch (direction) {
-  //     case "left":
-  //       return " w-[100%] left-0";
-  //     case "right":
-  //       return " right-0 w-[100%]";
-  //     case "top":
-  //       return " top-0 h-[100%] left-0";
-  //     case "bottom":
-  //       return " bottom-0 h-[100%] left-0";
-  //     default:
-  //       return "";
-  //   }
-  // };
-
-  // const backgroundClassName = getBackgroundClassName(enterDirection);
-  // console.log(enterDirection);
-  // enterDirection === "left" || enterDirection === "right"
-  //   ? console.log("w-0 h-[100%]")
-  //   : console.log("w-[100%] h-[0%]");
 
   return (
     <button
       className={cn(buttonVarients({ variant, size, className }))}
-      disabled={isLoading}
       {...props}
       onMouseOver={() => setHover(true)}
       onMouseLeave={() => setHover(false)}

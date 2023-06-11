@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import FeaturesSection from "./Landingpage/Components/features";
-import Footer from "./Landingpage/Components/Footer";
-import HeroSection from "./Landingpage/Components/Hero";
+import Appdes from "./Landingpage/Components/Hero";
+
 import Herosection from "./Landingpage/Components/Herosection";
 import Newsletter from "./Landingpage/Components/Newsletter";
 import PricingTable from "./Landingpage/Components/Pricing";
@@ -14,10 +14,10 @@ const page = () => {
   return (
     <div className="w-full flex flex-col items-center justify-center gap-8 overflow-hidden">
       <Herosection />
-      <HeroSection />
+      <Appdes />
       <FeaturesSection />
       <SponsorsSection />
-      <Usage />
+      {/* <Usage /> */}
       <Queries />
       <PricingTable />
       <Newsletter />

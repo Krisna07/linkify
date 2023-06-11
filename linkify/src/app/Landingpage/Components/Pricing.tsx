@@ -57,13 +57,13 @@ const PricingTable: React.FC = () => {
             <h3 className="text-lg font-semibold mb-2">{pricing.type}</h3>
             <p className="text-gray-600 mb-4 text-center">
               {pricing.des.map((des) => (
-                <div key={des}>
+                <p key={des}>
                   <li>{des}</li>
-                </div>
+                </p>
               ))}
             </p>
             <p className="text-3xl font-bold mb-2">{pricing.price}</p>
-            <Button children={"Select"} variant={"default"} />
+            <Button children={"Select"} variant={"default"} icon={false} />
           </div>
         ))}
         {/* <div className="w-fit py-16 px-8 grid place-items-center gap-4 shadow-bs rounded-lg hover:scale-[1.1] transition-all">

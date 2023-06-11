@@ -5,20 +5,20 @@ import Link from "next/link";
 import { FaBars, FaLeaf, FaTimes } from "react-icons/fa";
 import Button from "./ui/Button";
 
-const Navbar = ({ setNavigationHeight }: any) => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
-  const navHeight = useRef(0);
-  useEffect(() => {
-    const navigation = navHeight.current;
+  // const navHeight = useRef(0);
+  // useEffect(() => {
+  //   const navigation = navHeight.current;
 
-    setNavigationHeight(
-      navigation ? navigation.getBoundingClientRect().height : "72"
-    );
-  }, [navHeight]);
+  //   setNavigationHeight(
+  //     navigation ? navigation.getBoundingClientRect().height : "72"
+  //   );
+  // }, [navHeight]);
   const NavItems = [
     "Services",
     "Marketplace",
@@ -30,7 +30,6 @@ const Navbar = ({ setNavigationHeight }: any) => {
   return (
     <nav
       className={`bg-white fixed grid place-items-center min-w-full top-0 shadow-lg z-10  `}
-      ref={navHeight}
     >
       <div className="w-full h-full">
         <div className="h-full flex items-center justify-between  p-4">

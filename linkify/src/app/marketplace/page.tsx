@@ -100,12 +100,7 @@ const page = () => {
       logo: <FaWhatsapp color="black" />,
       accent: "white",
     },
-    // {
-    //   name: "Zoom",
-    //   des: "Meet and collaborate online",
-    //   logo: <SiZoom color="white" />,
-    //   accent: "blue-500",
-    // },
+
     {
       name: "Airbnb",
       des: "Find and book unique places to stay",

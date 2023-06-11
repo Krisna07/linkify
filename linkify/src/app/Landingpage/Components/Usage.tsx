@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import {
-  FaChevronRight,
   FaEye,
   FaFacebookSquare,
   FaInstagramSquare,
