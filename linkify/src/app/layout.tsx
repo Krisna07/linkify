@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Navbar />
-        <div className={`relative top-[72px ] py-4`}>{children}</div>
+        {children}
         <Footer />
       </body>
     </html>

@@ -32,7 +32,7 @@ const PricingTable: React.FC = () => {
     },
   ];
   return (
-    <div className="w-full flex items-center flex-col justify-center gap-8 px-8 py-12">
+    <div className="w-full flex items-center flex-col justify-center gap-8 px-8 py-12 overflow-hidden ">
       <div className="w-full grid place-items-center text-center">
         <h2 className="text-4xl font-bold mb-4">Pricing</h2>
         <p className="md:w-1/2">
@@ -41,10 +41,10 @@ const PricingTable: React.FC = () => {
           nesciunt mollitia!
         </p>
       </div>
-      <div className="md:w-fit bg-white flex md:flex-row flex-col items-center justify-between md:gap-16 gap-32 ">
+      <div className="w-full md:w-[80%] p-4  grid place-items-center md:grid-cols-3 grid-cols-1 mb-8 gap-8 space-x-3 relative left-[-400]   ">
         {pricings.map((pricing) => (
           <div
-            className={`w-fit py-16 px-8 grid place-items-center gap-4 shadow-bs rounded-lg hover:scale-[1.1] transition-all hover:bg-sky-200 ${
+            className={`md:w-fit w-[100%] py-16 px-8 grid place-items-center gap-4 shadow-bs rounded-lg hover:scale-[1.1] transition-all hover:bg-sky-200 ${
               pricings.indexOf(pricing) == 1 ? "scale-[1.1] bg-sky-200" : ""
             }`}
             key={pricing.type}
@@ -55,49 +55,15 @@ const PricingTable: React.FC = () => {
               ""
             )}
             <h3 className="text-lg font-semibold mb-2">{pricing.type}</h3>
-            <p className="text-gray-600 mb-4 text-center">
+            <div className="text-gray-600  text-center">
               {pricing.des.map((des) => (
-                <p key={des}>
-                  <li>{des}</li>
-                </p>
+                <li key={des}>{des}</li>
               ))}
-            </p>
+            </div>
             <p className="text-3xl font-bold mb-2">{pricing.price}</p>
             <Button children={"Select"} variant={"default"} icon={false} />
           </div>
         ))}
-        {/* <div className="w-fit py-16 px-8 grid place-items-center gap-4 shadow-bs rounded-lg hover:scale-[1.1] transition-all">
-          <h3 className="text-lg font-semibold mb-2">Basic</h3>
-          <p className="text-gray-600 mb-4 text-center">
-            
-          </p>
-          <p className="text-3xl font-bold mb-2">$9.99/month</p>
-          <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
-            Select
-          </button>
-        </div>
-
-        <div className="w-fit py-16 px-8 grid place-items-center gap-4 shadow-bs rounded-lg scale-[1.1] transition-all shadow-red-400">
-          <h3 className="text-lg font-semibold mb-2">Standard</h3>
-          <p className="text-gray-600 mb-4 text-center">
-            Lorem ipsum dolor sit amet.
-          </p>
-          <p className="text-3xl font-bold mb-2">$19.99/month</p>
-          <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
-            Select
-          </button>
-        </div>
-
-        <div className="w-fit py-16 px-8 grid place-items-center gap-4 shadow-bs rounded-lg hover:scale-[1.1] transition-all">
-          <h3 className="text-lg font-semibold mb-2">Premium</h3>
-          <p className="text-gray-600 mb-4 text-center">
-            Lorem ipsum dolor sit amet.
-          </p>
-          <p className="text-3xl font-bold mb-2">$29.99/month</p>
-          <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
-            Select
-          </button>
-        </div> */}
       </div>
     </div>
   );

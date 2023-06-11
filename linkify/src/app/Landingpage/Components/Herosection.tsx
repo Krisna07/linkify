@@ -2,7 +2,7 @@
 import React from "react";
 import Button from "./ui/Button";
 
-export default function HeroSection() {
+const Herosection = () => {
   return (
     <div className="md:w-full animate-text h-[600px] lg:px-8 p-4 bg-white grid place-items-center gap-4 bg-gradient-to-t from-sky-900 to-rose-900">
       <div className="grid place-items-center gap-4">
@@ -19,4 +19,6 @@ export default function HeroSection() {
       </div>
     </div>
   );
-}
+};
+
+export default Herosection;

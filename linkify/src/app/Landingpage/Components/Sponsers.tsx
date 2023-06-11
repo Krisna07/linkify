@@ -1,11 +1,9 @@
 "use client";
 
 import {
-  FaAirbnb,
   FaAmazon,
   FaAndroid,
   FaBattleNet,
-  FaCcStripe,
   FaFacebookSquare,
   FaGoogle,
   FaHireAHelper,
@@ -14,7 +12,6 @@ import {
   FaSlack,
   FaSnapchatSquare,
   FaStripe,
-  FaStripeS,
 } from "react-icons/fa";
 
 import Marquee from "react-fast-marquee";
@@ -65,9 +62,11 @@ const SponsorsSection = () => {
   ];
 
   return (
-    <div className=" w-[100%] overflow-hidden grid place-items-center gap-8 py-8">
+    <div className=" verflow-hidden grid place-items-center gap-8 py-8 ">
       <div className="w-full text-center grid place-items-center p-4">
-        <h2 className=" text-center text-3xl font-bold mb-8">Our Sponsors</h2>
+        <h2 className="w-fit text-center text-3xl font-bold mb-8">
+          Our Sponsors
+        </h2>
         <p className="md:w-[60%]">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae,
           nostrum eum! Odit ex ut vel?Lorem ipsum dolor sit amet consectetur
@@ -75,8 +74,8 @@ const SponsorsSection = () => {
         </p>
       </div>
 
-      <div className="w-[1200px]  gap-[100px] ">
-        <Marquee>
+      <div className="md:w-[1200px] w-full gap-[100px] relative">
+        <Marquee className="absolute">
           {sponsers.map((sponser) => (
             <div className="w-[200px] px-8 text-[50px]" key={sponser.name}>
               {sponser.logoUrl}
