@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
     };
 
     fetchCountries();
-  }, []);
+  }, [country]);
   const getUserCountryName = (place: any) => {
     const selectedCountry = countries
       ? countries.find((county: any) => county.name.common === place)
