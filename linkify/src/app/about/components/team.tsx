@@ -110,7 +110,7 @@ const OurTeam: React.FC = () => {
               <Button
                 variant={"default"}
                 children={"Connect"}
-                icon={"true"}
+                icon={true}
                 className={"w-fit text-[12px] py-1 px-2 bg-slate-600"}
               />
             </div>
