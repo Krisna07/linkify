@@ -123,10 +123,10 @@ const OurTeam: React.FC = () => {
           children={show === 4 ? "View more" : "Show less"}
           variant={"default"}
           className={"w-fit"}
-          icon={"true"}
+          icon={true}
           onClick={() => setShow(show === 4 ? 13 : 4)}
         />
-        <Button children={"Join our team"} variant={"default"} icon={"true"} />
+        <Button children={"Join our team"} variant={"default"} icon={true} />
       </div>
     </section>
   );
