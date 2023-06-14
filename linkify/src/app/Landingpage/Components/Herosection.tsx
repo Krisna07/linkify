@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Button from "./ui/Button";
-import Link from "next/Link"
+import Link from "next/link";
 
 const Herosection = () => {
   return (
