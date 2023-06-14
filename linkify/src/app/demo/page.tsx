@@ -1,15 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import shortid from "shortid";
-import {
-  FaPlus,
-  FaEdit,
-  FaTrash,
-  FaArrowAltCircleLeft,
-  FaArrowLeft,
-  FaChevronLeft,
-} from "react-icons/fa";
+import { useId, useState } from "react";
+
+import { FaPlus, FaEdit, FaTrash, FaChevronLeft } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -48,7 +41,7 @@ const Demo = () => {
 
       setLinkItems([
         ...linkItems,
-        { id: shortid.generate(), title: titleInput, link: linkInput },
+        { id: useId(), title: titleInput, link: linkInput },
       ]);
       setTitleInput("");
     } else {
