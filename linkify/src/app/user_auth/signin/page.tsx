@@ -6,11 +6,7 @@ import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { Toast } from "react-toastify/dist/components";
 
-interface SignInProps {
-  onSignUpClick: () => void;
-}
-
-const SignInForm: React.FC<SignInProps> = ({ onSignUpClick }) => {
+const SignInForm = ({}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -86,7 +82,7 @@ const SignInForm: React.FC<SignInProps> = ({ onSignUpClick }) => {
             <p className="grid place-items-center text-gray-700 gap-4 ">
               Don't have an account?
               <Link href="./user_auth/signup">
-                <Button children={"Sign up"} variant={"default"} />
+                <Button children={"Sign up"} variant={"default"} icon={false} />
               </Link>
             </p>
           </div>
