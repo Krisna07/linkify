@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
