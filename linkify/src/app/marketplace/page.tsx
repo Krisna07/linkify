@@ -329,7 +329,7 @@ const page = () => {
             <h2 className="text-6xl font-bold">Join our team</h2>
             <p className="text-xl font-semibold">We are expanding</p>
             <Button
-              icon={"true"}
+              icon={true}
               children={"Register"}
               variant={"default"}
               className="w-fit"

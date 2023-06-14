@@ -12,10 +12,9 @@ import {
 } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Link from "next/link";
 
 const Demo = () => {
-  const [linkItems, setLinkItems] = useState<LinkItem[]>([]);
+  const [linkItems, setLinkItems] = useState<any>([]);
   const [btnicon, setBtnicon] = useState<any>(<FaChevronLeft />);
   const [titleInput, setTitleInput] = useState<string>("");
   const [linkInput, setLinkInput] = useState<string>("");
@@ -58,7 +57,7 @@ const Demo = () => {
   };
 
   const handleEditClick = (linkId: string) => {
-    const linkItem = linkItems.find((link) => link.id === linkId);
+    const linkItem = linkItems.find((link: any) => link.id === linkId);
     if (linkItem) {
       setEditLinkId(linkItem.id);
       setEditLinkTitle(linkItem.title);
@@ -78,7 +77,7 @@ const Demo = () => {
   };
 
   const handleSaveEditLink = () => {
-    const updatedLinks = linkItems.map((link) => {
+    const updatedLinks = linkItems.map((link: any) => {
       if (link.id === editLinkId) {
         return { ...link, title: editLinkTitle, link: editLinkLink };
       } else {
@@ -90,7 +89,7 @@ const Demo = () => {
   };
 
   const handleDeleteClick = (linkId: string) => {
-    const updatedLinks = linkItems.filter((link) => link.id !== linkId);
+    const updatedLinks = linkItems.filter((link: any) => link.id !== linkId);
     setLinkItems(updatedLinks);
   };
 
@@ -132,7 +131,7 @@ const Demo = () => {
         </button>
         <ToastContainer />
         {/* Render each link item */}
-        {linkItems.map((link) => (
+        {linkItems.map((link: any) => (
           <div key={link.id} className="flex items-center gap-2">
             <div className="flex-1">
               <a

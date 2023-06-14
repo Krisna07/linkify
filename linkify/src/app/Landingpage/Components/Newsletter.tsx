@@ -35,6 +35,7 @@ const Newsletter: React.FC = () => {
             variant={"default"}
             children={"Subscribe"}
             className="w-fit"
+            icon={false}
           />
         </form>
       </div>

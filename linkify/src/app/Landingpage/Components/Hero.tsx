@@ -98,11 +98,11 @@ const Appdes = () => {
             <div className="w-1/4 h-6 bg-black absolute top-4 rounded-[16px] hover:w-2/5 transition-all"></div>
             <div className="w-2/4 h-1 bg-white absolute bottom-4 rounded-[16px] hover:w-2/5 transition-all shadow animate-pulse "></div>
             <div className="w-fit absolute top-4 left-5 font-bold flex  text-white items-center justify-center gap-[4px] text-center text-[14px]">
-              {new Date().getHours()} :
+              {/* {new Date().getHours()} :
               {new Date().getUTCMinutes() << 10
                 ? `0${new Date().getUTCMinutes()}`
                 : new Date().getMinutes()}
-              {new Date().getHours() < 12 ? "AM" : "PM"}
+              {new Date().getHours() < 12 ? "AM" : "PM"} */}
             </div>
             <div className="absolute top-4 right-4 font-bold flex  text-white items-center justify-center gap-[2px] w-1/5 text-center text-sm border-b-2 border-b-white shadow">
               <FaWifi />
