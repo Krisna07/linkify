@@ -24,7 +24,7 @@ export default function Contact() {
             children={"Learn more"}
             variant={"default"}
             className="w-fit"
-            icon={"true"}
+            icon={true}
           />
         </div>
       </div>
@@ -79,6 +79,7 @@ export default function Contact() {
               <Button
                 children={"Submit"}
                 variant={"default"}
+                icon={false}
                 className="grid place-items-center"
               />
             </form>
