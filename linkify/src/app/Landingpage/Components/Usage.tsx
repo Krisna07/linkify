@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import {
   FaEye,
@@ -14,25 +13,25 @@ import {
 
 import Button from "./ui/Button";
 
-const addLinks = <div>{/* <Demo /> */}</div>;
-const share = (
-  <div className="grid place-items-center gap-4">
-    <h2 className="font-[600]"> Share to any platform</h2>
-    <div className="flex items-center gap-2">
-      <FaFacebookSquare color="blue" />
-      <FaTwitterSquare color="blue" />
-      <FaInstagramSquare color="purple" />
-      <FaPlusSquare />
-    </div>
-  </div>
-);
-const insigth = (
-  <div>
-    <h2 className="font-semibold ">Your insights</h2>
-    Daily visits:{Math.floor((Math.random() + 1) * 10)}
-  </div>
-);
 const Usage = () => {
+  const addLinks = <div>{/* <Demo /> */}</div>;
+  const share = (
+    <div className="grid place-items-center gap-4">
+      <h2 className="font-[600]"> Share to any platform</h2>
+      <div className="flex items-center gap-2">
+        <FaFacebookSquare color="blue" />
+        <FaTwitterSquare color="blue" />
+        <FaInstagramSquare color="purple" />
+        <FaPlusSquare />
+      </div>
+    </div>
+  );
+  const insigth = (
+    <div>
+      <h2 className="font-semibold ">Your insights</h2>
+      Daily visits:{Math.floor((Math.random() + 1) * 10)}
+    </div>
+  );
   const usages = [
     {
       title: (
@@ -120,6 +119,7 @@ const Usage = () => {
                     setIndex(usages.indexOf(usuage));
                   }}
                 >
+                  {/* ok */}
                   {usuage.des}
                 </div>
               ))}
