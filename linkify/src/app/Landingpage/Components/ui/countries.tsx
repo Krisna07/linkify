@@ -6,7 +6,7 @@ const CountryList = ({
   getCountry,
   setLangOptions,
   langOptions,
-}) => {
+}: any) => {
   return (
     <div className="shadow-bs md:w-[800px] w-[500px] bottom-[50px] bg-white p-4 grid gap-8 rounded-[20px] absolute z-[90]">
       <h2 className=" text-xl font-semibold">Select langauge</h2>
