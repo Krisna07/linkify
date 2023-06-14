@@ -66,8 +66,8 @@ const FeaturesSection = () => {
   const [download, setDownload] = useState(0);
 
   useEffect(() => {
-    const randomNumbers = [];
-    let randomNumber, randomReq, donwRandom;
+    const randomNumbers: any = [];
+    let randomNumber: any, randomReq: any, donwRandom: any;
 
     while (randomNumbers.length < 3) {
       randomNumber = Math.floor(Math.random() * 1000) + 332342;

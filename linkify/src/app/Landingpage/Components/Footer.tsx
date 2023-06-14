@@ -4,11 +4,11 @@ import { FaLeaf } from "react-icons/fa";
 import CountryList from "./ui/countries";
 
 const Footer: React.FC = () => {
-  const [country, setCountry] = useState();
+  const [country, setCountry] = useState<any>();
   const [location, setLocation] = useState();
   const [langauge, setLangauge] = useState();
-  const [countries, setCountries] = useState([]);
-  const [langOptions, setLangOptions] = useState();
+  const [countries, setCountries] = useState<any>([]);
+  const [langOptions, setLangOptions] = useState<boolean>();
   useEffect(() => {
     const fetchCountries = async () => {
       try {
