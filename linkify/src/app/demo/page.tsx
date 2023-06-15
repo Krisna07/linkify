@@ -87,7 +87,7 @@ const Demo = () => {
   };
 
   return (
-    <div className="  flex flex-col justify-center items-center bg-[#f3e8b9] p-4 rounded ">
+    <div className="flex flex-col justify-center items-center bg-[#f3e8b9] p-4 rounded ">
       {/* <Link
      href={"/"}
      className="flex gap-2 bg-[#f3a4d5] items-center p-2 absolute top-8 right-8 rounded font-bold"
