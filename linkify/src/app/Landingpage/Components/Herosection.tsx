@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Button from "./ui/Button";
+import Link from "next/link";
 
 const Herosection = () => {
   return (
@@ -15,7 +16,8 @@ const Herosection = () => {
           provident neque quia deserunt at, nulla tenetur explicabo labore, hic
           corporis saepe corrupti dicta consequuntur? Iste soluta eveniet animi.
         </p>
-        <Button children={"Start"} variant={"default"} icon={true} />
+<Link href="/demo">        <Button children={"Start"} variant={"default"} icon={true} />  </Link>
+      
       </div>
     </div>
   );
