@@ -6,7 +6,7 @@ import { FaBars, FaLeaf, FaTimes } from "react-icons/fa";
 import Button from "./ui/Button";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
@@ -34,7 +34,7 @@ const Navbar = () => {
       <div className="w-full h-full">
         <div className="h-full flex items-center justify-between  p-4">
           <div className="flex items-center">
-            <Link href="/">
+            <Link href="/" onClick={() => (isOpen ? setIsOpen(!isOpen) : "")}>
               <span className=" text-lg font-bold flex items-center gap-2">
                 Linkify <FaLeaf className="text-green-500" />
               </span>
@@ -78,6 +78,7 @@ const Navbar = () => {
               <li
                 className="w-full hover:bg-red-300 flex items-center py-2"
                 key={menu}
+                onClick={() => (isOpen ? setIsOpen(!isOpen) : "")}
               >
                 <Link
                   href={`/${menu.toLowerCase()}`}
@@ -87,7 +88,7 @@ const Navbar = () => {
                 </Link>
               </li>
             ))}
-            <li>
+            <li onClick={() => (isOpen ? setIsOpen(!isOpen) : "")}>
               <button className="bg-white text-gray-800 font-semibold py-2 px-4 rounded-full">
                 Sign In
               </button>
