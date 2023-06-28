@@ -1,6 +1,8 @@
 "use client";
 import Button from "@/app/Landingpage/Components/ui/Button";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const Signup = () => {
@@ -16,16 +18,16 @@ const Signup = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
+  const router = useRouter();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    router.push("/");
+
     console.log(
       `Username: ${username}, Email: ${email}, Password: ${password}, Password Confirmation: ${passwordConfirmation}`
     );
   };
   // const handleRecaptchaChange = (value: string | null) => {
-  //   setRecaptchaValue(value || "");
-  // };
 
   return (
     <div className="w-full py-8  grid place-items-center box-border   animate-text">

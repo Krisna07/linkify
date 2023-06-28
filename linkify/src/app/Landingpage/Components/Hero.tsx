@@ -19,7 +19,7 @@ const Appdes = () => {
   const [app, showApp] = useState<Boolean>();
   return (
     <div className=" flex justify-center items-center mb-32 relative">
-      <div className="md:w-[80%] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
+      <div className="md:w-[80%] lg:w-[1000px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
         <div className="md:w-1/2 lg:w-2/4 grid gap-8">
           <h3 className="text-xl font-[600]">Linkify</h3>
           <h1 className="text-2xl sm:text-2xl lg:text-3xl font-bold leading-tight text-gray-900 mb-8">

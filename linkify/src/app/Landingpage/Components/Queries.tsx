@@ -11,7 +11,7 @@ import Button from "./ui/Button";
 const Queries = () => {
   return (
     <div className="w-full flex items-center justify-center bg-sky-900 py-8 text-sky-100 -skew-y-3">
-      <div className="md:w-[80%] sm:px-6 lg:px-8 grid  gap-16  box-border p-8 skew-y-3">
+      <div className="md:w-[80%] lg:w-[1000px] sm:px-6 lg:px-8 grid  gap-16  box-border p-8 skew-y-3">
         <div className="md:flex items-center justify-between box-border gap-8 ">
           <div className="md:w-3/5 h-full flex flex-col items-start justify-center gap-8 ">
             <div className="grid items-start justify-center gap-4">
@@ -26,20 +26,20 @@ const Queries = () => {
               </p>
             </div>
 
-            <div className=" w-full grid md:grid-cols-2 items-center justify-between gap-8">
-              <h2 className="font-[600] text-xl flex items-center gap-4  p-2">
+            <div className=" w-full grid grid-cols-2  items-center justify-between gap-8">
+              <h2 className="font-[600] text-xl flex flex-col bg-gray-800 justify-center rounded-lg items-center gap-4  p-2">
                 <FaPenSquare className="w-[50px] h-[50px] rounded-[50%] text-[50px] shadow-lg" />
                 Carefully Desinged
               </h2>
-              <h2 className="font-[600] text-xl flex items-center gap-4  p-2">
+              <h2 className="font-[600] text-xl flex flex-col bg-gray-800 justify-center rounded-lg  items-center gap-4  p-2">
                 <FaUserAlt className="w-[50px] h-[50px] rounded-[50%] text-[50px] shadow-lg text-red-500" />
                 User Interactive
               </h2>
-              <h2 className="font-[600] text-xl flex items-center gap-4  p-2">
+              <h2 className="font-[600] text-xl flex flex-col bg-gray-800 justify-center rounded-lg  items-center gap-4  p-2">
                 <FaSync className="w-[50px] h-[50px] rounded-[50%] text-[50px] shadow-lg text-blue-500" />
                 Seemlesly sync
               </h2>
-              <h2 className="font-[600] text-xl flex items-center gap-4  p-2">
+              <h2 className="font-[600] text-xl flex flex-col bg-gray-800 justify-center rounded-lg  items-center gap-4  p-2">
                 <FaCloudscale className="w-[50px] h-[50px] rounded-[50%] text-[50px] shadow-lg" />
                 Interactive APIs
               </h2>

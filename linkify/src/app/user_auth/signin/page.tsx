@@ -25,10 +25,10 @@ const SignInForm = ({}) => {
   };
 
   return (
-    <div className="w-full md:h-[80vh]  grid place-items-center   animate-text">
-      <div className="md:w-[60%] grid place-items-center bg-white  ">
+    <div className="w-full py-8  grid place-items-center box-border  animate-text">
+      <div className="w-full lg:w-[1000px] grid place-items-center box-border   bg-white  ">
         <form
-          className="md:w-3/6 bg-white  rounded-b-none shadow-bs box-border px-4 py-8  relative"
+          className="md:w-4/6 bg-white  rounded-b-none shadow-bs box-border px-4 py-8  relative"
           onSubmit={handleSubmit}
         >
           <div className="">

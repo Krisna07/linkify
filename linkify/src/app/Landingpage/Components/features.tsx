@@ -133,7 +133,7 @@ const FeaturesSection = () => {
 
   return (
     <div className="w-full flex items-center justify-center bg-sky-900 py-12 -skew-y-3 text-sky-100">
-      <div className="md:w-[80%] p-4  grid  gap-16  box-border  skew-y-3">
+      <div className="md:w-[80%] lg:w-[1000px] p-4  grid  gap-16  box-border  skew-y-3">
         <div className="flex items-center justify-between box-border gap-8 ">
           <div className="md:w-3/5 h-full flex flex-col items-start justify-center gap-2">
             <h3 className="font-bold">Seamless</h3>
