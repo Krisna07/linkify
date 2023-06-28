@@ -1,4 +1,6 @@
 "use client";
+import Button from "@/app/Landingpage/Components/ui/Button";
+import Link from "next/link";
 import { useState } from "react";
 
 const Signup = () => {
@@ -21,22 +23,22 @@ const Signup = () => {
       `Username: ${username}, Email: ${email}, Password: ${password}, Password Confirmation: ${passwordConfirmation}`
     );
   };
-  const handleRecaptchaChange = (value: string | null) => {
-    setRecaptchaValue(value || "");
-  };
+  // const handleRecaptchaChange = (value: string | null) => {
+  //   setRecaptchaValue(value || "");
+  // };
 
   return (
     <div className="w-full py-8  grid place-items-center box-border   animate-text">
-      <div className="lg:w-[1000px] grid place-items-center box-border bg-red-300 bg-white">
-        a
-        {/* <form
+      <div className="w-full lg:w-[1000px] grid place-items-center box-border   bg-white">
+        <form
+          action=""
+          className="md:w-4/6 w-full  p-8 grid gap-4 shadow-bs"
           onSubmit={handleSubmit}
-          className=" md:w-[5/6] p-8 box-border bg-white  rounded-b-none shadow-bs box-border  grid gap-4 relative"
         >
+          {" "}
           <h2 className="text-center text-3xl font-extrabold text-gray-900">
             Create an account
           </h2>
-          <input type="hidden" name="remember" value="true" />
           {[
             {
               label: "Username",
@@ -79,16 +81,26 @@ const Signup = () => {
               />
             </div>
           ))}
-
-          <div>
-            <button
-              type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              Create account
-            </button>
+          <Button
+            children="Sign Up"
+            variant={"default"}
+            type="submit"
+            icon={false}
+            className="w-full grid place-items-center"
+          />
+          <div className="text-center grid gap-4 place-items-center">
+            <p>Already have an account</p>
+            <Link href={"./signin"}>
+              {" "}
+              <Button
+                children="Sign in"
+                variant={"default"}
+                icon={false}
+                className="w-fit grid place-items-center bg-gray-200 text-black hover:bg-gray-300"
+              />
+            </Link>
           </div>
-        </form> */}
+        </form>
       </div>
     </div>
   );
