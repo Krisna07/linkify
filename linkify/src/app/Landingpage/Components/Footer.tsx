@@ -57,7 +57,7 @@ const Footer: React.FC = () => {
   }, []);
 
   return (
-    <footer className="w-full  text-black py-4 grid place-items-center box-border">
+    <footer className="w-full  text-black py-4 grid place-items-center box-border relative top-[72px]">
       <div className="md:w-3/4  flex gap-4 justify-between">
         <div className="flex flex-col  justify-start gap-4 ">
           <h2 className="text-lg font-bold">

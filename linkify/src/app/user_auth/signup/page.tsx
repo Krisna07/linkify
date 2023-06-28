@@ -26,14 +26,16 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex items-center justify-center   py-12 px-4 sm:px-6 lg:px-8 rounded-lg">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+    <div className="w-full py-8  grid place-items-center box-border   animate-text">
+      <div className="lg:w-[1000px] grid place-items-center box-border bg-red-300 bg-white">
+        a
+        {/* <form
+          onSubmit={handleSubmit}
+          className=" md:w-[5/6] p-8 box-border bg-white  rounded-b-none shadow-bs box-border  grid gap-4 relative"
+        >
+          <h2 className="text-center text-3xl font-extrabold text-gray-900">
             Create an account
           </h2>
-        </div>
-        <form onSubmit={handleSubmit} className="mt-8 space-y-6">
           <input type="hidden" name="remember" value="true" />
           {[
             {
@@ -61,28 +63,23 @@ const Signup = () => {
               value: passwordConfirmation,
             },
           ].map((input, index) => (
-            <div key={index} className="rounded-md shadow-sm -space-y-px">
-              <div>
-                <label htmlFor={input.name} className="sr-only">
-                  {input.label}
-                </label>
-                <input
-                  id={input.name}
-                  name={input.name}
-                  type={input.type}
-                  required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder={input.label}
-                  value={input.value}
-                  onChange={handleChange}
-                />
-              </div>
+            <div key={index} className="rounded-md  grid gap-2  ">
+              <label htmlFor={input.label} className="font-semibold">
+                {input.label}
+              </label>
+              <input
+                id={input.name}
+                name={input.name}
+                type={input.type}
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder={input.label}
+                value={input.value}
+                onChange={handleChange}
+              />
             </div>
           ))}
-          {/* <ReCAPTCHA
-            sitekey="your_site_key_here"
-            onChange={handleRecaptchaChange}
-          /> */}
+
           <div>
             <button
               type="submit"
@@ -91,7 +88,7 @@ const Signup = () => {
               Create account
             </button>
           </div>
-        </form>
+        </form> */}
       </div>
     </div>
   );
