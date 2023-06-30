@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "../Landingpage/Components/ui/Button";
+import { FaCoins } from "react-icons/fa";
 
 const Pricing = () => {
   return (
@@ -21,10 +22,9 @@ const Pricing = () => {
         </div>
       </div>
       <div className="w-full  grid place-items-center ">
-        <div className="w-[1000px] grid grid-cols-2 gap-[20px ] p-[40px] place-items-center">
-          <div className="shadow-bs h-[200px] w-1/2  grid gap-4">
-            <div className="w-full p-4 grid">
-              {" "}
+        <div className="w-[1000px] grid grid-cols-2 gap-4 box-border p-8 ">
+          <div className="shadow-bs w-full flex items-start box-border py-4 px-8 gap-4">
+            <div className="w-full p-4 grid gap-4">
               <h3 className="font-semibold text-gray-600">Standard</h3>
               <h2 className="text-xl font-bold">$9.99/Month</h2>
               <Button
@@ -33,11 +33,14 @@ const Pricing = () => {
                 icon={true}
                 className="h-fit"
               />
+            </div>
+            <div className="p-2 bg-gray-600 rounded-lg relative  ">
+              <FaCoins size={40} color="white" className="blur absolute animate-pulse"/>
+              <FaCoins size={40} color="white" className="relative"/>
             </div>
           </div>
-          <div className="shadow-bs h-[200px]   box-border grid gap-4">
-            <div className="p-4 grid">
-              {" "}
+          <div className="shadow-bs w-full  flex items-start py-4 px-8 gap-4">
+            <div className="w-full p-4 grid gap-4">
               <h3 className="font-semibold text-gray-600">Standard</h3>
               <h2 className="text-xl font-bold">$9.99/Month</h2>
               <Button
@@ -47,10 +50,13 @@ const Pricing = () => {
                 className="h-fit"
               />
             </div>
-          </div>{" "}
-          <div className="shadow-bs h-[200px]  box-border grid gap-4">
-            <div className="p-4 grid">
-              {" "}
+            <div className="p-2 bg-gray-600 rounded-lg relative  ">
+              <FaCoins size={40} color="white" className="blur absolute animate-pulse"/>
+              <FaCoins size={40} color="white" className="relative"/>
+            </div>
+          </div>
+            <div className="shadow-bs w-full  flex items-start py-4 px-8 gap-4">
+            <div className="w-full p-4 grid gap-4">
               <h3 className="font-semibold text-gray-600">Standard</h3>
               <h2 className="text-xl font-bold">$9.99/Month</h2>
               <Button
@@ -60,10 +66,13 @@ const Pricing = () => {
                 className="h-fit"
               />
             </div>
-          </div>{" "}
-          <div className="shadow-bs h-[200px]  box-border grid gap-4">
-            <div className="p-4 grid">
-              {" "}
+            <div className="p-2 bg-gray-600 rounded-lg relative  ">
+              <FaCoins size={40} color="white" className="blur absolute animate-pulse"/>
+              <FaCoins size={40} color="white" className="relative"/>
+            </div>
+          </div>
+             <div className="shadow-bs w-full  flex items-start py-4 px-8 gap-4">
+            <div className="w-full p-4 grid gap-4">
               <h3 className="font-semibold text-gray-600">Standard</h3>
               <h2 className="text-xl font-bold">$9.99/Month</h2>
               <Button
@@ -72,6 +81,10 @@ const Pricing = () => {
                 icon={true}
                 className="h-fit"
               />
+            </div>
+            <div className="p-2 bg-gray-600 rounded-lg relative  ">
+              <FaCoins size={40} color="white" className="blur absolute animate-pulse"/>
+              <FaCoins size={40} color="white" className="relative"/>
             </div>
           </div>
         </div>
@@ -81,3 +94,6 @@ const Pricing = () => {
 };
 
 export default Pricing;
+
+// git config --global user.email "krisnachhetri07@gmail.com"
+// git config --global user.name "Krisna07"
