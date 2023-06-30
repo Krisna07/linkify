@@ -89,13 +89,13 @@ const Pricing = () => {
           </p>
         </div>
       </div>
-      <div className="w-full  grid place-items-center p-8 ">
-      <h2 className="text-[32px] font-bold">Pricing Plans </h2>
+      <div className="w-full  grid place-items-center py-8 px-4 gap-4 ">
+      <h2 className="text-[32px] font-bold ">Pricing Plans </h2>
       <p>Start With Our Free Plan. No Credit Card Needed.Cancel Anytime</p>
-        <div className="w-[1000px] grid grid-cols-2 gap-4 box-border p-8 ">
+        <div className="lg:w-[1000px] grid md:grid-cols-2 gap-x-6 gap-y-8 box-border md:p-8  ">
         
         {
-          pricingTiers.map((tier)=> <div className="shadow-bs w-full flex items-start box-border py-4 px-8 gap-4"> <div key={tier.tierName} className="w-full p-4 grid gap-4">
+          pricingTiers.map((tier)=> <div className="shadow-bs w-full flex items-start box-border py-4 px-8 gap-4 hover:bg-sky-200/25"> <div key={tier.tierName} className="w-full p-4 grid gap-4">
           <h3 className="font-semibold text-gray-600">{tier.tierName}</h3>
           <h2 className="text-xl font-bold">{tier.price}</h2>
          <table  className="font-semibold text-gray-600">
