@@ -95,7 +95,7 @@ const Pricing = () => {
         <div className="lg:w-[1000px] grid md:grid-cols-2 gap-x-6 gap-y-8 box-border md:p-8  ">
         
         {
-          pricingTiers.map((tier)=> <div className="shadow-bs w-full flex items-start box-border py-4 px-8 gap-4 hover:bg-sky-200/25"> <div key={tier.tierName} className="w-full p-4 grid gap-4">
+          pricingTiers.map((tier)=> <div className="shadow-bs w-full flex items-start box-border py-4 px-8 gap-4 hover:bg-sky-200/25 "> <div key={tier.tierName} className="w-full p-4 grid gap-4">
           <h3 className="font-semibold text-gray-600">{tier.tierName}</h3>
           <h2 className="text-xl font-bold">{tier.price}</h2>
          <table  className="font-semibold text-gray-600">
