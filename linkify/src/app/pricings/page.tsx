@@ -1,8 +1,76 @@
 import React from "react";
 import Button from "../Landingpage/Components/ui/Button";
-import { FaCoins } from "react-icons/fa";
+import { FaCheck, FaCoins,  } from "react-icons/fa";
+import { X } from "lucide-react";
+import { BiX } from "react-icons/bi";
+
+
 
 const Pricing = () => {
+  const pricingTiers = [
+    {
+      tierName: "Free",
+      price: "$0/mo",
+      usersIncluded: 1,
+      storage: "1 GB",
+      features: {
+        basic: true,
+        advanced: false,
+        premium: false,
+      },
+      prioritySupport: false,
+      customization: false,
+      freeTrial: true,
+    },
+    {
+      tierName: "Basic",
+      price: "$9.99/mo",
+      usersIncluded: 1,
+      storage: "10 GB",
+      features: {
+        basic: true,
+        advanced: true,
+        premium: false,
+      },
+      prioritySupport: false,
+      customization: false,
+      freeTrial: true,
+    },
+    {
+      tierName: "Standard",
+      price: "$19.99/mo",
+      usersIncluded: 5,
+      storage: "50 GB",
+      features: {
+        basic: true,
+        advanced: true,
+        premium: true,
+      },
+      prioritySupport: true,
+      customization: false,
+      freeTrial: true,
+    },
+    {
+      tierName: "Premium",
+      price: "$29.99/mo",
+      usersIncluded: 10,
+      storage: "100 GB",
+      features: {
+        basic: true,
+        advanced: true,
+        premium: true,
+      },
+      prioritySupport: true,
+      customization: true,
+      freeTrial: true,
+    },
+  ];
+  
+ 
+  
+
+
+  
   return (
     <div className="w-full  grid place-items-center">
       <div className="w-full bg-gray-300 grid place-items-center h-[400px] p-[40px]">
@@ -21,72 +89,67 @@ const Pricing = () => {
           </p>
         </div>
       </div>
-      <div className="w-full  grid place-items-center ">
+      <div className="w-full  grid place-items-center p-8 ">
+      <h2 className="text-[32px] font-bold">Pricing Plans </h2>
+      <p>Start With Our Free Plan. No Credit Card Needed.Cancel Anytime</p>
         <div className="w-[1000px] grid grid-cols-2 gap-4 box-border p-8 ">
-          <div className="shadow-bs w-full flex items-start box-border py-4 px-8 gap-4">
-            <div className="w-full p-4 grid gap-4">
-              <h3 className="font-semibold text-gray-600">Standard</h3>
-              <h2 className="text-xl font-bold">$9.99/Month</h2>
-              <Button
-                children="Start"
-                variant={"default"}
-                icon={true}
-                className="h-fit"
-              />
-            </div>
-            <div className="p-2 bg-gray-600 rounded-lg relative  ">
-              <FaCoins size={40} color="white" className="blur absolute animate-pulse"/>
-              <FaCoins size={40} color="white" className="relative"/>
-            </div>
-          </div>
-          <div className="shadow-bs w-full  flex items-start py-4 px-8 gap-4">
-            <div className="w-full p-4 grid gap-4">
-              <h3 className="font-semibold text-gray-600">Standard</h3>
-              <h2 className="text-xl font-bold">$9.99/Month</h2>
-              <Button
-                children="Start"
-                variant={"default"}
-                icon={true}
-                className="h-fit"
-              />
-            </div>
-            <div className="p-2 bg-gray-600 rounded-lg relative  ">
-              <FaCoins size={40} color="white" className="blur absolute animate-pulse"/>
-              <FaCoins size={40} color="white" className="relative"/>
-            </div>
-          </div>
-            <div className="shadow-bs w-full  flex items-start py-4 px-8 gap-4">
-            <div className="w-full p-4 grid gap-4">
-              <h3 className="font-semibold text-gray-600">Standard</h3>
-              <h2 className="text-xl font-bold">$9.99/Month</h2>
-              <Button
-                children="Start"
-                variant={"default"}
-                icon={true}
-                className="h-fit"
-              />
-            </div>
-            <div className="p-2 bg-gray-600 rounded-lg relative  ">
-              <FaCoins size={40} color="white" className="blur absolute animate-pulse"/>
-              <FaCoins size={40} color="white" className="relative"/>
-            </div>
-          </div>
-             <div className="shadow-bs w-full  flex items-start py-4 px-8 gap-4">
-            <div className="w-full p-4 grid gap-4">
-              <h3 className="font-semibold text-gray-600">Standard</h3>
-              <h2 className="text-xl font-bold">$9.99/Month</h2>
-              <Button
-                children="Start"
-                variant={"default"}
-                icon={true}
-                className="h-fit"
-              />
-            </div>
-            <div className="p-2 bg-gray-600 rounded-lg relative  ">
-              <FaCoins size={40} color="white" className="blur absolute animate-pulse"/>
-              <FaCoins size={40} color="white" className="relative"/>
-            </div>
-          </div>
+        
+        {
+          pricingTiers.map((tier)=> <div className="shadow-bs w-full flex items-start box-border py-4 px-8 gap-4"> <div key={tier.tierName} className="w-full p-4 grid gap-4">
+          <h3 className="font-semibold text-gray-600">{tier.tierName}</h3>
+          <h2 className="text-xl font-bold">{tier.price}</h2>
+         <table  className="font-semibold text-gray-600">
+       <tr>  
+         <td >Storage</td>
+          <td >{tier.storage}</td>
+          </tr>
+          <tr>   
+            <td>Users</td>
+          <td>{tier.usersIncluded}</td>
+          </tr>
+          <tr> 
+              <td>Basic Features</td>
+          <td>{tier.features.basic?<FaCheck color="skyblue" />:<X color="red"/>}</td>
+          </tr>
+          <tr>
+            <td>Advance Features</td>
+            <td>{tier.features.advanced?<FaCheck color="skyblue"/>:<X color="red"/>}</td>
+          </tr>
+          <tr> 
+              <td>Premium Features</td>
+              <td>{tier.features.premium?<FaCheck color="skyblue"/>:<X color="red"/>}</td>
+          </tr>
+          <tr> 
+              <td>Priority Support</td>
+              <td>{tier.prioritySupport?<FaCheck color="skyblue"/>:<X color="red"/>}</td>
+          </tr>
+          <tr> 
+              <td>Customization</td>
+              <td>{tier.customization?<FaCheck color="skyblue"/>:<X color="red"/>}</td>
+          </tr>
+          <tr> 
+              <td>Free Trial</td>
+              <td>{tier.freeTrial?<FaCheck color="skyblue"/>:<X color="red"/>}</td>
+          </tr>
+       
+         </table>
+          <Button
+            children="Start"
+            variant={"default"}
+            icon={true}
+            className="h-fit"
+          />
+        </div>
+        <div className="p-2 bg-gray-600 rounded-lg relative  ">
+          <FaCoins size={40} color="white" className="blur absolute animate-pulse"/>
+          <FaCoins size={40} color="white" className="relative"/>
+        </div>
+      </div>)
+        }
+          
+          
+         
+          
         </div>
       </div>
     </div>
