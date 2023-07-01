@@ -91,6 +91,16 @@ const Pricing = () => {
         <h2 className="text-[32px] font-bold text-left ">
           Pick the perfect plan{" "}
         </h2>
+        {/* create the new mini table compinent for the pricing tags  */}
+        {/* 
+
+        name :Tire name 
+        price : tier price 
+        des :Tier description
+        btn :Tier Btn 
+        */}
+        {/* 
+        add the tooggle button for the annual and montly subscription  */}
         <p>Start with our free plan. No credit card needed.Cancel Anytime</p>
         <div className="lg:w-[1000px] grid md:grid-cols-2 gap-x-6 gap-y-8 box-border md:p-8  ">
           {pricingTiers.map((tier) => (
