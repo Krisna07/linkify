@@ -1,15 +1,21 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Button from "../Landingpage/Components/ui/Button";
 import { FaCheck, FaCoins } from "react-icons/fa";
 import { X } from "lucide-react";
-import { BiX } from "react-icons/bi";
 
 const Pricing = () => {
+  const [monthly, setMonthly] = useState<boolean>(true);
+
+  const fixedPrice = (price: number) => {
+    return monthly ? price : Math.floor(price * 12 - price * 1.2);
+  };
+
   const pricingTiers = [
     {
       tierName: "Free",
       des: "Unlimited links and a customizable Linktree to connect your community to everything you are.",
-      price: "0",
+      price: fixedPrice(0),
       usersIncluded: 1,
       storage: "1 GB",
       features: {
@@ -24,7 +30,7 @@ const Pricing = () => {
     {
       tierName: "Strater",
       des: "More customization and control for creators ready to drive more traffic to and through their Linktree.",
-      price: "9.99",
+      price: fixedPrice(9.99),
       usersIncluded: 1,
       storage: "10 GB",
       features: {
@@ -38,7 +44,7 @@ const Pricing = () => {
     },
     {
       tierName: "Pro",
-      price: "19.99",
+      price: fixedPrice(19.99),
       des: "Grow, learn about and own your following forever with a branded Linktree. ",
 
       usersIncluded: 5,
@@ -54,7 +60,7 @@ const Pricing = () => {
     },
     {
       tierName: "Premium",
-      price: "29.99",
+      price: fixedPrice(29.99),
       des: "The VIP support plan for businesses ready to monetize and sell on a larger scale.      ",
       usersIncluded: 10,
       storage: "100 GB",
@@ -77,7 +83,7 @@ const Pricing = () => {
             Lorem ipsum dolor sit amet{" "}
             <span className="border-b border-[4] border-red-400">
               consectetur
-            </span>{" "}
+            </span>
             aut
           </h2>
           <p className="w-full">
@@ -88,9 +94,53 @@ const Pricing = () => {
         </div>
       </div>
       <div className="w-full  grid place-items-center py-8 px-4 gap-4 ">
-        <h2 className="text-[32px] font-bold text-left ">
-          Pick the perfect plan{" "}
-        </h2>
+        <div className="md:w-[1000px] grid gap-4 box-border">
+          <div className="w-full flex items-center justify-between">
+            <div>
+              <h2 className="text-[32px] font-bold text-left ">
+                Pick the perfect plan
+              </h2>
+              <p>
+                Start with our free plan. No credit card needed.Cancel Anytime
+              </p>
+            </div>
+            <div className="flex  bg-gray-400 p-2 rounded-full box-border">
+              <span
+                className={`px-4 py-2 ${
+                  monthly ? "bg-white" : ""
+                } rounded-full`}
+                onClick={() => setMonthly(true)}
+              >
+                Monthly
+              </span>
+              <span
+                className={`px-4 py-2 ${
+                  !monthly ? "bg-white" : ""
+                } rounded-full`}
+                onClick={() => setMonthly(false)}
+              >
+                Annually
+              </span>
+            </div>
+          </div>
+          <div className="w-full grid md:grid-cols-4 gap-[20px]">
+            {pricingTiers.map((tier) => (
+              <div key={tier.price} className="p-4 grid gap-4 shadow-bs">
+                <h3 className="font-semibold text-gray-600">{tier.tierName}</h3>
+                <h2 className="text-xl font-bold">
+                  ${tier.price}/{monthly ? "month" : "annually"}
+                </h2>
+                <div>{tier.des}</div>
+                <Button
+                  children="Join"
+                  variant={"default"}
+                  icon={false}
+                  className="w-full grid"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
         {/* create the new mini table compinent for the pricing tags  */}
         {/* 
 
@@ -101,101 +151,117 @@ const Pricing = () => {
         */}
         {/* 
         add the tooggle button for the annual and montly subscription  */}
-        <p>Start with our free plan. No credit card needed.Cancel Anytime</p>
-        <div className="lg:w-[1000px] grid md:grid-cols-2 gap-x-6 gap-y-8 box-border md:p-8  ">
-          {pricingTiers.map((tier) => (
-            <div className="shadow-bs w-full flex items-start box-border py-4 px-8 gap-4 hover:bg-sky-200/25">
-              {" "}
-              <div key={tier.tierName} className="w-full p-4 grid gap-4">
-                <h3 className="font-semibold text-gray-600">{tier.tierName}</h3>
-                <h2 className="text-xl font-bold">{tier.price}</h2>
-                <Button
-                  children="Start"
-                  variant={"default"}
-                  icon={true}
-                  className="h-fit w-full text-center grid rounded-lg"
-                />
-                <table className="font-semibold text-gray-600">
-                  <tr>
-                    <td>Storage</td>
-                    <td>{tier.storage}</td>
-                  </tr>
-                  <tr>
-                    <td>Users</td>
-                    <td>{tier.usersIncluded}</td>
-                  </tr>
-                  <tr>
-                    <td>Basic Features</td>
-                    <td>
-                      {tier.features.basic ? (
-                        <FaCheck color="skyblue" />
-                      ) : (
-                        <X color="red" />
-                      )}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Advance Features</td>
-                    <td>
-                      {tier.features.advanced ? (
-                        <FaCheck color="skyblue" />
-                      ) : (
-                        <X color="red" />
-                      )}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Premium Features</td>
-                    <td>
-                      {tier.features.premium ? (
-                        <FaCheck color="skyblue" />
-                      ) : (
-                        <X color="red" />
-                      )}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Priority Support</td>
-                    <td>
-                      {tier.prioritySupport ? (
-                        <FaCheck color="skyblue" />
-                      ) : (
-                        <X color="red" />
-                      )}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Customization</td>
-                    <td>
-                      {tier.customization ? (
-                        <FaCheck color="skyblue" />
-                      ) : (
-                        <X color="red" />
-                      )}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Free Trial</td>
-                    <td>
-                      {tier.freeTrial ? (
-                        <FaCheck color="skyblue" />
-                      ) : (
-                        <X color="red" />
-                      )}
-                    </td>
-                  </tr>
-                </table>
-              </div>
-              <div className="p-2 bg-gray-600 rounded-lg relative  ">
-                <FaCoins
-                  size={40}
-                  color="white"
-                  className="blur absolute animate-pulse"
-                />
-                <FaCoins size={40} color="white" className="relative" />
-              </div>
-            </div>
-          ))}
+        <h2 className="text-[32px] font-bold text-left ">Features</h2>
+
+        <div className="lg:w-[1000px] box-border md:p-8  ">
+          <table className="w-full grid  table-auto">
+            <thead className="w-full  text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr className="grid grid-cols-5">
+                <th scope="col" className="px-6 py-4"></th>
+                {pricingTiers.map((tier) => (
+                  <th key={tier.tierName} scope="col" className="px-6 py-4">
+                    {tier.tierName}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="grid gap-4 p-4 bg-gray-200">
+              <tr className="grid grid-cols-5 place-items-center gap-4">
+                <th className="w-full text-left">Price</th>
+                {pricingTiers.map((tier) => (
+                  <td key={tier.price}>${tier.price}/month</td>
+                ))}
+              </tr>
+              <tr className="grid grid-cols-5 place-items-center gap-4">
+                <th className="w-full text-left">Storage</th>
+                {pricingTiers.map((tier) => (
+                  <td key={tier.storage} scope="col">
+                    {tier.storage}
+                  </td>
+                ))}
+              </tr>
+              <tr className="grid grid-cols-5 place-items-center gap-4">
+                <th className="w-full text-left">Users</th>
+                {pricingTiers.map((tier) => (
+                  <td key={tier.usersIncluded} scope="col">
+                    {tier.usersIncluded}
+                  </td>
+                ))}
+              </tr>
+              <tr className="grid grid-cols-5 place-items-center gap-4">
+                <th className="w-full text-left">Basic Features</th>
+                {pricingTiers.map((tier) => (
+                  <td key={tier.usersIncluded} scope="col">
+                    {tier.features.basic ? (
+                      <FaCheck color="skyblue" />
+                    ) : (
+                      <X color="red" />
+                    )}
+                  </td>
+                ))}
+              </tr>
+              <tr className="grid grid-cols-5 place-items-center gap-4">
+                <th className="w-full text-left">Advance Features</th>
+                {pricingTiers.map((tier) => (
+                  <td key={tier.usersIncluded} scope="col">
+                    {tier.features.advanced ? (
+                      <FaCheck color="skyblue" />
+                    ) : (
+                      <X color="red" />
+                    )}
+                  </td>
+                ))}
+              </tr>
+              <tr className="grid grid-cols-5 place-items-center gap-4">
+                <th className="w-full text-left">Premium Features</th>
+                {pricingTiers.map((tier) => (
+                  <td key={tier.usersIncluded} scope="col">
+                    {tier.features.premium ? (
+                      <FaCheck color="skyblue" />
+                    ) : (
+                      <X color="red" />
+                    )}
+                  </td>
+                ))}
+              </tr>
+              <tr className="grid grid-cols-5 place-items-center gap-4">
+                <th className="w-full text-left">Priority Support</th>
+                {pricingTiers.map((tier) => (
+                  <td key={tier.usersIncluded} scope="col">
+                    {tier.prioritySupport ? (
+                      <FaCheck color="skyblue" />
+                    ) : (
+                      <X color="red" />
+                    )}
+                  </td>
+                ))}
+              </tr>
+              <tr className="grid grid-cols-5 place-items-center gap-4">
+                <th className="w-full text-left">Customization</th>
+                {pricingTiers.map((tier) => (
+                  <td key={tier.usersIncluded} scope="col">
+                    {tier.customization ? (
+                      <FaCheck color="skyblue" />
+                    ) : (
+                      <X color="red" />
+                    )}
+                  </td>
+                ))}
+              </tr>
+              <tr className="grid grid-cols-5 place-items-center gap-4">
+                <th className="w-full text-left">Free Trial</th>
+                {pricingTiers.map((tier) => (
+                  <td key={tier.usersIncluded} scope="col">
+                    {tier.freeTrial ? (
+                      <FaCheck color="skyblue" />
+                    ) : (
+                      <X color="red" />
+                    )}
+                  </td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
       <h2 className="text-[32px] font-bold "> </h2>

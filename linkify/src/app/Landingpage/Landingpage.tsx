@@ -10,7 +10,7 @@ import Usage from "./Components/Usage";
 
 const Landingpage = () => {
   return (
-    <div>
+    <div className="grid gap-8 overflow-hidden">
       <Herosection />
       <Appdes />
       <FeaturesSection />

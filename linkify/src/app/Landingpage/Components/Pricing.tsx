@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./ui/Button";
+import Link from "next/link";
 
 const PricingTable: React.FC = () => {
   const pricings = [
@@ -65,6 +66,9 @@ const PricingTable: React.FC = () => {
           </div>
         ))}
       </div>
+      <Link href={"./pricings"}>
+        <Button children={"Learn more"} variant={"default"} icon={true} />
+      </Link>
     </div>
   );
 };
