@@ -80,11 +80,11 @@ const Pricing = () => {
       <div className="w-full bg-gray-300 grid place-items-center h-[400px] p-[40px]">
         <div className="lg:w-[1000px] grid place-items-center gap-4 text-center">
           <h2 className="font-bold text-[32px]  text-center uppercase">
-            Lorem ipsum dolor sit amet{" "}
+            Lorem ipsum dolor sit amet &nbsp;
             <span className="border-b border-[4] border-red-400">
               consectetur
             </span>
-            aut
+           &nbsp; aut
           </h2>
           <p className="w-full">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa,
@@ -93,10 +93,12 @@ const Pricing = () => {
           </p>
         </div>
       </div>
-      <h2 className="text-[32px] font-bold ">Pricing Plans </h2>
+
+      <div className="w-full grid place-items-center gap-8 py-8">
+        <div className="grid place-items-center"><h2 className="text-[32px] font-bold ">Pricing Plans </h2>
       <p>Start With Our Free Plan. No Credit Card Needed.Cancel Anytime</p>
-        <div className="lg:w-[1000px] grid md:grid-cols-2 gap-x-6 gap-y-8 box-border md:p-8  ">
-        <div className="md:w-[1000px] grid gap-4 box-border">
+       </div>
+        <div className="lg:w-[1000px] grid gap-4 box-border">
           <div className="w-full flex items-center justify-between">
             <div>
               <h2 className="text-[32px] font-bold text-left ">
@@ -143,11 +145,9 @@ const Pricing = () => {
             ))}
           </div>
 
-        </div>
-
+        </div></div>
+        <div className="lg:w-[1000px] box-border md:py-8  ">
         <h2 className="text-[32px] font-bold text-left ">Features</h2>
-
-        <div className="lg:w-[1000px] box-border md:p-8  ">
           <table className="w-full grid  table-auto">
             <thead className="w-full  text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr className="grid grid-cols-5">
@@ -257,7 +257,7 @@ const Pricing = () => {
             </tbody>
           </table>
         </div>
-      </div>
+   
       <h2 className="text-[32px] font-bold "> </h2>
     </div>
   )

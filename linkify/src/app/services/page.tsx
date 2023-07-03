@@ -61,20 +61,37 @@ const page = () => {
           <Button children="Learn More" variant={"default"} icon={true} />
         </div>
       </div>
-      <div className="w-full  gap-[20px] bg-gradient-to-r from-indigo-500 to-pink-500  skew-y-[-5deg]">
-        <div className="w-full grid place-items-center skew-y-[5deg] py-20">
+      <div className="w-full  gap-[20px] bg-gradient-to-r from-indigo-500 to-pink-500  skew-y-[-5deg] ">
+        <div className="w-full grid place-items-center skew-y-[5deg] py-20 gap-4 p-4">
           <h2 className="font-bold text-[32px]">
             This app will change the way you share
           </h2>
-          <p className="w-[60%] text-center">
+          <p className="md:w-[60%] text-center">
             Our social media reach is just amaxing Lorem ipsum, dolor sit amet
             consectetur adipisicing elit. Ut perspiciatis qui illo ipsum harum
             natus corporis, labore commodi. Veritatis, exercitationem?
           </p>
-          <div className="md:w-[80%] grid place-items-center md:grid-cols-3 gap-[40px]">
-            <div className="w-full h-80  shadow-bs bg-white rounded-xl"></div>
-            <div className="w-full h-80  shadow-bs bg-white rounded-xl"></div>{" "}
-            <div className="w-full h-80  shadow-bs bg-white rounded-xl"></div>
+          <div className="md:w-[80%] grid place-items-center lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-[40px]">
+            <div className="w-full  p-4 shadow-bs bg-white rounded-xl grid">
+            <p className="font-semibold">Subtopic</p>
+              <h2 className="text-2xl font-bold">A topic</h2>
+            <div className="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate ratione dignissimos maxime repellendus. Ipsa consectetur, suscipit esse voluptatum consequatur perspiciatis?</div>
+              </div>
+              <div className="w-full  p-4 shadow-bs bg-white rounded-xl grid">
+            <p className="font-semibold">Subtopic</p>
+              <h2 className="text-2xl font-bold">A topic</h2>
+            <div className="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate ratione dignissimos maxime repellendus. Ipsa consectetur, suscipit esse voluptatum consequatur perspiciatis?</div>
+              </div>   <div className="w-full  p-4 shadow-bs bg-white rounded-xl grid">
+            <p className="font-semibold">Subtopic</p>
+              <h2 className="text-2xl font-bold">A topic</h2>
+            <div className="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate ratione dignissimos maxime repellendus. Ipsa consectetur, suscipit esse voluptatum consequatur perspiciatis?</div>
+              </div>
+              <div className="w-full  p-4 shadow-bs bg-white rounded-xl grid">
+            <p className="font-semibold">Subtopic</p>
+              <h2 className="text-2xl font-bold">A topic</h2>
+            <div className="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate ratione dignissimos maxime repellendus. Ipsa consectetur, suscipit esse voluptatum consequatur perspiciatis?</div>
+              </div>
+          
           </div>
         </div>
       </div>
