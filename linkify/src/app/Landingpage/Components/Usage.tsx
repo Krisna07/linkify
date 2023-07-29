@@ -76,7 +76,7 @@ const Usage = () => {
 
   return (
     <div className="w-full flex items-center justify-center py-16">
-      <div className="w-full md:w-[80%] lg:container-flex lg:flex grid items-center sm:px-6 lg:px-8 gap-4  box-border p-4">
+      <div className="w-full md:w-[80%] lg:w-[1000px] lg:container-flex lg:flex grid items-center sm:px-6 lg:px-8 gap-4  box-border p-4">
         <div className="lg:w-1/2 w-full  flex flex-col p-2  box-border gap-8  ">
           <h2 className="text-3xl font-[700] ">Usuage</h2>
           <div className="flex items-center gap-4">

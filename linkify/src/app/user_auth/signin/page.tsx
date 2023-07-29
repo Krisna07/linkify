@@ -25,10 +25,10 @@ const SignInForm = ({}) => {
   };
 
   return (
-    <div className="w-full md:h-[80vh]  grid place-items-center   animate-text">
-      <div className="md:w-[60%] flex items-center justify-center bg-white ">
+    <div className="w-full py-8  grid place-items-center box-border  animate-text">
+      <div className="w-full lg:w-[1000px] grid place-items-center box-border   bg-white  ">
         <form
-          className="md:w-3/6 bg-white  rounded-b-none shadow-bs box-border px-4 py-8 relative"
+          className="md:w-4/6 bg-white  rounded-b-none shadow-bs box-border px-4 py-8  relative"
           onSubmit={handleSubmit}
         >
           <div className="">
@@ -81,7 +81,7 @@ const SignInForm = ({}) => {
           <div className="text-center">
             <p className="grid place-items-center text-gray-700 gap-4 ">
               Don't have an account?
-              <Link href="./user_auth/signup">
+              <Link href="./signup">
                 <Button children={"Sign up"} variant={"default"} icon={false} />
               </Link>
             </p>

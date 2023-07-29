@@ -1,4 +1,8 @@
 "use client";
+import Button from "@/app/Landingpage/Components/ui/Button";
+
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const Signup = () => {
@@ -14,27 +18,29 @@ const Signup = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
+  const router = useRouter();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    router.push("/");
+
     console.log(
       `Username: ${username}, Email: ${email}, Password: ${password}, Password Confirmation: ${passwordConfirmation}`
     );
   };
-  const handleRecaptchaChange = (value: string | null) => {
-    setRecaptchaValue(value || "");
-  };
+  // const handleRecaptchaChange = (value: string | null) => {
 
   return (
-    <div className="flex items-center justify-center   py-12 px-4 sm:px-6 lg:px-8 rounded-lg">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+    <div className="w-full py-8  grid place-items-center box-border   animate-text">
+      <div className="w-full lg:w-[1000px] grid place-items-center box-border   bg-white">
+        <form
+          action=""
+          className="md:w-4/6 w-full  p-8 grid gap-4 shadow-bs"
+          onSubmit={handleSubmit}
+        >
+          {" "}
+          <h2 className="text-center text-3xl font-extrabold text-gray-900">
             Create an account
           </h2>
-        </div>
-        <form onSubmit={handleSubmit} className="mt-8 space-y-6">
-          <input type="hidden" name="remember" value="true" />
           {[
             {
               label: "Username",
@@ -61,35 +67,40 @@ const Signup = () => {
               value: passwordConfirmation,
             },
           ].map((input, index) => (
-            <div key={index} className="rounded-md shadow-sm -space-y-px">
-              <div>
-                <label htmlFor={input.name} className="sr-only">
-                  {input.label}
-                </label>
-                <input
-                  id={input.name}
-                  name={input.name}
-                  type={input.type}
-                  required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder={input.label}
-                  value={input.value}
-                  onChange={handleChange}
-                />
-              </div>
+            <div key={index} className="rounded-md  grid gap-2  ">
+              <label htmlFor={input.label} className="font-semibold">
+                {input.label}
+              </label>
+              <input
+                id={input.name}
+                name={input.name}
+                type={input.type}
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder={input.label}
+                value={input.value}
+                onChange={handleChange}
+              />
             </div>
           ))}
-          {/* <ReCAPTCHA
-            sitekey="your_site_key_here"
-            onChange={handleRecaptchaChange}
-          /> */}
-          <div>
-            <button
-              type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              Create account
-            </button>
+          <Button
+            children="Sign Up"
+            variant={"default"}
+            type="submit"
+            icon={false}
+            className="w-full grid place-items-center"
+          />
+          <div className="text-center grid gap-4 place-items-center">
+            <p>Already have an account</p>
+            <Link href={"./signin"}>
+              {" "}
+              <Button
+                children="Sign in"
+                variant={"default"}
+                icon={false}
+                className="w-fit grid place-items-center bg-gray-200 text-black hover:bg-gray-300"
+              />
+            </Link>
           </div>
         </form>
       </div>
