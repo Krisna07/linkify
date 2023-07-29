@@ -35,7 +35,6 @@ const Button: FC<ButtonProps> = ({
   className,
   children,
   variant,
-
   size,
   icon,
   ...props
@@ -49,17 +48,19 @@ const Button: FC<ButtonProps> = ({
       onMouseOver={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <div className="flex items-center justify-center gap-2 relative z-[99]">
+      <div
+        className={`flex items-center justify-center gap-2 relative z-[99] `}
+      >
         {children}
         {icon ? (
           <span>{hover ? <FaArrowRight /> : <FaChevronRight />}</span>
         ) : null}
       </div>
       <div
-        className={`h-full w-[${
-          hover ? "100%" : "0%"
-        }]  left-0  absolute bg-sky-500 transition-all `}
-      />
+        style={{ width: `${hover ? "100%" : "0%"}` }}
+        className={`h-full 
+          left-0  absolute bg-red-500 transitio-all `}
+      ></div>
 
       {/* {enterDirection && (
         <div

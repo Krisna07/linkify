@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { FaBars, FaLeaf, FaTimes } from "react-icons/fa";
 import Button from "./ui/Button";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -11,22 +12,41 @@ const Navbar = () => {
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
-  // const navHeight = useRef(0);
-  // useEffect(() => {
-  //   const navigation = navHeight.current;
 
-  //   setNavigationHeight(
-  //     navigation ? navigation.getBoundingClientRect().height : "72"
-  //   );
-  // }, [navHeight]);
   const NavItems = [
-    "Services",
-    "Marketplace",
-    "Pricings",
-    "Templates",
-    "About",
-    "Contact",
+    {
+      name: "Home",
+      link: "/",
+    },
+    {
+      name: "Services",
+      link: "/services",
+    },
+    {
+      name: "Marketplace",
+      link: "/marketplace",
+    },
+    {
+      name: "Pricings",
+      link: "/pricings",
+    },
+    {
+      name: "Templates",
+      link: "/templates",
+    },
+    {
+      name: "About",
+      link: "/about",
+    },
+    {
+      name: "Contact",
+      link: "/contact",
+    },
   ];
+
+  const path = usePathname();
+  console.log(path);
+  useEffect(() => {});
   return (
     <nav
       className={`bg-white fixed grid place-items-center min-w-full top-0 shadow-lg z-10  `}
@@ -43,12 +63,17 @@ const Navbar = () => {
           <div className="hidden md:block">
             <ul className="flex items-center space-x-6">
               {NavItems.map((menu) => (
-                <li key={menu}>
+                <li key={menu.name}>
                   <Link
-                    href={`/${menu.toLowerCase()}`}
-                    className="font-semibold hover:text-gray-500 active:text-gray-500"
+                    href={`${menu.link}`}
+                    className="font-semibold hover:text-gray-500 active:text-gray-500 relative"
                   >
-                    {menu}
+                    {menu.name}
+                    {path == menu.link ? (
+                      <div className="w-full h-px bg-red-400 absolute"></div>
+                    ) : (
+                      ""
+                    )}
                   </Link>
                 </li>
               ))}
@@ -77,14 +102,14 @@ const Navbar = () => {
             {NavItems.map((menu) => (
               <li
                 className="w-full hover:bg-red-300 flex items-center py-2"
-                key={menu}
+                key={menu.name}
                 onClick={() => (isOpen ? setIsOpen(!isOpen) : "")}
               >
                 <Link
-                  href={`/${menu.toLowerCase()}`}
+                  href={`${menu.link}`}
                   className="font-semibold hover:text-gray-500 active:text-gray-500"
                 >
-                  {menu}
+                  {menu.name}
                 </Link>
               </li>
             ))}

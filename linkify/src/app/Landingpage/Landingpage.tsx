@@ -11,8 +11,9 @@ import Usage from "./Components/Usage";
 const Landingpage = () => {
   return (
     <div className="grid gap-8 overflow-hidden">
-      <Herosection />
       <Appdes />
+      <Herosection />
+
       <FeaturesSection />
       {/* <SponsorsSection /> */}
       <Usage />

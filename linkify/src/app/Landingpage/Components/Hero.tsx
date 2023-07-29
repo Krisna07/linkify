@@ -18,7 +18,7 @@ import { BsBatteryFull } from "react-icons/bs";
 const Appdes = () => {
   const [app, showApp] = useState<Boolean>();
   return (
-    <div className=" flex justify-center items-center mb-32 relative">
+    <div className=" flex justify-center items-center py-16 relative">
       <div className="md:w-[80%] lg:w-[1000px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
         <div className="md:w-1/2 lg:w-2/4 grid gap-8">
           <h3 className="text-xl font-[600]">Linkify</h3>
@@ -53,7 +53,7 @@ const Appdes = () => {
             </div>
           </div>
 
-          <div className="w-[300px] h-[550px] bg-black rounded-[24px] grid place-items-center relative overflow-hidden">
+          <div className="w-[300px] h-[550px] bg-black rounded-[24px] grid place-items-center relative overflow-hidden ">
             <div className="w-[280px] h-[530px]  rounded-[16px] overflow-hidden text-white bg-gradient-to-t from-[#ec008c] to-[#fc6767] overflow-hidden ">
               <div className="boxborder p-2 w-full h-full  flex flex-col gap-2  items-center justify-center ">
                 <div className="w-full h-4 p-4 "></div>
