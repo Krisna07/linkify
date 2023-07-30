@@ -93,6 +93,7 @@ const Pricing = () => {
           <Button
             children="Start"
             variant={"default"}
+            icon={false}
           />
         </div>
       </div>
