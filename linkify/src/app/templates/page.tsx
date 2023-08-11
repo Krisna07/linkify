@@ -5,7 +5,9 @@ import {
   FaFacebookSquare,
   FaTwitterSquare,
   FaInstagramSquare,
+  FaFacebookMessenger,
 } from "react-icons/fa";
+import { BiLike } from "react-icons/bi";
 
 const Page: React.FC = () => {
   const templates = [
@@ -56,7 +58,7 @@ const Page: React.FC = () => {
           </div>
 
           {/* Right Side (Gradient Animation) */}
-          <div className=" w-1/2 h-[600px] relative  z-10">
+          <div className=" w-1/2 h-[600px] relative">
             <div className="w-full h-full bg-gradient-to-br from-pink-300 via-purple-400 to-indigo-200 animate-gradient"></div>
           </div>
         </section>
@@ -70,7 +72,7 @@ const Page: React.FC = () => {
                 key={index}
                 className="bg-white shadow-md rounded-md p-6 relative">
                 <div
-                  className={`w-full h-40 md:h-64  top-0 left-0 bg-gradient-to-tl ${template.gradientColors}`}></div>
+                  className={`w-full h-40 md:h-64 overflow-hidden rounded-lg hover:scale-[1.1] transition-all top-0 left-0 bg-gradient-to-tl ${template.gradientColors}`}></div>
 
                 <h3 className=" flex  justify-between text-xl md:text-2xl font-bold mt-4">
                   {template.title}{" "}
@@ -90,8 +92,8 @@ const Page: React.FC = () => {
 
         {/* Free to Use Options */}
         <section className="my-8">
-          <div className="bg-white rounded-lg shadow-md p-4">
-            <h2 className="text-3xl font-bold mb-4 text-center">
+          <div className="bg-white rounded-lg shadow-md p-4 ">
+            <h2 className="w-full text-3xl font-bold mb-4 ">
               Free to Use Options
             </h2>
             <ul className="list-disc pl-6 grid gap-4 md:grid-cols-2">
@@ -118,53 +120,52 @@ const Page: React.FC = () => {
             </ul>
           </div>
         </section>
+        <section className="my-8 grid grid-cols-2 p-4 bg-white rounded shadow-lg gap-8">
+          <div className="flex flex-col justify-center gap-4">
+            <div className="grid gap-2 leading-[120%]">
+              {" "}
+              <div className="text-lg font-semibold">
+                a simple yet powerful{" "}
+              </div>
+              <div className="text-2xl ">
+                A tool to ramp up your social media with colors
+              </div>
+              <div className="text-gray-600">
+                We do have the verity of templates that you can use. Choose one
+                add the links and drag the items. Lorem ipsum dolor sit, amet
+                consectetur adipisicing elit. Ad, nihil. Lorem ipsum dolor sit
+                amet.{" "}
+              </div>
+            </div>
 
-        {/* Social Media Options */}
-        <section className="my-8">
-          <div className="bg-white rounded-lg shadow-md p-4">
-            <h2 className="text-3xl font-bold">Connect with Us</h2>
-            <ul className="list-none flex space-x-4 mt-4">
-              <li>
-                <a
-                  href="https://www.facebook.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block p-2 rounded-full transition-colors duration-300 hover:bg-blue-100">
-                  <FaFacebookSquare className="text-4xl text-blue-600" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.twitter.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block p-2 rounded-full transition-colors duration-300 hover:bg-blue-100">
-                  <FaTwitterSquare className="text-4xl text-blue-400" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.instagram.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block p-2 rounded-full transition-colors duration-300 hover:bg-pink-100">
-                  <FaInstagramSquare className="text-4xl text-pink-500" />
-                </a>
-              </li>
-            </ul>
+            <div className="flex gap-2">
+              {" "}
+              <Button
+                children="Choose"
+                icon={true}
+                variant={"default"}
+              />
+              <Button
+                children="Explore"
+                icon={true}
+                variant={"primary"}
+              />
+            </div>
           </div>
-        </section>
-
-        {/* Design Colors */}
-        <section className="my-8">
-          <h2 className="text-3xl font-bold">Explore Design Colors</h2>
-          <div className="flex space-x-4 mt-4">
-            <div className="w-12 h-12 bg-red-500 rounded-full"></div>
-            <div className="w-12 h-12 bg-blue-500 rounded-full"></div>
-            <div className="w-12 h-12 bg-green-500 rounded-full"></div>
-            <div className="w-12 h-12 bg-yellow-500 rounded-full"></div>
-            <div className="w-12 h-12 bg-purple-500 rounded-full"></div>
-            <div className="w-12 h-12 bg-pink-500 rounded-full"></div>
+          <div className="h-[500px] w-[100%] bg-gray-200/50 grid place-items-center relative">
+            <FaFacebookMessenger
+              size={88}
+              color="skyblue"
+            />
+            <BiLike
+              className="absolute top-20 left-20"
+              size={80}
+            />
+            <div className="flex gap-2 absolute top-[60%] left-[35%]">
+              <div className="w-4 h-4 rounded-full bg-black"></div>
+              <div className="w-4 h-4 rounded-full bg-black"></div>
+              <div className="w-4 h-4 rounded-full bg-black"></div>
+            </div>
           </div>
         </section>
       </div>
