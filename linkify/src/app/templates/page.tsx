@@ -8,6 +8,7 @@ import {
   FaFacebookMessenger,
 } from "react-icons/fa";
 import { BiLike } from "react-icons/bi";
+import { FcLike } from "react-icons/fc";
 
 const Page: React.FC = () => {
   const templates = [
@@ -157,14 +158,14 @@ const Page: React.FC = () => {
               size={88}
               color="skyblue"
             />
-            <BiLike
-              className="absolute top-20 left-20"
+            <FcLike
+              className="absolute top-20 left-20 "
               size={80}
             />
             <div className="flex gap-2 absolute top-[60%] left-[35%]">
-              <div className="w-4 h-4 rounded-full bg-black"></div>
-              <div className="w-4 h-4 rounded-full bg-black"></div>
-              <div className="w-4 h-4 rounded-full bg-black"></div>
+              <div className="w-4 h-4 rounded-full bg-black animate-pulse "></div>
+              <div className="w-4 h-4 rounded-full bg-black animate-pulse animate-10"></div>
+              <div className="w-4 h-4 rounded-full bg-black animate-pulse animate-20"></div>
             </div>
           </div>
         </section>
