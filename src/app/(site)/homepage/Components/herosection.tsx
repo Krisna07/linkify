@@ -8,7 +8,7 @@ interface HerosectionProps {}
 
 export default function Herosection({}: HerosectionProps) {
   return (
-    <div className="laptop:w-[1024px] h-[80vh] animate-text  lg:px-8 p-4 bg-white grid place-items-center gap-4 ">
+    <div className="laptop:w-[1024px] h-[80vh] animate-text box-border  lg:px-8 p-4 bg-white grid place-items-center gap-4 ">
       <div className="grid place-items-center gap-8 ">
         <div className="grid gap-2 leading-[120%] text-center">
           <div className="font-[600]">Seamless link sharing</div>

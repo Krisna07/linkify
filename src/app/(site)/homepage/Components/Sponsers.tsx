@@ -66,11 +66,11 @@ const SponsorsSection = () => {
   ];
 
   return (
-    <div className="w-full overflow-hidden grid place-items-center gap-4 py-8 ">
+    <div className="w-full overflow-hidden grid place-items-center gap-4 py-8  ">
       <div className="w-full text-center grid place-items-center gap-4 font-[500]">
         <h2 className="w-fit text-center text-xl  ">Sponsors</h2>
       </div>
-      <div className="laptop:w-[1200px] flex w-full justify-between relative">
+      <div className="w-full flex justify-between items-center gap-4   ">
         {sponsers.map((sponser) => (
           <div
             className=" text-[50px] hover:scale-[1.2]"
