@@ -8,13 +8,10 @@ import {
   FaGoogle,
   FaHireAHelper,
   FaImdb,
-  FaNode,
   FaSlack,
   FaSnapchatSquare,
   FaStripe,
 } from "react-icons/fa";
-
-import Marquee from "react-fast-marquee";
 
 const SponsorsSection = () => {
   const sponsers = [
@@ -24,12 +21,7 @@ const SponsorsSection = () => {
     },
     {
       name: "Company B",
-      logoUrl: (
-        <FaGoogle
-          color="orange"
-          size={"40px"}
-        />
-      ),
+      logoUrl: <FaGoogle color="orange" />,
     },
     {
       name: "Company C",
@@ -73,7 +65,7 @@ const SponsorsSection = () => {
       <div className="w-full flex justify-between items-center gap-4   ">
         {sponsers.map((sponser) => (
           <div
-            className=" text-[50px] hover:scale-[1.2]"
+            className=" text-[50px] hover:scale-[1.2] transition-all"
             key={sponser.name}>
             {sponser.logoUrl}
           </div>

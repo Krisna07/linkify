@@ -4,9 +4,9 @@ import Appdes from "./Components/Hero";
 import Herosection from "./Components/Herosection";
 import Newsletter from "./Components/Newsletter";
 import PricingTable from "./Components/Pricing";
-import Queries from "./Components/Queries";
+import Queries from "../(site)/homepage/Components/Queries";
 import SponsorsSection from "./Components/Sponsers";
-import Usage from "./Components/Usage";
+import Usage from "../(site)/homepage/Components/Usage";
 
 const Landingpage = () => {
   return (

@@ -15,12 +15,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // const [navigationHeight, setNavigationHeight] = useState<string>("");
-
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header className="w-full grid place-items-center shadow-bs fixed ">
+        <header className="w-full grid place-items-center shadow-bs fixed z-[99] ">
           <Navbar />
         </header>
         <div className="top-[72px] relative"> {children}</div>

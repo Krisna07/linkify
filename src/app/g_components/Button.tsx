@@ -59,14 +59,14 @@ const Button: FC<ButtonProps> = ({
       onMouseOver={() => setHover(true)}
       onMouseLeave={() => setHover(false)}>
       <div
-        className={`flex items-center justify-center gap-2 relative z-[99] `}>
+        className={`flex items-center justify-center gap-2 relative z-[99] hover:text-black`}>
         {children}
         {rightIcon ? rightIcon : iconCheck}
       </div>
       <div
         style={{ width: `${hover ? "100%" : "0%"}` }}
         className={`h-full 
-          left-0 top-0 absolute bg-red-500 transitio-all `}></div>
+          left-0 top-0 absolute bg-sky-500 transition-all `}></div>
     </button>
   );
 };

@@ -146,7 +146,7 @@ const FeaturesSection = () => {
               traffic online.
             </p>
           </div>
-          <div className="w-2/5 max-h-full box-border rounded flex hidden md:flex relative h-80">
+          <div className="w-2/5 max-h-full box-border rounded flex hidden laptop:flex relative h-80">
             {profiles.map((card: any, x) => (
               <Profilecard
                 key={x}

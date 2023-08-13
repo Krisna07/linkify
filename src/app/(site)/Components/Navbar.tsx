@@ -12,14 +12,14 @@ export default function Navbar({}) {
   ];
 
   return (
-    <div className="laptop:w-[1024px] w-full flex items-center justify-between  px-4">
+    <div className="laptop:w-[1024px] w-full flex items-center justify-between box-border px-4">
       <div className="w-10 h-10  rounded-full bg-gradient-to-tr from-indigo-400 to-red-400 to-blue-400 grid place-items-center  grid place-items-center ">
         <BsTriangle
           className="rotate-45 "
           fill="yellow"
         />
       </div>
-      <div className="flex gap-4 p-4 ">
+      <div className="w-full tablet:flex hidden gap-4 p-4 ">
         {menus.map((menu) => (
           <Link
             key={menu}

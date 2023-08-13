@@ -1,4 +1,5 @@
 "use client";
+import Button from "@/app/g_components/Button";
 import React, { useState } from "react";
 import {
   FaEye,
@@ -10,8 +11,6 @@ import {
   FaShare,
   FaTwitterSquare,
 } from "react-icons/fa";
-
-import Button from "../../g_components/Button";
 
 const Usage = () => {
   const addLinks = <div>{/* <Demo /> */}</div>;
@@ -76,11 +75,11 @@ const Usage = () => {
 
   return (
     <div className="w-full flex items-center justify-center py-16">
-      <div className="w-full md:w-[80%] lg:w-[1000px] lg:container-flex lg:flex grid items-center sm:px-6 lg:px-8 gap-4  box-border p-4">
-        <div className="lg:w-1/2 w-full  flex flex-col p-2  box-border gap-8  ">
+      <div className="w-full laptop:w-[1024px]  laptop:container-flex laptop:flex grid items-center sm:px-6 laptop:px-8 gap-4  box-border p-4">
+        <div className="laptop:w-1/2 w-full  flex flex-col p-2  box-border gap-8  ">
           <h2 className="text-3xl font-[700] ">Usuage</h2>
-          <div className="flex items-center gap-4">
-            <div className="w-1/2 h-fit flex-col flex  font-[600] relative">
+          <div className="laptop:flex grid items-center gap-4">
+            <div className="laptop:w-1/2 w-full h-fit flex-col flex  font-[600] relative">
               <span className="w-[2px] absolute h-full bg-black -left-4 flex items-center justify-center">
                 <span
                   className={`w-[4px] h-1/4 bg-sky-900 absolute  transition-all transition-ease`}
@@ -123,22 +122,23 @@ const Usage = () => {
             </div>
           </div>
         </div>
-        <div className="lg:w-1/2 w-full  flex items-center box-border gap-4  p-2">
-          <div className=" w-3/5 grid gap-4">
-            <h3 className="font-[600] text-lg">Lorem ipsum</h3>
+        <div className="laptop:w-1/2 w-full  laptop:flex items-center box-border gap-4  p-2">
+          <div className=" w-3/5 grid gap-2 leading-[120%]">
+            <h3 className="font-[600] text-lg">Discover</h3>
             <h2 className="font-[700] text-3xl ">
-              Lorem ipsum dolor sit amet.
+              Connect and Share with Ease
             </h2>
             <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Excepturi quia porro fugit nobis dolorum itaque?
+              Seamlessly share your favorite links with friends and followers.
+              Our platform lets you stay connected and engaged, bringing people
+              closer through shared content and discussions.
             </p>
             <Button
+              children="Learn more"
               variant={"default"}
-              className={"flex w-fit"}
-              icon={true}>
-              Learn more
-            </Button>
+              size={"sm"}
+              icon={true}
+            />
           </div>
           <div className="w-2/5  bg-gray-100 rounded text-center hover:shadow-lg">
             <img
