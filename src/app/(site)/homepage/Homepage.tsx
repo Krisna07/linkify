@@ -3,6 +3,8 @@ import Herosection from "./Components/herosection";
 import FeaturesSection from "./Components/features";
 import Queries from "./Components/Queries";
 import Usage from "./Components/Usage";
+import Newsletter from "./Components/Newsletter";
+import PricingTable from "./Components/Pricing";
 
 interface HomepageProps {}
 
@@ -13,6 +15,8 @@ export default function Homepage({}: HomepageProps) {
       <FeaturesSection />
       <Usage />
       <Queries />
+      <PricingTable />
+      <Newsletter />
     </div>
   );
 }

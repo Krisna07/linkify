@@ -13,7 +13,7 @@ const buttonVarients = cva("active:", {
       ghost:
         "bg-transparent rounded-md hover:text-slate-900 overflow-hidden w-fit h-fit relative font-[500]",
       primary:
-        "rounded-md text-white  overflow-hidden w-fit h-fit relative font-[500]",
+        "rounded-md text-white bg-gray-400  overflow-hidden w-fit h-fit relative font-[500] text-black",
     },
 
     size: {

@@ -30,6 +30,7 @@
     "react-dom": "18.2.0",
     "react-fast-marquee": "^1.5.2",
     "react-icons": "^4.8.0",
+    "react-syntax-highlighter": "^15.5.0",
     "react-toastify": "^9.1.2",
     "shortid": "^2.2.16",
     "tailwind-merge": "^1.12.0",

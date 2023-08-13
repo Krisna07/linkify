@@ -91,7 +91,7 @@ const Usage = () => {
                 <span
                   className={
                     index === usages.indexOf(usuage)
-                      ? "  px-4 py-2 my-2 rounded bg-sky-500 text-white shadow-[4px_4px_0px_0px_blue]"
+                      ? " px-4 py-2 my-2 rounded bg-sky-500 text-white shadow-[4px_4px_0px_0px_blue]"
                       : "bg-sky-500/25  px-4 py-2 my-2 rounded hover:bg-sky-500 hover:text-white hover:shadow-[4px_4px_0px_0px_blue]"
                   }
                   key={usages.indexOf(usuage)}
@@ -103,7 +103,7 @@ const Usage = () => {
                 </span>
               ))}
             </div>
-            <div className="w-1/2 h-[200px] bg-sky-100 hover:shadow-lg border-l-2 border-sky-900 box-border text-center flex flex-col rounded realtive relative overflow-hidden">
+            <div className="laptop-w-1/2 h-[200px] bg-sky-100 hover:shadow-lg border-l-2 border-sky-900 box-border text-center flex flex-col rounded  relative overflow-hidden">
               {usages.map((usuage) => (
                 <div
                   className={`w-full min-h-[200px]  flex flex-col top-0 items-center justify-center rounded p-4 relative transition-all overflow-hidden `}
@@ -123,16 +123,18 @@ const Usage = () => {
           </div>
         </div>
         <div className="laptop:w-1/2 w-full  laptop:flex items-center box-border gap-4  p-2">
-          <div className=" w-3/5 grid gap-2 leading-[120%]">
-            <h3 className="font-[600] text-lg">Discover</h3>
-            <h2 className="font-[700] text-3xl ">
-              Connect and Share with Ease
-            </h2>
-            <p>
-              Seamlessly share your favorite links with friends and followers.
-              Our platform lets you stay connected and engaged, bringing people
-              closer through shared content and discussions.
-            </p>
+          <div className=" laptop:w-3/5 w-full grid gap-4 leading-[120%]">
+            <div>
+              <h3 className="font-[600] text-lg">Discover</h3>
+              <h2 className="font-[700] text-2xl ">
+                Connect and Share with Ease
+              </h2>
+              <p className="text-sm">
+                Seamlessly share your favorite links with friends and followers.
+                Our platform lets you stay connected and engaged, bringing
+                people closer through shared content and discussions.
+              </p>
+            </div>
             <Button
               children="Learn more"
               variant={"default"}
@@ -140,7 +142,7 @@ const Usage = () => {
               icon={true}
             />
           </div>
-          <div className="w-2/5  bg-gray-100 rounded text-center hover:shadow-lg">
+          <div className="laptop:w-2/5  bg-gray-100 rounded text-center hover:shadow-lg">
             <img
               src="https://img.freepik.com/free-vector/image-viewer-concept-illustration_114360-4532.jpg?w=826&t=st=1681968634~exp=1681969234~hmac=28c31796a43307c4988128c10cb50b02137fb2e4b2ef1996b2e5dbed22cf4f54"
               alt=""

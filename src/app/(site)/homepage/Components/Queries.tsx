@@ -30,7 +30,7 @@ const Queries = () => {
   return (
     <div className="w-full flex items-center justify-center bg-sky-900 py-8 text-sky-100 -skew-y-3">
       <div className="laptop:w-[1024px] lg:w-[1000px] sm:px-6 lg:px-8 grid  gap-16  box-border p-8 skew-y-3">
-        <div className="laptop:flex items-center justify-between box-border gap-8 ">
+        <div className="laptop:grid  laptop:grid-cols-2 items-center justify-between box-border gap-8 ">
           <div className="h-full flex flex-col items-start justify-center gap-4 leading-[120%] ">
             <div className="grid items-start justify-center gap-4">
               <h3 className="font-bold">Traffic</h3>
@@ -56,7 +56,7 @@ const Queries = () => {
                     <h2>{query.name}</h2>
                     <span className="text-[40px] "> {query.icon}</span>
                   </div>
-                  <div className="bg-gray-200 p-4">{query.des}</div>
+                  <div className="bg-gray-200 p-4 text-sm">{query.des}</div>
                 </div>
               ))}
             </div>
@@ -68,14 +68,14 @@ const Queries = () => {
             </Button>
             {/* <button className="flex gap-4 items-center bg-white px-4 py-2 font-bold rounded hover:shadow-lg"></button> */}
           </div>
-          <div className="w-[800px] max-h-full box-border rounded laptop:flex hidden">
+          <div className="relative max-h-full box-border rounded laptop:flex hidden">
             <Image
               src={
                 "https://voyager.postman.com/illustration/postman-toolbox-api-platform-illustration.svg"
               }
               width={500}
               height={500}
-              className="box-border  rounded"
+              className="box-border   rounded"
               alt=""
             />
           </div>

@@ -2,7 +2,7 @@ import React from "react";
 
 const Growth = () => {
   return (
-    <div className="md:w-[60%] md:flex  grid align-items-center justify-between gap-8 relative p-4 box-border">
+    <div className="laptop:w-[1200px] tablet:flex  grid align-items-center justify-between gap-8 relative p-4 box-border">
       <div className="w-[600px] h-[600px] absolute bg-sky-500 rounded-full z-[-1] grid place-items-center -left-40 -top-80">
         <div className="w-[590px] h-[590px] rounded-full bg-white"></div>
       </div>
@@ -12,7 +12,7 @@ const Growth = () => {
       <div className="text-4xl font-bold grid gap-4 underline leading-relaxed">
         We drive growth. <br /> Together.
       </div>
-      <div className="md:w-1/2 grid grid-cols-2 gap-4">
+      <div className=" grid grid-cols-2 gap-4">
         <div className="p-4 shadow-bs bg-white">
           <div className="text-xl font-bold">57,000+</div>
           <div className="text-slate-700">Regestered Users</div>

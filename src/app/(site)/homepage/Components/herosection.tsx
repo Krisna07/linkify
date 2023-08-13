@@ -31,7 +31,7 @@ export default function Herosection({}: HerosectionProps) {
           />
         </Link>
       </div>
-      <div>
+      <div className="w-full overflow-hidden">
         <SponsorsSection />
       </div>
     </div>

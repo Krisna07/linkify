@@ -30,7 +30,7 @@ import {
 } from "react-icons/fa";
 
 import { RiNetflixFill } from "react-icons/ri";
-import Button from "../g_components/Button";
+import Button from "../../g_components/Button";
 
 const page = () => {
   const apps = [
@@ -164,10 +164,10 @@ const page = () => {
   ];
   const [showapp, setShowapp] = useState(false);
   return (
-    <div className="w-full grid place-items-center gap-8 box-border overflow-hidden ">
+    <div className="w-full grid place-items-center gap-8 box-border overflow-hidden py-8">
       <div className="w-full  bg-sky-800 grid place-items-center">
-        <div className="md:w-[80%] w-full text-rose-200 py-16 px-4 md:flex grid gap-4 items-center justify-center box-border">
-          <div className="md:w-1/2 p-4 grid gap-8 box-boder">
+        <div className="laptop:w-[1024px] w-full text-rose-200 py-16 px-4 grid laptop:grid-cols-2  gap-4 items-center justify-center box-border">
+          <div className="laptop:w-1/2 p-4 grid gap-8 box-boder">
             <h2 className="text-6xl font-bold  ">
               Connect <br /> more of you
             </h2>
@@ -180,9 +180,9 @@ const page = () => {
               <input className="outline-none border-none w-fit" />
             </div>
           </div>
-          <div className="md:w-1/2 p-4 relative grid place-items-center">
+          <div className="laptop:w-1/2 p-4 relative grid place-items-center">
             <div className="w-[300px] h-[500px] relative skew-x-[-5deg] skew-y-[5deg] flex flex-col items-center  rounded shadow-bs bg-yellow-600 p-4 place-items-center gap-2 ">
-              <div className="grid place-items-center gap-2">
+              <div className="grid  place-items-center gap-2">
                 <div className="w-40 h-40 rounded-full bg-rose-200 overflow-hidden">
                   <img
                     src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA1LzUwNC1meC0xMy1qb2IxNzU4XzEucG5n.png"
@@ -218,9 +218,9 @@ const page = () => {
           </div>
         </div>
       </div>
-      <div className="w-[80%] grid gap-8 box-border">
-        <div className="w-full box-border py-4 md:flex grid gap-8">
-          <div className="md:w-1/2 w-full grid gap-4">
+      <div className="laptop:w-[1024px] grid gap-8 box-border">
+        <div className="w-full box-border py-4 grid laptop:grid-cols-2  gap-8">
+          <div className=" w-full grid gap-4">
             <div className="w-full p-4  bg-orange-600 rounded-[50px] grid place-items-center relative">
               <div className="p-4 rounded-full bg-rose-400">
                 <FaRedditAlien
@@ -254,7 +254,9 @@ const page = () => {
               </div>
               <div className="">
                 <h2 className="text-xl font-bold">Reddit</h2>
-                <p className="font-semibold">Showcase your Reddit profile</p>
+                <p className="font-semibold text-sm">
+                  Showcase your Reddit profile
+                </p>
               </div>
             </div>
           </div>
@@ -301,7 +303,7 @@ const page = () => {
               </div>
               <div className="">
                 <h2 className="text-xl font-bold">Tiktok</h2>
-                <p className="font-semibold">
+                <p className="font-semibold text-sm">
                   Share your Tiktok on your Linkify
                 </p>
               </div>
@@ -317,10 +319,10 @@ const page = () => {
               + see {showapp ? 3 : ` more ${apps.length - 3}`} apps
             </button>
           </div>
-          <div className="w-full grid md:grid-cols-2 lg:grid-cols-3 gap-4 ">
+          <div className="w-full grid md:grid-cols-2 laptop:grid-cols-3 tablet:grid-cols-2 gap-4 ">
             {apps.slice(0, showapp ? apps.length : 6).map((app) => (
               <div
-                className="w-full flex gap-4 cursor-default"
+                className="w-full flex items-center gap-4 cursor-default"
                 key={app.name}>
                 <div
                   className={`bg-${app.accent} rounded text-3xl p-4 grid place-items-center shadow-bs`}>
@@ -328,7 +330,7 @@ const page = () => {
                 </div>
                 <div>
                   <h2 className="text-xl font-bold">{app.name}</h2>
-                  <p className="font-semibold">{app.des}</p>
+                  <p className="font-semibold text-sm">{app.des}</p>
                 </div>
               </div>
             ))}
@@ -336,19 +338,33 @@ const page = () => {
         </div>
       </div>
       <div className="w-full bg-slate-200 grid place-items-center">
-        <div className="md:w-60% p-4 md:flex items-center  gap-8">
-          <div className="w-fit grid gap-4 ">
-            <h2 className="text-6xl font-bold">Join our team</h2>
-            <p className="text-xl font-semibold">We are expanding</p>
+        <div className="laptop:w-[800px] p-4 grid laptop:grid-cols-2 items-center  gap-8">
+          <div className="w-fit grid gap-2 leading-[120%] ">
+            <h2 className="text-4xl font-bold">Join our team</h2>
+            <p className="text-lg font-semibold">We are expanding</p>
             <Button
               icon={true}
               children={"Register"}
+              size={"sm"}
               variant={"default"}
               className="w-fit"
             />
           </div>
-          <div className="p-4">
-            <div className="w-[400px] h-[400px] bg-gradient-to-r animate-text from-red-200 to-sky-300 rounded-[20px]  "></div>
+          <div className="w-[600px]">
+            <div className="w-full h-[400px] bg-gradient-to-r animate-text from-red-200 to-indigo-200 relative to-sky-300 rounded-[20px]">
+              <div className="w-[60px] h-[60px]  bg-white rounded-full grid place-items-center absolute top-20 left-20 animate-pulse">
+                <div className="w-[58px] h-[58px] bg-gray-400 rounded-full"></div>
+              </div>
+              <div className="w-[60px] h-[60px]  bg-white rounded-full grid place-items-center absolute top-40 left-80 animate-pulse">
+                <div className="w-[58px] h-[58px] bg-gray-400 rounded-full"></div>
+              </div>
+              <div className="w-[60px] h-[60px]  bg-white rounded-full grid place-items-center absolute top-10 left-60 animate-pulse ">
+                <div className="w-[58px] h-[58px] bg-gray-400 rounded-full"></div>
+              </div>
+              <div className="w-[60px] h-[60px]  bg-white rounded-full grid place-items-center absolute top-60 left-40 animate-pulse">
+                <div className="w-[58px] h-[58px] bg-gray-400 rounded-full"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

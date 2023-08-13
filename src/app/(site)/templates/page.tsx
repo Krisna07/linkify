@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../g_components/Button";
+import Button from "../../g_components/Button";
 import { FiLayout, FiShoppingBag, FiMapPin } from "react-icons/fi";
 import {
   FaFacebookSquare,
@@ -7,7 +7,7 @@ import {
   FaInstagramSquare,
   FaFacebookMessenger,
 } from "react-icons/fa";
-import { BiLike } from "react-icons/bi";
+
 import { FcLike } from "react-icons/fc";
 
 const Page: React.FC = () => {
@@ -35,7 +35,7 @@ const Page: React.FC = () => {
 
   return (
     <div className="w-full min-h-screen bg-gray-100 flex justify-center items-center">
-      <div className="md:w-[1200px] p-8 space-y-8">
+      <div className="laptop:w-[1200px] p-8 space-y-8">
         {/* Hero Section with Creative Gradients */}
         <section className="w-[1400px] py-32 flex gap-8 items-center relative">
           {/* Left Side */}
@@ -54,20 +54,21 @@ const Page: React.FC = () => {
             <Button
               children="Start"
               variant={"default"}
+              size={"default"}
               icon={true}
             />
           </div>
 
           {/* Right Side (Gradient Animation) */}
           <div className=" w-1/2 h-[600px] relative">
-            <div className="w-full h-full bg-gradient-to-br from-pink-300 via-purple-400 to-indigo-200 animate-gradient"></div>
+            <div className="w-full h-full animate-gradient bg-gradient-to-br from-pink-300 via-purple-400 to-indigo-200 animate-gradient"></div>
           </div>
         </section>
 
         {/* Show Some Templates */}
         <section className="my-8">
           <h2 className="text-3xl font-bold mb-4">Explore Our Templates</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 laptop:grid-cols-3 gap-8">
             {templates.map((template, index) => (
               <div
                 key={index}
@@ -81,7 +82,7 @@ const Page: React.FC = () => {
                     {template.icon}
                   </div>
                 </h3>
-                <p className="text-sm md:text-base text-gray-600 mt-2">
+                <p className="text-sm laptop:text-base text-gray-600 mt-2">
                   {template.description}
                 </p>
               </div>
@@ -97,23 +98,23 @@ const Page: React.FC = () => {
             <h2 className="w-full text-3xl font-bold mb-4 ">
               Free to Use Options
             </h2>
-            <ul className="list-disc pl-6 grid gap-4 md:grid-cols-2">
-              <li className="text-lg md:text-xl my-2">
+            <ul className="list-disc pl-6 grid gap-x-12 laptop:grid-cols-2">
+              <li className="text-lg my-2">
                 <span className="text-blue-500">High-Quality Design:</span> Our
                 templates are crafted with attention to detail to ensure
                 top-notch quality for your projects.
               </li>
-              <li className="text-lg md:text-xl my-2">
+              <li className="text-lg my-2">
                 <span className="text-blue-500">Responsive Layouts:</span> Each
                 template is designed to adapt to different screen sizes,
                 providing a seamless experience across devices.
               </li>
-              <li className="text-lg md:text-xl my-2">
+              <li className="text-lg  my-2">
                 <span className="text-blue-500">Easy Customization:</span>{" "}
                 Customize the templates effortlessly to match your brand and
                 preferences with our user-friendly editing tools.
               </li>
-              <li className="text-lg md:text-xl my-2">
+              <li className="text-lg  my-2">
                 <span className="text-blue-500">No Attribution Required:</span>{" "}
                 You are free to use the templates without any obligation to
                 provide attribution.

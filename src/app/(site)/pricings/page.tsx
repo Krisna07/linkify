@@ -1,8 +1,9 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Button from "../g_components/Button";
+import Button from "../../g_components/Button";
 import { FaCheck, FaCoins } from "react-icons/fa";
-import { X } from "lucide-react";
+
+import { BsX } from "react-icons/bs";
 
 const Pricing = () => {
   const [monthly, setMonthly] = useState<boolean>(true);
@@ -78,12 +79,12 @@ const Pricing = () => {
   return (
     <div className="w-full  grid place-items-center">
       <div className="w-full bg-gray-100 grid place-items-center h-[600px] ">
-        <div className="lg:w-[1000px] grid place-items-center gap-8 text-center py-16">
+        <div className="laptop:w-[1000px] grid place-items-center gap-8 text-center py-16">
           <h2 className="font-bold text-4xl text-center uppercase text-gray-800">
             Welcome to Linkify
             <span className="border-b-4 border-red-400">.</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-lg">
+          <p className="text-lg text-gray-600">
             Connect with your audience like never before. Linkify empowers you
             to create a personalized, one-stop destination for all your content,
             making it easier for your followers to explore everything you have
@@ -92,7 +93,8 @@ const Pricing = () => {
           </p>
           <Button
             children="Start"
-            variant={"default"}
+            variant={"primary"}
+            size={"default"}
             icon={false}
           />
         </div>
@@ -103,7 +105,7 @@ const Pricing = () => {
           <h2 className="text-[32px] font-bold ">Pricing Plans </h2>
           <p>Start With Our Free Plan. No Credit Card Needed.Cancel Anytime</p>
         </div>
-        <div className="lg:w-[1000px] grid gap-4 box-border">
+        <div className="laptop:w-[1024px] grid gap-4 box-border">
           <div className="w-full flex items-center justify-between">
             <div>
               <h2 className="text-[32px] font-bold text-left ">
@@ -130,7 +132,7 @@ const Pricing = () => {
               </span>
             </div>
           </div>
-          <div className="w-full grid md:grid-cols-4 gap-[20px]">
+          <div className="w-full grid laptop:grid-cols-4 gap-[20px]">
             {pricingTiers.map((tier) => (
               <div
                 key={tier.price}
@@ -151,7 +153,7 @@ const Pricing = () => {
           </div>
         </div>
       </div>
-      <div className="lg:w-[1000px] box-border md:py-8 grid gap-4  ">
+      <div className="laptop:w-[1024px] box-border laptop:py-8 grid gap-4  ">
         <h2 className="text-[32px] font-bold text-left ">Features</h2>
         <table className="w-full grid  table-auto">
           <thead className="w-full  text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -205,7 +207,7 @@ const Pricing = () => {
                   {tier.features.basic ? (
                     <FaCheck color="skyblue" />
                   ) : (
-                    <X color="red" />
+                    <BsX color="red" />
                   )}
                 </td>
               ))}
@@ -219,7 +221,7 @@ const Pricing = () => {
                   {tier.features.advanced ? (
                     <FaCheck color="skyblue" />
                   ) : (
-                    <X color="red" />
+                    <BsX color="red" />
                   )}
                 </td>
               ))}
@@ -233,7 +235,7 @@ const Pricing = () => {
                   {tier.features.premium ? (
                     <FaCheck color="skyblue" />
                   ) : (
-                    <X color="red" />
+                    <BsX color="red" />
                   )}
                 </td>
               ))}
@@ -247,7 +249,7 @@ const Pricing = () => {
                   {tier.prioritySupport ? (
                     <FaCheck color="skyblue" />
                   ) : (
-                    <X color="red" />
+                    <BsX color="red" />
                   )}
                 </td>
               ))}
@@ -261,7 +263,7 @@ const Pricing = () => {
                   {tier.customization ? (
                     <FaCheck color="skyblue" />
                   ) : (
-                    <X color="red" />
+                    <BsX color="red" />
                   )}
                 </td>
               ))}
@@ -275,7 +277,7 @@ const Pricing = () => {
                   {tier.freeTrial ? (
                     <FaCheck color="skyblue" />
                   ) : (
-                    <X color="red" />
+                    <BsX color="red" />
                   )}
                 </td>
               ))}

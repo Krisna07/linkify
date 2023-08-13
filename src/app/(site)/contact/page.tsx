@@ -1,4 +1,4 @@
-import Button from "../g_components/Button";
+import Button from "../../g_components/Button";
 
 export default function Contact() {
   const issues = [
@@ -12,7 +12,7 @@ export default function Contact() {
     <section className="bg-white py-12 relative grid  gap-4 ">
       <div className="w-full  h-[600px] grid place-items-center relative bg-gradient-to-t from-[#076585] to-[#fff">
         {" "}
-        <div className="md:w-[600px] text-center grid gap-4 place-items-center">
+        <div className="laptop:w-[600px] text-center grid gap-4 place-items-center">
           <h2 className="text-4xl font-bold ">Contact Us</h2>
           <p className="font-semibold">
             Thank you for your interest in contacting us. We're here to assist
@@ -24,13 +24,14 @@ export default function Contact() {
             children={"Learn more"}
             variant={"default"}
             className="w-fit"
+            size={"sm"}
             icon={true}
           />
         </div>
       </div>
       <div className="grid place-items-center w-full ">
-        <div className="grid md:grid-cols-2 place-items-center   ">
-          <div className="md:w-[600px] w-[90%]  md:h-[600px] shadow-bs bg-white rounded p-8 -top-[200px] relative">
+        <div className="grid laptop:grid-cols-2 place-items-center   ">
+          <div className="laptop:w-[600px] w-[90%]  laptop:h-[600px] shadow-bs bg-white rounded p-8 -top-[200px] relative">
             <h3 className="text-xl font-semibold mb-4">Get in Touch</h3>
             <p className="text-gray-600 mb-4">
               We'd love to hear from you. Send us a message and we'll get back
@@ -76,12 +77,13 @@ export default function Contact() {
               <Button
                 children={"Submit"}
                 variant={"default"}
+                size={"sm"}
                 icon={false}
                 className="grid place-items-center"
               />
             </form>
           </div>
-          <div className="relative top-0 z-[5] md:flex hidden">
+          <div className="relative top-0 z-[5] laptop:flex hidden">
             <img
               src="https://img.freepik.com/free-vector/contact-us-concept-illustration_114360-3147.jpg?w=826&t=st=1684905058~exp=1684905658~hmac=480349469f57add4648619a45b58d6470457f9f984d6ae9b4fdafaa8b8cff344"
               alt=""

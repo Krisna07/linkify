@@ -1,5 +1,6 @@
+"use client";
 import React, { useState } from "react";
-import Button from "../../g_components/Button";
+import Button from "../../../g_components/Button";
 
 const Newsletter: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -13,9 +14,9 @@ const Newsletter: React.FC = () => {
   };
 
   return (
-    <div className="w-full grid place-items-center bg-sky-900 py-16 text-white ">
-      <div className="md:w-fit w-full text-center">
-        <h2 className="w-fit text-3xl font-bold mb-4">
+    <div className="w-full grid place-items-center  py-16 text-black ">
+      <div className="laptop:w-fit w-full text-center p-4">
+        <h2 className="w-fit text-2xl font-[700] mb-4">
           Subscribe to our Newsletter
         </h2>
         <form
@@ -24,14 +25,15 @@ const Newsletter: React.FC = () => {
           <input
             type="email"
             placeholder="Enter your email"
-            className="py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 flex-grow text-slate-900"
+            className="py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 flex-grow text-slate-900 bg-gray-200"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
           <Button
             type="submit"
-            variant={"default"}
+            variant={"primary"}
+            size={"default"}
             children={"Subscribe"}
             className="w-fit"
             icon={false}

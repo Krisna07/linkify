@@ -83,16 +83,16 @@ const OurTeam: React.FC = () => {
 
   return (
     <section className="w-full py-12 grid  place-items-center gap-8 bg-slate-100  relative ">
-      <div className="w-[80%] mx-auto grid   gap-8  ">
+      <div className="laptop:w-[1200px] mx-auto grid   gap-8 p-4  ">
         <div className="w-full grid place-items-left gap-4 ">
           <h2 className="text-3xl font-bold grid">Our Team</h2>
-          <p className="md:w-3/4">
+          <p className="laptop:w-3/4">
             A team of elite enginners working together to grasp the potential of
             the link sharing platform. We will ensure that our customers made
             the right decison by choosing us.
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 ">
+        <div className="grid grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-8 p-4 ">
           {teamMembers.slice(0, show).map((member, index) => (
             <div
               key={index}
@@ -120,18 +120,20 @@ const OurTeam: React.FC = () => {
           ))}
         </div>
       </div>
-      <div className="w-[80%] flex justify-between">
+      <div className="laptop:w-[800px] flex justify-between">
         {" "}
         <Button
           children={show === 4 ? "View more" : "Show less"}
           variant={"default"}
           className={"w-fit"}
+          size={"sm"}
           icon={true}
           onClick={() => setShow(show === 4 ? 13 : 4)}
         />
         <Button
           children={"Join our team"}
           variant={"default"}
+          size={"sm"}
           icon={true}
         />
       </div>

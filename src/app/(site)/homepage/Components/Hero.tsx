@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 
 import Link from "next/link";
-import Button from "../../g_components/Button";
+import Button from "../../../g_components/Button";
 
 import {
   FaArrowLeft,

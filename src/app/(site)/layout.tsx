@@ -2,6 +2,7 @@
 import "../globals.css";
 import { Inter } from "next/font/google";
 import Navbar from "./Components/Navbar";
+import Footer from "./Components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,11 +19,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header className="w-full grid place-items-center shadow-bs fixed z-[99] ">
+        <header className="w-full grid place-items-center shadow-bs fixed z-[99] bg-white ">
           <Navbar />
         </header>
-        <div className="top-[72px] relative"> {children}</div>
-        <footer></footer>
+        <div className=" relative oveflow-hidden pb-0"> {children}</div>
+        <footer className="w-full grid place-items-center p-4 bg-gray-200 ">
+          <Footer />
+        </footer>
       </body>
     </html>
   );
