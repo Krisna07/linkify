@@ -14,12 +14,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="w-full h-[100vh] overflow-hidden grid bg-black text-white">
+      <body className="w-full h-[100vh] overflow-hidden grid gap-8 bg-black text-white">
         <header>
           <Mainnav />
         </header>
-        <main className="w-full h-full grid place-items-center">
-          <div className="h-full flex laptop:w-[1200px] gap-8">
+        <main className="w-full h-full grid place-items-start  ">
+          <div className="h-full flex laptop:w-[1200px] items-start gap-8">
             {/* <Sidenav /> */}
             {children}
           </div>
