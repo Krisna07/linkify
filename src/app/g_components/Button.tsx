@@ -17,7 +17,7 @@ const buttonVarients = cva("active:", {
     },
 
     size: {
-      default: "py-1 px-4 ",
+      default: " py-1 px-4 ",
       sm: "py-1 px-4 text-sm",
       lg: "py-2 px-8 text-lg",
     },
@@ -33,7 +33,7 @@ export interface ButtonProps
     VariantProps<typeof buttonVarients> {
   icon?: Boolean;
   className?: string;
-  rightIcon?: IconType;
+  rightIcon?: any;
   leftIcon?: IconType;
 }
 

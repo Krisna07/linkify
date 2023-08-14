@@ -15,7 +15,6 @@ export default function Mainnav({}: mainnavProps) {
     { name: "Settings", link: "/settings" },
   ];
   const route = usePathname();
-  console.log(route);
 
   return (
     <div className="w-full grid gap-4 bg-gray-800 border-b border-b-gray-600 border-b-[1px]">

@@ -1,6 +1,5 @@
 import "../globals.css";
 import Mainnav from "./components/mainnav";
-import Sidenav from "./components/sidenav";
 
 export const metadata = {
   title: "dashboard",
@@ -14,11 +13,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="w-full h-[100vh] overflow-hidden grid gap-8 bg-black text-white">
+      <body className="w-full h-[100vh] overflow-hidden gap-8 bg-black text-white">
         <header>
           <Mainnav />
         </header>
-        <main className="w-full h-full grid place-items-start  ">
+        <main className="w-full h-full grid place-items-center py-8 ">
           <div className="h-full flex laptop:w-[1200px] items-start gap-8">
             {/* <Sidenav /> */}
             {children}
