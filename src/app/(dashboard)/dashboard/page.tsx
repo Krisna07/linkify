@@ -22,11 +22,13 @@ interface link {
   date: string;
 }
 
-function SocialmediaCard(item: any) {
+function SocialmediaCard(item: any, list: boolean) {
   const [hover, setHover] = useState(false);
   return (
     <div
-      className="w-full p-4 bg-gray-800 rounded-lg grid gap-4 hover:shadow-bs relative"
+      className={`w-full p-4 bg-gray-800 rounded-lg transition-all ${
+        list ? "flex justify-between" : "grid"
+      } gap-4 hover:shadow-bs relative`}
       key={item.name}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}>
@@ -46,8 +48,14 @@ function SocialmediaCard(item: any) {
         </span>
       </div>
       <div className="flex gap-2 place-items-center">
-        {item.date} via{" "}
-        <div className="p-2  rounded-full text-black">{item.icon}</div>
+        {item.date}
+        {list ? (
+          ""
+        ) : (
+          <div className="p-2  rounded-full flex gap-2 items-center">
+            via {item.icon}
+          </div>
+        )}
       </div>
       <div
         className="p-2 absolute rounded-full bg-white right-0 transition-all"
@@ -97,6 +105,7 @@ export default function page({}: pageProps) {
     },
     // You can continue adding more social media objects here
   ];
+  const [list, setList] = useState(false);
 
   return (
     <div className="w-full grid gap-8 ">
@@ -110,12 +119,20 @@ export default function page({}: pageProps) {
           />
         </div>
         <div className="flex gap-2 p-1 bg-gray-800 text-[18px] rounded-lg text-gray-400 relative">
-          <div className="p-2 bg-gray-900 rounded-md">
+          <div
+            className="p-2 relative z-20 rounded-md"
+            onClick={() => setList(false)}>
             <BiGrid />
           </div>
-          <div className="p-2 bg-gray-900 rounded-md">
+          <div
+            className="p-2  rounded-md relative z-20"
+            onClick={() => setList(true)}>
             <FaBars />
           </div>
+          <div
+            className={`absolute w-1/2 h-[90%] bg-gray-900 top-[2px] ${
+              !list ? "left-[1%]" : "left-[49%]"
+            }  rounded-md z-10 transition-all`}></div>
         </div>
         <Button
           children="Add new"
@@ -126,8 +143,23 @@ export default function page({}: pageProps) {
         />
       </div>
       <div
-        className={`grid laptop:grid-cols-3 tablet:grid-cols-2 gap-8 text-gray-400`}>
-        {socialMediaData.map((item: any) => SocialmediaCard(item))}
+        className={`grid laptop:grid-cols-${list ? 1 : 3} tablet:grid-cols-${
+          list ? 1 : 3
+        } gap-8 text-gray-400`}>
+        {socialMediaData.map((item: any) => (
+          <div
+            key={item.name}
+            className="grid gap-2">
+            {list ? (
+              <div className="font-semibold text-white">
+                {item.name}/{item.link.split("/").splice(-1)}
+              </div>
+            ) : (
+              ""
+            )}
+            {SocialmediaCard(item, list)}
+          </div>
+        ))}
       </div>
     </div>
   );
