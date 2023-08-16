@@ -1,3 +1,4 @@
+import { usePathname } from "next/navigation";
 import "../globals.css";
 import Mainnav from "./components/mainnav";
 
@@ -14,10 +15,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="w-full  gap-8 bg-black text-white">
-        <header>
+        <header className="sticky top-0 z-20">
           <Mainnav />
         </header>
-        <main className="w-full  grid place-items-center py-8  ">
+
+        <main className="w-full  grid place-items-center py-8  z-10">
           <div className="flex laptop:w-[1200px] items-start gap-8 ">
             {/* <Sidenav /> */}
             {children}

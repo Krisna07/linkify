@@ -17,7 +17,7 @@ export default function Mainnav({}: mainnavProps) {
   const route = usePathname();
 
   return (
-    <div className="w-full grid gap-4 bg-gray-800 border-b border-b-gray-600 border-b-[1px]">
+    <div className="w-full sticky grid gap-4 bg-gray-800 border-b border-b-gray-600 border-b-[1px] relative">
       <div className="w-full flex items-center justify-between  p-2 px-8 gap-4">
         <div className="flex items-center py-2  rounded-full gap-4">
           <div className="h-6 w-6 bg-white rounded-full"></div>
@@ -48,7 +48,7 @@ export default function Mainnav({}: mainnavProps) {
           <div className="w-8 h-8 bg-gradient-to-tr from-indigo-300 to-blue-500 to-pink-500 rounded-full"></div>
         </div>
       </div>
-      <div className="flex p-2 px-8 gap-4 text-gray-400 ">
+      <div className="sticky w-full flex p-2 px-8 gap-4 text-gray-400 top-0">
         {navlinks.map((items) => (
           <div
             key={items.name}

@@ -1,47 +1,52 @@
 "use client";
-import Button from "@/app/g_components/Button";
 import React, { useState } from "react";
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import Button from "@/app/g_components/Button";
 
-interface newpageProps {}
+interface NewpageProps {
+  name: string;
+  link: string;
+  icon: JSX.Element;
+  date: string;
+}
 
 export default function Newpage({ item }: any) {
-  const [social, setSocial] = useState<string>("social");
+  const [social, setSocial] = useState<string>("facebook");
   const [username, setUsername] = useState<string>("");
 
   const getIcon = () => {
-    if (social == "facebook") {
-      return <FaFacebook />;
-    }
-    if (social == "twitter") {
-      return <FaTwitter />;
-    }
-    if (social == "instagram") {
-      return <FaInstagram />;
+    switch (social) {
+      case "facebook":
+        return <FaFacebook />;
+      case "twitter":
+        return <FaTwitter />;
+      case "instagram":
+        return <FaInstagram />;
+      default:
+        return null;
     }
   };
-  const [obj, setObj] = useState();
 
-  const handleChange = (e: React.SyntheticEvent<HTMLOptionElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSocial(e.target.value);
   };
-  console.log(social);
 
-  const submitForm = (e: React.SyntheticEvent<HTMLOptionElement>) => {
+  const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const newSocial: any = {
-      social: social,
+    const newSocial = {
+      name: social,
       link: `https://www.${social}.com/${username}`,
       icon: getIcon(),
+      date: new Date().toLocaleDateString(),
     };
-    return item(newSocial);
+    item(newSocial);
   };
 
   return (
     <form
       className="w-fit bg-white absolute p-4 top-[120%] right-0  rounded-lg z-40 text-black grid gap-2 transition-all"
       onSubmit={submitForm}>
-      <h2 className="w-full text-center text-lg font-[600]">Social</h2>
+      <h2 className="w-full text-center text-lg font-semibold">Social</h2>
       <select
         name="social"
         value={social}
@@ -52,23 +57,24 @@ export default function Newpage({ item }: any) {
         <option value="twitter">Twitter</option>
         <option value="instagram">Instagram</option>
       </select>
-      <label htmlFor="link">
-        <h2>Link</h2>
+      <label htmlFor="username">
+        <h2>Username</h2>
         <span className="text-sm flex">
           https://www.{social}.com/
           <div className="border-b border-gray-900">
             <input
               type="text"
-              className="text-sm bg-white outline-none border-none  border-none w-[100px]"
+              id="username"
+              className="text-sm bg-white outline-none border-none w-[100px]"
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
         </span>
       </label>
       <Button
-        children="submit"
-        variant={"primary"}
-        size={"sm"}
+        children="Submit"
+        variant="primary"
+        size="sm"
       />
     </form>
   );

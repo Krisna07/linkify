@@ -1,10 +1,8 @@
 "use client";
 import Button from "@/app/g_components/Button";
-import React, { useState } from "react";
-import { BiGrid, BiLink, BiLinkAlt, BiLinkExternal } from "react-icons/bi";
-import { FaBars, FaChevronDown, FaSearch } from "react-icons/fa";
-import { IconType } from "react-icons/lib";
-import Link from "next/link";
+import React, { useState, useEffect } from "react";
+import { BiGrid, BiLinkExternal, BiLinkAlt } from "react-icons/bi";
+import { FaBars, FaChevronDown, FaChevronUp, FaSearch } from "react-icons/fa";
 import {
   FaTwitter,
   FaInstagram,
@@ -12,13 +10,13 @@ import {
   FaLinkedin,
   FaYoutube,
 } from "react-icons/fa";
+import Newpage from "../components/newpage";
+import { IconType } from "react-icons/lib";
 
-interface pageProps {}
-
-interface link {
+interface SocialMediaItem {
   name: string;
   link: string;
-  icon: IconType;
+  icon: JSX.Element;
   date: string;
 }
 
@@ -78,7 +76,6 @@ export default function page({}: pageProps) {
     {
       name: "Instagram",
       link: "https://instagram.com/lostland",
-
       date: "2023-08-14",
       icon: <FaInstagram color="#C13584" />, // Using FaInstagram icon component
     },
@@ -103,10 +100,18 @@ export default function page({}: pageProps) {
       date: "2023-08-14",
       icon: <FaYoutube color="#FF0000" />, // Using FaYoutube icon component
     },
-    // You can continue adding more social media objects here
   ];
   const [list, setList] = useState(false);
 
+  const [newItem, setItem] = useState({
+    name: "",
+    link: "",
+    icon: "",
+    date: "",
+  });
+  newItem ? socialMediaData.push(newItem) : "";
+
+  const [add, setAdd] = useState(false);
   return (
     <div className="w-full grid gap-8 ">
       <div className="w-full flex items-center justify-between gap-2">
@@ -134,13 +139,18 @@ export default function page({}: pageProps) {
               !list ? "left-[1%]" : "left-[49%]"
             }  rounded-md z-10 transition-all`}></div>
         </div>
-        <Button
-          children="Add new"
-          variant={"primary"}
-          size={"default"}
-          className="w-fit py-2  px-4"
-          rightIcon={<FaChevronDown />}
-        />
+        <div
+          className="relative"
+          onClick={() => setAdd(!add)}>
+          <Button
+            children="Add new"
+            variant={"primary"}
+            size={"default"}
+            className="w-fit py-2  px-4"
+            rightIcon={!add ? <FaChevronDown /> : <FaChevronUp />}
+          />
+          {add ? <Newpage item={setItem} /> : ""}
+        </div>
       </div>
       <div
         className={`grid laptop:grid-cols-${list ? 1 : 3} tablet:grid-cols-${
@@ -161,6 +171,7 @@ export default function page({}: pageProps) {
           </div>
         ))}
       </div>
+      <div className="w-full h-[100vh]"></div>
     </div>
   );
 }
