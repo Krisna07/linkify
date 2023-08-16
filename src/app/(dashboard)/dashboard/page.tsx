@@ -64,7 +64,7 @@ function SocialmediaCard(item: any, list: boolean) {
   );
 }
 
-export default function page({}: pageProps) {
+export default function page({}) {
   const socialMediaData = [
     {
       name: "Twitter",
