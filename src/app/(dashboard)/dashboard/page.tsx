@@ -103,7 +103,7 @@ export default function page({}: pageProps) {
   ];
   const [list, setList] = useState(false);
 
-  const [newItem, setItem] = useState({
+  const [newItem, setItem] = useState<any>({
     name: "",
     link: "",
     icon: "",
