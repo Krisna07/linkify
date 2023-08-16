@@ -139,13 +139,12 @@ export default function page({}: pageProps) {
               !list ? "left-[1%]" : "left-[49%]"
             }  rounded-md z-10 transition-all`}></div>
         </div>
-        <div
-          className="relative"
-          onClick={() => setAdd(!add)}>
+        <div className="relative">
           <Button
             children="Add new"
             variant={"primary"}
             size={"default"}
+            onClick={() => setAdd(!add)}
             className="w-fit py-2  px-4"
             rightIcon={!add ? <FaChevronDown /> : <FaChevronUp />}
           />
