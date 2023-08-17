@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Button from "../../g_components/Button";
 
 export default function Contact() {
@@ -12,7 +13,7 @@ export default function Contact() {
     <section className="bg-white py-12 relative grid  gap-4 ">
       <div className="w-full  h-[600px] grid place-items-center relative bg-gradient-to-t from-[#076585] to-[#fff">
         {" "}
-        <div className="laptop:w-[600px] text-center grid gap-4 place-items-center">
+        <div className="laptop:w-[600px] text-center grid gap-4 p-4 place-items-center">
           <h2 className="text-4xl font-bold ">Contact Us</h2>
           <p className="font-semibold">
             Thank you for your interest in contacting us. We're here to assist
@@ -20,13 +21,15 @@ export default function Contact() {
             out to us using the contact information below or by filling out the
             contact form.
           </p>
-          <Button
-            children={"Learn more"}
-            variant={"default"}
-            className="w-fit"
-            size={"sm"}
-            icon={true}
-          />
+          <Link href="/about">
+            <Button
+              children={"Learn more"}
+              variant={"default"}
+              className="w-fit"
+              size={"sm"}
+              icon={true}
+            />
+          </Link>
         </div>
       </div>
       <div className="grid place-items-center w-full ">
