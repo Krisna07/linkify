@@ -8,7 +8,7 @@ interface HerosectionProps {}
 
 export default function Herosection({}: HerosectionProps) {
   return (
-    <div className="laptop:w-[1024px] min-h-[80vh] animate-text box-border  laptop:px-8 p-4 bg-white grid place-items-center gap-4 ">
+    <div className="laptop:w-[1024px] min-h-[80vh] animate-text box-border  laptop:px-8 p-4 bg-white grid place-items-center gap-4 py-16 ">
       <div className="grid place-items-center gap-8 ">
         <div className="grid gap-2 leading-[120%] text-center">
           <div className="font-[600]">Seamless link sharing</div>
@@ -21,7 +21,7 @@ export default function Herosection({}: HerosectionProps) {
             Join us to reshape how you connect and share in the digital age.
           </p>
         </div>
-        <Link href="/demo">
+        <Link href="/user_auth/signup">
           <Button
             children={"Start"}
             variant={"default"}

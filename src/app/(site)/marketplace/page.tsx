@@ -167,7 +167,7 @@ const page = () => {
     <div className="w-full grid place-items-center gap-8 box-border overflow-hidden py-8">
       <div className="w-full  bg-sky-800 grid place-items-center">
         <div className="laptop:w-[1024px] w-full text-rose-200 py-16 px-4 grid laptop:grid-cols-2  gap-4 items-center justify-center box-border">
-          <div className="laptop:w-1/2 p-4 grid gap-8 box-boder">
+          <div className="laptop:w-1/2 w-full p-4 grid gap-8 box-boder">
             <h2 className="text-6xl font-bold  ">
               Connect <br /> more of you
             </h2>
@@ -180,7 +180,7 @@ const page = () => {
               <input className="outline-none border-none w-fit" />
             </div>
           </div>
-          <div className="laptop:w-1/2 p-4 relative grid place-items-center">
+          <div className="laptop:w-1/2 p-4 relative tablet:grid place-items-center hidden">
             <div className="w-[300px] h-[500px] relative skew-x-[-5deg] skew-y-[5deg] flex flex-col items-center  rounded shadow-bs bg-yellow-600 p-4 place-items-center gap-2 ">
               <div className="grid  place-items-center gap-2">
                 <div className="w-40 h-40 rounded-full bg-rose-200 overflow-hidden">
@@ -222,7 +222,7 @@ const page = () => {
         <div className="w-full box-border py-4 grid laptop:grid-cols-2  gap-8">
           <div className=" w-full grid gap-4">
             <div className="w-full p-4  bg-orange-600 rounded-[50px] grid place-items-center relative">
-              <div className="p-4 rounded-full bg-rose-400">
+              <div className="p-4 rounded-full bg-rose-400 relative z-20">
                 <FaRedditAlien
                   size={200}
                   color={"white"}
@@ -338,8 +338,8 @@ const page = () => {
         </div>
       </div>
       <div className="w-full bg-slate-200 grid place-items-center">
-        <div className="laptop:w-[800px] p-4 grid laptop:grid-cols-2 items-center  gap-8">
-          <div className="w-fit grid gap-2 leading-[120%] ">
+        <div className="laptop:w-[800px] w-full p-4 grid laptop:grid-cols-2 items-center gap-8">
+          <div className="w-full grid gap-2 leading-[120%] ">
             <h2 className="text-4xl font-bold">Join our team</h2>
             <p className="text-lg font-semibold">We are expanding</p>
             <Button
@@ -350,7 +350,7 @@ const page = () => {
               className="w-fit"
             />
           </div>
-          <div className="w-[600px]">
+          <div className="laptop:w-[600px] w-full">
             <div className="w-full h-[400px] bg-gradient-to-r animate-text from-red-200 to-indigo-200 relative to-sky-300 rounded-[20px]">
               <div className="w-[60px] h-[60px]  bg-white rounded-full grid place-items-center absolute top-20 left-20 animate-pulse">
                 <div className="w-[58px] h-[58px] bg-gray-400 rounded-full"></div>

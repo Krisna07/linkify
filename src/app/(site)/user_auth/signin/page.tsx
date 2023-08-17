@@ -4,11 +4,12 @@ import Link from "next/link";
 import { useState } from "react";
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Toast } from "react-toastify/dist/components";
+import { useRouter } from "next/navigation";
 
 const SignInForm = ({}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -21,14 +22,14 @@ const SignInForm = ({}) => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const user = { email, password };
-    console.log(user);
+    router.push("/dashboard");
   };
 
   return (
     <div className="w-full py-8  grid place-items-center box-border  animate-text">
-      <div className="w-full lg:w-[1000px] grid place-items-center box-border   bg-white  ">
+      <div className="w-fit min-h-[100vh] grid place-items-center box-border    bg-white  ">
         <form
-          className="md:w-4/6 bg-white  rounded-b-none shadow-bs box-border px-4 py-8  relative"
+          className="bg-white  rounded-b-none shadow-bs box-border px-4 py-8  relative"
           onSubmit={handleSubmit}>
           <div className="">
             <h2 className="mt-6 text-center text-2xl font-extrabold text-gray-900">
@@ -82,6 +83,7 @@ const SignInForm = ({}) => {
                   children={"Sign up"}
                   variant={"default"}
                   icon={false}
+                  size={"default"}
                 />
               </Link>
             </p>

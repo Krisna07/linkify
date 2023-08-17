@@ -27,14 +27,13 @@ const Signup = () => {
       `Username: ${username}, Email: ${email}, Password: ${password}, Password Confirmation: ${passwordConfirmation}`,
     );
   };
-  // const handleRecaptchaChange = (value: string | null) => {
 
   return (
-    <div className="w-full py-8  grid place-items-center box-border   animate-text">
-      <div className="w-full lg:w-[1000px] grid place-items-center box-border   bg-white">
+    <div className="w-full min-h-[100vh] py-8  grid place-items-center box-border   animate-text">
+      <div className="tablet:w-fit w-full grid place-items-center box-border   bg-white">
         <form
           action=""
-          className="md:w-4/6 w-full  p-8 grid gap-4 shadow-bs"
+          className=" w-full  p-8 grid gap-4 shadow-bs"
           onSubmit={handleSubmit}>
           {" "}
           <h2 className="text-center text-3xl font-extrabold text-gray-900">
@@ -86,22 +85,24 @@ const Signup = () => {
               />
             </div>
           ))}
-          <Button
-            children="Sign Up"
-            variant={"default"}
-            type="submit"
-            icon={false}
-            className="w-full grid place-items-center"
-          />
+          <Link href={"./dashboard"}>
+            <Button
+              children="Sign Up"
+              variant={"default"}
+              type="submit"
+              size={"default"}
+              icon={false}
+              className="w-full grid place-items-center"
+            />
+          </Link>
           <div className="text-center grid gap-4 place-items-center">
             <p>Already have an account</p>
             <Link href={"./signin"}>
-              {" "}
               <Button
                 children="Sign in"
                 variant={"default"}
+                size={"default"}
                 icon={false}
-                className="w-fit grid place-items-center bg-gray-200 text-black hover:bg-gray-300"
               />
             </Link>
           </div>

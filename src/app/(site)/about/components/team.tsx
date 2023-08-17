@@ -92,7 +92,7 @@ const OurTeam: React.FC = () => {
             the right decison by choosing us.
           </p>
         </div>
-        <div className="grid grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-8 p-4 ">
+        <div className="grid grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 tablet:gap-8 gap-4">
           {teamMembers.slice(0, show).map((member, index) => (
             <div
               key={index}
@@ -120,7 +120,7 @@ const OurTeam: React.FC = () => {
           ))}
         </div>
       </div>
-      <div className="laptop:w-[800px] flex justify-between">
+      <div className="laptop:w-[800px] w-full px-4 flex justify-between">
         {" "}
         <Button
           children={show === 4 ? "View more" : "Show less"}

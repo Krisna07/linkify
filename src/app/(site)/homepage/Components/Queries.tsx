@@ -51,7 +51,7 @@ const Queries = () => {
               {queries.map((query) => (
                 <div
                   key={query.name}
-                  className="grid  rounded-md bg-white text-black overflow-hidden gap-4">
+                  className="grid h-full  rounded-md bg-white text-black overflow-hidden gap-4">
                   <div className="flex items-center justify-between px-4 p-4">
                     <h2>{query.name}</h2>
                     <span className="text-[40px] "> {query.icon}</span>

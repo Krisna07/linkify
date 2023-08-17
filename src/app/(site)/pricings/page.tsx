@@ -78,7 +78,7 @@ const Pricing = () => {
 
   return (
     <div className="w-full  grid place-items-center">
-      <div className="w-full bg-gray-100 grid place-items-center h-[600px] ">
+      <div className="w-full bg-gray-100 grid place-items-center h-[600px] p-4 ">
         <div className="laptop:w-[1000px] grid place-items-center gap-8 text-center py-16">
           <h2 className="font-bold text-4xl text-center uppercase text-gray-800">
             Welcome to Linkify
@@ -100,13 +100,13 @@ const Pricing = () => {
         </div>
       </div>
 
-      <div className="w-full grid place-items-center gap-8 py-8">
+      <div className="w-full grid place-items-center gap-8 py-8 p-4">
         <div className="grid place-items-center">
           <h2 className="text-[32px] font-bold ">Pricing Plans </h2>
           <p>Start With Our Free Plan. No Credit Card Needed.Cancel Anytime</p>
         </div>
         <div className="laptop:w-[1024px] grid gap-4 box-border">
-          <div className="w-full flex items-center justify-between">
+          <div className="w-full grid gap-4 tablet:grid-cols-2 items-center justify-between">
             <div>
               <h2 className="text-[32px] font-bold text-left ">
                 Pick the perfect plan
@@ -115,7 +115,7 @@ const Pricing = () => {
                 Start with our free plan. No credit card needed.Cancel Anytime
               </p>
             </div>
-            <div className="flex  bg-gray-400 p-2 rounded-full box-border">
+            <div className="flex w-fit bg-gray-400 p-2 rounded-full box-border">
               <span
                 className={`px-4 py-2 ${
                   monthly ? "bg-white" : ""
@@ -153,137 +153,140 @@ const Pricing = () => {
           </div>
         </div>
       </div>
-      <div className="laptop:w-[1024px] box-border laptop:py-8 grid gap-4  ">
-        <h2 className="text-[32px] font-bold text-left ">Features</h2>
-        <table className="w-full grid  table-auto">
-          <thead className="w-full  text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr className="grid grid-cols-5">
-              <th
-                scope="col"
-                className="px-6 py-4"></th>
-              {pricingTiers.map((tier) => (
+      <div className="laptop:w-[1024px] w-full box-border laptop:py-8 grid gap-4 p-4 overflow-hidden ">
+        <h2 className="text-[32px] w-full font-bold text-left ">Features</h2>
+        <div className="overflow-x-scroll">
+          {" "}
+          <table className="w-[1024px] flex flex-col  table-auto rounded-lg">
+            <thead className="w-full  text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 ">
+              <tr className="grid grid-cols-5">
                 <th
-                  key={tier.tierName}
                   scope="col"
-                  className="px-6 py-4">
-                  {tier.tierName}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody className="grid gap-4 p-4 bg-gray-200">
-            <tr className="grid grid-cols-5 place-items-center gap-4">
-              <th className="w-full text-left">Price</th>
-              {pricingTiers.map((tier) => (
-                <td key={tier.price}>${tier.price}/month</td>
-              ))}
-            </tr>
-            <tr className="grid grid-cols-5 place-items-center gap-4">
-              <th className="w-full text-left">Storage</th>
-              {pricingTiers.map((tier) => (
-                <td
-                  key={tier.storage}
-                  scope="col">
-                  {tier.storage}
-                </td>
-              ))}
-            </tr>
-            <tr className="grid grid-cols-5 place-items-center gap-4">
-              <th className="w-full text-left">Users</th>
-              {pricingTiers.map((tier) => (
-                <td
-                  key={tier.usersIncluded}
-                  scope="col">
-                  {tier.usersIncluded}
-                </td>
-              ))}
-            </tr>
-            <tr className="grid grid-cols-5 place-items-center gap-4">
-              <th className="w-full text-left">Basic Features</th>
-              {pricingTiers.map((tier) => (
-                <td
-                  key={tier.usersIncluded}
-                  scope="col">
-                  {tier.features.basic ? (
-                    <FaCheck color="skyblue" />
-                  ) : (
-                    <BsX color="red" />
-                  )}
-                </td>
-              ))}
-            </tr>
-            <tr className="grid grid-cols-5 place-items-center gap-4">
-              <th className="w-full text-left">Advance Features</th>
-              {pricingTiers.map((tier) => (
-                <td
-                  key={tier.usersIncluded}
-                  scope="col">
-                  {tier.features.advanced ? (
-                    <FaCheck color="skyblue" />
-                  ) : (
-                    <BsX color="red" />
-                  )}
-                </td>
-              ))}
-            </tr>
-            <tr className="grid grid-cols-5 place-items-center gap-4">
-              <th className="w-full text-left">Premium Features</th>
-              {pricingTiers.map((tier) => (
-                <td
-                  key={tier.usersIncluded}
-                  scope="col">
-                  {tier.features.premium ? (
-                    <FaCheck color="skyblue" />
-                  ) : (
-                    <BsX color="red" />
-                  )}
-                </td>
-              ))}
-            </tr>
-            <tr className="grid grid-cols-5 place-items-center gap-4">
-              <th className="w-full text-left">Priority Support</th>
-              {pricingTiers.map((tier) => (
-                <td
-                  key={tier.usersIncluded}
-                  scope="col">
-                  {tier.prioritySupport ? (
-                    <FaCheck color="skyblue" />
-                  ) : (
-                    <BsX color="red" />
-                  )}
-                </td>
-              ))}
-            </tr>
-            <tr className="grid grid-cols-5 place-items-center gap-4">
-              <th className="w-full text-left">Customization</th>
-              {pricingTiers.map((tier) => (
-                <td
-                  key={tier.usersIncluded}
-                  scope="col">
-                  {tier.customization ? (
-                    <FaCheck color="skyblue" />
-                  ) : (
-                    <BsX color="red" />
-                  )}
-                </td>
-              ))}
-            </tr>
-            <tr className="grid grid-cols-5 place-items-center gap-4">
-              <th className="w-full text-left">Free Trial</th>
-              {pricingTiers.map((tier) => (
-                <td
-                  key={tier.usersIncluded}
-                  scope="col">
-                  {tier.freeTrial ? (
-                    <FaCheck color="skyblue" />
-                  ) : (
-                    <BsX color="red" />
-                  )}
-                </td>
-              ))}
-            </tr>
-          </tbody>
-        </table>
+                  className="px-6 py-4"></th>
+                {pricingTiers.map((tier) => (
+                  <th
+                    key={tier.tierName}
+                    scope="col"
+                    className="px-6 py-4">
+                    {tier.tierName}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="grid gap-4 p-4 bg-gray-200">
+              <tr className="grid grid-cols-5 place-items-center gap-4">
+                <th className="w-full text-left">Price</th>
+                {pricingTiers.map((tier) => (
+                  <td key={tier.price}>${tier.price}/month</td>
+                ))}
+              </tr>
+              <tr className="grid grid-cols-5 place-items-center gap-4">
+                <th className="w-full text-left">Storage</th>
+                {pricingTiers.map((tier) => (
+                  <td
+                    key={tier.storage}
+                    scope="col">
+                    {tier.storage}
+                  </td>
+                ))}
+              </tr>
+              <tr className="grid grid-cols-5 place-items-center gap-4">
+                <th className="w-full text-left">Users</th>
+                {pricingTiers.map((tier) => (
+                  <td
+                    key={tier.usersIncluded}
+                    scope="col">
+                    {tier.usersIncluded}
+                  </td>
+                ))}
+              </tr>
+              <tr className="grid grid-cols-5 place-items-center gap-4">
+                <th className="w-full text-left">Basic Features</th>
+                {pricingTiers.map((tier) => (
+                  <td
+                    key={tier.usersIncluded}
+                    scope="col">
+                    {tier.features.basic ? (
+                      <FaCheck color="skyblue" />
+                    ) : (
+                      <BsX color="red" />
+                    )}
+                  </td>
+                ))}
+              </tr>
+              <tr className="grid grid-cols-5 place-items-center gap-4">
+                <th className="w-full text-left">Advance Features</th>
+                {pricingTiers.map((tier) => (
+                  <td
+                    key={tier.usersIncluded}
+                    scope="col">
+                    {tier.features.advanced ? (
+                      <FaCheck color="skyblue" />
+                    ) : (
+                      <BsX color="red" />
+                    )}
+                  </td>
+                ))}
+              </tr>
+              <tr className="grid grid-cols-5 place-items-center gap-4">
+                <th className="w-full text-left">Premium Features</th>
+                {pricingTiers.map((tier) => (
+                  <td
+                    key={tier.usersIncluded}
+                    scope="col">
+                    {tier.features.premium ? (
+                      <FaCheck color="skyblue" />
+                    ) : (
+                      <BsX color="red" />
+                    )}
+                  </td>
+                ))}
+              </tr>
+              <tr className="grid grid-cols-5 place-items-center gap-4">
+                <th className="w-full text-left">Priority Support</th>
+                {pricingTiers.map((tier) => (
+                  <td
+                    key={tier.usersIncluded}
+                    scope="col">
+                    {tier.prioritySupport ? (
+                      <FaCheck color="skyblue" />
+                    ) : (
+                      <BsX color="red" />
+                    )}
+                  </td>
+                ))}
+              </tr>
+              <tr className="grid grid-cols-5 place-items-center gap-4">
+                <th className="w-full text-left">Customization</th>
+                {pricingTiers.map((tier) => (
+                  <td
+                    key={tier.usersIncluded}
+                    scope="col">
+                    {tier.customization ? (
+                      <FaCheck color="skyblue" />
+                    ) : (
+                      <BsX color="red" />
+                    )}
+                  </td>
+                ))}
+              </tr>
+              <tr className="grid grid-cols-5 place-items-center gap-4">
+                <th className="w-full text-left">Free Trial</th>
+                {pricingTiers.map((tier) => (
+                  <td
+                    key={tier.usersIncluded}
+                    scope="col">
+                    {tier.freeTrial ? (
+                      <FaCheck color="skyblue" />
+                    ) : (
+                      <BsX color="red" />
+                    )}
+                  </td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <h2 className="text-[32px] font-bold "> </h2>

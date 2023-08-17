@@ -13,7 +13,7 @@ export default function Journey() {
   console.log(combined);
 `;
   return (
-    <div className="journeyContainer laptop:w-[1100px] flex items-center gap-8  ">
+    <div className="journeyContainer laptop:w-[1100px] flex items-center gap-8  p-4 ">
       <div className="w-full grid gap-6">
         <div className="grid gap-2">
           <h3 className="text-xl font-semibold">Our stories</h3>

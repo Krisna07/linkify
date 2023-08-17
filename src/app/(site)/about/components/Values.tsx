@@ -27,8 +27,8 @@ const Values = () => {
     },
   ];
   return (
-    <div className="w-full grid place-items-center gap-8 bg-gradient-to-r from-slate-900 to-slate-700 text-white p-8">
-      <div className="laptop:w-[1200px] grid p-8 box-border gap-4">
+    <div className="w-full grid place-items-center gap-8 bg-gradient-to-r from-slate-900 to-slate-700 text-white">
+      <div className="laptop:w-[1200px] grid p-4 box-border gap-4">
         <h2 className="text-3xl font-bold">Our Values</h2>
         <p className="md:w-3/6 font-semibold">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit

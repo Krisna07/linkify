@@ -37,9 +37,9 @@ const Page: React.FC = () => {
     <div className="w-full min-h-screen bg-gray-100 flex justify-center items-center">
       <div className="laptop:w-[1200px] p-8 space-y-8">
         {/* Hero Section with Creative Gradients */}
-        <section className="w-[1400px] py-32 flex gap-8 items-center relative">
+        <section className="laptop:w-[1400px] py-32 flex gap-8 items-center relative ">
           {/* Left Side */}
-          <div className=" w-1/2 grid gap-4 ">
+          <div className="w-full laptop:w-1/2 grid gap-4 ">
             <h2 className="text-2xl md:text-4xl font-semibold text-gray-600 ">
               Your Creative Templates Hub
             </h2>
@@ -60,8 +60,8 @@ const Page: React.FC = () => {
           </div>
 
           {/* Right Side (Gradient Animation) */}
-          <div className=" w-1/2 h-[600px] relative">
-            <div className="w-full h-full animate-gradient bg-gradient-to-br from-pink-300 via-purple-400 to-indigo-200 animate-gradient"></div>
+          <div className=" laptop:w-1/2 w-full h-[600px] relative hidden laptop:flex">
+            <div className=" w-full h-full animate-gradient bg-gradient-to-br from-pink-300 via-purple-400 to-indigo-200 animate-gradient"></div>
           </div>
         </section>
 
@@ -122,7 +122,7 @@ const Page: React.FC = () => {
             </ul>
           </div>
         </section>
-        <section className="my-8 grid grid-cols-2 p-4 bg-white rounded shadow-lg gap-8">
+        <section className="my-8 grid laptop:grid-cols-2 p-4 bg-white rounded shadow-lg gap-8">
           <div className="flex flex-col justify-center gap-4">
             <div className="grid gap-2 leading-[120%]">
               {" "}
@@ -145,12 +145,15 @@ const Page: React.FC = () => {
               <Button
                 children="Choose"
                 icon={true}
-                variant={"default"}
+                variant={"primary"}
+                size={"sm"}
               />
               <Button
                 children="Explore"
                 icon={true}
                 variant={"primary"}
+                className="shadow-bs bg-white"
+                size={"sm"}
               />
             </div>
           </div>

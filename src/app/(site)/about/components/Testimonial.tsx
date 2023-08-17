@@ -90,12 +90,12 @@ const Testimonials: React.FC = () => {
               {testimonials.map((testimonial, index) => (
                 <div
                   key={index}
-                  className="w-[400px] h-full  bg-white shadow-bs text-center text-align-center grid place-items-center gap-2  overflow-hidden p-4 mx-4 rounded-lg ">
+                  className="w-fit h-full  bg-white shadow-bs text-center text-align-center grid place-items-center gap-2  overflow-hidden p-4 mx-4 rounded-lg ">
                   <h3 className="text-lg font-semibold mb-2">
                     {testimonial.name}
                   </h3>
                   <p className="text-gray-600 mb-2">{testimonial.company}</p>
-                  <p className="text-gray-800">{testimonial.quote}</p>
+                  <p className="text-gray-800 w-[20ch]">{testimonial.quote}</p>
                   <FaCommentAlt size={24} />
                 </div>
               ))}

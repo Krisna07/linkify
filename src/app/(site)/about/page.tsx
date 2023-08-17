@@ -8,7 +8,7 @@ import Values from "./components/Values";
 export default function page() {
   return (
     <div className="w-full grid place-items-center gap-8 overflow-hidden">
-      <div className="w-full h-[500px] flex flex-col items-center gap-4 justify-center ">
+      <div className="w-full h-[500px] flex flex-col items-center gap-4 justify-center p-4">
         <div className="laptop:w-[600px] text-center grid gap-4">
           <h2 className="animate-text font-bold text-3xl text-transparent bg-clip-text bg-gradient-to-r from-black to-red-600">
             Our Journey
