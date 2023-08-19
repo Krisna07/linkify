@@ -10,7 +10,7 @@ interface NewpageProps {
   date: string;
 }
 
-export default function Newpage({ item }: any) {
+export default function Newpage({ item, add }: any) {
   const [social, setSocial] = useState<string>("facebook");
   const [username, setUsername] = useState<string>("");
 
@@ -39,20 +39,23 @@ export default function Newpage({ item }: any) {
       icon: getIcon(),
       date: new Date().toLocaleDateString(),
     };
+    add(false);
     item(newSocial);
   };
 
   return (
     <form
       className="w-fit bg-white absolute p-4 top-[120%] right-0  rounded-lg z-40 text-black grid gap-2 transition-all"
-      onSubmit={submitForm}>
+      onSubmit={submitForm}
+    >
       <h2 className="w-full text-center text-lg font-semibold">Social</h2>
       <select
         name="social"
         value={social}
         onChange={handleChange}
         id="social"
-        className="bg-gray-800 text-white">
+        className="bg-gray-800 text-white"
+      >
         <option value="facebook">Facebook</option>
         <option value="twitter">Twitter</option>
         <option value="instagram">Instagram</option>
@@ -71,11 +74,7 @@ export default function Newpage({ item }: any) {
           </div>
         </span>
       </label>
-      <Button
-        children="Submit"
-        variant="primary"
-        size="sm"
-      />
+      <Button children="Submit" variant="primary" size="sm" />
     </form>
   );
 }

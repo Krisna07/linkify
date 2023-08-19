@@ -11,7 +11,6 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import Newpage from "../components/newpage";
-import { IconType } from "react-icons/lib";
 
 interface SocialMediaItem {
   name: string;
@@ -25,7 +24,7 @@ function SocialmediaCard(item: any, list: boolean) {
   return (
     <div
       className={`w-full p-4 bg-gray-800 rounded-lg transition-all ${
-        list ? "flex justify-between" : "grid"
+        !list ? "flex justify-between" : "grid"
       } gap-4 hover:shadow-bs relative`}
       key={item.name}
       onMouseEnter={() => setHover(true)}
@@ -103,7 +102,7 @@ export default function page({}) {
       icon: <FaYoutube color="#FF0000" />, // Using FaYoutube icon component
     },
   ]);
-  const [list, setList] = useState(false);
+  const [list, setList] = useState<boolean>(false);
 
   const [newItem, setItem] = useState<any>({
     name: "",
@@ -113,9 +112,15 @@ export default function page({}) {
   });
   useEffect(() => {
     if (newItem.name) {
-      setSoialmediaData([...socialMediaData, newItem]); // Add the newItem to the list
+      setSoialmediaData([...socialMediaData, newItem]);
+      setItem({
+        name: "",
+        link: "",
+        icon: "",
+        date: "",
+      });
     }
-  }, [newItem, list]);
+  }, [newItem]);
 
   const [add, setAdd] = useState(false);
   return (
@@ -157,7 +162,7 @@ export default function page({}) {
             className="w-fit py-2  px-4"
             rightIcon={!add ? <FaChevronDown /> : <FaChevronUp />}
           />
-          {add ? <Newpage item={setItem} /> : ""}
+          {add ? <Newpage item={setItem} add={setAdd} /> : ""}
         </div>
       </div>
       <div
@@ -174,7 +179,7 @@ export default function page({}) {
             ) : (
               ""
             )}
-            {SocialmediaCard(item, list)}
+            <SocialmediaCard {...item} list={list} />
           </div>
         ))}
       </div>
