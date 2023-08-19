@@ -21,7 +21,7 @@ interface SocialMediaItem {
 }
 
 function SocialmediaCard(item: any, list: boolean) {
-  const [hover, setHover] = useState(false);
+  const [hover, setHover] = useState<boolean>(false);
   return (
     <div
       className={`w-full p-4 bg-gray-800 rounded-lg transition-all ${
@@ -29,7 +29,8 @@ function SocialmediaCard(item: any, list: boolean) {
       } gap-4 hover:shadow-bs relative`}
       key={item.name}
       onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}>
+      onMouseLeave={() => setHover(false)}
+    >
       <div className="flex items-center gap-2">
         <div className="w-8 h-8 shadow-bs rounded-full grid place-items-center">
           {item.icon}
@@ -57,7 +58,8 @@ function SocialmediaCard(item: any, list: boolean) {
       </div>
       <div
         className="p-2 absolute rounded-full bg-white right-0 transition-all"
-        style={{ opacity: hover ? "1" : "0" }}>
+        style={{ opacity: hover ? "1" : "0" }}
+      >
         <BiLinkExternal />
       </div>
     </div>
@@ -65,7 +67,7 @@ function SocialmediaCard(item: any, list: boolean) {
 }
 
 export default function page({}) {
-  const socialMediaData = [
+  const [socialMediaData, setSoialmediaData] = useState([
     {
       name: "Twitter",
       link: "https://twitter.com/bigboy-21",
@@ -100,7 +102,7 @@ export default function page({}) {
       date: "2023-08-14",
       icon: <FaYoutube color="#FF0000" />, // Using FaYoutube icon component
     },
-  ];
+  ]);
   const [list, setList] = useState(false);
 
   const [newItem, setItem] = useState<any>({
@@ -109,7 +111,11 @@ export default function page({}) {
     icon: "",
     date: "",
   });
-  newItem ? socialMediaData.push(newItem) : "";
+  useEffect(() => {
+    if (newItem.name) {
+      setSoialmediaData([...socialMediaData, newItem]); // Add the newItem to the list
+    }
+  }, [newItem, list]);
 
   const [add, setAdd] = useState(false);
   return (
@@ -126,18 +132,21 @@ export default function page({}) {
         <div className="flex gap-2 p-1 bg-gray-800 text-[18px] rounded-lg text-gray-400 relative">
           <div
             className="p-2 relative z-20 rounded-md"
-            onClick={() => setList(false)}>
+            onClick={() => setList(false)}
+          >
             <BiGrid />
           </div>
           <div
             className="p-2  rounded-md relative z-20"
-            onClick={() => setList(true)}>
+            onClick={() => setList(true)}
+          >
             <FaBars />
           </div>
           <div
             className={`absolute w-1/2 h-[90%] bg-gray-900 top-[2px] ${
               !list ? "left-[1%]" : "left-[49%]"
-            }  rounded-md z-10 transition-all`}></div>
+            }  rounded-md z-10 transition-all`}
+          ></div>
         </div>
         <div className="relative">
           <Button
@@ -154,11 +163,10 @@ export default function page({}) {
       <div
         className={`grid laptop:grid-cols-${list ? 1 : 3} tablet:grid-cols-${
           list ? 1 : 3
-        } gap-8 text-gray-400`}>
+        } gap-8 text-gray-400`}
+      >
         {socialMediaData.map((item: any) => (
-          <div
-            key={item.name}
-            className="grid gap-2">
+          <div key={item.name} className="grid gap-2">
             {list ? (
               <div className="font-semibold text-white">
                 {item.name}/{item.link.split("/").splice(-1)}
