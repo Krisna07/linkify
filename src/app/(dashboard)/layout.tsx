@@ -20,8 +20,7 @@ export default function RootLayout({
         </header>
 
         <main className="w-full  grid place-items-center py-8  z-10">
-          <div className="flex laptop:w-[1200px] items-start gap-8 ">
-            {/* <Sidenav /> */}
+          <div className="w-full flex items-center justify-center ">
             {children}
           </div>
         </main>
