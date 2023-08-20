@@ -1,6 +1,7 @@
 import { usePathname } from "next/navigation";
 import "../globals.css";
 import Mainnav from "./components/mainnav";
+import "react-toastify/dist/ReactToastify.css";
 
 export const metadata = {
   title: "dashboard",
@@ -19,8 +20,8 @@ export default function RootLayout({
           <Mainnav />
         </header>
 
-        <main className="w-full  grid place-items-center py-8  z-10">
-          <div className="w-full flex items-center justify-center ">
+        <main className="w-full  grid place-items-center py-8 z-10">
+          <div className="w-full flex items-center justify-center">
             {children}
           </div>
         </main>

@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React, { useState } from "react";
 import { BiGrid, BiLinkExternal, BiLinkAlt } from "react-icons/bi";
 interface SocialmediacardProps {
@@ -10,7 +11,8 @@ export default function Socialmediacard({ item, list }: SocialmediacardProps) {
   const [hover, setHover] = useState<boolean>(false);
 
   return (
-    <div
+    <Link
+      href={item.link}
       className={`w-full p-4 bg-gray-800 rounded-lg transition-all ${
         list ? "flex justify-between" : "grid"
       } gap-4 hover:shadow-bs relative`}
@@ -23,17 +25,21 @@ export default function Socialmediacard({ item, list }: SocialmediacardProps) {
         </div>
         <div className="grid">
           <h2 className="text-white text-[18px]">{item.name}</h2>
-          <p className="text-sm">{item.link}</p>
+          <p className="text-sm tablet:inline hidden">{item.link}</p>
+          <p className="tablet:hidden block">
+            {list ? item.link : item.link.split("/").slice(-1)}
+          </p>
         </div>
       </div>
-      <div className="grid gap-2">
+      <div className="grid gap-2 tablet:block hidden">
         <span>provider {item.link.split("/").slice(-1)}</span>
-        <span className="flex items-center gap-2">
+        <span className="flex items-center gap-2 tablet:inline hidden">
           <BiLinkAlt /> From {item.name.toLocaleLowerCase()}
         </span>
       </div>
-      <div className="flex gap-2 place-items-center">
-        {item.date}
+
+      <div className="flex gap-2 place-items-center tablet:inline-block hidden ">
+        <span className=""> {item.date}</span>
         {list ? (
           ""
         ) : (
@@ -47,6 +53,6 @@ export default function Socialmediacard({ item, list }: SocialmediacardProps) {
         style={{ opacity: hover ? "1" : "0" }}>
         <BiLinkExternal />
       </div>
-    </div>
+    </Link>
   );
 }

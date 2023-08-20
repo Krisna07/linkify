@@ -9,9 +9,9 @@ const buttonVarients = cva("active:", {
   variants: {
     variant: {
       default:
-        "bg-slate-900 text-sky-100 w-fit h-fit rounded-full relative overflow-hidden font-[500]",
+        "bg-slate-900 text-sky-100 w-content h-fit rounded-full relative overflow-hidden font-[500]",
       ghost:
-        "bg-transparent rounded-md hover:text-slate-900 overflow-hidden w-fit h-fit relative font-[500]",
+        "bg-transparent  rounded-md hover:text-slate-900 overflow-hidden w-fit inline-block h-fit relative font-[500]",
       primary:
         "rounded-md text-white bg-gray-400  overflow-hidden w-fit h-fit relative font-[500] text-black",
     },
@@ -60,7 +60,7 @@ const Button: FC<ButtonProps> = ({
       onMouseLeave={() => setHover(false)}>
       <div
         className={`flex items-center justify-center gap-2 relative z-[99] hover:text-black`}>
-        {children}
+        <span className="block w-fit">{children}</span>
         {rightIcon ? rightIcon : iconCheck}
       </div>
       <div
