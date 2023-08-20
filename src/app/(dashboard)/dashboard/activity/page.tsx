@@ -6,17 +6,17 @@ interface pageProps {}
 export default function page({}: pageProps) {
   return (
     <div className="w-full ">
-      <div className="w-full border-b grid place-items-center sticky top-[140px]">
+      <div className="w-full border-b grid place-items-center sticky top-[140px] bg-black">
         <div className="px-8 pb-8  w-full text-2xl font-[600] ">Activity</div>
       </div>
       <div className="grid tablet:grid-cols-2 ">
-        <div className="tablet:w-1/6 tablet:h-[100vh] border-r tablet:fixed ">
-          <div className="p-4 grid gap-4">
-            <span className="p-4 text-2xl">Filters</span>
+        <div className="tablet:w-fit  border-r tablet:grid flex ">
+          <span className="p-4 text-2xl">Filters</span>
+          <div className=" w-fit p-4 tablet:grid flex gap-4">
             <select
               name=""
               id=""
-              className="w-full box-border bg-gray-600 p-2 px-4 gap-2 grid rounded-full outline-none ">
+              className="w-full h-fit box-border bg-gray-600 p-2 px-4 gap-2 grid rounded-full outline-none ">
               <option value="">Last 3 days</option>
               <option value="">Last 7 days</option>
               <option value="">Last month</option>
@@ -42,6 +42,36 @@ export default function page({}: pageProps) {
                   className="bg-gray-600 text-gray-400 w-4 h-4 p-2 "
                 />
                 Select all
+              </div>
+              <div className="w-full border border-gray-600 py-4 px-2 grid gap-4">
+                <div className="flex items-center text-gray-400 gap-4">
+                  <input
+                    type="checkbox"
+                    className="bg-gray-600 text-gray-400 w-4 h-4 p-2 "
+                  />
+                  Share
+                </div>
+                <div className="flex items-center text-gray-400 gap-4">
+                  <input
+                    type="checkbox"
+                    className="bg-gray-600 text-gray-400 w-4 h-4 p-2 "
+                  />
+                  Deployments
+                </div>
+                <div className="flex items-center text-gray-400 gap-4">
+                  <input
+                    type="checkbox"
+                    className="bg-gray-600 text-gray-400 w-4 h-4 p-2 "
+                  />
+                  Entertainment
+                </div>
+                <div className="flex items-center text-gray-400 gap-4">
+                  <input
+                    type="checkbox"
+                    className="bg-gray-600 text-gray-400 w-4 h-4 p-2 "
+                  />
+                  Social media
+                </div>
               </div>
             </div>
           </div>
