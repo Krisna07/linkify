@@ -1,8 +1,7 @@
 "use client";
-import { useParams, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import React from "react";
 import { BiBell, BiShare } from "react-icons/bi";
-import { FaBars } from "react-icons/fa";
 
 interface mainnavProps {}
 

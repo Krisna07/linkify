@@ -33,7 +33,7 @@ export default function Socialmediacard({ item, list }: SocialmediacardProps) {
       </div>
       <div className="grid gap-2 tablet:block hidden">
         <span>provider {item.link.split("/").slice(-1)}</span>
-        <span className="flex items-center gap-2 tablet:inline hidden">
+        <span className="flex items-center gap-2 tablet:flex hidden">
           <BiLinkAlt /> From {item.name.toLocaleLowerCase()}
         </span>
       </div>

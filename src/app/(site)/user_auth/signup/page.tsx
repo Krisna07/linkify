@@ -12,7 +12,7 @@ const Signup = () => {
     password: "",
     passwordConfirmation: "",
   });
-  const [recaptchaValue, setRecaptchaValue] = useState("");
+
   const { username, email, password, passwordConfirmation } = formData;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,7 +22,6 @@ const Signup = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     router.push("/");
-
     console.log(
       `Username: ${username}, Email: ${email}, Password: ${password}, Password Confirmation: ${passwordConfirmation}`,
     );
@@ -35,7 +34,6 @@ const Signup = () => {
           action=""
           className=" w-full  p-8 grid gap-4 shadow-bs"
           onSubmit={handleSubmit}>
-          {" "}
           <h2 className="text-center text-3xl font-extrabold text-gray-900">
             Create an account
           </h2>
@@ -85,7 +83,7 @@ const Signup = () => {
               />
             </div>
           ))}
-          <Link href={"./dashboard"}>
+          <Link href={"/dashboard"}>
             <Button
               children="Sign Up"
               variant={"default"}

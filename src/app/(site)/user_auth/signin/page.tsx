@@ -25,6 +25,9 @@ const SignInForm = ({}) => {
     router.push("/dashboard");
   };
 
+  const responseFacebook = (response) => {
+    console.log(response);
+  };
   return (
     <div className="w-full py-8  grid place-items-center box-border  animate-text">
       <div className="w-fit min-h-[100vh] grid place-items-center box-border    bg-white  ">
@@ -94,7 +97,6 @@ const SignInForm = ({}) => {
               <FcGoogle />
             </span>
             <span className="p-2 bg-white rounded-full shadow-bs hover:animate-bounce">
-              {" "}
               <FaFacebook color="blue" />
             </span>
           </div>
