@@ -1,16 +1,34 @@
+"use client";
+import { usePathname } from "next/navigation";
 import React from "react";
-import { FaChevronRight, FaSearch } from "react-icons/fa";
+import {
+  FaChevronRight,
+  FaCommentAlt,
+  FaEye,
+  FaHeart,
+  FaSearch,
+  FaTwitter,
+} from "react-icons/fa";
+import socialMediaData from "../../../components/dummydata";
 
 interface pageProps {}
 
 export default function page({}: pageProps) {
+  const route = usePathname();
+  const account = route.split("/").splice(-1)[0];
+
+  const thisAccount = socialMediaData.filter(
+    (item) => item.link.split("/").splice(-1)[0] === account,
+  )[0];
+  console.log(thisAccount);
+
   return (
     <div className="w-full ">
-      <div className="w-full border-b grid place-items-center sticky top-[140px] bg-black">
+      <div className="w-full border-b grid place-items-center sticky top-[140px] z-[40] bg-black">
         <div className="px-8 pb-8  w-full text-2xl font-[600] ">Activity</div>
       </div>
-      <div className="grid tablet:grid-cols-2 ">
-        <div className="tablet:w-fit  border-r tablet:grid flex ">
+      <div className="grid tablet:grid-cols-2 relative z-10">
+        <div className="tablet:w-fit  border-r tablet:grid flex hidden ">
           <span className="p-4 text-2xl">Filters</span>
           <div className=" w-fit p-4 tablet:grid flex gap-4">
             <select
@@ -76,7 +94,53 @@ export default function page({}: pageProps) {
             </div>
           </div>
         </div>
-        <div></div>
+        <div className="grid gap-4 p-4">
+          <div className="">
+            <h2 className="text-xl">{thisAccount.name}</h2>
+            <p>{thisAccount.link.split("/").splice(-1)[0]}</p>
+          </div>
+          <div className="grid tablet:grid-cols-2 laptop:grid-cols-3 gap-4">
+            {thisAccount.posts.map((post) => (
+              <div key={post.name}>
+                <div className="w-full h-[200px]  bg-gradient-to-tr from-indigo-300 to-red-100 rounded-lg relative">
+                  <div className="absolute bottom-0 w-full p-2 text-black font-[600] flex gap-4">
+                    <span className=" flex items-center  gap-2">
+                      <FaHeart color="red" />
+                      {post.likes}
+                    </span>
+                    {post.comments ? (
+                      <span className=" flex items-center  gap-2">
+                        <FaCommentAlt />
+                        {post.likes}
+                      </span>
+                    ) : (
+                      ""
+                    )}
+                    {post.retweets ? (
+                      <span className=" flex items-center  gap-2">
+                        <FaTwitter color="green" />
+                        {post.retweets}
+                      </span>
+                    ) : (
+                      ""
+                    )}
+                    {post.views ? (
+                      <span className=" flex items-center  gap-2">
+                        <FaEye color="green" />
+                        {post.views}
+                      </span>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                </div>
+                <div>
+                  <h2>{post.name}</h2>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

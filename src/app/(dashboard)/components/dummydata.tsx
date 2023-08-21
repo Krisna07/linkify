@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   FaFacebook,
   FaInstagram,
@@ -7,9 +6,7 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 
-interface dummydataProps {}
-
-const [socialMediaData, setSocialMediaData] = useState([
+const socialMediaData = [
   {
     name: "Twitter",
     link: "https://twitter.com/bigboy-21",
@@ -147,6 +144,6 @@ const [socialMediaData, setSocialMediaData] = useState([
     bio: "Teaching coding and tech topics through engaging videos.",
   },
   // ...other social media platforms
-]);
+];
 
-export default { socialMediaData, setSocialMediaData };
+export default socialMediaData;

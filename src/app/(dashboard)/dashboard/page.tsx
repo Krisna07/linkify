@@ -3,61 +3,15 @@ import Button from "@/app/g_components/Button";
 import React, { useState, useEffect } from "react";
 import { BiGrid } from "react-icons/bi";
 import { FaBars, FaChevronDown, FaChevronUp, FaSearch } from "react-icons/fa";
-import {
-  FaTwitter,
-  FaInstagram,
-  FaFacebook,
-  FaLinkedin,
-  FaYoutube,
-} from "react-icons/fa";
+import socialMediaData from "../components/dummydata";
+
 import Newpage from "../components/newpage";
 import Socialmediacard from "./socialmediacard";
 import { ToastContainer, toast } from "react-toastify";
 
-interface SocialMediaItem {
-  name: string;
-  link: string;
-  icon: JSX.Element;
-  date: string;
-}
-
 export default function page({}) {
-  const [socialMediaData, setSoialmediaData] = useState([
-    {
-      name: "Twitter",
-      link: "https://twitter.com/bigboy-21",
+  const [social, setSocial] = useState(socialMediaData);
 
-      date: "2023-08-14",
-      icon: <FaTwitter color="#1DA1F2" />, // Using FaTwitter icon component
-    },
-    {
-      name: "Instagram",
-      link: "https://instagram.com/lostland",
-      date: "2023-08-14",
-      icon: <FaInstagram color="#C13584" />, // Using FaInstagram icon component
-    },
-    {
-      name: "Facebook",
-      link: "https://facebook.com/adam_bolt",
-
-      date: "2023-08-14",
-      icon: <FaFacebook color="#1877F2" />, // Using FaFacebook icon component
-    },
-    {
-      name: "LinkedIn",
-      link: "https://linkedin.com/adam.bolt",
-
-      date: "2023-08-14",
-      icon: <FaLinkedin color="#0A66C2" />, // Using FaLinkedin icon component
-    },
-    {
-      name: "YouTube",
-      link: "https://youtube.com/codecamp",
-
-      date: "2023-08-14",
-      icon: <FaYoutube color="#FF0000" />, // Using FaYoutube icon component
-    },
-  ]);
   const [list, setList] = useState(false);
 
   const [newItem, setItem] = useState<any>({
@@ -68,7 +22,7 @@ export default function page({}) {
   });
   useEffect(() => {
     if (newItem.name) {
-      setSoialmediaData([newItem, ...socialMediaData]);
+      setSocial([newItem, ...social]);
       setItem({
         name: "",
         link: "",
@@ -145,7 +99,7 @@ export default function page({}) {
         className={`w-full grid laptop:grid-cols-${list ? 1 : 3} grid-cols-${
           list ? 1 : 2
         }  gap-8 text-gray-400`}>
-        {socialMediaData.map((item: any) => (
+        {social.map((item: any) => (
           <div
             key={item.name}
             className="grid gap-2">
