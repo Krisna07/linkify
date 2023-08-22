@@ -8,13 +8,14 @@ interface mainnavProps {}
 export default function Mainnav({}: mainnavProps) {
   const navlinks = [
     { name: "Overview", link: "/dashboard" },
-    { name: "Activity", link: "/activity" },
+    { name: "Activity", link: `/activity` },
     { name: "Usage", link: "/usage" },
     { name: "Links", link: "/links" },
     { name: "Monitoring", link: "/monitoring" },
     { name: "Settings", link: "/settings" },
   ];
   const route = usePathname();
+  const thisNav = `/${route.split("/").splice(-2)[0]}`;
 
   return (
     <div className="w-full sticky grid gap-4 bg-gray-800 border-b border-b-gray-600 border-b-[1px] relative box-border overflow-hidden">
@@ -56,10 +57,13 @@ export default function Mainnav({}: mainnavProps) {
           {navlinks.map((items) => (
             <div
               key={items.name}
-              style={{ color: items.link == route ? "white" : "" }}
+              style={{
+                color:
+                  items.link == route || items.link === thisNav ? "white" : "",
+              }}
               className="hover:text-white hover:bg-gray-600 p-2 py-1 rounded-md relative grid items-center">
               {items.name}
-              {items.link == route ? (
+              {items.link == route || items.link === thisNav ? (
                 <div className="w-full h-[2px] bg-white absolute -bottom-2"></div>
               ) : (
                 ""

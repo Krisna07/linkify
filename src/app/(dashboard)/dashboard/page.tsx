@@ -98,11 +98,11 @@ export default function page({}) {
       <div
         className={`w-full grid laptop:grid-cols-${list ? 1 : 3} grid-cols-${
           list ? 1 : 2
-        }  gap-8 text-gray-400`}>
+        }  gap-8 text-gray-400 `}>
         {social.map((item: any) => (
           <div
-            key={item.name}
-            className="grid gap-2">
+            key={item.link.split("/").splice(-1)}
+            className="grid gap-2 p-2">
             {list ? (
               <div className="font-semibold text-white">
                 {item.name}/{item.link.split("/").splice(-1)}

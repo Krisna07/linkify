@@ -64,7 +64,7 @@ const socialMediaData = [
     link: "https://facebook.com/adam_bolt",
     date: "2023-08-14",
     icon: <FaFacebook color="#1877F2" />,
-    followers: 1500,
+    friends: 1500,
     posts: [
       {
         id: 1,

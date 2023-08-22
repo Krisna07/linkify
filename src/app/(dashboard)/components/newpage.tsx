@@ -29,19 +29,7 @@ export default function Newpage({ item, add }: any) {
         return null;
     }
   };
-  // const fetchUser = async (username: any) => {
-  //   const encodedUsername = encodeURIComponent(username);
-  //   const response = await fetch(
-  //     `https://graph.facebook.com/${encodedUsername}?fields=name,friends`,
-  //   );
-  //   if (response.status === 200) {
-  //     const data = await response.json();
-  //     setUser(data);
-  //   } else {
-  //     console.error("Error fetching user data:", response.status);
-  //   }
-  // };
-  // fetchUser("Realmadrid");
+
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSocial(e.target.value);
   };
@@ -55,16 +43,28 @@ export default function Newpage({ item, add }: any) {
           link: `https://www.${social}.com/${username}`,
           icon: getIcon(),
           date: new Date().toLocaleDateString(),
+          friends:
+            social == "facebook" ? Math.floor(Math.random() * 1000) : undefined,
+          followers:
+            social == "twitter" || social == "instagram"
+              ? Math.floor(Math.random() * 1000)
+              : undefined,
+          connections:
+            social == "linkedin" ? Math.floor(Math.random() * 1000) : undefined,
+          subscribers:
+            social == "youtube" ? Math.floor(Math.random() * 1000) : undefined,
+          bio: "This is a bio for the dummy data so need to pasrse form the link",
         }
       : "";
     add(false);
     item(newSocial ? newSocial : "");
+
     !username ? toast("Please enter the username !!!") : "";
   };
 
   return (
     <form
-      className="w-fit  absolute p-4 top-[120%] right-0  rounded-lg z-40 text-black bg-gray-300 grid gap-2 transition-all"
+      className="w-fit h-fit  absolute p-4 top-[120%] right-0  rounded-lg z-40 text-black bg-gray-300 grid gap-2 transition-all"
       onSubmit={submitForm}>
       <h2 className="w-full text-left text-lg font-semibold">New Card</h2>
       <select
@@ -76,6 +76,8 @@ export default function Newpage({ item, add }: any) {
         <option value="facebook">Facebook</option>
         <option value="twitter">Twitter</option>
         <option value="instagram">Instagram</option>
+        <option value="youtube">Youtube</option>
+        <option value="linkedin">Linkedin</option>
       </select>
       <label htmlFor="username">
         <h2 className="font-[500] text-lg">Username</h2>
