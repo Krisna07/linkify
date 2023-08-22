@@ -1,4 +1,3 @@
-import { usePathname } from "next/navigation";
 import "../globals.css";
 import Mainnav from "./components/mainnav";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,6 +14,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="icon"
+          href="/favicon.ico"
+          sizes="any"
+        />
+      </head>
       <body className="w-full  gap-8 bg-black text-white">
         <header className="sticky top-0 z-20">
           <Mainnav />

@@ -20,7 +20,6 @@ export default function page({}: pageProps) {
   const thisAccount = socialMediaData.filter(
     (item) => item.link.split("/").splice(-1)[0] === account,
   )[0];
-  console.log(thisAccount);
 
   const thisNav = route.split("/").splice(-2)[0];
 
