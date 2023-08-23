@@ -36,7 +36,7 @@ export default function page({}: pageProps) {
         <div className="w-full p-4 text-lg font-[600] border-b">
           Snowy Mountains
         </div>
-        <div className="flex gap-4">
+        <div className="tablet:flex grid gap-4">
           <div className="w-[300px] h-[500px] p-4 bg-gradient-to-tr from-gray-600 to-slate-500 rounded-lg flex flex-col place-items-center justify-center gap-4 animate-gradient">
             <div className="w-[60px] h-[60px] bg-gradient-to-tr from-gray-400 to-gray-800 rounded-full shadow-lg"></div>
             <div className="w-full grid gap-2">
