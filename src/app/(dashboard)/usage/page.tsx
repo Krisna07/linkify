@@ -38,7 +38,7 @@ export default function page({}: pageProps) {
         </div>
         <div className="tablet:flex grid gap-4">
           <div className="w-[300px] h-[500px] p-4 bg-gradient-to-tr from-gray-600 to-slate-500 rounded-lg flex flex-col place-items-center justify-center gap-4 animate-gradient">
-            <div className="w-[60px] h-[60px] bg-gradient-to-tr from-gray-400 to-gray-800 rounded-full shadow-lg"></div>
+            <div className="w-[60px] h-[60px] bg-gradient-to-tr from-red-400 to-gray-800 rounded-full shadow-lg"></div>
             <div className="w-full grid gap-2">
               <div className="flex items-center gap-2 justify-center hover:shadow-bs bg-blue-600 rounded-lg py-2">
                 <FaFacebook />
@@ -80,7 +80,7 @@ export default function page({}: pageProps) {
             />
           </div>
           <div className="w-[300px] h-[500px] p-4 bg-gradient-to-tr from-yellow-800 to-gray-500 rounded-lg flex flex-col place-items-center justify-center gap-4 animate-gradient">
-            <div className="w-[60px] h-[60px] bg-gradient-to-tr from-gray-400 to-gray-800 rounded-full shadow-lg"></div>
+            <div className="w-[60px] h-[60px] bg-gradient-to-tr from-gray-400 to-red-800 rounded-full shadow-lg"></div>
             <div className="w-full grid gap-2">
               <div className="flex items-center gap-2 justify-center hover:shadow-bs bg-blue-600 rounded-lg py-2">
                 <FaFacebook />
