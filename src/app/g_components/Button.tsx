@@ -18,7 +18,7 @@ const buttonVarients = cva("active:", {
 
     size: {
       default: " py-1 px-4 ",
-      sm: "py-1 px-4 laptop:text-sm",
+      sm: "laptop:py-1 py-2 px-4 laptop:text-sm ",
       lg: "py-2 px-8 text-lg",
     },
     defaultVariants: {
