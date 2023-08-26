@@ -1,17 +1,18 @@
 import Button from "@/app/g_components/Button";
 import React from "react";
 import {
-  FaChevronCircleRight,
   FaChevronDown,
   FaFacebook,
   FaInstagram,
   FaTwitter,
 } from "react-icons/fa";
+import Templates from "./Templates";
 
 interface pageProps {}
 
 export default function page({}: pageProps) {
   const templates = ["Snowy Mountains", "Sunset Surprise", "Blooming yellow"];
+
   return (
     <div className="w-full grid  laptop:grid-cols-[200px_1fr] ">
       <div className="w-full flex laptop:flex-col p-4 gap-4 box-border laptop:border-r  border-b">
@@ -22,7 +23,8 @@ export default function page({}: pageProps) {
             {templates.map((item) => (
               <div
                 key={item}
-                className="flex items-center gap-2 text-gray-300 w-fit">
+                className="flex items-center gap-2 text-gray-300 w-fit"
+              >
                 <div className="w-[10px] h-[10px] rounded-full bg-gray-300 grid place-items-center">
                   <div className="w-[8px] h-[8px] rounded-full bg-gray-800"></div>
                 </div>
@@ -33,7 +35,8 @@ export default function page({}: pageProps) {
         </div>
       </div>
       <div className="grid place-items-center gap-8">
-        <div className="w-full p-4 text-lg font-[600] border-b">
+        <Templates />
+        {/* <div className="w-full p-4 text-lg font-[600] border-b">
           Snowy Mountains
         </div>
         <div className="tablet:flex grid gap-4">
@@ -100,7 +103,7 @@ export default function page({}: pageProps) {
               rightIcon={<FaChevronDown />}
             />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
