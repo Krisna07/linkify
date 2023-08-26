@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { BiBell, BiShare } from "react-icons/bi";
@@ -55,20 +56,22 @@ export default function Mainnav({}: mainnavProps) {
       <div className="w-full overflow-hidden">
         <div className=" w-full flex p-2 px-8 gap-4 text-gray-400 top-0 overflow-x-scroll scrollbar-hide">
           {navlinks.map((items) => (
-            <div
+            <Link
+              href={items.link}
               key={items.name}
               style={{
                 color:
                   items.link == route || items.link === thisNav ? "white" : "",
               }}
-              className="hover:text-white hover:bg-gray-600 p-2 py-1 rounded-md relative grid items-center">
+              className="hover:text-white hover:bg-gray-600 p-2 py-1 rounded-md relative grid items-center"
+            >
               {items.name}
               {items.link == route || items.link === thisNav ? (
                 <div className="w-full h-[2px] bg-white absolute -bottom-2"></div>
               ) : (
                 ""
               )}
-            </div>
+            </Link>
           ))}
         </div>
       </div>
