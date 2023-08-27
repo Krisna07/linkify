@@ -6,6 +6,12 @@ import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/navigation";
 
+interface user {
+  name: string;
+  email: string;
+  password: string;
+}
+
 const SignInForm = ({}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

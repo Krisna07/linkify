@@ -9,11 +9,11 @@ interface mainnavProps {}
 export default function Mainnav({}: mainnavProps) {
   const navlinks = [
     { name: "Overview", link: "/dashboard" },
-    { name: "Activity", link: `/activity` },
-    { name: "Usage", link: "/usage" },
-    { name: "Links", link: "/links" },
-    { name: "Monitoring", link: "/monitoring" },
-    { name: "Settings", link: "/settings" },
+    { name: "Activity", link: `/dashboard/activity` },
+    { name: "Usage", link: "/dashboard/usage" },
+    { name: "Links", link: "/dashboard/links" },
+    { name: "Monitering", link: "/dashboard/monitering" },
+    { name: "Settings", link: "/dashboard/settings" },
   ];
   const route = usePathname();
   const thisNav = `/${route.split("/").splice(-2)[0]}`;
@@ -60,13 +60,11 @@ export default function Mainnav({}: mainnavProps) {
               href={items.link}
               key={items.name}
               style={{
-                color:
-                  items.link == route || items.link === thisNav ? "white" : "",
+                color: items.link == route ? "white" : "",
               }}
-              className="hover:text-white hover:bg-gray-600 p-2 py-1 rounded-md relative grid items-center"
-            >
+              className="hover:text-white hover:bg-gray-600 p-2 py-1 rounded-md relative grid items-center">
               {items.name}
-              {items.link == route || items.link === thisNav ? (
+              {items.link == route ? (
                 <div className="w-full h-[2px] bg-white absolute -bottom-2"></div>
               ) : (
                 ""
