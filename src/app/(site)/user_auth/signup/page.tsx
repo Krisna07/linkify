@@ -1,12 +1,20 @@
 "use client";
+import React, { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 import Button from "@/app/g_components/Button";
 
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+interface User {
+  username: string;
+  password: string;
+  email: string;
+  passwordConfirmation: string;
+}
 
 const Signup = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<User>({
     username: "",
     email: "",
     password: "",
@@ -15,24 +23,54 @@ const Signup = () => {
 
   const { username, email, password, passwordConfirmation } = formData;
 
+  const [users, setUsers] = useState<User[]>([]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
   const router = useRouter();
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push("/");
-    console.log(
-      `Username: ${username}, Email: ${email}, Password: ${password}, Password Confirmation: ${passwordConfirmation}`,
-    );
+    if (password !== passwordConfirmation) {
+      return toast("Passwords do not match");
+    }
+    if (!username || !email) {
+      return toast("Please fill out all fields");
+    }
+
+    const newUser: User = {
+      username: username,
+      password: password,
+      email: email,
+      passwordConfirmation: passwordConfirmation,
+    };
+
+    const checkusers = users.find((user) => user.email === newUser.email);
+    if (checkusers) {
+      toast("user exists");
+      return;
+    }
+    setUsers([...users, newUser]);
+
+    localStorage.setItem("userData", JSON.stringify(users));
+
+    toast("User created successfully!");
   };
 
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    console.log(userData);
+  }, [handleSubmit]);
+
   return (
-    <div className="w-full min-h-[100vh] py-8  grid place-items-center box-border   animate-text">
-      <div className="tablet:w-fit w-full grid place-items-center box-border   bg-white">
+    <div className="w-full min-h-[100vh] py-8 grid place-items-center box-border animate-text">
+      <div className="tablet:w-fit w-full grid place-items-center box-border bg-white">
+        <ToastContainer />
         <form
           action=""
-          className=" w-full  p-8 grid gap-4 shadow-bs"
+          className="w-full p-8 grid gap-4 shadow-bs"
           onSubmit={handleSubmit}>
           <h2 className="text-center text-3xl font-extrabold text-gray-900">
             Create an account
@@ -83,19 +121,19 @@ const Signup = () => {
               />
             </div>
           ))}
-          <Link href={"/dashboard"}>
-            <Button
-              children="Sign Up"
-              variant={"default"}
-              type="submit"
-              size={"default"}
-              icon={false}
-              className="w-full grid place-items-center"
-            />
-          </Link>
+
+          <Button
+            children="Sign Up"
+            variant={"default"}
+            type="submit"
+            size={"default"}
+            icon={false}
+            className="w-full grid place-items-center"
+          />
+
           <div className="text-center grid gap-4 place-items-center">
             <p>Already have an account</p>
-            <Link href={"./signin"}>
+            <Link href="/signin">
               <Button
                 children="Sign in"
                 variant={"default"}
