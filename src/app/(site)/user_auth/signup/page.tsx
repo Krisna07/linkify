@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Button from "@/app/g_components/Button";
+import { clear } from "console";
 
 interface User {
   username: string;
@@ -22,8 +23,13 @@ const Signup = () => {
   });
 
   const { username, email, password, passwordConfirmation } = formData;
-
-  const [users, setUsers] = useState<User[]>([]);
+  // const getUsers =
+  //   typeof window !== "undefined" ? localStorage.getItem("userData") : [];
+  // const parsedUsers =
+  //   getUsers && typeof getUsers === "string" ? JSON.parse(getUsers) : [];
+  // const [users, setUsers] = useState<User[]>(
+  //   JSON.parse(localStorage.getItem("UserData")),
+  // ]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -33,36 +39,41 @@ const Signup = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (password !== passwordConfirmation) {
-      return toast("Passwords do not match");
+
+    switch (true) {
+      case password !== passwordConfirmation:
+        toast("Passwords do not match");
+        return;
+        break;
+      case password.length < 6:
+        toast("Password should be at least 6 characters long");
+        return;
+
+        break;
+      case !username || !email:
+        toast("Please fill out all fields");
+        return;
+        break;
+      default:
+        const newUser: any = {
+          username: username,
+          password: password,
+          email: email,
+        };
+
+        const getUser: any = JSON.parse(
+          localStorage.getItem(`${newUser.email}`),
+        );
+        console.log(getUser);
+        if (getUser) {
+          toast("User exists sign in");
+          return;
+        }
+        localStorage.setItem(`${newUser.email}`, JSON.stringify(newUser));
+        toast("User created successfully!");
+        router.push(`/dashboard?data=${newUser.email}`);
     }
-    if (!username || !email) {
-      return toast("Please fill out all fields");
-    }
-
-    const newUser: User = {
-      username: username,
-      password: password,
-      email: email,
-      passwordConfirmation: passwordConfirmation,
-    };
-
-    const checkusers = users.find((user) => user.email === newUser.email);
-    if (checkusers) {
-      toast("user exists");
-      return;
-    }
-    setUsers([...users, newUser]);
-
-    localStorage.setItem("userData", JSON.stringify(users));
-
-    toast("User created successfully!");
   };
-
-  useEffect(() => {
-    const userData = JSON.parse(localStorage.getItem("userData"));
-    console.log(userData);
-  }, [handleSubmit]);
 
   return (
     <div className="w-full min-h-[100vh] py-8 grid place-items-center box-border animate-text">
