@@ -13,7 +13,7 @@ export default function Mainnav({}: mainnavProps) {
     { name: "Activity", link: `/dashboard/activity` },
     { name: "Usage", link: "/dashboard/usage" },
     { name: "Links", link: "/dashboard/links" },
-    { name: "Monitering", link: "/dashboard/monitering" },
+    { name: "Monitoring", link: "/dashboard/monitering" },
     { name: "Settings", link: "/dashboard/settings" },
   ];
   const route = usePathname();
