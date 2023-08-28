@@ -5,6 +5,8 @@ import { useState } from "react";
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface user {
   name: string;
@@ -29,20 +31,22 @@ const SignInForm = ({}) => {
     event.preventDefault();
     const user = { email, password };
     const userDatas = JSON.parse(localStorage.getItem(`${user.email}`));
+    console.log(userDatas);
     if (!userDatas) {
-      return console.log("User not found Sign up");
+      return toast("User not found Sign up");
     }
     if (userDatas.password !== user.password) {
-      return console.log("Username or password doesnot match");
+      return toast("Username or password doesnot match");
     }
-    console.log(userDatas);
-
-    router.push(`/dashboard?data=${userDatas.key}`);
+    const encodedKey = encodeURIComponent(userDatas.key);
+    const url = `/dashboard?key=${encodedKey}`;
+    router.push(url);
   };
 
   return (
     <div className="w-full py-8  grid place-items-center box-border  animate-text">
       <div className="w-fit min-h-[100vh] grid place-items-center box-border    bg-white  ">
+        <ToastContainer />
         <form
           className="bg-white  rounded-b-none shadow-bs box-border px-4 py-8  relative"
           onSubmit={handleSubmit}>

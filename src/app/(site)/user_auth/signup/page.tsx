@@ -75,7 +75,7 @@ const Signup = () => {
         console.log(newUser);
         localStorage.setItem(`${newUser.email}`, JSON.stringify(newUser));
         toast("User created successfully!");
-        router.push(`/dashboard?data=${newUser.key}`);
+        router.push(`/dashboard?key=${newUser.key}`);
     }
   };
 
