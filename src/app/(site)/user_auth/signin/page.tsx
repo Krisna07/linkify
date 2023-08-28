@@ -28,7 +28,16 @@ const SignInForm = ({}) => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const user = { email, password };
-    router.push("/dashboard");
+    const userDatas = JSON.parse(localStorage.getItem(`${user.email}`));
+    if (!userDatas) {
+      return console.log("User not found Sign up");
+    }
+    if (userDatas.password !== user.password) {
+      return console.log("Username or password doesnot match");
+    }
+    console.log(userDatas);
+
+    router.push(`/dashboard?data=${userDatas.key}`);
   };
 
   return (

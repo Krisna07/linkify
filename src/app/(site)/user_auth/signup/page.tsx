@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Button from "@/app/g_components/Button";
 import { clear } from "console";
+import { randomUUID } from "crypto";
+import { uuid } from "uuidv4";
 
 interface User {
   username: string;
@@ -36,7 +38,7 @@ const Signup = () => {
   };
 
   const router = useRouter();
-
+  // localStorage.clear();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -59,6 +61,7 @@ const Signup = () => {
           username: username,
           password: password,
           email: email,
+          key: uuid(),
         };
 
         const getUser: any = JSON.parse(
@@ -69,9 +72,10 @@ const Signup = () => {
           toast("User exists sign in");
           return;
         }
+        console.log(newUser);
         localStorage.setItem(`${newUser.email}`, JSON.stringify(newUser));
         toast("User created successfully!");
-        router.push(`/dashboard?data=${newUser.email}`);
+        router.push(`/dashboard?data=${newUser.key}`);
     }
   };
 
@@ -144,7 +148,7 @@ const Signup = () => {
 
           <div className="text-center grid gap-4 place-items-center">
             <p>Already have an account</p>
-            <Link href="/signin">
+            <Link href="./signin">
               <Button
                 children="Sign in"
                 variant={"default"}
