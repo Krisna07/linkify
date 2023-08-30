@@ -17,9 +17,9 @@ export default function Mainnav({}: mainnavProps) {
     { name: "Settings", link: "/dashboard/settings" },
   ];
   const route = usePathname();
-  const thisNav = `/${route.split("/").splice(-2)[0]}`;
-  const router = useParams();
-  console.log(router);
+  // const thisNav = `/${route.split("/").splice(-2)[0]}`;
+  // const router = useParams();
+  // console.log(router);
   return (
     <div className="w-full sticky grid gap-4 bg-gray-800 border-b border-b-gray-600 border-b-[1px] relative box-border overflow-hidden">
       <div className="w-full flex items-center justify-between  p-2 px-8 gap-4">
