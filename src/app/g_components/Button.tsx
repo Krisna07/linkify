@@ -9,7 +9,7 @@ const buttonVarients = cva("active:", {
   variants: {
     variant: {
       default:
-        "bg-slate-900 text-sky-100 w-content h-fit rounded-full relative overflow-hidden font-[500]",
+        "bg-slate-900 text-sky-100 w-fit h-fit rounded-full relative overflow-hidden font-[500]",
       ghost:
         "bg-transparent  rounded-md hover:text-slate-900 overflow-hidden w-fit inline-block h-fit relative font-[500]",
       primary:

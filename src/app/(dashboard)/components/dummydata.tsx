@@ -112,7 +112,6 @@ const socialMediaData = [
         likes: 30,
         comments: 8,
       },
-      // ...more posts
     ],
     bio: "Building a professional network and exploring opportunities.",
   },
