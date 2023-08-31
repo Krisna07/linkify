@@ -1,5 +1,6 @@
 "use client";
 import Button from "@/app/g_components/Button";
+import Link from "next/link";
 import React, { useState } from "react";
 import {
   FaChevronCircleDown,
@@ -8,11 +9,6 @@ import {
   FaShareAlt,
 } from "react-icons/fa";
 
-// interface job {
-//   title: string;
-//   des: string[];
-//   requirements: string[];
-// }
 export default function Listing({ job }: any) {
   const [req, showReq] = useState(false);
   return (
@@ -38,11 +34,16 @@ export default function Listing({ job }: any) {
         onClick={() => showReq(!req)}
       />
       <div className="flex gap-4">
-        <Button
-          children="Apply"
-          variant={"primary"}
-          size={"sm"}
-        />
+        <Link
+          href={`careers/${
+            job.title.split(" ")[0] + "_" + job.title.split(" ")[1]
+          }`}>
+          <Button
+            children="Apply"
+            variant={"primary"}
+            size={"sm"}
+          />
+        </Link>
         <Button
           children="Share"
           variant={"default"}
