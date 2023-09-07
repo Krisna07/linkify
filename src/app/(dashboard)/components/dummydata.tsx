@@ -1,3 +1,4 @@
+import { AnySrvRecord } from "dns";
 import {
   FaFacebook,
   FaInstagram,
@@ -144,5 +145,42 @@ const socialMediaData = [
   },
   // ...other social media platforms
 ];
+
+// Function to generate dummy activity data for different time periods
+// const generateDummyActivityData = (originalData: any, days: any) => {
+//   const newData = [...originalData];
+
+//   // Simulate activity for each platform
+//   newData.forEach((profile) => {
+//     profile.posts.forEach((post: any) => {
+//       // Generate random activity data for each post
+//       post.activity = {
+//         likes: Math.floor(Math.random() * 10) * (days / 30), // Approximate increase or decrease per day
+//         comments: Math.floor(Math.random() * 5) * (days / 30), // Approximate increase or decrease per day
+//         shares: Math.floor(Math.random() * 3) * (days / 30), // Approximate increase or decrease per day
+//       };
+//     });
+//   });
+
+//   return newData;
+// };
+
+// // Generate dummy activity data for 3 days, 7 days, and 1 month
+// const activityDataFor3Days = generateDummyActivityData(socialMediaData, 3);
+// const activityDataFor7Days = generateDummyActivityData(socialMediaData, 7);
+// const activityDataFor1Month = generateDummyActivityData(socialMediaData, 30);
+
+// // Add the dummy activity data as a new attribute within the existing data
+// socialMediaData.forEach((profile, index) => {
+//   profile.posts.forEach((post: any, postIndex) => {
+//     post.activityData = {
+//       days3: activityDataFor3Days[index].posts[postIndex].activity,
+//       days7: activityDataFor7Days[index].posts[postIndex].activity,
+//       month1: activityDataFor1Month[index].posts[postIndex].activity,
+//     };
+//   });
+// });
+
+// Now, each post within the existing data has an "activityData" attribute with activity data for 3 days, 7 days, and 1 month.
 
 export default socialMediaData;

@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import { BiBell, BiShare } from "react-icons/bi";
 
 interface mainnavProps {}
@@ -17,9 +17,11 @@ export default function Mainnav({}: mainnavProps) {
     { name: "Settings", link: "/dashboard/settings" },
   ];
   const route = usePathname();
-  // const thisNav = `/${route.split("/").splice(-2)[0]}`;
-  // const router = useParams();
-  // console.log(router);
+
+  const thisNav = `${route.split("/").splice(-2)[0]}`;
+
+  console.log(thisNav);
+
   return (
     <div className="w-full sticky grid gap-4 bg-gray-800 border-b border-b-gray-600 border-b-[1px] relative box-border overflow-hidden">
       <div className="w-full flex items-center justify-between  p-2 px-8 gap-4">
@@ -62,11 +64,16 @@ export default function Mainnav({}: mainnavProps) {
               href={items.link}
               key={items.name}
               style={{
-                color: items.link == route ? "white" : "",
+                color:
+                  items.link == route ||
+                  thisNav == items.name.toLocaleLowerCase()
+                    ? "white"
+                    : "",
               }}
               className="hover:text-white hover:bg-gray-600 p-2 py-1 rounded-md relative grid items-center">
               {items.name}
-              {items.link == route ? (
+              {items.link == route ||
+              thisNav == items.name.toLocaleLowerCase() ? (
                 <div className="w-full h-[2px] bg-white absolute -bottom-2"></div>
               ) : (
                 ""
