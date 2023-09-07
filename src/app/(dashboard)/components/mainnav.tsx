@@ -20,8 +20,6 @@ export default function Mainnav({}: mainnavProps) {
 
   const thisNav = `${route.split("/").splice(-2)[0]}`;
 
-  console.log(thisNav);
-
   return (
     <div className="w-full sticky grid gap-4 bg-gray-800 border-b border-b-gray-600 border-b-[1px] relative box-border overflow-hidden">
       <div className="w-full flex items-center justify-between  p-2 px-8 gap-4">

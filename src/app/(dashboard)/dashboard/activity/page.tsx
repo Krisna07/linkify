@@ -5,7 +5,7 @@ import socialMediaData from "../../components/dummydata";
 interface pageProps {}
 
 const page = ({}: pageProps) => {
-  console.log(socialMediaData);
+  //   console.log(socialMediaData);
   return (
     <div className="grid gap-4">
       <h2>Your activities</h2>
