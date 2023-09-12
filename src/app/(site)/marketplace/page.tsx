@@ -16,6 +16,7 @@ import Link from "next/link";
 import Apps from "./appsdata";
 import { IconType } from "react-icons/lib";
 import Applist from "./components/Applist";
+import Marquee from "react-fast-marquee";
 interface appslist {
   name: string;
   des: string;
@@ -36,10 +37,9 @@ const page = () => {
     (items) => items.type == "shopping" || items.type == "finance",
   );
 
-  console.log(creatorTools);
   return (
     <div className="w-full grid place-items-center gap-8 box-border overflow-hidden py-8">
-      <div className="w-full  bg-sky-800 grid place-items-center">
+      <div className="w-full  bg-sky-800 grid place-items-center ">
         <div className="laptop:w-[1024px] w-full text-rose-200 py-16 px-4 grid laptop:grid-cols-2  gap-4 items-center justify-center box-border">
           <div className="laptop:w-1/2 w-full p-4 grid gap-8 box-boder">
             <h2 className="text-6xl font-bold  ">
@@ -92,6 +92,42 @@ const page = () => {
           </div>
         </div>
       </div>
+      <div className="grid place-items-center grid-cols-2 gap-4">
+        <div className="w-[400px] grid p-4 bg-gray-100 rounded-xl shadow-bs gap-2 bg-gradient-to-tr from-gray-100 to-purple-100 animate-bg">
+          <h2 className="text-2xl w-[14ch] font-semibold">
+            Link sharing have been so easy
+          </h2>
+          <p className="">
+            We help you connect seamlessly with your audience we are covering
+            almost all the apps thats available.
+          </p>
+          <Button
+            children="Browse Apps"
+            variant={"default"}
+            size={"sm"}
+          />
+        </div>
+        <div className="w-[400px] relative grid bg-gray-100 rounded-xl shadow-bs gap-2 bg-gradient-to-tr from-gray-100 to-purple-100 animate-bg">
+          <Marquee className="w-full bg-black absolute rotate-x-[45deg]">
+            <div className="p-2 text-white flex gap-20">
+              <span>Create</span>
+              <span>Explore</span>
+              <span>Think</span>
+              <span>Free</span>
+            </div>
+          </Marquee>{" "}
+          <div className="p-4">
+            <h2 className="text-2xl w-[14ch] font-semibold">Be creative</h2>
+            <p className=""></p>
+            <Button
+              children="Browse Apps"
+              variant={"default"}
+              size={"sm"}
+            />
+          </div>
+        </div>
+      </div>
+
       <div className="laptop:w-[1024px] grid gap-8 box-border">
         <div className="w-full box-border py-4 grid laptop:grid-cols-2  gap-8">
           <div className=" w-full grid gap-4">

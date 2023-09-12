@@ -26,10 +26,10 @@ const Applist = ({ applications }: any) => {
           .slice(0, showapp ? applications.length : 6)
           .map((app: Applist) => (
             <div
-              className="w-full flex items-center gap-4 cursor-default"
+              className="w-full flex items-center gap-4 cursor-default "
               key={app.name}>
               <div
-                className={`bg-${app.accent} rounded text-3xl p-4 grid place-items-center shadow-bs`}>
+                className={`bg-${app.accent} rounded text-3xl p-4 grid place-items-center shadow-bs hover:scale-[1.05] transition`}>
                 {app.logo}
               </div>
               <div>
