@@ -1,170 +1,42 @@
 "use client";
 import React, { useState } from "react";
 import { BiDoughnutChart, BiLoader, BiSearch } from "react-icons/bi";
-import { BsTiktok } from "react-icons/bs";
+
 import {
-  FaAirbnb,
-  FaAmazon,
-  FaDiscord,
   FaDollarSign,
-  FaDropbox,
-  FaFacebookF,
-  FaGithub,
-  FaLinkedinIn,
-  FaMediumM,
-  FaPaypal,
-  FaPinterestP,
   FaRedditAlien,
   FaRedditSquare,
   FaSearch,
-  FaSkype,
-  FaSlackHash,
-  FaSnapchatGhost,
   FaTiktok,
-  FaTwitch,
-  FaUber,
-  FaWhatsapp,
-  FaWikipediaW,
-  FaYelp,
-  FaYoutube,
 } from "react-icons/fa";
 
 import { RiNetflixFill } from "react-icons/ri";
 import Button from "../../g_components/Button";
 import Link from "next/link";
-import apps from "./appsdata";
+import Apps from "./appsdata";
+import { IconType } from "react-icons/lib";
+import Applist from "./components/Applist";
+interface appslist {
+  name: string;
+  des: string;
+  logo: any;
+  accent: string;
+  type: string;
+}
 
 const page = () => {
-  // const apps = [
-  //   {
-  //     name: "YouTube",
-  //     des: "Watch and share videos",
-  //     logo: <FaYoutube color="white" />,
-  //     accent: "red-500",
-  //   },
-  //   {
-  //     name: "TikTok",
-  //     des: "Create and discover short videos",
-  //     logo: <FaTiktok color="white" />,
-  //     accent: "slate-900",
-  //   },
-  //   {
-  //     name: "Reddit",
-  //     des: "Join the online community",
-  //     logo: <FaRedditAlien color="white" />,
-  //     accent: "orange-600",
-  //   },
-  //   {
-  //     name: "Netflix",
-  //     des: "Watch movies and shows online",
-  //     logo: <RiNetflixFill color="red" />,
-  //     accent: "red-700",
-  //   },
-  //   {
-  //     name: "Facebook",
-  //     des: "Connect with friends and family",
-  //     logo: <FaFacebookF color="white" />,
-  //     accent: "blue-400",
-  //   },
-  //   {
-  //     name: "Amazon",
-  //     des: "Shop online for anything",
-  //     logo: <FaAmazon color="black" />,
-  //     accent: "white",
-  //   },
-  //   {
-  //     name: "LinkedIn",
-  //     des: "Build your professional network",
-  //     logo: <FaLinkedinIn color="white" />,
-  //     accent: "sky-600",
-  //   },
-  //   {
-  //     name: "Snapchat",
-  //     des: "Send and receive fun snaps",
-  //     logo: <FaSnapchatGhost color="white" />,
-  //     accent: "yellow-300",
-  //   },
-  //   {
-  //     name: "Pinterest",
-  //     des: "Discover and save ideas",
-  //     logo: <FaPinterestP color="white" />,
-  //     accent: "red-600",
-  //   },
-  //   {
-  //     name: "Discord",
-  //     des: "Chat with your friends and communities",
-  //     logo: <FaDiscord color="purple" />,
-  //     accent: "white",
-  //   },
-  //   {
-  //     name: "WhatsApp",
-  //     des: "Message and call securely",
-  //     logo: <FaWhatsapp color="black" />,
-  //     accent: "white",
-  //   },
-
-  //   {
-  //     name: "Airbnb",
-  //     des: "Find and book unique places to stay",
-  //     logo: <FaAirbnb color="white" />,
-  //     accent: "red-500",
-  //   },
-  //   {
-  //     name: "Uber",
-  //     des: "Get a ride or become a driver",
-  //     logo: <FaUber color="white" />,
-  //     accent: "black",
-  //   },
-  //   {
-  //     name: "Twitch",
-  //     des: "Watch and stream live games",
-  //     logo: <FaTwitch color="white" />,
-  //     accent: "purple-500",
-  //   },
-  //   {
-  //     name: "Medium",
-  //     des: "Read and write stories that matter",
-  //     logo: <FaMediumM color="black" />,
-  //     accent: "white",
-  //   },
-  //   {
-  //     name: "GitHub",
-  //     des: "Host and review code, manage projects and software",
-  //     logo: <FaGithub color="white" />,
-  //     accent: "black",
-  //   },
-  //   {
-  //     name: "Slack",
-  //     des: "Communicate and collaborate with your team",
-  //     logo: <FaSlackHash color="white" />,
-  //     accent: "black",
-  //   },
-  //   {
-  //     name: "Dropbox",
-  //     des: "Store and share your files online",
-  //     logo: <FaDropbox color="white" />,
-  //     accent: "black",
-  //   },
-  //   {
-  //     name: "Wikipedia",
-  //     des: "The free encyclopedia that anyone can edit",
-  //     logo: <FaWikipediaW color="white" />,
-  //     accent: "black",
-  //   },
-  //   {
-  //     name: "PayPal",
-  //     des: "Send and receive money online",
-  //     logo: <FaPaypal color="white" />,
-  //     accent: "blue-400",
-  //   },
-  //   {
-  //     name: "Skype",
-  //     des: "Make free video and voice calls",
-  //     logo: <FaSkype color="white" />,
-  //     accent: "blue-400",
-  //   },
-  // ];
   const [showapp, setShowapp] = useState(false);
+  const apps = Apps;
+  const creatorTools = Apps.filter((items) => items.type == "productive");
+  const entertainmentTools = Apps.filter(
+    (items) => items.type == "entertainment",
+  );
+  const socialMedia = Apps.filter((items) => items.type == "social media");
+  const financeapps = Apps.filter(
+    (items) => items.type == "shopping" || items.type == "finance",
+  );
+
+  console.log(creatorTools);
   return (
     <div className="w-full grid place-items-center gap-8 box-border overflow-hidden py-8">
       <div className="w-full  bg-sky-800 grid place-items-center">
@@ -312,47 +184,8 @@ const page = () => {
             </div>
           </div>
         </div>
-        <div className="w-full grid gap-8 box-border">
-          <div className="flex w-full justify-between items-center">
-            <h2 className="text-2xl font-bold">Create and Share</h2>
-            <button
-              className=" font-semibold text-slate-800 cursor-pointer hover:text-sky-600"
-              onClick={() => setShowapp(!showapp)}>
-              {showapp
-                ? " less"
-                : `+see more ${
-                    apps.filter((items) => items.type == "productive").length -
-                    3
-                  }`}{" "}
-              apps
-            </button>
-          </div>
-          <div className="w-full grid md:grid-cols-2 laptop:grid-cols-3 tablet:grid-cols-2 gap-4 ">
-            {apps
-              .filter((items) => items.type == "productive")
-              .slice(
-                0,
-                showapp
-                  ? apps.filter((items) => items.type == "productive").length
-                  : 6,
-              )
-              .map((app) => (
-                <div
-                  className="w-full flex items-center gap-4 cursor-default"
-                  key={app.name}>
-                  <div
-                    className={`bg-${app.accent} rounded text-3xl p-4 grid place-items-center shadow-bs`}>
-                    {app.logo}
-                  </div>
-                  <div>
-                    <h2 className="text-xl font-bold">{app.name}</h2>
-                    <p className="font-semibold text-sm">{app.des}</p>
-                  </div>
-                </div>
-              ))}
-          </div>
-        </div>
 
+        <Applist applications={creatorTools} />
         <div className="w-full bg-slate-200 grid place-items-center">
           <div className="laptop:w-[800px] w-full p-4 grid laptop:grid-cols-2 items-center gap-8">
             <div className="w-full grid gap-2 leading-[120%] ">
@@ -387,76 +220,9 @@ const page = () => {
             </div>
           </div>
         </div>
-        <div className="w-full grid gap-8 box-border">
-          <div className="flex w-full justify-between items-center">
-            <h2 className="text-2xl font-bold">Entertain and share</h2>
-            <button
-              className=" font-semibold text-slate-800 cursor-pointer hover:text-sky-600"
-              onClick={() => setShowapp(!showapp)}>
-              {showapp
-                ? "Less"
-                : `+see more ${
-                    apps.filter((items) => items.type == "entertainment")
-                      .length - 3
-                  }`}{" "}
-              apps
-            </button>
-          </div>
-          <div className="w-full grid md:grid-cols-2 laptop:grid-cols-3 tablet:grid-cols-2 gap-4 ">
-            {apps
-              .filter((items) => items.type == "entertainment")
-              .slice(0, showapp ? apps.length : 6)
-              .map((app) => (
-                <div
-                  className="w-full flex items-center gap-4 cursor-default"
-                  key={app.name}>
-                  <div
-                    className={`bg-${app.accent} rounded text-3xl p-4 grid place-items-center shadow-bs`}>
-                    {app.logo}
-                  </div>
-                  <div>
-                    <h2 className="text-xl font-bold">{app.name}</h2>
-                    <p className="font-semibold text-sm">{app.des}</p>
-                  </div>
-                </div>
-              ))}
-          </div>
-        </div>
-        <div className="w-full grid gap-8 box-border">
-          <div className="flex w-full justify-between items-center">
-            <h2 className="text-2xl font-bold">Connect with audience</h2>
-            <button
-              className=" font-semibold text-slate-800 cursor-pointer hover:text-sky-600"
-              onClick={() => setShowapp(!showapp)}>
-              {showapp
-                ? "Less"
-                : `+see more ${
-                    apps.filter((items) => items.type == "social media")
-                      .length - 3
-                  }`}{" "}
-              apps
-            </button>
-          </div>
-          <div className="w-full grid md:grid-cols-2 laptop:grid-cols-3 tablet:grid-cols-2 gap-4 ">
-            {apps
-              .filter((items) => items.type == "social media")
-              .slice(0, showapp ? apps.length : 6)
-              .map((app) => (
-                <div
-                  className="w-full flex items-center gap-4 cursor-default"
-                  key={app.name}>
-                  <div
-                    className={`bg-${app.accent} rounded text-3xl p-4 grid place-items-center shadow-bs`}>
-                    {app.logo}
-                  </div>
-                  <div>
-                    <h2 className="text-xl font-bold">{app.name}</h2>
-                    <p className="font-semibold text-sm">{app.des}</p>
-                  </div>
-                </div>
-              ))}
-          </div>
-        </div>
+        <Applist applications={entertainmentTools} />
+        <Applist applications={socialMedia} />
+        <Applist applications={financeapps} />
       </div>
     </div>
   );

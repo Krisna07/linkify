@@ -35,9 +35,14 @@ import {
 } from "react-icons/fa";
 import { FcTodoList } from "react-icons/fc";
 import { RiNetflixFill, RiNotionFill } from "react-icons/ri"; // Use 'RiNetflixFill' from 'react-icons/ri' for Netflix logo
-
-const apps = [
-  // Productive Apps
+interface App {
+  name: string;
+  des: string;
+  logo: JSX.Element; // Assuming JSX.Element is the type for React components
+  accent: string;
+  type: string;
+}
+const Apps: App[] = [
   {
     name: "Google Drive",
     des: "Store and share files in the cloud",
@@ -63,13 +68,13 @@ const apps = [
     name: "Evernote",
     des: "Take notes and save ideas",
     logo: <FaEvernote color="green" />,
-    accent: "green-500",
+    accent: "green-200",
     type: "productive",
   },
   {
     name: "Slack",
     des: "Communicate and collaborate with your team",
-    logo: <FaSlack color="purple" />,
+    logo: <FaSlack color="white" />,
     accent: "purple-500",
     type: "productive",
   },
@@ -123,7 +128,7 @@ const apps = [
     name: "YouTube",
     des: "Watch and share videos",
     logo: <FaYoutube color="red" />,
-    accent: "red-500",
+    accent: "white-500",
     type: "entertainment",
   },
   {
@@ -137,14 +142,14 @@ const apps = [
   {
     name: "Apple TV+",
     des: "Original shows, movies, and more",
-    logo: <FaApple color="black" />,
+    logo: <FaApple color="white" />,
     accent: "black",
     type: "entertainment",
   },
   {
     name: "Prime Video",
     des: "Stream thousands of popular movies and TV shows",
-    logo: <FaAmazon color="blue" />,
+    logo: <FaAmazon color="white" />,
     accent: "blue-500",
     type: "entertainment",
   },
@@ -305,4 +310,4 @@ const apps = [
   // Add more shopping apps here...
 ];
 
-export default apps;
+export default Apps;
