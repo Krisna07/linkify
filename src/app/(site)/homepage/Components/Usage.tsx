@@ -1,5 +1,6 @@
 "use client";
 import Button from "@/app/g_components/Button";
+import Link from "next/link";
 import React, { useState } from "react";
 import {
   FaEye,
@@ -115,7 +116,6 @@ const Usage = () => {
                     setDes(usuage.des);
                     setIndex(usages.indexOf(usuage));
                   }}>
-                  {/* ok */}
                   {usuage.des}
                 </div>
               ))}
@@ -135,12 +135,15 @@ const Usage = () => {
                 people closer through shared content and discussions.
               </p>
             </div>
-            <Button
-              children="Learn more"
-              variant={"default"}
-              size={"sm"}
-              icon={true}
-            />
+            <Link href={"/marketplace"}>
+              {" "}
+              <Button
+                children="Learn more"
+                variant={"default"}
+                size={"sm"}
+                icon={true}
+              />
+            </Link>
           </div>
           <div className="laptop:w-2/5  bg-gray-100 rounded text-center hover:shadow-lg">
             <img

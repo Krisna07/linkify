@@ -92,10 +92,10 @@ const page = () => {
           </div>
         </div>
       </div>
-      <div className="grid place-items-center grid-cols-2 gap-4">
-        <div className="w-[400px] grid p-4 bg-gray-100 rounded-xl shadow-bs gap-2 bg-gradient-to-tr from-gray-100 to-purple-100 animate-bg">
-          <h2 className="text-2xl w-[14ch] font-semibold">
-            Link sharing have been so easy
+      <div className="tablet:w-[1000px] w-full grid place-items-center tablet:grid-cols-2 gap-4">
+        <div className=" grid p-4 bg-gray-100 rounded-xl shadow-bs gap-2 bg-gradient-to-tr from-gray-100 to-purple-100 animate-bg">
+          <h2 className="text-2xl w-[20ch] font-semibold">
+            Link sharing have never been so easy
           </h2>
           <p className="">
             We help you connect seamlessly with your audience we are covering
@@ -107,18 +107,33 @@ const page = () => {
             size={"sm"}
           />
         </div>
-        <div className="w-[400px] relative grid bg-gray-100 rounded-xl shadow-bs gap-2 bg-gradient-to-tr from-gray-100 to-purple-100 animate-bg">
-          <Marquee className="w-full bg-black absolute rotate-x-[45deg]">
-            <div className="p-2 text-white flex gap-20">
-              <span>Create</span>
-              <span>Explore</span>
-              <span>Think</span>
-              <span>Free</span>
-            </div>
-          </Marquee>{" "}
-          <div className="p-4">
+        <div className=" relative grid  bg-gray-100 rounded-xl shadow-bs gap-2 bg-gradient-to-tr from-gray-100 to-purple-100 animate-bg overflow-hidden ">
+          <div className="w-[800px] absolute  top-10 -right-10 rotate-12 z-10">
+            <Marquee className="w-full bg-gray-400 ">
+              <div className="w-[800px] p-2 text-indigo-100  grid grid-cols-4   ">
+                <span>Create</span>
+                <span>Explore</span>
+                <span>Think</span>
+                <span>Free</span>
+              </div>
+            </Marquee>
+          </div>
+          <div className="w-[800px] absolute  bottom-10  right-0 -rotate-[30deg] z-10">
+            <Marquee className="w-full bg-gray-400 ">
+              <div className="w-[800px] p-2 text-indigo-100  grid grid-cols-4   ">
+                <span>Create</span>
+                <span>Explore</span>
+                <span>Think</span>
+                <span>Free</span>
+              </div>
+            </Marquee>
+          </div>
+          <div className="p-4 grid gap-4 relative z-20 ">
             <h2 className="text-2xl w-[14ch] font-semibold">Be creative</h2>
-            <p className=""></p>
+            <p className="">
+              Create the links easy to choose and easy to share. User have
+              freedom to place the link or sort them.
+            </p>
             <Button
               children="Browse Apps"
               variant={"default"}
