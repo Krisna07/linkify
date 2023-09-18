@@ -92,9 +92,9 @@ const page = () => {
           </div>
         </div>
       </div>
-      <div className="tablet:w-[1000px] w-full grid place-items-center tablet:grid-cols-2 gap-4">
+      <div className="tablet:w-[1000px] px-4 box-border w-full grid place-items-center laptop:grid-cols-2 gap-4">
         <div className=" grid p-4 bg-gray-100 rounded-xl shadow-bs gap-2 bg-gradient-to-tr from-gray-100 to-purple-100 animate-bg">
-          <h2 className="text-2xl w-[20ch] font-semibold">
+          <h2 className="text-2xl  font-semibold">
             Link sharing have never been so easy
           </h2>
           <p className="">
@@ -238,8 +238,8 @@ const page = () => {
 
         <Applist applications={creatorTools} />
         <div className="w-full bg-slate-200 grid place-items-center">
-          <div className="laptop:w-[800px] w-full p-4 grid laptop:grid-cols-2 items-center gap-8">
-            <div className="w-full grid gap-2 leading-[120%] ">
+          <div className="w-full p-4 grid  place-items-center gap-8">
+            <div className="text-center grid gap-2 leading-[120%] ">
               <h2 className="text-4xl font-bold">Join our team</h2>
               <p className="text-lg font-semibold">We are expanding</p>
               <Link href={"./careers"}>
@@ -252,22 +252,6 @@ const page = () => {
                   className="w-fit"
                 />
               </Link>
-            </div>
-            <div className="laptop:w-[600px] w-full">
-              <div className="w-full h-[400px] bg-gradient-to-r animate-text from-red-200 to-indigo-200 relative to-sky-300 rounded-[20px]">
-                <div className="w-[60px] h-[60px]  bg-white rounded-full grid place-items-center absolute top-20 left-20 animate-pulse">
-                  <div className="w-[58px] h-[58px] bg-gray-400 rounded-full"></div>
-                </div>
-                <div className="w-[60px] h-[60px]  bg-white rounded-full grid place-items-center absolute top-40 left-80 animate-pulse">
-                  <div className="w-[58px] h-[58px] bg-gray-400 rounded-full"></div>
-                </div>
-                <div className="w-[60px] h-[60px]  bg-white rounded-full grid place-items-center absolute top-10 left-60 animate-pulse ">
-                  <div className="w-[58px] h-[58px] bg-gray-400 rounded-full"></div>
-                </div>
-                <div className="w-[60px] h-[60px]  bg-white rounded-full grid place-items-center absolute top-60 left-40 animate-pulse">
-                  <div className="w-[58px] h-[58px] bg-gray-400 rounded-full"></div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

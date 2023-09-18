@@ -30,17 +30,19 @@ const SignInForm = ({}) => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const user = { email, password };
-    const userDatas = JSON.parse(localStorage.getItem(`${user.email}`));
-    console.log(userDatas);
-    if (!userDatas) {
-      return toast("User not found Sign up");
+    const userDatasString = localStorage.getItem(`${user.email}`);
+
+    if (userDatasString !== null) {
+      const userDatas = JSON.parse(userDatasString);
+      if (userDatas.password !== user.password) {
+        return toast("Username or password doesnot match");
+      }
+      const encodedKey = encodeURIComponent(userDatas.key);
+      const url = `/dashboard?key=${encodedKey}`;
+      router.push(url);
+    } else {
+      return toast("User not found. Sign up");
     }
-    if (userDatas.password !== user.password) {
-      return toast("Username or password doesnot match");
-    }
-    const encodedKey = encodeURIComponent(userDatas.key);
-    const url = `/dashboard?key=${encodedKey}`;
-    router.push(url);
   };
 
   return (
