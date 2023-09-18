@@ -14,6 +14,12 @@ const page = ({}: pageProps) => {
   const allJobs = Joblists;
   const thisjob: any = Joblists.find((job) => job.title == jobTitle);
 
+  const navigate = useRouter();
+  const submitApplciation = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    navigate.push("/careers");
+  };
+
   return (
     <div className="py-20 min-h-[80vh] grid place-items-center">
       <div className="laptop:w-[1000px]  grid  gap-4">
@@ -42,7 +48,9 @@ const page = ({}: pageProps) => {
           <div className=""></div>
         </div>
         <div className="grid tablet:grid-cols-2 gap-4">
-          <form className="w-full flex flex-cols flex-wrap gap-4 border-r p-4">
+          <form
+            className="w-full grid  gap-4 border-r p-4"
+            onSubmit={submitApplciation}>
             <label
               htmlFor="name"
               className="w-full grid tablet:flex gap-4">

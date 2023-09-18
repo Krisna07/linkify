@@ -5,8 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Button from "@/app/g_components/Button";
-import { clear } from "console";
-import { randomUUID } from "crypto";
+
 import { uuid } from "uuidv4";
 
 interface User {
@@ -25,20 +24,13 @@ const Signup = () => {
   });
 
   const { username, email, password, passwordConfirmation } = formData;
-  // const getUsers =
-  //   typeof window !== "undefined" ? localStorage.getItem("userData") : [];
-  // const parsedUsers =
-  //   getUsers && typeof getUsers === "string" ? JSON.parse(getUsers) : [];
-  // const [users, setUsers] = useState<User[]>(
-  //   JSON.parse(localStorage.getItem("UserData")),
-  // ]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const router = useRouter();
-  // localStorage.clear();
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -64,11 +56,9 @@ const Signup = () => {
           key: uuid(),
         };
 
-        const getUser: any = JSON.parse(
-          localStorage.getItem(`${newUser.email}`),
-        );
-        console.log(getUser);
-        if (getUser) {
+        const getUser: any = localStorage.getItem(`${newUser.email}`);
+
+        if (JSON.parse(getUser)) {
           toast("User exists sign in");
           return;
         }
