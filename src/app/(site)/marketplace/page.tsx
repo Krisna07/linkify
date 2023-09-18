@@ -144,8 +144,8 @@ const page = () => {
       </div>
 
       <div className="laptop:w-[1024px] grid gap-8 box-border">
-        <div className="w-full box-border py-4 grid laptop:grid-cols-2  gap-8">
-          <div className=" w-full grid gap-4">
+        <div className="w-full box-border py-4 grid laptop:grid-cols-2  gap-8 px-4">
+          <div className=" w-full grid gap-4 ">
             <div className="w-full p-4  bg-orange-600 rounded-[50px] grid place-items-center relative">
               <div className="p-4 rounded-full bg-rose-400 relative z-20">
                 <FaRedditAlien

@@ -39,7 +39,7 @@ const ApplistComponent = ({ applications }: any) => {
   }
 
   return (
-    <div className="w-full grid gap-8 box-border">
+    <div className="w-full grid gap-8 box-border p-4">
       <div className="flex w-full justify-between items-center">
         <h2 className="text-2xl font-bold">{title.toUpperCase()}</h2>
         <button
@@ -49,7 +49,7 @@ const ApplistComponent = ({ applications }: any) => {
         </button>
       </div>
       <div className="grid gap-6">
-        <div className="grid tablet:grid-cols-2 ">
+        <div className="grid gap-4 tablet:grid-cols-2 ">
           <div className="flex items-center gap-4">
             <div
               className={`w-fit bg-${applications[0].accent} text-[80px] p-4  shadow-bs`}>
