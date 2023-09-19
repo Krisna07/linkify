@@ -40,10 +40,7 @@ const Queries = () => {
               <p className="laptop:w-[60ch]">
                 Unlock deep insights and make informed decisions with our
                 advanced reporting tools. Leverage the power of data to drive
-                success and achieve your goals. Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit. Architecto magnam nostrum enim
-                quod maxime! Nemo similique optio veniam sunt ex. Lorem, ipsum
-                dolor sit amet consectetur.
+                success and achieve your goals.
               </p>
             </div>
 

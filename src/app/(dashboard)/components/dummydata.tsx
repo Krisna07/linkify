@@ -139,11 +139,9 @@ const socialMediaData = [
         likes: 700,
         comments: 60,
       },
-      // ...more posts
     ],
     bio: "Teaching coding and tech topics through engaging videos.",
   },
-  // ...other social media platforms
 ];
 
 export default socialMediaData;

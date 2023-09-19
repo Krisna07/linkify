@@ -17,6 +17,7 @@ import Apps from "./appsdata";
 import { IconType } from "react-icons/lib";
 import Applist from "./components/Applist";
 import Marquee from "react-fast-marquee";
+import Multiappcard from "./components/Multiappcard";
 interface appslist {
   name: string;
   des: string;
@@ -145,7 +146,7 @@ const page = () => {
 
       <div className="laptop:w-[1024px] grid gap-8 box-border">
         <div className="w-full box-border py-4 grid laptop:grid-cols-2  gap-8 px-4">
-          <div className=" w-full grid gap-4 ">
+          {/* <div className=" w-full grid gap-4 ">
             <div className="w-full p-4  bg-orange-600 rounded-[50px] grid place-items-center relative">
               <div className="p-4 rounded-full bg-rose-400 relative z-20">
                 <FaRedditAlien
@@ -233,7 +234,8 @@ const page = () => {
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
+          <Multiappcard />
         </div>
 
         <Applist applications={creatorTools} />
