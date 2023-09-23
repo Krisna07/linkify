@@ -68,7 +68,8 @@ export default function Mainnav({}: mainnavProps) {
                     ? "white"
                     : "",
               }}
-              className="hover:text-white hover:bg-gray-600 p-2 py-1 rounded-md relative grid items-center">
+              className="hover:text-white hover:bg-gray-600 p-2 py-1 rounded-md relative grid items-center"
+            >
               {items.name}
               {items.link == route ||
               thisNav == items.name.toLocaleLowerCase() ? (

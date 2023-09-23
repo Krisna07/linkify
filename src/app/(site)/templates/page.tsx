@@ -59,25 +59,25 @@ const Page: React.FC = () => {
             />
           </div>
 
-          {/* Right Side (Gradient Animation) */}
           <div className=" laptop:w-1/2 w-full h-[600px] relative hidden laptop:flex">
             <div className=" w-full h-full animate-gradient bg-gradient-to-br from-pink-300 via-purple-400 to-indigo-200 animate-gradient"></div>
           </div>
         </section>
 
-        {/* Show Some Templates */}
         <section className="my-8">
           <h2 className="text-3xl font-bold mb-4">Explore Our Templates</h2>
           <div className="grid grid-cols-1 laptop:grid-cols-3 gap-8">
             {templates.map((template, index) => (
               <div
                 key={index}
-                className="bg-white shadow-md rounded-md p-6 relative">
+                className="bg-white shadow-md rounded-md p-6 relative"
+              >
                 <div
-                  className={`w-full h-40 md:h-64 overflow-hidden rounded-lg hover:scale-[1.1] transition-all top-0 left-0 bg-gradient-to-tl ${template.gradientColors}`}></div>
+                  className={`w-full h-40 md:h-64 overflow-hidden rounded-lg hover:scale-[1.1] transition-all top-0 left-0 bg-gradient-to-tl ${template.gradientColors}`}
+                ></div>
 
                 <h3 className=" flex  justify-between text-xl md:text-2xl font-bold mt-4">
-                  {template.title}{" "}
+                  {template.title}
                   <div className="flex items-center justify-center mb-4">
                     {template.icon}
                   </div>
@@ -90,9 +90,6 @@ const Page: React.FC = () => {
           </div>
         </section>
 
-        {/* Method of Creation */}
-
-        {/* Free to Use Options */}
         <section className="my-8">
           <div className="bg-white rounded-lg shadow-md p-4 ">
             <h2 className="w-full text-3xl font-bold mb-4 ">
@@ -130,7 +127,7 @@ const Page: React.FC = () => {
                 a simple yet powerful{" "}
               </div>
               <div className="text-2xl ">
-                A tool to ramp up your social media with colors
+                A Tool To Ramp Up Your Social Media With Colors
               </div>
               <div className="text-gray-600">
                 We do have the verity of templates that you can use. Choose one
@@ -158,14 +155,8 @@ const Page: React.FC = () => {
             </div>
           </div>
           <div className="h-[500px] w-[100%] bg-gray-200/50 grid place-items-center relative">
-            <FaFacebookMessenger
-              size={88}
-              color="skyblue"
-            />
-            <FcLike
-              className="absolute top-20 left-20 "
-              size={80}
-            />
+            <FaFacebookMessenger size={88} color="skyblue" />
+            <FcLike className="absolute top-20 left-20 " size={80} />
             <div className="flex gap-2 absolute top-[60%] left-[35%]">
               <div className="w-4 h-4 rounded-full bg-black animate-pulse "></div>
               <div className="w-4 h-4 rounded-full bg-black animate-pulse animate-10"></div>
