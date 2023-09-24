@@ -33,6 +33,7 @@ import {
   FaStripe,
   FaSquare,
 } from "react-icons/fa";
+import { FaSquareXTwitter, FaXTwitter } from "react-icons/fa6";
 import { FcTodoList } from "react-icons/fc";
 import { RiNetflixFill, RiNotionFill } from "react-icons/ri"; // Use 'RiNetflixFill' from 'react-icons/ri' for Netflix logo
 interface App {
@@ -181,8 +182,8 @@ const Apps: App[] = [
   {
     name: "Twitter",
     des: "Discover what's happening",
-    logo: <FaTwitter color="white" />,
-    accent: "blue-400",
+    logo: <FaXTwitter color="white" />,
+    accent: "black",
     type: "social media",
   },
   {

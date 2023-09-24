@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { FaLeaf } from "react-icons/fa";
 import CountryList from "../../g_components/countries";
+import Image from "next/image";
 
 const Footer: React.FC = () => {
   const [country, setCountry] = useState<any>();

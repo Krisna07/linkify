@@ -4,6 +4,24 @@ import Button from "../../g_components/Button";
 import { FaCheck, FaCoins } from "react-icons/fa";
 
 import { BsX } from "react-icons/bs";
+import Compare from "./Compare";
+
+export interface princingTier {
+  select?: any;
+  tierName: string;
+  des: string;
+  price: number;
+  usersIncluded: number;
+  storage: string;
+  features: {
+    basic: boolean;
+    advanced: boolean;
+    premium: boolean;
+  };
+  prioritySupport: boolean;
+  customization: boolean;
+  freeTrial: boolean;
+}
 
 const Pricing = () => {
   const [monthly, setMonthly] = useState<boolean>(true);
@@ -12,7 +30,7 @@ const Pricing = () => {
     return monthly ? price : Math.floor(price * 12 - price * 1.2);
   };
 
-  const pricingTiers = [
+  const pricingTiers: princingTier[] = [
     {
       tierName: "Free",
       des: "Unlimited links and a customizable Linktree to connect your community to everything you are.",
@@ -99,7 +117,6 @@ const Pricing = () => {
           />
         </div>
       </div>
-
       <div className="w-full grid place-items-center gap-8 py-8 p-4">
         <div className="grid place-items-center">
           <h2 className="text-[32px] font-bold ">Pricing Plans </h2>
@@ -156,16 +173,15 @@ const Pricing = () => {
       <div className="laptop:w-[1024px] w-full box-border laptop:py-8 grid gap-4 p-4 overflow-hidden ">
         <h2 className="text-[32px] w-full font-bold text-left ">Features</h2>
         <div className="overflow-x-scroll">
-          {" "}
           <table className="w-[1024px] flex flex-col  table-auto rounded-lg">
             <thead className="w-full  text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 ">
               <tr className="grid grid-cols-5">
                 <th
                   scope="col"
                   className="px-6 py-4"></th>
-                {pricingTiers.map((tier) => (
+                {pricingTiers.map((tier, index) => (
                   <th
-                    key={tier.tierName}
+                    key={index}
                     scope="col"
                     className="px-6 py-4">
                     {tier.tierName}
@@ -192,9 +208,9 @@ const Pricing = () => {
               </tr>
               <tr className="grid grid-cols-5 place-items-center gap-4">
                 <th className="w-full text-left">Users</th>
-                {pricingTiers.map((tier) => (
+                {pricingTiers.map((tier, index) => (
                   <td
-                    key={tier.usersIncluded}
+                    key={index}
                     scope="col">
                     {tier.usersIncluded}
                   </td>
@@ -202,9 +218,9 @@ const Pricing = () => {
               </tr>
               <tr className="grid grid-cols-5 place-items-center gap-4">
                 <th className="w-full text-left">Basic Features</th>
-                {pricingTiers.map((tier) => (
+                {pricingTiers.map((tier, index) => (
                   <td
-                    key={tier.usersIncluded}
+                    key={index}
                     scope="col">
                     {tier.features.basic ? (
                       <FaCheck color="skyblue" />
@@ -216,9 +232,9 @@ const Pricing = () => {
               </tr>
               <tr className="grid grid-cols-5 place-items-center gap-4">
                 <th className="w-full text-left">Advance Features</th>
-                {pricingTiers.map((tier) => (
+                {pricingTiers.map((tier, index) => (
                   <td
-                    key={tier.usersIncluded}
+                    key={index}
                     scope="col">
                     {tier.features.advanced ? (
                       <FaCheck color="skyblue" />
@@ -230,9 +246,9 @@ const Pricing = () => {
               </tr>
               <tr className="grid grid-cols-5 place-items-center gap-4">
                 <th className="w-full text-left">Premium Features</th>
-                {pricingTiers.map((tier) => (
+                {pricingTiers.map((tier, index) => (
                   <td
-                    key={tier.usersIncluded}
+                    key={index}
                     scope="col">
                     {tier.features.premium ? (
                       <FaCheck color="skyblue" />
@@ -244,9 +260,9 @@ const Pricing = () => {
               </tr>
               <tr className="grid grid-cols-5 place-items-center gap-4">
                 <th className="w-full text-left">Priority Support</th>
-                {pricingTiers.map((tier) => (
+                {pricingTiers.map((tier, index) => (
                   <td
-                    key={tier.usersIncluded}
+                    key={index}
                     scope="col">
                     {tier.prioritySupport ? (
                       <FaCheck color="skyblue" />
@@ -258,9 +274,9 @@ const Pricing = () => {
               </tr>
               <tr className="grid grid-cols-5 place-items-center gap-4">
                 <th className="w-full text-left">Customization</th>
-                {pricingTiers.map((tier) => (
+                {pricingTiers.map((tier, index) => (
                   <td
-                    key={tier.usersIncluded}
+                    key={index}
                     scope="col">
                     {tier.customization ? (
                       <FaCheck color="skyblue" />
@@ -272,9 +288,9 @@ const Pricing = () => {
               </tr>
               <tr className="grid grid-cols-5 place-items-center gap-4">
                 <th className="w-full text-left">Free Trial</th>
-                {pricingTiers.map((tier) => (
+                {pricingTiers.map((tier, index) => (
                   <td
-                    key={tier.usersIncluded}
+                    key={index}
                     scope="col">
                     {tier.freeTrial ? (
                       <FaCheck color="skyblue" />
@@ -288,8 +304,7 @@ const Pricing = () => {
           </table>
         </div>
       </div>
-
-      <h2 className="text-[32px] font-bold "> </h2>
+      <Compare compareTier={pricingTiers} />
     </div>
   );
 };
