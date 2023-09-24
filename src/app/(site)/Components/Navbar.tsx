@@ -42,11 +42,11 @@ const Navbar = () => {
   ];
 
   const path = usePathname();
-  console.log(path);
+
   useEffect(() => {});
   return (
     <nav
-      className={`bg-white fixed grid place-items-center min-w-full top-0 shadow-lg z-10  `}>
+      className={`bg-white fixed grid place-items-center min-w-full top-0 shadow-lg z-[999]  `}>
       <div className="w-full h-full">
         <div className="h-full flex items-center justify-between  p-4">
           <div className="flex items-center">

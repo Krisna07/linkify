@@ -96,18 +96,15 @@ const Pricing = () => {
 
   return (
     <div className="w-full  grid place-items-center">
-      <div className="w-full bg-gray-100 grid place-items-center h-[600px] p-4 ">
+      <div className="w-full bg-gray-100 grid place-items-center py-32 p-4 bg-gradient-to-tr from-green-100/25 to-gray-100  ">
         <div className="laptop:w-[1000px] grid place-items-center gap-8 text-center py-16">
-          <h2 className="font-bold text-4xl text-center uppercase text-gray-800">
-            Welcome to Linkify
-            <span className="border-b-4 border-red-400">.</span>
+          <h2 className="font-bold text-4xl text-center uppercase text-gray-800 ">
+            Get Started For Free
           </h2>
           <p className="text-lg text-gray-600">
-            Connect with your audience like never before. Linkify empowers you
-            to create a personalized, one-stop destination for all your content,
-            making it easier for your followers to explore everything you have
-            to offer. Share your stories, showcase your work, and grow your
-            community with ease.
+            Browse our services and pricing for it. Choose the annual or the
+            monthly recurring plan. Got stuck use our compare table and select
+            the plan that suits your need.
           </p>
           <Button
             children="Start"
@@ -132,21 +129,21 @@ const Pricing = () => {
                 Start with our free plan. No credit card needed.Cancel Anytime
               </p>
             </div>
-            <div className="flex w-fit bg-gray-400 p-2 rounded-full box-border">
+            <div className="flex w-fit bg-gray-400 p-2 relative rounded-full box-border overflow-hidden shadow-bs">
               <span
-                className={`px-4 py-2 ${
-                  monthly ? "bg-white" : ""
-                } rounded-full`}
+                className={`px-4 py-2 relative z-20 rounded-full`}
                 onClick={() => setMonthly(true)}>
                 Monthly
               </span>
               <span
-                className={`px-4 py-2 ${
-                  !monthly ? "bg-white" : ""
-                } rounded-full`}
+                className={`px-4 py-2  relative z-20 rounded-full`}
                 onClick={() => setMonthly(false)}>
                 Annually
               </span>
+              <div
+                className={`w-1/2 h-[80%] bg-white absolute top-[10%] rounded-full z-10 transition-all ${
+                  monthly ? "left-[3%]" : "left-[47%]"
+                } `}></div>
             </div>
           </div>
           <div className="w-full grid laptop:grid-cols-4 gap-[20px]">
@@ -162,6 +159,7 @@ const Pricing = () => {
                 <Button
                   children="Join"
                   variant={"default"}
+                  size={"sm"}
                   icon={false}
                   className="w-full grid"
                 />
@@ -172,13 +170,13 @@ const Pricing = () => {
       </div>
       <div className="laptop:w-[1024px] w-full box-border laptop:py-8 grid gap-4 p-4 overflow-hidden ">
         <h2 className="text-[32px] w-full font-bold text-left ">Features</h2>
-        <div className="overflow-x-scroll">
-          <table className="w-[1024px] flex flex-col  table-auto rounded-lg">
-            <thead className="w-full  text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 ">
+        <div className="overflow-x-scroll scrollbar-hide">
+          <table className="w-[1020px] grid grid-col-4 box-border rounded-lg  scrollbar-hide">
+            <thead className="w-full text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 box-border ">
               <tr className="grid grid-cols-5">
                 <th
                   scope="col"
-                  className="px-6 py-4"></th>
+                  className="px-4 py-4 "></th>
                 {pricingTiers.map((tier, index) => (
                   <th
                     key={index}
@@ -189,7 +187,7 @@ const Pricing = () => {
                 ))}
               </tr>
             </thead>
-            <tbody className="grid gap-4 p-4 bg-gray-200">
+            <tbody className="w-full grid gap-4 px-4 p-2 bg-gray-200 box-border">
               <tr className="grid grid-cols-5 place-items-center gap-4">
                 <th className="w-full text-left">Price</th>
                 {pricingTiers.map((tier) => (

@@ -1,9 +1,10 @@
 import React from "react";
 import { princingTier } from "./page";
+import Button from "@/app/g_components/Button";
 
 const TierAnalysis = ({ tier }: { tier: princingTier }) => {
   return (
-    <div className="tier-analysis bg-white p-4 rounded-lg shadow-md">
+    <div className="tier-analysis bg-white p-4 rounded-lg grid gap-4 shadow-bs">
       <h2 className="text-xl font-semibold">{tier.tierName} Tier Analysis</h2>
       <div className="analysis-section mt-4">
         <h3 className="text-lg font-semibold">Pricing</h3>
@@ -60,6 +61,11 @@ const TierAnalysis = ({ tier }: { tier: princingTier }) => {
           {tier.freeTrial ? "Available" : "Not Available"}
         </p>
       </div>
+      <Button
+        children="Choose"
+        variant={"default"}
+        size={"sm"}
+      />
     </div>
   );
 };

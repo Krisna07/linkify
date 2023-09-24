@@ -28,7 +28,7 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <header className="w-full grid place-items-center shadow-bs fixed z-[99] bg-white ">
+        <header className="w-full grid place-items-center shadow-bs fixed z-[999] bg-white ">
           <Navbar />
         </header>
         <div className=" relative oveflow-hidden pb-0"> {children}</div>

@@ -4,6 +4,7 @@ import { princingTier } from "./page";
 
 import Button from "@/app/g_components/Button";
 import TierAnalysis from "./Tieranalysis";
+import Link from "next/link";
 
 const TierTab = ({
   tier,
@@ -64,7 +65,7 @@ const Compare = ({ compareTier }: { compareTier: princingTier[] }) => {
   return (
     <div className="laptop:w-[1000px] px-4 py-4 grid gap-4">
       <div className="w-full text-center text-lg font-[600] border-b py-2">
-        Compare the prices
+        Compare The Plans
       </div>
       <div className="grid gap-4">
         <div>Pick plans</div>
@@ -79,41 +80,23 @@ const Compare = ({ compareTier }: { compareTier: princingTier[] }) => {
           ))}
         </div>
       </div>
-      <div className="">
+      <div className="grid gap-4">
         {selectedTiers.length > 0 && (
           <div className="grid tablet:grid-cols-2 gap-4">
-            {/* <h2 className="text-lg font-smembold">Selected Tiers:</h2>
-            <ul>
-              <li>
-                Price :{" "}
-                {selectedTiers[0].price < selectedTiers[1].price
-                  ? selectedTiers[0].tierName
-                  : selectedTiers[1].tierName}
-              </li>
-              <li>
-                Storage:{" "}
-                {selectedTiers[0].storage > selectedTiers[1].storage
-                  ? selectedTiers[0].tierName
-                  : selectedTiers[1].tierName}
-              </li>
-              <li>
-                Users:{" "}
-                {selectedTiers[0].usersIncluded > selectedTiers[1].usersIncluded
-                  ? selectedTiers[0].tierName
-                  : selectedTiers[1].tierName}
-              </li>
-              <li>Features</li>
-              <li>Customization</li>
-
-              {selectedTiers.map((selectedTier, index) => (
-                <li key={index}>{selectedTier.tierName}</li>
-              ))}
-            </ul> */}
             {selectedTiers.map((tier) => (
               <TierAnalysis tier={tier} />
             ))}
           </div>
         )}
+        <Link href={"/user_auth/signup"}>
+          {" "}
+          <Button
+            children="Get started for free"
+            variant={"ghost"}
+            size={"sm"}
+            className="bg-gray-200"
+          />
+        </Link>
       </div>
     </div>
   );
