@@ -9,6 +9,7 @@ import {
 } from "react-icons/fa";
 
 import { FcLike } from "react-icons/fc";
+import Template from "./Template";
 
 const Page: React.FC = () => {
   const templates = [
@@ -34,7 +35,7 @@ const Page: React.FC = () => {
   ];
 
   return (
-    <div className="w-full min-h-screen bg-gray-100 flex justify-center items-center">
+    <div className="w-full min-h-screen flex justify-center items-center">
       <div className="laptop:w-[1200px] p-8 space-y-8">
         {/* Hero Section with Creative Gradients */}
         <section className="laptop:w-[1400px] py-32 flex gap-8 items-center relative ">
@@ -70,11 +71,9 @@ const Page: React.FC = () => {
             {templates.map((template, index) => (
               <div
                 key={index}
-                className="bg-white shadow-md rounded-md p-6 relative"
-              >
+                className="bg-white shadow-md rounded-md p-6 relative">
                 <div
-                  className={`w-full h-40 md:h-64 overflow-hidden rounded-lg hover:scale-[1.1] transition-all top-0 left-0 bg-gradient-to-tl ${template.gradientColors}`}
-                ></div>
+                  className={`w-full h-40 md:h-64 overflow-hidden rounded-lg hover:scale-[1.1] transition-all top-0 left-0 bg-gradient-to-tl ${template.gradientColors}`}></div>
 
                 <h3 className=" flex  justify-between text-xl md:text-2xl font-bold mt-4">
                   {template.title}
@@ -119,7 +118,15 @@ const Page: React.FC = () => {
             </ul>
           </div>
         </section>
-        <section className="my-8 grid laptop:grid-cols-2 p-4 bg-white rounded shadow-lg gap-8">
+        <section>
+          <div className="w-full text-center text-2xl font-600">
+            Browse our templates
+          </div>
+          <div>
+            <Template />
+          </div>
+        </section>
+        {/* <section className="my-8 grid laptop:grid-cols-2 p-4 bg-white rounded shadow-lg gap-8">
           <div className="flex flex-col justify-center gap-4">
             <div className="grid gap-2 leading-[120%]">
               {" "}
@@ -155,15 +162,21 @@ const Page: React.FC = () => {
             </div>
           </div>
           <div className="h-[500px] w-[100%] bg-gray-200/50 grid place-items-center relative">
-            <FaFacebookMessenger size={88} color="skyblue" />
-            <FcLike className="absolute top-20 left-20 " size={80} />
+            <FaFacebookMessenger
+              size={88}
+              color="skyblue"
+            />
+            <FcLike
+              className="absolute top-20 left-20 "
+              size={80}
+            />
             <div className="flex gap-2 absolute top-[60%] left-[35%]">
               <div className="w-4 h-4 rounded-full bg-black animate-pulse "></div>
               <div className="w-4 h-4 rounded-full bg-black animate-pulse animate-10"></div>
               <div className="w-4 h-4 rounded-full bg-black animate-pulse animate-20"></div>
             </div>
           </div>
-        </section>
+        </section> */}
       </div>
     </div>
   );

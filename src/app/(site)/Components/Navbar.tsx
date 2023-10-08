@@ -100,10 +100,10 @@ const Navbar = () => {
       {/* w-full hover:bg-red-300 flex items-center py-2 */}
       {isOpen && (
         <div className="w-full md:hidden h-100% p-4">
-          <ul className="flex flex-col items-center space-y-3">
+          <ul className="flex flex-col items-center space-y-3 overflow-y-scroll">
             {NavItems.map((menu) => (
               <li
-                className="w-full hover:bg-red-300 flex items-center py-2"
+                className="w-full flex items-center py-2"
                 key={menu.name}
                 onClick={() => (isOpen ? setIsOpen(!isOpen) : "")}>
                 <Link
