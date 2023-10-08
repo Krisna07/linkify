@@ -47,7 +47,7 @@ const SignInForm = ({}) => {
 
   return (
     <div className="w-full py-8  grid place-items-center box-border  animate-text">
-      <div className="w-fit min-h-[100vh] grid place-items-center box-border    bg-white  ">
+      <div className="w-fit  grid place-items-center box-border    bg-white  ">
         <ToastContainer />
         <form
           className="bg-white  rounded-b-none shadow-bs box-border px-4 py-8  relative"

@@ -70,7 +70,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="w-full min-h-[100vh] py-8 grid place-items-center box-border animate-text">
+    <div className="w-full pt-16 grid place-items-center box-border animate-text">
       <div className="tablet:w-fit w-full grid place-items-center box-border bg-white">
         <ToastContainer />
         <form

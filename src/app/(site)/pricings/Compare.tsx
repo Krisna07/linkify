@@ -12,7 +12,7 @@ const TierTab = ({
   selected,
 }: {
   tier: princingTier;
-  onSelect: () => void;
+  onSelect: any;
   selected?: princingTier[];
 }) => {
   const [select, setSelect] = useState<boolean>(false);
@@ -33,7 +33,7 @@ const TierTab = ({
       className={`w-fit flex items-center gap-2 px-4 py-1  rounded-full ${
         select ? "bg-sky-200 " : "bg-gray-200"
       }`}
-      onClick={onSelect}>
+      onClick={() => (!select ? onSelect() : "")}>
       {tier.tierName}
       <svg
         height="20"
@@ -55,11 +55,14 @@ const Compare = ({ compareTier }: { compareTier: princingTier[] }) => {
   const [selectedTiers, setSelectedTiers] = useState<princingTier[]>([]);
 
   const handleTierSelect = (tier: princingTier) => {
-    if (selectedTiers.length === 2) {
+    if (selectedTiers.length == 2) {
       setSelectedTiers((prevSelectedTiers) => [prevSelectedTiers[1], tier]);
     } else {
       setSelectedTiers((prevSelectedTiers) => [...prevSelectedTiers, tier]);
     }
+  };
+  const compareByIndex = (a: princingTier, b: princingTier) => {
+    return compareTier.indexOf(a) - compareTier.indexOf(b);
   };
 
   return (
@@ -80,16 +83,31 @@ const Compare = ({ compareTier }: { compareTier: princingTier[] }) => {
           ))}
         </div>
       </div>
-      <div className="grid gap-4">
+      <div className="grid gap-4 ">
         {selectedTiers.length > 0 && (
           <div className="grid tablet:grid-cols-2 gap-4">
-            {selectedTiers.map((tier) => (
-              <TierAnalysis tier={tier} />
+            {/* {compareTier.indexOf(selectedTiers[0]) <
+            compareTier.indexOf(selectedTiers[1]) ? (
+              <>
+                <TierAnalysis tier={selectedTiers[0]} />
+                <TierAnalysis tier={selectedTiers[1]} />
+              </>
+            ) : (
+              <>
+                <TierAnalysis tier={selectedTiers[1]} />
+                <TierAnalysis tier={selectedTiers[0]} />
+              </>
+            )} */}
+
+            {selectedTiers.sort(compareByIndex).map((tier) => (
+              <TierAnalysis
+                tier={tier}
+                key={tier.tierName}
+              />
             ))}
           </div>
         )}
         <Link href={"/user_auth/signup"}>
-          {" "}
           <Button
             children="Get started for free"
             variant={"ghost"}
