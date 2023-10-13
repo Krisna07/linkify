@@ -1,160 +1,121 @@
-interface jobs {
-  title: string;
-  des: string[];
-  requirements: string[];
-}
 
-const Joblists: jobs[] = [
+interface Job {
+  title: string;
+  location: string;
+  datePosted: string;
+  endDate: string;
+  description: string;
+  requirements: string[];
+  salary: string;
+  department: string;
+  jobType: string;
+}
+const JobLists = [
   {
-    title: "Web Developer",
-    des: [
-      "Design and implement user-facing features on websites.",
-      "Collaborate with designers and backend developers.",
-      "Create interactive and visually appealing web applications.",
-    ],
+    title: "Full Stack Developer",
+    location: "San Francisco, CA",
+    datePosted: "October 10, 2023",
+    endDate: "November 10, 2023",
+    description: "As a Full Stack Developer, you'll play a pivotal role in designing and developing user-friendly web applications and interfaces. Your responsibilities will include collaborating with cross-functional teams to implement modern and scalable solutions that meet the demands of today's dynamic digital landscape.",
     requirements: [
       "Proficiency in HTML, CSS, and JavaScript.",
-      "Experience with frontend frameworks like React or Vue.",
-      "Understanding of responsive web design.",
+      "Experience with front-end libraries like React or Vue.",
+      "Strong understanding of responsive web design.",
       "Familiarity with version control (e.g., Git).",
-      "Strong problem-solving skills and attention to detail.",
+      "Strong problem-solving skills and attention to detail."
     ],
+    salary: "Competitive salary",
+    department: "Software Development",
+    jobType: "Full-time"
   },
   {
-    title: "Software Engineer",
-    des: [
-      "Develop high-quality software solutions.",
-      "Collaborate with cross-functional teams to define, design, and ship new features.",
-      "Write clean, maintainable code.",
-    ],
+    title: "Machine Learning Engineer",
+    location: "New York, NY",
+    datePosted: "October 12, 2023",
+    endDate: "November 12, 2023",
+    description: "As a Machine Learning Engineer, you'll be at the forefront of developing cutting-edge machine learning models and algorithms to power data-driven applications. Your work will involve close collaboration with data scientists and engineers to deploy models into production, ensuring they're both accurate and efficient.",
     requirements: [
-      "Bachelor's degree in Computer Science or related field.",
-      "Proficiency in one or more programming languages like Java, Python, or C++.",
-      "Experience with software development methodologies.",
-      "Strong debugging and problem-solving skills.",
-      "Excellent teamwork and communication skills.",
+      "Bachelor's or higher degree in Computer Science, Data Science, or a related field.",
+      "Proficiency in Python and experience with popular ML frameworks like TensorFlow or PyTorch.",
+      "Deep understanding of data preprocessing, feature engineering, and model evaluation.",
+      "Experience with cloud-based AI/ML platforms, such as AWS SageMaker or Google AI Platform.",
+      "Excellent problem-solving skills and a strong passion for innovation."
     ],
+    salary: "Competitive salary",
+    department: "Machine Learning",
+    jobType: "Full-time"
   },
   {
-    title: "Data Analyst",
-    des: [
-      "Collect, analyze, and interpret data to identify trends and patterns.",
-      "Create visualizations and reports to communicate insights.",
-      "Collaborate with teams to drive data-driven decision-making.",
-    ],
+    title: "Data Scientist",
+    location: "Chicago, IL",
+    datePosted: "October 14, 2023",
+    endDate: "November 14, 2023",
+    description: "As a Data Scientist, you'll be responsible for the collection, analysis, and derivation of actionable insights from extensive datasets. Your work will involve creating compelling data visualizations and predictive models to inform strategic decisions, and you'll collaborate closely with interdisciplinary teams to drive data-driven strategies.",
     requirements: [
-      "Strong proficiency in data analysis tools like Excel, Python, or R.",
-      "Experience with data visualization libraries such as Matplotlib or D3.js.",
-      "Familiarity with databases and SQL.",
-      "Attention to detail and ability to work with large datasets.",
-      "Strong analytical and critical thinking skills.",
+      "Strong proficiency in data analysis tools like Python (NumPy, pandas) and R.",
+      "Experience with data visualization libraries, such as Matplotlib, Seaborn, or D3.js.",
+      "Proficiency in SQL and working with relational databases.",
+      "The ability to work with unstructured data and big data technologies like Hadoop or Spark.",
+      "Strong analytical and critical thinking skills with an exceptional attention to detail."
     ],
+    salary: "Competitive salary",
+    department: "Data Science",
+    jobType: "Full-time"
   },
   {
     title: "UX/UI Designer",
-    des: [
-      "Design user interfaces and user experiences for digital products.",
-      "Create wireframes, prototypes, and mockups.",
-      "Conduct user research and usability testing.",
-    ],
+    location: "Los Angeles, CA",
+    datePosted: "October 16, 2023",
+    endDate: "November 16, 2023",
+    description: "As a UX/UI Designer, your role will involve creating intuitive user interfaces and delightful user experiences for digital products. You'll work on wireframes, prototypes, and mockups, conduct user research, and collaborate with cross-functional teams to ensure user-centric design. Strong proficiency in design tools like Adobe XD, Figma, or Sketch is essential, along with an understanding of user-centered design principles. A strong portfolio showcasing previous design projects is a plus. You should have the ability to iterate designs based on feedback and possess excellent communication and collaboration skills.",
     requirements: [
       "Proficiency in design tools like Adobe XD, Figma, or Sketch.",
       "Understanding of user-centered design principles.",
       "Strong portfolio showcasing previous design projects.",
       "Ability to iterate designs based on feedback.",
-      "Excellent communication and collaboration skills.",
+      "Excellent communication and collaboration skills."
     ],
+    salary: "Competitive salary",
+    department: "Design",
+    jobType: "Full-time"
   },
   {
     title: "Marketing Manager",
-    des: [
-      "Develop and implement marketing strategies to promote products or services.",
-      "Manage marketing campaigns across various channels.",
-      "Analyze market trends and competitors to identify opportunities.",
-    ],
+    location: "New York, NY",
+    datePosted: "October 18, 2023",
+    endDate: "November 18, 2023",
+    description: "As a Marketing Manager, you'll be responsible for developing and implementing marketing strategies to promote our products or services. Your role includes managing marketing campaigns across various channels and analyzing market trends and competitors to identify opportunities. You should have a bachelor's degree in Marketing, Business, or a related field and proven experience in marketing roles. Strong knowledge of digital marketing tools and techniques is required, along with excellent written and verbal communication skills. We value your ability to think creatively and strategically.",
     requirements: [
-      "Bachelor's degree in Marketing, Business, or related field.",
+      "Bachelor's degree in Marketing, Business, or a related field.",
       "Proven experience in marketing roles.",
       "Strong knowledge of digital marketing tools and techniques.",
       "Excellent written and verbal communication skills.",
-      "Ability to think creatively and strategically.",
+      "Ability to think creatively and strategically."
     ],
+    salary: "Competitive salary",
+    department: "Marketing",
+    jobType: "Full-time"
   },
   {
-    title: "Sales Representative",
-    des: [
-      "Build and maintain relationships with clients.",
-      "Identify potential customers and generate leads.",
-      "Present and sell products or services to clients.",
-    ],
+    title: "HR Manager",
+    location: "San Francisco, CA",
+    datePosted: "October 20, 2023",
+    endDate: "November 20, 2023",
+    description: "As an HR Manager, you'll oversee HR operations and policies within the organization. Your responsibilities include recruiting, training, and managing staff, handling employee relations, benefits, and performance evaluations. We're looking for someone with a bachelor's degree in Human Resources, Business, or a related field and proven experience in HR roles. You should have knowledge of labor laws and regulations, strong interpersonal and communication skills, and the ability to handle sensitive and confidential information.",
     requirements: [
-      "Strong communication and interpersonal skills.",
-      "Proven experience in sales or customer service.",
-      "Ability to work independently and meet sales targets.",
-      "Positive attitude and willingness to learn.",
-      "Knowledge of the industry and product being sold.",
-    ],
-  },
-  {
-    title: "Content Writer",
-    des: [
-      "Produce high-quality written content for various platforms.",
-      "Conduct research to gather information and ideas.",
-      "Edit and proofread content to ensure clarity and consistency.",
-    ],
-    requirements: [
-      "Excellent writing and editing skills.",
-      "Ability to adapt writing style for different audiences and formats.",
-      "Strong research skills and attention to detail.",
-      "Creativity and ability to generate engaging content.",
-      "Familiarity with SEO principles.",
-    ],
-  },
-  {
-    title: "Graphic Designer",
-    des: [
-      "Create visual assets for print and digital media.",
-      "Design logos, illustrations, and marketing materials.",
-      "Collaborate with clients or teams to understand design requirements.",
-    ],
-    requirements: [
-      "Proficiency in design software like Adobe Illustrator and Photoshop.",
-      "Strong portfolio showcasing design projects.",
-      "Understanding of design principles and trends.",
-      "Ability to work under deadlines and handle multiple projects.",
-      "Effective communication skills.",
-    ],
-  },
-  {
-    title: "Financial Analyst",
-    des: [
-      "Analyze financial data and trends to provide insights.",
-      "Create financial models and forecasts.",
-      "Assist in making informed investment decisions.",
-    ],
-    requirements: [
-      "Bachelor's degree in Finance, Economics, or related field.",
-      "Proficiency in financial analysis tools and software.",
-      "Strong understanding of accounting principles.",
-      "Attention to detail and accuracy in financial reporting.",
-      "Ability to communicate complex financial information.",
-    ],
-  },
-  {
-    title: "Human Resources Manager",
-    des: [
-      "Oversee HR operations and policies within the organization.",
-      "Recruit, train, and manage staff.",
-      "Handle employee relations, benefits, and performance evaluations.",
-    ],
-    requirements: [
-      "Bachelor's degree in Human Resources, Business, or related field.",
+      "Bachelor's degree in Human Resources, Business, or a related field.",
       "Proven experience in HR roles.",
       "Knowledge of labor laws and regulations.",
       "Strong interpersonal and communication skills.",
-      "Ability to handle sensitive and confidential information.",
+      "Ability to handle sensitive and confidential information."
     ],
-  },
+    salary: "Competitive salary",
+    department: "Human Resources",
+    jobType: "Full-time"
+  }
+  
 ];
 
-export default Joblists;
+export default JobLists;
+
+
