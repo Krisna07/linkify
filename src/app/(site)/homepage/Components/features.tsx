@@ -19,7 +19,8 @@ import { BsTriangleFill } from "react-icons/bs";
 const Profilecard = ({ cardStyle, icon }: any) => {
   return (
     <div
-      className={`w-60 h-60 ${cardStyle} rounded-[10px] p-4 flex justify-between absolute left-0 bottom-0 transition:all`}>
+      className={`w-60 h-60 ${cardStyle} rounded-[10px] p-4 flex justify-between absolute left-0 bottom-0 transition:all`}
+    >
       <div className="w-20 h-20 rounded-full bg-rose-200 overflow-hidden">
         <img
           src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA1LzUwNC1meC0xMy1qb2IxNzU4XzEucG5n.png"
@@ -160,7 +161,8 @@ const FeaturesSection = () => {
           {features.map((features) => (
             <div
               className=" min-h-fit p-4 box-border bg-sky-100 text-slate-900 rounded hover:scale-[1.1] transition hover:shadow-lg"
-              key={features.id}>
+              key={features.id}
+            >
               <h3 className="w-fit text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
                 {features.title}{" "}
                 <span className="text-2xl">{features.icon}</span>
