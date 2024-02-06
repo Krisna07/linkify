@@ -15,10 +15,16 @@ const SignInPage: React.FC = () => {
     username: "",
     password: "",
   });
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     console.log("Form submitted:", formData);
   };
 
@@ -33,6 +39,8 @@ const SignInPage: React.FC = () => {
           placeholder="Username"
           icon={<FaUser />}
           color="blue"
+          data={formData.username}
+          onchange={handleInputChange}
         />
         <Input
           label="Password"
@@ -41,6 +49,8 @@ const SignInPage: React.FC = () => {
           icon={<BsEyeSlash />}
           secondIcon={<BsEye />}
           color="green"
+          data={formData.password}
+          onchange={handleInputChange}
         />
         <Button type="submit" variant={"default"} size={"default"}>
           Submit

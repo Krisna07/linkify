@@ -8,6 +8,8 @@ interface InputProps {
   placeholder?: string;
   type?: string;
   secondIcon?: any;
+  data?: string | number | readonly string[] | undefined;
+  onchange: any;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -17,16 +19,11 @@ const Input: React.FC<InputProps> = ({
   placeholder,
   type,
   secondIcon,
+  data,
+  onchange,
 }) => {
-  const [value, setValue] = useState<string>("");
   const [active, setActive] = useState<boolean>(false);
   const [inputtype, setType] = useState<boolean>(false);
-
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
-    setValue(newValue);
-    console.log(newValue);
-  };
 
   return (
     <label className={`w-fit p-2 bg-${color} grid gap-2`}>
@@ -35,11 +32,12 @@ const Input: React.FC<InputProps> = ({
       <div className="relative">
         <input
           type={inputtype ? "text" : type}
+          name={label?.toLowerCase}
           onFocus={() => setActive(true)}
           onBlur={() => setActive(false)}
           placeholder={placeholder}
-          value={value}
-          onChange={onChange}
+          value={data}
+          onChange={onchange}
           className="outline-none shadow-[0_0_4px_0_gray] px-2 py-1 rounded"
         />
 
