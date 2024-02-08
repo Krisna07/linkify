@@ -10,7 +10,6 @@ export default function page({}: pageProps) {
     <div className="w-full h-full grid place-items-center">
       <h2 className="font-bold">Components</h2>
       <h3>Input</h3>
-
     </div>
   );
 }

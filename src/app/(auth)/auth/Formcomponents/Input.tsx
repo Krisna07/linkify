@@ -1,8 +1,8 @@
 "use client";
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, useEffect } from "react";
 
 interface InputProps {
-  label?: string;
+  label: string;
   icon?: React.ReactNode;
   color?: string;
   placeholder?: string;
@@ -24,6 +24,9 @@ const Input: React.FC<InputProps> = ({
 }) => {
   const [active, setActive] = useState<boolean>(false);
   const [inputtype, setType] = useState<boolean>(false);
+  useEffect(() => {
+    data ? setActive(true) : "";
+  });
 
   return (
     <label className={`w-fit p-2 bg-${color} grid gap-2`}>
@@ -32,12 +35,13 @@ const Input: React.FC<InputProps> = ({
       <div className="relative">
         <input
           type={inputtype ? "text" : type}
-          name={label?.toLowerCase}
+          name={label.toLowerCase()}
           onFocus={() => setActive(true)}
           onBlur={() => setActive(false)}
           placeholder={placeholder}
           value={data}
           onChange={onchange}
+          autoComplete="false"
           className="outline-none shadow-[0_0_4px_0_gray] px-2 py-1 rounded"
         />
 
