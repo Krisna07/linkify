@@ -24,9 +24,9 @@ export default function RootLayout({
           {" "}
           {children}
         </div>
-        <footer className="w-full grid place-items-center p-4 bg-gray-200 ">
+        {/* <footer className="w-full grid place-items-center p-4 bg-gray-200 ">
           <Footer />
-        </footer>
+        </footer> */}
       </body>
     </html>
   );

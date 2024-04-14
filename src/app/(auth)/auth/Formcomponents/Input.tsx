@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, ChangeEvent, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 interface InputProps {
   label: string;
@@ -9,7 +9,7 @@ interface InputProps {
   type?: string;
   secondIcon?: any;
   data?: string | number | readonly string[] | undefined;
-  onchange: any;
+  onchange?: any;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -29,7 +29,7 @@ const Input: React.FC<InputProps> = ({
   });
 
   return (
-    <label className={`w-fit p-2 bg-${color} grid gap-2`}>
+    <label className={`w-full p-2 bg-${color} grid gap-2`}>
       <span className="text-[16px] font-semibold">{label}</span>
 
       <div className="relative">
@@ -42,7 +42,7 @@ const Input: React.FC<InputProps> = ({
           value={data}
           onChange={onchange}
           autoComplete="false"
-          className="outline-none shadow-[0_0_4px_0_gray] px-2 py-1 rounded"
+          className={`w-full outline-none shadow-[0_0_4px_0_gray] px-2 py-1 rounded `}
         />
 
         <div className="absolute right-0 top-0 h-full bg-white px-2 grid place-items-center">

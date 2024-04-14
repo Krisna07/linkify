@@ -1,9 +1,18 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
-import { FaLeaf, FaLock, FaLockOpen, FaUser } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaGithub,
+  FaGoogle,
+  FaLeaf,
+  FaLock,
+  FaLockOpen,
+  FaUser,
+} from "react-icons/fa";
 import Input from "../Formcomponents/Input";
 import Button from "@/app/g_components/Button";
+import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 
 interface User {
@@ -101,11 +110,21 @@ const SignInPage: React.FC = () => {
   };
 
   return (
-    <div className="w-fit p-2 px-4 bg-gradient-to-tr from-indigo-400/50 to-blue-300/50 rounded grid tablet:grid-cols-2 place-items-center">
-      <div className="w-full px-2  h-full flex flex-col gap-2">
-        <FaLeaf color="green" size={40} />
-        <h3 className="font-semibold text-xl ">Sign in</h3>
-        <p>Continue with Linkify</p>
+    <div className="w-fit h-screen tablet:h-fit px-4 py-8 bg-gradient-to-tr from-indigo-400/50 to-blue-300/50 rounded flex flex-col  justify-center tablet:grid tablet:grid-cols-2  gap-4 place-items-center">
+      <div className="w-full px-2  tablet:h-full grid gap-2">
+        <div>
+          <FaLeaf color="green" size={40} />
+          <h3 className="font-semibold text-xl ">Sign up</h3>
+          <p>Get started with Linkify</p>
+        </div>
+        <div className="h-fit grid gap-2">
+          <span className="text-sm font-semibold">Contiune with</span>
+          <div className="flex gap-2 text-[20px]">
+            <FaGithub className="scale-[1.1]" />
+            <FcGoogle className="scale-[1.1]" />
+            <FaFacebook className="scale-[1.1]" />
+          </div>
+        </div>
       </div>
       <form onSubmit={handleSubmit} className="w-[400px] grid gap-2">
         {err && <div className="text-red-500">{err}</div>}
@@ -139,13 +158,23 @@ const SignInPage: React.FC = () => {
         ) : (
           ""
         )}
+        <div>
+          <label htmlFor="subs" className="px-2 flex gap-2 items-center">
+            <input type="checkbox" />
+            <span>I agreee with terms and conditions</span>
+          </label>
+          <label htmlFor="subs" className="px-2 flex gap-2 items-center">
+            <input type="checkbox" />
+            <span>I want to receive the newsletter </span>
+          </label>
+        </div>
         <span className="px-2 flex gap-2 items-center text-sm">
           Already a member?{" "}
-          <Link href={"./signup"} className="underline">
-            signup here
+          <Link href={"./signin"} className="underline">
+            Login here
           </Link>
         </span>
-        <Button type="submit" variant={"default"} size={"default"}>
+        <Button type="submit" variant={"default"} size={"sm"}>
           Submit
         </Button>
       </form>
