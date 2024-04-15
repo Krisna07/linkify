@@ -30,6 +30,15 @@ export default function Herosection({}: HerosectionProps) {
             icon={true}
           />
         </Link>
+        <Link href="/dashboard">
+          <Button
+            children={"Try Demo"}
+            variant={"default"}
+            size={"sm"}
+            // rightIcon={<FaRocket />}
+            icon={true}
+          />
+        </Link>
       </div>
       <div className="w-full overflow-hidden">
         <SponsorsSection />

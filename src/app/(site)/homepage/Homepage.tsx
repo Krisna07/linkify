@@ -16,7 +16,7 @@ export default function Homepage({}: HomepageProps) {
       <Usage />
       <Queries />
       <PricingTable />
-      <Newsletter />
+      {/* <Newsletter /> */}
     </div>
   );
 }

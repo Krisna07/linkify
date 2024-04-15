@@ -5,17 +5,21 @@ import { FaLeaf, FaLock, FaLockOpen, FaUser } from "react-icons/fa";
 import Input from "../Formcomponents/Input";
 import Button from "@/app/g_components/Button";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 interface User {
-  username: string;
+  email: string;
   password: string;
 }
 
 const SignInPage: React.FC = () => {
   const [formData, setFormData] = useState<User>({
-    username: "",
+    email: "",
     password: "",
   });
+
+  const route = useRouter();
   const [err, setErr] = useState<string>("");
   // const [strength, setStrength] = useState<number>();
   // const [strengthName, setStrengthName] = useState<string>("Weak");
@@ -31,25 +35,31 @@ const SignInPage: React.FC = () => {
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>]).{8,}$/;
 
   const validateForm = () => {
-    if (!formData.username || !formData.password) {
+    if (!formData.email || !formData.password) {
       setErr("Please fill in all fields.");
       return false;
     }
-    if (formData.password.length < 8) {
-      setErr("Password Very short");
+    if (formData.email.match!(regex)) {
+      setErr("Invalid email");
       return false;
     }
     return true;
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log("Form submitted:", formData);
-
-      setFormData({ username: "", password: "" });
-
-      setErr("");
+      const signinData = await signIn("credentials", {
+        email: formData.email,
+        password: formData.password,
+        redirect: false,
+      });
+      if (signinData?.error) {
+        console.log(signinData.error);
+      } else {
+        route.push("/dashboard");
+      }
+      console.log(signinData);
     }
   };
 
@@ -63,11 +73,11 @@ const SignInPage: React.FC = () => {
       <form onSubmit={handleSubmit} className="w-[400px] grid gap-2">
         {err && <div className="text-red-500">{err}</div>}
         <Input
-          label="Username"
-          placeholder="Username"
+          label="Email"
+          placeholder="Email"
           icon={<FaUser />}
           color="blue"
-          data={formData.username}
+          data={formData.email}
           onchange={handleInputChange}
         />
         <Input
