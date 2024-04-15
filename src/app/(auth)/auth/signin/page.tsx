@@ -17,8 +17,8 @@ const SignInPage: React.FC = () => {
     password: "",
   });
   const [err, setErr] = useState<string>("");
-  const [strength, setStrength] = useState<number>();
-  const [strengthName, setStrengthName] = useState<string>("Weak");
+  // const [strength, setStrength] = useState<number>();
+  // const [strengthName, setStrengthName] = useState<string>("Weak");
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setErr("");
     const { name, value } = e.target;
@@ -29,53 +29,6 @@ const SignInPage: React.FC = () => {
   };
   const regex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>]).{8,}$/;
-
-  const calculatePasswordStrength = (object: string) => {
-    const lengthWeight = 20;
-    const uppercaseWeight = 20;
-    const lowercaseWeight = 20;
-    const digitWeight = 20;
-    const specialCharWeight = 20;
-    //length
-    const lengthScore = object.length > 8 ? 20 : (object.length / 8) * 20;
-
-    // Check uppercase letters
-    const uppercaseScore = object.match(/[A-Z]/) ? uppercaseWeight : 0;
-
-    // Check lowercase letters
-    const lowercaseScore = object.match(/[a-z]/) ? lowercaseWeight : 0;
-
-    // Check digits
-    const digitScore = object.match(/\d/) ? digitWeight : 0;
-
-    // Check special characters
-    const specialCharScore = object.match(/[!@#$%^&*()\-_=+{};:,<.>]/)
-      ? specialCharWeight
-      : 0;
-
-    // Calculate total score
-    const totalScore =
-      lengthScore +
-      uppercaseScore +
-      lowercaseScore +
-      digitScore +
-      specialCharScore;
-    if (totalScore < 50) {
-      setStrengthName("Weak");
-    }
-    if (totalScore > 50 && totalScore < 80) {
-      setStrengthName("Still not there");
-    }
-    if (totalScore > 80) {
-      setStrengthName("Strong");
-    }
-    return Math.floor(totalScore);
-  };
-
-  useEffect(() => {
-    setStrength(calculatePasswordStrength(formData.password));
-    console.log(strength);
-  });
 
   const validateForm = () => {
     if (!formData.username || !formData.password) {
@@ -127,18 +80,7 @@ const SignInPage: React.FC = () => {
           data={formData.password}
           onchange={handleInputChange}
         />
-        {formData.password ? (
-          <div className="w-full h-4 bg-white shadow relative  rounded-full flex items-center">
-            <div
-              style={{ width: `${strength}%` }}
-              className={`rounded-full relative transition-all h-full  bg-gradient-to-r from-red-400 to-green-400 flex items-center`}
-            >
-              <FaLock size={12} className="absolute right-2" />
-            </div>
-          </div>
-        ) : (
-          ""
-        )}
+
         <span className="px-2 flex gap-2 items-center text-sm">
           Already a member?{" "}
           <Link href={"./signup"} className="underline">

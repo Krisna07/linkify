@@ -1,33 +1,45 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
-import {
-  FaFacebook,
-  FaGithub,
-  FaGoogle,
-  FaLeaf,
-  FaLock,
-  FaLockOpen,
-  FaUser,
-} from "react-icons/fa";
+import { FaFacebook, FaGithub, FaLeaf, FaLock, FaUser } from "react-icons/fa";
 import Input from "../Formcomponents/Input";
 import Button from "@/app/g_components/Button";
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
+import "react-toastify/dist/ReactToastify.css";
+
+import { toast, ToastContainer } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 interface User {
+  firstname: string;
+  lastname: string;
   username: string;
+  email: string;
   password: string;
+  passwordmatch: string;
 }
 
 const SignInPage: React.FC = () => {
+  //defining objects
   const [formData, setFormData] = useState<User>({
+    firstname: "",
+    lastname: "",
     username: "",
+    email: "",
     password: "",
+    passwordmatch: "",
   });
+
+  //defineing the states
   const [err, setErr] = useState<string>("");
-  const [strength, setStrength] = useState<number>();
+  const [strength, setStrength] = useState<number>(0);
+  const [signed, setSigned] = useState<boolean>(false);
   const [strengthName, setStrengthName] = useState<string>("Weak");
+
+  const route = useRouter();
+
+  //handling the input check
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setErr("");
     const { name, value } = e.target;
@@ -81,29 +93,72 @@ const SignInPage: React.FC = () => {
     return Math.floor(totalScore);
   };
 
+  const nameCheck = (object: string) => {
+    return !object.match(/^[A-Za-z]+$/) && setErr("name cannot have numbers ");
+  };
+  const emailCheck = (object: string) => {
+    return !object.match(regex) && setErr("email not valid ");
+  };
+
   useEffect(() => {
     setStrength(calculatePasswordStrength(formData.password));
     console.log(strength);
-  });
+  }, [formData.password]);
+
+  useEffect(() => {
+    formData.firstname && nameCheck(formData.firstname);
+  }, [formData.firstname]);
+
+  useEffect(() => {
+    formData.lastname && nameCheck(formData.lastname);
+  }, [formData.lastname]);
 
   const validateForm = () => {
-    if (!formData.username || !formData.password) {
+    if (!formData.email || !formData.password) {
       setErr("Please fill in all fields.");
       return false;
     }
-    if (formData.password.length < 8) {
-      setErr("Password Very short");
+    if (strength < 100) {
+      setErr("Create  strong password");
+      return false;
+    }
+    if (formData.password !== formData.passwordmatch) {
+      setErr("Password didn't match");
+      return false;
+    }
+    if (formData.email.match!(regex)) {
+      setErr("Invalid email");
       return false;
     }
     return true;
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (validateForm()) {
-      console.log("Form submitted:", formData);
+  useEffect(() => {
+    err && toast(err);
+  }, [err]);
 
-      setFormData({ username: "", password: "" });
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/Json",
+      },
+      body: JSON.stringify({
+        username: formData.firstname + formData.lastname,
+        email: formData.email,
+        password: formData.password,
+      }),
+    };
+    const api = "/api/user";
+
+    if (validateForm()) {
+      const response = await fetch(api, options);
+      if (response.ok) {
+        return route.push("/auth/signin");
+      } else {
+        setErr("Regestration failed ");
+      }
 
       setErr("");
     }
@@ -111,6 +166,9 @@ const SignInPage: React.FC = () => {
 
   return (
     <div className="w-fit h-screen tablet:h-fit px-4 py-8 bg-gradient-to-tr from-indigo-400/50 to-blue-300/50 rounded flex flex-col  justify-center tablet:grid tablet:grid-cols-2  gap-4 place-items-center">
+      {/* <div className="fixed">
+        <ToastContainer />
+      </div> */}
       <div className="w-full px-2  tablet:h-full grid gap-2">
         <div>
           <FaLeaf color="green" size={40} />
@@ -128,12 +186,31 @@ const SignInPage: React.FC = () => {
       </div>
       <form onSubmit={handleSubmit} className="w-[400px] grid gap-2">
         {err && <div className="text-red-500">{err}</div>}
+        <div className="flex items-center gap-2">
+          {" "}
+          <Input
+            label="Firstname"
+            placeholder="Firstname"
+            icon={<FaUser />}
+            color="blue"
+            data={formData.firstname}
+            onchange={handleInputChange}
+          />{" "}
+          <Input
+            label="Lastname"
+            placeholder="Lastname"
+            icon={<FaUser />}
+            color="blue"
+            data={formData.lastname}
+            onchange={handleInputChange}
+          />
+        </div>
         <Input
-          label="Username"
-          placeholder="Username"
+          label="Email"
+          placeholder="Email"
           icon={<FaUser />}
           color="blue"
-          data={formData.username}
+          data={formData.email}
           onchange={handleInputChange}
         />
         <Input
@@ -146,6 +223,18 @@ const SignInPage: React.FC = () => {
           data={formData.password}
           onchange={handleInputChange}
         />
+        <Input
+          label="Retype Password"
+          name="passwordmatch"
+          type="password"
+          placeholder="Retype-Password"
+          icon={<BsEyeSlash />}
+          secondIcon={<BsEye />}
+          color="green"
+          data={formData.passwordmatch}
+          onchange={handleInputChange}
+        />
+
         {formData.password ? (
           <div className="w-full h-4 bg-white shadow relative  rounded-full flex items-center">
             <div
@@ -158,9 +247,10 @@ const SignInPage: React.FC = () => {
         ) : (
           ""
         )}
+
         <div>
           <label htmlFor="subs" className="px-2 flex gap-2 items-center">
-            <input type="checkbox" />
+            <input type="checkbox" onChange={() => setSigned(true)} />
             <span>I agreee with terms and conditions</span>
           </label>
           <label htmlFor="subs" className="px-2 flex gap-2 items-center">

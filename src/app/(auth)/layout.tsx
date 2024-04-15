@@ -18,7 +18,6 @@ export default function RootLayout({
       <body className={"w-full min-h-[100vh] grid place-items-center relative"}>
         <header className="w-full grid place-items-center shadow-bs fixed z-[999] bg-white "></header>
         <div className="w-full relative oveflow-hidden pb-0 grid place-items-center">
-          {" "}
           {children}
         </div>
         {/* <footer className="w-full grid place-items-center p-4 bg-gray-200 ">

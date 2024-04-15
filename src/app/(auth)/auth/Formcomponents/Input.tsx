@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 
 interface InputProps {
   label: string;
+  name?: string;
   icon?: React.ReactNode;
   color?: string;
   placeholder?: string;
@@ -15,6 +16,7 @@ interface InputProps {
 const Input: React.FC<InputProps> = ({
   label,
   icon,
+  name,
   color = "gray",
   placeholder,
   type,
@@ -35,7 +37,7 @@ const Input: React.FC<InputProps> = ({
       <div className="relative">
         <input
           type={inputtype ? "text" : type}
-          name={label.toLowerCase()}
+          name={name ? name : label.toLocaleLowerCase()}
           onFocus={() => setActive(true)}
           onBlur={() => setActive(false)}
           placeholder={placeholder}
@@ -52,7 +54,7 @@ const Input: React.FC<InputProps> = ({
             }`}
             onClick={() => setType(!inputtype)}
           >
-            {inputtype ? secondIcon : icon}
+            {secondIcon ? (inputtype ? secondIcon : icon) : icon}
           </div>
         </div>
       </div>
