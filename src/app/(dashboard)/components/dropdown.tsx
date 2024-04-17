@@ -3,7 +3,8 @@ import { signOut } from "next-auth/react";
 import React from "react";
 import { FaSignOutAlt, FaThemeco, FaUserAlt } from "react-icons/fa";
 import { TbColorPicker, TbSettings } from "react-icons/tb";
-const Dropdown = () => {
+import { mainnavProps } from "./mainnav";
+const Dropdown = ({ user }: any) => {
   return (
     <div className="grid gap-2 text-base divide-y divide-gray-400/75 leading-6">
       <div className="flex items-center gap-4 p-4 py-2 border-box">
@@ -11,8 +12,10 @@ const Dropdown = () => {
           <FaUserAlt />
         </div>
         <div className="grid ">
-          <span className="text-xl text-white font-semibold">username</span>
-          <span>user@email.com</span>
+          <span className="text-xl text-white font-semibold">
+            {user?.username}
+          </span>
+          <span>{user?.email}</span>
         </div>
       </div>
       <div className="w-fit px-4 py-2">

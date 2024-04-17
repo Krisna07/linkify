@@ -7,9 +7,12 @@ import React, { useState } from "react";
 import { BiBell, BiShare } from "react-icons/bi";
 import Dropdown from "./dropdown";
 
-interface mainnavProps {}
+export interface mainnavProps {
+  email: string;
+  username: string;
+}
 
-export default function Mainnav({}: mainnavProps) {
+export default function Mainnav(user: any) {
   const navlinks = [
     { name: "Overview", link: "/dashboard" },
     { name: "Activity", link: `/dashboard/activity` },
@@ -30,7 +33,7 @@ export default function Mainnav({}: mainnavProps) {
           <span className="text-gray-600 hidden tablet:flex">/</span>
           <div className="flex items-center gap-2 font-[600]">
             <div className="h-6 w-6 bg-white rounded-full hidden tablet:flex"></div>{" "}
-            user
+            {user.user.username}
           </div>
           <div className="bg-gray-600 px-2 py-[2px] rounded-full text-sm font-[600]">
             Type
@@ -64,7 +67,7 @@ export default function Mainnav({}: mainnavProps) {
                 accountOptions ? "h-fit" : "h-0"
               } transition-all absolute top-[120%] right-0 bg-green-800 z-[999] rounded overflow-hidden`}
             >
-              <Dropdown />
+              <Dropdown user={user.user} />
             </div>
           </div>
         </div>

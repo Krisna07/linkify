@@ -25,6 +25,7 @@ export default async function RootLayout({
       </div>
     );
   }
+  const loggedUser = session?.user;
 
   return (
     <html lang="en">
@@ -33,7 +34,7 @@ export default async function RootLayout({
       </head>
       <body className="w-full  gap-8 bg-black text-white">
         <header className="sticky top-0 z-20">
-          <Mainnav />
+          <Mainnav user={loggedUser} />
         </header>
 
         <main className="w-full  grid place-items-center py-8 z-10">
