@@ -37,7 +37,12 @@ const Dropdown = ({ user }: any) => {
       </div>
       <div
         className="flex items-center gap-4 px-4 py-2 text-white"
-        onClick={() => signOut()}
+        onClick={() =>
+          signOut({
+            redirect: true,
+            callbackUrl: `${window.location.origin}/auth/signin`,
+          })
+        }
       >
         <FaSignOutAlt /> <span>Log out</span>
       </div>

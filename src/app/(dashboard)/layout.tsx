@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import Link from "next/link";
+import Button from "../g_components/Button";
 
 export const metadata = {
   title: "Linkify",
@@ -16,13 +17,17 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await getServerSession(authOptions);
-  console.log(session);
+
   if (!session?.user) {
     return (
-      <div>
-        Authentication Failed, Please{" "}
-        <Link href={"/auth/signin"}>sign in </Link>{" "}
-      </div>
+      <>
+        <div className="grid items-center justify-center">
+          Restricted area, user not authorized !!
+          <Link href={"/auth/signin"}>
+            <Button children="Sign In" size={"sm"} variant={"primary"} />
+          </Link>
+        </div>
+      </>
     );
   }
   const loggedUser = session?.user;

@@ -60,6 +60,7 @@ const SignInPage: React.FC = () => {
       if (signinData?.error) {
         console.log(signinData.error);
       } else {
+        route.refresh();
         route.push("/dashboard");
       }
       console.log(signinData);
