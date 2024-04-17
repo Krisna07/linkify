@@ -1,9 +1,11 @@
 "use client";
+import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
 import Link from "next/link";
-import { useParams, usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { BiBell, BiShare } from "react-icons/bi";
+import Dropdown from "./dropdown";
 
 interface mainnavProps {}
 
@@ -17,11 +19,11 @@ export default function Mainnav({}: mainnavProps) {
     { name: "Settings", link: "/dashboard/settings" },
   ];
   const route = usePathname();
-
+  const [accountOptions, setAccountOptions] = useState<boolean>(false);
   const thisNav = `${route.split("/").splice(-2)[0]}`;
 
   return (
-    <div className="w-full sticky grid gap-4 bg-gray-800 border-b border-b-gray-600 border-b-[1px] relative box-border overflow-hidden">
+    <div className="w-full sticky grid gap-4 bg-gray-800 border-b border-b-gray-600 border-b-[1px] relative box-border overflow">
       <div className="w-full flex items-center justify-between  p-2 px-8 gap-4">
         <div className="flex items-center py-2  rounded-full gap-4">
           <div className="h-6 w-6 bg-white rounded-full hidden tablet:flex"></div>
@@ -52,7 +54,19 @@ export default function Mainnav({}: mainnavProps) {
               1
             </div>
           </div>
-          <div className="w-8 h-8 bg-gradient-to-tr from-indigo-300 to-blue-500 to-pink-500 rounded-full"></div>
+          <div className="relative">
+            <div
+              className="w-8 h-8 bg-gradient-to-tr from-indigo-300 to-blue-500 to-pink-500 rounded-full relative"
+              onClick={() => setAccountOptions(!accountOptions)}
+            ></div>
+            <div
+              className={`${
+                accountOptions ? "h-fit" : "h-0"
+              } transition-all absolute top-[120%] right-0 bg-green-800 z-[999] rounded overflow-hidden`}
+            >
+              <Dropdown />
+            </div>
+          </div>
         </div>
       </div>
       <div className="w-full overflow-hidden">

@@ -25,7 +25,7 @@ const Input: React.FC<InputProps> = ({
   onchange,
 }) => {
   const [active, setActive] = useState<boolean>(false);
-  const [inputtype, setType] = useState<boolean>(false);
+  const [inputType, setType] = useState<boolean>(false);
   useEffect(() => {
     data ? setActive(true) : "";
   });
@@ -36,7 +36,7 @@ const Input: React.FC<InputProps> = ({
 
       <div className="relative">
         <input
-          type={inputtype ? "text" : type}
+          type={inputType ? "text" : type}
           name={name ? name : label.toLocaleLowerCase()}
           onFocus={() => setActive(true)}
           onBlur={() => setActive(false)}
@@ -52,9 +52,9 @@ const Input: React.FC<InputProps> = ({
             className={` right-[2px] top-[2px] rounded-full text-[12px] p-2 ${
               active ? "shadow bg-green-300" : "shadow-none bg-gray-300"
             }`}
-            onClick={() => setType(!inputtype)}
+            onClick={() => setType(!inputType)}
           >
-            {secondIcon ? (inputtype ? secondIcon : icon) : icon}
+            {secondIcon ? (inputType ? secondIcon : icon) : icon}
           </div>
         </div>
       </div>

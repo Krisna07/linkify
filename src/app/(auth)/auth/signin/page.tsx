@@ -1,7 +1,7 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
-import { FaLeaf, FaLock, FaLockOpen, FaUser } from "react-icons/fa";
+import { FaLeaf, FaUser } from "react-icons/fa";
 import Input from "../Formcomponents/Input";
 import Button from "@/app/g_components/Button";
 import Link from "next/link";
@@ -20,9 +20,11 @@ const SignInPage: React.FC = () => {
   });
 
   const route = useRouter();
+  const regex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>]).{8,}$/;
+  //setting error states
   const [err, setErr] = useState<string>("");
-  // const [strength, setStrength] = useState<number>();
-  // const [strengthName, setStrengthName] = useState<string>("Weak");
+  //handling input change
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setErr("");
     const { name, value } = e.target;
@@ -31,8 +33,8 @@ const SignInPage: React.FC = () => {
       [name]: value,
     }));
   };
-  const regex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>]).{8,}$/;
+
+  //validating form
 
   const validateForm = () => {
     if (!formData.email || !formData.password) {
@@ -45,9 +47,10 @@ const SignInPage: React.FC = () => {
     }
     return true;
   };
-
+  //handling form action
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    //signin authentication
     if (validateForm()) {
       const signinData = await signIn("credentials", {
         email: formData.email,

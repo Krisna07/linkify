@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { BiGrid, BiLinkExternal, BiLinkAlt } from "react-icons/bi";
+import { BiLinkExternal, BiLinkAlt } from "react-icons/bi";
 import { FaPen } from "react-icons/fa";
 import Link from "next/link";
 
@@ -38,12 +38,10 @@ export default function Socialmediacard({ item, list }: SocialmediacardProps) {
 
     return metrics.map((metric) =>
       item[metric] !== undefined ? (
-        <span
-          key={metric}
-          className="flex items-center">
+        <span key={metric} className="flex items-center">
           {metric}: {item[metric]}
         </span>
-      ) : null,
+      ) : null
     );
   };
 
@@ -59,7 +57,8 @@ export default function Socialmediacard({ item, list }: SocialmediacardProps) {
       } gap-4 hover:shadow-bs relative `}
       key={item.name}
       onMouseEnter={handleClick}
-      onMouseLeave={handleClick}>
+      onMouseLeave={handleClick}
+    >
       <div className="flex items-center gap-2 px-4 p-2">
         <div className="w-8 h-8 shadow-bs rounded-full grid place-items-center">
           {item.icon}
@@ -92,7 +91,8 @@ export default function Socialmediacard({ item, list }: SocialmediacardProps) {
       )}
       <div
         className="p-2 absolute rounded-full bg-white right-0 transition-all"
-        style={{ opacity: hover ? "1" : "0" }}>
+        style={{ opacity: hover ? "1" : "0" }}
+      >
         <BiLinkExternal />
       </div>
     </Link>
