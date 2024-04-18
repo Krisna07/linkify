@@ -46,13 +46,12 @@ const Navbar = () => {
   useEffect(() => {});
   return (
     <nav
-      className={`bg-white fixed grid place-items-center min-w-full top-0 shadow-lg z-[999]  `}>
+      className={`bg-white fixed grid place-items-center min-w-full top-0 shadow-lg z-[999]  `}
+    >
       <div className="w-full h-full">
         <div className="h-full flex items-center justify-between  p-4">
           <div className="flex items-center">
-            <Link
-              href="/"
-              onClick={() => (isOpen ? setIsOpen(!isOpen) : "")}>
+            <Link href="/" onClick={() => (isOpen ? setIsOpen(!isOpen) : "")}>
               <span className=" text-lg font-bold flex items-center gap-2">
                 Linkify <FaLeaf className="text-green-500" />
               </span>
@@ -65,7 +64,8 @@ const Navbar = () => {
                   <Link
                     href={`${menu.link}`}
                     style={path == menu.link ? { color: "gray" } : {}}
-                    className="font-semibold hover:text-gray-500 active:text-gray-500 relative grid place-items-center">
+                    className="font-semibold hover:text-gray-500 active:text-gray-500 relative grid place-items-center"
+                  >
                     {menu.name}
                     {path == menu.link ? (
                       <div className="w-[120%] h-px bg-green-800 absolute bottom-0"></div>
@@ -78,7 +78,7 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="hidden laptop:block">
-            <Link href="/user_auth/signin">
+            <Link href="/auth/signin">
               <Button
                 children={"Sign in"}
                 variant={"default"}
@@ -91,7 +91,8 @@ const Navbar = () => {
           <div className="laptop:hidden">
             <button
               className="text-black hover:text-gray-500 focus:outline-none"
-              onClick={toggleNavbar}>
+              onClick={toggleNavbar}
+            >
               {isOpen ? <FaTimes /> : <FaBars />}
             </button>
           </div>
@@ -105,10 +106,12 @@ const Navbar = () => {
               <li
                 className="w-full flex items-center py-2"
                 key={menu.name}
-                onClick={() => (isOpen ? setIsOpen(!isOpen) : "")}>
+                onClick={() => (isOpen ? setIsOpen(!isOpen) : "")}
+              >
                 <Link
                   href={`${menu.link}`}
-                  className="font-semibold hover:text-gray-500 active:text-gray-500">
+                  className="font-semibold hover:text-gray-500 active:text-gray-500"
+                >
                   {menu.name}
                 </Link>
               </li>
