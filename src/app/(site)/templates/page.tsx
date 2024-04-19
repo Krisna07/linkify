@@ -1,14 +1,7 @@
 import React from "react";
 import Button from "../../g_components/Button";
 import { FiLayout, FiShoppingBag, FiMapPin } from "react-icons/fi";
-import {
-  FaFacebookSquare,
-  FaTwitterSquare,
-  FaInstagramSquare,
-  FaFacebookMessenger,
-} from "react-icons/fa";
 
-import { FcLike } from "react-icons/fc";
 import Template from "./Template";
 
 const Page: React.FC = () => {
@@ -71,9 +64,11 @@ const Page: React.FC = () => {
             {templates.map((template, index) => (
               <div
                 key={index}
-                className="bg-white shadow-md rounded-md p-6 relative">
+                className="bg-white shadow-md rounded-md p-6 relative"
+              >
                 <div
-                  className={`w-full h-40 md:h-64 overflow-hidden rounded-lg hover:scale-[1.1] transition-all top-0 left-0 bg-gradient-to-tl ${template.gradientColors}`}></div>
+                  className={`w-full h-40 md:h-64 overflow-hidden rounded-lg hover:scale-[1.1] transition-all top-0 left-0 bg-gradient-to-tl ${template.gradientColors}`}
+                ></div>
 
                 <h3 className=" flex  justify-between text-xl md:text-2xl font-bold mt-4">
                   {template.title}
