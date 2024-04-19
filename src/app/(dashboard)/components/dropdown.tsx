@@ -1,9 +1,9 @@
 "use client";
 import { signOut } from "next-auth/react";
 import React from "react";
-import { FaSignOutAlt, FaThemeco, FaUserAlt } from "react-icons/fa";
+import { FaSignOutAlt, FaUserAlt } from "react-icons/fa";
 import { TbColorPicker, TbSettings } from "react-icons/tb";
-import { mainnavProps } from "./mainnav";
+
 const Dropdown = ({ user }: any) => {
   return (
     <div className="grid gap-2 text-base divide-y divide-gray-400/75 leading-6">
