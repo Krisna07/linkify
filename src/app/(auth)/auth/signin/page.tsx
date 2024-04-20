@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { FaLeaf, FaUser } from "react-icons/fa";
 import Input from "../Formcomponents/Input";
@@ -7,6 +7,7 @@ import Button from "@/app/g_components/Button";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { FiAlertCircle } from "react-icons/fi";
 
 interface User {
   email: string;
@@ -35,6 +36,10 @@ const SignInPage: React.FC = () => {
   };
 
   //validating form
+  useEffect(() => {
+    const timeout: any = setTimeout(() => setErr(""), 5000);
+    timeout;
+  }, [err]);
 
   const validateForm = () => {
     if (!formData.email || !formData.password) {
@@ -58,7 +63,8 @@ const SignInPage: React.FC = () => {
         redirect: false,
       });
       if (signinData?.error) {
-        console.log(signinData.error);
+        setErr("oops something went wrong");
+        return;
       } else {
         route.refresh();
         route.push("/dashboard");
@@ -81,7 +87,7 @@ const SignInPage: React.FC = () => {
         </div>
       </div>
       <form onSubmit={handleSubmit} className="w-full grid gap-2 box-border">
-        {err && <div className="text-red-500">{err}</div>}
+        {/* {err && <div className="text-red-500">{err}</div>} */}
         <Input
           label="Email"
           placeholder="Email"
@@ -111,6 +117,21 @@ const SignInPage: React.FC = () => {
           Submit
         </Button>
       </form>
+      {
+        <div
+          className={`w-fit text-sm font-semibold gap-2 ${
+            err ? "right-[10px] opacity-1" : "right-[-1000px] opacity-0"
+          } transition-all  grid place-items-center fixed bottom-2   bg-red-300 rounded-lg overflow-hidden`}
+        >
+          <div className="w-full h-full p-4 flex items-center gap-2 relative ">
+            <FiAlertCircle /> {err}
+            <div
+              style={err ? { width: "100%" } : { width: "0%" }}
+              className={`h-[4px] transition-all duration-[4000ms] bg-green-600 absolute bottom-0 right-0`}
+            ></div>
+          </div>
+        </div>
+      }
     </div>
   );
 };

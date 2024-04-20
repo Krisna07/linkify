@@ -116,10 +116,11 @@ const Navbar = () => {
                 </Link>
               </li>
             ))}
-            <li onClick={() => (isOpen ? setIsOpen(!isOpen) : "")}>
-              <button className="bg-white text-gray-800 font-semibold py-2 px-4 rounded-full">
-                Sign In
-              </button>
+            <li
+              onClick={() => (isOpen ? setIsOpen(!isOpen) : "")}
+              className="w-full flex items-center py-2 border-b hover:border-[4px] hover:translate-y-2"
+            >
+              <Link href={"/auth/signin"}>Sign in</Link>
             </li>
           </ul>
         </div>
