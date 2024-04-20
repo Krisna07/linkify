@@ -12,6 +12,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/navigation";
 
 import { FiMail, FiUser } from "react-icons/fi";
+import { NextResponse } from "next/server";
 
 interface User {
   username: string;
@@ -180,6 +181,7 @@ const SignInPage: React.FC = () => {
         return route.push("/auth/signin");
       } else {
         setErr("Regestration failed");
+        return;
       }
       setErr("");
     }
