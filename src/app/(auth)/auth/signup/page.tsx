@@ -11,9 +11,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/navigation";
 
+import { FiMail, FiUser } from "react-icons/fi";
+
 interface User {
-  firstname: string;
-  lastname: string;
   username: string;
   email: string;
   password: string;
@@ -23,8 +23,6 @@ interface User {
 const SignInPage: React.FC = () => {
   //defining objects
   const [formData, setFormData] = useState<User>({
-    firstname: "",
-    lastname: "",
     username: "",
     email: "",
     password: "",
@@ -34,7 +32,8 @@ const SignInPage: React.FC = () => {
   //defineing the states
   const [err, setErr] = useState<string>("");
   const [strength, setStrength] = useState<number>(0);
-  const [signed, setSigned] = useState<boolean>(false);
+  // const [signed, setSigned] = useState<boolean>(false);
+  const [subscribe, setSubscribe] = useState<boolean>(false);
   const [strengthName, setStrengthName] = useState<string>("Weak");
 
   const route = useRouter();
@@ -81,6 +80,11 @@ const SignInPage: React.FC = () => {
       lowercaseScore +
       digitScore +
       specialCharScore;
+
+    if (totalScore <= 0) {
+      setStrengthName("No password");
+    }
+
     if (totalScore < 50) {
       setStrengthName("Weak");
     }
@@ -94,32 +98,48 @@ const SignInPage: React.FC = () => {
   };
 
   const nameCheck = (object: string) => {
-    return !object.match(/^[A-Za-z]+$/) && setErr("name cannot have numbers ");
+    return (
+      !object.match(/^[A-Za-z0-9]+(?:[._][A-Za-z0-9]+)*$/u) &&
+      setErr("Invalid characters username")
+    );
   };
+
   const emailCheck = (object: string) => {
-    return !object.match(regex) && setErr("email not valid ");
+    return object.match(regex);
   };
 
   useEffect(() => {
     setStrength(calculatePasswordStrength(formData.password));
-    console.log(strength);
   }, [formData.password]);
 
   useEffect(() => {
-    formData.firstname && nameCheck(formData.firstname);
-  }, [formData.firstname]);
+    formData.username && nameCheck(formData.username);
+  }, [formData.username]);
 
-  useEffect(() => {
-    formData.lastname && nameCheck(formData.lastname);
-  }, [formData.lastname]);
+  // useEffect(() => {
+  //   formData.lastname && nameCheck(formData.lastname);
+  // }, [formData.lastname]);
 
   const validateForm = () => {
+    const PasswordLength = formData.password.split("").length;
     if (!formData.email || !formData.password) {
       setErr("Please fill in all fields.");
       return false;
     }
-    if (strength < 100) {
+    if (nameCheck(formData.username)) {
+      setErr("Username error");
+      return false;
+    }
+    if (emailCheck(formData.email)) {
+      setErr("Please enter the valid email address.");
+      return false;
+    }
+    if (strength < 60) {
       setErr("Create  strong password");
+      return false;
+    }
+    if (PasswordLength < 6) {
+      setErr("Create a longer password");
       return false;
     }
     if (formData.password !== formData.passwordmatch) {
@@ -130,6 +150,7 @@ const SignInPage: React.FC = () => {
       setErr("Invalid email");
       return false;
     }
+
     return true;
   };
 
@@ -145,9 +166,10 @@ const SignInPage: React.FC = () => {
         "Content-Type": "application/Json",
       },
       body: JSON.stringify({
-        username: formData.firstname + formData.lastname,
+        username: formData.username,
         email: formData.email,
         password: formData.password,
+        subscribed: subscribe,
       }),
     };
     const api = "/api/user";
@@ -157,23 +179,23 @@ const SignInPage: React.FC = () => {
       if (response.ok) {
         return route.push("/auth/signin");
       } else {
-        setErr("Regestration failed ");
+        setErr("Regestration failed");
       }
-
       setErr("");
     }
   };
 
   return (
-    <div className="w-fit h-screen tablet:h-fit px-4 py-8 bg-gradient-to-tr from-indigo-400/50 to-blue-300/50 rounded flex flex-col  justify-center tablet:grid tablet:grid-cols-2  gap-4 place-items-center">
-      {/* <div className="fixed">
-        <ToastContainer />
-      </div> */}
-      <div className="w-full px-2  tablet:h-full grid gap-2">
-        <div>
-          <FaLeaf color="green" size={40} />
-          <h3 className="font-semibold text-xl ">Sign up</h3>
-          <p>Get started with Linkify</p>
+    <div className="w-full h-screen text-black box-border tablet:h-fit px-4 py-8  rounded flex flex-col  justify-center tablet:grid tablet:grid-cols-2 gap-12 place-items-center">
+      <div className="w-full px-2 box-border tablet:h-full grid gap-2">
+        <div className="w-full flex tablet:flex-col items-center tablet:items-start justify-between tablet:justify-start border-b tablet:border-none py-2  ">
+          <FaLeaf color="green" size={40} className="tablet:block hidden" />
+
+          <div>
+            <h3 className="font-semibold text-xl ">Sign up</h3>
+            <p>Get started with Linkify</p>
+          </div>
+          <FaLeaf color="green" size={40} className="block tablet:hidden" />
         </div>
         <div className="h-fit grid gap-2">
           <span className="text-sm font-semibold">Contiune with</span>
@@ -184,32 +206,27 @@ const SignInPage: React.FC = () => {
           </div>
         </div>
       </div>
-      <form onSubmit={handleSubmit} className="w-[400px] grid gap-2">
-        {err && <div className="text-red-500">{err}</div>}
-        <div className="flex items-center gap-2">
-          {" "}
-          <Input
-            label="Firstname"
-            placeholder="Firstname"
-            icon={<FaUser />}
-            color="blue"
-            data={formData.firstname}
-            onchange={handleInputChange}
-          />{" "}
-          <Input
-            label="Lastname"
-            placeholder="Lastname"
-            icon={<FaUser />}
-            color="blue"
-            data={formData.lastname}
-            onchange={handleInputChange}
-          />
-        </div>
+      <form onSubmit={handleSubmit} className="w-full grid gap-2 box-border">
+        {err && (
+          <div className="w-full text-red-600 text-sm font-semibold ">
+            {err}
+          </div>
+        )}
+
+        <Input
+          label="Username"
+          placeholder="Username"
+          icon={<FiUser />}
+          color="blue"
+          data={formData.username}
+          onchange={handleInputChange}
+        />
         <Input
           label="Email"
           placeholder="Email"
-          icon={<FaUser />}
+          icon={<FiMail />}
           color="blue"
+          type="email"
           data={formData.email}
           onchange={handleInputChange}
         />
@@ -236,10 +253,14 @@ const SignInPage: React.FC = () => {
         />
 
         {formData.password ? (
-          <div className="w-full h-4 bg-white shadow relative  rounded-full flex items-center">
+          <div className="w-full h-4 bg-white shadow relative px-2  rounded-full flex items-center">
             <div
               style={{ width: `${strength}%` }}
-              className={`rounded-full relative transition-all h-full  bg-gradient-to-r from-red-400 to-green-400 flex items-center`}
+              className={`rounded-full relative transition-all h-full  ${
+                strength < 80
+                  ? "bg-gradient-to-r from-red-400 to-red-300 "
+                  : "bg-green-300"
+              } flex items-center`}
             >
               <FaLock size={12} className="absolute right-2" />
             </div>
@@ -249,17 +270,26 @@ const SignInPage: React.FC = () => {
         )}
 
         <div>
-          <label htmlFor="subs" className="px-2 flex gap-2 items-center">
-            <input type="checkbox" onChange={() => setSigned(true)} />
-            <span>I agreee with terms and conditions</span>
-          </label>
-          <label htmlFor="subs" className="px-2 flex gap-2 items-center">
-            <input type="checkbox" />
+          <label
+            htmlFor="subs"
+            className="px-2 flex gap-2 items-center text-sm"
+            onClick={() => setSubscribe(!subscribe)}
+          >
+            <div className="relative w-4 h-4">
+              <div className="w-4 h-4 bg-white grid place-items-center  rounded-full z-10  top-0  absolute shadow ">
+                <span
+                  className={`w-2 h-2 ${
+                    subscribe && "bg-black"
+                  }  rounded-full border-black border-[1px]`}
+                ></span>
+              </div>
+            </div>
+
             <span>I want to receive the newsletter </span>
           </label>
         </div>
         <span className="px-2 flex gap-2 items-center text-sm">
-          Already a member?{" "}
+          Already a member?
           <Link href={"./signin"} className="underline">
             Login here
           </Link>

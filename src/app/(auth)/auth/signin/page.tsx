@@ -68,13 +68,19 @@ const SignInPage: React.FC = () => {
   };
 
   return (
-    <div className="w-fit p-2 px-4 bg-gradient-to-tr from-indigo-400/50 to-blue-300/50 rounded grid tablet:grid-cols-2 place-items-center">
-      <div className="w-full px-2  h-full flex flex-col gap-2">
-        <FaLeaf color="green" size={40} />
-        <h3 className="font-semibold text-xl ">Sign in</h3>
-        <p>Continue with Linkify</p>
+    <div className="w-full h-screen text-black box-border tablet:h-fit px-4 py-8  rounded flex flex-col  justify-center tablet:grid tablet:grid-cols-2 gap-12 place-items-center">
+      <div className="w-full px-2 box-border tablet:h-full grid gap-2">
+        <div className="w-full flex tablet:flex-col items-center tablet:items-start justify-between tablet:justify-start border-b tablet:border-none py-2  ">
+          <FaLeaf color="green" size={40} className="tablet:block hidden" />
+          <div>
+            {" "}
+            <h3 className="font-semibold text-xl ">Sign in</h3>
+            <p>Continue with Linkify</p>
+          </div>
+          <FaLeaf color="green" size={40} className="block tablet:hidden" />
+        </div>
       </div>
-      <form onSubmit={handleSubmit} className="w-[400px] grid gap-2">
+      <form onSubmit={handleSubmit} className="w-full grid gap-2 box-border">
         {err && <div className="text-red-500">{err}</div>}
         <Input
           label="Email"

@@ -11,11 +11,12 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <title>The Linkify</title>
       </head>
-      <body className={"w-full min-h-[100vh] grid place-items-center relative"}>
-        {/* <header className="w-full grid place-items-center shadow-bs fixed z-[999] bg-white ">
-          Login
-        </header> */}
-        <div className="w-full relative oveflow-hidden pb-0 grid place-items-center">
+      <body
+        className={
+          "w-full min-h-[100vh] grid place-items-center relative bg-gray-200 "
+        }
+      >
+        <div className="w-full tablet:w-[800px] relative oveflow-hidden pb-0 p-4 grid place-items-center bg-white tablet:rounded box-border">
           {children}
         </div>
       </body>
