@@ -18,6 +18,16 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  * 
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+/**
+ * Model Social
+ * 
+ */
+export type Social = $Result.DefaultSelection<Prisma.$SocialPayload>
+/**
+ * Model Post
+ * 
+ */
+export type Post = $Result.DefaultSelection<Prisma.$PostPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -150,6 +160,26 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs>;
+
+  /**
+   * `prisma.social`: Exposes CRUD operations for the **Social** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Socials
+    * const socials = await prisma.social.findMany()
+    * ```
+    */
+  get social(): Prisma.SocialDelegate<ExtArgs>;
+
+  /**
+   * `prisma.post`: Exposes CRUD operations for the **Post** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Posts
+    * const posts = await prisma.post.findMany()
+    * ```
+    */
+  get post(): Prisma.PostDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -620,7 +650,9 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    User: 'User'
+    User: 'User',
+    Social: 'Social',
+    Post: 'Post'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -637,7 +669,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'user'
+      modelProps: 'user' | 'social' | 'post'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -704,6 +736,138 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>,
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      Social: {
+        payload: Prisma.$SocialPayload<ExtArgs>
+        fields: Prisma.SocialFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SocialFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SocialPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SocialFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SocialPayload>
+          }
+          findFirst: {
+            args: Prisma.SocialFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SocialPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SocialFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SocialPayload>
+          }
+          findMany: {
+            args: Prisma.SocialFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SocialPayload>[]
+          }
+          create: {
+            args: Prisma.SocialCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SocialPayload>
+          }
+          createMany: {
+            args: Prisma.SocialCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.SocialDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SocialPayload>
+          }
+          update: {
+            args: Prisma.SocialUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SocialPayload>
+          }
+          deleteMany: {
+            args: Prisma.SocialDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SocialUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.SocialUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SocialPayload>
+          }
+          aggregate: {
+            args: Prisma.SocialAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateSocial>
+          }
+          groupBy: {
+            args: Prisma.SocialGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<SocialGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SocialCountArgs<ExtArgs>,
+            result: $Utils.Optional<SocialCountAggregateOutputType> | number
+          }
+        }
+      }
+      Post: {
+        payload: Prisma.$PostPayload<ExtArgs>
+        fields: Prisma.PostFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PostFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PostPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PostFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PostPayload>
+          }
+          findFirst: {
+            args: Prisma.PostFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PostPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PostFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PostPayload>
+          }
+          findMany: {
+            args: Prisma.PostFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PostPayload>[]
+          }
+          create: {
+            args: Prisma.PostCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PostPayload>
+          }
+          createMany: {
+            args: Prisma.PostCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.PostDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PostPayload>
+          }
+          update: {
+            args: Prisma.PostUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PostPayload>
+          }
+          deleteMany: {
+            args: Prisma.PostDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PostUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.PostUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PostPayload>
+          }
+          aggregate: {
+            args: Prisma.PostAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregatePost>
+          }
+          groupBy: {
+            args: Prisma.PostGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<PostGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PostCountArgs<ExtArgs>,
+            result: $Utils.Optional<PostCountAggregateOutputType> | number
           }
         }
       }
@@ -861,6 +1025,73 @@ export namespace Prisma {
    */
 
 
+  /**
+   * Count Type UserCountOutputType
+   */
+
+  export type UserCountOutputType = {
+    socialLinks: number
+  }
+
+  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    socialLinks?: boolean | UserCountOutputTypeCountSocialLinksArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCountOutputType
+     */
+    select?: UserCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountSocialLinksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SocialWhereInput
+  }
+
+
+
+  /**
+   * Count Type SocialCountOutputType
+   */
+
+  export type SocialCountOutputType = {
+    posts: number
+  }
+
+  export type SocialCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    posts?: boolean | SocialCountOutputTypeCountPostsArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * SocialCountOutputType without action
+   */
+  export type SocialCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialCountOutputType
+     */
+    select?: SocialCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * SocialCountOutputType without action
+   */
+  export type SocialCountOutputTypeCountPostsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PostWhereInput
+  }
+
+
 
   /**
    * Models
@@ -892,6 +1123,7 @@ export namespace Prisma {
     username: string | null
     subscribed: boolean | null
     password: string | null
+    imageUrl: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -902,6 +1134,7 @@ export namespace Prisma {
     username: string | null
     subscribed: boolean | null
     password: string | null
+    imageUrl: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -912,6 +1145,7 @@ export namespace Prisma {
     username: number
     subscribed: number
     password: number
+    imageUrl: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -932,6 +1166,7 @@ export namespace Prisma {
     username?: true
     subscribed?: true
     password?: true
+    imageUrl?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -942,6 +1177,7 @@ export namespace Prisma {
     username?: true
     subscribed?: true
     password?: true
+    imageUrl?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -952,6 +1188,7 @@ export namespace Prisma {
     username?: true
     subscribed?: true
     password?: true
+    imageUrl?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1049,6 +1286,7 @@ export namespace Prisma {
     username: string
     subscribed: boolean
     password: string
+    imageUrl: string
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -1078,8 +1316,11 @@ export namespace Prisma {
     username?: boolean
     subscribed?: boolean
     password?: boolean
+    imageUrl?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    socialLinks?: boolean | User$socialLinksArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -1088,20 +1329,29 @@ export namespace Prisma {
     username?: boolean
     subscribed?: boolean
     password?: boolean
+    imageUrl?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+  }
+
+  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    socialLinks?: boolean | User$socialLinksArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
-    objects: {}
+    objects: {
+      socialLinks: Prisma.$SocialPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       email: string
       username: string
       subscribed: boolean
       password: string
+      imageUrl: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -1469,6 +1719,7 @@ export namespace Prisma {
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
+    socialLinks<T extends User$socialLinksArgs<ExtArgs> = {}>(args?: Subset<T, User$socialLinksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SocialPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1503,6 +1754,7 @@ export namespace Prisma {
     readonly username: FieldRef<"User", 'String'>
     readonly subscribed: FieldRef<"User", 'Boolean'>
     readonly password: FieldRef<"User", 'String'>
+    readonly imageUrl: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -1519,6 +1771,10 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1534,6 +1790,10 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1548,6 +1808,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the User
      */
     select?: UserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which User to fetch.
      */
@@ -1594,6 +1858,10 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where?: UserWhereInput
@@ -1639,6 +1907,10 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which Users to fetch.
      */
     where?: UserWhereInput
@@ -1679,6 +1951,10 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * The data needed to create a User.
      */
     data: XOR<UserCreateInput, UserUncheckedCreateInput>
@@ -1705,6 +1981,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the User
      */
     select?: UserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to update a User.
      */
@@ -1740,6 +2020,10 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * The filter to search for the User to update in case it exists.
      */
     where: UserWhereUniqueInput
@@ -1763,6 +2047,10 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter which User to delete.
      */
     where: UserWhereUniqueInput
@@ -1781,6 +2069,27 @@ export namespace Prisma {
 
 
   /**
+   * User.socialLinks
+   */
+  export type User$socialLinksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Social
+     */
+    select?: SocialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialInclude<ExtArgs> | null
+    where?: SocialWhereInput
+    orderBy?: SocialOrderByWithRelationInput | SocialOrderByWithRelationInput[]
+    cursor?: SocialWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SocialScalarFieldEnum | SocialScalarFieldEnum[]
+  }
+
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1788,6 +2097,2058 @@ export namespace Prisma {
      * Select specific fields to fetch from the User
      */
     select?: UserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model Social
+   */
+
+  export type AggregateSocial = {
+    _count: SocialCountAggregateOutputType | null
+    _avg: SocialAvgAggregateOutputType | null
+    _sum: SocialSumAggregateOutputType | null
+    _min: SocialMinAggregateOutputType | null
+    _max: SocialMaxAggregateOutputType | null
+  }
+
+  export type SocialAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    totalPosts: number | null
+    totalLikes: number | null
+    totalComments: number | null
+  }
+
+  export type SocialSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    totalPosts: number | null
+    totalLikes: number | null
+    totalComments: number | null
+  }
+
+  export type SocialMinAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    social: string | null
+    username: string | null
+    profilePicUrl: string | null
+    totalPosts: number | null
+    totalLikes: number | null
+    totalComments: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SocialMaxAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    social: string | null
+    username: string | null
+    profilePicUrl: string | null
+    totalPosts: number | null
+    totalLikes: number | null
+    totalComments: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SocialCountAggregateOutputType = {
+    id: number
+    userId: number
+    social: number
+    username: number
+    profilePicUrl: number
+    totalPosts: number
+    totalLikes: number
+    totalComments: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type SocialAvgAggregateInputType = {
+    id?: true
+    userId?: true
+    totalPosts?: true
+    totalLikes?: true
+    totalComments?: true
+  }
+
+  export type SocialSumAggregateInputType = {
+    id?: true
+    userId?: true
+    totalPosts?: true
+    totalLikes?: true
+    totalComments?: true
+  }
+
+  export type SocialMinAggregateInputType = {
+    id?: true
+    userId?: true
+    social?: true
+    username?: true
+    profilePicUrl?: true
+    totalPosts?: true
+    totalLikes?: true
+    totalComments?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SocialMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    social?: true
+    username?: true
+    profilePicUrl?: true
+    totalPosts?: true
+    totalLikes?: true
+    totalComments?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SocialCountAggregateInputType = {
+    id?: true
+    userId?: true
+    social?: true
+    username?: true
+    profilePicUrl?: true
+    totalPosts?: true
+    totalLikes?: true
+    totalComments?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type SocialAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Social to aggregate.
+     */
+    where?: SocialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Socials to fetch.
+     */
+    orderBy?: SocialOrderByWithRelationInput | SocialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SocialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Socials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Socials.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Socials
+    **/
+    _count?: true | SocialCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SocialAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SocialSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SocialMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SocialMaxAggregateInputType
+  }
+
+  export type GetSocialAggregateType<T extends SocialAggregateArgs> = {
+        [P in keyof T & keyof AggregateSocial]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSocial[P]>
+      : GetScalarType<T[P], AggregateSocial[P]>
+  }
+
+
+
+
+  export type SocialGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SocialWhereInput
+    orderBy?: SocialOrderByWithAggregationInput | SocialOrderByWithAggregationInput[]
+    by: SocialScalarFieldEnum[] | SocialScalarFieldEnum
+    having?: SocialScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SocialCountAggregateInputType | true
+    _avg?: SocialAvgAggregateInputType
+    _sum?: SocialSumAggregateInputType
+    _min?: SocialMinAggregateInputType
+    _max?: SocialMaxAggregateInputType
+  }
+
+  export type SocialGroupByOutputType = {
+    id: number
+    userId: number
+    social: string
+    username: string
+    profilePicUrl: string
+    totalPosts: number
+    totalLikes: number
+    totalComments: number
+    createdAt: Date
+    updatedAt: Date
+    _count: SocialCountAggregateOutputType | null
+    _avg: SocialAvgAggregateOutputType | null
+    _sum: SocialSumAggregateOutputType | null
+    _min: SocialMinAggregateOutputType | null
+    _max: SocialMaxAggregateOutputType | null
+  }
+
+  type GetSocialGroupByPayload<T extends SocialGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SocialGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SocialGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SocialGroupByOutputType[P]>
+            : GetScalarType<T[P], SocialGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SocialSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    social?: boolean
+    username?: boolean
+    profilePicUrl?: boolean
+    totalPosts?: boolean
+    totalLikes?: boolean
+    totalComments?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    posts?: boolean | Social$postsArgs<ExtArgs>
+    _count?: boolean | SocialCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["social"]>
+
+  export type SocialSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    social?: boolean
+    username?: boolean
+    profilePicUrl?: boolean
+    totalPosts?: boolean
+    totalLikes?: boolean
+    totalComments?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type SocialInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    posts?: boolean | Social$postsArgs<ExtArgs>
+    _count?: boolean | SocialCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+
+  export type $SocialPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Social"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      posts: Prisma.$PostPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      userId: number
+      social: string
+      username: string
+      profilePicUrl: string
+      totalPosts: number
+      totalLikes: number
+      totalComments: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["social"]>
+    composites: {}
+  }
+
+
+  type SocialGetPayload<S extends boolean | null | undefined | SocialDefaultArgs> = $Result.GetResult<Prisma.$SocialPayload, S>
+
+  type SocialCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<SocialFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: SocialCountAggregateInputType | true
+    }
+
+  export interface SocialDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Social'], meta: { name: 'Social' } }
+    /**
+     * Find zero or one Social that matches the filter.
+     * @param {SocialFindUniqueArgs} args - Arguments to find a Social
+     * @example
+     * // Get one Social
+     * const social = await prisma.social.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends SocialFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, SocialFindUniqueArgs<ExtArgs>>
+    ): Prisma__SocialClient<$Result.GetResult<Prisma.$SocialPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Social that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {SocialFindUniqueOrThrowArgs} args - Arguments to find a Social
+     * @example
+     * // Get one Social
+     * const social = await prisma.social.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends SocialFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, SocialFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__SocialClient<$Result.GetResult<Prisma.$SocialPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Social that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialFindFirstArgs} args - Arguments to find a Social
+     * @example
+     * // Get one Social
+     * const social = await prisma.social.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends SocialFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, SocialFindFirstArgs<ExtArgs>>
+    ): Prisma__SocialClient<$Result.GetResult<Prisma.$SocialPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Social that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialFindFirstOrThrowArgs} args - Arguments to find a Social
+     * @example
+     * // Get one Social
+     * const social = await prisma.social.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends SocialFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, SocialFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__SocialClient<$Result.GetResult<Prisma.$SocialPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Socials that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Socials
+     * const socials = await prisma.social.findMany()
+     * 
+     * // Get first 10 Socials
+     * const socials = await prisma.social.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const socialWithIdOnly = await prisma.social.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends SocialFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, SocialFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SocialPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Social.
+     * @param {SocialCreateArgs} args - Arguments to create a Social.
+     * @example
+     * // Create one Social
+     * const Social = await prisma.social.create({
+     *   data: {
+     *     // ... data to create a Social
+     *   }
+     * })
+     * 
+    **/
+    create<T extends SocialCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, SocialCreateArgs<ExtArgs>>
+    ): Prisma__SocialClient<$Result.GetResult<Prisma.$SocialPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Socials.
+     *     @param {SocialCreateManyArgs} args - Arguments to create many Socials.
+     *     @example
+     *     // Create many Socials
+     *     const social = await prisma.social.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends SocialCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, SocialCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Social.
+     * @param {SocialDeleteArgs} args - Arguments to delete one Social.
+     * @example
+     * // Delete one Social
+     * const Social = await prisma.social.delete({
+     *   where: {
+     *     // ... filter to delete one Social
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends SocialDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, SocialDeleteArgs<ExtArgs>>
+    ): Prisma__SocialClient<$Result.GetResult<Prisma.$SocialPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Social.
+     * @param {SocialUpdateArgs} args - Arguments to update one Social.
+     * @example
+     * // Update one Social
+     * const social = await prisma.social.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends SocialUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, SocialUpdateArgs<ExtArgs>>
+    ): Prisma__SocialClient<$Result.GetResult<Prisma.$SocialPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Socials.
+     * @param {SocialDeleteManyArgs} args - Arguments to filter Socials to delete.
+     * @example
+     * // Delete a few Socials
+     * const { count } = await prisma.social.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends SocialDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, SocialDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Socials.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Socials
+     * const social = await prisma.social.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends SocialUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, SocialUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Social.
+     * @param {SocialUpsertArgs} args - Arguments to update or create a Social.
+     * @example
+     * // Update or create a Social
+     * const social = await prisma.social.upsert({
+     *   create: {
+     *     // ... data to create a Social
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Social we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends SocialUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, SocialUpsertArgs<ExtArgs>>
+    ): Prisma__SocialClient<$Result.GetResult<Prisma.$SocialPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Socials.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialCountArgs} args - Arguments to filter Socials to count.
+     * @example
+     * // Count the number of Socials
+     * const count = await prisma.social.count({
+     *   where: {
+     *     // ... the filter for the Socials we want to count
+     *   }
+     * })
+    **/
+    count<T extends SocialCountArgs>(
+      args?: Subset<T, SocialCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SocialCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Social.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SocialAggregateArgs>(args: Subset<T, SocialAggregateArgs>): Prisma.PrismaPromise<GetSocialAggregateType<T>>
+
+    /**
+     * Group by Social.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SocialGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SocialGroupByArgs['orderBy'] }
+        : { orderBy?: SocialGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SocialGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSocialGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Social model
+   */
+  readonly fields: SocialFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Social.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SocialClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    posts<T extends Social$postsArgs<ExtArgs> = {}>(args?: Subset<T, Social$postsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Social model
+   */ 
+  interface SocialFieldRefs {
+    readonly id: FieldRef<"Social", 'Int'>
+    readonly userId: FieldRef<"Social", 'Int'>
+    readonly social: FieldRef<"Social", 'String'>
+    readonly username: FieldRef<"Social", 'String'>
+    readonly profilePicUrl: FieldRef<"Social", 'String'>
+    readonly totalPosts: FieldRef<"Social", 'Int'>
+    readonly totalLikes: FieldRef<"Social", 'Int'>
+    readonly totalComments: FieldRef<"Social", 'Int'>
+    readonly createdAt: FieldRef<"Social", 'DateTime'>
+    readonly updatedAt: FieldRef<"Social", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * Social findUnique
+   */
+  export type SocialFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Social
+     */
+    select?: SocialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialInclude<ExtArgs> | null
+    /**
+     * Filter, which Social to fetch.
+     */
+    where: SocialWhereUniqueInput
+  }
+
+
+  /**
+   * Social findUniqueOrThrow
+   */
+  export type SocialFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Social
+     */
+    select?: SocialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialInclude<ExtArgs> | null
+    /**
+     * Filter, which Social to fetch.
+     */
+    where: SocialWhereUniqueInput
+  }
+
+
+  /**
+   * Social findFirst
+   */
+  export type SocialFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Social
+     */
+    select?: SocialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialInclude<ExtArgs> | null
+    /**
+     * Filter, which Social to fetch.
+     */
+    where?: SocialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Socials to fetch.
+     */
+    orderBy?: SocialOrderByWithRelationInput | SocialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Socials.
+     */
+    cursor?: SocialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Socials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Socials.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Socials.
+     */
+    distinct?: SocialScalarFieldEnum | SocialScalarFieldEnum[]
+  }
+
+
+  /**
+   * Social findFirstOrThrow
+   */
+  export type SocialFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Social
+     */
+    select?: SocialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialInclude<ExtArgs> | null
+    /**
+     * Filter, which Social to fetch.
+     */
+    where?: SocialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Socials to fetch.
+     */
+    orderBy?: SocialOrderByWithRelationInput | SocialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Socials.
+     */
+    cursor?: SocialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Socials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Socials.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Socials.
+     */
+    distinct?: SocialScalarFieldEnum | SocialScalarFieldEnum[]
+  }
+
+
+  /**
+   * Social findMany
+   */
+  export type SocialFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Social
+     */
+    select?: SocialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialInclude<ExtArgs> | null
+    /**
+     * Filter, which Socials to fetch.
+     */
+    where?: SocialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Socials to fetch.
+     */
+    orderBy?: SocialOrderByWithRelationInput | SocialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Socials.
+     */
+    cursor?: SocialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Socials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Socials.
+     */
+    skip?: number
+    distinct?: SocialScalarFieldEnum | SocialScalarFieldEnum[]
+  }
+
+
+  /**
+   * Social create
+   */
+  export type SocialCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Social
+     */
+    select?: SocialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Social.
+     */
+    data: XOR<SocialCreateInput, SocialUncheckedCreateInput>
+  }
+
+
+  /**
+   * Social createMany
+   */
+  export type SocialCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Socials.
+     */
+    data: SocialCreateManyInput | SocialCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * Social update
+   */
+  export type SocialUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Social
+     */
+    select?: SocialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Social.
+     */
+    data: XOR<SocialUpdateInput, SocialUncheckedUpdateInput>
+    /**
+     * Choose, which Social to update.
+     */
+    where: SocialWhereUniqueInput
+  }
+
+
+  /**
+   * Social updateMany
+   */
+  export type SocialUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Socials.
+     */
+    data: XOR<SocialUpdateManyMutationInput, SocialUncheckedUpdateManyInput>
+    /**
+     * Filter which Socials to update
+     */
+    where?: SocialWhereInput
+  }
+
+
+  /**
+   * Social upsert
+   */
+  export type SocialUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Social
+     */
+    select?: SocialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Social to update in case it exists.
+     */
+    where: SocialWhereUniqueInput
+    /**
+     * In case the Social found by the `where` argument doesn't exist, create a new Social with this data.
+     */
+    create: XOR<SocialCreateInput, SocialUncheckedCreateInput>
+    /**
+     * In case the Social was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SocialUpdateInput, SocialUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Social delete
+   */
+  export type SocialDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Social
+     */
+    select?: SocialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialInclude<ExtArgs> | null
+    /**
+     * Filter which Social to delete.
+     */
+    where: SocialWhereUniqueInput
+  }
+
+
+  /**
+   * Social deleteMany
+   */
+  export type SocialDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Socials to delete
+     */
+    where?: SocialWhereInput
+  }
+
+
+  /**
+   * Social.posts
+   */
+  export type Social$postsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PostInclude<ExtArgs> | null
+    where?: PostWhereInput
+    orderBy?: PostOrderByWithRelationInput | PostOrderByWithRelationInput[]
+    cursor?: PostWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PostScalarFieldEnum | PostScalarFieldEnum[]
+  }
+
+
+  /**
+   * Social without action
+   */
+  export type SocialDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Social
+     */
+    select?: SocialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model Post
+   */
+
+  export type AggregatePost = {
+    _count: PostCountAggregateOutputType | null
+    _avg: PostAvgAggregateOutputType | null
+    _sum: PostSumAggregateOutputType | null
+    _min: PostMinAggregateOutputType | null
+    _max: PostMaxAggregateOutputType | null
+  }
+
+  export type PostAvgAggregateOutputType = {
+    id: number | null
+    socialId: number | null
+    likes: number | null
+    comments: number | null
+  }
+
+  export type PostSumAggregateOutputType = {
+    id: number | null
+    socialId: number | null
+    likes: number | null
+    comments: number | null
+  }
+
+  export type PostMinAggregateOutputType = {
+    id: number | null
+    socialId: number | null
+    content: string | null
+    image: string | null
+    likes: number | null
+    comments: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PostMaxAggregateOutputType = {
+    id: number | null
+    socialId: number | null
+    content: string | null
+    image: string | null
+    likes: number | null
+    comments: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PostCountAggregateOutputType = {
+    id: number
+    socialId: number
+    content: number
+    image: number
+    likes: number
+    comments: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type PostAvgAggregateInputType = {
+    id?: true
+    socialId?: true
+    likes?: true
+    comments?: true
+  }
+
+  export type PostSumAggregateInputType = {
+    id?: true
+    socialId?: true
+    likes?: true
+    comments?: true
+  }
+
+  export type PostMinAggregateInputType = {
+    id?: true
+    socialId?: true
+    content?: true
+    image?: true
+    likes?: true
+    comments?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PostMaxAggregateInputType = {
+    id?: true
+    socialId?: true
+    content?: true
+    image?: true
+    likes?: true
+    comments?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PostCountAggregateInputType = {
+    id?: true
+    socialId?: true
+    content?: true
+    image?: true
+    likes?: true
+    comments?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type PostAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Post to aggregate.
+     */
+    where?: PostWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Posts to fetch.
+     */
+    orderBy?: PostOrderByWithRelationInput | PostOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PostWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Posts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Posts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Posts
+    **/
+    _count?: true | PostCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PostAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PostSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PostMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PostMaxAggregateInputType
+  }
+
+  export type GetPostAggregateType<T extends PostAggregateArgs> = {
+        [P in keyof T & keyof AggregatePost]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePost[P]>
+      : GetScalarType<T[P], AggregatePost[P]>
+  }
+
+
+
+
+  export type PostGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PostWhereInput
+    orderBy?: PostOrderByWithAggregationInput | PostOrderByWithAggregationInput[]
+    by: PostScalarFieldEnum[] | PostScalarFieldEnum
+    having?: PostScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PostCountAggregateInputType | true
+    _avg?: PostAvgAggregateInputType
+    _sum?: PostSumAggregateInputType
+    _min?: PostMinAggregateInputType
+    _max?: PostMaxAggregateInputType
+  }
+
+  export type PostGroupByOutputType = {
+    id: number
+    socialId: number
+    content: string
+    image: string
+    likes: number
+    comments: number
+    createdAt: Date
+    updatedAt: Date
+    _count: PostCountAggregateOutputType | null
+    _avg: PostAvgAggregateOutputType | null
+    _sum: PostSumAggregateOutputType | null
+    _min: PostMinAggregateOutputType | null
+    _max: PostMaxAggregateOutputType | null
+  }
+
+  type GetPostGroupByPayload<T extends PostGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PostGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PostGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PostGroupByOutputType[P]>
+            : GetScalarType<T[P], PostGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PostSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    socialId?: boolean
+    content?: boolean
+    image?: boolean
+    likes?: boolean
+    comments?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    social?: boolean | SocialDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["post"]>
+
+  export type PostSelectScalar = {
+    id?: boolean
+    socialId?: boolean
+    content?: boolean
+    image?: boolean
+    likes?: boolean
+    comments?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    social?: boolean | SocialDefaultArgs<ExtArgs>
+  }
+
+
+  export type $PostPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Post"
+    objects: {
+      social: Prisma.$SocialPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      socialId: number
+      content: string
+      image: string
+      likes: number
+      comments: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["post"]>
+    composites: {}
+  }
+
+
+  type PostGetPayload<S extends boolean | null | undefined | PostDefaultArgs> = $Result.GetResult<Prisma.$PostPayload, S>
+
+  type PostCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<PostFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: PostCountAggregateInputType | true
+    }
+
+  export interface PostDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Post'], meta: { name: 'Post' } }
+    /**
+     * Find zero or one Post that matches the filter.
+     * @param {PostFindUniqueArgs} args - Arguments to find a Post
+     * @example
+     * // Get one Post
+     * const post = await prisma.post.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends PostFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, PostFindUniqueArgs<ExtArgs>>
+    ): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Post that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {PostFindUniqueOrThrowArgs} args - Arguments to find a Post
+     * @example
+     * // Get one Post
+     * const post = await prisma.post.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends PostFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PostFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Post that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostFindFirstArgs} args - Arguments to find a Post
+     * @example
+     * // Get one Post
+     * const post = await prisma.post.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends PostFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, PostFindFirstArgs<ExtArgs>>
+    ): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Post that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostFindFirstOrThrowArgs} args - Arguments to find a Post
+     * @example
+     * // Get one Post
+     * const post = await prisma.post.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends PostFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PostFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Posts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Posts
+     * const posts = await prisma.post.findMany()
+     * 
+     * // Get first 10 Posts
+     * const posts = await prisma.post.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const postWithIdOnly = await prisma.post.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends PostFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PostFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Post.
+     * @param {PostCreateArgs} args - Arguments to create a Post.
+     * @example
+     * // Create one Post
+     * const Post = await prisma.post.create({
+     *   data: {
+     *     // ... data to create a Post
+     *   }
+     * })
+     * 
+    **/
+    create<T extends PostCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, PostCreateArgs<ExtArgs>>
+    ): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Posts.
+     *     @param {PostCreateManyArgs} args - Arguments to create many Posts.
+     *     @example
+     *     // Create many Posts
+     *     const post = await prisma.post.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends PostCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PostCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Post.
+     * @param {PostDeleteArgs} args - Arguments to delete one Post.
+     * @example
+     * // Delete one Post
+     * const Post = await prisma.post.delete({
+     *   where: {
+     *     // ... filter to delete one Post
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends PostDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, PostDeleteArgs<ExtArgs>>
+    ): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Post.
+     * @param {PostUpdateArgs} args - Arguments to update one Post.
+     * @example
+     * // Update one Post
+     * const post = await prisma.post.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends PostUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, PostUpdateArgs<ExtArgs>>
+    ): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Posts.
+     * @param {PostDeleteManyArgs} args - Arguments to filter Posts to delete.
+     * @example
+     * // Delete a few Posts
+     * const { count } = await prisma.post.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends PostDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PostDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Posts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Posts
+     * const post = await prisma.post.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends PostUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, PostUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Post.
+     * @param {PostUpsertArgs} args - Arguments to update or create a Post.
+     * @example
+     * // Update or create a Post
+     * const post = await prisma.post.upsert({
+     *   create: {
+     *     // ... data to create a Post
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Post we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends PostUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, PostUpsertArgs<ExtArgs>>
+    ): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Posts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostCountArgs} args - Arguments to filter Posts to count.
+     * @example
+     * // Count the number of Posts
+     * const count = await prisma.post.count({
+     *   where: {
+     *     // ... the filter for the Posts we want to count
+     *   }
+     * })
+    **/
+    count<T extends PostCountArgs>(
+      args?: Subset<T, PostCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PostCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Post.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PostAggregateArgs>(args: Subset<T, PostAggregateArgs>): Prisma.PrismaPromise<GetPostAggregateType<T>>
+
+    /**
+     * Group by Post.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PostGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PostGroupByArgs['orderBy'] }
+        : { orderBy?: PostGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PostGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPostGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Post model
+   */
+  readonly fields: PostFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Post.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PostClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    social<T extends SocialDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SocialDefaultArgs<ExtArgs>>): Prisma__SocialClient<$Result.GetResult<Prisma.$SocialPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Post model
+   */ 
+  interface PostFieldRefs {
+    readonly id: FieldRef<"Post", 'Int'>
+    readonly socialId: FieldRef<"Post", 'Int'>
+    readonly content: FieldRef<"Post", 'String'>
+    readonly image: FieldRef<"Post", 'String'>
+    readonly likes: FieldRef<"Post", 'Int'>
+    readonly comments: FieldRef<"Post", 'Int'>
+    readonly createdAt: FieldRef<"Post", 'DateTime'>
+    readonly updatedAt: FieldRef<"Post", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * Post findUnique
+   */
+  export type PostFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PostInclude<ExtArgs> | null
+    /**
+     * Filter, which Post to fetch.
+     */
+    where: PostWhereUniqueInput
+  }
+
+
+  /**
+   * Post findUniqueOrThrow
+   */
+  export type PostFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PostInclude<ExtArgs> | null
+    /**
+     * Filter, which Post to fetch.
+     */
+    where: PostWhereUniqueInput
+  }
+
+
+  /**
+   * Post findFirst
+   */
+  export type PostFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PostInclude<ExtArgs> | null
+    /**
+     * Filter, which Post to fetch.
+     */
+    where?: PostWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Posts to fetch.
+     */
+    orderBy?: PostOrderByWithRelationInput | PostOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Posts.
+     */
+    cursor?: PostWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Posts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Posts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Posts.
+     */
+    distinct?: PostScalarFieldEnum | PostScalarFieldEnum[]
+  }
+
+
+  /**
+   * Post findFirstOrThrow
+   */
+  export type PostFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PostInclude<ExtArgs> | null
+    /**
+     * Filter, which Post to fetch.
+     */
+    where?: PostWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Posts to fetch.
+     */
+    orderBy?: PostOrderByWithRelationInput | PostOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Posts.
+     */
+    cursor?: PostWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Posts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Posts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Posts.
+     */
+    distinct?: PostScalarFieldEnum | PostScalarFieldEnum[]
+  }
+
+
+  /**
+   * Post findMany
+   */
+  export type PostFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PostInclude<ExtArgs> | null
+    /**
+     * Filter, which Posts to fetch.
+     */
+    where?: PostWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Posts to fetch.
+     */
+    orderBy?: PostOrderByWithRelationInput | PostOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Posts.
+     */
+    cursor?: PostWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Posts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Posts.
+     */
+    skip?: number
+    distinct?: PostScalarFieldEnum | PostScalarFieldEnum[]
+  }
+
+
+  /**
+   * Post create
+   */
+  export type PostCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PostInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Post.
+     */
+    data: XOR<PostCreateInput, PostUncheckedCreateInput>
+  }
+
+
+  /**
+   * Post createMany
+   */
+  export type PostCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Posts.
+     */
+    data: PostCreateManyInput | PostCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * Post update
+   */
+  export type PostUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PostInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Post.
+     */
+    data: XOR<PostUpdateInput, PostUncheckedUpdateInput>
+    /**
+     * Choose, which Post to update.
+     */
+    where: PostWhereUniqueInput
+  }
+
+
+  /**
+   * Post updateMany
+   */
+  export type PostUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Posts.
+     */
+    data: XOR<PostUpdateManyMutationInput, PostUncheckedUpdateManyInput>
+    /**
+     * Filter which Posts to update
+     */
+    where?: PostWhereInput
+  }
+
+
+  /**
+   * Post upsert
+   */
+  export type PostUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PostInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Post to update in case it exists.
+     */
+    where: PostWhereUniqueInput
+    /**
+     * In case the Post found by the `where` argument doesn't exist, create a new Post with this data.
+     */
+    create: XOR<PostCreateInput, PostUncheckedCreateInput>
+    /**
+     * In case the Post was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PostUpdateInput, PostUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Post delete
+   */
+  export type PostDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PostInclude<ExtArgs> | null
+    /**
+     * Filter which Post to delete.
+     */
+    where: PostWhereUniqueInput
+  }
+
+
+  /**
+   * Post deleteMany
+   */
+  export type PostDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Posts to delete
+     */
+    where?: PostWhereInput
+  }
+
+
+  /**
+   * Post without action
+   */
+  export type PostDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post
+     */
+    select?: PostSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PostInclude<ExtArgs> | null
   }
 
 
@@ -1812,11 +4173,42 @@ export namespace Prisma {
     username: 'username',
     subscribed: 'subscribed',
     password: 'password',
+    imageUrl: 'imageUrl',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+  export const SocialScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    social: 'social',
+    username: 'username',
+    profilePicUrl: 'profilePicUrl',
+    totalPosts: 'totalPosts',
+    totalLikes: 'totalLikes',
+    totalComments: 'totalComments',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type SocialScalarFieldEnum = (typeof SocialScalarFieldEnum)[keyof typeof SocialScalarFieldEnum]
+
+
+  export const PostScalarFieldEnum: {
+    id: 'id',
+    socialId: 'socialId',
+    content: 'content',
+    image: 'image',
+    likes: 'likes',
+    comments: 'comments',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -1915,8 +4307,10 @@ export namespace Prisma {
     username?: StringFilter<"User"> | string
     subscribed?: BoolFilter<"User"> | boolean
     password?: StringFilter<"User"> | string
+    imageUrl?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    socialLinks?: SocialListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -1925,8 +4319,10 @@ export namespace Prisma {
     username?: SortOrder
     subscribed?: SortOrder
     password?: SortOrder
+    imageUrl?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    socialLinks?: SocialOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -1938,8 +4334,10 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     subscribed?: BoolFilter<"User"> | boolean
     password?: StringFilter<"User"> | string
+    imageUrl?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    socialLinks?: SocialListRelationFilter
   }, "id" | "email" | "username">
 
   export type UserOrderByWithAggregationInput = {
@@ -1948,6 +4346,7 @@ export namespace Prisma {
     username?: SortOrder
     subscribed?: SortOrder
     password?: SortOrder
+    imageUrl?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -1966,8 +4365,166 @@ export namespace Prisma {
     username?: StringWithAggregatesFilter<"User"> | string
     subscribed?: BoolWithAggregatesFilter<"User"> | boolean
     password?: StringWithAggregatesFilter<"User"> | string
+    imageUrl?: StringWithAggregatesFilter<"User"> | string
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+  }
+
+  export type SocialWhereInput = {
+    AND?: SocialWhereInput | SocialWhereInput[]
+    OR?: SocialWhereInput[]
+    NOT?: SocialWhereInput | SocialWhereInput[]
+    id?: IntFilter<"Social"> | number
+    userId?: IntFilter<"Social"> | number
+    social?: StringFilter<"Social"> | string
+    username?: StringFilter<"Social"> | string
+    profilePicUrl?: StringFilter<"Social"> | string
+    totalPosts?: IntFilter<"Social"> | number
+    totalLikes?: IntFilter<"Social"> | number
+    totalComments?: IntFilter<"Social"> | number
+    createdAt?: DateTimeFilter<"Social"> | Date | string
+    updatedAt?: DateTimeFilter<"Social"> | Date | string
+    user?: XOR<UserRelationFilter, UserWhereInput>
+    posts?: PostListRelationFilter
+  }
+
+  export type SocialOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    social?: SortOrder
+    username?: SortOrder
+    profilePicUrl?: SortOrder
+    totalPosts?: SortOrder
+    totalLikes?: SortOrder
+    totalComments?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    posts?: PostOrderByRelationAggregateInput
+  }
+
+  export type SocialWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    username?: string
+    AND?: SocialWhereInput | SocialWhereInput[]
+    OR?: SocialWhereInput[]
+    NOT?: SocialWhereInput | SocialWhereInput[]
+    userId?: IntFilter<"Social"> | number
+    social?: StringFilter<"Social"> | string
+    profilePicUrl?: StringFilter<"Social"> | string
+    totalPosts?: IntFilter<"Social"> | number
+    totalLikes?: IntFilter<"Social"> | number
+    totalComments?: IntFilter<"Social"> | number
+    createdAt?: DateTimeFilter<"Social"> | Date | string
+    updatedAt?: DateTimeFilter<"Social"> | Date | string
+    user?: XOR<UserRelationFilter, UserWhereInput>
+    posts?: PostListRelationFilter
+  }, "id" | "username">
+
+  export type SocialOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    social?: SortOrder
+    username?: SortOrder
+    profilePicUrl?: SortOrder
+    totalPosts?: SortOrder
+    totalLikes?: SortOrder
+    totalComments?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: SocialCountOrderByAggregateInput
+    _avg?: SocialAvgOrderByAggregateInput
+    _max?: SocialMaxOrderByAggregateInput
+    _min?: SocialMinOrderByAggregateInput
+    _sum?: SocialSumOrderByAggregateInput
+  }
+
+  export type SocialScalarWhereWithAggregatesInput = {
+    AND?: SocialScalarWhereWithAggregatesInput | SocialScalarWhereWithAggregatesInput[]
+    OR?: SocialScalarWhereWithAggregatesInput[]
+    NOT?: SocialScalarWhereWithAggregatesInput | SocialScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Social"> | number
+    userId?: IntWithAggregatesFilter<"Social"> | number
+    social?: StringWithAggregatesFilter<"Social"> | string
+    username?: StringWithAggregatesFilter<"Social"> | string
+    profilePicUrl?: StringWithAggregatesFilter<"Social"> | string
+    totalPosts?: IntWithAggregatesFilter<"Social"> | number
+    totalLikes?: IntWithAggregatesFilter<"Social"> | number
+    totalComments?: IntWithAggregatesFilter<"Social"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Social"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Social"> | Date | string
+  }
+
+  export type PostWhereInput = {
+    AND?: PostWhereInput | PostWhereInput[]
+    OR?: PostWhereInput[]
+    NOT?: PostWhereInput | PostWhereInput[]
+    id?: IntFilter<"Post"> | number
+    socialId?: IntFilter<"Post"> | number
+    content?: StringFilter<"Post"> | string
+    image?: StringFilter<"Post"> | string
+    likes?: IntFilter<"Post"> | number
+    comments?: IntFilter<"Post"> | number
+    createdAt?: DateTimeFilter<"Post"> | Date | string
+    updatedAt?: DateTimeFilter<"Post"> | Date | string
+    social?: XOR<SocialRelationFilter, SocialWhereInput>
+  }
+
+  export type PostOrderByWithRelationInput = {
+    id?: SortOrder
+    socialId?: SortOrder
+    content?: SortOrder
+    image?: SortOrder
+    likes?: SortOrder
+    comments?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    social?: SocialOrderByWithRelationInput
+  }
+
+  export type PostWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: PostWhereInput | PostWhereInput[]
+    OR?: PostWhereInput[]
+    NOT?: PostWhereInput | PostWhereInput[]
+    socialId?: IntFilter<"Post"> | number
+    content?: StringFilter<"Post"> | string
+    image?: StringFilter<"Post"> | string
+    likes?: IntFilter<"Post"> | number
+    comments?: IntFilter<"Post"> | number
+    createdAt?: DateTimeFilter<"Post"> | Date | string
+    updatedAt?: DateTimeFilter<"Post"> | Date | string
+    social?: XOR<SocialRelationFilter, SocialWhereInput>
+  }, "id">
+
+  export type PostOrderByWithAggregationInput = {
+    id?: SortOrder
+    socialId?: SortOrder
+    content?: SortOrder
+    image?: SortOrder
+    likes?: SortOrder
+    comments?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: PostCountOrderByAggregateInput
+    _avg?: PostAvgOrderByAggregateInput
+    _max?: PostMaxOrderByAggregateInput
+    _min?: PostMinOrderByAggregateInput
+    _sum?: PostSumOrderByAggregateInput
+  }
+
+  export type PostScalarWhereWithAggregatesInput = {
+    AND?: PostScalarWhereWithAggregatesInput | PostScalarWhereWithAggregatesInput[]
+    OR?: PostScalarWhereWithAggregatesInput[]
+    NOT?: PostScalarWhereWithAggregatesInput | PostScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Post"> | number
+    socialId?: IntWithAggregatesFilter<"Post"> | number
+    content?: StringWithAggregatesFilter<"Post"> | string
+    image?: StringWithAggregatesFilter<"Post"> | string
+    likes?: IntWithAggregatesFilter<"Post"> | number
+    comments?: IntWithAggregatesFilter<"Post"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -1975,8 +4532,10 @@ export namespace Prisma {
     username: string
     subscribed: boolean
     password: string
+    imageUrl: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    socialLinks?: SocialCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -1985,8 +4544,10 @@ export namespace Prisma {
     username: string
     subscribed: boolean
     password: string
+    imageUrl: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    socialLinks?: SocialUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -1994,8 +4555,10 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     subscribed?: BoolFieldUpdateOperationsInput | boolean
     password?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    socialLinks?: SocialUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -2004,8 +4567,10 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     subscribed?: BoolFieldUpdateOperationsInput | boolean
     password?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    socialLinks?: SocialUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -2014,6 +4579,7 @@ export namespace Prisma {
     username: string
     subscribed: boolean
     password: string
+    imageUrl: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2023,6 +4589,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     subscribed?: BoolFieldUpdateOperationsInput | boolean
     password?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2033,6 +4600,171 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     subscribed?: BoolFieldUpdateOperationsInput | boolean
     password?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SocialCreateInput = {
+    social: string
+    username: string
+    profilePicUrl: string
+    totalPosts: number
+    totalLikes: number
+    totalComments: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutSocialLinksInput
+    posts?: PostCreateNestedManyWithoutSocialInput
+  }
+
+  export type SocialUncheckedCreateInput = {
+    id?: number
+    userId: number
+    social: string
+    username: string
+    profilePicUrl: string
+    totalPosts: number
+    totalLikes: number
+    totalComments: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    posts?: PostUncheckedCreateNestedManyWithoutSocialInput
+  }
+
+  export type SocialUpdateInput = {
+    social?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    profilePicUrl?: StringFieldUpdateOperationsInput | string
+    totalPosts?: IntFieldUpdateOperationsInput | number
+    totalLikes?: IntFieldUpdateOperationsInput | number
+    totalComments?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSocialLinksNestedInput
+    posts?: PostUpdateManyWithoutSocialNestedInput
+  }
+
+  export type SocialUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    social?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    profilePicUrl?: StringFieldUpdateOperationsInput | string
+    totalPosts?: IntFieldUpdateOperationsInput | number
+    totalLikes?: IntFieldUpdateOperationsInput | number
+    totalComments?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    posts?: PostUncheckedUpdateManyWithoutSocialNestedInput
+  }
+
+  export type SocialCreateManyInput = {
+    id?: number
+    userId: number
+    social: string
+    username: string
+    profilePicUrl: string
+    totalPosts: number
+    totalLikes: number
+    totalComments: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SocialUpdateManyMutationInput = {
+    social?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    profilePicUrl?: StringFieldUpdateOperationsInput | string
+    totalPosts?: IntFieldUpdateOperationsInput | number
+    totalLikes?: IntFieldUpdateOperationsInput | number
+    totalComments?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SocialUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    social?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    profilePicUrl?: StringFieldUpdateOperationsInput | string
+    totalPosts?: IntFieldUpdateOperationsInput | number
+    totalLikes?: IntFieldUpdateOperationsInput | number
+    totalComments?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PostCreateInput = {
+    content: string
+    image: string
+    likes: number
+    comments: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    social: SocialCreateNestedOneWithoutPostsInput
+  }
+
+  export type PostUncheckedCreateInput = {
+    id?: number
+    socialId: number
+    content: string
+    image: string
+    likes: number
+    comments: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PostUpdateInput = {
+    content?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    likes?: IntFieldUpdateOperationsInput | number
+    comments?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    social?: SocialUpdateOneRequiredWithoutPostsNestedInput
+  }
+
+  export type PostUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    socialId?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    likes?: IntFieldUpdateOperationsInput | number
+    comments?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PostCreateManyInput = {
+    id?: number
+    socialId: number
+    content: string
+    image: string
+    likes: number
+    comments: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PostUpdateManyMutationInput = {
+    content?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    likes?: IntFieldUpdateOperationsInput | number
+    comments?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PostUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    socialId?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    likes?: IntFieldUpdateOperationsInput | number
+    comments?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2079,12 +4811,23 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type SocialListRelationFilter = {
+    every?: SocialWhereInput
+    some?: SocialWhereInput
+    none?: SocialWhereInput
+  }
+
+  export type SocialOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
     username?: SortOrder
     subscribed?: SortOrder
     password?: SortOrder
+    imageUrl?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2099,6 +4842,7 @@ export namespace Prisma {
     username?: SortOrder
     subscribed?: SortOrder
     password?: SortOrder
+    imageUrl?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2109,6 +4853,7 @@ export namespace Prisma {
     username?: SortOrder
     subscribed?: SortOrder
     password?: SortOrder
+    imageUrl?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2173,6 +4918,142 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type UserRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type PostListRelationFilter = {
+    every?: PostWhereInput
+    some?: PostWhereInput
+    none?: PostWhereInput
+  }
+
+  export type PostOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SocialCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    social?: SortOrder
+    username?: SortOrder
+    profilePicUrl?: SortOrder
+    totalPosts?: SortOrder
+    totalLikes?: SortOrder
+    totalComments?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SocialAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    totalPosts?: SortOrder
+    totalLikes?: SortOrder
+    totalComments?: SortOrder
+  }
+
+  export type SocialMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    social?: SortOrder
+    username?: SortOrder
+    profilePicUrl?: SortOrder
+    totalPosts?: SortOrder
+    totalLikes?: SortOrder
+    totalComments?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SocialMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    social?: SortOrder
+    username?: SortOrder
+    profilePicUrl?: SortOrder
+    totalPosts?: SortOrder
+    totalLikes?: SortOrder
+    totalComments?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SocialSumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    totalPosts?: SortOrder
+    totalLikes?: SortOrder
+    totalComments?: SortOrder
+  }
+
+  export type SocialRelationFilter = {
+    is?: SocialWhereInput
+    isNot?: SocialWhereInput
+  }
+
+  export type PostCountOrderByAggregateInput = {
+    id?: SortOrder
+    socialId?: SortOrder
+    content?: SortOrder
+    image?: SortOrder
+    likes?: SortOrder
+    comments?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PostAvgOrderByAggregateInput = {
+    id?: SortOrder
+    socialId?: SortOrder
+    likes?: SortOrder
+    comments?: SortOrder
+  }
+
+  export type PostMaxOrderByAggregateInput = {
+    id?: SortOrder
+    socialId?: SortOrder
+    content?: SortOrder
+    image?: SortOrder
+    likes?: SortOrder
+    comments?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PostMinOrderByAggregateInput = {
+    id?: SortOrder
+    socialId?: SortOrder
+    content?: SortOrder
+    image?: SortOrder
+    likes?: SortOrder
+    comments?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PostSumOrderByAggregateInput = {
+    id?: SortOrder
+    socialId?: SortOrder
+    likes?: SortOrder
+    comments?: SortOrder
+  }
+
+  export type SocialCreateNestedManyWithoutUserInput = {
+    create?: XOR<SocialCreateWithoutUserInput, SocialUncheckedCreateWithoutUserInput> | SocialCreateWithoutUserInput[] | SocialUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SocialCreateOrConnectWithoutUserInput | SocialCreateOrConnectWithoutUserInput[]
+    createMany?: SocialCreateManyUserInputEnvelope
+    connect?: SocialWhereUniqueInput | SocialWhereUniqueInput[]
+  }
+
+  export type SocialUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<SocialCreateWithoutUserInput, SocialUncheckedCreateWithoutUserInput> | SocialCreateWithoutUserInput[] | SocialUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SocialCreateOrConnectWithoutUserInput | SocialCreateOrConnectWithoutUserInput[]
+    createMany?: SocialCreateManyUserInputEnvelope
+    connect?: SocialWhereUniqueInput | SocialWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -2185,12 +5066,110 @@ export namespace Prisma {
     set?: Date | string
   }
 
+  export type SocialUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SocialCreateWithoutUserInput, SocialUncheckedCreateWithoutUserInput> | SocialCreateWithoutUserInput[] | SocialUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SocialCreateOrConnectWithoutUserInput | SocialCreateOrConnectWithoutUserInput[]
+    upsert?: SocialUpsertWithWhereUniqueWithoutUserInput | SocialUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SocialCreateManyUserInputEnvelope
+    set?: SocialWhereUniqueInput | SocialWhereUniqueInput[]
+    disconnect?: SocialWhereUniqueInput | SocialWhereUniqueInput[]
+    delete?: SocialWhereUniqueInput | SocialWhereUniqueInput[]
+    connect?: SocialWhereUniqueInput | SocialWhereUniqueInput[]
+    update?: SocialUpdateWithWhereUniqueWithoutUserInput | SocialUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SocialUpdateManyWithWhereWithoutUserInput | SocialUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SocialScalarWhereInput | SocialScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type SocialUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SocialCreateWithoutUserInput, SocialUncheckedCreateWithoutUserInput> | SocialCreateWithoutUserInput[] | SocialUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SocialCreateOrConnectWithoutUserInput | SocialCreateOrConnectWithoutUserInput[]
+    upsert?: SocialUpsertWithWhereUniqueWithoutUserInput | SocialUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SocialCreateManyUserInputEnvelope
+    set?: SocialWhereUniqueInput | SocialWhereUniqueInput[]
+    disconnect?: SocialWhereUniqueInput | SocialWhereUniqueInput[]
+    delete?: SocialWhereUniqueInput | SocialWhereUniqueInput[]
+    connect?: SocialWhereUniqueInput | SocialWhereUniqueInput[]
+    update?: SocialUpdateWithWhereUniqueWithoutUserInput | SocialUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SocialUpdateManyWithWhereWithoutUserInput | SocialUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SocialScalarWhereInput | SocialScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutSocialLinksInput = {
+    create?: XOR<UserCreateWithoutSocialLinksInput, UserUncheckedCreateWithoutSocialLinksInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSocialLinksInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type PostCreateNestedManyWithoutSocialInput = {
+    create?: XOR<PostCreateWithoutSocialInput, PostUncheckedCreateWithoutSocialInput> | PostCreateWithoutSocialInput[] | PostUncheckedCreateWithoutSocialInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutSocialInput | PostCreateOrConnectWithoutSocialInput[]
+    createMany?: PostCreateManySocialInputEnvelope
+    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+  }
+
+  export type PostUncheckedCreateNestedManyWithoutSocialInput = {
+    create?: XOR<PostCreateWithoutSocialInput, PostUncheckedCreateWithoutSocialInput> | PostCreateWithoutSocialInput[] | PostUncheckedCreateWithoutSocialInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutSocialInput | PostCreateOrConnectWithoutSocialInput[]
+    createMany?: PostCreateManySocialInputEnvelope
+    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutSocialLinksNestedInput = {
+    create?: XOR<UserCreateWithoutSocialLinksInput, UserUncheckedCreateWithoutSocialLinksInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSocialLinksInput
+    upsert?: UserUpsertWithoutSocialLinksInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSocialLinksInput, UserUpdateWithoutSocialLinksInput>, UserUncheckedUpdateWithoutSocialLinksInput>
+  }
+
+  export type PostUpdateManyWithoutSocialNestedInput = {
+    create?: XOR<PostCreateWithoutSocialInput, PostUncheckedCreateWithoutSocialInput> | PostCreateWithoutSocialInput[] | PostUncheckedCreateWithoutSocialInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutSocialInput | PostCreateOrConnectWithoutSocialInput[]
+    upsert?: PostUpsertWithWhereUniqueWithoutSocialInput | PostUpsertWithWhereUniqueWithoutSocialInput[]
+    createMany?: PostCreateManySocialInputEnvelope
+    set?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    disconnect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    delete?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    update?: PostUpdateWithWhereUniqueWithoutSocialInput | PostUpdateWithWhereUniqueWithoutSocialInput[]
+    updateMany?: PostUpdateManyWithWhereWithoutSocialInput | PostUpdateManyWithWhereWithoutSocialInput[]
+    deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
+  }
+
+  export type PostUncheckedUpdateManyWithoutSocialNestedInput = {
+    create?: XOR<PostCreateWithoutSocialInput, PostUncheckedCreateWithoutSocialInput> | PostCreateWithoutSocialInput[] | PostUncheckedCreateWithoutSocialInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutSocialInput | PostCreateOrConnectWithoutSocialInput[]
+    upsert?: PostUpsertWithWhereUniqueWithoutSocialInput | PostUpsertWithWhereUniqueWithoutSocialInput[]
+    createMany?: PostCreateManySocialInputEnvelope
+    set?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    disconnect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    delete?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    update?: PostUpdateWithWhereUniqueWithoutSocialInput | PostUpdateWithWhereUniqueWithoutSocialInput[]
+    updateMany?: PostUpdateManyWithWhereWithoutSocialInput | PostUpdateManyWithWhereWithoutSocialInput[]
+    deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
+  }
+
+  export type SocialCreateNestedOneWithoutPostsInput = {
+    create?: XOR<SocialCreateWithoutPostsInput, SocialUncheckedCreateWithoutPostsInput>
+    connectOrCreate?: SocialCreateOrConnectWithoutPostsInput
+    connect?: SocialWhereUniqueInput
+  }
+
+  export type SocialUpdateOneRequiredWithoutPostsNestedInput = {
+    create?: XOR<SocialCreateWithoutPostsInput, SocialUncheckedCreateWithoutPostsInput>
+    connectOrCreate?: SocialCreateOrConnectWithoutPostsInput
+    upsert?: SocialUpsertWithoutPostsInput
+    connect?: SocialWhereUniqueInput
+    update?: XOR<XOR<SocialUpdateToOneWithWhereWithoutPostsInput, SocialUpdateWithoutPostsInput>, SocialUncheckedUpdateWithoutPostsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -2300,15 +5279,369 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type SocialCreateWithoutUserInput = {
+    social: string
+    username: string
+    profilePicUrl: string
+    totalPosts: number
+    totalLikes: number
+    totalComments: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    posts?: PostCreateNestedManyWithoutSocialInput
+  }
+
+  export type SocialUncheckedCreateWithoutUserInput = {
+    id?: number
+    social: string
+    username: string
+    profilePicUrl: string
+    totalPosts: number
+    totalLikes: number
+    totalComments: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    posts?: PostUncheckedCreateNestedManyWithoutSocialInput
+  }
+
+  export type SocialCreateOrConnectWithoutUserInput = {
+    where: SocialWhereUniqueInput
+    create: XOR<SocialCreateWithoutUserInput, SocialUncheckedCreateWithoutUserInput>
+  }
+
+  export type SocialCreateManyUserInputEnvelope = {
+    data: SocialCreateManyUserInput | SocialCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SocialUpsertWithWhereUniqueWithoutUserInput = {
+    where: SocialWhereUniqueInput
+    update: XOR<SocialUpdateWithoutUserInput, SocialUncheckedUpdateWithoutUserInput>
+    create: XOR<SocialCreateWithoutUserInput, SocialUncheckedCreateWithoutUserInput>
+  }
+
+  export type SocialUpdateWithWhereUniqueWithoutUserInput = {
+    where: SocialWhereUniqueInput
+    data: XOR<SocialUpdateWithoutUserInput, SocialUncheckedUpdateWithoutUserInput>
+  }
+
+  export type SocialUpdateManyWithWhereWithoutUserInput = {
+    where: SocialScalarWhereInput
+    data: XOR<SocialUpdateManyMutationInput, SocialUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type SocialScalarWhereInput = {
+    AND?: SocialScalarWhereInput | SocialScalarWhereInput[]
+    OR?: SocialScalarWhereInput[]
+    NOT?: SocialScalarWhereInput | SocialScalarWhereInput[]
+    id?: IntFilter<"Social"> | number
+    userId?: IntFilter<"Social"> | number
+    social?: StringFilter<"Social"> | string
+    username?: StringFilter<"Social"> | string
+    profilePicUrl?: StringFilter<"Social"> | string
+    totalPosts?: IntFilter<"Social"> | number
+    totalLikes?: IntFilter<"Social"> | number
+    totalComments?: IntFilter<"Social"> | number
+    createdAt?: DateTimeFilter<"Social"> | Date | string
+    updatedAt?: DateTimeFilter<"Social"> | Date | string
+  }
+
+  export type UserCreateWithoutSocialLinksInput = {
+    email: string
+    username: string
+    subscribed: boolean
+    password: string
+    imageUrl: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserUncheckedCreateWithoutSocialLinksInput = {
+    id?: number
+    email: string
+    username: string
+    subscribed: boolean
+    password: string
+    imageUrl: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserCreateOrConnectWithoutSocialLinksInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutSocialLinksInput, UserUncheckedCreateWithoutSocialLinksInput>
+  }
+
+  export type PostCreateWithoutSocialInput = {
+    content: string
+    image: string
+    likes: number
+    comments: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PostUncheckedCreateWithoutSocialInput = {
+    id?: number
+    content: string
+    image: string
+    likes: number
+    comments: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PostCreateOrConnectWithoutSocialInput = {
+    where: PostWhereUniqueInput
+    create: XOR<PostCreateWithoutSocialInput, PostUncheckedCreateWithoutSocialInput>
+  }
+
+  export type PostCreateManySocialInputEnvelope = {
+    data: PostCreateManySocialInput | PostCreateManySocialInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutSocialLinksInput = {
+    update: XOR<UserUpdateWithoutSocialLinksInput, UserUncheckedUpdateWithoutSocialLinksInput>
+    create: XOR<UserCreateWithoutSocialLinksInput, UserUncheckedCreateWithoutSocialLinksInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutSocialLinksInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutSocialLinksInput, UserUncheckedUpdateWithoutSocialLinksInput>
+  }
+
+  export type UserUpdateWithoutSocialLinksInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    subscribed?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUncheckedUpdateWithoutSocialLinksInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    subscribed?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PostUpsertWithWhereUniqueWithoutSocialInput = {
+    where: PostWhereUniqueInput
+    update: XOR<PostUpdateWithoutSocialInput, PostUncheckedUpdateWithoutSocialInput>
+    create: XOR<PostCreateWithoutSocialInput, PostUncheckedCreateWithoutSocialInput>
+  }
+
+  export type PostUpdateWithWhereUniqueWithoutSocialInput = {
+    where: PostWhereUniqueInput
+    data: XOR<PostUpdateWithoutSocialInput, PostUncheckedUpdateWithoutSocialInput>
+  }
+
+  export type PostUpdateManyWithWhereWithoutSocialInput = {
+    where: PostScalarWhereInput
+    data: XOR<PostUpdateManyMutationInput, PostUncheckedUpdateManyWithoutSocialInput>
+  }
+
+  export type PostScalarWhereInput = {
+    AND?: PostScalarWhereInput | PostScalarWhereInput[]
+    OR?: PostScalarWhereInput[]
+    NOT?: PostScalarWhereInput | PostScalarWhereInput[]
+    id?: IntFilter<"Post"> | number
+    socialId?: IntFilter<"Post"> | number
+    content?: StringFilter<"Post"> | string
+    image?: StringFilter<"Post"> | string
+    likes?: IntFilter<"Post"> | number
+    comments?: IntFilter<"Post"> | number
+    createdAt?: DateTimeFilter<"Post"> | Date | string
+    updatedAt?: DateTimeFilter<"Post"> | Date | string
+  }
+
+  export type SocialCreateWithoutPostsInput = {
+    social: string
+    username: string
+    profilePicUrl: string
+    totalPosts: number
+    totalLikes: number
+    totalComments: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutSocialLinksInput
+  }
+
+  export type SocialUncheckedCreateWithoutPostsInput = {
+    id?: number
+    userId: number
+    social: string
+    username: string
+    profilePicUrl: string
+    totalPosts: number
+    totalLikes: number
+    totalComments: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SocialCreateOrConnectWithoutPostsInput = {
+    where: SocialWhereUniqueInput
+    create: XOR<SocialCreateWithoutPostsInput, SocialUncheckedCreateWithoutPostsInput>
+  }
+
+  export type SocialUpsertWithoutPostsInput = {
+    update: XOR<SocialUpdateWithoutPostsInput, SocialUncheckedUpdateWithoutPostsInput>
+    create: XOR<SocialCreateWithoutPostsInput, SocialUncheckedCreateWithoutPostsInput>
+    where?: SocialWhereInput
+  }
+
+  export type SocialUpdateToOneWithWhereWithoutPostsInput = {
+    where?: SocialWhereInput
+    data: XOR<SocialUpdateWithoutPostsInput, SocialUncheckedUpdateWithoutPostsInput>
+  }
+
+  export type SocialUpdateWithoutPostsInput = {
+    social?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    profilePicUrl?: StringFieldUpdateOperationsInput | string
+    totalPosts?: IntFieldUpdateOperationsInput | number
+    totalLikes?: IntFieldUpdateOperationsInput | number
+    totalComments?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSocialLinksNestedInput
+  }
+
+  export type SocialUncheckedUpdateWithoutPostsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    social?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    profilePicUrl?: StringFieldUpdateOperationsInput | string
+    totalPosts?: IntFieldUpdateOperationsInput | number
+    totalLikes?: IntFieldUpdateOperationsInput | number
+    totalComments?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SocialCreateManyUserInput = {
+    id?: number
+    social: string
+    username: string
+    profilePicUrl: string
+    totalPosts: number
+    totalLikes: number
+    totalComments: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SocialUpdateWithoutUserInput = {
+    social?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    profilePicUrl?: StringFieldUpdateOperationsInput | string
+    totalPosts?: IntFieldUpdateOperationsInput | number
+    totalLikes?: IntFieldUpdateOperationsInput | number
+    totalComments?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    posts?: PostUpdateManyWithoutSocialNestedInput
+  }
+
+  export type SocialUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    social?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    profilePicUrl?: StringFieldUpdateOperationsInput | string
+    totalPosts?: IntFieldUpdateOperationsInput | number
+    totalLikes?: IntFieldUpdateOperationsInput | number
+    totalComments?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    posts?: PostUncheckedUpdateManyWithoutSocialNestedInput
+  }
+
+  export type SocialUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    social?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    profilePicUrl?: StringFieldUpdateOperationsInput | string
+    totalPosts?: IntFieldUpdateOperationsInput | number
+    totalLikes?: IntFieldUpdateOperationsInput | number
+    totalComments?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PostCreateManySocialInput = {
+    id?: number
+    content: string
+    image: string
+    likes: number
+    comments: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PostUpdateWithoutSocialInput = {
+    content?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    likes?: IntFieldUpdateOperationsInput | number
+    comments?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PostUncheckedUpdateWithoutSocialInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    likes?: IntFieldUpdateOperationsInput | number
+    comments?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PostUncheckedUpdateManyWithoutSocialInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    likes?: IntFieldUpdateOperationsInput | number
+    comments?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
 
 
   /**
    * Aliases for legacy arg types
    */
     /**
+     * @deprecated Use UserCountOutputTypeDefaultArgs instead
+     */
+    export type UserCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use SocialCountOutputTypeDefaultArgs instead
+     */
+    export type SocialCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = SocialCountOutputTypeDefaultArgs<ExtArgs>
+    /**
      * @deprecated Use UserDefaultArgs instead
      */
     export type UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use SocialDefaultArgs instead
+     */
+    export type SocialArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = SocialDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use PostDefaultArgs instead
+     */
+    export type PostArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PostDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

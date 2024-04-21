@@ -15,18 +15,40 @@ datasource db {
 }
 
 model User {
-  id       Int      @id @default(autoincrement())
-  email    String   @unique
-  username String  @unique
-  subscribed Boolean
-  password String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  id            Int      @id @default(autoincrement())
+  email         String   @unique
+  username      String   @unique
+  subscribed    Boolean
+  password      String
+  imageUrl      String
+  socialLinks   Social[] 
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 }
 
 model Social {
-id          Int      @id @default(autoincrement()) 
-scialmedia  String
-username    String
-link        String
+  id            Int       @id @default(autoincrement())
+  userId        Int
+  user          User      @relation(fields: [userId], references: [id])
+  social        String
+  username      String     @unique
+  profilePicUrl String  // Optional field for social media profile picture URL
+  totalPosts    Int
+  totalLikes    Int
+  totalComments Int
+  posts         Post[]     // No @relation directive here
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Post {
+  id            Int       @id @default(autoincrement())
+  socialId      Int
+  social        Social    @relation(fields: [socialId], references: [id])
+  content       String
+  image         String
+  likes         Int
+  comments      Int
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 }

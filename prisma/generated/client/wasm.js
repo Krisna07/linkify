@@ -125,6 +125,31 @@ exports.Prisma.UserScalarFieldEnum = {
   username: 'username',
   subscribed: 'subscribed',
   password: 'password',
+  imageUrl: 'imageUrl',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SocialScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  social: 'social',
+  username: 'username',
+  profilePicUrl: 'profilePicUrl',
+  totalPosts: 'totalPosts',
+  totalLikes: 'totalLikes',
+  totalComments: 'totalComments',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PostScalarFieldEnum = {
+  id: 'id',
+  socialId: 'socialId',
+  content: 'content',
+  image: 'image',
+  likes: 'likes',
+  comments: 'comments',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -141,7 +166,9 @@ exports.Prisma.QueryMode = {
 
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  Social: 'Social',
+  Post: 'Post'
 };
 
 /**
