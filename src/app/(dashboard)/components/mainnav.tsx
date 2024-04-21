@@ -33,7 +33,7 @@ export default function Mainnav(user: any) {
           <span className="text-gray-600 hidden tablet:flex">/</span>
           <div className="flex items-center gap-2 font-[600]">
             <div className="h-6 w-6 bg-white rounded-full hidden tablet:flex"></div>{" "}
-            {user.user.username}
+            {user.username}
           </div>
           <div className="bg-gray-600 px-2 py-[2px] rounded-full text-sm font-[600]">
             Type

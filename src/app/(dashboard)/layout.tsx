@@ -1,11 +1,11 @@
 import "../globals.css";
 import Mainnav from "./components/mainnav";
 import "react-toastify/dist/ReactToastify.css";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+
 import Link from "next/link";
 import Button from "../g_components/Button";
 import Provider from "./components/Provider";
+import { getCurrentUser } from "@/lib/session";
 
 export const metadata = {
   title: "Linkify",
@@ -17,9 +17,12 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession(authOptions);
+  // const session = await getServerSession(authOptions);
 
-  if (!session?.user) {
+  const user = await getCurrentUser();
+  console.log(user);
+
+  if (!user) {
     return (
       <>
         <div className="grid items-center justify-center">
@@ -31,7 +34,7 @@ export default async function RootLayout({
       </>
     );
   }
-  const loggedUser = session?.user;
+  const loggedUser = user;
 
   return (
     <html lang="en">

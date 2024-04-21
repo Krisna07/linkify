@@ -1,8 +1,16 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
+import { getCurrentUser } from "@/lib/session";
 
 export async function POST(req: Request) {
+  const isuser = await getCurrentUser();
   try {
+    if (!isuser?.email) {
+      return NextResponse.json(
+        { message: "Not authenticated" },
+        { status: 401 }
+      );
+    }
     const body = await req.json();
     const { userId, username, social } = body;
 
