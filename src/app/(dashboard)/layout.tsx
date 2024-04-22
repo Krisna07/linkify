@@ -8,10 +8,10 @@ import Provider from "./components/Provider";
 import { getCurrentUser } from "@/lib/session";
 
 export interface userTypes {
-  email: string;
-  image: string;
-  username: string;
-  name: string;
+  email: String;
+  image?: String;
+  username: String;
+  name?: String;
 }
 
 export const metadata = {
