@@ -1,18 +1,13 @@
 "use client";
-import { authOptions } from "@/lib/auth";
-import { getServerSession } from "next-auth";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { BiBell, BiShare } from "react-icons/bi";
 import Dropdown from "./dropdown";
+import { userTypes } from "../layout";
 
-export interface mainnavProps {
-  email: string;
-  username: string;
-}
-
-export default function Mainnav(user: any) {
+export default function Mainnav({ user }: userTypes) {
   const navlinks = [
     { name: "Overview", link: "/dashboard" },
     { name: "Activity", link: `/dashboard/activity` },
@@ -67,7 +62,7 @@ export default function Mainnav(user: any) {
                 accountOptions ? "h-fit" : "h-0"
               } transition-all absolute top-[120%] right-0 bg-green-800 z-[999] rounded overflow-hidden`}
             >
-              <Dropdown user={user.user} />
+              <Dropdown user={user} />
             </div>
           </div>
         </div>

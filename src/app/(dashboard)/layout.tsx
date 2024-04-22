@@ -7,6 +7,13 @@ import Button from "../g_components/Button";
 import Provider from "./components/Provider";
 import { getCurrentUser } from "@/lib/session";
 
+export interface userTypes {
+  email: string;
+  image: string;
+  username: string;
+  name: string;
+}
+
 export const metadata = {
   title: "Linkify",
   description: "A link sharing platform",
@@ -19,8 +26,7 @@ export default async function RootLayout({
 }) {
   // const session = await getServerSession(authOptions);
 
-  const user = await getCurrentUser();
-  console.log(user);
+  const user: userTypes = await getCurrentUser();
 
   if (!user) {
     return (
@@ -34,7 +40,6 @@ export default async function RootLayout({
       </>
     );
   }
-  const loggedUser = user;
 
   return (
     <html lang="en">
@@ -44,7 +49,7 @@ export default async function RootLayout({
       <body className="w-full  gap-8 bg-black text-white">
         <Provider>
           <header className="sticky top-0 z-20">
-            <Mainnav user={loggedUser} />
+            <Mainnav user={user} />
           </header>
 
           <main className="w-full  grid place-items-center py-8 z-10">

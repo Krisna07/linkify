@@ -3,8 +3,9 @@ import { signOut } from "next-auth/react";
 import React from "react";
 import { FaSignOutAlt, FaUserAlt } from "react-icons/fa";
 import { TbColorPicker, TbSettings } from "react-icons/tb";
+import { userTypes } from "../layout";
 
-const Dropdown = (user: any) => {
+const Dropdown = ({ user }: userTypes) => {
   return (
     <div className="grid gap-2 text-base divide-y divide-gray-400/75 leading-6">
       <div className="flex items-center gap-4 p-4 py-2 border-box">

@@ -45,15 +45,3 @@ export async function POST(req: Request) {
     console.log(error);
   }
 }
-
-export async function GET(req: Request) {
-  try {
-    const body = await req.json();
-    const { user } = body;
-    if (!user) {
-      return NextResponse.json({ message: "user not found" }, { status: 505 });
-    }
-  } catch (error) {
-    return NextResponse.json({ message: "NO users oh oh" }, { status: 501 });
-  }
-}
