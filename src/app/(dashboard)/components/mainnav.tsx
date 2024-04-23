@@ -5,9 +5,8 @@ import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { BiBell, BiShare } from "react-icons/bi";
 import Dropdown from "./dropdown";
-import { userTypes } from "../layout";
 
-export default function Mainnav({ user }: userTypes) {
+export default function Mainnav({ user }: any) {
   const navlinks = [
     { name: "Overview", link: "/dashboard" },
     { name: "Activity", link: `/dashboard/activity` },
@@ -19,6 +18,8 @@ export default function Mainnav({ user }: userTypes) {
   const route = usePathname();
   const [accountOptions, setAccountOptions] = useState<boolean>(false);
   const thisNav = `${route.split("/").splice(-2)[0]}`;
+
+  // console.log(user);
 
   return (
     <div className="w-full sticky grid gap-4 bg-gray-800 border-b border-b-gray-600 border-b-[1px] relative box-border overflow">

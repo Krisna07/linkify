@@ -3,5 +3,6 @@ import { authOptions } from "./auth";
 
 export async function getCurrentUser() {
   const session = await getServerSession(authOptions);
-  return session?.user;
+  const user = session?.user;
+  return user;
 }
