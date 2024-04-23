@@ -156,7 +156,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\krisn\\linkify\\prisma\\generated\\client",
+      "value": "/workspace/linkify/prisma/generated/client",
       "fromEnvVar": null
     },
     "config": {
@@ -165,7 +165,7 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "debian-openssl-3.0.x",
         "native": true
       }
     ],
@@ -183,6 +183,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -191,8 +192,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\r\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\r\n\r\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\r\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\r\n\r\ngenerator client {\r\n  provider = \"prisma-client-js\"\r\n  output   = \"./generated/client\"\r\n}\r\n\r\ndatasource db {\r\n  provider = \"postgresql\"\r\n  url      = env(\"DATABASE_URL\")\r\n}\r\n\r\nmodel User {\r\n  id            Int      @id @default(autoincrement())\r\n  email         String   @unique\r\n  username      String   @unique\r\n  subscribed    Boolean\r\n  password      String\r\n  imageUrl      String\r\n  socialLinks   Social[] \r\n  createdAt     DateTime  @default(now())\r\n  updatedAt     DateTime  @updatedAt\r\n}\r\n\r\n\r\nmodel AuthToken{\r\n  identifier String\r\n  token    String @unique\r\n  expires  DateTime \r\n\r\n  @@unique([identifier, token])\r\n}\r\n\r\n\r\nmodel Social {\r\n  id            Int       @id @default(autoincrement())\r\n  userId        Int\r\n  user          User      @relation(fields: [userId], references: [id])\r\n  social        String\r\n  username      String     @unique\r\n  profilePicUrl String  // Optional field for social media profile picture URL\r\n  totalPosts    Int\r\n  totalLikes    Int\r\n  totalComments Int\r\n  posts         Post[]     // No @relation directive here\r\n  createdAt     DateTime  @default(now())\r\n  updatedAt     DateTime  @updatedAt\r\n}\r\n\r\nmodel Post {\r\n  id            Int       @id @default(autoincrement())\r\n  socialId      Int\r\n  social        Social    @relation(fields: [socialId], references: [id])\r\n  content       String\r\n  image         String\r\n  likes         Int\r\n  comments      Int\r\n  createdAt     DateTime  @default(now())\r\n  updatedAt     DateTime  @updatedAt\r\n}",
-  "inlineSchemaHash": "b882a2c9a958dc9dab8c3c0cb345d5e835710b7bd5e11d750e6bcc4e0ee33049",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id            Int      @id @default(autoincrement())\n  email         String   @unique\n  username      String   @unique\n  subscribed    Boolean\n  password      String\n  imageUrl      String\n  socialLinks   Social[] \n  createdAt     DateTime  @default(now())\n  updatedAt     DateTime  @updatedAt\n}\n\n\nmodel AuthToken{\n  identifier String\n  token    String @unique\n  expires  DateTime \n\n  @@unique([identifier, token])\n}\n\n\nmodel Social {\n  id            Int       @id @default(autoincrement())\n  userId        Int\n  user          User      @relation(fields: [userId], references: [id])\n  social        String\n  username      String     @unique\n  profilePicUrl String  // Optional field for social media profile picture URL\n  totalPosts    Int\n  totalLikes    Int\n  totalComments Int\n  posts         Post[]     // No @relation directive here\n  createdAt     DateTime  @default(now())\n  updatedAt     DateTime  @updatedAt\n}\n\nmodel Post {\n  id            Int       @id @default(autoincrement())\n  socialId      Int\n  social        Social    @relation(fields: [socialId], references: [id])\n  content       String\n  image         String\n  likes         Int\n  comments      Int\n  createdAt     DateTime  @default(now())\n  updatedAt     DateTime  @updatedAt\n}",
+  "inlineSchemaHash": "617fb75cd42dc7f404c88a8e2edc20a905ad9f425b2be5b07252cc38c284ab49",
   "copyEngine": true
 }
 config.dirname = '/'
