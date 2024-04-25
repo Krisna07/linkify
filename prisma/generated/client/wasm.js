@@ -121,43 +121,49 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
+  name: 'name',
   email: 'email',
   username: 'username',
-  subscribed: 'subscribed',
   password: 'password',
-  imageUrl: 'imageUrl',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  imageUrl: 'imageUrl'
 };
 
-exports.Prisma.AuthTokenScalarFieldEnum = {
-  identifier: 'identifier',
-  token: 'token',
-  expires: 'expires'
-};
-
-exports.Prisma.SocialScalarFieldEnum = {
+exports.Prisma.AccountScalarFieldEnum = {
   id: 'id',
-  userId: 'userId',
-  social: 'social',
+  type: 'type',
   username: 'username',
-  profilePicUrl: 'profilePicUrl',
-  totalPosts: 'totalPosts',
-  totalLikes: 'totalLikes',
-  totalComments: 'totalComments',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  accessToken: 'accessToken',
+  refreshToken: 'refreshToken',
+  expiresAt: 'expiresAt'
 };
 
-exports.Prisma.PostScalarFieldEnum = {
+exports.Prisma.ProfileScalarFieldEnum = {
   id: 'id',
-  socialId: 'socialId',
-  content: 'content',
-  image: 'image',
-  likes: 'likes',
-  comments: 'comments',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  username: 'username',
+  email: 'email',
+  avatar: 'avatar',
+  bio: 'bio'
+};
+
+exports.Prisma.ContentScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  text: 'text',
+  media: 'media',
+  postedAt: 'postedAt'
+};
+
+exports.Prisma.EngagementScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  count: 'count'
+};
+
+exports.Prisma.AnalyticsScalarFieldEnum = {
+  id: 'id',
+  metric: 'metric',
+  value: 'value',
+  timestamp: 'timestamp'
 };
 
 exports.Prisma.SortOrder = {
@@ -173,9 +179,11 @@ exports.Prisma.QueryMode = {
 
 exports.Prisma.ModelName = {
   User: 'User',
-  AuthToken: 'AuthToken',
-  Social: 'Social',
-  Post: 'Post'
+  Account: 'Account',
+  Profile: 'Profile',
+  Content: 'Content',
+  Engagement: 'Engagement',
+  Analytics: 'Analytics'
 };
 
 /**

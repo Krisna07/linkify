@@ -1,8 +1,8 @@
 // This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// learn more about it in the docs: (link unavailable)
 
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// Try Prisma Accelerate: (link unavailable)
 
 generator client {
   provider = "prisma-client-js"
@@ -15,50 +15,96 @@ datasource db {
 }
 
 model User {
-  id            Int      @id @default(autoincrement())
-  email         String   @unique
-  username      String   @unique
-  subscribed    Boolean
+  id            String   @id @default(cuid())
+  name          String
+  email         String    @unique
+  username      String     @unique
   password      String
   imageUrl      String
-  socialLinks   Social[] 
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  accounts      Account[]
+  
 }
 
-
-model AuthToken{
-  identifier String
-  token    String @unique
-  expires  DateTime 
-
-  @@unique([identifier, token])
+model Account {
+  id             String   @id @default(cuid())
+  userId         User   @relation(fields: [id], references: [id])
+  type           String   //(e.g. Facebook, Twitter, Instagram)
+  username       String
+  accessToken    String
+  refreshToken   String
+  expiresAt      DateTime
+  content       Content[]
+  analytics     Analytics[]
+  profile       Profile?
+}
+//social media profile
+model Profile {
+  id          String   @id @default(cuid())
+  accountId   Account   @relation(fields: [id], references: [id])
+  username    String
+  email       String
+  avatar      String
+  bio         String
 }
 
+model Content {
+  id       String   @id @default(cuid())
+  accountId Account   @relation(fields: [id], references: [id])
+  type     String   //(e.g. post, image, video)
+  text     String
+  media     String
+  postedAt DateTime @default(now())
+  engagement Engagement[]
 
-model Social {
-  id            Int       @id @default(autoincrement())
-  userId        Int
-  user          User      @relation(fields: [userId], references: [id])
-  social        String
-  username      String     @unique
-  profilePicUrl String  // Optional field for social media profile picture URL
-  totalPosts    Int
-  totalLikes    Int
-  totalComments Int
-  posts         Post[]     // No @relation directive here
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
 }
 
-model Post {
-  id            Int       @id @default(autoincrement())
-  socialId      Int
-  social        Social    @relation(fields: [socialId], references: [id])
-  content       String
-  image         String
-  likes         Int
-  comments      Int
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+model Engagement {
+  id       String   @id @default(cuid())
+  contentId Content   @relation(fields: [id], references: [id])
+  type     String   //(e.g. like, comment, share)
+  count    Int
 }
+
+model Analytics {
+  id       String   @id @default(cuid())
+  accountId Account   @relation(fields: [id], references: [id])
+  metric    String   //(e.g. followerGrowth, engagementRate)
+  value     Float
+  timestamp DateTime @default(now())
+}
+
+// model Team {
+//   id       String   @id @default(cuid())
+//   name     String
+//   users    User[]
+//   accounts Account[]
+// }
+
+// model UserRole {
+//   id       String   @id @default(cuid())
+//   userId   User   @relation(fields: [id], references: [id])
+//   role     String   //(e.g. admin, member)
+// }
+
+// model Notification {
+//   id       String   @id @default(cuid())
+//   userId   User   @relation(fields: [id], references: [id])
+//   type     String   //(e.g. mention, message, comment)
+//   message  String
+//   readAt   DateTime
+// }
+
+// model SocialListening {
+//   id       String   @id @default(cuid())
+//   accountId User   @relation(fields: [id], references: [id])
+//   keyword  String
+//   mention  String
+//   timestamp DateTime @default(now())
+// }
+
+// model ContentCalendar {
+//   id       String   @id @default(cuid())
+//   accountId Account   @relation(fields: [id], references: [id])
+//   date     DateTime
+//   content  Content
+// }

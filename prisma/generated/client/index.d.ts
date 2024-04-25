@@ -19,20 +19,30 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
- * Model AuthToken
+ * Model Account
  * 
  */
-export type AuthToken = $Result.DefaultSelection<Prisma.$AuthTokenPayload>
+export type Account = $Result.DefaultSelection<Prisma.$AccountPayload>
 /**
- * Model Social
+ * Model Profile
  * 
  */
-export type Social = $Result.DefaultSelection<Prisma.$SocialPayload>
+export type Profile = $Result.DefaultSelection<Prisma.$ProfilePayload>
 /**
- * Model Post
+ * Model Content
  * 
  */
-export type Post = $Result.DefaultSelection<Prisma.$PostPayload>
+export type Content = $Result.DefaultSelection<Prisma.$ContentPayload>
+/**
+ * Model Engagement
+ * 
+ */
+export type Engagement = $Result.DefaultSelection<Prisma.$EngagementPayload>
+/**
+ * Model Analytics
+ * 
+ */
+export type Analytics = $Result.DefaultSelection<Prisma.$AnalyticsPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -167,34 +177,54 @@ export class PrismaClient<
   get user(): Prisma.UserDelegate<ExtArgs>;
 
   /**
-   * `prisma.authToken`: Exposes CRUD operations for the **AuthToken** model.
+   * `prisma.account`: Exposes CRUD operations for the **Account** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more AuthTokens
-    * const authTokens = await prisma.authToken.findMany()
+    * // Fetch zero or more Accounts
+    * const accounts = await prisma.account.findMany()
     * ```
     */
-  get authToken(): Prisma.AuthTokenDelegate<ExtArgs>;
+  get account(): Prisma.AccountDelegate<ExtArgs>;
 
   /**
-   * `prisma.social`: Exposes CRUD operations for the **Social** model.
+   * `prisma.profile`: Exposes CRUD operations for the **Profile** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Socials
-    * const socials = await prisma.social.findMany()
+    * // Fetch zero or more Profiles
+    * const profiles = await prisma.profile.findMany()
     * ```
     */
-  get social(): Prisma.SocialDelegate<ExtArgs>;
+  get profile(): Prisma.ProfileDelegate<ExtArgs>;
 
   /**
-   * `prisma.post`: Exposes CRUD operations for the **Post** model.
+   * `prisma.content`: Exposes CRUD operations for the **Content** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Posts
-    * const posts = await prisma.post.findMany()
+    * // Fetch zero or more Contents
+    * const contents = await prisma.content.findMany()
     * ```
     */
-  get post(): Prisma.PostDelegate<ExtArgs>;
+  get content(): Prisma.ContentDelegate<ExtArgs>;
+
+  /**
+   * `prisma.engagement`: Exposes CRUD operations for the **Engagement** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Engagements
+    * const engagements = await prisma.engagement.findMany()
+    * ```
+    */
+  get engagement(): Prisma.EngagementDelegate<ExtArgs>;
+
+  /**
+   * `prisma.analytics`: Exposes CRUD operations for the **Analytics** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Analytics
+    * const analytics = await prisma.analytics.findMany()
+    * ```
+    */
+  get analytics(): Prisma.AnalyticsDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -666,9 +696,11 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
-    AuthToken: 'AuthToken',
-    Social: 'Social',
-    Post: 'Post'
+    Account: 'Account',
+    Profile: 'Profile',
+    Content: 'Content',
+    Engagement: 'Engagement',
+    Analytics: 'Analytics'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -685,7 +717,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'user' | 'authToken' | 'social' | 'post'
+      modelProps: 'user' | 'account' | 'profile' | 'content' | 'engagement' | 'analytics'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -755,201 +787,333 @@ export namespace Prisma {
           }
         }
       }
-      AuthToken: {
-        payload: Prisma.$AuthTokenPayload<ExtArgs>
-        fields: Prisma.AuthTokenFieldRefs
+      Account: {
+        payload: Prisma.$AccountPayload<ExtArgs>
+        fields: Prisma.AccountFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.AuthTokenFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$AuthTokenPayload> | null
+            args: Prisma.AccountFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.AuthTokenFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$AuthTokenPayload>
+            args: Prisma.AccountFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>
           }
           findFirst: {
-            args: Prisma.AuthTokenFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$AuthTokenPayload> | null
+            args: Prisma.AccountFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.AuthTokenFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$AuthTokenPayload>
+            args: Prisma.AccountFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>
           }
           findMany: {
-            args: Prisma.AuthTokenFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$AuthTokenPayload>[]
+            args: Prisma.AccountFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>[]
           }
           create: {
-            args: Prisma.AuthTokenCreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$AuthTokenPayload>
+            args: Prisma.AccountCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>
           }
           createMany: {
-            args: Prisma.AuthTokenCreateManyArgs<ExtArgs>,
+            args: Prisma.AccountCreateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           delete: {
-            args: Prisma.AuthTokenDeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$AuthTokenPayload>
+            args: Prisma.AccountDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>
           }
           update: {
-            args: Prisma.AuthTokenUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$AuthTokenPayload>
+            args: Prisma.AccountUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>
           }
           deleteMany: {
-            args: Prisma.AuthTokenDeleteManyArgs<ExtArgs>,
+            args: Prisma.AccountDeleteManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.AuthTokenUpdateManyArgs<ExtArgs>,
+            args: Prisma.AccountUpdateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.AuthTokenUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$AuthTokenPayload>
+            args: Prisma.AccountUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>
           }
           aggregate: {
-            args: Prisma.AuthTokenAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregateAuthToken>
+            args: Prisma.AccountAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateAccount>
           }
           groupBy: {
-            args: Prisma.AuthTokenGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<AuthTokenGroupByOutputType>[]
+            args: Prisma.AccountGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<AccountGroupByOutputType>[]
           }
           count: {
-            args: Prisma.AuthTokenCountArgs<ExtArgs>,
-            result: $Utils.Optional<AuthTokenCountAggregateOutputType> | number
+            args: Prisma.AccountCountArgs<ExtArgs>,
+            result: $Utils.Optional<AccountCountAggregateOutputType> | number
           }
         }
       }
-      Social: {
-        payload: Prisma.$SocialPayload<ExtArgs>
-        fields: Prisma.SocialFieldRefs
+      Profile: {
+        payload: Prisma.$ProfilePayload<ExtArgs>
+        fields: Prisma.ProfileFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.SocialFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$SocialPayload> | null
+            args: Prisma.ProfileFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ProfilePayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.SocialFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$SocialPayload>
+            args: Prisma.ProfileFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ProfilePayload>
           }
           findFirst: {
-            args: Prisma.SocialFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$SocialPayload> | null
+            args: Prisma.ProfileFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ProfilePayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.SocialFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$SocialPayload>
+            args: Prisma.ProfileFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ProfilePayload>
           }
           findMany: {
-            args: Prisma.SocialFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$SocialPayload>[]
+            args: Prisma.ProfileFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ProfilePayload>[]
           }
           create: {
-            args: Prisma.SocialCreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$SocialPayload>
+            args: Prisma.ProfileCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ProfilePayload>
           }
           createMany: {
-            args: Prisma.SocialCreateManyArgs<ExtArgs>,
+            args: Prisma.ProfileCreateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           delete: {
-            args: Prisma.SocialDeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$SocialPayload>
+            args: Prisma.ProfileDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ProfilePayload>
           }
           update: {
-            args: Prisma.SocialUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$SocialPayload>
+            args: Prisma.ProfileUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ProfilePayload>
           }
           deleteMany: {
-            args: Prisma.SocialDeleteManyArgs<ExtArgs>,
+            args: Prisma.ProfileDeleteManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.SocialUpdateManyArgs<ExtArgs>,
+            args: Prisma.ProfileUpdateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.SocialUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$SocialPayload>
+            args: Prisma.ProfileUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ProfilePayload>
           }
           aggregate: {
-            args: Prisma.SocialAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregateSocial>
+            args: Prisma.ProfileAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateProfile>
           }
           groupBy: {
-            args: Prisma.SocialGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<SocialGroupByOutputType>[]
+            args: Prisma.ProfileGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<ProfileGroupByOutputType>[]
           }
           count: {
-            args: Prisma.SocialCountArgs<ExtArgs>,
-            result: $Utils.Optional<SocialCountAggregateOutputType> | number
+            args: Prisma.ProfileCountArgs<ExtArgs>,
+            result: $Utils.Optional<ProfileCountAggregateOutputType> | number
           }
         }
       }
-      Post: {
-        payload: Prisma.$PostPayload<ExtArgs>
-        fields: Prisma.PostFieldRefs
+      Content: {
+        payload: Prisma.$ContentPayload<ExtArgs>
+        fields: Prisma.ContentFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.PostFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$PostPayload> | null
+            args: Prisma.ContentFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ContentPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.PostFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$PostPayload>
+            args: Prisma.ContentFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ContentPayload>
           }
           findFirst: {
-            args: Prisma.PostFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$PostPayload> | null
+            args: Prisma.ContentFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ContentPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.PostFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$PostPayload>
+            args: Prisma.ContentFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ContentPayload>
           }
           findMany: {
-            args: Prisma.PostFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$PostPayload>[]
+            args: Prisma.ContentFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ContentPayload>[]
           }
           create: {
-            args: Prisma.PostCreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$PostPayload>
+            args: Prisma.ContentCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ContentPayload>
           }
           createMany: {
-            args: Prisma.PostCreateManyArgs<ExtArgs>,
+            args: Prisma.ContentCreateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           delete: {
-            args: Prisma.PostDeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$PostPayload>
+            args: Prisma.ContentDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ContentPayload>
           }
           update: {
-            args: Prisma.PostUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$PostPayload>
+            args: Prisma.ContentUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ContentPayload>
           }
           deleteMany: {
-            args: Prisma.PostDeleteManyArgs<ExtArgs>,
+            args: Prisma.ContentDeleteManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.PostUpdateManyArgs<ExtArgs>,
+            args: Prisma.ContentUpdateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.PostUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$PostPayload>
+            args: Prisma.ContentUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ContentPayload>
           }
           aggregate: {
-            args: Prisma.PostAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregatePost>
+            args: Prisma.ContentAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateContent>
           }
           groupBy: {
-            args: Prisma.PostGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<PostGroupByOutputType>[]
+            args: Prisma.ContentGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<ContentGroupByOutputType>[]
           }
           count: {
-            args: Prisma.PostCountArgs<ExtArgs>,
-            result: $Utils.Optional<PostCountAggregateOutputType> | number
+            args: Prisma.ContentCountArgs<ExtArgs>,
+            result: $Utils.Optional<ContentCountAggregateOutputType> | number
+          }
+        }
+      }
+      Engagement: {
+        payload: Prisma.$EngagementPayload<ExtArgs>
+        fields: Prisma.EngagementFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EngagementFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$EngagementPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EngagementFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$EngagementPayload>
+          }
+          findFirst: {
+            args: Prisma.EngagementFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$EngagementPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EngagementFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$EngagementPayload>
+          }
+          findMany: {
+            args: Prisma.EngagementFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$EngagementPayload>[]
+          }
+          create: {
+            args: Prisma.EngagementCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$EngagementPayload>
+          }
+          createMany: {
+            args: Prisma.EngagementCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.EngagementDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$EngagementPayload>
+          }
+          update: {
+            args: Prisma.EngagementUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$EngagementPayload>
+          }
+          deleteMany: {
+            args: Prisma.EngagementDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EngagementUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.EngagementUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$EngagementPayload>
+          }
+          aggregate: {
+            args: Prisma.EngagementAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateEngagement>
+          }
+          groupBy: {
+            args: Prisma.EngagementGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<EngagementGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EngagementCountArgs<ExtArgs>,
+            result: $Utils.Optional<EngagementCountAggregateOutputType> | number
+          }
+        }
+      }
+      Analytics: {
+        payload: Prisma.$AnalyticsPayload<ExtArgs>
+        fields: Prisma.AnalyticsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AnalyticsFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AnalyticsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AnalyticsFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AnalyticsPayload>
+          }
+          findFirst: {
+            args: Prisma.AnalyticsFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AnalyticsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AnalyticsFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AnalyticsPayload>
+          }
+          findMany: {
+            args: Prisma.AnalyticsFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AnalyticsPayload>[]
+          }
+          create: {
+            args: Prisma.AnalyticsCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AnalyticsPayload>
+          }
+          createMany: {
+            args: Prisma.AnalyticsCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.AnalyticsDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AnalyticsPayload>
+          }
+          update: {
+            args: Prisma.AnalyticsUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AnalyticsPayload>
+          }
+          deleteMany: {
+            args: Prisma.AnalyticsDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AnalyticsUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.AnalyticsUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AnalyticsPayload>
+          }
+          aggregate: {
+            args: Prisma.AnalyticsAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateAnalytics>
+          }
+          groupBy: {
+            args: Prisma.AnalyticsGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<AnalyticsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AnalyticsCountArgs<ExtArgs>,
+            result: $Utils.Optional<AnalyticsCountAggregateOutputType> | number
           }
         }
       }
@@ -1112,11 +1276,11 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    socialLinks: number
+    accounts: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    socialLinks?: boolean | UserCountOutputTypeCountSocialLinksArgs
+    accounts?: boolean | UserCountOutputTypeCountAccountsArgs
   }
 
   // Custom InputTypes
@@ -1135,42 +1299,86 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountSocialLinksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SocialWhereInput
+  export type UserCountOutputTypeCountAccountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AccountWhereInput
   }
 
 
 
   /**
-   * Count Type SocialCountOutputType
+   * Count Type AccountCountOutputType
    */
 
-  export type SocialCountOutputType = {
-    posts: number
+  export type AccountCountOutputType = {
+    content: number
+    analytics: number
   }
 
-  export type SocialCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    posts?: boolean | SocialCountOutputTypeCountPostsArgs
+  export type AccountCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    content?: boolean | AccountCountOutputTypeCountContentArgs
+    analytics?: boolean | AccountCountOutputTypeCountAnalyticsArgs
   }
 
   // Custom InputTypes
 
   /**
-   * SocialCountOutputType without action
+   * AccountCountOutputType without action
    */
-  export type SocialCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SocialCountOutputType
+     * Select specific fields to fetch from the AccountCountOutputType
      */
-    select?: SocialCountOutputTypeSelect<ExtArgs> | null
+    select?: AccountCountOutputTypeSelect<ExtArgs> | null
   }
 
 
   /**
-   * SocialCountOutputType without action
+   * AccountCountOutputType without action
    */
-  export type SocialCountOutputTypeCountPostsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PostWhereInput
+  export type AccountCountOutputTypeCountContentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContentWhereInput
+  }
+
+
+  /**
+   * AccountCountOutputType without action
+   */
+  export type AccountCountOutputTypeCountAnalyticsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AnalyticsWhereInput
+  }
+
+
+
+  /**
+   * Count Type ContentCountOutputType
+   */
+
+  export type ContentCountOutputType = {
+    engagement: number
+  }
+
+  export type ContentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    engagement?: boolean | ContentCountOutputTypeCountEngagementArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * ContentCountOutputType without action
+   */
+  export type ContentCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContentCountOutputType
+     */
+    select?: ContentCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * ContentCountOutputType without action
+   */
+  export type ContentCountOutputTypeCountEngagementArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EngagementWhereInput
   }
 
 
@@ -1185,94 +1393,64 @@ export namespace Prisma {
 
   export type AggregateUser = {
     _count: UserCountAggregateOutputType | null
-    _avg: UserAvgAggregateOutputType | null
-    _sum: UserSumAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
   }
 
-  export type UserAvgAggregateOutputType = {
-    id: number | null
-  }
-
-  export type UserSumAggregateOutputType = {
-    id: number | null
-  }
-
   export type UserMinAggregateOutputType = {
-    id: number | null
+    id: string | null
+    name: string | null
     email: string | null
     username: string | null
-    subscribed: boolean | null
     password: string | null
     imageUrl: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
   }
 
   export type UserMaxAggregateOutputType = {
-    id: number | null
+    id: string | null
+    name: string | null
     email: string | null
     username: string | null
-    subscribed: boolean | null
     password: string | null
     imageUrl: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
   }
 
   export type UserCountAggregateOutputType = {
     id: number
+    name: number
     email: number
     username: number
-    subscribed: number
     password: number
     imageUrl: number
-    createdAt: number
-    updatedAt: number
     _all: number
   }
 
 
-  export type UserAvgAggregateInputType = {
-    id?: true
-  }
-
-  export type UserSumAggregateInputType = {
-    id?: true
-  }
-
   export type UserMinAggregateInputType = {
     id?: true
+    name?: true
     email?: true
     username?: true
-    subscribed?: true
     password?: true
     imageUrl?: true
-    createdAt?: true
-    updatedAt?: true
   }
 
   export type UserMaxAggregateInputType = {
     id?: true
+    name?: true
     email?: true
     username?: true
-    subscribed?: true
     password?: true
     imageUrl?: true
-    createdAt?: true
-    updatedAt?: true
   }
 
   export type UserCountAggregateInputType = {
     id?: true
+    name?: true
     email?: true
     username?: true
-    subscribed?: true
     password?: true
     imageUrl?: true
-    createdAt?: true
-    updatedAt?: true
     _all?: true
   }
 
@@ -1314,18 +1492,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: UserAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: UserSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: UserMinAggregateInputType
@@ -1356,24 +1522,18 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: UserCountAggregateInputType | true
-    _avg?: UserAvgAggregateInputType
-    _sum?: UserSumAggregateInputType
     _min?: UserMinAggregateInputType
     _max?: UserMaxAggregateInputType
   }
 
   export type UserGroupByOutputType = {
-    id: number
+    id: string
+    name: string
     email: string
     username: string
-    subscribed: boolean
     password: string
     imageUrl: string
-    createdAt: Date
-    updatedAt: Date
     _count: UserCountAggregateOutputType | null
-    _avg: UserAvgAggregateOutputType | null
-    _sum: UserSumAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
   }
@@ -1394,30 +1554,26 @@ export namespace Prisma {
 
   export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    name?: boolean
     email?: boolean
     username?: boolean
-    subscribed?: boolean
     password?: boolean
     imageUrl?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    socialLinks?: boolean | User$socialLinksArgs<ExtArgs>
+    accounts?: boolean | User$accountsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
     id?: boolean
+    name?: boolean
     email?: boolean
     username?: boolean
-    subscribed?: boolean
     password?: boolean
     imageUrl?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
   }
 
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    socialLinks?: boolean | User$socialLinksArgs<ExtArgs>
+    accounts?: boolean | User$accountsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -1425,17 +1581,15 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      socialLinks: Prisma.$SocialPayload<ExtArgs>[]
+      accounts: Prisma.$AccountPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
+      id: string
+      name: string
       email: string
       username: string
-      subscribed: boolean
       password: string
       imageUrl: string
-      createdAt: Date
-      updatedAt: Date
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -1801,7 +1955,7 @@ export namespace Prisma {
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    socialLinks<T extends User$socialLinksArgs<ExtArgs> = {}>(args?: Subset<T, User$socialLinksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SocialPayload<ExtArgs>, T, 'findMany'> | Null>;
+    accounts<T extends User$accountsArgs<ExtArgs> = {}>(args?: Subset<T, User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1831,14 +1985,12 @@ export namespace Prisma {
    * Fields of the User model
    */ 
   interface UserFieldRefs {
-    readonly id: FieldRef<"User", 'Int'>
+    readonly id: FieldRef<"User", 'String'>
+    readonly name: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
     readonly username: FieldRef<"User", 'String'>
-    readonly subscribed: FieldRef<"User", 'Boolean'>
     readonly password: FieldRef<"User", 'String'>
     readonly imageUrl: FieldRef<"User", 'String'>
-    readonly createdAt: FieldRef<"User", 'DateTime'>
-    readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
     
 
@@ -2151,23 +2303,23 @@ export namespace Prisma {
 
 
   /**
-   * User.socialLinks
+   * User.accounts
    */
-  export type User$socialLinksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$accountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Social
+     * Select specific fields to fetch from the Account
      */
-    select?: SocialSelect<ExtArgs> | null
+    select?: AccountSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: SocialInclude<ExtArgs> | null
-    where?: SocialWhereInput
-    orderBy?: SocialOrderByWithRelationInput | SocialOrderByWithRelationInput[]
-    cursor?: SocialWhereUniqueInput
+    include?: AccountInclude<ExtArgs> | null
+    where?: AccountWhereInput
+    orderBy?: AccountOrderByWithRelationInput | AccountOrderByWithRelationInput[]
+    cursor?: AccountWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: SocialScalarFieldEnum | SocialScalarFieldEnum[]
+    distinct?: AccountScalarFieldEnum | AccountScalarFieldEnum[]
   }
 
 
@@ -2188,1303 +2340,371 @@ export namespace Prisma {
 
 
   /**
-   * Model AuthToken
+   * Model Account
    */
 
-  export type AggregateAuthToken = {
-    _count: AuthTokenCountAggregateOutputType | null
-    _min: AuthTokenMinAggregateOutputType | null
-    _max: AuthTokenMaxAggregateOutputType | null
+  export type AggregateAccount = {
+    _count: AccountCountAggregateOutputType | null
+    _min: AccountMinAggregateOutputType | null
+    _max: AccountMaxAggregateOutputType | null
   }
 
-  export type AuthTokenMinAggregateOutputType = {
-    identifier: string | null
-    token: string | null
-    expires: Date | null
-  }
-
-  export type AuthTokenMaxAggregateOutputType = {
-    identifier: string | null
-    token: string | null
-    expires: Date | null
-  }
-
-  export type AuthTokenCountAggregateOutputType = {
-    identifier: number
-    token: number
-    expires: number
-    _all: number
-  }
-
-
-  export type AuthTokenMinAggregateInputType = {
-    identifier?: true
-    token?: true
-    expires?: true
-  }
-
-  export type AuthTokenMaxAggregateInputType = {
-    identifier?: true
-    token?: true
-    expires?: true
-  }
-
-  export type AuthTokenCountAggregateInputType = {
-    identifier?: true
-    token?: true
-    expires?: true
-    _all?: true
-  }
-
-  export type AuthTokenAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which AuthToken to aggregate.
-     */
-    where?: AuthTokenWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of AuthTokens to fetch.
-     */
-    orderBy?: AuthTokenOrderByWithRelationInput | AuthTokenOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: AuthTokenWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` AuthTokens from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` AuthTokens.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned AuthTokens
-    **/
-    _count?: true | AuthTokenCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: AuthTokenMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: AuthTokenMaxAggregateInputType
-  }
-
-  export type GetAuthTokenAggregateType<T extends AuthTokenAggregateArgs> = {
-        [P in keyof T & keyof AggregateAuthToken]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateAuthToken[P]>
-      : GetScalarType<T[P], AggregateAuthToken[P]>
-  }
-
-
-
-
-  export type AuthTokenGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AuthTokenWhereInput
-    orderBy?: AuthTokenOrderByWithAggregationInput | AuthTokenOrderByWithAggregationInput[]
-    by: AuthTokenScalarFieldEnum[] | AuthTokenScalarFieldEnum
-    having?: AuthTokenScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: AuthTokenCountAggregateInputType | true
-    _min?: AuthTokenMinAggregateInputType
-    _max?: AuthTokenMaxAggregateInputType
-  }
-
-  export type AuthTokenGroupByOutputType = {
-    identifier: string
-    token: string
-    expires: Date
-    _count: AuthTokenCountAggregateOutputType | null
-    _min: AuthTokenMinAggregateOutputType | null
-    _max: AuthTokenMaxAggregateOutputType | null
-  }
-
-  type GetAuthTokenGroupByPayload<T extends AuthTokenGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<AuthTokenGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof AuthTokenGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], AuthTokenGroupByOutputType[P]>
-            : GetScalarType<T[P], AuthTokenGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type AuthTokenSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    identifier?: boolean
-    token?: boolean
-    expires?: boolean
-  }, ExtArgs["result"]["authToken"]>
-
-  export type AuthTokenSelectScalar = {
-    identifier?: boolean
-    token?: boolean
-    expires?: boolean
-  }
-
-
-  export type $AuthTokenPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "AuthToken"
-    objects: {}
-    scalars: $Extensions.GetPayloadResult<{
-      identifier: string
-      token: string
-      expires: Date
-    }, ExtArgs["result"]["authToken"]>
-    composites: {}
-  }
-
-
-  type AuthTokenGetPayload<S extends boolean | null | undefined | AuthTokenDefaultArgs> = $Result.GetResult<Prisma.$AuthTokenPayload, S>
-
-  type AuthTokenCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<AuthTokenFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: AuthTokenCountAggregateInputType | true
-    }
-
-  export interface AuthTokenDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AuthToken'], meta: { name: 'AuthToken' } }
-    /**
-     * Find zero or one AuthToken that matches the filter.
-     * @param {AuthTokenFindUniqueArgs} args - Arguments to find a AuthToken
-     * @example
-     * // Get one AuthToken
-     * const authToken = await prisma.authToken.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUnique<T extends AuthTokenFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, AuthTokenFindUniqueArgs<ExtArgs>>
-    ): Prisma__AuthTokenClient<$Result.GetResult<Prisma.$AuthTokenPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
-
-    /**
-     * Find one AuthToken that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
-     * @param {AuthTokenFindUniqueOrThrowArgs} args - Arguments to find a AuthToken
-     * @example
-     * // Get one AuthToken
-     * const authToken = await prisma.authToken.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUniqueOrThrow<T extends AuthTokenFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, AuthTokenFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__AuthTokenClient<$Result.GetResult<Prisma.$AuthTokenPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
-
-    /**
-     * Find the first AuthToken that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AuthTokenFindFirstArgs} args - Arguments to find a AuthToken
-     * @example
-     * // Get one AuthToken
-     * const authToken = await prisma.authToken.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirst<T extends AuthTokenFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, AuthTokenFindFirstArgs<ExtArgs>>
-    ): Prisma__AuthTokenClient<$Result.GetResult<Prisma.$AuthTokenPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
-
-    /**
-     * Find the first AuthToken that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AuthTokenFindFirstOrThrowArgs} args - Arguments to find a AuthToken
-     * @example
-     * // Get one AuthToken
-     * const authToken = await prisma.authToken.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirstOrThrow<T extends AuthTokenFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, AuthTokenFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__AuthTokenClient<$Result.GetResult<Prisma.$AuthTokenPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
-
-    /**
-     * Find zero or more AuthTokens that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AuthTokenFindManyArgs=} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all AuthTokens
-     * const authTokens = await prisma.authToken.findMany()
-     * 
-     * // Get first 10 AuthTokens
-     * const authTokens = await prisma.authToken.findMany({ take: 10 })
-     * 
-     * // Only select the `identifier`
-     * const authTokenWithIdentifierOnly = await prisma.authToken.findMany({ select: { identifier: true } })
-     * 
-    **/
-    findMany<T extends AuthTokenFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, AuthTokenFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuthTokenPayload<ExtArgs>, T, 'findMany'>>
-
-    /**
-     * Create a AuthToken.
-     * @param {AuthTokenCreateArgs} args - Arguments to create a AuthToken.
-     * @example
-     * // Create one AuthToken
-     * const AuthToken = await prisma.authToken.create({
-     *   data: {
-     *     // ... data to create a AuthToken
-     *   }
-     * })
-     * 
-    **/
-    create<T extends AuthTokenCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, AuthTokenCreateArgs<ExtArgs>>
-    ): Prisma__AuthTokenClient<$Result.GetResult<Prisma.$AuthTokenPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
-
-    /**
-     * Create many AuthTokens.
-     *     @param {AuthTokenCreateManyArgs} args - Arguments to create many AuthTokens.
-     *     @example
-     *     // Create many AuthTokens
-     *     const authToken = await prisma.authToken.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
-     *     
-    **/
-    createMany<T extends AuthTokenCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, AuthTokenCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a AuthToken.
-     * @param {AuthTokenDeleteArgs} args - Arguments to delete one AuthToken.
-     * @example
-     * // Delete one AuthToken
-     * const AuthToken = await prisma.authToken.delete({
-     *   where: {
-     *     // ... filter to delete one AuthToken
-     *   }
-     * })
-     * 
-    **/
-    delete<T extends AuthTokenDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, AuthTokenDeleteArgs<ExtArgs>>
-    ): Prisma__AuthTokenClient<$Result.GetResult<Prisma.$AuthTokenPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
-
-    /**
-     * Update one AuthToken.
-     * @param {AuthTokenUpdateArgs} args - Arguments to update one AuthToken.
-     * @example
-     * // Update one AuthToken
-     * const authToken = await prisma.authToken.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    update<T extends AuthTokenUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, AuthTokenUpdateArgs<ExtArgs>>
-    ): Prisma__AuthTokenClient<$Result.GetResult<Prisma.$AuthTokenPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
-
-    /**
-     * Delete zero or more AuthTokens.
-     * @param {AuthTokenDeleteManyArgs} args - Arguments to filter AuthTokens to delete.
-     * @example
-     * // Delete a few AuthTokens
-     * const { count } = await prisma.authToken.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-    **/
-    deleteMany<T extends AuthTokenDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, AuthTokenDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more AuthTokens.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AuthTokenUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many AuthTokens
-     * const authToken = await prisma.authToken.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    updateMany<T extends AuthTokenUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, AuthTokenUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one AuthToken.
-     * @param {AuthTokenUpsertArgs} args - Arguments to update or create a AuthToken.
-     * @example
-     * // Update or create a AuthToken
-     * const authToken = await prisma.authToken.upsert({
-     *   create: {
-     *     // ... data to create a AuthToken
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the AuthToken we want to update
-     *   }
-     * })
-    **/
-    upsert<T extends AuthTokenUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, AuthTokenUpsertArgs<ExtArgs>>
-    ): Prisma__AuthTokenClient<$Result.GetResult<Prisma.$AuthTokenPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
-
-    /**
-     * Count the number of AuthTokens.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AuthTokenCountArgs} args - Arguments to filter AuthTokens to count.
-     * @example
-     * // Count the number of AuthTokens
-     * const count = await prisma.authToken.count({
-     *   where: {
-     *     // ... the filter for the AuthTokens we want to count
-     *   }
-     * })
-    **/
-    count<T extends AuthTokenCountArgs>(
-      args?: Subset<T, AuthTokenCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], AuthTokenCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a AuthToken.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AuthTokenAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends AuthTokenAggregateArgs>(args: Subset<T, AuthTokenAggregateArgs>): Prisma.PrismaPromise<GetAuthTokenAggregateType<T>>
-
-    /**
-     * Group by AuthToken.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AuthTokenGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends AuthTokenGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: AuthTokenGroupByArgs['orderBy'] }
-        : { orderBy?: AuthTokenGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, AuthTokenGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAuthTokenGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the AuthToken model
-   */
-  readonly fields: AuthTokenFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for AuthToken.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__AuthTokenClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-
-
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
-  }
-
-
-
-  /**
-   * Fields of the AuthToken model
-   */ 
-  interface AuthTokenFieldRefs {
-    readonly identifier: FieldRef<"AuthToken", 'String'>
-    readonly token: FieldRef<"AuthToken", 'String'>
-    readonly expires: FieldRef<"AuthToken", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-
-  /**
-   * AuthToken findUnique
-   */
-  export type AuthTokenFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AuthToken
-     */
-    select?: AuthTokenSelect<ExtArgs> | null
-    /**
-     * Filter, which AuthToken to fetch.
-     */
-    where: AuthTokenWhereUniqueInput
-  }
-
-
-  /**
-   * AuthToken findUniqueOrThrow
-   */
-  export type AuthTokenFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AuthToken
-     */
-    select?: AuthTokenSelect<ExtArgs> | null
-    /**
-     * Filter, which AuthToken to fetch.
-     */
-    where: AuthTokenWhereUniqueInput
-  }
-
-
-  /**
-   * AuthToken findFirst
-   */
-  export type AuthTokenFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AuthToken
-     */
-    select?: AuthTokenSelect<ExtArgs> | null
-    /**
-     * Filter, which AuthToken to fetch.
-     */
-    where?: AuthTokenWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of AuthTokens to fetch.
-     */
-    orderBy?: AuthTokenOrderByWithRelationInput | AuthTokenOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for AuthTokens.
-     */
-    cursor?: AuthTokenWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` AuthTokens from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` AuthTokens.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of AuthTokens.
-     */
-    distinct?: AuthTokenScalarFieldEnum | AuthTokenScalarFieldEnum[]
-  }
-
-
-  /**
-   * AuthToken findFirstOrThrow
-   */
-  export type AuthTokenFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AuthToken
-     */
-    select?: AuthTokenSelect<ExtArgs> | null
-    /**
-     * Filter, which AuthToken to fetch.
-     */
-    where?: AuthTokenWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of AuthTokens to fetch.
-     */
-    orderBy?: AuthTokenOrderByWithRelationInput | AuthTokenOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for AuthTokens.
-     */
-    cursor?: AuthTokenWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` AuthTokens from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` AuthTokens.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of AuthTokens.
-     */
-    distinct?: AuthTokenScalarFieldEnum | AuthTokenScalarFieldEnum[]
-  }
-
-
-  /**
-   * AuthToken findMany
-   */
-  export type AuthTokenFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AuthToken
-     */
-    select?: AuthTokenSelect<ExtArgs> | null
-    /**
-     * Filter, which AuthTokens to fetch.
-     */
-    where?: AuthTokenWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of AuthTokens to fetch.
-     */
-    orderBy?: AuthTokenOrderByWithRelationInput | AuthTokenOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing AuthTokens.
-     */
-    cursor?: AuthTokenWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` AuthTokens from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` AuthTokens.
-     */
-    skip?: number
-    distinct?: AuthTokenScalarFieldEnum | AuthTokenScalarFieldEnum[]
-  }
-
-
-  /**
-   * AuthToken create
-   */
-  export type AuthTokenCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AuthToken
-     */
-    select?: AuthTokenSelect<ExtArgs> | null
-    /**
-     * The data needed to create a AuthToken.
-     */
-    data: XOR<AuthTokenCreateInput, AuthTokenUncheckedCreateInput>
-  }
-
-
-  /**
-   * AuthToken createMany
-   */
-  export type AuthTokenCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many AuthTokens.
-     */
-    data: AuthTokenCreateManyInput | AuthTokenCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-
-  /**
-   * AuthToken update
-   */
-  export type AuthTokenUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AuthToken
-     */
-    select?: AuthTokenSelect<ExtArgs> | null
-    /**
-     * The data needed to update a AuthToken.
-     */
-    data: XOR<AuthTokenUpdateInput, AuthTokenUncheckedUpdateInput>
-    /**
-     * Choose, which AuthToken to update.
-     */
-    where: AuthTokenWhereUniqueInput
-  }
-
-
-  /**
-   * AuthToken updateMany
-   */
-  export type AuthTokenUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update AuthTokens.
-     */
-    data: XOR<AuthTokenUpdateManyMutationInput, AuthTokenUncheckedUpdateManyInput>
-    /**
-     * Filter which AuthTokens to update
-     */
-    where?: AuthTokenWhereInput
-  }
-
-
-  /**
-   * AuthToken upsert
-   */
-  export type AuthTokenUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AuthToken
-     */
-    select?: AuthTokenSelect<ExtArgs> | null
-    /**
-     * The filter to search for the AuthToken to update in case it exists.
-     */
-    where: AuthTokenWhereUniqueInput
-    /**
-     * In case the AuthToken found by the `where` argument doesn't exist, create a new AuthToken with this data.
-     */
-    create: XOR<AuthTokenCreateInput, AuthTokenUncheckedCreateInput>
-    /**
-     * In case the AuthToken was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<AuthTokenUpdateInput, AuthTokenUncheckedUpdateInput>
-  }
-
-
-  /**
-   * AuthToken delete
-   */
-  export type AuthTokenDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AuthToken
-     */
-    select?: AuthTokenSelect<ExtArgs> | null
-    /**
-     * Filter which AuthToken to delete.
-     */
-    where: AuthTokenWhereUniqueInput
-  }
-
-
-  /**
-   * AuthToken deleteMany
-   */
-  export type AuthTokenDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which AuthTokens to delete
-     */
-    where?: AuthTokenWhereInput
-  }
-
-
-  /**
-   * AuthToken without action
-   */
-  export type AuthTokenDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AuthToken
-     */
-    select?: AuthTokenSelect<ExtArgs> | null
-  }
-
-
-
-  /**
-   * Model Social
-   */
-
-  export type AggregateSocial = {
-    _count: SocialCountAggregateOutputType | null
-    _avg: SocialAvgAggregateOutputType | null
-    _sum: SocialSumAggregateOutputType | null
-    _min: SocialMinAggregateOutputType | null
-    _max: SocialMaxAggregateOutputType | null
-  }
-
-  export type SocialAvgAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    totalPosts: number | null
-    totalLikes: number | null
-    totalComments: number | null
-  }
-
-  export type SocialSumAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    totalPosts: number | null
-    totalLikes: number | null
-    totalComments: number | null
-  }
-
-  export type SocialMinAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    social: string | null
+  export type AccountMinAggregateOutputType = {
+    id: string | null
+    type: string | null
     username: string | null
-    profilePicUrl: string | null
-    totalPosts: number | null
-    totalLikes: number | null
-    totalComments: number | null
-    createdAt: Date | null
-    updatedAt: Date | null
+    accessToken: string | null
+    refreshToken: string | null
+    expiresAt: Date | null
   }
 
-  export type SocialMaxAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    social: string | null
+  export type AccountMaxAggregateOutputType = {
+    id: string | null
+    type: string | null
     username: string | null
-    profilePicUrl: string | null
-    totalPosts: number | null
-    totalLikes: number | null
-    totalComments: number | null
-    createdAt: Date | null
-    updatedAt: Date | null
+    accessToken: string | null
+    refreshToken: string | null
+    expiresAt: Date | null
   }
 
-  export type SocialCountAggregateOutputType = {
+  export type AccountCountAggregateOutputType = {
     id: number
-    userId: number
-    social: number
+    type: number
     username: number
-    profilePicUrl: number
-    totalPosts: number
-    totalLikes: number
-    totalComments: number
-    createdAt: number
-    updatedAt: number
+    accessToken: number
+    refreshToken: number
+    expiresAt: number
     _all: number
   }
 
 
-  export type SocialAvgAggregateInputType = {
+  export type AccountMinAggregateInputType = {
     id?: true
-    userId?: true
-    totalPosts?: true
-    totalLikes?: true
-    totalComments?: true
-  }
-
-  export type SocialSumAggregateInputType = {
-    id?: true
-    userId?: true
-    totalPosts?: true
-    totalLikes?: true
-    totalComments?: true
-  }
-
-  export type SocialMinAggregateInputType = {
-    id?: true
-    userId?: true
-    social?: true
+    type?: true
     username?: true
-    profilePicUrl?: true
-    totalPosts?: true
-    totalLikes?: true
-    totalComments?: true
-    createdAt?: true
-    updatedAt?: true
+    accessToken?: true
+    refreshToken?: true
+    expiresAt?: true
   }
 
-  export type SocialMaxAggregateInputType = {
+  export type AccountMaxAggregateInputType = {
     id?: true
-    userId?: true
-    social?: true
+    type?: true
     username?: true
-    profilePicUrl?: true
-    totalPosts?: true
-    totalLikes?: true
-    totalComments?: true
-    createdAt?: true
-    updatedAt?: true
+    accessToken?: true
+    refreshToken?: true
+    expiresAt?: true
   }
 
-  export type SocialCountAggregateInputType = {
+  export type AccountCountAggregateInputType = {
     id?: true
-    userId?: true
-    social?: true
+    type?: true
     username?: true
-    profilePicUrl?: true
-    totalPosts?: true
-    totalLikes?: true
-    totalComments?: true
-    createdAt?: true
-    updatedAt?: true
+    accessToken?: true
+    refreshToken?: true
+    expiresAt?: true
     _all?: true
   }
 
-  export type SocialAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Social to aggregate.
+     * Filter which Account to aggregate.
      */
-    where?: SocialWhereInput
+    where?: AccountWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Socials to fetch.
+     * Determine the order of Accounts to fetch.
      */
-    orderBy?: SocialOrderByWithRelationInput | SocialOrderByWithRelationInput[]
+    orderBy?: AccountOrderByWithRelationInput | AccountOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: SocialWhereUniqueInput
+    cursor?: AccountWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Socials from the position of the cursor.
+     * Take `±n` Accounts from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Socials.
+     * Skip the first `n` Accounts.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Socials
+     * Count returned Accounts
     **/
-    _count?: true | SocialCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: SocialAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: SocialSumAggregateInputType
+    _count?: true | AccountCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: SocialMinAggregateInputType
+    _min?: AccountMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: SocialMaxAggregateInputType
+    _max?: AccountMaxAggregateInputType
   }
 
-  export type GetSocialAggregateType<T extends SocialAggregateArgs> = {
-        [P in keyof T & keyof AggregateSocial]: P extends '_count' | 'count'
+  export type GetAccountAggregateType<T extends AccountAggregateArgs> = {
+        [P in keyof T & keyof AggregateAccount]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateSocial[P]>
-      : GetScalarType<T[P], AggregateSocial[P]>
+        : GetScalarType<T[P], AggregateAccount[P]>
+      : GetScalarType<T[P], AggregateAccount[P]>
   }
 
 
 
 
-  export type SocialGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SocialWhereInput
-    orderBy?: SocialOrderByWithAggregationInput | SocialOrderByWithAggregationInput[]
-    by: SocialScalarFieldEnum[] | SocialScalarFieldEnum
-    having?: SocialScalarWhereWithAggregatesInput
+  export type AccountGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AccountWhereInput
+    orderBy?: AccountOrderByWithAggregationInput | AccountOrderByWithAggregationInput[]
+    by: AccountScalarFieldEnum[] | AccountScalarFieldEnum
+    having?: AccountScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: SocialCountAggregateInputType | true
-    _avg?: SocialAvgAggregateInputType
-    _sum?: SocialSumAggregateInputType
-    _min?: SocialMinAggregateInputType
-    _max?: SocialMaxAggregateInputType
+    _count?: AccountCountAggregateInputType | true
+    _min?: AccountMinAggregateInputType
+    _max?: AccountMaxAggregateInputType
   }
 
-  export type SocialGroupByOutputType = {
-    id: number
-    userId: number
-    social: string
+  export type AccountGroupByOutputType = {
+    id: string
+    type: string
     username: string
-    profilePicUrl: string
-    totalPosts: number
-    totalLikes: number
-    totalComments: number
-    createdAt: Date
-    updatedAt: Date
-    _count: SocialCountAggregateOutputType | null
-    _avg: SocialAvgAggregateOutputType | null
-    _sum: SocialSumAggregateOutputType | null
-    _min: SocialMinAggregateOutputType | null
-    _max: SocialMaxAggregateOutputType | null
+    accessToken: string
+    refreshToken: string
+    expiresAt: Date
+    _count: AccountCountAggregateOutputType | null
+    _min: AccountMinAggregateOutputType | null
+    _max: AccountMaxAggregateOutputType | null
   }
 
-  type GetSocialGroupByPayload<T extends SocialGroupByArgs> = Prisma.PrismaPromise<
+  type GetAccountGroupByPayload<T extends AccountGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<SocialGroupByOutputType, T['by']> &
+      PickEnumerable<AccountGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof SocialGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof AccountGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], SocialGroupByOutputType[P]>
-            : GetScalarType<T[P], SocialGroupByOutputType[P]>
+              : GetScalarType<T[P], AccountGroupByOutputType[P]>
+            : GetScalarType<T[P], AccountGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type SocialSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type AccountSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    userId?: boolean
-    social?: boolean
+    type?: boolean
     username?: boolean
-    profilePicUrl?: boolean
-    totalPosts?: boolean
-    totalLikes?: boolean
-    totalComments?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    posts?: boolean | Social$postsArgs<ExtArgs>
-    _count?: boolean | SocialCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["social"]>
+    accessToken?: boolean
+    refreshToken?: boolean
+    expiresAt?: boolean
+    userId?: boolean | UserDefaultArgs<ExtArgs>
+    content?: boolean | Account$contentArgs<ExtArgs>
+    analytics?: boolean | Account$analyticsArgs<ExtArgs>
+    profile?: boolean | Account$profileArgs<ExtArgs>
+    _count?: boolean | AccountCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["account"]>
 
-  export type SocialSelectScalar = {
+  export type AccountSelectScalar = {
     id?: boolean
-    userId?: boolean
-    social?: boolean
+    type?: boolean
     username?: boolean
-    profilePicUrl?: boolean
-    totalPosts?: boolean
-    totalLikes?: boolean
-    totalComments?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
+    accessToken?: boolean
+    refreshToken?: boolean
+    expiresAt?: boolean
   }
 
-  export type SocialInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    posts?: boolean | Social$postsArgs<ExtArgs>
-    _count?: boolean | SocialCountOutputTypeDefaultArgs<ExtArgs>
+  export type AccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    userId?: boolean | UserDefaultArgs<ExtArgs>
+    content?: boolean | Account$contentArgs<ExtArgs>
+    analytics?: boolean | Account$analyticsArgs<ExtArgs>
+    profile?: boolean | Account$profileArgs<ExtArgs>
+    _count?: boolean | AccountCountOutputTypeDefaultArgs<ExtArgs>
   }
 
 
-  export type $SocialPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Social"
+  export type $AccountPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Account"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
-      posts: Prisma.$PostPayload<ExtArgs>[]
+      userId: Prisma.$UserPayload<ExtArgs>
+      content: Prisma.$ContentPayload<ExtArgs>[]
+      analytics: Prisma.$AnalyticsPayload<ExtArgs>[]
+      profile: Prisma.$ProfilePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
-      userId: number
-      social: string
+      id: string
+      type: string
       username: string
-      profilePicUrl: string
-      totalPosts: number
-      totalLikes: number
-      totalComments: number
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["social"]>
+      accessToken: string
+      refreshToken: string
+      expiresAt: Date
+    }, ExtArgs["result"]["account"]>
     composites: {}
   }
 
 
-  type SocialGetPayload<S extends boolean | null | undefined | SocialDefaultArgs> = $Result.GetResult<Prisma.$SocialPayload, S>
+  type AccountGetPayload<S extends boolean | null | undefined | AccountDefaultArgs> = $Result.GetResult<Prisma.$AccountPayload, S>
 
-  type SocialCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<SocialFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: SocialCountAggregateInputType | true
+  type AccountCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<AccountFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: AccountCountAggregateInputType | true
     }
 
-  export interface SocialDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Social'], meta: { name: 'Social' } }
+  export interface AccountDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Account'], meta: { name: 'Account' } }
     /**
-     * Find zero or one Social that matches the filter.
-     * @param {SocialFindUniqueArgs} args - Arguments to find a Social
+     * Find zero or one Account that matches the filter.
+     * @param {AccountFindUniqueArgs} args - Arguments to find a Account
      * @example
-     * // Get one Social
-     * const social = await prisma.social.findUnique({
+     * // Get one Account
+     * const account = await prisma.account.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUnique<T extends SocialFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, SocialFindUniqueArgs<ExtArgs>>
-    ): Prisma__SocialClient<$Result.GetResult<Prisma.$SocialPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+    findUnique<T extends AccountFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, AccountFindUniqueArgs<ExtArgs>>
+    ): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one Social that matches the filter or throw an error  with `error.code='P2025'` 
+     * Find one Account that matches the filter or throw an error  with `error.code='P2025'` 
      *     if no matches were found.
-     * @param {SocialFindUniqueOrThrowArgs} args - Arguments to find a Social
+     * @param {AccountFindUniqueOrThrowArgs} args - Arguments to find a Account
      * @example
-     * // Get one Social
-     * const social = await prisma.social.findUniqueOrThrow({
+     * // Get one Account
+     * const account = await prisma.account.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUniqueOrThrow<T extends SocialFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, SocialFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__SocialClient<$Result.GetResult<Prisma.$SocialPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+    findUniqueOrThrow<T extends AccountFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, AccountFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
-     * Find the first Social that matches the filter.
+     * Find the first Account that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SocialFindFirstArgs} args - Arguments to find a Social
+     * @param {AccountFindFirstArgs} args - Arguments to find a Account
      * @example
-     * // Get one Social
-     * const social = await prisma.social.findFirst({
+     * // Get one Account
+     * const account = await prisma.account.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirst<T extends SocialFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, SocialFindFirstArgs<ExtArgs>>
-    ): Prisma__SocialClient<$Result.GetResult<Prisma.$SocialPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+    findFirst<T extends AccountFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, AccountFindFirstArgs<ExtArgs>>
+    ): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
 
     /**
-     * Find the first Social that matches the filter or
+     * Find the first Account that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SocialFindFirstOrThrowArgs} args - Arguments to find a Social
+     * @param {AccountFindFirstOrThrowArgs} args - Arguments to find a Account
      * @example
-     * // Get one Social
-     * const social = await prisma.social.findFirstOrThrow({
+     * // Get one Account
+     * const account = await prisma.account.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirstOrThrow<T extends SocialFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, SocialFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__SocialClient<$Result.GetResult<Prisma.$SocialPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+    findFirstOrThrow<T extends AccountFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, AccountFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
 
     /**
-     * Find zero or more Socials that matches the filter.
+     * Find zero or more Accounts that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SocialFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {AccountFindManyArgs=} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Socials
-     * const socials = await prisma.social.findMany()
+     * // Get all Accounts
+     * const accounts = await prisma.account.findMany()
      * 
-     * // Get first 10 Socials
-     * const socials = await prisma.social.findMany({ take: 10 })
+     * // Get first 10 Accounts
+     * const accounts = await prisma.account.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const socialWithIdOnly = await prisma.social.findMany({ select: { id: true } })
+     * const accountWithIdOnly = await prisma.account.findMany({ select: { id: true } })
      * 
     **/
-    findMany<T extends SocialFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, SocialFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SocialPayload<ExtArgs>, T, 'findMany'>>
+    findMany<T extends AccountFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, AccountFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, 'findMany'>>
 
     /**
-     * Create a Social.
-     * @param {SocialCreateArgs} args - Arguments to create a Social.
+     * Create a Account.
+     * @param {AccountCreateArgs} args - Arguments to create a Account.
      * @example
-     * // Create one Social
-     * const Social = await prisma.social.create({
+     * // Create one Account
+     * const Account = await prisma.account.create({
      *   data: {
-     *     // ... data to create a Social
+     *     // ... data to create a Account
      *   }
      * })
      * 
     **/
-    create<T extends SocialCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, SocialCreateArgs<ExtArgs>>
-    ): Prisma__SocialClient<$Result.GetResult<Prisma.$SocialPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+    create<T extends AccountCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, AccountCreateArgs<ExtArgs>>
+    ): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
 
     /**
-     * Create many Socials.
-     *     @param {SocialCreateManyArgs} args - Arguments to create many Socials.
+     * Create many Accounts.
+     *     @param {AccountCreateManyArgs} args - Arguments to create many Accounts.
      *     @example
-     *     // Create many Socials
-     *     const social = await prisma.social.createMany({
+     *     // Create many Accounts
+     *     const account = await prisma.account.createMany({
      *       data: {
      *         // ... provide data here
      *       }
      *     })
      *     
     **/
-    createMany<T extends SocialCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, SocialCreateManyArgs<ExtArgs>>
+    createMany<T extends AccountCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, AccountCreateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a Social.
-     * @param {SocialDeleteArgs} args - Arguments to delete one Social.
+     * Delete a Account.
+     * @param {AccountDeleteArgs} args - Arguments to delete one Account.
      * @example
-     * // Delete one Social
-     * const Social = await prisma.social.delete({
+     * // Delete one Account
+     * const Account = await prisma.account.delete({
      *   where: {
-     *     // ... filter to delete one Social
+     *     // ... filter to delete one Account
      *   }
      * })
      * 
     **/
-    delete<T extends SocialDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, SocialDeleteArgs<ExtArgs>>
-    ): Prisma__SocialClient<$Result.GetResult<Prisma.$SocialPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+    delete<T extends AccountDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, AccountDeleteArgs<ExtArgs>>
+    ): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
 
     /**
-     * Update one Social.
-     * @param {SocialUpdateArgs} args - Arguments to update one Social.
+     * Update one Account.
+     * @param {AccountUpdateArgs} args - Arguments to update one Account.
      * @example
-     * // Update one Social
-     * const social = await prisma.social.update({
+     * // Update one Account
+     * const account = await prisma.account.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -3494,34 +2714,34 @@ export namespace Prisma {
      * })
      * 
     **/
-    update<T extends SocialUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, SocialUpdateArgs<ExtArgs>>
-    ): Prisma__SocialClient<$Result.GetResult<Prisma.$SocialPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+    update<T extends AccountUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, AccountUpdateArgs<ExtArgs>>
+    ): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
 
     /**
-     * Delete zero or more Socials.
-     * @param {SocialDeleteManyArgs} args - Arguments to filter Socials to delete.
+     * Delete zero or more Accounts.
+     * @param {AccountDeleteManyArgs} args - Arguments to filter Accounts to delete.
      * @example
-     * // Delete a few Socials
-     * const { count } = await prisma.social.deleteMany({
+     * // Delete a few Accounts
+     * const { count } = await prisma.account.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
     **/
-    deleteMany<T extends SocialDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, SocialDeleteManyArgs<ExtArgs>>
+    deleteMany<T extends AccountDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, AccountDeleteManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Socials.
+     * Update zero or more Accounts.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SocialUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {AccountUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Socials
-     * const social = await prisma.social.updateMany({
+     * // Update many Accounts
+     * const account = await prisma.account.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -3531,59 +2751,59 @@ export namespace Prisma {
      * })
      * 
     **/
-    updateMany<T extends SocialUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, SocialUpdateManyArgs<ExtArgs>>
+    updateMany<T extends AccountUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, AccountUpdateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one Social.
-     * @param {SocialUpsertArgs} args - Arguments to update or create a Social.
+     * Create or update one Account.
+     * @param {AccountUpsertArgs} args - Arguments to update or create a Account.
      * @example
-     * // Update or create a Social
-     * const social = await prisma.social.upsert({
+     * // Update or create a Account
+     * const account = await prisma.account.upsert({
      *   create: {
-     *     // ... data to create a Social
+     *     // ... data to create a Account
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Social we want to update
+     *     // ... the filter for the Account we want to update
      *   }
      * })
     **/
-    upsert<T extends SocialUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, SocialUpsertArgs<ExtArgs>>
-    ): Prisma__SocialClient<$Result.GetResult<Prisma.$SocialPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+    upsert<T extends AccountUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, AccountUpsertArgs<ExtArgs>>
+    ): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
 
     /**
-     * Count the number of Socials.
+     * Count the number of Accounts.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SocialCountArgs} args - Arguments to filter Socials to count.
+     * @param {AccountCountArgs} args - Arguments to filter Accounts to count.
      * @example
-     * // Count the number of Socials
-     * const count = await prisma.social.count({
+     * // Count the number of Accounts
+     * const count = await prisma.account.count({
      *   where: {
-     *     // ... the filter for the Socials we want to count
+     *     // ... the filter for the Accounts we want to count
      *   }
      * })
     **/
-    count<T extends SocialCountArgs>(
-      args?: Subset<T, SocialCountArgs>,
+    count<T extends AccountCountArgs>(
+      args?: Subset<T, AccountCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], SocialCountAggregateOutputType>
+          : GetScalarType<T['select'], AccountCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Social.
+     * Allows you to perform aggregations operations on a Account.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SocialAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {AccountAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -3603,13 +2823,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends SocialAggregateArgs>(args: Subset<T, SocialAggregateArgs>): Prisma.PrismaPromise<GetSocialAggregateType<T>>
+    aggregate<T extends AccountAggregateArgs>(args: Subset<T, AccountAggregateArgs>): Prisma.PrismaPromise<GetAccountAggregateType<T>>
 
     /**
-     * Group by Social.
+     * Group by Account.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SocialGroupByArgs} args - Group by arguments.
+     * @param {AccountGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -3624,14 +2844,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends SocialGroupByArgs,
+      T extends AccountGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: SocialGroupByArgs['orderBy'] }
-        : { orderBy?: SocialGroupByArgs['orderBy'] },
+        ? { orderBy: AccountGroupByArgs['orderBy'] }
+        : { orderBy?: AccountGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -3680,25 +2900,29 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, SocialGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSocialGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, AccountGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAccountGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Social model
+   * Fields of the Account model
    */
-  readonly fields: SocialFieldRefs;
+  readonly fields: AccountFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Social.
+   * The delegate class that acts as a "Promise-like" for Account.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__SocialClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__AccountClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+    userId<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
-    posts<T extends Social$postsArgs<ExtArgs> = {}>(args?: Subset<T, Social$postsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'findMany'> | Null>;
+    content<T extends Account$contentArgs<ExtArgs> = {}>(args?: Subset<T, Account$contentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContentPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    analytics<T extends Account$analyticsArgs<ExtArgs> = {}>(args?: Subset<T, Account$analyticsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnalyticsPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    profile<T extends Account$profileArgs<ExtArgs> = {}>(args?: Subset<T, Account$profileArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3725,788 +2949,745 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Social model
+   * Fields of the Account model
    */ 
-  interface SocialFieldRefs {
-    readonly id: FieldRef<"Social", 'Int'>
-    readonly userId: FieldRef<"Social", 'Int'>
-    readonly social: FieldRef<"Social", 'String'>
-    readonly username: FieldRef<"Social", 'String'>
-    readonly profilePicUrl: FieldRef<"Social", 'String'>
-    readonly totalPosts: FieldRef<"Social", 'Int'>
-    readonly totalLikes: FieldRef<"Social", 'Int'>
-    readonly totalComments: FieldRef<"Social", 'Int'>
-    readonly createdAt: FieldRef<"Social", 'DateTime'>
-    readonly updatedAt: FieldRef<"Social", 'DateTime'>
+  interface AccountFieldRefs {
+    readonly id: FieldRef<"Account", 'String'>
+    readonly type: FieldRef<"Account", 'String'>
+    readonly username: FieldRef<"Account", 'String'>
+    readonly accessToken: FieldRef<"Account", 'String'>
+    readonly refreshToken: FieldRef<"Account", 'String'>
+    readonly expiresAt: FieldRef<"Account", 'DateTime'>
   }
     
 
   // Custom InputTypes
 
   /**
-   * Social findUnique
+   * Account findUnique
    */
-  export type SocialFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Social
+     * Select specific fields to fetch from the Account
      */
-    select?: SocialSelect<ExtArgs> | null
+    select?: AccountSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: SocialInclude<ExtArgs> | null
+    include?: AccountInclude<ExtArgs> | null
     /**
-     * Filter, which Social to fetch.
+     * Filter, which Account to fetch.
      */
-    where: SocialWhereUniqueInput
+    where: AccountWhereUniqueInput
   }
 
 
   /**
-   * Social findUniqueOrThrow
+   * Account findUniqueOrThrow
    */
-  export type SocialFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Social
+     * Select specific fields to fetch from the Account
      */
-    select?: SocialSelect<ExtArgs> | null
+    select?: AccountSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: SocialInclude<ExtArgs> | null
+    include?: AccountInclude<ExtArgs> | null
     /**
-     * Filter, which Social to fetch.
+     * Filter, which Account to fetch.
      */
-    where: SocialWhereUniqueInput
+    where: AccountWhereUniqueInput
   }
 
 
   /**
-   * Social findFirst
+   * Account findFirst
    */
-  export type SocialFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Social
+     * Select specific fields to fetch from the Account
      */
-    select?: SocialSelect<ExtArgs> | null
+    select?: AccountSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: SocialInclude<ExtArgs> | null
+    include?: AccountInclude<ExtArgs> | null
     /**
-     * Filter, which Social to fetch.
+     * Filter, which Account to fetch.
      */
-    where?: SocialWhereInput
+    where?: AccountWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Socials to fetch.
+     * Determine the order of Accounts to fetch.
      */
-    orderBy?: SocialOrderByWithRelationInput | SocialOrderByWithRelationInput[]
+    orderBy?: AccountOrderByWithRelationInput | AccountOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Socials.
+     * Sets the position for searching for Accounts.
      */
-    cursor?: SocialWhereUniqueInput
+    cursor?: AccountWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Socials from the position of the cursor.
+     * Take `±n` Accounts from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Socials.
+     * Skip the first `n` Accounts.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Socials.
+     * Filter by unique combinations of Accounts.
      */
-    distinct?: SocialScalarFieldEnum | SocialScalarFieldEnum[]
+    distinct?: AccountScalarFieldEnum | AccountScalarFieldEnum[]
   }
 
 
   /**
-   * Social findFirstOrThrow
+   * Account findFirstOrThrow
    */
-  export type SocialFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Social
+     * Select specific fields to fetch from the Account
      */
-    select?: SocialSelect<ExtArgs> | null
+    select?: AccountSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: SocialInclude<ExtArgs> | null
+    include?: AccountInclude<ExtArgs> | null
     /**
-     * Filter, which Social to fetch.
+     * Filter, which Account to fetch.
      */
-    where?: SocialWhereInput
+    where?: AccountWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Socials to fetch.
+     * Determine the order of Accounts to fetch.
      */
-    orderBy?: SocialOrderByWithRelationInput | SocialOrderByWithRelationInput[]
+    orderBy?: AccountOrderByWithRelationInput | AccountOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Socials.
+     * Sets the position for searching for Accounts.
      */
-    cursor?: SocialWhereUniqueInput
+    cursor?: AccountWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Socials from the position of the cursor.
+     * Take `±n` Accounts from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Socials.
+     * Skip the first `n` Accounts.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Socials.
+     * Filter by unique combinations of Accounts.
      */
-    distinct?: SocialScalarFieldEnum | SocialScalarFieldEnum[]
+    distinct?: AccountScalarFieldEnum | AccountScalarFieldEnum[]
   }
 
 
   /**
-   * Social findMany
+   * Account findMany
    */
-  export type SocialFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Social
+     * Select specific fields to fetch from the Account
      */
-    select?: SocialSelect<ExtArgs> | null
+    select?: AccountSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: SocialInclude<ExtArgs> | null
+    include?: AccountInclude<ExtArgs> | null
     /**
-     * Filter, which Socials to fetch.
+     * Filter, which Accounts to fetch.
      */
-    where?: SocialWhereInput
+    where?: AccountWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Socials to fetch.
+     * Determine the order of Accounts to fetch.
      */
-    orderBy?: SocialOrderByWithRelationInput | SocialOrderByWithRelationInput[]
+    orderBy?: AccountOrderByWithRelationInput | AccountOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Socials.
+     * Sets the position for listing Accounts.
      */
-    cursor?: SocialWhereUniqueInput
+    cursor?: AccountWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Socials from the position of the cursor.
+     * Take `±n` Accounts from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Socials.
+     * Skip the first `n` Accounts.
      */
     skip?: number
-    distinct?: SocialScalarFieldEnum | SocialScalarFieldEnum[]
+    distinct?: AccountScalarFieldEnum | AccountScalarFieldEnum[]
   }
 
 
   /**
-   * Social create
+   * Account create
    */
-  export type SocialCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Social
+     * Select specific fields to fetch from the Account
      */
-    select?: SocialSelect<ExtArgs> | null
+    select?: AccountSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: SocialInclude<ExtArgs> | null
+    include?: AccountInclude<ExtArgs> | null
     /**
-     * The data needed to create a Social.
+     * The data needed to create a Account.
      */
-    data: XOR<SocialCreateInput, SocialUncheckedCreateInput>
+    data: XOR<AccountCreateInput, AccountUncheckedCreateInput>
   }
 
 
   /**
-   * Social createMany
+   * Account createMany
    */
-  export type SocialCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Socials.
+     * The data used to create many Accounts.
      */
-    data: SocialCreateManyInput | SocialCreateManyInput[]
+    data: AccountCreateManyInput | AccountCreateManyInput[]
     skipDuplicates?: boolean
   }
 
 
   /**
-   * Social update
+   * Account update
    */
-  export type SocialUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Social
+     * Select specific fields to fetch from the Account
      */
-    select?: SocialSelect<ExtArgs> | null
+    select?: AccountSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: SocialInclude<ExtArgs> | null
+    include?: AccountInclude<ExtArgs> | null
     /**
-     * The data needed to update a Social.
+     * The data needed to update a Account.
      */
-    data: XOR<SocialUpdateInput, SocialUncheckedUpdateInput>
+    data: XOR<AccountUpdateInput, AccountUncheckedUpdateInput>
     /**
-     * Choose, which Social to update.
+     * Choose, which Account to update.
      */
-    where: SocialWhereUniqueInput
+    where: AccountWhereUniqueInput
   }
 
 
   /**
-   * Social updateMany
+   * Account updateMany
    */
-  export type SocialUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Socials.
+     * The data used to update Accounts.
      */
-    data: XOR<SocialUpdateManyMutationInput, SocialUncheckedUpdateManyInput>
+    data: XOR<AccountUpdateManyMutationInput, AccountUncheckedUpdateManyInput>
     /**
-     * Filter which Socials to update
+     * Filter which Accounts to update
      */
-    where?: SocialWhereInput
+    where?: AccountWhereInput
   }
 
 
   /**
-   * Social upsert
+   * Account upsert
    */
-  export type SocialUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Social
+     * Select specific fields to fetch from the Account
      */
-    select?: SocialSelect<ExtArgs> | null
+    select?: AccountSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: SocialInclude<ExtArgs> | null
+    include?: AccountInclude<ExtArgs> | null
     /**
-     * The filter to search for the Social to update in case it exists.
+     * The filter to search for the Account to update in case it exists.
      */
-    where: SocialWhereUniqueInput
+    where: AccountWhereUniqueInput
     /**
-     * In case the Social found by the `where` argument doesn't exist, create a new Social with this data.
+     * In case the Account found by the `where` argument doesn't exist, create a new Account with this data.
      */
-    create: XOR<SocialCreateInput, SocialUncheckedCreateInput>
+    create: XOR<AccountCreateInput, AccountUncheckedCreateInput>
     /**
-     * In case the Social was found with the provided `where` argument, update it with this data.
+     * In case the Account was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<SocialUpdateInput, SocialUncheckedUpdateInput>
+    update: XOR<AccountUpdateInput, AccountUncheckedUpdateInput>
   }
 
 
   /**
-   * Social delete
+   * Account delete
    */
-  export type SocialDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Social
+     * Select specific fields to fetch from the Account
      */
-    select?: SocialSelect<ExtArgs> | null
+    select?: AccountSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: SocialInclude<ExtArgs> | null
+    include?: AccountInclude<ExtArgs> | null
     /**
-     * Filter which Social to delete.
+     * Filter which Account to delete.
      */
-    where: SocialWhereUniqueInput
+    where: AccountWhereUniqueInput
   }
 
 
   /**
-   * Social deleteMany
+   * Account deleteMany
    */
-  export type SocialDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Socials to delete
+     * Filter which Accounts to delete
      */
-    where?: SocialWhereInput
+    where?: AccountWhereInput
   }
 
 
   /**
-   * Social.posts
+   * Account.content
    */
-  export type Social$postsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Account$contentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Post
+     * Select specific fields to fetch from the Content
      */
-    select?: PostSelect<ExtArgs> | null
+    select?: ContentSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: PostInclude<ExtArgs> | null
-    where?: PostWhereInput
-    orderBy?: PostOrderByWithRelationInput | PostOrderByWithRelationInput[]
-    cursor?: PostWhereUniqueInput
+    include?: ContentInclude<ExtArgs> | null
+    where?: ContentWhereInput
+    orderBy?: ContentOrderByWithRelationInput | ContentOrderByWithRelationInput[]
+    cursor?: ContentWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: PostScalarFieldEnum | PostScalarFieldEnum[]
+    distinct?: ContentScalarFieldEnum | ContentScalarFieldEnum[]
   }
 
 
   /**
-   * Social without action
+   * Account.analytics
    */
-  export type SocialDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Account$analyticsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Social
+     * Select specific fields to fetch from the Analytics
      */
-    select?: SocialSelect<ExtArgs> | null
+    select?: AnalyticsSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: SocialInclude<ExtArgs> | null
+    include?: AnalyticsInclude<ExtArgs> | null
+    where?: AnalyticsWhereInput
+    orderBy?: AnalyticsOrderByWithRelationInput | AnalyticsOrderByWithRelationInput[]
+    cursor?: AnalyticsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AnalyticsScalarFieldEnum | AnalyticsScalarFieldEnum[]
+  }
+
+
+  /**
+   * Account.profile
+   */
+  export type Account$profileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Profile
+     */
+    select?: ProfileSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProfileInclude<ExtArgs> | null
+    where?: ProfileWhereInput
+  }
+
+
+  /**
+   * Account without action
+   */
+  export type AccountDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AccountInclude<ExtArgs> | null
   }
 
 
 
   /**
-   * Model Post
+   * Model Profile
    */
 
-  export type AggregatePost = {
-    _count: PostCountAggregateOutputType | null
-    _avg: PostAvgAggregateOutputType | null
-    _sum: PostSumAggregateOutputType | null
-    _min: PostMinAggregateOutputType | null
-    _max: PostMaxAggregateOutputType | null
+  export type AggregateProfile = {
+    _count: ProfileCountAggregateOutputType | null
+    _min: ProfileMinAggregateOutputType | null
+    _max: ProfileMaxAggregateOutputType | null
   }
 
-  export type PostAvgAggregateOutputType = {
-    id: number | null
-    socialId: number | null
-    likes: number | null
-    comments: number | null
+  export type ProfileMinAggregateOutputType = {
+    id: string | null
+    username: string | null
+    email: string | null
+    avatar: string | null
+    bio: string | null
   }
 
-  export type PostSumAggregateOutputType = {
-    id: number | null
-    socialId: number | null
-    likes: number | null
-    comments: number | null
+  export type ProfileMaxAggregateOutputType = {
+    id: string | null
+    username: string | null
+    email: string | null
+    avatar: string | null
+    bio: string | null
   }
 
-  export type PostMinAggregateOutputType = {
-    id: number | null
-    socialId: number | null
-    content: string | null
-    image: string | null
-    likes: number | null
-    comments: number | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type PostMaxAggregateOutputType = {
-    id: number | null
-    socialId: number | null
-    content: string | null
-    image: string | null
-    likes: number | null
-    comments: number | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type PostCountAggregateOutputType = {
+  export type ProfileCountAggregateOutputType = {
     id: number
-    socialId: number
-    content: number
-    image: number
-    likes: number
-    comments: number
-    createdAt: number
-    updatedAt: number
+    username: number
+    email: number
+    avatar: number
+    bio: number
     _all: number
   }
 
 
-  export type PostAvgAggregateInputType = {
+  export type ProfileMinAggregateInputType = {
     id?: true
-    socialId?: true
-    likes?: true
-    comments?: true
+    username?: true
+    email?: true
+    avatar?: true
+    bio?: true
   }
 
-  export type PostSumAggregateInputType = {
+  export type ProfileMaxAggregateInputType = {
     id?: true
-    socialId?: true
-    likes?: true
-    comments?: true
+    username?: true
+    email?: true
+    avatar?: true
+    bio?: true
   }
 
-  export type PostMinAggregateInputType = {
+  export type ProfileCountAggregateInputType = {
     id?: true
-    socialId?: true
-    content?: true
-    image?: true
-    likes?: true
-    comments?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type PostMaxAggregateInputType = {
-    id?: true
-    socialId?: true
-    content?: true
-    image?: true
-    likes?: true
-    comments?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type PostCountAggregateInputType = {
-    id?: true
-    socialId?: true
-    content?: true
-    image?: true
-    likes?: true
-    comments?: true
-    createdAt?: true
-    updatedAt?: true
+    username?: true
+    email?: true
+    avatar?: true
+    bio?: true
     _all?: true
   }
 
-  export type PostAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProfileAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Post to aggregate.
+     * Filter which Profile to aggregate.
      */
-    where?: PostWhereInput
+    where?: ProfileWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Posts to fetch.
+     * Determine the order of Profiles to fetch.
      */
-    orderBy?: PostOrderByWithRelationInput | PostOrderByWithRelationInput[]
+    orderBy?: ProfileOrderByWithRelationInput | ProfileOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: PostWhereUniqueInput
+    cursor?: ProfileWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Posts from the position of the cursor.
+     * Take `±n` Profiles from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Posts.
+     * Skip the first `n` Profiles.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Posts
+     * Count returned Profiles
     **/
-    _count?: true | PostCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: PostAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: PostSumAggregateInputType
+    _count?: true | ProfileCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: PostMinAggregateInputType
+    _min?: ProfileMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: PostMaxAggregateInputType
+    _max?: ProfileMaxAggregateInputType
   }
 
-  export type GetPostAggregateType<T extends PostAggregateArgs> = {
-        [P in keyof T & keyof AggregatePost]: P extends '_count' | 'count'
+  export type GetProfileAggregateType<T extends ProfileAggregateArgs> = {
+        [P in keyof T & keyof AggregateProfile]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregatePost[P]>
-      : GetScalarType<T[P], AggregatePost[P]>
+        : GetScalarType<T[P], AggregateProfile[P]>
+      : GetScalarType<T[P], AggregateProfile[P]>
   }
 
 
 
 
-  export type PostGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PostWhereInput
-    orderBy?: PostOrderByWithAggregationInput | PostOrderByWithAggregationInput[]
-    by: PostScalarFieldEnum[] | PostScalarFieldEnum
-    having?: PostScalarWhereWithAggregatesInput
+  export type ProfileGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProfileWhereInput
+    orderBy?: ProfileOrderByWithAggregationInput | ProfileOrderByWithAggregationInput[]
+    by: ProfileScalarFieldEnum[] | ProfileScalarFieldEnum
+    having?: ProfileScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: PostCountAggregateInputType | true
-    _avg?: PostAvgAggregateInputType
-    _sum?: PostSumAggregateInputType
-    _min?: PostMinAggregateInputType
-    _max?: PostMaxAggregateInputType
+    _count?: ProfileCountAggregateInputType | true
+    _min?: ProfileMinAggregateInputType
+    _max?: ProfileMaxAggregateInputType
   }
 
-  export type PostGroupByOutputType = {
-    id: number
-    socialId: number
-    content: string
-    image: string
-    likes: number
-    comments: number
-    createdAt: Date
-    updatedAt: Date
-    _count: PostCountAggregateOutputType | null
-    _avg: PostAvgAggregateOutputType | null
-    _sum: PostSumAggregateOutputType | null
-    _min: PostMinAggregateOutputType | null
-    _max: PostMaxAggregateOutputType | null
+  export type ProfileGroupByOutputType = {
+    id: string
+    username: string
+    email: string
+    avatar: string
+    bio: string
+    _count: ProfileCountAggregateOutputType | null
+    _min: ProfileMinAggregateOutputType | null
+    _max: ProfileMaxAggregateOutputType | null
   }
 
-  type GetPostGroupByPayload<T extends PostGroupByArgs> = Prisma.PrismaPromise<
+  type GetProfileGroupByPayload<T extends ProfileGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<PostGroupByOutputType, T['by']> &
+      PickEnumerable<ProfileGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof PostGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof ProfileGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], PostGroupByOutputType[P]>
-            : GetScalarType<T[P], PostGroupByOutputType[P]>
+              : GetScalarType<T[P], ProfileGroupByOutputType[P]>
+            : GetScalarType<T[P], ProfileGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type PostSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ProfileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    socialId?: boolean
-    content?: boolean
-    image?: boolean
-    likes?: boolean
-    comments?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    social?: boolean | SocialDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["post"]>
+    username?: boolean
+    email?: boolean
+    avatar?: boolean
+    bio?: boolean
+    accountId?: boolean | AccountDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["profile"]>
 
-  export type PostSelectScalar = {
+  export type ProfileSelectScalar = {
     id?: boolean
-    socialId?: boolean
-    content?: boolean
-    image?: boolean
-    likes?: boolean
-    comments?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
+    username?: boolean
+    email?: boolean
+    avatar?: boolean
+    bio?: boolean
   }
 
-  export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    social?: boolean | SocialDefaultArgs<ExtArgs>
+  export type ProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    accountId?: boolean | AccountDefaultArgs<ExtArgs>
   }
 
 
-  export type $PostPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Post"
+  export type $ProfilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Profile"
     objects: {
-      social: Prisma.$SocialPayload<ExtArgs>
+      accountId: Prisma.$AccountPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
-      socialId: number
-      content: string
-      image: string
-      likes: number
-      comments: number
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["post"]>
+      id: string
+      username: string
+      email: string
+      avatar: string
+      bio: string
+    }, ExtArgs["result"]["profile"]>
     composites: {}
   }
 
 
-  type PostGetPayload<S extends boolean | null | undefined | PostDefaultArgs> = $Result.GetResult<Prisma.$PostPayload, S>
+  type ProfileGetPayload<S extends boolean | null | undefined | ProfileDefaultArgs> = $Result.GetResult<Prisma.$ProfilePayload, S>
 
-  type PostCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<PostFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: PostCountAggregateInputType | true
+  type ProfileCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ProfileFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ProfileCountAggregateInputType | true
     }
 
-  export interface PostDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Post'], meta: { name: 'Post' } }
+  export interface ProfileDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Profile'], meta: { name: 'Profile' } }
     /**
-     * Find zero or one Post that matches the filter.
-     * @param {PostFindUniqueArgs} args - Arguments to find a Post
+     * Find zero or one Profile that matches the filter.
+     * @param {ProfileFindUniqueArgs} args - Arguments to find a Profile
      * @example
-     * // Get one Post
-     * const post = await prisma.post.findUnique({
+     * // Get one Profile
+     * const profile = await prisma.profile.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUnique<T extends PostFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, PostFindUniqueArgs<ExtArgs>>
-    ): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+    findUnique<T extends ProfileFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, ProfileFindUniqueArgs<ExtArgs>>
+    ): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one Post that matches the filter or throw an error  with `error.code='P2025'` 
+     * Find one Profile that matches the filter or throw an error  with `error.code='P2025'` 
      *     if no matches were found.
-     * @param {PostFindUniqueOrThrowArgs} args - Arguments to find a Post
+     * @param {ProfileFindUniqueOrThrowArgs} args - Arguments to find a Profile
      * @example
-     * // Get one Post
-     * const post = await prisma.post.findUniqueOrThrow({
+     * // Get one Profile
+     * const profile = await prisma.profile.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUniqueOrThrow<T extends PostFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, PostFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+    findUniqueOrThrow<T extends ProfileFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProfileFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
-     * Find the first Post that matches the filter.
+     * Find the first Profile that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PostFindFirstArgs} args - Arguments to find a Post
+     * @param {ProfileFindFirstArgs} args - Arguments to find a Profile
      * @example
-     * // Get one Post
-     * const post = await prisma.post.findFirst({
+     * // Get one Profile
+     * const profile = await prisma.profile.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirst<T extends PostFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, PostFindFirstArgs<ExtArgs>>
-    ): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+    findFirst<T extends ProfileFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProfileFindFirstArgs<ExtArgs>>
+    ): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
 
     /**
-     * Find the first Post that matches the filter or
+     * Find the first Profile that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PostFindFirstOrThrowArgs} args - Arguments to find a Post
+     * @param {ProfileFindFirstOrThrowArgs} args - Arguments to find a Profile
      * @example
-     * // Get one Post
-     * const post = await prisma.post.findFirstOrThrow({
+     * // Get one Profile
+     * const profile = await prisma.profile.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirstOrThrow<T extends PostFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, PostFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+    findFirstOrThrow<T extends ProfileFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProfileFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
 
     /**
-     * Find zero or more Posts that matches the filter.
+     * Find zero or more Profiles that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PostFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {ProfileFindManyArgs=} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Posts
-     * const posts = await prisma.post.findMany()
+     * // Get all Profiles
+     * const profiles = await prisma.profile.findMany()
      * 
-     * // Get first 10 Posts
-     * const posts = await prisma.post.findMany({ take: 10 })
+     * // Get first 10 Profiles
+     * const profiles = await prisma.profile.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const postWithIdOnly = await prisma.post.findMany({ select: { id: true } })
+     * const profileWithIdOnly = await prisma.profile.findMany({ select: { id: true } })
      * 
     **/
-    findMany<T extends PostFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, PostFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'findMany'>>
+    findMany<T extends ProfileFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProfileFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, 'findMany'>>
 
     /**
-     * Create a Post.
-     * @param {PostCreateArgs} args - Arguments to create a Post.
+     * Create a Profile.
+     * @param {ProfileCreateArgs} args - Arguments to create a Profile.
      * @example
-     * // Create one Post
-     * const Post = await prisma.post.create({
+     * // Create one Profile
+     * const Profile = await prisma.profile.create({
      *   data: {
-     *     // ... data to create a Post
+     *     // ... data to create a Profile
      *   }
      * })
      * 
     **/
-    create<T extends PostCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, PostCreateArgs<ExtArgs>>
-    ): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+    create<T extends ProfileCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, ProfileCreateArgs<ExtArgs>>
+    ): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, 'create'>, never, ExtArgs>
 
     /**
-     * Create many Posts.
-     *     @param {PostCreateManyArgs} args - Arguments to create many Posts.
+     * Create many Profiles.
+     *     @param {ProfileCreateManyArgs} args - Arguments to create many Profiles.
      *     @example
-     *     // Create many Posts
-     *     const post = await prisma.post.createMany({
+     *     // Create many Profiles
+     *     const profile = await prisma.profile.createMany({
      *       data: {
      *         // ... provide data here
      *       }
      *     })
      *     
     **/
-    createMany<T extends PostCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, PostCreateManyArgs<ExtArgs>>
+    createMany<T extends ProfileCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProfileCreateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a Post.
-     * @param {PostDeleteArgs} args - Arguments to delete one Post.
+     * Delete a Profile.
+     * @param {ProfileDeleteArgs} args - Arguments to delete one Profile.
      * @example
-     * // Delete one Post
-     * const Post = await prisma.post.delete({
+     * // Delete one Profile
+     * const Profile = await prisma.profile.delete({
      *   where: {
-     *     // ... filter to delete one Post
+     *     // ... filter to delete one Profile
      *   }
      * })
      * 
     **/
-    delete<T extends PostDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, PostDeleteArgs<ExtArgs>>
-    ): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+    delete<T extends ProfileDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, ProfileDeleteArgs<ExtArgs>>
+    ): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
 
     /**
-     * Update one Post.
-     * @param {PostUpdateArgs} args - Arguments to update one Post.
+     * Update one Profile.
+     * @param {ProfileUpdateArgs} args - Arguments to update one Profile.
      * @example
-     * // Update one Post
-     * const post = await prisma.post.update({
+     * // Update one Profile
+     * const profile = await prisma.profile.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -4516,34 +3697,34 @@ export namespace Prisma {
      * })
      * 
     **/
-    update<T extends PostUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, PostUpdateArgs<ExtArgs>>
-    ): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+    update<T extends ProfileUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, ProfileUpdateArgs<ExtArgs>>
+    ): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, 'update'>, never, ExtArgs>
 
     /**
-     * Delete zero or more Posts.
-     * @param {PostDeleteManyArgs} args - Arguments to filter Posts to delete.
+     * Delete zero or more Profiles.
+     * @param {ProfileDeleteManyArgs} args - Arguments to filter Profiles to delete.
      * @example
-     * // Delete a few Posts
-     * const { count } = await prisma.post.deleteMany({
+     * // Delete a few Profiles
+     * const { count } = await prisma.profile.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
     **/
-    deleteMany<T extends PostDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, PostDeleteManyArgs<ExtArgs>>
+    deleteMany<T extends ProfileDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProfileDeleteManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Posts.
+     * Update zero or more Profiles.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PostUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {ProfileUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Posts
-     * const post = await prisma.post.updateMany({
+     * // Update many Profiles
+     * const profile = await prisma.profile.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -4553,59 +3734,59 @@ export namespace Prisma {
      * })
      * 
     **/
-    updateMany<T extends PostUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, PostUpdateManyArgs<ExtArgs>>
+    updateMany<T extends ProfileUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, ProfileUpdateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one Post.
-     * @param {PostUpsertArgs} args - Arguments to update or create a Post.
+     * Create or update one Profile.
+     * @param {ProfileUpsertArgs} args - Arguments to update or create a Profile.
      * @example
-     * // Update or create a Post
-     * const post = await prisma.post.upsert({
+     * // Update or create a Profile
+     * const profile = await prisma.profile.upsert({
      *   create: {
-     *     // ... data to create a Post
+     *     // ... data to create a Profile
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Post we want to update
+     *     // ... the filter for the Profile we want to update
      *   }
      * })
     **/
-    upsert<T extends PostUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, PostUpsertArgs<ExtArgs>>
-    ): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+    upsert<T extends ProfileUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, ProfileUpsertArgs<ExtArgs>>
+    ): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
 
     /**
-     * Count the number of Posts.
+     * Count the number of Profiles.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PostCountArgs} args - Arguments to filter Posts to count.
+     * @param {ProfileCountArgs} args - Arguments to filter Profiles to count.
      * @example
-     * // Count the number of Posts
-     * const count = await prisma.post.count({
+     * // Count the number of Profiles
+     * const count = await prisma.profile.count({
      *   where: {
-     *     // ... the filter for the Posts we want to count
+     *     // ... the filter for the Profiles we want to count
      *   }
      * })
     **/
-    count<T extends PostCountArgs>(
-      args?: Subset<T, PostCountArgs>,
+    count<T extends ProfileCountArgs>(
+      args?: Subset<T, ProfileCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], PostCountAggregateOutputType>
+          : GetScalarType<T['select'], ProfileCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Post.
+     * Allows you to perform aggregations operations on a Profile.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PostAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {ProfileAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -4625,13 +3806,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends PostAggregateArgs>(args: Subset<T, PostAggregateArgs>): Prisma.PrismaPromise<GetPostAggregateType<T>>
+    aggregate<T extends ProfileAggregateArgs>(args: Subset<T, ProfileAggregateArgs>): Prisma.PrismaPromise<GetProfileAggregateType<T>>
 
     /**
-     * Group by Post.
+     * Group by Profile.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PostGroupByArgs} args - Group by arguments.
+     * @param {ProfileGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -4646,14 +3827,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends PostGroupByArgs,
+      T extends ProfileGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: PostGroupByArgs['orderBy'] }
-        : { orderBy?: PostGroupByArgs['orderBy'] },
+        ? { orderBy: ProfileGroupByArgs['orderBy'] }
+        : { orderBy?: ProfileGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -4702,23 +3883,23 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, PostGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPostGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, ProfileGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProfileGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Post model
+   * Fields of the Profile model
    */
-  readonly fields: PostFieldRefs;
+  readonly fields: ProfileFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Post.
+   * The delegate class that acts as a "Promise-like" for Profile.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__PostClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__ProfileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    social<T extends SocialDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SocialDefaultArgs<ExtArgs>>): Prisma__SocialClient<$Result.GetResult<Prisma.$SocialPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+    accountId<T extends AccountDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AccountDefaultArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -4745,340 +3926,3154 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Post model
+   * Fields of the Profile model
    */ 
-  interface PostFieldRefs {
-    readonly id: FieldRef<"Post", 'Int'>
-    readonly socialId: FieldRef<"Post", 'Int'>
-    readonly content: FieldRef<"Post", 'String'>
-    readonly image: FieldRef<"Post", 'String'>
-    readonly likes: FieldRef<"Post", 'Int'>
-    readonly comments: FieldRef<"Post", 'Int'>
-    readonly createdAt: FieldRef<"Post", 'DateTime'>
-    readonly updatedAt: FieldRef<"Post", 'DateTime'>
+  interface ProfileFieldRefs {
+    readonly id: FieldRef<"Profile", 'String'>
+    readonly username: FieldRef<"Profile", 'String'>
+    readonly email: FieldRef<"Profile", 'String'>
+    readonly avatar: FieldRef<"Profile", 'String'>
+    readonly bio: FieldRef<"Profile", 'String'>
   }
     
 
   // Custom InputTypes
 
   /**
-   * Post findUnique
+   * Profile findUnique
    */
-  export type PostFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProfileFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Post
+     * Select specific fields to fetch from the Profile
      */
-    select?: PostSelect<ExtArgs> | null
+    select?: ProfileSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: PostInclude<ExtArgs> | null
+    include?: ProfileInclude<ExtArgs> | null
     /**
-     * Filter, which Post to fetch.
+     * Filter, which Profile to fetch.
      */
-    where: PostWhereUniqueInput
+    where: ProfileWhereUniqueInput
   }
 
 
   /**
-   * Post findUniqueOrThrow
+   * Profile findUniqueOrThrow
    */
-  export type PostFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProfileFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Post
+     * Select specific fields to fetch from the Profile
      */
-    select?: PostSelect<ExtArgs> | null
+    select?: ProfileSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: PostInclude<ExtArgs> | null
+    include?: ProfileInclude<ExtArgs> | null
     /**
-     * Filter, which Post to fetch.
+     * Filter, which Profile to fetch.
      */
-    where: PostWhereUniqueInput
+    where: ProfileWhereUniqueInput
   }
 
 
   /**
-   * Post findFirst
+   * Profile findFirst
    */
-  export type PostFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProfileFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Post
+     * Select specific fields to fetch from the Profile
      */
-    select?: PostSelect<ExtArgs> | null
+    select?: ProfileSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: PostInclude<ExtArgs> | null
+    include?: ProfileInclude<ExtArgs> | null
     /**
-     * Filter, which Post to fetch.
+     * Filter, which Profile to fetch.
      */
-    where?: PostWhereInput
+    where?: ProfileWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Posts to fetch.
+     * Determine the order of Profiles to fetch.
      */
-    orderBy?: PostOrderByWithRelationInput | PostOrderByWithRelationInput[]
+    orderBy?: ProfileOrderByWithRelationInput | ProfileOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Posts.
+     * Sets the position for searching for Profiles.
      */
-    cursor?: PostWhereUniqueInput
+    cursor?: ProfileWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Posts from the position of the cursor.
+     * Take `±n` Profiles from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Posts.
+     * Skip the first `n` Profiles.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Posts.
+     * Filter by unique combinations of Profiles.
      */
-    distinct?: PostScalarFieldEnum | PostScalarFieldEnum[]
+    distinct?: ProfileScalarFieldEnum | ProfileScalarFieldEnum[]
   }
 
 
   /**
-   * Post findFirstOrThrow
+   * Profile findFirstOrThrow
    */
-  export type PostFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProfileFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Post
+     * Select specific fields to fetch from the Profile
      */
-    select?: PostSelect<ExtArgs> | null
+    select?: ProfileSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: PostInclude<ExtArgs> | null
+    include?: ProfileInclude<ExtArgs> | null
     /**
-     * Filter, which Post to fetch.
+     * Filter, which Profile to fetch.
      */
-    where?: PostWhereInput
+    where?: ProfileWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Posts to fetch.
+     * Determine the order of Profiles to fetch.
      */
-    orderBy?: PostOrderByWithRelationInput | PostOrderByWithRelationInput[]
+    orderBy?: ProfileOrderByWithRelationInput | ProfileOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Posts.
+     * Sets the position for searching for Profiles.
      */
-    cursor?: PostWhereUniqueInput
+    cursor?: ProfileWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Posts from the position of the cursor.
+     * Take `±n` Profiles from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Posts.
+     * Skip the first `n` Profiles.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Posts.
+     * Filter by unique combinations of Profiles.
      */
-    distinct?: PostScalarFieldEnum | PostScalarFieldEnum[]
+    distinct?: ProfileScalarFieldEnum | ProfileScalarFieldEnum[]
   }
 
 
   /**
-   * Post findMany
+   * Profile findMany
    */
-  export type PostFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProfileFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Post
+     * Select specific fields to fetch from the Profile
      */
-    select?: PostSelect<ExtArgs> | null
+    select?: ProfileSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: PostInclude<ExtArgs> | null
+    include?: ProfileInclude<ExtArgs> | null
     /**
-     * Filter, which Posts to fetch.
+     * Filter, which Profiles to fetch.
      */
-    where?: PostWhereInput
+    where?: ProfileWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Posts to fetch.
+     * Determine the order of Profiles to fetch.
      */
-    orderBy?: PostOrderByWithRelationInput | PostOrderByWithRelationInput[]
+    orderBy?: ProfileOrderByWithRelationInput | ProfileOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Posts.
+     * Sets the position for listing Profiles.
      */
-    cursor?: PostWhereUniqueInput
+    cursor?: ProfileWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Posts from the position of the cursor.
+     * Take `±n` Profiles from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Posts.
+     * Skip the first `n` Profiles.
      */
     skip?: number
-    distinct?: PostScalarFieldEnum | PostScalarFieldEnum[]
+    distinct?: ProfileScalarFieldEnum | ProfileScalarFieldEnum[]
   }
 
 
   /**
-   * Post create
+   * Profile create
    */
-  export type PostCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProfileCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Post
+     * Select specific fields to fetch from the Profile
      */
-    select?: PostSelect<ExtArgs> | null
+    select?: ProfileSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: PostInclude<ExtArgs> | null
+    include?: ProfileInclude<ExtArgs> | null
     /**
-     * The data needed to create a Post.
+     * The data needed to create a Profile.
      */
-    data: XOR<PostCreateInput, PostUncheckedCreateInput>
+    data: XOR<ProfileCreateInput, ProfileUncheckedCreateInput>
   }
 
 
   /**
-   * Post createMany
+   * Profile createMany
    */
-  export type PostCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProfileCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Posts.
+     * The data used to create many Profiles.
      */
-    data: PostCreateManyInput | PostCreateManyInput[]
+    data: ProfileCreateManyInput | ProfileCreateManyInput[]
     skipDuplicates?: boolean
   }
 
 
   /**
-   * Post update
+   * Profile update
    */
-  export type PostUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProfileUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Post
+     * Select specific fields to fetch from the Profile
      */
-    select?: PostSelect<ExtArgs> | null
+    select?: ProfileSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: PostInclude<ExtArgs> | null
+    include?: ProfileInclude<ExtArgs> | null
     /**
-     * The data needed to update a Post.
+     * The data needed to update a Profile.
      */
-    data: XOR<PostUpdateInput, PostUncheckedUpdateInput>
+    data: XOR<ProfileUpdateInput, ProfileUncheckedUpdateInput>
     /**
-     * Choose, which Post to update.
+     * Choose, which Profile to update.
      */
-    where: PostWhereUniqueInput
+    where: ProfileWhereUniqueInput
   }
 
 
   /**
-   * Post updateMany
+   * Profile updateMany
    */
-  export type PostUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProfileUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Posts.
+     * The data used to update Profiles.
      */
-    data: XOR<PostUpdateManyMutationInput, PostUncheckedUpdateManyInput>
+    data: XOR<ProfileUpdateManyMutationInput, ProfileUncheckedUpdateManyInput>
     /**
-     * Filter which Posts to update
+     * Filter which Profiles to update
      */
-    where?: PostWhereInput
+    where?: ProfileWhereInput
   }
 
 
   /**
-   * Post upsert
+   * Profile upsert
    */
-  export type PostUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProfileUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Post
+     * Select specific fields to fetch from the Profile
      */
-    select?: PostSelect<ExtArgs> | null
+    select?: ProfileSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: PostInclude<ExtArgs> | null
+    include?: ProfileInclude<ExtArgs> | null
     /**
-     * The filter to search for the Post to update in case it exists.
+     * The filter to search for the Profile to update in case it exists.
      */
-    where: PostWhereUniqueInput
+    where: ProfileWhereUniqueInput
     /**
-     * In case the Post found by the `where` argument doesn't exist, create a new Post with this data.
+     * In case the Profile found by the `where` argument doesn't exist, create a new Profile with this data.
      */
-    create: XOR<PostCreateInput, PostUncheckedCreateInput>
+    create: XOR<ProfileCreateInput, ProfileUncheckedCreateInput>
     /**
-     * In case the Post was found with the provided `where` argument, update it with this data.
+     * In case the Profile was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<PostUpdateInput, PostUncheckedUpdateInput>
+    update: XOR<ProfileUpdateInput, ProfileUncheckedUpdateInput>
   }
 
 
   /**
-   * Post delete
+   * Profile delete
    */
-  export type PostDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProfileDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Post
+     * Select specific fields to fetch from the Profile
      */
-    select?: PostSelect<ExtArgs> | null
+    select?: ProfileSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: PostInclude<ExtArgs> | null
+    include?: ProfileInclude<ExtArgs> | null
     /**
-     * Filter which Post to delete.
+     * Filter which Profile to delete.
      */
-    where: PostWhereUniqueInput
+    where: ProfileWhereUniqueInput
   }
 
 
   /**
-   * Post deleteMany
+   * Profile deleteMany
    */
-  export type PostDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProfileDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Posts to delete
+     * Filter which Profiles to delete
      */
-    where?: PostWhereInput
+    where?: ProfileWhereInput
   }
 
 
   /**
-   * Post without action
+   * Profile without action
    */
-  export type PostDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProfileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Post
+     * Select specific fields to fetch from the Profile
      */
-    select?: PostSelect<ExtArgs> | null
+    select?: ProfileSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: PostInclude<ExtArgs> | null
+    include?: ProfileInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model Content
+   */
+
+  export type AggregateContent = {
+    _count: ContentCountAggregateOutputType | null
+    _min: ContentMinAggregateOutputType | null
+    _max: ContentMaxAggregateOutputType | null
+  }
+
+  export type ContentMinAggregateOutputType = {
+    id: string | null
+    type: string | null
+    text: string | null
+    media: string | null
+    postedAt: Date | null
+  }
+
+  export type ContentMaxAggregateOutputType = {
+    id: string | null
+    type: string | null
+    text: string | null
+    media: string | null
+    postedAt: Date | null
+  }
+
+  export type ContentCountAggregateOutputType = {
+    id: number
+    type: number
+    text: number
+    media: number
+    postedAt: number
+    _all: number
+  }
+
+
+  export type ContentMinAggregateInputType = {
+    id?: true
+    type?: true
+    text?: true
+    media?: true
+    postedAt?: true
+  }
+
+  export type ContentMaxAggregateInputType = {
+    id?: true
+    type?: true
+    text?: true
+    media?: true
+    postedAt?: true
+  }
+
+  export type ContentCountAggregateInputType = {
+    id?: true
+    type?: true
+    text?: true
+    media?: true
+    postedAt?: true
+    _all?: true
+  }
+
+  export type ContentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Content to aggregate.
+     */
+    where?: ContentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Contents to fetch.
+     */
+    orderBy?: ContentOrderByWithRelationInput | ContentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ContentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Contents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Contents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Contents
+    **/
+    _count?: true | ContentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ContentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ContentMaxAggregateInputType
+  }
+
+  export type GetContentAggregateType<T extends ContentAggregateArgs> = {
+        [P in keyof T & keyof AggregateContent]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateContent[P]>
+      : GetScalarType<T[P], AggregateContent[P]>
+  }
+
+
+
+
+  export type ContentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContentWhereInput
+    orderBy?: ContentOrderByWithAggregationInput | ContentOrderByWithAggregationInput[]
+    by: ContentScalarFieldEnum[] | ContentScalarFieldEnum
+    having?: ContentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ContentCountAggregateInputType | true
+    _min?: ContentMinAggregateInputType
+    _max?: ContentMaxAggregateInputType
+  }
+
+  export type ContentGroupByOutputType = {
+    id: string
+    type: string
+    text: string
+    media: string
+    postedAt: Date
+    _count: ContentCountAggregateOutputType | null
+    _min: ContentMinAggregateOutputType | null
+    _max: ContentMaxAggregateOutputType | null
+  }
+
+  type GetContentGroupByPayload<T extends ContentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ContentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ContentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ContentGroupByOutputType[P]>
+            : GetScalarType<T[P], ContentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ContentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    type?: boolean
+    text?: boolean
+    media?: boolean
+    postedAt?: boolean
+    accountId?: boolean | AccountDefaultArgs<ExtArgs>
+    engagement?: boolean | Content$engagementArgs<ExtArgs>
+    _count?: boolean | ContentCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["content"]>
+
+  export type ContentSelectScalar = {
+    id?: boolean
+    type?: boolean
+    text?: boolean
+    media?: boolean
+    postedAt?: boolean
+  }
+
+  export type ContentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    accountId?: boolean | AccountDefaultArgs<ExtArgs>
+    engagement?: boolean | Content$engagementArgs<ExtArgs>
+    _count?: boolean | ContentCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+
+  export type $ContentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Content"
+    objects: {
+      accountId: Prisma.$AccountPayload<ExtArgs>
+      engagement: Prisma.$EngagementPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      type: string
+      text: string
+      media: string
+      postedAt: Date
+    }, ExtArgs["result"]["content"]>
+    composites: {}
+  }
+
+
+  type ContentGetPayload<S extends boolean | null | undefined | ContentDefaultArgs> = $Result.GetResult<Prisma.$ContentPayload, S>
+
+  type ContentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ContentFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ContentCountAggregateInputType | true
+    }
+
+  export interface ContentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Content'], meta: { name: 'Content' } }
+    /**
+     * Find zero or one Content that matches the filter.
+     * @param {ContentFindUniqueArgs} args - Arguments to find a Content
+     * @example
+     * // Get one Content
+     * const content = await prisma.content.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends ContentFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, ContentFindUniqueArgs<ExtArgs>>
+    ): Prisma__ContentClient<$Result.GetResult<Prisma.$ContentPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Content that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {ContentFindUniqueOrThrowArgs} args - Arguments to find a Content
+     * @example
+     * // Get one Content
+     * const content = await prisma.content.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends ContentFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ContentFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__ContentClient<$Result.GetResult<Prisma.$ContentPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Content that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContentFindFirstArgs} args - Arguments to find a Content
+     * @example
+     * // Get one Content
+     * const content = await prisma.content.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends ContentFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, ContentFindFirstArgs<ExtArgs>>
+    ): Prisma__ContentClient<$Result.GetResult<Prisma.$ContentPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Content that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContentFindFirstOrThrowArgs} args - Arguments to find a Content
+     * @example
+     * // Get one Content
+     * const content = await prisma.content.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends ContentFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ContentFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__ContentClient<$Result.GetResult<Prisma.$ContentPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Contents that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContentFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Contents
+     * const contents = await prisma.content.findMany()
+     * 
+     * // Get first 10 Contents
+     * const contents = await prisma.content.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const contentWithIdOnly = await prisma.content.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends ContentFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ContentFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContentPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Content.
+     * @param {ContentCreateArgs} args - Arguments to create a Content.
+     * @example
+     * // Create one Content
+     * const Content = await prisma.content.create({
+     *   data: {
+     *     // ... data to create a Content
+     *   }
+     * })
+     * 
+    **/
+    create<T extends ContentCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, ContentCreateArgs<ExtArgs>>
+    ): Prisma__ContentClient<$Result.GetResult<Prisma.$ContentPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Contents.
+     *     @param {ContentCreateManyArgs} args - Arguments to create many Contents.
+     *     @example
+     *     // Create many Contents
+     *     const content = await prisma.content.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends ContentCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ContentCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Content.
+     * @param {ContentDeleteArgs} args - Arguments to delete one Content.
+     * @example
+     * // Delete one Content
+     * const Content = await prisma.content.delete({
+     *   where: {
+     *     // ... filter to delete one Content
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends ContentDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, ContentDeleteArgs<ExtArgs>>
+    ): Prisma__ContentClient<$Result.GetResult<Prisma.$ContentPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Content.
+     * @param {ContentUpdateArgs} args - Arguments to update one Content.
+     * @example
+     * // Update one Content
+     * const content = await prisma.content.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends ContentUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, ContentUpdateArgs<ExtArgs>>
+    ): Prisma__ContentClient<$Result.GetResult<Prisma.$ContentPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Contents.
+     * @param {ContentDeleteManyArgs} args - Arguments to filter Contents to delete.
+     * @example
+     * // Delete a few Contents
+     * const { count } = await prisma.content.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends ContentDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ContentDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Contents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Contents
+     * const content = await prisma.content.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends ContentUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, ContentUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Content.
+     * @param {ContentUpsertArgs} args - Arguments to update or create a Content.
+     * @example
+     * // Update or create a Content
+     * const content = await prisma.content.upsert({
+     *   create: {
+     *     // ... data to create a Content
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Content we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends ContentUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, ContentUpsertArgs<ExtArgs>>
+    ): Prisma__ContentClient<$Result.GetResult<Prisma.$ContentPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Contents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContentCountArgs} args - Arguments to filter Contents to count.
+     * @example
+     * // Count the number of Contents
+     * const count = await prisma.content.count({
+     *   where: {
+     *     // ... the filter for the Contents we want to count
+     *   }
+     * })
+    **/
+    count<T extends ContentCountArgs>(
+      args?: Subset<T, ContentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ContentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Content.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ContentAggregateArgs>(args: Subset<T, ContentAggregateArgs>): Prisma.PrismaPromise<GetContentAggregateType<T>>
+
+    /**
+     * Group by Content.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ContentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ContentGroupByArgs['orderBy'] }
+        : { orderBy?: ContentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ContentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetContentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Content model
+   */
+  readonly fields: ContentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Content.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ContentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    accountId<T extends AccountDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AccountDefaultArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    engagement<T extends Content$engagementArgs<ExtArgs> = {}>(args?: Subset<T, Content$engagementArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EngagementPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Content model
+   */ 
+  interface ContentFieldRefs {
+    readonly id: FieldRef<"Content", 'String'>
+    readonly type: FieldRef<"Content", 'String'>
+    readonly text: FieldRef<"Content", 'String'>
+    readonly media: FieldRef<"Content", 'String'>
+    readonly postedAt: FieldRef<"Content", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * Content findUnique
+   */
+  export type ContentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Content
+     */
+    select?: ContentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ContentInclude<ExtArgs> | null
+    /**
+     * Filter, which Content to fetch.
+     */
+    where: ContentWhereUniqueInput
+  }
+
+
+  /**
+   * Content findUniqueOrThrow
+   */
+  export type ContentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Content
+     */
+    select?: ContentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ContentInclude<ExtArgs> | null
+    /**
+     * Filter, which Content to fetch.
+     */
+    where: ContentWhereUniqueInput
+  }
+
+
+  /**
+   * Content findFirst
+   */
+  export type ContentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Content
+     */
+    select?: ContentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ContentInclude<ExtArgs> | null
+    /**
+     * Filter, which Content to fetch.
+     */
+    where?: ContentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Contents to fetch.
+     */
+    orderBy?: ContentOrderByWithRelationInput | ContentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Contents.
+     */
+    cursor?: ContentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Contents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Contents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Contents.
+     */
+    distinct?: ContentScalarFieldEnum | ContentScalarFieldEnum[]
+  }
+
+
+  /**
+   * Content findFirstOrThrow
+   */
+  export type ContentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Content
+     */
+    select?: ContentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ContentInclude<ExtArgs> | null
+    /**
+     * Filter, which Content to fetch.
+     */
+    where?: ContentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Contents to fetch.
+     */
+    orderBy?: ContentOrderByWithRelationInput | ContentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Contents.
+     */
+    cursor?: ContentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Contents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Contents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Contents.
+     */
+    distinct?: ContentScalarFieldEnum | ContentScalarFieldEnum[]
+  }
+
+
+  /**
+   * Content findMany
+   */
+  export type ContentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Content
+     */
+    select?: ContentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ContentInclude<ExtArgs> | null
+    /**
+     * Filter, which Contents to fetch.
+     */
+    where?: ContentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Contents to fetch.
+     */
+    orderBy?: ContentOrderByWithRelationInput | ContentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Contents.
+     */
+    cursor?: ContentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Contents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Contents.
+     */
+    skip?: number
+    distinct?: ContentScalarFieldEnum | ContentScalarFieldEnum[]
+  }
+
+
+  /**
+   * Content create
+   */
+  export type ContentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Content
+     */
+    select?: ContentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ContentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Content.
+     */
+    data: XOR<ContentCreateInput, ContentUncheckedCreateInput>
+  }
+
+
+  /**
+   * Content createMany
+   */
+  export type ContentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Contents.
+     */
+    data: ContentCreateManyInput | ContentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * Content update
+   */
+  export type ContentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Content
+     */
+    select?: ContentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ContentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Content.
+     */
+    data: XOR<ContentUpdateInput, ContentUncheckedUpdateInput>
+    /**
+     * Choose, which Content to update.
+     */
+    where: ContentWhereUniqueInput
+  }
+
+
+  /**
+   * Content updateMany
+   */
+  export type ContentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Contents.
+     */
+    data: XOR<ContentUpdateManyMutationInput, ContentUncheckedUpdateManyInput>
+    /**
+     * Filter which Contents to update
+     */
+    where?: ContentWhereInput
+  }
+
+
+  /**
+   * Content upsert
+   */
+  export type ContentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Content
+     */
+    select?: ContentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ContentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Content to update in case it exists.
+     */
+    where: ContentWhereUniqueInput
+    /**
+     * In case the Content found by the `where` argument doesn't exist, create a new Content with this data.
+     */
+    create: XOR<ContentCreateInput, ContentUncheckedCreateInput>
+    /**
+     * In case the Content was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ContentUpdateInput, ContentUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Content delete
+   */
+  export type ContentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Content
+     */
+    select?: ContentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ContentInclude<ExtArgs> | null
+    /**
+     * Filter which Content to delete.
+     */
+    where: ContentWhereUniqueInput
+  }
+
+
+  /**
+   * Content deleteMany
+   */
+  export type ContentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Contents to delete
+     */
+    where?: ContentWhereInput
+  }
+
+
+  /**
+   * Content.engagement
+   */
+  export type Content$engagementArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Engagement
+     */
+    select?: EngagementSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EngagementInclude<ExtArgs> | null
+    where?: EngagementWhereInput
+    orderBy?: EngagementOrderByWithRelationInput | EngagementOrderByWithRelationInput[]
+    cursor?: EngagementWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EngagementScalarFieldEnum | EngagementScalarFieldEnum[]
+  }
+
+
+  /**
+   * Content without action
+   */
+  export type ContentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Content
+     */
+    select?: ContentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ContentInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model Engagement
+   */
+
+  export type AggregateEngagement = {
+    _count: EngagementCountAggregateOutputType | null
+    _avg: EngagementAvgAggregateOutputType | null
+    _sum: EngagementSumAggregateOutputType | null
+    _min: EngagementMinAggregateOutputType | null
+    _max: EngagementMaxAggregateOutputType | null
+  }
+
+  export type EngagementAvgAggregateOutputType = {
+    count: number | null
+  }
+
+  export type EngagementSumAggregateOutputType = {
+    count: number | null
+  }
+
+  export type EngagementMinAggregateOutputType = {
+    id: string | null
+    type: string | null
+    count: number | null
+  }
+
+  export type EngagementMaxAggregateOutputType = {
+    id: string | null
+    type: string | null
+    count: number | null
+  }
+
+  export type EngagementCountAggregateOutputType = {
+    id: number
+    type: number
+    count: number
+    _all: number
+  }
+
+
+  export type EngagementAvgAggregateInputType = {
+    count?: true
+  }
+
+  export type EngagementSumAggregateInputType = {
+    count?: true
+  }
+
+  export type EngagementMinAggregateInputType = {
+    id?: true
+    type?: true
+    count?: true
+  }
+
+  export type EngagementMaxAggregateInputType = {
+    id?: true
+    type?: true
+    count?: true
+  }
+
+  export type EngagementCountAggregateInputType = {
+    id?: true
+    type?: true
+    count?: true
+    _all?: true
+  }
+
+  export type EngagementAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Engagement to aggregate.
+     */
+    where?: EngagementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Engagements to fetch.
+     */
+    orderBy?: EngagementOrderByWithRelationInput | EngagementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EngagementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Engagements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Engagements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Engagements
+    **/
+    _count?: true | EngagementCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: EngagementAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: EngagementSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EngagementMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EngagementMaxAggregateInputType
+  }
+
+  export type GetEngagementAggregateType<T extends EngagementAggregateArgs> = {
+        [P in keyof T & keyof AggregateEngagement]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEngagement[P]>
+      : GetScalarType<T[P], AggregateEngagement[P]>
+  }
+
+
+
+
+  export type EngagementGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EngagementWhereInput
+    orderBy?: EngagementOrderByWithAggregationInput | EngagementOrderByWithAggregationInput[]
+    by: EngagementScalarFieldEnum[] | EngagementScalarFieldEnum
+    having?: EngagementScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EngagementCountAggregateInputType | true
+    _avg?: EngagementAvgAggregateInputType
+    _sum?: EngagementSumAggregateInputType
+    _min?: EngagementMinAggregateInputType
+    _max?: EngagementMaxAggregateInputType
+  }
+
+  export type EngagementGroupByOutputType = {
+    id: string
+    type: string
+    count: number
+    _count: EngagementCountAggregateOutputType | null
+    _avg: EngagementAvgAggregateOutputType | null
+    _sum: EngagementSumAggregateOutputType | null
+    _min: EngagementMinAggregateOutputType | null
+    _max: EngagementMaxAggregateOutputType | null
+  }
+
+  type GetEngagementGroupByPayload<T extends EngagementGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EngagementGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EngagementGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EngagementGroupByOutputType[P]>
+            : GetScalarType<T[P], EngagementGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EngagementSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    type?: boolean
+    count?: boolean
+    contentId?: boolean | ContentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["engagement"]>
+
+  export type EngagementSelectScalar = {
+    id?: boolean
+    type?: boolean
+    count?: boolean
+  }
+
+  export type EngagementInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    contentId?: boolean | ContentDefaultArgs<ExtArgs>
+  }
+
+
+  export type $EngagementPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Engagement"
+    objects: {
+      contentId: Prisma.$ContentPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      type: string
+      count: number
+    }, ExtArgs["result"]["engagement"]>
+    composites: {}
+  }
+
+
+  type EngagementGetPayload<S extends boolean | null | undefined | EngagementDefaultArgs> = $Result.GetResult<Prisma.$EngagementPayload, S>
+
+  type EngagementCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<EngagementFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: EngagementCountAggregateInputType | true
+    }
+
+  export interface EngagementDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Engagement'], meta: { name: 'Engagement' } }
+    /**
+     * Find zero or one Engagement that matches the filter.
+     * @param {EngagementFindUniqueArgs} args - Arguments to find a Engagement
+     * @example
+     * // Get one Engagement
+     * const engagement = await prisma.engagement.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends EngagementFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, EngagementFindUniqueArgs<ExtArgs>>
+    ): Prisma__EngagementClient<$Result.GetResult<Prisma.$EngagementPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Engagement that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {EngagementFindUniqueOrThrowArgs} args - Arguments to find a Engagement
+     * @example
+     * // Get one Engagement
+     * const engagement = await prisma.engagement.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends EngagementFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, EngagementFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__EngagementClient<$Result.GetResult<Prisma.$EngagementPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Engagement that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EngagementFindFirstArgs} args - Arguments to find a Engagement
+     * @example
+     * // Get one Engagement
+     * const engagement = await prisma.engagement.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends EngagementFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, EngagementFindFirstArgs<ExtArgs>>
+    ): Prisma__EngagementClient<$Result.GetResult<Prisma.$EngagementPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Engagement that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EngagementFindFirstOrThrowArgs} args - Arguments to find a Engagement
+     * @example
+     * // Get one Engagement
+     * const engagement = await prisma.engagement.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends EngagementFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, EngagementFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__EngagementClient<$Result.GetResult<Prisma.$EngagementPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Engagements that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EngagementFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Engagements
+     * const engagements = await prisma.engagement.findMany()
+     * 
+     * // Get first 10 Engagements
+     * const engagements = await prisma.engagement.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const engagementWithIdOnly = await prisma.engagement.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends EngagementFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, EngagementFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EngagementPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Engagement.
+     * @param {EngagementCreateArgs} args - Arguments to create a Engagement.
+     * @example
+     * // Create one Engagement
+     * const Engagement = await prisma.engagement.create({
+     *   data: {
+     *     // ... data to create a Engagement
+     *   }
+     * })
+     * 
+    **/
+    create<T extends EngagementCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, EngagementCreateArgs<ExtArgs>>
+    ): Prisma__EngagementClient<$Result.GetResult<Prisma.$EngagementPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Engagements.
+     *     @param {EngagementCreateManyArgs} args - Arguments to create many Engagements.
+     *     @example
+     *     // Create many Engagements
+     *     const engagement = await prisma.engagement.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends EngagementCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, EngagementCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Engagement.
+     * @param {EngagementDeleteArgs} args - Arguments to delete one Engagement.
+     * @example
+     * // Delete one Engagement
+     * const Engagement = await prisma.engagement.delete({
+     *   where: {
+     *     // ... filter to delete one Engagement
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends EngagementDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, EngagementDeleteArgs<ExtArgs>>
+    ): Prisma__EngagementClient<$Result.GetResult<Prisma.$EngagementPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Engagement.
+     * @param {EngagementUpdateArgs} args - Arguments to update one Engagement.
+     * @example
+     * // Update one Engagement
+     * const engagement = await prisma.engagement.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends EngagementUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, EngagementUpdateArgs<ExtArgs>>
+    ): Prisma__EngagementClient<$Result.GetResult<Prisma.$EngagementPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Engagements.
+     * @param {EngagementDeleteManyArgs} args - Arguments to filter Engagements to delete.
+     * @example
+     * // Delete a few Engagements
+     * const { count } = await prisma.engagement.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends EngagementDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, EngagementDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Engagements.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EngagementUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Engagements
+     * const engagement = await prisma.engagement.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends EngagementUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, EngagementUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Engagement.
+     * @param {EngagementUpsertArgs} args - Arguments to update or create a Engagement.
+     * @example
+     * // Update or create a Engagement
+     * const engagement = await prisma.engagement.upsert({
+     *   create: {
+     *     // ... data to create a Engagement
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Engagement we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends EngagementUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, EngagementUpsertArgs<ExtArgs>>
+    ): Prisma__EngagementClient<$Result.GetResult<Prisma.$EngagementPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Engagements.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EngagementCountArgs} args - Arguments to filter Engagements to count.
+     * @example
+     * // Count the number of Engagements
+     * const count = await prisma.engagement.count({
+     *   where: {
+     *     // ... the filter for the Engagements we want to count
+     *   }
+     * })
+    **/
+    count<T extends EngagementCountArgs>(
+      args?: Subset<T, EngagementCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EngagementCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Engagement.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EngagementAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EngagementAggregateArgs>(args: Subset<T, EngagementAggregateArgs>): Prisma.PrismaPromise<GetEngagementAggregateType<T>>
+
+    /**
+     * Group by Engagement.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EngagementGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EngagementGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EngagementGroupByArgs['orderBy'] }
+        : { orderBy?: EngagementGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EngagementGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEngagementGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Engagement model
+   */
+  readonly fields: EngagementFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Engagement.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EngagementClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    contentId<T extends ContentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ContentDefaultArgs<ExtArgs>>): Prisma__ContentClient<$Result.GetResult<Prisma.$ContentPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Engagement model
+   */ 
+  interface EngagementFieldRefs {
+    readonly id: FieldRef<"Engagement", 'String'>
+    readonly type: FieldRef<"Engagement", 'String'>
+    readonly count: FieldRef<"Engagement", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * Engagement findUnique
+   */
+  export type EngagementFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Engagement
+     */
+    select?: EngagementSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EngagementInclude<ExtArgs> | null
+    /**
+     * Filter, which Engagement to fetch.
+     */
+    where: EngagementWhereUniqueInput
+  }
+
+
+  /**
+   * Engagement findUniqueOrThrow
+   */
+  export type EngagementFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Engagement
+     */
+    select?: EngagementSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EngagementInclude<ExtArgs> | null
+    /**
+     * Filter, which Engagement to fetch.
+     */
+    where: EngagementWhereUniqueInput
+  }
+
+
+  /**
+   * Engagement findFirst
+   */
+  export type EngagementFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Engagement
+     */
+    select?: EngagementSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EngagementInclude<ExtArgs> | null
+    /**
+     * Filter, which Engagement to fetch.
+     */
+    where?: EngagementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Engagements to fetch.
+     */
+    orderBy?: EngagementOrderByWithRelationInput | EngagementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Engagements.
+     */
+    cursor?: EngagementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Engagements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Engagements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Engagements.
+     */
+    distinct?: EngagementScalarFieldEnum | EngagementScalarFieldEnum[]
+  }
+
+
+  /**
+   * Engagement findFirstOrThrow
+   */
+  export type EngagementFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Engagement
+     */
+    select?: EngagementSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EngagementInclude<ExtArgs> | null
+    /**
+     * Filter, which Engagement to fetch.
+     */
+    where?: EngagementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Engagements to fetch.
+     */
+    orderBy?: EngagementOrderByWithRelationInput | EngagementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Engagements.
+     */
+    cursor?: EngagementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Engagements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Engagements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Engagements.
+     */
+    distinct?: EngagementScalarFieldEnum | EngagementScalarFieldEnum[]
+  }
+
+
+  /**
+   * Engagement findMany
+   */
+  export type EngagementFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Engagement
+     */
+    select?: EngagementSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EngagementInclude<ExtArgs> | null
+    /**
+     * Filter, which Engagements to fetch.
+     */
+    where?: EngagementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Engagements to fetch.
+     */
+    orderBy?: EngagementOrderByWithRelationInput | EngagementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Engagements.
+     */
+    cursor?: EngagementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Engagements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Engagements.
+     */
+    skip?: number
+    distinct?: EngagementScalarFieldEnum | EngagementScalarFieldEnum[]
+  }
+
+
+  /**
+   * Engagement create
+   */
+  export type EngagementCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Engagement
+     */
+    select?: EngagementSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EngagementInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Engagement.
+     */
+    data: XOR<EngagementCreateInput, EngagementUncheckedCreateInput>
+  }
+
+
+  /**
+   * Engagement createMany
+   */
+  export type EngagementCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Engagements.
+     */
+    data: EngagementCreateManyInput | EngagementCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * Engagement update
+   */
+  export type EngagementUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Engagement
+     */
+    select?: EngagementSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EngagementInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Engagement.
+     */
+    data: XOR<EngagementUpdateInput, EngagementUncheckedUpdateInput>
+    /**
+     * Choose, which Engagement to update.
+     */
+    where: EngagementWhereUniqueInput
+  }
+
+
+  /**
+   * Engagement updateMany
+   */
+  export type EngagementUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Engagements.
+     */
+    data: XOR<EngagementUpdateManyMutationInput, EngagementUncheckedUpdateManyInput>
+    /**
+     * Filter which Engagements to update
+     */
+    where?: EngagementWhereInput
+  }
+
+
+  /**
+   * Engagement upsert
+   */
+  export type EngagementUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Engagement
+     */
+    select?: EngagementSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EngagementInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Engagement to update in case it exists.
+     */
+    where: EngagementWhereUniqueInput
+    /**
+     * In case the Engagement found by the `where` argument doesn't exist, create a new Engagement with this data.
+     */
+    create: XOR<EngagementCreateInput, EngagementUncheckedCreateInput>
+    /**
+     * In case the Engagement was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EngagementUpdateInput, EngagementUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Engagement delete
+   */
+  export type EngagementDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Engagement
+     */
+    select?: EngagementSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EngagementInclude<ExtArgs> | null
+    /**
+     * Filter which Engagement to delete.
+     */
+    where: EngagementWhereUniqueInput
+  }
+
+
+  /**
+   * Engagement deleteMany
+   */
+  export type EngagementDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Engagements to delete
+     */
+    where?: EngagementWhereInput
+  }
+
+
+  /**
+   * Engagement without action
+   */
+  export type EngagementDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Engagement
+     */
+    select?: EngagementSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: EngagementInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model Analytics
+   */
+
+  export type AggregateAnalytics = {
+    _count: AnalyticsCountAggregateOutputType | null
+    _avg: AnalyticsAvgAggregateOutputType | null
+    _sum: AnalyticsSumAggregateOutputType | null
+    _min: AnalyticsMinAggregateOutputType | null
+    _max: AnalyticsMaxAggregateOutputType | null
+  }
+
+  export type AnalyticsAvgAggregateOutputType = {
+    value: number | null
+  }
+
+  export type AnalyticsSumAggregateOutputType = {
+    value: number | null
+  }
+
+  export type AnalyticsMinAggregateOutputType = {
+    id: string | null
+    metric: string | null
+    value: number | null
+    timestamp: Date | null
+  }
+
+  export type AnalyticsMaxAggregateOutputType = {
+    id: string | null
+    metric: string | null
+    value: number | null
+    timestamp: Date | null
+  }
+
+  export type AnalyticsCountAggregateOutputType = {
+    id: number
+    metric: number
+    value: number
+    timestamp: number
+    _all: number
+  }
+
+
+  export type AnalyticsAvgAggregateInputType = {
+    value?: true
+  }
+
+  export type AnalyticsSumAggregateInputType = {
+    value?: true
+  }
+
+  export type AnalyticsMinAggregateInputType = {
+    id?: true
+    metric?: true
+    value?: true
+    timestamp?: true
+  }
+
+  export type AnalyticsMaxAggregateInputType = {
+    id?: true
+    metric?: true
+    value?: true
+    timestamp?: true
+  }
+
+  export type AnalyticsCountAggregateInputType = {
+    id?: true
+    metric?: true
+    value?: true
+    timestamp?: true
+    _all?: true
+  }
+
+  export type AnalyticsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Analytics to aggregate.
+     */
+    where?: AnalyticsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Analytics to fetch.
+     */
+    orderBy?: AnalyticsOrderByWithRelationInput | AnalyticsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AnalyticsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Analytics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Analytics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Analytics
+    **/
+    _count?: true | AnalyticsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AnalyticsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AnalyticsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AnalyticsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AnalyticsMaxAggregateInputType
+  }
+
+  export type GetAnalyticsAggregateType<T extends AnalyticsAggregateArgs> = {
+        [P in keyof T & keyof AggregateAnalytics]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAnalytics[P]>
+      : GetScalarType<T[P], AggregateAnalytics[P]>
+  }
+
+
+
+
+  export type AnalyticsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AnalyticsWhereInput
+    orderBy?: AnalyticsOrderByWithAggregationInput | AnalyticsOrderByWithAggregationInput[]
+    by: AnalyticsScalarFieldEnum[] | AnalyticsScalarFieldEnum
+    having?: AnalyticsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AnalyticsCountAggregateInputType | true
+    _avg?: AnalyticsAvgAggregateInputType
+    _sum?: AnalyticsSumAggregateInputType
+    _min?: AnalyticsMinAggregateInputType
+    _max?: AnalyticsMaxAggregateInputType
+  }
+
+  export type AnalyticsGroupByOutputType = {
+    id: string
+    metric: string
+    value: number
+    timestamp: Date
+    _count: AnalyticsCountAggregateOutputType | null
+    _avg: AnalyticsAvgAggregateOutputType | null
+    _sum: AnalyticsSumAggregateOutputType | null
+    _min: AnalyticsMinAggregateOutputType | null
+    _max: AnalyticsMaxAggregateOutputType | null
+  }
+
+  type GetAnalyticsGroupByPayload<T extends AnalyticsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AnalyticsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AnalyticsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AnalyticsGroupByOutputType[P]>
+            : GetScalarType<T[P], AnalyticsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AnalyticsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    metric?: boolean
+    value?: boolean
+    timestamp?: boolean
+    accountId?: boolean | AccountDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["analytics"]>
+
+  export type AnalyticsSelectScalar = {
+    id?: boolean
+    metric?: boolean
+    value?: boolean
+    timestamp?: boolean
+  }
+
+  export type AnalyticsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    accountId?: boolean | AccountDefaultArgs<ExtArgs>
+  }
+
+
+  export type $AnalyticsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Analytics"
+    objects: {
+      accountId: Prisma.$AccountPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      metric: string
+      value: number
+      timestamp: Date
+    }, ExtArgs["result"]["analytics"]>
+    composites: {}
+  }
+
+
+  type AnalyticsGetPayload<S extends boolean | null | undefined | AnalyticsDefaultArgs> = $Result.GetResult<Prisma.$AnalyticsPayload, S>
+
+  type AnalyticsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<AnalyticsFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: AnalyticsCountAggregateInputType | true
+    }
+
+  export interface AnalyticsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Analytics'], meta: { name: 'Analytics' } }
+    /**
+     * Find zero or one Analytics that matches the filter.
+     * @param {AnalyticsFindUniqueArgs} args - Arguments to find a Analytics
+     * @example
+     * // Get one Analytics
+     * const analytics = await prisma.analytics.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends AnalyticsFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, AnalyticsFindUniqueArgs<ExtArgs>>
+    ): Prisma__AnalyticsClient<$Result.GetResult<Prisma.$AnalyticsPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Analytics that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {AnalyticsFindUniqueOrThrowArgs} args - Arguments to find a Analytics
+     * @example
+     * // Get one Analytics
+     * const analytics = await prisma.analytics.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends AnalyticsFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, AnalyticsFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__AnalyticsClient<$Result.GetResult<Prisma.$AnalyticsPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Analytics that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnalyticsFindFirstArgs} args - Arguments to find a Analytics
+     * @example
+     * // Get one Analytics
+     * const analytics = await prisma.analytics.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends AnalyticsFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, AnalyticsFindFirstArgs<ExtArgs>>
+    ): Prisma__AnalyticsClient<$Result.GetResult<Prisma.$AnalyticsPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Analytics that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnalyticsFindFirstOrThrowArgs} args - Arguments to find a Analytics
+     * @example
+     * // Get one Analytics
+     * const analytics = await prisma.analytics.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends AnalyticsFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, AnalyticsFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__AnalyticsClient<$Result.GetResult<Prisma.$AnalyticsPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Analytics that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnalyticsFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Analytics
+     * const analytics = await prisma.analytics.findMany()
+     * 
+     * // Get first 10 Analytics
+     * const analytics = await prisma.analytics.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const analyticsWithIdOnly = await prisma.analytics.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends AnalyticsFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, AnalyticsFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnalyticsPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Analytics.
+     * @param {AnalyticsCreateArgs} args - Arguments to create a Analytics.
+     * @example
+     * // Create one Analytics
+     * const Analytics = await prisma.analytics.create({
+     *   data: {
+     *     // ... data to create a Analytics
+     *   }
+     * })
+     * 
+    **/
+    create<T extends AnalyticsCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, AnalyticsCreateArgs<ExtArgs>>
+    ): Prisma__AnalyticsClient<$Result.GetResult<Prisma.$AnalyticsPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Analytics.
+     *     @param {AnalyticsCreateManyArgs} args - Arguments to create many Analytics.
+     *     @example
+     *     // Create many Analytics
+     *     const analytics = await prisma.analytics.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends AnalyticsCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, AnalyticsCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Analytics.
+     * @param {AnalyticsDeleteArgs} args - Arguments to delete one Analytics.
+     * @example
+     * // Delete one Analytics
+     * const Analytics = await prisma.analytics.delete({
+     *   where: {
+     *     // ... filter to delete one Analytics
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends AnalyticsDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, AnalyticsDeleteArgs<ExtArgs>>
+    ): Prisma__AnalyticsClient<$Result.GetResult<Prisma.$AnalyticsPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Analytics.
+     * @param {AnalyticsUpdateArgs} args - Arguments to update one Analytics.
+     * @example
+     * // Update one Analytics
+     * const analytics = await prisma.analytics.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends AnalyticsUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, AnalyticsUpdateArgs<ExtArgs>>
+    ): Prisma__AnalyticsClient<$Result.GetResult<Prisma.$AnalyticsPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Analytics.
+     * @param {AnalyticsDeleteManyArgs} args - Arguments to filter Analytics to delete.
+     * @example
+     * // Delete a few Analytics
+     * const { count } = await prisma.analytics.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends AnalyticsDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, AnalyticsDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Analytics.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnalyticsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Analytics
+     * const analytics = await prisma.analytics.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends AnalyticsUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, AnalyticsUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Analytics.
+     * @param {AnalyticsUpsertArgs} args - Arguments to update or create a Analytics.
+     * @example
+     * // Update or create a Analytics
+     * const analytics = await prisma.analytics.upsert({
+     *   create: {
+     *     // ... data to create a Analytics
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Analytics we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends AnalyticsUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, AnalyticsUpsertArgs<ExtArgs>>
+    ): Prisma__AnalyticsClient<$Result.GetResult<Prisma.$AnalyticsPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Analytics.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnalyticsCountArgs} args - Arguments to filter Analytics to count.
+     * @example
+     * // Count the number of Analytics
+     * const count = await prisma.analytics.count({
+     *   where: {
+     *     // ... the filter for the Analytics we want to count
+     *   }
+     * })
+    **/
+    count<T extends AnalyticsCountArgs>(
+      args?: Subset<T, AnalyticsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AnalyticsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Analytics.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnalyticsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AnalyticsAggregateArgs>(args: Subset<T, AnalyticsAggregateArgs>): Prisma.PrismaPromise<GetAnalyticsAggregateType<T>>
+
+    /**
+     * Group by Analytics.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnalyticsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AnalyticsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AnalyticsGroupByArgs['orderBy'] }
+        : { orderBy?: AnalyticsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AnalyticsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAnalyticsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Analytics model
+   */
+  readonly fields: AnalyticsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Analytics.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AnalyticsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    accountId<T extends AccountDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AccountDefaultArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Analytics model
+   */ 
+  interface AnalyticsFieldRefs {
+    readonly id: FieldRef<"Analytics", 'String'>
+    readonly metric: FieldRef<"Analytics", 'String'>
+    readonly value: FieldRef<"Analytics", 'Float'>
+    readonly timestamp: FieldRef<"Analytics", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * Analytics findUnique
+   */
+  export type AnalyticsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Analytics
+     */
+    select?: AnalyticsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AnalyticsInclude<ExtArgs> | null
+    /**
+     * Filter, which Analytics to fetch.
+     */
+    where: AnalyticsWhereUniqueInput
+  }
+
+
+  /**
+   * Analytics findUniqueOrThrow
+   */
+  export type AnalyticsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Analytics
+     */
+    select?: AnalyticsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AnalyticsInclude<ExtArgs> | null
+    /**
+     * Filter, which Analytics to fetch.
+     */
+    where: AnalyticsWhereUniqueInput
+  }
+
+
+  /**
+   * Analytics findFirst
+   */
+  export type AnalyticsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Analytics
+     */
+    select?: AnalyticsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AnalyticsInclude<ExtArgs> | null
+    /**
+     * Filter, which Analytics to fetch.
+     */
+    where?: AnalyticsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Analytics to fetch.
+     */
+    orderBy?: AnalyticsOrderByWithRelationInput | AnalyticsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Analytics.
+     */
+    cursor?: AnalyticsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Analytics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Analytics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Analytics.
+     */
+    distinct?: AnalyticsScalarFieldEnum | AnalyticsScalarFieldEnum[]
+  }
+
+
+  /**
+   * Analytics findFirstOrThrow
+   */
+  export type AnalyticsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Analytics
+     */
+    select?: AnalyticsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AnalyticsInclude<ExtArgs> | null
+    /**
+     * Filter, which Analytics to fetch.
+     */
+    where?: AnalyticsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Analytics to fetch.
+     */
+    orderBy?: AnalyticsOrderByWithRelationInput | AnalyticsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Analytics.
+     */
+    cursor?: AnalyticsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Analytics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Analytics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Analytics.
+     */
+    distinct?: AnalyticsScalarFieldEnum | AnalyticsScalarFieldEnum[]
+  }
+
+
+  /**
+   * Analytics findMany
+   */
+  export type AnalyticsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Analytics
+     */
+    select?: AnalyticsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AnalyticsInclude<ExtArgs> | null
+    /**
+     * Filter, which Analytics to fetch.
+     */
+    where?: AnalyticsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Analytics to fetch.
+     */
+    orderBy?: AnalyticsOrderByWithRelationInput | AnalyticsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Analytics.
+     */
+    cursor?: AnalyticsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Analytics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Analytics.
+     */
+    skip?: number
+    distinct?: AnalyticsScalarFieldEnum | AnalyticsScalarFieldEnum[]
+  }
+
+
+  /**
+   * Analytics create
+   */
+  export type AnalyticsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Analytics
+     */
+    select?: AnalyticsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AnalyticsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Analytics.
+     */
+    data: XOR<AnalyticsCreateInput, AnalyticsUncheckedCreateInput>
+  }
+
+
+  /**
+   * Analytics createMany
+   */
+  export type AnalyticsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Analytics.
+     */
+    data: AnalyticsCreateManyInput | AnalyticsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * Analytics update
+   */
+  export type AnalyticsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Analytics
+     */
+    select?: AnalyticsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AnalyticsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Analytics.
+     */
+    data: XOR<AnalyticsUpdateInput, AnalyticsUncheckedUpdateInput>
+    /**
+     * Choose, which Analytics to update.
+     */
+    where: AnalyticsWhereUniqueInput
+  }
+
+
+  /**
+   * Analytics updateMany
+   */
+  export type AnalyticsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Analytics.
+     */
+    data: XOR<AnalyticsUpdateManyMutationInput, AnalyticsUncheckedUpdateManyInput>
+    /**
+     * Filter which Analytics to update
+     */
+    where?: AnalyticsWhereInput
+  }
+
+
+  /**
+   * Analytics upsert
+   */
+  export type AnalyticsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Analytics
+     */
+    select?: AnalyticsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AnalyticsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Analytics to update in case it exists.
+     */
+    where: AnalyticsWhereUniqueInput
+    /**
+     * In case the Analytics found by the `where` argument doesn't exist, create a new Analytics with this data.
+     */
+    create: XOR<AnalyticsCreateInput, AnalyticsUncheckedCreateInput>
+    /**
+     * In case the Analytics was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AnalyticsUpdateInput, AnalyticsUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Analytics delete
+   */
+  export type AnalyticsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Analytics
+     */
+    select?: AnalyticsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AnalyticsInclude<ExtArgs> | null
+    /**
+     * Filter which Analytics to delete.
+     */
+    where: AnalyticsWhereUniqueInput
+  }
+
+
+  /**
+   * Analytics deleteMany
+   */
+  export type AnalyticsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Analytics to delete
+     */
+    where?: AnalyticsWhereInput
+  }
+
+
+  /**
+   * Analytics without action
+   */
+  export type AnalyticsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Analytics
+     */
+    select?: AnalyticsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AnalyticsInclude<ExtArgs> | null
   }
 
 
@@ -5099,55 +7094,67 @@ export namespace Prisma {
 
   export const UserScalarFieldEnum: {
     id: 'id',
+    name: 'name',
     email: 'email',
     username: 'username',
-    subscribed: 'subscribed',
     password: 'password',
-    imageUrl: 'imageUrl',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    imageUrl: 'imageUrl'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-  export const AuthTokenScalarFieldEnum: {
-    identifier: 'identifier',
-    token: 'token',
-    expires: 'expires'
-  };
-
-  export type AuthTokenScalarFieldEnum = (typeof AuthTokenScalarFieldEnum)[keyof typeof AuthTokenScalarFieldEnum]
-
-
-  export const SocialScalarFieldEnum: {
+  export const AccountScalarFieldEnum: {
     id: 'id',
-    userId: 'userId',
-    social: 'social',
+    type: 'type',
     username: 'username',
-    profilePicUrl: 'profilePicUrl',
-    totalPosts: 'totalPosts',
-    totalLikes: 'totalLikes',
-    totalComments: 'totalComments',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    accessToken: 'accessToken',
+    refreshToken: 'refreshToken',
+    expiresAt: 'expiresAt'
   };
 
-  export type SocialScalarFieldEnum = (typeof SocialScalarFieldEnum)[keyof typeof SocialScalarFieldEnum]
+  export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeof AccountScalarFieldEnum]
 
 
-  export const PostScalarFieldEnum: {
+  export const ProfileScalarFieldEnum: {
     id: 'id',
-    socialId: 'socialId',
-    content: 'content',
-    image: 'image',
-    likes: 'likes',
-    comments: 'comments',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    username: 'username',
+    email: 'email',
+    avatar: 'avatar',
+    bio: 'bio'
   };
 
-  export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
+  export type ProfileScalarFieldEnum = (typeof ProfileScalarFieldEnum)[keyof typeof ProfileScalarFieldEnum]
+
+
+  export const ContentScalarFieldEnum: {
+    id: 'id',
+    type: 'type',
+    text: 'text',
+    media: 'media',
+    postedAt: 'postedAt'
+  };
+
+  export type ContentScalarFieldEnum = (typeof ContentScalarFieldEnum)[keyof typeof ContentScalarFieldEnum]
+
+
+  export const EngagementScalarFieldEnum: {
+    id: 'id',
+    type: 'type',
+    count: 'count'
+  };
+
+  export type EngagementScalarFieldEnum = (typeof EngagementScalarFieldEnum)[keyof typeof EngagementScalarFieldEnum]
+
+
+  export const AnalyticsScalarFieldEnum: {
+    id: 'id',
+    metric: 'metric',
+    value: 'value',
+    timestamp: 'timestamp'
+  };
+
+  export type AnalyticsScalarFieldEnum = (typeof AnalyticsScalarFieldEnum)[keyof typeof AnalyticsScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -5172,20 +7179,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
-   */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int[]'
-   */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
    * Reference to a field of type 'String'
    */
   export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
@@ -5200,13 +7193,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -5217,6 +7203,20 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -5241,567 +7241,685 @@ export namespace Prisma {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
-    id?: IntFilter<"User"> | number
+    id?: StringFilter<"User"> | string
+    name?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
     username?: StringFilter<"User"> | string
-    subscribed?: BoolFilter<"User"> | boolean
     password?: StringFilter<"User"> | string
     imageUrl?: StringFilter<"User"> | string
-    createdAt?: DateTimeFilter<"User"> | Date | string
-    updatedAt?: DateTimeFilter<"User"> | Date | string
-    socialLinks?: SocialListRelationFilter
+    accounts?: AccountListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
+    name?: SortOrder
     email?: SortOrder
     username?: SortOrder
-    subscribed?: SortOrder
     password?: SortOrder
     imageUrl?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    socialLinks?: SocialOrderByRelationAggregateInput
+    accounts?: AccountOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     email?: string
     username?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
-    subscribed?: BoolFilter<"User"> | boolean
+    name?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     imageUrl?: StringFilter<"User"> | string
-    createdAt?: DateTimeFilter<"User"> | Date | string
-    updatedAt?: DateTimeFilter<"User"> | Date | string
-    socialLinks?: SocialListRelationFilter
+    accounts?: AccountListRelationFilter
   }, "id" | "email" | "username">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
+    name?: SortOrder
     email?: SortOrder
     username?: SortOrder
-    subscribed?: SortOrder
     password?: SortOrder
     imageUrl?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
-    _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
-    _sum?: UserSumOrderByAggregateInput
   }
 
   export type UserScalarWhereWithAggregatesInput = {
     AND?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     OR?: UserScalarWhereWithAggregatesInput[]
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"User"> | number
+    id?: StringWithAggregatesFilter<"User"> | string
+    name?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
     username?: StringWithAggregatesFilter<"User"> | string
-    subscribed?: BoolWithAggregatesFilter<"User"> | boolean
     password?: StringWithAggregatesFilter<"User"> | string
     imageUrl?: StringWithAggregatesFilter<"User"> | string
-    createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
-  export type AuthTokenWhereInput = {
-    AND?: AuthTokenWhereInput | AuthTokenWhereInput[]
-    OR?: AuthTokenWhereInput[]
-    NOT?: AuthTokenWhereInput | AuthTokenWhereInput[]
-    identifier?: StringFilter<"AuthToken"> | string
-    token?: StringFilter<"AuthToken"> | string
-    expires?: DateTimeFilter<"AuthToken"> | Date | string
+  export type AccountWhereInput = {
+    AND?: AccountWhereInput | AccountWhereInput[]
+    OR?: AccountWhereInput[]
+    NOT?: AccountWhereInput | AccountWhereInput[]
+    id?: StringFilter<"Account"> | string
+    type?: StringFilter<"Account"> | string
+    username?: StringFilter<"Account"> | string
+    accessToken?: StringFilter<"Account"> | string
+    refreshToken?: StringFilter<"Account"> | string
+    expiresAt?: DateTimeFilter<"Account"> | Date | string
+    userId?: XOR<UserRelationFilter, UserWhereInput>
+    content?: ContentListRelationFilter
+    analytics?: AnalyticsListRelationFilter
+    profile?: XOR<ProfileNullableRelationFilter, ProfileWhereInput> | null
   }
 
-  export type AuthTokenOrderByWithRelationInput = {
-    identifier?: SortOrder
-    token?: SortOrder
-    expires?: SortOrder
-  }
-
-  export type AuthTokenWhereUniqueInput = Prisma.AtLeast<{
-    token?: string
-    identifier_token?: AuthTokenIdentifierTokenCompoundUniqueInput
-    AND?: AuthTokenWhereInput | AuthTokenWhereInput[]
-    OR?: AuthTokenWhereInput[]
-    NOT?: AuthTokenWhereInput | AuthTokenWhereInput[]
-    identifier?: StringFilter<"AuthToken"> | string
-    expires?: DateTimeFilter<"AuthToken"> | Date | string
-  }, "token" | "identifier_token">
-
-  export type AuthTokenOrderByWithAggregationInput = {
-    identifier?: SortOrder
-    token?: SortOrder
-    expires?: SortOrder
-    _count?: AuthTokenCountOrderByAggregateInput
-    _max?: AuthTokenMaxOrderByAggregateInput
-    _min?: AuthTokenMinOrderByAggregateInput
-  }
-
-  export type AuthTokenScalarWhereWithAggregatesInput = {
-    AND?: AuthTokenScalarWhereWithAggregatesInput | AuthTokenScalarWhereWithAggregatesInput[]
-    OR?: AuthTokenScalarWhereWithAggregatesInput[]
-    NOT?: AuthTokenScalarWhereWithAggregatesInput | AuthTokenScalarWhereWithAggregatesInput[]
-    identifier?: StringWithAggregatesFilter<"AuthToken"> | string
-    token?: StringWithAggregatesFilter<"AuthToken"> | string
-    expires?: DateTimeWithAggregatesFilter<"AuthToken"> | Date | string
-  }
-
-  export type SocialWhereInput = {
-    AND?: SocialWhereInput | SocialWhereInput[]
-    OR?: SocialWhereInput[]
-    NOT?: SocialWhereInput | SocialWhereInput[]
-    id?: IntFilter<"Social"> | number
-    userId?: IntFilter<"Social"> | number
-    social?: StringFilter<"Social"> | string
-    username?: StringFilter<"Social"> | string
-    profilePicUrl?: StringFilter<"Social"> | string
-    totalPosts?: IntFilter<"Social"> | number
-    totalLikes?: IntFilter<"Social"> | number
-    totalComments?: IntFilter<"Social"> | number
-    createdAt?: DateTimeFilter<"Social"> | Date | string
-    updatedAt?: DateTimeFilter<"Social"> | Date | string
-    user?: XOR<UserRelationFilter, UserWhereInput>
-    posts?: PostListRelationFilter
-  }
-
-  export type SocialOrderByWithRelationInput = {
+  export type AccountOrderByWithRelationInput = {
     id?: SortOrder
-    userId?: SortOrder
-    social?: SortOrder
+    type?: SortOrder
     username?: SortOrder
-    profilePicUrl?: SortOrder
-    totalPosts?: SortOrder
-    totalLikes?: SortOrder
-    totalComments?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    user?: UserOrderByWithRelationInput
-    posts?: PostOrderByRelationAggregateInput
+    accessToken?: SortOrder
+    refreshToken?: SortOrder
+    expiresAt?: SortOrder
+    userId?: UserOrderByWithRelationInput
+    content?: ContentOrderByRelationAggregateInput
+    analytics?: AnalyticsOrderByRelationAggregateInput
+    profile?: ProfileOrderByWithRelationInput
   }
 
-  export type SocialWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    username?: string
-    AND?: SocialWhereInput | SocialWhereInput[]
-    OR?: SocialWhereInput[]
-    NOT?: SocialWhereInput | SocialWhereInput[]
-    userId?: IntFilter<"Social"> | number
-    social?: StringFilter<"Social"> | string
-    profilePicUrl?: StringFilter<"Social"> | string
-    totalPosts?: IntFilter<"Social"> | number
-    totalLikes?: IntFilter<"Social"> | number
-    totalComments?: IntFilter<"Social"> | number
-    createdAt?: DateTimeFilter<"Social"> | Date | string
-    updatedAt?: DateTimeFilter<"Social"> | Date | string
-    user?: XOR<UserRelationFilter, UserWhereInput>
-    posts?: PostListRelationFilter
-  }, "id" | "username">
-
-  export type SocialOrderByWithAggregationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    social?: SortOrder
-    username?: SortOrder
-    profilePicUrl?: SortOrder
-    totalPosts?: SortOrder
-    totalLikes?: SortOrder
-    totalComments?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: SocialCountOrderByAggregateInput
-    _avg?: SocialAvgOrderByAggregateInput
-    _max?: SocialMaxOrderByAggregateInput
-    _min?: SocialMinOrderByAggregateInput
-    _sum?: SocialSumOrderByAggregateInput
-  }
-
-  export type SocialScalarWhereWithAggregatesInput = {
-    AND?: SocialScalarWhereWithAggregatesInput | SocialScalarWhereWithAggregatesInput[]
-    OR?: SocialScalarWhereWithAggregatesInput[]
-    NOT?: SocialScalarWhereWithAggregatesInput | SocialScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Social"> | number
-    userId?: IntWithAggregatesFilter<"Social"> | number
-    social?: StringWithAggregatesFilter<"Social"> | string
-    username?: StringWithAggregatesFilter<"Social"> | string
-    profilePicUrl?: StringWithAggregatesFilter<"Social"> | string
-    totalPosts?: IntWithAggregatesFilter<"Social"> | number
-    totalLikes?: IntWithAggregatesFilter<"Social"> | number
-    totalComments?: IntWithAggregatesFilter<"Social"> | number
-    createdAt?: DateTimeWithAggregatesFilter<"Social"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Social"> | Date | string
-  }
-
-  export type PostWhereInput = {
-    AND?: PostWhereInput | PostWhereInput[]
-    OR?: PostWhereInput[]
-    NOT?: PostWhereInput | PostWhereInput[]
-    id?: IntFilter<"Post"> | number
-    socialId?: IntFilter<"Post"> | number
-    content?: StringFilter<"Post"> | string
-    image?: StringFilter<"Post"> | string
-    likes?: IntFilter<"Post"> | number
-    comments?: IntFilter<"Post"> | number
-    createdAt?: DateTimeFilter<"Post"> | Date | string
-    updatedAt?: DateTimeFilter<"Post"> | Date | string
-    social?: XOR<SocialRelationFilter, SocialWhereInput>
-  }
-
-  export type PostOrderByWithRelationInput = {
-    id?: SortOrder
-    socialId?: SortOrder
-    content?: SortOrder
-    image?: SortOrder
-    likes?: SortOrder
-    comments?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    social?: SocialOrderByWithRelationInput
-  }
-
-  export type PostWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: PostWhereInput | PostWhereInput[]
-    OR?: PostWhereInput[]
-    NOT?: PostWhereInput | PostWhereInput[]
-    socialId?: IntFilter<"Post"> | number
-    content?: StringFilter<"Post"> | string
-    image?: StringFilter<"Post"> | string
-    likes?: IntFilter<"Post"> | number
-    comments?: IntFilter<"Post"> | number
-    createdAt?: DateTimeFilter<"Post"> | Date | string
-    updatedAt?: DateTimeFilter<"Post"> | Date | string
-    social?: XOR<SocialRelationFilter, SocialWhereInput>
+  export type AccountWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AccountWhereInput | AccountWhereInput[]
+    OR?: AccountWhereInput[]
+    NOT?: AccountWhereInput | AccountWhereInput[]
+    type?: StringFilter<"Account"> | string
+    username?: StringFilter<"Account"> | string
+    accessToken?: StringFilter<"Account"> | string
+    refreshToken?: StringFilter<"Account"> | string
+    expiresAt?: DateTimeFilter<"Account"> | Date | string
+    userId?: XOR<UserRelationFilter, UserWhereInput>
+    content?: ContentListRelationFilter
+    analytics?: AnalyticsListRelationFilter
+    profile?: XOR<ProfileNullableRelationFilter, ProfileWhereInput> | null
   }, "id">
 
-  export type PostOrderByWithAggregationInput = {
+  export type AccountOrderByWithAggregationInput = {
     id?: SortOrder
-    socialId?: SortOrder
-    content?: SortOrder
-    image?: SortOrder
-    likes?: SortOrder
-    comments?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: PostCountOrderByAggregateInput
-    _avg?: PostAvgOrderByAggregateInput
-    _max?: PostMaxOrderByAggregateInput
-    _min?: PostMinOrderByAggregateInput
-    _sum?: PostSumOrderByAggregateInput
+    type?: SortOrder
+    username?: SortOrder
+    accessToken?: SortOrder
+    refreshToken?: SortOrder
+    expiresAt?: SortOrder
+    _count?: AccountCountOrderByAggregateInput
+    _max?: AccountMaxOrderByAggregateInput
+    _min?: AccountMinOrderByAggregateInput
   }
 
-  export type PostScalarWhereWithAggregatesInput = {
-    AND?: PostScalarWhereWithAggregatesInput | PostScalarWhereWithAggregatesInput[]
-    OR?: PostScalarWhereWithAggregatesInput[]
-    NOT?: PostScalarWhereWithAggregatesInput | PostScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Post"> | number
-    socialId?: IntWithAggregatesFilter<"Post"> | number
-    content?: StringWithAggregatesFilter<"Post"> | string
-    image?: StringWithAggregatesFilter<"Post"> | string
-    likes?: IntWithAggregatesFilter<"Post"> | number
-    comments?: IntWithAggregatesFilter<"Post"> | number
-    createdAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
+  export type AccountScalarWhereWithAggregatesInput = {
+    AND?: AccountScalarWhereWithAggregatesInput | AccountScalarWhereWithAggregatesInput[]
+    OR?: AccountScalarWhereWithAggregatesInput[]
+    NOT?: AccountScalarWhereWithAggregatesInput | AccountScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Account"> | string
+    type?: StringWithAggregatesFilter<"Account"> | string
+    username?: StringWithAggregatesFilter<"Account"> | string
+    accessToken?: StringWithAggregatesFilter<"Account"> | string
+    refreshToken?: StringWithAggregatesFilter<"Account"> | string
+    expiresAt?: DateTimeWithAggregatesFilter<"Account"> | Date | string
+  }
+
+  export type ProfileWhereInput = {
+    AND?: ProfileWhereInput | ProfileWhereInput[]
+    OR?: ProfileWhereInput[]
+    NOT?: ProfileWhereInput | ProfileWhereInput[]
+    id?: StringFilter<"Profile"> | string
+    username?: StringFilter<"Profile"> | string
+    email?: StringFilter<"Profile"> | string
+    avatar?: StringFilter<"Profile"> | string
+    bio?: StringFilter<"Profile"> | string
+    accountId?: XOR<AccountRelationFilter, AccountWhereInput>
+  }
+
+  export type ProfileOrderByWithRelationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
+    avatar?: SortOrder
+    bio?: SortOrder
+    accountId?: AccountOrderByWithRelationInput
+  }
+
+  export type ProfileWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ProfileWhereInput | ProfileWhereInput[]
+    OR?: ProfileWhereInput[]
+    NOT?: ProfileWhereInput | ProfileWhereInput[]
+    username?: StringFilter<"Profile"> | string
+    email?: StringFilter<"Profile"> | string
+    avatar?: StringFilter<"Profile"> | string
+    bio?: StringFilter<"Profile"> | string
+    accountId?: XOR<AccountRelationFilter, AccountWhereInput>
+  }, "id">
+
+  export type ProfileOrderByWithAggregationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
+    avatar?: SortOrder
+    bio?: SortOrder
+    _count?: ProfileCountOrderByAggregateInput
+    _max?: ProfileMaxOrderByAggregateInput
+    _min?: ProfileMinOrderByAggregateInput
+  }
+
+  export type ProfileScalarWhereWithAggregatesInput = {
+    AND?: ProfileScalarWhereWithAggregatesInput | ProfileScalarWhereWithAggregatesInput[]
+    OR?: ProfileScalarWhereWithAggregatesInput[]
+    NOT?: ProfileScalarWhereWithAggregatesInput | ProfileScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Profile"> | string
+    username?: StringWithAggregatesFilter<"Profile"> | string
+    email?: StringWithAggregatesFilter<"Profile"> | string
+    avatar?: StringWithAggregatesFilter<"Profile"> | string
+    bio?: StringWithAggregatesFilter<"Profile"> | string
+  }
+
+  export type ContentWhereInput = {
+    AND?: ContentWhereInput | ContentWhereInput[]
+    OR?: ContentWhereInput[]
+    NOT?: ContentWhereInput | ContentWhereInput[]
+    id?: StringFilter<"Content"> | string
+    type?: StringFilter<"Content"> | string
+    text?: StringFilter<"Content"> | string
+    media?: StringFilter<"Content"> | string
+    postedAt?: DateTimeFilter<"Content"> | Date | string
+    accountId?: XOR<AccountRelationFilter, AccountWhereInput>
+    engagement?: EngagementListRelationFilter
+  }
+
+  export type ContentOrderByWithRelationInput = {
+    id?: SortOrder
+    type?: SortOrder
+    text?: SortOrder
+    media?: SortOrder
+    postedAt?: SortOrder
+    accountId?: AccountOrderByWithRelationInput
+    engagement?: EngagementOrderByRelationAggregateInput
+  }
+
+  export type ContentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ContentWhereInput | ContentWhereInput[]
+    OR?: ContentWhereInput[]
+    NOT?: ContentWhereInput | ContentWhereInput[]
+    type?: StringFilter<"Content"> | string
+    text?: StringFilter<"Content"> | string
+    media?: StringFilter<"Content"> | string
+    postedAt?: DateTimeFilter<"Content"> | Date | string
+    accountId?: XOR<AccountRelationFilter, AccountWhereInput>
+    engagement?: EngagementListRelationFilter
+  }, "id">
+
+  export type ContentOrderByWithAggregationInput = {
+    id?: SortOrder
+    type?: SortOrder
+    text?: SortOrder
+    media?: SortOrder
+    postedAt?: SortOrder
+    _count?: ContentCountOrderByAggregateInput
+    _max?: ContentMaxOrderByAggregateInput
+    _min?: ContentMinOrderByAggregateInput
+  }
+
+  export type ContentScalarWhereWithAggregatesInput = {
+    AND?: ContentScalarWhereWithAggregatesInput | ContentScalarWhereWithAggregatesInput[]
+    OR?: ContentScalarWhereWithAggregatesInput[]
+    NOT?: ContentScalarWhereWithAggregatesInput | ContentScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Content"> | string
+    type?: StringWithAggregatesFilter<"Content"> | string
+    text?: StringWithAggregatesFilter<"Content"> | string
+    media?: StringWithAggregatesFilter<"Content"> | string
+    postedAt?: DateTimeWithAggregatesFilter<"Content"> | Date | string
+  }
+
+  export type EngagementWhereInput = {
+    AND?: EngagementWhereInput | EngagementWhereInput[]
+    OR?: EngagementWhereInput[]
+    NOT?: EngagementWhereInput | EngagementWhereInput[]
+    id?: StringFilter<"Engagement"> | string
+    type?: StringFilter<"Engagement"> | string
+    count?: IntFilter<"Engagement"> | number
+    contentId?: XOR<ContentRelationFilter, ContentWhereInput>
+  }
+
+  export type EngagementOrderByWithRelationInput = {
+    id?: SortOrder
+    type?: SortOrder
+    count?: SortOrder
+    contentId?: ContentOrderByWithRelationInput
+  }
+
+  export type EngagementWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: EngagementWhereInput | EngagementWhereInput[]
+    OR?: EngagementWhereInput[]
+    NOT?: EngagementWhereInput | EngagementWhereInput[]
+    type?: StringFilter<"Engagement"> | string
+    count?: IntFilter<"Engagement"> | number
+    contentId?: XOR<ContentRelationFilter, ContentWhereInput>
+  }, "id">
+
+  export type EngagementOrderByWithAggregationInput = {
+    id?: SortOrder
+    type?: SortOrder
+    count?: SortOrder
+    _count?: EngagementCountOrderByAggregateInput
+    _avg?: EngagementAvgOrderByAggregateInput
+    _max?: EngagementMaxOrderByAggregateInput
+    _min?: EngagementMinOrderByAggregateInput
+    _sum?: EngagementSumOrderByAggregateInput
+  }
+
+  export type EngagementScalarWhereWithAggregatesInput = {
+    AND?: EngagementScalarWhereWithAggregatesInput | EngagementScalarWhereWithAggregatesInput[]
+    OR?: EngagementScalarWhereWithAggregatesInput[]
+    NOT?: EngagementScalarWhereWithAggregatesInput | EngagementScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Engagement"> | string
+    type?: StringWithAggregatesFilter<"Engagement"> | string
+    count?: IntWithAggregatesFilter<"Engagement"> | number
+  }
+
+  export type AnalyticsWhereInput = {
+    AND?: AnalyticsWhereInput | AnalyticsWhereInput[]
+    OR?: AnalyticsWhereInput[]
+    NOT?: AnalyticsWhereInput | AnalyticsWhereInput[]
+    id?: StringFilter<"Analytics"> | string
+    metric?: StringFilter<"Analytics"> | string
+    value?: FloatFilter<"Analytics"> | number
+    timestamp?: DateTimeFilter<"Analytics"> | Date | string
+    accountId?: XOR<AccountRelationFilter, AccountWhereInput>
+  }
+
+  export type AnalyticsOrderByWithRelationInput = {
+    id?: SortOrder
+    metric?: SortOrder
+    value?: SortOrder
+    timestamp?: SortOrder
+    accountId?: AccountOrderByWithRelationInput
+  }
+
+  export type AnalyticsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AnalyticsWhereInput | AnalyticsWhereInput[]
+    OR?: AnalyticsWhereInput[]
+    NOT?: AnalyticsWhereInput | AnalyticsWhereInput[]
+    metric?: StringFilter<"Analytics"> | string
+    value?: FloatFilter<"Analytics"> | number
+    timestamp?: DateTimeFilter<"Analytics"> | Date | string
+    accountId?: XOR<AccountRelationFilter, AccountWhereInput>
+  }, "id">
+
+  export type AnalyticsOrderByWithAggregationInput = {
+    id?: SortOrder
+    metric?: SortOrder
+    value?: SortOrder
+    timestamp?: SortOrder
+    _count?: AnalyticsCountOrderByAggregateInput
+    _avg?: AnalyticsAvgOrderByAggregateInput
+    _max?: AnalyticsMaxOrderByAggregateInput
+    _min?: AnalyticsMinOrderByAggregateInput
+    _sum?: AnalyticsSumOrderByAggregateInput
+  }
+
+  export type AnalyticsScalarWhereWithAggregatesInput = {
+    AND?: AnalyticsScalarWhereWithAggregatesInput | AnalyticsScalarWhereWithAggregatesInput[]
+    OR?: AnalyticsScalarWhereWithAggregatesInput[]
+    NOT?: AnalyticsScalarWhereWithAggregatesInput | AnalyticsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Analytics"> | string
+    metric?: StringWithAggregatesFilter<"Analytics"> | string
+    value?: FloatWithAggregatesFilter<"Analytics"> | number
+    timestamp?: DateTimeWithAggregatesFilter<"Analytics"> | Date | string
   }
 
   export type UserCreateInput = {
+    id?: string
+    name: string
     email: string
     username: string
-    subscribed: boolean
     password: string
     imageUrl: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    socialLinks?: SocialCreateNestedManyWithoutUserInput
+    accounts?: AccountCreateNestedManyWithoutUserIdInput
   }
 
   export type UserUncheckedCreateInput = {
-    id?: number
+    id?: string
+    name: string
     email: string
     username: string
-    subscribed: boolean
     password: string
     imageUrl: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    socialLinks?: SocialUncheckedCreateNestedManyWithoutUserInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserIdInput
   }
 
   export type UserUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    subscribed?: BoolFieldUpdateOperationsInput | boolean
     password?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    socialLinks?: SocialUpdateManyWithoutUserNestedInput
+    accounts?: AccountUpdateManyWithoutUserIdNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    subscribed?: BoolFieldUpdateOperationsInput | boolean
     password?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    socialLinks?: SocialUncheckedUpdateManyWithoutUserNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutUserIdNestedInput
   }
 
   export type UserCreateManyInput = {
-    id?: number
+    id?: string
+    name: string
     email: string
     username: string
-    subscribed: boolean
     password: string
     imageUrl: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type UserUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    subscribed?: BoolFieldUpdateOperationsInput | boolean
     password?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    subscribed?: BoolFieldUpdateOperationsInput | boolean
     password?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type AuthTokenCreateInput = {
-    identifier: string
-    token: string
-    expires: Date | string
-  }
-
-  export type AuthTokenUncheckedCreateInput = {
-    identifier: string
-    token: string
-    expires: Date | string
-  }
-
-  export type AuthTokenUpdateInput = {
-    identifier?: StringFieldUpdateOperationsInput | string
-    token?: StringFieldUpdateOperationsInput | string
-    expires?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type AuthTokenUncheckedUpdateInput = {
-    identifier?: StringFieldUpdateOperationsInput | string
-    token?: StringFieldUpdateOperationsInput | string
-    expires?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type AuthTokenCreateManyInput = {
-    identifier: string
-    token: string
-    expires: Date | string
-  }
-
-  export type AuthTokenUpdateManyMutationInput = {
-    identifier?: StringFieldUpdateOperationsInput | string
-    token?: StringFieldUpdateOperationsInput | string
-    expires?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type AuthTokenUncheckedUpdateManyInput = {
-    identifier?: StringFieldUpdateOperationsInput | string
-    token?: StringFieldUpdateOperationsInput | string
-    expires?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type SocialCreateInput = {
-    social: string
+  export type AccountCreateInput = {
+    type: string
     username: string
-    profilePicUrl: string
-    totalPosts: number
-    totalLikes: number
-    totalComments: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutSocialLinksInput
-    posts?: PostCreateNestedManyWithoutSocialInput
+    accessToken: string
+    refreshToken: string
+    expiresAt: Date | string
+    userId?: UserCreateNestedOneWithoutAccountsInput
+    content?: ContentCreateNestedManyWithoutAccountIdInput
+    analytics?: AnalyticsCreateNestedManyWithoutAccountIdInput
+    profile?: ProfileCreateNestedOneWithoutAccountIdInput
   }
 
-  export type SocialUncheckedCreateInput = {
-    id?: number
-    userId: number
-    social: string
+  export type AccountUncheckedCreateInput = {
+    id?: string
+    type: string
     username: string
-    profilePicUrl: string
-    totalPosts: number
-    totalLikes: number
-    totalComments: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    posts?: PostUncheckedCreateNestedManyWithoutSocialInput
+    accessToken: string
+    refreshToken: string
+    expiresAt: Date | string
+    content?: ContentUncheckedCreateNestedManyWithoutAccountIdInput
+    analytics?: AnalyticsUncheckedCreateNestedManyWithoutAccountIdInput
+    profile?: ProfileUncheckedCreateNestedOneWithoutAccountIdInput
   }
 
-  export type SocialUpdateInput = {
-    social?: StringFieldUpdateOperationsInput | string
+  export type AccountUpdateInput = {
+    type?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    profilePicUrl?: StringFieldUpdateOperationsInput | string
-    totalPosts?: IntFieldUpdateOperationsInput | number
-    totalLikes?: IntFieldUpdateOperationsInput | number
-    totalComments?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutSocialLinksNestedInput
-    posts?: PostUpdateManyWithoutSocialNestedInput
+    accessToken?: StringFieldUpdateOperationsInput | string
+    refreshToken?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: UserUpdateOneRequiredWithoutAccountsNestedInput
+    content?: ContentUpdateManyWithoutAccountIdNestedInput
+    analytics?: AnalyticsUpdateManyWithoutAccountIdNestedInput
+    profile?: ProfileUpdateOneWithoutAccountIdNestedInput
   }
 
-  export type SocialUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    social?: StringFieldUpdateOperationsInput | string
+  export type AccountUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    profilePicUrl?: StringFieldUpdateOperationsInput | string
-    totalPosts?: IntFieldUpdateOperationsInput | number
-    totalLikes?: IntFieldUpdateOperationsInput | number
-    totalComments?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posts?: PostUncheckedUpdateManyWithoutSocialNestedInput
+    accessToken?: StringFieldUpdateOperationsInput | string
+    refreshToken?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    content?: ContentUncheckedUpdateManyWithoutAccountIdNestedInput
+    analytics?: AnalyticsUncheckedUpdateManyWithoutAccountIdNestedInput
+    profile?: ProfileUncheckedUpdateOneWithoutAccountIdNestedInput
   }
 
-  export type SocialCreateManyInput = {
-    id?: number
-    userId: number
-    social: string
+  export type AccountCreateManyInput = {
+    id?: string
+    type: string
     username: string
-    profilePicUrl: string
-    totalPosts: number
-    totalLikes: number
-    totalComments: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    accessToken: string
+    refreshToken: string
+    expiresAt: Date | string
   }
 
-  export type SocialUpdateManyMutationInput = {
-    social?: StringFieldUpdateOperationsInput | string
+  export type AccountUpdateManyMutationInput = {
+    type?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    profilePicUrl?: StringFieldUpdateOperationsInput | string
-    totalPosts?: IntFieldUpdateOperationsInput | number
-    totalLikes?: IntFieldUpdateOperationsInput | number
-    totalComments?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accessToken?: StringFieldUpdateOperationsInput | string
+    refreshToken?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SocialUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    social?: StringFieldUpdateOperationsInput | string
+  export type AccountUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    profilePicUrl?: StringFieldUpdateOperationsInput | string
-    totalPosts?: IntFieldUpdateOperationsInput | number
-    totalLikes?: IntFieldUpdateOperationsInput | number
-    totalComments?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accessToken?: StringFieldUpdateOperationsInput | string
+    refreshToken?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type PostCreateInput = {
-    content: string
-    image: string
-    likes: number
-    comments: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    social: SocialCreateNestedOneWithoutPostsInput
+  export type ProfileCreateInput = {
+    username: string
+    email: string
+    avatar: string
+    bio: string
+    accountId?: AccountCreateNestedOneWithoutProfileInput
   }
 
-  export type PostUncheckedCreateInput = {
-    id?: number
-    socialId: number
-    content: string
-    image: string
-    likes: number
-    comments: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
+  export type ProfileUncheckedCreateInput = {
+    id?: string
+    username: string
+    email: string
+    avatar: string
+    bio: string
   }
 
-  export type PostUpdateInput = {
-    content?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
-    likes?: IntFieldUpdateOperationsInput | number
-    comments?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    social?: SocialUpdateOneRequiredWithoutPostsNestedInput
+  export type ProfileUpdateInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    avatar?: StringFieldUpdateOperationsInput | string
+    bio?: StringFieldUpdateOperationsInput | string
+    accountId?: AccountUpdateOneRequiredWithoutProfileNestedInput
   }
 
-  export type PostUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    socialId?: IntFieldUpdateOperationsInput | number
-    content?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
-    likes?: IntFieldUpdateOperationsInput | number
-    comments?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type ProfileUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    avatar?: StringFieldUpdateOperationsInput | string
+    bio?: StringFieldUpdateOperationsInput | string
   }
 
-  export type PostCreateManyInput = {
-    id?: number
-    socialId: number
-    content: string
-    image: string
-    likes: number
-    comments: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
+  export type ProfileCreateManyInput = {
+    id?: string
+    username: string
+    email: string
+    avatar: string
+    bio: string
   }
 
-  export type PostUpdateManyMutationInput = {
-    content?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
-    likes?: IntFieldUpdateOperationsInput | number
-    comments?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type ProfileUpdateManyMutationInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    avatar?: StringFieldUpdateOperationsInput | string
+    bio?: StringFieldUpdateOperationsInput | string
   }
 
-  export type PostUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    socialId?: IntFieldUpdateOperationsInput | number
-    content?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
-    likes?: IntFieldUpdateOperationsInput | number
-    comments?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type ProfileUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    avatar?: StringFieldUpdateOperationsInput | string
+    bio?: StringFieldUpdateOperationsInput | string
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
+  export type ContentCreateInput = {
+    type: string
+    text: string
+    media: string
+    postedAt?: Date | string
+    accountId?: AccountCreateNestedOneWithoutContentInput
+    engagement?: EngagementCreateNestedManyWithoutContentIdInput
+  }
+
+  export type ContentUncheckedCreateInput = {
+    id?: string
+    type: string
+    text: string
+    media: string
+    postedAt?: Date | string
+    engagement?: EngagementUncheckedCreateNestedManyWithoutContentIdInput
+  }
+
+  export type ContentUpdateInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    media?: StringFieldUpdateOperationsInput | string
+    postedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountId?: AccountUpdateOneRequiredWithoutContentNestedInput
+    engagement?: EngagementUpdateManyWithoutContentIdNestedInput
+  }
+
+  export type ContentUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    media?: StringFieldUpdateOperationsInput | string
+    postedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    engagement?: EngagementUncheckedUpdateManyWithoutContentIdNestedInput
+  }
+
+  export type ContentCreateManyInput = {
+    id?: string
+    type: string
+    text: string
+    media: string
+    postedAt?: Date | string
+  }
+
+  export type ContentUpdateManyMutationInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    media?: StringFieldUpdateOperationsInput | string
+    postedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContentUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    media?: StringFieldUpdateOperationsInput | string
+    postedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EngagementCreateInput = {
+    type: string
+    count: number
+    contentId?: ContentCreateNestedOneWithoutEngagementInput
+  }
+
+  export type EngagementUncheckedCreateInput = {
+    id?: string
+    type: string
+    count: number
+  }
+
+  export type EngagementUpdateInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+    contentId?: ContentUpdateOneRequiredWithoutEngagementNestedInput
+  }
+
+  export type EngagementUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type EngagementCreateManyInput = {
+    id?: string
+    type: string
+    count: number
+  }
+
+  export type EngagementUpdateManyMutationInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type EngagementUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type AnalyticsCreateInput = {
+    metric: string
+    value: number
+    timestamp?: Date | string
+    accountId?: AccountCreateNestedOneWithoutAnalyticsInput
+  }
+
+  export type AnalyticsUncheckedCreateInput = {
+    id?: string
+    metric: string
+    value: number
+    timestamp?: Date | string
+  }
+
+  export type AnalyticsUpdateInput = {
+    metric?: StringFieldUpdateOperationsInput | string
+    value?: FloatFieldUpdateOperationsInput | number
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountId?: AccountUpdateOneRequiredWithoutAnalyticsNestedInput
+  }
+
+  export type AnalyticsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    metric?: StringFieldUpdateOperationsInput | string
+    value?: FloatFieldUpdateOperationsInput | number
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnalyticsCreateManyInput = {
+    id?: string
+    metric: string
+    value: number
+    timestamp?: Date | string
+  }
+
+  export type AnalyticsUpdateManyMutationInput = {
+    metric?: StringFieldUpdateOperationsInput | string
+    value?: FloatFieldUpdateOperationsInput | number
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnalyticsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    metric?: StringFieldUpdateOperationsInput | string
+    value?: FloatFieldUpdateOperationsInput | number
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -5819,87 +7937,41 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
+  export type AccountListRelationFilter = {
+    every?: AccountWhereInput
+    some?: AccountWhereInput
+    none?: AccountWhereInput
   }
 
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type SocialListRelationFilter = {
-    every?: SocialWhereInput
-    some?: SocialWhereInput
-    none?: SocialWhereInput
-  }
-
-  export type SocialOrderByRelationAggregateInput = {
+  export type AccountOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
     email?: SortOrder
     username?: SortOrder
-    subscribed?: SortOrder
     password?: SortOrder
     imageUrl?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type UserAvgOrderByAggregateInput = {
-    id?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
     email?: SortOrder
     username?: SortOrder
-    subscribed?: SortOrder
     password?: SortOrder
     imageUrl?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
     email?: SortOrder
     username?: SortOrder
-    subscribed?: SortOrder
     password?: SortOrder
     imageUrl?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type UserSumOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -5920,12 +7992,72 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type UserRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type ContentListRelationFilter = {
+    every?: ContentWhereInput
+    some?: ContentWhereInput
+    none?: ContentWhereInput
+  }
+
+  export type AnalyticsListRelationFilter = {
+    every?: AnalyticsWhereInput
+    some?: AnalyticsWhereInput
+    none?: AnalyticsWhereInput
+  }
+
+  export type ProfileNullableRelationFilter = {
+    is?: ProfileWhereInput | null
+    isNot?: ProfileWhereInput | null
+  }
+
+  export type ContentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AnalyticsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AccountCountOrderByAggregateInput = {
+    id?: SortOrder
+    type?: SortOrder
+    username?: SortOrder
+    accessToken?: SortOrder
+    refreshToken?: SortOrder
+    expiresAt?: SortOrder
+  }
+
+  export type AccountMaxOrderByAggregateInput = {
+    id?: SortOrder
+    type?: SortOrder
+    username?: SortOrder
+    accessToken?: SortOrder
+    refreshToken?: SortOrder
+    expiresAt?: SortOrder
+  }
+
+  export type AccountMinOrderByAggregateInput = {
+    id?: SortOrder
+    type?: SortOrder
+    username?: SortOrder
+    accessToken?: SortOrder
+    refreshToken?: SortOrder
+    expiresAt?: SortOrder
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -5942,189 +8074,437 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type AuthTokenIdentifierTokenCompoundUniqueInput = {
-    identifier: string
-    token: string
+  export type AccountRelationFilter = {
+    is?: AccountWhereInput
+    isNot?: AccountWhereInput
   }
 
-  export type AuthTokenCountOrderByAggregateInput = {
-    identifier?: SortOrder
-    token?: SortOrder
-    expires?: SortOrder
+  export type ProfileCountOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
+    avatar?: SortOrder
+    bio?: SortOrder
   }
 
-  export type AuthTokenMaxOrderByAggregateInput = {
-    identifier?: SortOrder
-    token?: SortOrder
-    expires?: SortOrder
+  export type ProfileMaxOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
+    avatar?: SortOrder
+    bio?: SortOrder
   }
 
-  export type AuthTokenMinOrderByAggregateInput = {
-    identifier?: SortOrder
-    token?: SortOrder
-    expires?: SortOrder
+  export type ProfileMinOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
+    avatar?: SortOrder
+    bio?: SortOrder
   }
 
-  export type UserRelationFilter = {
-    is?: UserWhereInput
-    isNot?: UserWhereInput
+  export type EngagementListRelationFilter = {
+    every?: EngagementWhereInput
+    some?: EngagementWhereInput
+    none?: EngagementWhereInput
   }
 
-  export type PostListRelationFilter = {
-    every?: PostWhereInput
-    some?: PostWhereInput
-    none?: PostWhereInput
-  }
-
-  export type PostOrderByRelationAggregateInput = {
+  export type EngagementOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type SocialCountOrderByAggregateInput = {
+  export type ContentCountOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
-    social?: SortOrder
-    username?: SortOrder
-    profilePicUrl?: SortOrder
-    totalPosts?: SortOrder
-    totalLikes?: SortOrder
-    totalComments?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    type?: SortOrder
+    text?: SortOrder
+    media?: SortOrder
+    postedAt?: SortOrder
   }
 
-  export type SocialAvgOrderByAggregateInput = {
+  export type ContentMaxOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
-    totalPosts?: SortOrder
-    totalLikes?: SortOrder
-    totalComments?: SortOrder
+    type?: SortOrder
+    text?: SortOrder
+    media?: SortOrder
+    postedAt?: SortOrder
   }
 
-  export type SocialMaxOrderByAggregateInput = {
+  export type ContentMinOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
-    social?: SortOrder
-    username?: SortOrder
-    profilePicUrl?: SortOrder
-    totalPosts?: SortOrder
-    totalLikes?: SortOrder
-    totalComments?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    type?: SortOrder
+    text?: SortOrder
+    media?: SortOrder
+    postedAt?: SortOrder
   }
 
-  export type SocialMinOrderByAggregateInput = {
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type ContentRelationFilter = {
+    is?: ContentWhereInput
+    isNot?: ContentWhereInput
+  }
+
+  export type EngagementCountOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
-    social?: SortOrder
-    username?: SortOrder
-    profilePicUrl?: SortOrder
-    totalPosts?: SortOrder
-    totalLikes?: SortOrder
-    totalComments?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    type?: SortOrder
+    count?: SortOrder
   }
 
-  export type SocialSumOrderByAggregateInput = {
+  export type EngagementAvgOrderByAggregateInput = {
+    count?: SortOrder
+  }
+
+  export type EngagementMaxOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
-    totalPosts?: SortOrder
-    totalLikes?: SortOrder
-    totalComments?: SortOrder
+    type?: SortOrder
+    count?: SortOrder
   }
 
-  export type SocialRelationFilter = {
-    is?: SocialWhereInput
-    isNot?: SocialWhereInput
-  }
-
-  export type PostCountOrderByAggregateInput = {
+  export type EngagementMinOrderByAggregateInput = {
     id?: SortOrder
-    socialId?: SortOrder
-    content?: SortOrder
-    image?: SortOrder
-    likes?: SortOrder
-    comments?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    type?: SortOrder
+    count?: SortOrder
   }
 
-  export type PostAvgOrderByAggregateInput = {
+  export type EngagementSumOrderByAggregateInput = {
+    count?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type AnalyticsCountOrderByAggregateInput = {
     id?: SortOrder
-    socialId?: SortOrder
-    likes?: SortOrder
-    comments?: SortOrder
+    metric?: SortOrder
+    value?: SortOrder
+    timestamp?: SortOrder
   }
 
-  export type PostMaxOrderByAggregateInput = {
+  export type AnalyticsAvgOrderByAggregateInput = {
+    value?: SortOrder
+  }
+
+  export type AnalyticsMaxOrderByAggregateInput = {
     id?: SortOrder
-    socialId?: SortOrder
-    content?: SortOrder
-    image?: SortOrder
-    likes?: SortOrder
-    comments?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    metric?: SortOrder
+    value?: SortOrder
+    timestamp?: SortOrder
   }
 
-  export type PostMinOrderByAggregateInput = {
+  export type AnalyticsMinOrderByAggregateInput = {
     id?: SortOrder
-    socialId?: SortOrder
-    content?: SortOrder
-    image?: SortOrder
-    likes?: SortOrder
-    comments?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    metric?: SortOrder
+    value?: SortOrder
+    timestamp?: SortOrder
   }
 
-  export type PostSumOrderByAggregateInput = {
-    id?: SortOrder
-    socialId?: SortOrder
-    likes?: SortOrder
-    comments?: SortOrder
+  export type AnalyticsSumOrderByAggregateInput = {
+    value?: SortOrder
   }
 
-  export type SocialCreateNestedManyWithoutUserInput = {
-    create?: XOR<SocialCreateWithoutUserInput, SocialUncheckedCreateWithoutUserInput> | SocialCreateWithoutUserInput[] | SocialUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SocialCreateOrConnectWithoutUserInput | SocialCreateOrConnectWithoutUserInput[]
-    createMany?: SocialCreateManyUserInputEnvelope
-    connect?: SocialWhereUniqueInput | SocialWhereUniqueInput[]
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type SocialUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<SocialCreateWithoutUserInput, SocialUncheckedCreateWithoutUserInput> | SocialCreateWithoutUserInput[] | SocialUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SocialCreateOrConnectWithoutUserInput | SocialCreateOrConnectWithoutUserInput[]
-    createMany?: SocialCreateManyUserInputEnvelope
-    connect?: SocialWhereUniqueInput | SocialWhereUniqueInput[]
+  export type AccountCreateNestedManyWithoutUserIdInput = {
+    create?: XOR<AccountCreateWithoutUserIdInput, AccountUncheckedCreateWithoutUserIdInput> | AccountCreateWithoutUserIdInput[] | AccountUncheckedCreateWithoutUserIdInput[]
+    connectOrCreate?: AccountCreateOrConnectWithoutUserIdInput | AccountCreateOrConnectWithoutUserIdInput[]
+    createMany?: AccountCreateManyUserIdInputEnvelope
+    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+  }
+
+  export type AccountUncheckedCreateNestedManyWithoutUserIdInput = {
+    create?: XOR<AccountCreateWithoutUserIdInput, AccountUncheckedCreateWithoutUserIdInput> | AccountCreateWithoutUserIdInput[] | AccountUncheckedCreateWithoutUserIdInput[]
+    connectOrCreate?: AccountCreateOrConnectWithoutUserIdInput | AccountCreateOrConnectWithoutUserIdInput[]
+    createMany?: AccountCreateManyUserIdInputEnvelope
+    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
+  export type AccountUpdateManyWithoutUserIdNestedInput = {
+    create?: XOR<AccountCreateWithoutUserIdInput, AccountUncheckedCreateWithoutUserIdInput> | AccountCreateWithoutUserIdInput[] | AccountUncheckedCreateWithoutUserIdInput[]
+    connectOrCreate?: AccountCreateOrConnectWithoutUserIdInput | AccountCreateOrConnectWithoutUserIdInput[]
+    upsert?: AccountUpsertWithWhereUniqueWithoutUserIdInput | AccountUpsertWithWhereUniqueWithoutUserIdInput[]
+    createMany?: AccountCreateManyUserIdInputEnvelope
+    set?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    disconnect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    delete?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    update?: AccountUpdateWithWhereUniqueWithoutUserIdInput | AccountUpdateWithWhereUniqueWithoutUserIdInput[]
+    updateMany?: AccountUpdateManyWithWhereWithoutUserIdInput | AccountUpdateManyWithWhereWithoutUserIdInput[]
+    deleteMany?: AccountScalarWhereInput | AccountScalarWhereInput[]
+  }
+
+  export type AccountUncheckedUpdateManyWithoutUserIdNestedInput = {
+    create?: XOR<AccountCreateWithoutUserIdInput, AccountUncheckedCreateWithoutUserIdInput> | AccountCreateWithoutUserIdInput[] | AccountUncheckedCreateWithoutUserIdInput[]
+    connectOrCreate?: AccountCreateOrConnectWithoutUserIdInput | AccountCreateOrConnectWithoutUserIdInput[]
+    upsert?: AccountUpsertWithWhereUniqueWithoutUserIdInput | AccountUpsertWithWhereUniqueWithoutUserIdInput[]
+    createMany?: AccountCreateManyUserIdInputEnvelope
+    set?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    disconnect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    delete?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    update?: AccountUpdateWithWhereUniqueWithoutUserIdInput | AccountUpdateWithWhereUniqueWithoutUserIdInput[]
+    updateMany?: AccountUpdateManyWithWhereWithoutUserIdInput | AccountUpdateManyWithWhereWithoutUserIdInput[]
+    deleteMany?: AccountScalarWhereInput | AccountScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutAccountsInput = {
+    create?: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAccountsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ContentCreateNestedManyWithoutAccountIdInput = {
+    create?: XOR<ContentCreateWithoutAccountIdInput, ContentUncheckedCreateWithoutAccountIdInput> | ContentCreateWithoutAccountIdInput[] | ContentUncheckedCreateWithoutAccountIdInput[]
+    connectOrCreate?: ContentCreateOrConnectWithoutAccountIdInput | ContentCreateOrConnectWithoutAccountIdInput[]
+    createMany?: ContentCreateManyAccountIdInputEnvelope
+    connect?: ContentWhereUniqueInput | ContentWhereUniqueInput[]
+  }
+
+  export type AnalyticsCreateNestedManyWithoutAccountIdInput = {
+    create?: XOR<AnalyticsCreateWithoutAccountIdInput, AnalyticsUncheckedCreateWithoutAccountIdInput> | AnalyticsCreateWithoutAccountIdInput[] | AnalyticsUncheckedCreateWithoutAccountIdInput[]
+    connectOrCreate?: AnalyticsCreateOrConnectWithoutAccountIdInput | AnalyticsCreateOrConnectWithoutAccountIdInput[]
+    createMany?: AnalyticsCreateManyAccountIdInputEnvelope
+    connect?: AnalyticsWhereUniqueInput | AnalyticsWhereUniqueInput[]
+  }
+
+  export type ProfileCreateNestedOneWithoutAccountIdInput = {
+    create?: XOR<ProfileCreateWithoutAccountIdInput, ProfileUncheckedCreateWithoutAccountIdInput>
+    connectOrCreate?: ProfileCreateOrConnectWithoutAccountIdInput
+    connect?: ProfileWhereUniqueInput
+  }
+
+  export type ContentUncheckedCreateNestedManyWithoutAccountIdInput = {
+    create?: XOR<ContentCreateWithoutAccountIdInput, ContentUncheckedCreateWithoutAccountIdInput> | ContentCreateWithoutAccountIdInput[] | ContentUncheckedCreateWithoutAccountIdInput[]
+    connectOrCreate?: ContentCreateOrConnectWithoutAccountIdInput | ContentCreateOrConnectWithoutAccountIdInput[]
+    createMany?: ContentCreateManyAccountIdInputEnvelope
+    connect?: ContentWhereUniqueInput | ContentWhereUniqueInput[]
+  }
+
+  export type AnalyticsUncheckedCreateNestedManyWithoutAccountIdInput = {
+    create?: XOR<AnalyticsCreateWithoutAccountIdInput, AnalyticsUncheckedCreateWithoutAccountIdInput> | AnalyticsCreateWithoutAccountIdInput[] | AnalyticsUncheckedCreateWithoutAccountIdInput[]
+    connectOrCreate?: AnalyticsCreateOrConnectWithoutAccountIdInput | AnalyticsCreateOrConnectWithoutAccountIdInput[]
+    createMany?: AnalyticsCreateManyAccountIdInputEnvelope
+    connect?: AnalyticsWhereUniqueInput | AnalyticsWhereUniqueInput[]
+  }
+
+  export type ProfileUncheckedCreateNestedOneWithoutAccountIdInput = {
+    create?: XOR<ProfileCreateWithoutAccountIdInput, ProfileUncheckedCreateWithoutAccountIdInput>
+    connectOrCreate?: ProfileCreateOrConnectWithoutAccountIdInput
+    connect?: ProfileWhereUniqueInput
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
   }
 
-  export type SocialUpdateManyWithoutUserNestedInput = {
-    create?: XOR<SocialCreateWithoutUserInput, SocialUncheckedCreateWithoutUserInput> | SocialCreateWithoutUserInput[] | SocialUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SocialCreateOrConnectWithoutUserInput | SocialCreateOrConnectWithoutUserInput[]
-    upsert?: SocialUpsertWithWhereUniqueWithoutUserInput | SocialUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: SocialCreateManyUserInputEnvelope
-    set?: SocialWhereUniqueInput | SocialWhereUniqueInput[]
-    disconnect?: SocialWhereUniqueInput | SocialWhereUniqueInput[]
-    delete?: SocialWhereUniqueInput | SocialWhereUniqueInput[]
-    connect?: SocialWhereUniqueInput | SocialWhereUniqueInput[]
-    update?: SocialUpdateWithWhereUniqueWithoutUserInput | SocialUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: SocialUpdateManyWithWhereWithoutUserInput | SocialUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: SocialScalarWhereInput | SocialScalarWhereInput[]
+  export type UserUpdateOneRequiredWithoutAccountsNestedInput = {
+    create?: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAccountsInput
+    upsert?: UserUpsertWithoutAccountsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAccountsInput, UserUpdateWithoutAccountsInput>, UserUncheckedUpdateWithoutAccountsInput>
+  }
+
+  export type ContentUpdateManyWithoutAccountIdNestedInput = {
+    create?: XOR<ContentCreateWithoutAccountIdInput, ContentUncheckedCreateWithoutAccountIdInput> | ContentCreateWithoutAccountIdInput[] | ContentUncheckedCreateWithoutAccountIdInput[]
+    connectOrCreate?: ContentCreateOrConnectWithoutAccountIdInput | ContentCreateOrConnectWithoutAccountIdInput[]
+    upsert?: ContentUpsertWithWhereUniqueWithoutAccountIdInput | ContentUpsertWithWhereUniqueWithoutAccountIdInput[]
+    createMany?: ContentCreateManyAccountIdInputEnvelope
+    set?: ContentWhereUniqueInput | ContentWhereUniqueInput[]
+    disconnect?: ContentWhereUniqueInput | ContentWhereUniqueInput[]
+    delete?: ContentWhereUniqueInput | ContentWhereUniqueInput[]
+    connect?: ContentWhereUniqueInput | ContentWhereUniqueInput[]
+    update?: ContentUpdateWithWhereUniqueWithoutAccountIdInput | ContentUpdateWithWhereUniqueWithoutAccountIdInput[]
+    updateMany?: ContentUpdateManyWithWhereWithoutAccountIdInput | ContentUpdateManyWithWhereWithoutAccountIdInput[]
+    deleteMany?: ContentScalarWhereInput | ContentScalarWhereInput[]
+  }
+
+  export type AnalyticsUpdateManyWithoutAccountIdNestedInput = {
+    create?: XOR<AnalyticsCreateWithoutAccountIdInput, AnalyticsUncheckedCreateWithoutAccountIdInput> | AnalyticsCreateWithoutAccountIdInput[] | AnalyticsUncheckedCreateWithoutAccountIdInput[]
+    connectOrCreate?: AnalyticsCreateOrConnectWithoutAccountIdInput | AnalyticsCreateOrConnectWithoutAccountIdInput[]
+    upsert?: AnalyticsUpsertWithWhereUniqueWithoutAccountIdInput | AnalyticsUpsertWithWhereUniqueWithoutAccountIdInput[]
+    createMany?: AnalyticsCreateManyAccountIdInputEnvelope
+    set?: AnalyticsWhereUniqueInput | AnalyticsWhereUniqueInput[]
+    disconnect?: AnalyticsWhereUniqueInput | AnalyticsWhereUniqueInput[]
+    delete?: AnalyticsWhereUniqueInput | AnalyticsWhereUniqueInput[]
+    connect?: AnalyticsWhereUniqueInput | AnalyticsWhereUniqueInput[]
+    update?: AnalyticsUpdateWithWhereUniqueWithoutAccountIdInput | AnalyticsUpdateWithWhereUniqueWithoutAccountIdInput[]
+    updateMany?: AnalyticsUpdateManyWithWhereWithoutAccountIdInput | AnalyticsUpdateManyWithWhereWithoutAccountIdInput[]
+    deleteMany?: AnalyticsScalarWhereInput | AnalyticsScalarWhereInput[]
+  }
+
+  export type ProfileUpdateOneWithoutAccountIdNestedInput = {
+    create?: XOR<ProfileCreateWithoutAccountIdInput, ProfileUncheckedCreateWithoutAccountIdInput>
+    connectOrCreate?: ProfileCreateOrConnectWithoutAccountIdInput
+    upsert?: ProfileUpsertWithoutAccountIdInput
+    disconnect?: ProfileWhereInput | boolean
+    delete?: ProfileWhereInput | boolean
+    connect?: ProfileWhereUniqueInput
+    update?: XOR<XOR<ProfileUpdateToOneWithWhereWithoutAccountIdInput, ProfileUpdateWithoutAccountIdInput>, ProfileUncheckedUpdateWithoutAccountIdInput>
+  }
+
+  export type ContentUncheckedUpdateManyWithoutAccountIdNestedInput = {
+    create?: XOR<ContentCreateWithoutAccountIdInput, ContentUncheckedCreateWithoutAccountIdInput> | ContentCreateWithoutAccountIdInput[] | ContentUncheckedCreateWithoutAccountIdInput[]
+    connectOrCreate?: ContentCreateOrConnectWithoutAccountIdInput | ContentCreateOrConnectWithoutAccountIdInput[]
+    upsert?: ContentUpsertWithWhereUniqueWithoutAccountIdInput | ContentUpsertWithWhereUniqueWithoutAccountIdInput[]
+    createMany?: ContentCreateManyAccountIdInputEnvelope
+    set?: ContentWhereUniqueInput | ContentWhereUniqueInput[]
+    disconnect?: ContentWhereUniqueInput | ContentWhereUniqueInput[]
+    delete?: ContentWhereUniqueInput | ContentWhereUniqueInput[]
+    connect?: ContentWhereUniqueInput | ContentWhereUniqueInput[]
+    update?: ContentUpdateWithWhereUniqueWithoutAccountIdInput | ContentUpdateWithWhereUniqueWithoutAccountIdInput[]
+    updateMany?: ContentUpdateManyWithWhereWithoutAccountIdInput | ContentUpdateManyWithWhereWithoutAccountIdInput[]
+    deleteMany?: ContentScalarWhereInput | ContentScalarWhereInput[]
+  }
+
+  export type AnalyticsUncheckedUpdateManyWithoutAccountIdNestedInput = {
+    create?: XOR<AnalyticsCreateWithoutAccountIdInput, AnalyticsUncheckedCreateWithoutAccountIdInput> | AnalyticsCreateWithoutAccountIdInput[] | AnalyticsUncheckedCreateWithoutAccountIdInput[]
+    connectOrCreate?: AnalyticsCreateOrConnectWithoutAccountIdInput | AnalyticsCreateOrConnectWithoutAccountIdInput[]
+    upsert?: AnalyticsUpsertWithWhereUniqueWithoutAccountIdInput | AnalyticsUpsertWithWhereUniqueWithoutAccountIdInput[]
+    createMany?: AnalyticsCreateManyAccountIdInputEnvelope
+    set?: AnalyticsWhereUniqueInput | AnalyticsWhereUniqueInput[]
+    disconnect?: AnalyticsWhereUniqueInput | AnalyticsWhereUniqueInput[]
+    delete?: AnalyticsWhereUniqueInput | AnalyticsWhereUniqueInput[]
+    connect?: AnalyticsWhereUniqueInput | AnalyticsWhereUniqueInput[]
+    update?: AnalyticsUpdateWithWhereUniqueWithoutAccountIdInput | AnalyticsUpdateWithWhereUniqueWithoutAccountIdInput[]
+    updateMany?: AnalyticsUpdateManyWithWhereWithoutAccountIdInput | AnalyticsUpdateManyWithWhereWithoutAccountIdInput[]
+    deleteMany?: AnalyticsScalarWhereInput | AnalyticsScalarWhereInput[]
+  }
+
+  export type ProfileUncheckedUpdateOneWithoutAccountIdNestedInput = {
+    create?: XOR<ProfileCreateWithoutAccountIdInput, ProfileUncheckedCreateWithoutAccountIdInput>
+    connectOrCreate?: ProfileCreateOrConnectWithoutAccountIdInput
+    upsert?: ProfileUpsertWithoutAccountIdInput
+    disconnect?: ProfileWhereInput | boolean
+    delete?: ProfileWhereInput | boolean
+    connect?: ProfileWhereUniqueInput
+    update?: XOR<XOR<ProfileUpdateToOneWithWhereWithoutAccountIdInput, ProfileUpdateWithoutAccountIdInput>, ProfileUncheckedUpdateWithoutAccountIdInput>
+  }
+
+  export type AccountCreateNestedOneWithoutProfileInput = {
+    create?: XOR<AccountCreateWithoutProfileInput, AccountUncheckedCreateWithoutProfileInput>
+    connectOrCreate?: AccountCreateOrConnectWithoutProfileInput
+    connect?: AccountWhereUniqueInput
+  }
+
+  export type AccountUpdateOneRequiredWithoutProfileNestedInput = {
+    create?: XOR<AccountCreateWithoutProfileInput, AccountUncheckedCreateWithoutProfileInput>
+    connectOrCreate?: AccountCreateOrConnectWithoutProfileInput
+    upsert?: AccountUpsertWithoutProfileInput
+    connect?: AccountWhereUniqueInput
+    update?: XOR<XOR<AccountUpdateToOneWithWhereWithoutProfileInput, AccountUpdateWithoutProfileInput>, AccountUncheckedUpdateWithoutProfileInput>
+  }
+
+  export type AccountCreateNestedOneWithoutContentInput = {
+    create?: XOR<AccountCreateWithoutContentInput, AccountUncheckedCreateWithoutContentInput>
+    connectOrCreate?: AccountCreateOrConnectWithoutContentInput
+    connect?: AccountWhereUniqueInput
+  }
+
+  export type EngagementCreateNestedManyWithoutContentIdInput = {
+    create?: XOR<EngagementCreateWithoutContentIdInput, EngagementUncheckedCreateWithoutContentIdInput> | EngagementCreateWithoutContentIdInput[] | EngagementUncheckedCreateWithoutContentIdInput[]
+    connectOrCreate?: EngagementCreateOrConnectWithoutContentIdInput | EngagementCreateOrConnectWithoutContentIdInput[]
+    createMany?: EngagementCreateManyContentIdInputEnvelope
+    connect?: EngagementWhereUniqueInput | EngagementWhereUniqueInput[]
+  }
+
+  export type EngagementUncheckedCreateNestedManyWithoutContentIdInput = {
+    create?: XOR<EngagementCreateWithoutContentIdInput, EngagementUncheckedCreateWithoutContentIdInput> | EngagementCreateWithoutContentIdInput[] | EngagementUncheckedCreateWithoutContentIdInput[]
+    connectOrCreate?: EngagementCreateOrConnectWithoutContentIdInput | EngagementCreateOrConnectWithoutContentIdInput[]
+    createMany?: EngagementCreateManyContentIdInputEnvelope
+    connect?: EngagementWhereUniqueInput | EngagementWhereUniqueInput[]
+  }
+
+  export type AccountUpdateOneRequiredWithoutContentNestedInput = {
+    create?: XOR<AccountCreateWithoutContentInput, AccountUncheckedCreateWithoutContentInput>
+    connectOrCreate?: AccountCreateOrConnectWithoutContentInput
+    upsert?: AccountUpsertWithoutContentInput
+    connect?: AccountWhereUniqueInput
+    update?: XOR<XOR<AccountUpdateToOneWithWhereWithoutContentInput, AccountUpdateWithoutContentInput>, AccountUncheckedUpdateWithoutContentInput>
+  }
+
+  export type EngagementUpdateManyWithoutContentIdNestedInput = {
+    create?: XOR<EngagementCreateWithoutContentIdInput, EngagementUncheckedCreateWithoutContentIdInput> | EngagementCreateWithoutContentIdInput[] | EngagementUncheckedCreateWithoutContentIdInput[]
+    connectOrCreate?: EngagementCreateOrConnectWithoutContentIdInput | EngagementCreateOrConnectWithoutContentIdInput[]
+    upsert?: EngagementUpsertWithWhereUniqueWithoutContentIdInput | EngagementUpsertWithWhereUniqueWithoutContentIdInput[]
+    createMany?: EngagementCreateManyContentIdInputEnvelope
+    set?: EngagementWhereUniqueInput | EngagementWhereUniqueInput[]
+    disconnect?: EngagementWhereUniqueInput | EngagementWhereUniqueInput[]
+    delete?: EngagementWhereUniqueInput | EngagementWhereUniqueInput[]
+    connect?: EngagementWhereUniqueInput | EngagementWhereUniqueInput[]
+    update?: EngagementUpdateWithWhereUniqueWithoutContentIdInput | EngagementUpdateWithWhereUniqueWithoutContentIdInput[]
+    updateMany?: EngagementUpdateManyWithWhereWithoutContentIdInput | EngagementUpdateManyWithWhereWithoutContentIdInput[]
+    deleteMany?: EngagementScalarWhereInput | EngagementScalarWhereInput[]
+  }
+
+  export type EngagementUncheckedUpdateManyWithoutContentIdNestedInput = {
+    create?: XOR<EngagementCreateWithoutContentIdInput, EngagementUncheckedCreateWithoutContentIdInput> | EngagementCreateWithoutContentIdInput[] | EngagementUncheckedCreateWithoutContentIdInput[]
+    connectOrCreate?: EngagementCreateOrConnectWithoutContentIdInput | EngagementCreateOrConnectWithoutContentIdInput[]
+    upsert?: EngagementUpsertWithWhereUniqueWithoutContentIdInput | EngagementUpsertWithWhereUniqueWithoutContentIdInput[]
+    createMany?: EngagementCreateManyContentIdInputEnvelope
+    set?: EngagementWhereUniqueInput | EngagementWhereUniqueInput[]
+    disconnect?: EngagementWhereUniqueInput | EngagementWhereUniqueInput[]
+    delete?: EngagementWhereUniqueInput | EngagementWhereUniqueInput[]
+    connect?: EngagementWhereUniqueInput | EngagementWhereUniqueInput[]
+    update?: EngagementUpdateWithWhereUniqueWithoutContentIdInput | EngagementUpdateWithWhereUniqueWithoutContentIdInput[]
+    updateMany?: EngagementUpdateManyWithWhereWithoutContentIdInput | EngagementUpdateManyWithWhereWithoutContentIdInput[]
+    deleteMany?: EngagementScalarWhereInput | EngagementScalarWhereInput[]
+  }
+
+  export type ContentCreateNestedOneWithoutEngagementInput = {
+    create?: XOR<ContentCreateWithoutEngagementInput, ContentUncheckedCreateWithoutEngagementInput>
+    connectOrCreate?: ContentCreateOrConnectWithoutEngagementInput
+    connect?: ContentWhereUniqueInput
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -6135,99 +8515,34 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type SocialUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<SocialCreateWithoutUserInput, SocialUncheckedCreateWithoutUserInput> | SocialCreateWithoutUserInput[] | SocialUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SocialCreateOrConnectWithoutUserInput | SocialCreateOrConnectWithoutUserInput[]
-    upsert?: SocialUpsertWithWhereUniqueWithoutUserInput | SocialUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: SocialCreateManyUserInputEnvelope
-    set?: SocialWhereUniqueInput | SocialWhereUniqueInput[]
-    disconnect?: SocialWhereUniqueInput | SocialWhereUniqueInput[]
-    delete?: SocialWhereUniqueInput | SocialWhereUniqueInput[]
-    connect?: SocialWhereUniqueInput | SocialWhereUniqueInput[]
-    update?: SocialUpdateWithWhereUniqueWithoutUserInput | SocialUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: SocialUpdateManyWithWhereWithoutUserInput | SocialUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: SocialScalarWhereInput | SocialScalarWhereInput[]
+  export type ContentUpdateOneRequiredWithoutEngagementNestedInput = {
+    create?: XOR<ContentCreateWithoutEngagementInput, ContentUncheckedCreateWithoutEngagementInput>
+    connectOrCreate?: ContentCreateOrConnectWithoutEngagementInput
+    upsert?: ContentUpsertWithoutEngagementInput
+    connect?: ContentWhereUniqueInput
+    update?: XOR<XOR<ContentUpdateToOneWithWhereWithoutEngagementInput, ContentUpdateWithoutEngagementInput>, ContentUncheckedUpdateWithoutEngagementInput>
   }
 
-  export type UserCreateNestedOneWithoutSocialLinksInput = {
-    create?: XOR<UserCreateWithoutSocialLinksInput, UserUncheckedCreateWithoutSocialLinksInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSocialLinksInput
-    connect?: UserWhereUniqueInput
+  export type AccountCreateNestedOneWithoutAnalyticsInput = {
+    create?: XOR<AccountCreateWithoutAnalyticsInput, AccountUncheckedCreateWithoutAnalyticsInput>
+    connectOrCreate?: AccountCreateOrConnectWithoutAnalyticsInput
+    connect?: AccountWhereUniqueInput
   }
 
-  export type PostCreateNestedManyWithoutSocialInput = {
-    create?: XOR<PostCreateWithoutSocialInput, PostUncheckedCreateWithoutSocialInput> | PostCreateWithoutSocialInput[] | PostUncheckedCreateWithoutSocialInput[]
-    connectOrCreate?: PostCreateOrConnectWithoutSocialInput | PostCreateOrConnectWithoutSocialInput[]
-    createMany?: PostCreateManySocialInputEnvelope
-    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
-  export type PostUncheckedCreateNestedManyWithoutSocialInput = {
-    create?: XOR<PostCreateWithoutSocialInput, PostUncheckedCreateWithoutSocialInput> | PostCreateWithoutSocialInput[] | PostUncheckedCreateWithoutSocialInput[]
-    connectOrCreate?: PostCreateOrConnectWithoutSocialInput | PostCreateOrConnectWithoutSocialInput[]
-    createMany?: PostCreateManySocialInputEnvelope
-    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
-  }
-
-  export type UserUpdateOneRequiredWithoutSocialLinksNestedInput = {
-    create?: XOR<UserCreateWithoutSocialLinksInput, UserUncheckedCreateWithoutSocialLinksInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSocialLinksInput
-    upsert?: UserUpsertWithoutSocialLinksInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSocialLinksInput, UserUpdateWithoutSocialLinksInput>, UserUncheckedUpdateWithoutSocialLinksInput>
-  }
-
-  export type PostUpdateManyWithoutSocialNestedInput = {
-    create?: XOR<PostCreateWithoutSocialInput, PostUncheckedCreateWithoutSocialInput> | PostCreateWithoutSocialInput[] | PostUncheckedCreateWithoutSocialInput[]
-    connectOrCreate?: PostCreateOrConnectWithoutSocialInput | PostCreateOrConnectWithoutSocialInput[]
-    upsert?: PostUpsertWithWhereUniqueWithoutSocialInput | PostUpsertWithWhereUniqueWithoutSocialInput[]
-    createMany?: PostCreateManySocialInputEnvelope
-    set?: PostWhereUniqueInput | PostWhereUniqueInput[]
-    disconnect?: PostWhereUniqueInput | PostWhereUniqueInput[]
-    delete?: PostWhereUniqueInput | PostWhereUniqueInput[]
-    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
-    update?: PostUpdateWithWhereUniqueWithoutSocialInput | PostUpdateWithWhereUniqueWithoutSocialInput[]
-    updateMany?: PostUpdateManyWithWhereWithoutSocialInput | PostUpdateManyWithWhereWithoutSocialInput[]
-    deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
-  }
-
-  export type PostUncheckedUpdateManyWithoutSocialNestedInput = {
-    create?: XOR<PostCreateWithoutSocialInput, PostUncheckedCreateWithoutSocialInput> | PostCreateWithoutSocialInput[] | PostUncheckedCreateWithoutSocialInput[]
-    connectOrCreate?: PostCreateOrConnectWithoutSocialInput | PostCreateOrConnectWithoutSocialInput[]
-    upsert?: PostUpsertWithWhereUniqueWithoutSocialInput | PostUpsertWithWhereUniqueWithoutSocialInput[]
-    createMany?: PostCreateManySocialInputEnvelope
-    set?: PostWhereUniqueInput | PostWhereUniqueInput[]
-    disconnect?: PostWhereUniqueInput | PostWhereUniqueInput[]
-    delete?: PostWhereUniqueInput | PostWhereUniqueInput[]
-    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
-    update?: PostUpdateWithWhereUniqueWithoutSocialInput | PostUpdateWithWhereUniqueWithoutSocialInput[]
-    updateMany?: PostUpdateManyWithWhereWithoutSocialInput | PostUpdateManyWithWhereWithoutSocialInput[]
-    deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
-  }
-
-  export type SocialCreateNestedOneWithoutPostsInput = {
-    create?: XOR<SocialCreateWithoutPostsInput, SocialUncheckedCreateWithoutPostsInput>
-    connectOrCreate?: SocialCreateOrConnectWithoutPostsInput
-    connect?: SocialWhereUniqueInput
-  }
-
-  export type SocialUpdateOneRequiredWithoutPostsNestedInput = {
-    create?: XOR<SocialCreateWithoutPostsInput, SocialUncheckedCreateWithoutPostsInput>
-    connectOrCreate?: SocialCreateOrConnectWithoutPostsInput
-    upsert?: SocialUpsertWithoutPostsInput
-    connect?: SocialWhereUniqueInput
-    update?: XOR<XOR<SocialUpdateToOneWithWhereWithoutPostsInput, SocialUpdateWithoutPostsInput>, SocialUncheckedUpdateWithoutPostsInput>
-  }
-
-  export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
+  export type AccountUpdateOneRequiredWithoutAnalyticsNestedInput = {
+    create?: XOR<AccountCreateWithoutAnalyticsInput, AccountUncheckedCreateWithoutAnalyticsInput>
+    connectOrCreate?: AccountCreateOrConnectWithoutAnalyticsInput
+    upsert?: AccountUpsertWithoutAnalyticsInput
+    connect?: AccountWhereUniqueInput
+    update?: XOR<XOR<AccountUpdateToOneWithWhereWithoutAnalyticsInput, AccountUpdateWithoutAnalyticsInput>, AccountUncheckedUpdateWithoutAnalyticsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -6244,9 +8559,32 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
+  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -6258,6 +8596,20 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -6287,381 +8639,662 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type SocialCreateWithoutUserInput = {
-    social: string
+  export type AccountCreateWithoutUserIdInput = {
+    type: string
     username: string
-    profilePicUrl: string
-    totalPosts: number
-    totalLikes: number
-    totalComments: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    posts?: PostCreateNestedManyWithoutSocialInput
+    accessToken: string
+    refreshToken: string
+    expiresAt: Date | string
+    content?: ContentCreateNestedManyWithoutAccountIdInput
+    analytics?: AnalyticsCreateNestedManyWithoutAccountIdInput
+    profile?: ProfileCreateNestedOneWithoutAccountIdInput
   }
 
-  export type SocialUncheckedCreateWithoutUserInput = {
-    id?: number
-    social: string
+  export type AccountUncheckedCreateWithoutUserIdInput = {
+    type: string
     username: string
-    profilePicUrl: string
-    totalPosts: number
-    totalLikes: number
-    totalComments: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    posts?: PostUncheckedCreateNestedManyWithoutSocialInput
+    accessToken: string
+    refreshToken: string
+    expiresAt: Date | string
+    content?: ContentUncheckedCreateNestedManyWithoutAccountIdInput
+    analytics?: AnalyticsUncheckedCreateNestedManyWithoutAccountIdInput
+    profile?: ProfileUncheckedCreateNestedOneWithoutAccountIdInput
   }
 
-  export type SocialCreateOrConnectWithoutUserInput = {
-    where: SocialWhereUniqueInput
-    create: XOR<SocialCreateWithoutUserInput, SocialUncheckedCreateWithoutUserInput>
+  export type AccountCreateOrConnectWithoutUserIdInput = {
+    where: AccountWhereUniqueInput
+    create: XOR<AccountCreateWithoutUserIdInput, AccountUncheckedCreateWithoutUserIdInput>
   }
 
-  export type SocialCreateManyUserInputEnvelope = {
-    data: SocialCreateManyUserInput | SocialCreateManyUserInput[]
+  export type AccountCreateManyUserIdInputEnvelope = {
+    data: AccountCreateManyUserIdInput | AccountCreateManyUserIdInput[]
     skipDuplicates?: boolean
   }
 
-  export type SocialUpsertWithWhereUniqueWithoutUserInput = {
-    where: SocialWhereUniqueInput
-    update: XOR<SocialUpdateWithoutUserInput, SocialUncheckedUpdateWithoutUserInput>
-    create: XOR<SocialCreateWithoutUserInput, SocialUncheckedCreateWithoutUserInput>
+  export type AccountUpsertWithWhereUniqueWithoutUserIdInput = {
+    where: AccountWhereUniqueInput
+    update: XOR<AccountUpdateWithoutUserIdInput, AccountUncheckedUpdateWithoutUserIdInput>
+    create: XOR<AccountCreateWithoutUserIdInput, AccountUncheckedCreateWithoutUserIdInput>
   }
 
-  export type SocialUpdateWithWhereUniqueWithoutUserInput = {
-    where: SocialWhereUniqueInput
-    data: XOR<SocialUpdateWithoutUserInput, SocialUncheckedUpdateWithoutUserInput>
+  export type AccountUpdateWithWhereUniqueWithoutUserIdInput = {
+    where: AccountWhereUniqueInput
+    data: XOR<AccountUpdateWithoutUserIdInput, AccountUncheckedUpdateWithoutUserIdInput>
   }
 
-  export type SocialUpdateManyWithWhereWithoutUserInput = {
-    where: SocialScalarWhereInput
-    data: XOR<SocialUpdateManyMutationInput, SocialUncheckedUpdateManyWithoutUserInput>
+  export type AccountUpdateManyWithWhereWithoutUserIdInput = {
+    where: AccountScalarWhereInput
+    data: XOR<AccountUpdateManyMutationInput, AccountUncheckedUpdateManyWithoutUserIdInput>
   }
 
-  export type SocialScalarWhereInput = {
-    AND?: SocialScalarWhereInput | SocialScalarWhereInput[]
-    OR?: SocialScalarWhereInput[]
-    NOT?: SocialScalarWhereInput | SocialScalarWhereInput[]
-    id?: IntFilter<"Social"> | number
-    userId?: IntFilter<"Social"> | number
-    social?: StringFilter<"Social"> | string
-    username?: StringFilter<"Social"> | string
-    profilePicUrl?: StringFilter<"Social"> | string
-    totalPosts?: IntFilter<"Social"> | number
-    totalLikes?: IntFilter<"Social"> | number
-    totalComments?: IntFilter<"Social"> | number
-    createdAt?: DateTimeFilter<"Social"> | Date | string
-    updatedAt?: DateTimeFilter<"Social"> | Date | string
+  export type AccountScalarWhereInput = {
+    AND?: AccountScalarWhereInput | AccountScalarWhereInput[]
+    OR?: AccountScalarWhereInput[]
+    NOT?: AccountScalarWhereInput | AccountScalarWhereInput[]
+    id?: StringFilter<"Account"> | string
+    type?: StringFilter<"Account"> | string
+    username?: StringFilter<"Account"> | string
+    accessToken?: StringFilter<"Account"> | string
+    refreshToken?: StringFilter<"Account"> | string
+    expiresAt?: DateTimeFilter<"Account"> | Date | string
   }
 
-  export type UserCreateWithoutSocialLinksInput = {
+  export type UserCreateWithoutAccountsInput = {
+    id?: string
+    name: string
     email: string
     username: string
-    subscribed: boolean
     password: string
     imageUrl: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
-  export type UserUncheckedCreateWithoutSocialLinksInput = {
-    id?: number
+  export type UserUncheckedCreateWithoutAccountsInput = {
+    id?: string
+    name: string
     email: string
     username: string
-    subscribed: boolean
     password: string
     imageUrl: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
-  export type UserCreateOrConnectWithoutSocialLinksInput = {
+  export type UserCreateOrConnectWithoutAccountsInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutSocialLinksInput, UserUncheckedCreateWithoutSocialLinksInput>
+    create: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
   }
 
-  export type PostCreateWithoutSocialInput = {
-    content: string
-    image: string
-    likes: number
-    comments: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
+  export type ContentCreateWithoutAccountIdInput = {
+    type: string
+    text: string
+    media: string
+    postedAt?: Date | string
+    engagement?: EngagementCreateNestedManyWithoutContentIdInput
   }
 
-  export type PostUncheckedCreateWithoutSocialInput = {
-    id?: number
-    content: string
-    image: string
-    likes: number
-    comments: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
+  export type ContentUncheckedCreateWithoutAccountIdInput = {
+    type: string
+    text: string
+    media: string
+    postedAt?: Date | string
+    engagement?: EngagementUncheckedCreateNestedManyWithoutContentIdInput
   }
 
-  export type PostCreateOrConnectWithoutSocialInput = {
-    where: PostWhereUniqueInput
-    create: XOR<PostCreateWithoutSocialInput, PostUncheckedCreateWithoutSocialInput>
+  export type ContentCreateOrConnectWithoutAccountIdInput = {
+    where: ContentWhereUniqueInput
+    create: XOR<ContentCreateWithoutAccountIdInput, ContentUncheckedCreateWithoutAccountIdInput>
   }
 
-  export type PostCreateManySocialInputEnvelope = {
-    data: PostCreateManySocialInput | PostCreateManySocialInput[]
+  export type ContentCreateManyAccountIdInputEnvelope = {
+    data: ContentCreateManyAccountIdInput | ContentCreateManyAccountIdInput[]
     skipDuplicates?: boolean
   }
 
-  export type UserUpsertWithoutSocialLinksInput = {
-    update: XOR<UserUpdateWithoutSocialLinksInput, UserUncheckedUpdateWithoutSocialLinksInput>
-    create: XOR<UserCreateWithoutSocialLinksInput, UserUncheckedCreateWithoutSocialLinksInput>
+  export type AnalyticsCreateWithoutAccountIdInput = {
+    metric: string
+    value: number
+    timestamp?: Date | string
+  }
+
+  export type AnalyticsUncheckedCreateWithoutAccountIdInput = {
+    metric: string
+    value: number
+    timestamp?: Date | string
+  }
+
+  export type AnalyticsCreateOrConnectWithoutAccountIdInput = {
+    where: AnalyticsWhereUniqueInput
+    create: XOR<AnalyticsCreateWithoutAccountIdInput, AnalyticsUncheckedCreateWithoutAccountIdInput>
+  }
+
+  export type AnalyticsCreateManyAccountIdInputEnvelope = {
+    data: AnalyticsCreateManyAccountIdInput | AnalyticsCreateManyAccountIdInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProfileCreateWithoutAccountIdInput = {
+    username: string
+    email: string
+    avatar: string
+    bio: string
+  }
+
+  export type ProfileUncheckedCreateWithoutAccountIdInput = {
+    username: string
+    email: string
+    avatar: string
+    bio: string
+  }
+
+  export type ProfileCreateOrConnectWithoutAccountIdInput = {
+    where: ProfileWhereUniqueInput
+    create: XOR<ProfileCreateWithoutAccountIdInput, ProfileUncheckedCreateWithoutAccountIdInput>
+  }
+
+  export type UserUpsertWithoutAccountsInput = {
+    update: XOR<UserUpdateWithoutAccountsInput, UserUncheckedUpdateWithoutAccountsInput>
+    create: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutSocialLinksInput = {
+  export type UserUpdateToOneWithWhereWithoutAccountsInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutSocialLinksInput, UserUncheckedUpdateWithoutSocialLinksInput>
+    data: XOR<UserUpdateWithoutAccountsInput, UserUncheckedUpdateWithoutAccountsInput>
   }
 
-  export type UserUpdateWithoutSocialLinksInput = {
+  export type UserUpdateWithoutAccountsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    subscribed?: BoolFieldUpdateOperationsInput | boolean
     password?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type UserUncheckedUpdateWithoutSocialLinksInput = {
-    id?: IntFieldUpdateOperationsInput | number
+  export type UserUncheckedUpdateWithoutAccountsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    subscribed?: BoolFieldUpdateOperationsInput | boolean
     password?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type PostUpsertWithWhereUniqueWithoutSocialInput = {
-    where: PostWhereUniqueInput
-    update: XOR<PostUpdateWithoutSocialInput, PostUncheckedUpdateWithoutSocialInput>
-    create: XOR<PostCreateWithoutSocialInput, PostUncheckedCreateWithoutSocialInput>
+  export type ContentUpsertWithWhereUniqueWithoutAccountIdInput = {
+    where: ContentWhereUniqueInput
+    update: XOR<ContentUpdateWithoutAccountIdInput, ContentUncheckedUpdateWithoutAccountIdInput>
+    create: XOR<ContentCreateWithoutAccountIdInput, ContentUncheckedCreateWithoutAccountIdInput>
   }
 
-  export type PostUpdateWithWhereUniqueWithoutSocialInput = {
-    where: PostWhereUniqueInput
-    data: XOR<PostUpdateWithoutSocialInput, PostUncheckedUpdateWithoutSocialInput>
+  export type ContentUpdateWithWhereUniqueWithoutAccountIdInput = {
+    where: ContentWhereUniqueInput
+    data: XOR<ContentUpdateWithoutAccountIdInput, ContentUncheckedUpdateWithoutAccountIdInput>
   }
 
-  export type PostUpdateManyWithWhereWithoutSocialInput = {
-    where: PostScalarWhereInput
-    data: XOR<PostUpdateManyMutationInput, PostUncheckedUpdateManyWithoutSocialInput>
+  export type ContentUpdateManyWithWhereWithoutAccountIdInput = {
+    where: ContentScalarWhereInput
+    data: XOR<ContentUpdateManyMutationInput, ContentUncheckedUpdateManyWithoutAccountIdInput>
   }
 
-  export type PostScalarWhereInput = {
-    AND?: PostScalarWhereInput | PostScalarWhereInput[]
-    OR?: PostScalarWhereInput[]
-    NOT?: PostScalarWhereInput | PostScalarWhereInput[]
-    id?: IntFilter<"Post"> | number
-    socialId?: IntFilter<"Post"> | number
-    content?: StringFilter<"Post"> | string
-    image?: StringFilter<"Post"> | string
-    likes?: IntFilter<"Post"> | number
-    comments?: IntFilter<"Post"> | number
-    createdAt?: DateTimeFilter<"Post"> | Date | string
-    updatedAt?: DateTimeFilter<"Post"> | Date | string
+  export type ContentScalarWhereInput = {
+    AND?: ContentScalarWhereInput | ContentScalarWhereInput[]
+    OR?: ContentScalarWhereInput[]
+    NOT?: ContentScalarWhereInput | ContentScalarWhereInput[]
+    id?: StringFilter<"Content"> | string
+    type?: StringFilter<"Content"> | string
+    text?: StringFilter<"Content"> | string
+    media?: StringFilter<"Content"> | string
+    postedAt?: DateTimeFilter<"Content"> | Date | string
   }
 
-  export type SocialCreateWithoutPostsInput = {
-    social: string
+  export type AnalyticsUpsertWithWhereUniqueWithoutAccountIdInput = {
+    where: AnalyticsWhereUniqueInput
+    update: XOR<AnalyticsUpdateWithoutAccountIdInput, AnalyticsUncheckedUpdateWithoutAccountIdInput>
+    create: XOR<AnalyticsCreateWithoutAccountIdInput, AnalyticsUncheckedCreateWithoutAccountIdInput>
+  }
+
+  export type AnalyticsUpdateWithWhereUniqueWithoutAccountIdInput = {
+    where: AnalyticsWhereUniqueInput
+    data: XOR<AnalyticsUpdateWithoutAccountIdInput, AnalyticsUncheckedUpdateWithoutAccountIdInput>
+  }
+
+  export type AnalyticsUpdateManyWithWhereWithoutAccountIdInput = {
+    where: AnalyticsScalarWhereInput
+    data: XOR<AnalyticsUpdateManyMutationInput, AnalyticsUncheckedUpdateManyWithoutAccountIdInput>
+  }
+
+  export type AnalyticsScalarWhereInput = {
+    AND?: AnalyticsScalarWhereInput | AnalyticsScalarWhereInput[]
+    OR?: AnalyticsScalarWhereInput[]
+    NOT?: AnalyticsScalarWhereInput | AnalyticsScalarWhereInput[]
+    id?: StringFilter<"Analytics"> | string
+    metric?: StringFilter<"Analytics"> | string
+    value?: FloatFilter<"Analytics"> | number
+    timestamp?: DateTimeFilter<"Analytics"> | Date | string
+  }
+
+  export type ProfileUpsertWithoutAccountIdInput = {
+    update: XOR<ProfileUpdateWithoutAccountIdInput, ProfileUncheckedUpdateWithoutAccountIdInput>
+    create: XOR<ProfileCreateWithoutAccountIdInput, ProfileUncheckedCreateWithoutAccountIdInput>
+    where?: ProfileWhereInput
+  }
+
+  export type ProfileUpdateToOneWithWhereWithoutAccountIdInput = {
+    where?: ProfileWhereInput
+    data: XOR<ProfileUpdateWithoutAccountIdInput, ProfileUncheckedUpdateWithoutAccountIdInput>
+  }
+
+  export type ProfileUpdateWithoutAccountIdInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    avatar?: StringFieldUpdateOperationsInput | string
+    bio?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProfileUncheckedUpdateWithoutAccountIdInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    avatar?: StringFieldUpdateOperationsInput | string
+    bio?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AccountCreateWithoutProfileInput = {
+    type: string
     username: string
-    profilePicUrl: string
-    totalPosts: number
-    totalLikes: number
-    totalComments: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutSocialLinksInput
+    accessToken: string
+    refreshToken: string
+    expiresAt: Date | string
+    userId?: UserCreateNestedOneWithoutAccountsInput
+    content?: ContentCreateNestedManyWithoutAccountIdInput
+    analytics?: AnalyticsCreateNestedManyWithoutAccountIdInput
   }
 
-  export type SocialUncheckedCreateWithoutPostsInput = {
-    id?: number
-    userId: number
-    social: string
+  export type AccountUncheckedCreateWithoutProfileInput = {
+    id?: string
+    type: string
     username: string
-    profilePicUrl: string
-    totalPosts: number
-    totalLikes: number
-    totalComments: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    accessToken: string
+    refreshToken: string
+    expiresAt: Date | string
+    content?: ContentUncheckedCreateNestedManyWithoutAccountIdInput
+    analytics?: AnalyticsUncheckedCreateNestedManyWithoutAccountIdInput
   }
 
-  export type SocialCreateOrConnectWithoutPostsInput = {
-    where: SocialWhereUniqueInput
-    create: XOR<SocialCreateWithoutPostsInput, SocialUncheckedCreateWithoutPostsInput>
+  export type AccountCreateOrConnectWithoutProfileInput = {
+    where: AccountWhereUniqueInput
+    create: XOR<AccountCreateWithoutProfileInput, AccountUncheckedCreateWithoutProfileInput>
   }
 
-  export type SocialUpsertWithoutPostsInput = {
-    update: XOR<SocialUpdateWithoutPostsInput, SocialUncheckedUpdateWithoutPostsInput>
-    create: XOR<SocialCreateWithoutPostsInput, SocialUncheckedCreateWithoutPostsInput>
-    where?: SocialWhereInput
+  export type AccountUpsertWithoutProfileInput = {
+    update: XOR<AccountUpdateWithoutProfileInput, AccountUncheckedUpdateWithoutProfileInput>
+    create: XOR<AccountCreateWithoutProfileInput, AccountUncheckedCreateWithoutProfileInput>
+    where?: AccountWhereInput
   }
 
-  export type SocialUpdateToOneWithWhereWithoutPostsInput = {
-    where?: SocialWhereInput
-    data: XOR<SocialUpdateWithoutPostsInput, SocialUncheckedUpdateWithoutPostsInput>
+  export type AccountUpdateToOneWithWhereWithoutProfileInput = {
+    where?: AccountWhereInput
+    data: XOR<AccountUpdateWithoutProfileInput, AccountUncheckedUpdateWithoutProfileInput>
   }
 
-  export type SocialUpdateWithoutPostsInput = {
-    social?: StringFieldUpdateOperationsInput | string
+  export type AccountUpdateWithoutProfileInput = {
+    type?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    profilePicUrl?: StringFieldUpdateOperationsInput | string
-    totalPosts?: IntFieldUpdateOperationsInput | number
-    totalLikes?: IntFieldUpdateOperationsInput | number
-    totalComments?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutSocialLinksNestedInput
+    accessToken?: StringFieldUpdateOperationsInput | string
+    refreshToken?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: UserUpdateOneRequiredWithoutAccountsNestedInput
+    content?: ContentUpdateManyWithoutAccountIdNestedInput
+    analytics?: AnalyticsUpdateManyWithoutAccountIdNestedInput
   }
 
-  export type SocialUncheckedUpdateWithoutPostsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    social?: StringFieldUpdateOperationsInput | string
+  export type AccountUncheckedUpdateWithoutProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    profilePicUrl?: StringFieldUpdateOperationsInput | string
-    totalPosts?: IntFieldUpdateOperationsInput | number
-    totalLikes?: IntFieldUpdateOperationsInput | number
-    totalComments?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accessToken?: StringFieldUpdateOperationsInput | string
+    refreshToken?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    content?: ContentUncheckedUpdateManyWithoutAccountIdNestedInput
+    analytics?: AnalyticsUncheckedUpdateManyWithoutAccountIdNestedInput
   }
 
-  export type SocialCreateManyUserInput = {
-    id?: number
-    social: string
+  export type AccountCreateWithoutContentInput = {
+    type: string
     username: string
-    profilePicUrl: string
-    totalPosts: number
-    totalLikes: number
-    totalComments: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    accessToken: string
+    refreshToken: string
+    expiresAt: Date | string
+    userId?: UserCreateNestedOneWithoutAccountsInput
+    analytics?: AnalyticsCreateNestedManyWithoutAccountIdInput
+    profile?: ProfileCreateNestedOneWithoutAccountIdInput
   }
 
-  export type SocialUpdateWithoutUserInput = {
-    social?: StringFieldUpdateOperationsInput | string
+  export type AccountUncheckedCreateWithoutContentInput = {
+    id?: string
+    type: string
+    username: string
+    accessToken: string
+    refreshToken: string
+    expiresAt: Date | string
+    analytics?: AnalyticsUncheckedCreateNestedManyWithoutAccountIdInput
+    profile?: ProfileUncheckedCreateNestedOneWithoutAccountIdInput
+  }
+
+  export type AccountCreateOrConnectWithoutContentInput = {
+    where: AccountWhereUniqueInput
+    create: XOR<AccountCreateWithoutContentInput, AccountUncheckedCreateWithoutContentInput>
+  }
+
+  export type EngagementCreateWithoutContentIdInput = {
+    type: string
+    count: number
+  }
+
+  export type EngagementUncheckedCreateWithoutContentIdInput = {
+    type: string
+    count: number
+  }
+
+  export type EngagementCreateOrConnectWithoutContentIdInput = {
+    where: EngagementWhereUniqueInput
+    create: XOR<EngagementCreateWithoutContentIdInput, EngagementUncheckedCreateWithoutContentIdInput>
+  }
+
+  export type EngagementCreateManyContentIdInputEnvelope = {
+    data: EngagementCreateManyContentIdInput | EngagementCreateManyContentIdInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AccountUpsertWithoutContentInput = {
+    update: XOR<AccountUpdateWithoutContentInput, AccountUncheckedUpdateWithoutContentInput>
+    create: XOR<AccountCreateWithoutContentInput, AccountUncheckedCreateWithoutContentInput>
+    where?: AccountWhereInput
+  }
+
+  export type AccountUpdateToOneWithWhereWithoutContentInput = {
+    where?: AccountWhereInput
+    data: XOR<AccountUpdateWithoutContentInput, AccountUncheckedUpdateWithoutContentInput>
+  }
+
+  export type AccountUpdateWithoutContentInput = {
+    type?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    profilePicUrl?: StringFieldUpdateOperationsInput | string
-    totalPosts?: IntFieldUpdateOperationsInput | number
-    totalLikes?: IntFieldUpdateOperationsInput | number
-    totalComments?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posts?: PostUpdateManyWithoutSocialNestedInput
+    accessToken?: StringFieldUpdateOperationsInput | string
+    refreshToken?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: UserUpdateOneRequiredWithoutAccountsNestedInput
+    analytics?: AnalyticsUpdateManyWithoutAccountIdNestedInput
+    profile?: ProfileUpdateOneWithoutAccountIdNestedInput
   }
 
-  export type SocialUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    social?: StringFieldUpdateOperationsInput | string
+  export type AccountUncheckedUpdateWithoutContentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    profilePicUrl?: StringFieldUpdateOperationsInput | string
-    totalPosts?: IntFieldUpdateOperationsInput | number
-    totalLikes?: IntFieldUpdateOperationsInput | number
-    totalComments?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posts?: PostUncheckedUpdateManyWithoutSocialNestedInput
+    accessToken?: StringFieldUpdateOperationsInput | string
+    refreshToken?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    analytics?: AnalyticsUncheckedUpdateManyWithoutAccountIdNestedInput
+    profile?: ProfileUncheckedUpdateOneWithoutAccountIdNestedInput
   }
 
-  export type SocialUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    social?: StringFieldUpdateOperationsInput | string
+  export type EngagementUpsertWithWhereUniqueWithoutContentIdInput = {
+    where: EngagementWhereUniqueInput
+    update: XOR<EngagementUpdateWithoutContentIdInput, EngagementUncheckedUpdateWithoutContentIdInput>
+    create: XOR<EngagementCreateWithoutContentIdInput, EngagementUncheckedCreateWithoutContentIdInput>
+  }
+
+  export type EngagementUpdateWithWhereUniqueWithoutContentIdInput = {
+    where: EngagementWhereUniqueInput
+    data: XOR<EngagementUpdateWithoutContentIdInput, EngagementUncheckedUpdateWithoutContentIdInput>
+  }
+
+  export type EngagementUpdateManyWithWhereWithoutContentIdInput = {
+    where: EngagementScalarWhereInput
+    data: XOR<EngagementUpdateManyMutationInput, EngagementUncheckedUpdateManyWithoutContentIdInput>
+  }
+
+  export type EngagementScalarWhereInput = {
+    AND?: EngagementScalarWhereInput | EngagementScalarWhereInput[]
+    OR?: EngagementScalarWhereInput[]
+    NOT?: EngagementScalarWhereInput | EngagementScalarWhereInput[]
+    id?: StringFilter<"Engagement"> | string
+    type?: StringFilter<"Engagement"> | string
+    count?: IntFilter<"Engagement"> | number
+  }
+
+  export type ContentCreateWithoutEngagementInput = {
+    type: string
+    text: string
+    media: string
+    postedAt?: Date | string
+    accountId?: AccountCreateNestedOneWithoutContentInput
+  }
+
+  export type ContentUncheckedCreateWithoutEngagementInput = {
+    id?: string
+    type: string
+    text: string
+    media: string
+    postedAt?: Date | string
+  }
+
+  export type ContentCreateOrConnectWithoutEngagementInput = {
+    where: ContentWhereUniqueInput
+    create: XOR<ContentCreateWithoutEngagementInput, ContentUncheckedCreateWithoutEngagementInput>
+  }
+
+  export type ContentUpsertWithoutEngagementInput = {
+    update: XOR<ContentUpdateWithoutEngagementInput, ContentUncheckedUpdateWithoutEngagementInput>
+    create: XOR<ContentCreateWithoutEngagementInput, ContentUncheckedCreateWithoutEngagementInput>
+    where?: ContentWhereInput
+  }
+
+  export type ContentUpdateToOneWithWhereWithoutEngagementInput = {
+    where?: ContentWhereInput
+    data: XOR<ContentUpdateWithoutEngagementInput, ContentUncheckedUpdateWithoutEngagementInput>
+  }
+
+  export type ContentUpdateWithoutEngagementInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    media?: StringFieldUpdateOperationsInput | string
+    postedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountId?: AccountUpdateOneRequiredWithoutContentNestedInput
+  }
+
+  export type ContentUncheckedUpdateWithoutEngagementInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    media?: StringFieldUpdateOperationsInput | string
+    postedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AccountCreateWithoutAnalyticsInput = {
+    type: string
+    username: string
+    accessToken: string
+    refreshToken: string
+    expiresAt: Date | string
+    userId?: UserCreateNestedOneWithoutAccountsInput
+    content?: ContentCreateNestedManyWithoutAccountIdInput
+    profile?: ProfileCreateNestedOneWithoutAccountIdInput
+  }
+
+  export type AccountUncheckedCreateWithoutAnalyticsInput = {
+    id?: string
+    type: string
+    username: string
+    accessToken: string
+    refreshToken: string
+    expiresAt: Date | string
+    content?: ContentUncheckedCreateNestedManyWithoutAccountIdInput
+    profile?: ProfileUncheckedCreateNestedOneWithoutAccountIdInput
+  }
+
+  export type AccountCreateOrConnectWithoutAnalyticsInput = {
+    where: AccountWhereUniqueInput
+    create: XOR<AccountCreateWithoutAnalyticsInput, AccountUncheckedCreateWithoutAnalyticsInput>
+  }
+
+  export type AccountUpsertWithoutAnalyticsInput = {
+    update: XOR<AccountUpdateWithoutAnalyticsInput, AccountUncheckedUpdateWithoutAnalyticsInput>
+    create: XOR<AccountCreateWithoutAnalyticsInput, AccountUncheckedCreateWithoutAnalyticsInput>
+    where?: AccountWhereInput
+  }
+
+  export type AccountUpdateToOneWithWhereWithoutAnalyticsInput = {
+    where?: AccountWhereInput
+    data: XOR<AccountUpdateWithoutAnalyticsInput, AccountUncheckedUpdateWithoutAnalyticsInput>
+  }
+
+  export type AccountUpdateWithoutAnalyticsInput = {
+    type?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    profilePicUrl?: StringFieldUpdateOperationsInput | string
-    totalPosts?: IntFieldUpdateOperationsInput | number
-    totalLikes?: IntFieldUpdateOperationsInput | number
-    totalComments?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accessToken?: StringFieldUpdateOperationsInput | string
+    refreshToken?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: UserUpdateOneRequiredWithoutAccountsNestedInput
+    content?: ContentUpdateManyWithoutAccountIdNestedInput
+    profile?: ProfileUpdateOneWithoutAccountIdNestedInput
   }
 
-  export type PostCreateManySocialInput = {
-    id?: number
-    content: string
-    image: string
-    likes: number
-    comments: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
+  export type AccountUncheckedUpdateWithoutAnalyticsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    accessToken?: StringFieldUpdateOperationsInput | string
+    refreshToken?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    content?: ContentUncheckedUpdateManyWithoutAccountIdNestedInput
+    profile?: ProfileUncheckedUpdateOneWithoutAccountIdNestedInput
   }
 
-  export type PostUpdateWithoutSocialInput = {
-    content?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
-    likes?: IntFieldUpdateOperationsInput | number
-    comments?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type AccountCreateManyUserIdInput = {
+    type: string
+    username: string
+    accessToken: string
+    refreshToken: string
+    expiresAt: Date | string
   }
 
-  export type PostUncheckedUpdateWithoutSocialInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    content?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
-    likes?: IntFieldUpdateOperationsInput | number
-    comments?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type AccountUpdateWithoutUserIdInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    accessToken?: StringFieldUpdateOperationsInput | string
+    refreshToken?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    content?: ContentUpdateManyWithoutAccountIdNestedInput
+    analytics?: AnalyticsUpdateManyWithoutAccountIdNestedInput
+    profile?: ProfileUpdateOneWithoutAccountIdNestedInput
   }
 
-  export type PostUncheckedUpdateManyWithoutSocialInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    content?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
-    likes?: IntFieldUpdateOperationsInput | number
-    comments?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type AccountUncheckedUpdateWithoutUserIdInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    accessToken?: StringFieldUpdateOperationsInput | string
+    refreshToken?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    content?: ContentUncheckedUpdateManyWithoutAccountIdNestedInput
+    analytics?: AnalyticsUncheckedUpdateManyWithoutAccountIdNestedInput
+    profile?: ProfileUncheckedUpdateOneWithoutAccountIdNestedInput
+  }
+
+  export type AccountUncheckedUpdateManyWithoutUserIdInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    accessToken?: StringFieldUpdateOperationsInput | string
+    refreshToken?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContentCreateManyAccountIdInput = {
+    type: string
+    text: string
+    media: string
+    postedAt?: Date | string
+  }
+
+  export type AnalyticsCreateManyAccountIdInput = {
+    metric: string
+    value: number
+    timestamp?: Date | string
+  }
+
+  export type ContentUpdateWithoutAccountIdInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    media?: StringFieldUpdateOperationsInput | string
+    postedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    engagement?: EngagementUpdateManyWithoutContentIdNestedInput
+  }
+
+  export type ContentUncheckedUpdateWithoutAccountIdInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    media?: StringFieldUpdateOperationsInput | string
+    postedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    engagement?: EngagementUncheckedUpdateManyWithoutContentIdNestedInput
+  }
+
+  export type ContentUncheckedUpdateManyWithoutAccountIdInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    media?: StringFieldUpdateOperationsInput | string
+    postedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnalyticsUpdateWithoutAccountIdInput = {
+    metric?: StringFieldUpdateOperationsInput | string
+    value?: FloatFieldUpdateOperationsInput | number
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnalyticsUncheckedUpdateWithoutAccountIdInput = {
+    metric?: StringFieldUpdateOperationsInput | string
+    value?: FloatFieldUpdateOperationsInput | number
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnalyticsUncheckedUpdateManyWithoutAccountIdInput = {
+    metric?: StringFieldUpdateOperationsInput | string
+    value?: FloatFieldUpdateOperationsInput | number
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EngagementCreateManyContentIdInput = {
+    type: string
+    count: number
+  }
+
+  export type EngagementUpdateWithoutContentIdInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type EngagementUncheckedUpdateWithoutContentIdInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type EngagementUncheckedUpdateManyWithoutContentIdInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    count?: IntFieldUpdateOperationsInput | number
   }
 
 
@@ -6674,25 +9307,37 @@ export namespace Prisma {
      */
     export type UserCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserCountOutputTypeDefaultArgs<ExtArgs>
     /**
-     * @deprecated Use SocialCountOutputTypeDefaultArgs instead
+     * @deprecated Use AccountCountOutputTypeDefaultArgs instead
      */
-    export type SocialCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = SocialCountOutputTypeDefaultArgs<ExtArgs>
+    export type AccountCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AccountCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ContentCountOutputTypeDefaultArgs instead
+     */
+    export type ContentCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ContentCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use UserDefaultArgs instead
      */
     export type UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserDefaultArgs<ExtArgs>
     /**
-     * @deprecated Use AuthTokenDefaultArgs instead
+     * @deprecated Use AccountDefaultArgs instead
      */
-    export type AuthTokenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AuthTokenDefaultArgs<ExtArgs>
+    export type AccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AccountDefaultArgs<ExtArgs>
     /**
-     * @deprecated Use SocialDefaultArgs instead
+     * @deprecated Use ProfileDefaultArgs instead
      */
-    export type SocialArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = SocialDefaultArgs<ExtArgs>
+    export type ProfileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ProfileDefaultArgs<ExtArgs>
     /**
-     * @deprecated Use PostDefaultArgs instead
+     * @deprecated Use ContentDefaultArgs instead
      */
-    export type PostArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PostDefaultArgs<ExtArgs>
+    export type ContentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ContentDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use EngagementDefaultArgs instead
+     */
+    export type EngagementArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = EngagementDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use AnalyticsDefaultArgs instead
+     */
+    export type AnalyticsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AnalyticsDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

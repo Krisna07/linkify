@@ -167,10 +167,9 @@ const SignInPage: React.FC = () => {
         "Content-Type": "application/Json",
       },
       body: JSON.stringify({
-        username: formData.username,
-        email: formData.email,
+        username: formData.username.toLowerCase(),
+        email: formData.email.toLocaleLowerCase(),
         password: formData.password,
-        subscribed: subscribe,
       }),
     };
     const api = "/api/user";

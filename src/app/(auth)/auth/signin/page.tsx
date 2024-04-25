@@ -58,7 +58,7 @@ const SignInPage: React.FC = () => {
     //signin authentication
     if (validateForm()) {
       const signinData = await signIn("credentials", {
-        email: formData.email,
+        email: formData.email.toLocaleLowerCase(),
         password: formData.password,
         redirect: false,
       });
