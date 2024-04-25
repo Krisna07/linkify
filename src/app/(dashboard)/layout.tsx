@@ -7,12 +7,12 @@ import Button from "../g_components/Button";
 import Provider from "./components/Provider";
 import { getCurrentUser } from "@/lib/session";
 
-export interface userTypes {
-  email: String;
-  image?: String;
-  username: String;
-  name?: String;
-}
+// export interface userTypes {
+//   email: String;
+//   image?: String;
+//   username: String;
+//   name?: String;
+// }
 
 export const metadata = {
   title: "Linkify",
@@ -24,37 +24,39 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // const session = await getServerSession(authOptions);
-
   const user: any = await getCurrentUser();
 
   if (!user) {
     return (
-      <>
-        <div className="grid items-center justify-center">
-          Restricted area, user not authorized !!
-          <Link href={"/auth/signin"}>
-            <Button children="Sign In" size={"sm"} variant={"primary"} />
-          </Link>
-        </div>
-      </>
+      <html>
+        <body>
+          <div className="grid items-center justify-center">
+            Restricted area, user not authorized !!
+            <Link href={"/auth/signin"}>
+              <Button children="Sign In" size={"sm"} variant={"primary"} />
+            </Link>
+          </div>
+        </body>
+      </html>
     );
   }
 
   return (
-    <>
-      <div className="w-full  gap-8 bg-black text-white">
-        <Provider>
-          <header className="sticky top-0 z-20">
-            <Mainnav user={user} />
-          </header>
-          <main className="w-full  grid place-items-center py-8 z-10">
-            <div className="w-full flex items-center justify-center">
-              {children}
-            </div>
-          </main>
-        </Provider>
-      </div>
-    </>
+    <html lang="en">
+      <body>
+        <div className="w-full  gap-8 bg-black text-white">
+          <Provider>
+            <header className="sticky top-0 z-20">
+              <Mainnav user={user} />
+            </header>
+            <main className="w-full  grid place-items-center py-8 z-10">
+              <div className="w-full flex items-center justify-center">
+                {children}
+              </div>
+            </main>
+          </Provider>
+        </div>
+      </body>
+    </html>
   );
 }

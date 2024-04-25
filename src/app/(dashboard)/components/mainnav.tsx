@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { BiBell, BiShare } from "react-icons/bi";
 import Dropdown from "./dropdown";
+import Image from "next/image";
 
 export default function Mainnav({ user }: any) {
   const navlinks = [
@@ -18,21 +19,27 @@ export default function Mainnav({ user }: any) {
   const route = usePathname();
   const [accountOptions, setAccountOptions] = useState<boolean>(false);
   const thisNav = `${route.split("/").splice(-2)[0]}`;
-
-  // console.log(user);
-
+  console.log(user);
   return (
     <div className="w-full sticky grid gap-4 bg-gray-800 border-b border-b-gray-600 border-b-[1px] relative box-border overflow">
       <div className="w-full flex items-center justify-between  p-2 px-8 gap-4">
-        <div className="flex items-center py-2  rounded-full gap-4">
-          <div className="h-6 w-6 bg-white rounded-full hidden tablet:flex"></div>
+        <div className="flex items-center py-2  gap-2">
+          <div className="h-6 w-6  rounded-full overflow-hidden  tablet:flex">
+            <Image
+              src="/favicon.ico"
+              width={10}
+              height={10}
+              alt={"icon"}
+              className="w-full h-full cover rounded-full "
+            />
+          </div>
           <span className="text-gray-600 hidden tablet:flex">/</span>
           <div className="flex items-center gap-2 font-[600]">
-            <div className="h-6 w-6 bg-white rounded-full hidden tablet:flex"></div>{" "}
+            <div className="h-6 w-6 bg-gradient-to-tr from-indigo-300 to-blue-500 to-pink-500 rounded-full hidden tablet:flex"></div>{" "}
             {user.username}
           </div>
-          <div className="bg-gray-600 px-2 py-[2px] rounded-full text-sm font-[600]">
-            Type
+          <div className="bg-gray-600 px-3 py-[2px] flex items-center rounded-full text-sm font-[600]">
+            social
           </div>
           <div></div>
         </div>

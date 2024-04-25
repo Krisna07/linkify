@@ -1,5 +1,10 @@
 import "../globals.css";
 
+export const metadata = {
+  title: "Linkify",
+  description: "A link sharing platform",
+};
+
 export default function RootLayout({
   children,
 }: {
