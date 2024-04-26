@@ -7,7 +7,7 @@ import { NextResponse } from "next/server";
 export async function GET(req: Request) {
   try {
     const accounts = await db.account.findMany({
-      include: { profile: true }, // Include nested profile data
+      include: { content: true, analytics: true }, // Include nested profile data
     });
 
     return NextResponse.json({

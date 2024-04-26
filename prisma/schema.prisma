@@ -39,7 +39,7 @@ model Account {
 // model Profile {
 //   id          String    @id @default(cuid())
 //   Account     Account   @relation(fields: [profileId], references: [id])
-//   profileId   String    
+//   profileId   String   @unique 
 //   username    String    @unique
 //   email       String    
 //   avatar      String

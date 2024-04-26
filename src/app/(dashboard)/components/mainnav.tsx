@@ -22,7 +22,7 @@ export default function Mainnav({ user }: any) {
   console.log(user);
   return (
     <div className="w-full sticky grid gap-4 bg-gray-800 border-b border-b-gray-600 border-b-[1px] relative box-border overflow">
-      <div className="w-full flex items-center justify-between  p-2 px-8 gap-4">
+      <div className="w-full flex items-center justify-between  p-2 md:px-8 gap-4">
         <div className="flex items-center py-2  gap-2">
           <div className="h-6 w-6  rounded-full overflow-hidden  tablet:flex">
             <Image
