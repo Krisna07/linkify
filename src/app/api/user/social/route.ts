@@ -1,4 +1,6 @@
+import { authOptions } from "@/lib/auth";
 import { db } from "@/lib/db"; // Assuming your Prisma Client instance
+
 import { NextResponse } from "next/server";
 
 // **GET All Accounts**
@@ -21,7 +23,7 @@ export async function GET(req: Request) {
 }
 
 // **GET Specific Account**
-// export async function GET(req, id) {
+// export async function GET(_req, id) {
 //   try {
 //     const accountId = id?.toString(); // Ensure ID is a string
 //     if (!accountId) {
@@ -59,7 +61,7 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { type, username } = body;
+    const { type, username, userId } = body;
 
     if (!type || !username) {
       return NextResponse.json({
@@ -67,11 +69,22 @@ export async function POST(req: Request) {
         message: "Missing required account data",
       });
     }
+    const verifyDuplicate = await db.account.findUnique({
+      where: { type: type },
+    });
+    if (verifyDuplicate) {
+      return NextResponse.json({
+        status: 401,
+        message: "The account has already been added",
+      });
+    }
 
     const newAccount = await db.account.create({
       data: {
+        userId,
         type,
         username,
+        avatar: "",
       },
     });
 

@@ -130,19 +130,10 @@ exports.Prisma.UserScalarFieldEnum = {
 
 exports.Prisma.AccountScalarFieldEnum = {
   id: 'id',
+  userId: 'userId',
   type: 'type',
   username: 'username',
-  accessToken: 'accessToken',
-  refreshToken: 'refreshToken',
-  expiresAt: 'expiresAt'
-};
-
-exports.Prisma.ProfileScalarFieldEnum = {
-  id: 'id',
-  username: 'username',
-  email: 'email',
-  avatar: 'avatar',
-  bio: 'bio'
+  avatar: 'avatar'
 };
 
 exports.Prisma.ContentScalarFieldEnum = {
@@ -180,7 +171,6 @@ exports.Prisma.QueryMode = {
 exports.Prisma.ModelName = {
   User: 'User',
   Account: 'Account',
-  Profile: 'Profile',
   Content: 'Content',
   Engagement: 'Engagement',
   Analytics: 'Analytics'

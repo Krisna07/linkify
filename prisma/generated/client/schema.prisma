@@ -18,28 +18,26 @@ model User {
   id            String   @id @default(cuid())
   name          String
   email         String    @unique
-  username      String     @unique
+  username      String    @unique
   password      String
   imageUrl      String
-  accounts      Account[]
+  accounts      Account[] 
   
 }
 
 model Account {
   id             String   @id @default(cuid())
-  userId         User   @relation(fields: [id], references: [id])
+  User          User?     @relation(fields: [userId], references: [id])
+  userId        String
   type           String   //(e.g. Facebook, Twitter, Instagram)
-  username       String
-  accessToken    String
-  refreshToken   String
-  expiresAt      DateTime
+  username       String   
   content       Content[]
   analytics     Analytics[]
   profile       Profile?
 }
 //social media profile
 model Profile {
-  id          String   @id @default(cuid())
+  id          String    @id @default(cuid())
   accountId   Account   @relation(fields: [id], references: [id])
   username    String
   email       String
