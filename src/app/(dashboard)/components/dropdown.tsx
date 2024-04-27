@@ -15,7 +15,7 @@ const Dropdown = ({ user }: any) => {
           <span className="text-xl text-white font-semibold">
             {user?.username}
           </span>
-          <span>{user?.email}</span>
+          <span className="min-w-full block">{user?.email}</span>
         </div>
       </div>
       <div className="w-fit px-4 py-2">

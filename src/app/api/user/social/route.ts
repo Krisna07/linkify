@@ -1,12 +1,15 @@
 import { authOptions } from "@/lib/auth";
 import { db } from "@/lib/db"; // Assuming your Prisma Client instance
+import { getCurrentUser } from "@/lib/session";
 
 import { NextResponse } from "next/server";
 
 // **GET All Accounts**
 export async function GET(req: Request) {
+  const user = await getCurrentUser();
   try {
     const accounts = await db.account.findMany({
+      where: { userId: user?.id },
       include: { content: true, analytics: true }, // Include nested profile data
     });
 
@@ -18,6 +21,56 @@ export async function GET(req: Request) {
     return NextResponse.json({
       status: 500,
       message: "Error retrieving accounts",
+    });
+  }
+}
+
+export async function POST(req: Request) {
+  const user = await getCurrentUser();
+  try {
+    const body = await req.json();
+    const { type, username } = body;
+    console.log(user);
+    if (!user) {
+      return NextResponse.json({
+        status: 401,
+        message: "oh oh!!restricted area ",
+      });
+    }
+
+    if (!type || !username) {
+      return NextResponse.json({
+        status: 400,
+        message: "Missing required account data",
+      });
+    }
+    const verifyDuplicate = await db.user.findMany({});
+
+    if (verifyDuplicate) {
+      return NextResponse.json({
+        status: 401,
+        message: "The account has already been added",
+      });
+    }
+
+    const newAccount = await db.account.create({
+      data: {
+        userId: user.id,
+        type,
+        username,
+        avatar: "",
+      },
+    });
+
+    return NextResponse.json({
+      user,
+      newAccount,
+    });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({
+      status: 500,
+      message: "Error creating account",
     });
   }
 }
@@ -58,47 +111,6 @@ export async function GET(req: Request) {
 // }
 
 // **POST Create New Account** (assuming user is authenticated)
-export async function POST(req: Request) {
-  try {
-    const body = await req.json();
-    const { type, username, userId } = body;
-
-    if (!type || !username) {
-      return NextResponse.json({
-        status: 400,
-        message: "Missing required account data",
-      });
-    }
-    const verifyDuplicate = await db.account.findUnique({
-      where: { type: type },
-    });
-    if (verifyDuplicate) {
-      return NextResponse.json({
-        status: 401,
-        message: "The account has already been added",
-      });
-    }
-
-    const newAccount = await db.account.create({
-      data: {
-        userId,
-        type,
-        username,
-        avatar: "",
-      },
-    });
-
-    return NextResponse.json({
-      data: newAccount,
-    });
-  } catch (error) {
-    console.error(error);
-    return NextResponse.json({
-      status: 500,
-      message: "Error creating account",
-    });
-  }
-}
 
 // **PUT Update Existing Account** (implement authorization for specific user)
 // export async function PUT(req, id) {

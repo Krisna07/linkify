@@ -21,7 +21,7 @@ model User {
   username      String    @unique
   password      String
   imageUrl      String
-  accounts      Account[] 
+  accounts      Account[]
 }
 //social media accounts
 model Account {

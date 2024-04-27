@@ -1,6 +1,7 @@
 "use client";
 import Button from "@/app/g_components/Button";
-import { getCurrentUser } from "@/lib/session";
+import { useSession } from "next-auth/react";
+import { NextResponse } from "next/server";
 import React, { useState } from "react";
 import {
   FaFacebook,
@@ -23,20 +24,6 @@ interface social {
 export default function Newpage({ item, add }: any) {
   const [social, setSocial] = useState<string>("Facebook");
   const [username, setUsername] = useState<string>("");
-  // const userId = getCurrentUser();
-  // console.log(userId);
-
-  const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!username || !social) {
-      return console.log("no username ");
-    }
-    const newSocial = {
-      username: username,
-      type: social,
-    };
-    console.log(newSocial);
-  };
 
   const socialMediaArray: social[] = [
     { value: "Facebook", icon: <FaFacebook /> },
@@ -51,6 +38,35 @@ export default function Newpage({ item, add }: any) {
     { value: "Tumblr", icon: <FaTumblr /> },
   ];
 
+  const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!username || !social) {
+      return console.log("no username ");
+    }
+    const newSocial = {
+      username: username,
+      type: social,
+    };
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/Json",
+      },
+      body: JSON.stringify({
+        type: social.toLowerCase(),
+        username: username.toLocaleLowerCase(),
+      }),
+    };
+    const api = "/api/user/social";
+    try {
+      const response = await fetch(api, options);
+      console.log("Accoutn added");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <form
       className="w-fit h-fit  absolute p-4 top-[120%] right-0  rounded-lg z-40 text-black bg-gray-300 grid gap-4 transition-all"

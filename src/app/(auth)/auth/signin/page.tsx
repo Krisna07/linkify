@@ -41,22 +41,22 @@ const SignInPage: React.FC = () => {
     timeout;
   }, [err]);
 
-  const validateForm = () => {
-    if (!formData.email || !formData.password) {
+  const validateForm = (data: User) => {
+    if (!data.email || !data.password) {
       setErr("Please fill in all fields.");
       return false;
     }
-    if (formData.email.match!(regex)) {
-      setErr("Invalid email");
-      return false;
-    }
+    // if (!formData.email.match(regex)) {
+    //   setErr("Invalid email");
+    //   return false;
+    // }
     return true;
   };
   //handling form action
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     //signin authentication
-    if (validateForm()) {
+    if (validateForm(formData)) {
       const signinData = await signIn("credentials", {
         email: formData.email.toLocaleLowerCase(),
         password: formData.password,
@@ -89,8 +89,9 @@ const SignInPage: React.FC = () => {
       <form onSubmit={handleSubmit} className="w-full grid gap-2 box-border">
         {/* {err && <div className="text-red-500">{err}</div>} */}
         <Input
-          label="Email"
+          label="Email/ Username"
           placeholder="Email"
+          name="email"
           icon={<FaUser />}
           color="blue"
           data={formData.email}

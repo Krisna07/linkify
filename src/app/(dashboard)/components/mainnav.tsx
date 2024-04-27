@@ -19,10 +19,10 @@ export default function Mainnav({ user }: any) {
   const route = usePathname();
   const [accountOptions, setAccountOptions] = useState<boolean>(false);
   const thisNav = `${route.split("/").splice(-2)[0]}`;
-  console.log(user);
+
   return (
-    <div className="w-full sticky grid gap-4 bg-gray-800 border-b border-b-gray-600 border-b-[1px] relative box-border overflow">
-      <div className="w-full flex items-center justify-between  p-2 md:px-8 gap-4">
+    <div className="w-full  grid gap-4 bg-gray-800 border-b border-b-gray-600 border-b-[1px] relative box-border overflow">
+      <div className="flex items-center justify-between box-border p-2  gap-4">
         <div className="flex items-center py-2  gap-2">
           <div className="h-6 w-6  rounded-full overflow-hidden  tablet:flex">
             <Image
@@ -43,7 +43,7 @@ export default function Mainnav({ user }: any) {
           </div>
           <div></div>
         </div>
-        <div className="flex items-center gap-4 text-gray-300">
+        <div className="flex items-center gap-4 text-gray-300 box-border">
           <div className=" shadow-bs px-2 py-[2px] rounded-md font-[600] flex gap-2 items-center hover:bg-gray-400/25 hover:text-white">
             Share <BiShare />
           </div>
@@ -76,7 +76,7 @@ export default function Mainnav({ user }: any) {
         </div>
       </div>
       <div className="w-full overflow-hidden">
-        <div className=" w-full flex p-2 px-8 gap-4 text-gray-400 top-0 overflow-x-scroll scrollbar-hide">
+        <div className=" w-full flex p-2 md:px-8 px-4 gap-4 text-gray-400 top-0 overflow-x-scroll scrollbar-hide">
           {navlinks.map((items) => (
             <Link
               href={items.link}
