@@ -1,4 +1,3 @@
-import { authOptions } from "@/lib/auth";
 import { db } from "@/lib/db"; // Assuming your Prisma Client instance
 import { getCurrentUser } from "@/lib/session";
 
@@ -7,6 +6,9 @@ import { NextResponse } from "next/server";
 // **GET All Accounts**
 export async function GET(req: Request) {
   const user = await getCurrentUser();
+  if (!user) {
+    return "Oh ohhhhhhh";
+  }
   try {
     const accounts = await db.account.findMany({
       where: { userId: user?.id },
@@ -24,19 +26,20 @@ export async function GET(req: Request) {
     });
   }
 }
-
+//post new accounts to db
 export async function POST(req: Request) {
-  const user = await getCurrentUser();
   try {
-    const body = await req.json();
-    const { type, username } = body;
-    console.log(user);
+    const user = await getCurrentUser();
+
     if (!user) {
       return NextResponse.json({
         status: 401,
-        message: "oh oh!!restricted area ",
+        message: "Restricted area: User not authenticated",
       });
     }
+
+    const body = await req.json();
+    const { type, username } = body;
 
     if (!type || !username) {
       return NextResponse.json({
@@ -44,9 +47,15 @@ export async function POST(req: Request) {
         message: "Missing required account data",
       });
     }
-    const verifyDuplicate = await db.user.findMany({});
 
-    if (verifyDuplicate) {
+    // Check if the username is already taken for the given account type
+    const existingAccount = await db.account.findFirst({
+      where: {
+        AND: [{ type }, { username }],
+      },
+    });
+
+    if (existingAccount) {
       return NextResponse.json({
         status: 401,
         message: "The account has already been added",
@@ -63,8 +72,10 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({
+      status: 200,
       user,
       newAccount,
+      message: "New account added",
     });
   } catch (error) {
     console.error(error);

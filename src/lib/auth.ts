@@ -30,11 +30,17 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        const existingUser = await db.user.findUnique({
-          where: { email: credentials?.email } || {
-            username: credentials?.email,
+        const existingUser = await db.user.findFirst({
+          where: {
+            OR: [
+              { email: credentials?.email },
+              {
+                username: credentials?.email,
+              },
+            ],
           },
         });
+
         if (!existingUser) {
           return null;
         }

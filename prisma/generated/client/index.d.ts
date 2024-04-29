@@ -2273,6 +2273,8 @@ export namespace Prisma {
     type: string | null
     username: string | null
     avatar: string | null
+    bio: string | null
+    email: string | null
   }
 
   export type AccountMaxAggregateOutputType = {
@@ -2281,6 +2283,8 @@ export namespace Prisma {
     type: string | null
     username: string | null
     avatar: string | null
+    bio: string | null
+    email: string | null
   }
 
   export type AccountCountAggregateOutputType = {
@@ -2289,6 +2293,8 @@ export namespace Prisma {
     type: number
     username: number
     avatar: number
+    bio: number
+    email: number
     _all: number
   }
 
@@ -2299,6 +2305,8 @@ export namespace Prisma {
     type?: true
     username?: true
     avatar?: true
+    bio?: true
+    email?: true
   }
 
   export type AccountMaxAggregateInputType = {
@@ -2307,6 +2315,8 @@ export namespace Prisma {
     type?: true
     username?: true
     avatar?: true
+    bio?: true
+    email?: true
   }
 
   export type AccountCountAggregateInputType = {
@@ -2315,6 +2325,8 @@ export namespace Prisma {
     type?: true
     username?: true
     avatar?: true
+    bio?: true
+    email?: true
     _all?: true
   }
 
@@ -2395,7 +2407,9 @@ export namespace Prisma {
     userId: string
     type: string
     username: string
-    avatar: string
+    avatar: string | null
+    bio: string | null
+    email: string | null
     _count: AccountCountAggregateOutputType | null
     _min: AccountMinAggregateOutputType | null
     _max: AccountMaxAggregateOutputType | null
@@ -2421,6 +2435,8 @@ export namespace Prisma {
     type?: boolean
     username?: boolean
     avatar?: boolean
+    bio?: boolean
+    email?: boolean
     User?: boolean | UserDefaultArgs<ExtArgs>
     content?: boolean | Account$contentArgs<ExtArgs>
     analytics?: boolean | Account$analyticsArgs<ExtArgs>
@@ -2433,6 +2449,8 @@ export namespace Prisma {
     type?: boolean
     username?: boolean
     avatar?: boolean
+    bio?: boolean
+    email?: boolean
   }
 
   export type AccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2455,7 +2473,9 @@ export namespace Prisma {
       userId: string
       type: string
       username: string
-      avatar: string
+      avatar: string | null
+      bio: string | null
+      email: string | null
     }, ExtArgs["result"]["account"]>
     composites: {}
   }
@@ -2860,6 +2880,8 @@ export namespace Prisma {
     readonly type: FieldRef<"Account", 'String'>
     readonly username: FieldRef<"Account", 'String'>
     readonly avatar: FieldRef<"Account", 'String'>
+    readonly bio: FieldRef<"Account", 'String'>
+    readonly email: FieldRef<"Account", 'String'>
   }
     
 
@@ -6077,7 +6099,9 @@ export namespace Prisma {
     userId: 'userId',
     type: 'type',
     username: 'username',
-    avatar: 'avatar'
+    avatar: 'avatar',
+    bio: 'bio',
+    email: 'email'
   };
 
   export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeof AccountScalarFieldEnum]
@@ -6127,6 +6151,14 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -6261,7 +6293,9 @@ export namespace Prisma {
     userId?: StringFilter<"Account"> | string
     type?: StringFilter<"Account"> | string
     username?: StringFilter<"Account"> | string
-    avatar?: StringFilter<"Account"> | string
+    avatar?: StringNullableFilter<"Account"> | string | null
+    bio?: StringNullableFilter<"Account"> | string | null
+    email?: StringNullableFilter<"Account"> | string | null
     User?: XOR<UserRelationFilter, UserWhereInput>
     content?: ContentListRelationFilter
     analytics?: AnalyticsListRelationFilter
@@ -6272,7 +6306,9 @@ export namespace Prisma {
     userId?: SortOrder
     type?: SortOrder
     username?: SortOrder
-    avatar?: SortOrder
+    avatar?: SortOrderInput | SortOrder
+    bio?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
     User?: UserOrderByWithRelationInput
     content?: ContentOrderByRelationAggregateInput
     analytics?: AnalyticsOrderByRelationAggregateInput
@@ -6280,24 +6316,28 @@ export namespace Prisma {
 
   export type AccountWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    type?: string
     AND?: AccountWhereInput | AccountWhereInput[]
     OR?: AccountWhereInput[]
     NOT?: AccountWhereInput | AccountWhereInput[]
     userId?: StringFilter<"Account"> | string
+    type?: StringFilter<"Account"> | string
     username?: StringFilter<"Account"> | string
-    avatar?: StringFilter<"Account"> | string
+    avatar?: StringNullableFilter<"Account"> | string | null
+    bio?: StringNullableFilter<"Account"> | string | null
+    email?: StringNullableFilter<"Account"> | string | null
     User?: XOR<UserRelationFilter, UserWhereInput>
     content?: ContentListRelationFilter
     analytics?: AnalyticsListRelationFilter
-  }, "id" | "type">
+  }, "id">
 
   export type AccountOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
     type?: SortOrder
     username?: SortOrder
-    avatar?: SortOrder
+    avatar?: SortOrderInput | SortOrder
+    bio?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
     _count?: AccountCountOrderByAggregateInput
     _max?: AccountMaxOrderByAggregateInput
     _min?: AccountMinOrderByAggregateInput
@@ -6311,7 +6351,9 @@ export namespace Prisma {
     userId?: StringWithAggregatesFilter<"Account"> | string
     type?: StringWithAggregatesFilter<"Account"> | string
     username?: StringWithAggregatesFilter<"Account"> | string
-    avatar?: StringWithAggregatesFilter<"Account"> | string
+    avatar?: StringNullableWithAggregatesFilter<"Account"> | string | null
+    bio?: StringNullableWithAggregatesFilter<"Account"> | string | null
+    email?: StringNullableWithAggregatesFilter<"Account"> | string | null
   }
 
   export type ContentWhereInput = {
@@ -6542,7 +6584,9 @@ export namespace Prisma {
     id?: string
     type: string
     username: string
-    avatar: string
+    avatar?: string | null
+    bio?: string | null
+    email?: string | null
     User: UserCreateNestedOneWithoutAccountsInput
     content?: ContentCreateNestedManyWithoutAccountIdInput
     analytics?: AnalyticsCreateNestedManyWithoutAccountIdInput
@@ -6553,7 +6597,9 @@ export namespace Prisma {
     userId: string
     type: string
     username: string
-    avatar: string
+    avatar?: string | null
+    bio?: string | null
+    email?: string | null
     content?: ContentUncheckedCreateNestedManyWithoutAccountIdInput
     analytics?: AnalyticsUncheckedCreateNestedManyWithoutAccountIdInput
   }
@@ -6562,7 +6608,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    avatar?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     User?: UserUpdateOneRequiredWithoutAccountsNestedInput
     content?: ContentUpdateManyWithoutAccountIdNestedInput
     analytics?: AnalyticsUpdateManyWithoutAccountIdNestedInput
@@ -6573,7 +6621,9 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    avatar?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     content?: ContentUncheckedUpdateManyWithoutAccountIdNestedInput
     analytics?: AnalyticsUncheckedUpdateManyWithoutAccountIdNestedInput
   }
@@ -6583,14 +6633,18 @@ export namespace Prisma {
     userId: string
     type: string
     username: string
-    avatar: string
+    avatar?: string | null
+    bio?: string | null
+    email?: string | null
   }
 
   export type AccountUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    avatar?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AccountUncheckedUpdateManyInput = {
@@ -6598,7 +6652,9 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    avatar?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ContentCreateInput = {
@@ -6819,6 +6875,21 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type UserRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
@@ -6836,6 +6907,11 @@ export namespace Prisma {
     none?: AnalyticsWhereInput
   }
 
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
   export type ContentOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -6850,6 +6926,8 @@ export namespace Prisma {
     type?: SortOrder
     username?: SortOrder
     avatar?: SortOrder
+    bio?: SortOrder
+    email?: SortOrder
   }
 
   export type AccountMaxOrderByAggregateInput = {
@@ -6858,6 +6936,8 @@ export namespace Prisma {
     type?: SortOrder
     username?: SortOrder
     avatar?: SortOrder
+    bio?: SortOrder
+    email?: SortOrder
   }
 
   export type AccountMinOrderByAggregateInput = {
@@ -6866,6 +6946,26 @@ export namespace Prisma {
     type?: SortOrder
     username?: SortOrder
     avatar?: SortOrder
+    bio?: SortOrder
+    email?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
@@ -7126,6 +7226,10 @@ export namespace Prisma {
     connect?: AnalyticsWhereUniqueInput | AnalyticsWhereUniqueInput[]
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type UserUpdateOneRequiredWithoutAccountsNestedInput = {
     create?: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
     connectOrCreate?: UserCreateOrConnectWithoutAccountsInput
@@ -7336,6 +7440,48 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -7408,7 +7554,9 @@ export namespace Prisma {
     id?: string
     type: string
     username: string
-    avatar: string
+    avatar?: string | null
+    bio?: string | null
+    email?: string | null
     content?: ContentCreateNestedManyWithoutAccountIdInput
     analytics?: AnalyticsCreateNestedManyWithoutAccountIdInput
   }
@@ -7417,7 +7565,9 @@ export namespace Prisma {
     id?: string
     type: string
     username: string
-    avatar: string
+    avatar?: string | null
+    bio?: string | null
+    email?: string | null
     content?: ContentUncheckedCreateNestedManyWithoutAccountIdInput
     analytics?: AnalyticsUncheckedCreateNestedManyWithoutAccountIdInput
   }
@@ -7456,7 +7606,9 @@ export namespace Prisma {
     userId?: StringFilter<"Account"> | string
     type?: StringFilter<"Account"> | string
     username?: StringFilter<"Account"> | string
-    avatar?: StringFilter<"Account"> | string
+    avatar?: StringNullableFilter<"Account"> | string | null
+    bio?: StringNullableFilter<"Account"> | string | null
+    email?: StringNullableFilter<"Account"> | string | null
   }
 
   export type UserCreateWithoutAccountsInput = {
@@ -7616,7 +7768,9 @@ export namespace Prisma {
     id?: string
     type: string
     username: string
-    avatar: string
+    avatar?: string | null
+    bio?: string | null
+    email?: string | null
     User: UserCreateNestedOneWithoutAccountsInput
     analytics?: AnalyticsCreateNestedManyWithoutAccountIdInput
   }
@@ -7626,7 +7780,9 @@ export namespace Prisma {
     userId: string
     type: string
     username: string
-    avatar: string
+    avatar?: string | null
+    bio?: string | null
+    email?: string | null
     analytics?: AnalyticsUncheckedCreateNestedManyWithoutAccountIdInput
   }
 
@@ -7670,7 +7826,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    avatar?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     User?: UserUpdateOneRequiredWithoutAccountsNestedInput
     analytics?: AnalyticsUpdateManyWithoutAccountIdNestedInput
   }
@@ -7680,7 +7838,9 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    avatar?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     analytics?: AnalyticsUncheckedUpdateManyWithoutAccountIdNestedInput
   }
 
@@ -7761,7 +7921,9 @@ export namespace Prisma {
     id?: string
     type: string
     username: string
-    avatar: string
+    avatar?: string | null
+    bio?: string | null
+    email?: string | null
     User: UserCreateNestedOneWithoutAccountsInput
     content?: ContentCreateNestedManyWithoutAccountIdInput
   }
@@ -7771,7 +7933,9 @@ export namespace Prisma {
     userId: string
     type: string
     username: string
-    avatar: string
+    avatar?: string | null
+    bio?: string | null
+    email?: string | null
     content?: ContentUncheckedCreateNestedManyWithoutAccountIdInput
   }
 
@@ -7795,7 +7959,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    avatar?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     User?: UserUpdateOneRequiredWithoutAccountsNestedInput
     content?: ContentUpdateManyWithoutAccountIdNestedInput
   }
@@ -7805,7 +7971,9 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    avatar?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     content?: ContentUncheckedUpdateManyWithoutAccountIdNestedInput
   }
 
@@ -7813,14 +7981,18 @@ export namespace Prisma {
     id?: string
     type: string
     username: string
-    avatar: string
+    avatar?: string | null
+    bio?: string | null
+    email?: string | null
   }
 
   export type AccountUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    avatar?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     content?: ContentUpdateManyWithoutAccountIdNestedInput
     analytics?: AnalyticsUpdateManyWithoutAccountIdNestedInput
   }
@@ -7829,7 +8001,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    avatar?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     content?: ContentUncheckedUpdateManyWithoutAccountIdNestedInput
     analytics?: AnalyticsUncheckedUpdateManyWithoutAccountIdNestedInput
   }
@@ -7838,7 +8012,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    avatar?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ContentCreateManyAccountIdInput = {

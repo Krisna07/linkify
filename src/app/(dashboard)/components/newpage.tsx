@@ -62,7 +62,14 @@ export default function Newpage({ item, add }: any) {
     const api = "/api/user/social";
     try {
       const response = await fetch(api, options);
-      console.log("Accoutn added");
+      const data = await response.json();
+
+      if (data.status == 200) {
+        item(data.newAccount);
+        add(false);
+      } else {
+        console.log(data.message);
+      }
     } catch (error) {
       console.log(error);
     }

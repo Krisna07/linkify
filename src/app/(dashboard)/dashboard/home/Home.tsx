@@ -14,25 +14,47 @@ export default function Home({}) {
 
   const [list, setList] = useState(false);
 
+  const [accounts, setAccounts] = useState<any>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<String>();
+
   const [newItem, setItem] = useState<any>({
-    name: "",
-    link: "",
-    icon: "",
-    date: "",
+    username: "",
+    type: "",
   });
+  const getSocial = async () => {
+    try {
+      const response = await fetch("/api/user/social"); // Assuming you have an endpoint to fetch accounts
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch accounts");
+      }
+
+      const data = await response.json();
+      setAccounts(data.data); // Assuming the accounts data is nested under 'data' key
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching accounts:", error);
+      setError("Failed to fetch accounts");
+      setLoading(false);
+    }
+  };
   useEffect(() => {
     if (newItem.name) {
-      setSocial([newItem, ...social]);
+      setAccounts([newItem, ...accounts]);
       setItem({
-        name: "",
-        link: "",
-        icon: "",
-        date: "",
+        username: "",
+        type: "",
       });
     }
   }, [newItem]);
 
   const [add, setAdd] = useState(false);
+
+  useEffect(() => {
+    getSocial;
+    console.log(accounts);
+  }, []);
 
   return (
     <div className="laptop:w-[1000px]  w-full grid gap-8 p-2 box-border overflow-hidden ">
