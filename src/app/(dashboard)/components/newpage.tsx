@@ -20,23 +20,22 @@ interface social {
   value: string;
   icon: JSX.Element;
 }
+export const socialMediaArray: social[] = [
+  { value: "Facebook", icon: <FaFacebook /> },
+  { value: "Twitter", icon: <FaTwitter /> },
+  { value: "Instagram", icon: <FaInstagram /> },
+  { value: "LinkedIn", icon: <FaLinkedin /> },
+  { value: "Snapchat", icon: <FaSnapchat /> },
+  { value: "Pinterest", icon: <FaPinterest /> },
+  { value: "YouTube", icon: <FaYoutube /> },
+  { value: "Reddit", icon: <FaReddit /> },
+  { value: "TikTok", icon: <FaTiktok /> },
+  { value: "Tumblr", icon: <FaTumblr /> },
+];
 
 export default function Newpage({ item, add }: any) {
   const [social, setSocial] = useState<string>("Facebook");
   const [username, setUsername] = useState<string>("");
-
-  const socialMediaArray: social[] = [
-    { value: "Facebook", icon: <FaFacebook /> },
-    { value: "Twitter", icon: <FaTwitter /> },
-    { value: "Instagram", icon: <FaInstagram /> },
-    { value: "LinkedIn", icon: <FaLinkedin /> },
-    { value: "Snapchat", icon: <FaSnapchat /> },
-    { value: "Pinterest", icon: <FaPinterest /> },
-    { value: "YouTube", icon: <FaYoutube /> },
-    { value: "Reddit", icon: <FaReddit /> },
-    { value: "TikTok", icon: <FaTiktok /> },
-    { value: "Tumblr", icon: <FaTumblr /> },
-  ];
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -66,6 +65,7 @@ export default function Newpage({ item, add }: any) {
 
       if (data.status == 200) {
         item(data.newAccount);
+        console.log(data.newAccount);
         add(false);
       } else {
         console.log(data.message);

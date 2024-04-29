@@ -9,12 +9,11 @@ import Newpage from "../../components/newpage";
 import Socialmediacard from "../socialmediacard";
 import { ToastContainer, toast } from "react-toastify";
 
-export default function Home({}) {
+export default function Home() {
   const [social, setSocial] = useState(socialMediaData);
 
   const [list, setList] = useState(false);
 
-  const [accounts, setAccounts] = useState<any>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<String>();
 
@@ -22,6 +21,22 @@ export default function Home({}) {
     username: "",
     type: "",
   });
+
+  const [accounts, setAccounts] = useState<any>([]);
+
+  useEffect(() => {
+    if (newItem) {
+      setAccounts([newItem, ...accounts]);
+      setItem({
+        username: "",
+        type: "",
+      });
+    }
+    console.log(accounts);
+  }, []);
+
+  const [add, setAdd] = useState(false);
+
   const getSocial = async () => {
     try {
       const response = await fetch("/api/user/social"); // Assuming you have an endpoint to fetch accounts
@@ -39,22 +54,11 @@ export default function Home({}) {
       setLoading(false);
     }
   };
-  useEffect(() => {
-    if (newItem.name) {
-      setAccounts([newItem, ...accounts]);
-      setItem({
-        username: "",
-        type: "",
-      });
-    }
-  }, [newItem]);
-
-  const [add, setAdd] = useState(false);
 
   useEffect(() => {
-    getSocial;
+    getSocial();
     console.log(accounts);
-  }, []);
+  }, [newItem]);
 
   return (
     <div className="laptop:w-[1000px]  w-full grid gap-8 p-2 box-border overflow-hidden ">
@@ -118,18 +122,23 @@ export default function Home({}) {
           list ? 1 : 2
         }  gap-8 text-gray-400 `}
       >
-        {social.map((item: any) => (
-          <div key={item.link.split("/").splice(-1)} className="grid gap-2 p-2">
-            {list ? (
-              <div className="font-semibold text-white">
-                {item.name}/{item.link.split("/").splice(-1)}
-              </div>
-            ) : (
-              ""
-            )}
-            <Socialmediacard item={item} list={list} />
-          </div>
-        ))}
+        {loading ? (
+          <div>Loading</div>
+        ) : (
+          accounts &&
+          accounts.map((item: any, index: number) => (
+            <div key={index} className="grid gap-2 p-2">
+              {list ? (
+                <div className="font-semibold text-white">
+                  {item.type}/{item.username}
+                </div>
+              ) : (
+                ""
+              )}
+              <Socialmediacard item={item} list={list} />
+            </div>
+          ))
+        )}
       </div>
       <div className="w-full h-[100vh]"></div>
     </div>

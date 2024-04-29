@@ -6,6 +6,7 @@ import { NextResponse } from "next/server";
 // **GET All Accounts**
 export async function GET(req: Request) {
   const user = await getCurrentUser();
+
   if (!user) {
     return "Oh ohhhhhhh";
   }
