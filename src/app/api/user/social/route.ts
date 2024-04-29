@@ -8,7 +8,10 @@ export async function GET(req: Request) {
   const user = await getCurrentUser();
 
   if (!user) {
-    return "Oh ohhhhhhh";
+    return NextResponse.json({
+      status: 505,
+      message: "no authorized user",
+    });
   }
   try {
     const accounts = await db.account.findMany({
