@@ -30,6 +30,14 @@ export async function POST(req: Request) {
       });
     }
 
+    const generateRandomCode = () => {
+      const min = 1000;
+      const max = 9999;
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    };
+
+    const code: string = `${generateRandomCode()}`;
+
     // Hash password before saving
     const hashedPassword = await hash(password, 10);
 
@@ -37,6 +45,8 @@ export async function POST(req: Request) {
       data: {
         email,
         username,
+        verificationCode: code,
+        verification: false,
         password: hashedPassword,
         name: "", // Provide default value for optional field
         imageUrl: "", // Provide default value for optional field

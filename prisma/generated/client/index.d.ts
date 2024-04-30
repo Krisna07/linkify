@@ -1322,6 +1322,8 @@ export namespace Prisma {
     username: string | null
     password: string | null
     imageUrl: string | null
+    verificationCode: string | null
+    verification: boolean | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1331,6 +1333,8 @@ export namespace Prisma {
     username: string | null
     password: string | null
     imageUrl: string | null
+    verificationCode: string | null
+    verification: boolean | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1340,6 +1344,8 @@ export namespace Prisma {
     username: number
     password: number
     imageUrl: number
+    verificationCode: number
+    verification: number
     _all: number
   }
 
@@ -1351,6 +1357,8 @@ export namespace Prisma {
     username?: true
     password?: true
     imageUrl?: true
+    verificationCode?: true
+    verification?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1360,6 +1368,8 @@ export namespace Prisma {
     username?: true
     password?: true
     imageUrl?: true
+    verificationCode?: true
+    verification?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -1369,6 +1379,8 @@ export namespace Prisma {
     username?: true
     password?: true
     imageUrl?: true
+    verificationCode?: true
+    verification?: true
     _all?: true
   }
 
@@ -1451,6 +1463,8 @@ export namespace Prisma {
     username: string
     password: string
     imageUrl: string
+    verificationCode: string
+    verification: boolean
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -1477,6 +1491,8 @@ export namespace Prisma {
     username?: boolean
     password?: boolean
     imageUrl?: boolean
+    verificationCode?: boolean
+    verification?: boolean
     accounts?: boolean | User$accountsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
@@ -1488,6 +1504,8 @@ export namespace Prisma {
     username?: boolean
     password?: boolean
     imageUrl?: boolean
+    verificationCode?: boolean
+    verification?: boolean
   }
 
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1508,6 +1526,8 @@ export namespace Prisma {
       username: string
       password: string
       imageUrl: string
+      verificationCode: string
+      verification: boolean
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -1909,6 +1929,8 @@ export namespace Prisma {
     readonly username: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly imageUrl: FieldRef<"User", 'String'>
+    readonly verificationCode: FieldRef<"User", 'String'>
+    readonly verification: FieldRef<"User", 'Boolean'>
   }
     
 
@@ -6088,7 +6110,9 @@ export namespace Prisma {
     email: 'email',
     username: 'username',
     password: 'password',
-    imageUrl: 'imageUrl'
+    imageUrl: 'imageUrl',
+    verificationCode: 'verificationCode',
+    verification: 'verification'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -6181,6 +6205,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -6235,6 +6266,8 @@ export namespace Prisma {
     username?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     imageUrl?: StringFilter<"User"> | string
+    verificationCode?: StringFilter<"User"> | string
+    verification?: BoolFilter<"User"> | boolean
     accounts?: AccountListRelationFilter
   }
 
@@ -6245,6 +6278,8 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     imageUrl?: SortOrder
+    verificationCode?: SortOrder
+    verification?: SortOrder
     accounts?: AccountOrderByRelationAggregateInput
   }
 
@@ -6258,6 +6293,8 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     imageUrl?: StringFilter<"User"> | string
+    verificationCode?: StringFilter<"User"> | string
+    verification?: BoolFilter<"User"> | boolean
     accounts?: AccountListRelationFilter
   }, "id" | "email" | "username">
 
@@ -6268,6 +6305,8 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     imageUrl?: SortOrder
+    verificationCode?: SortOrder
+    verification?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -6283,6 +6322,8 @@ export namespace Prisma {
     username?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     imageUrl?: StringWithAggregatesFilter<"User"> | string
+    verificationCode?: StringWithAggregatesFilter<"User"> | string
+    verification?: BoolWithAggregatesFilter<"User"> | boolean
   }
 
   export type AccountWhereInput = {
@@ -6520,6 +6561,8 @@ export namespace Prisma {
     username: string
     password: string
     imageUrl: string
+    verificationCode: string
+    verification: boolean
     accounts?: AccountCreateNestedManyWithoutUserInput
   }
 
@@ -6530,6 +6573,8 @@ export namespace Prisma {
     username: string
     password: string
     imageUrl: string
+    verificationCode: string
+    verification: boolean
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -6540,6 +6585,8 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
+    verificationCode?: StringFieldUpdateOperationsInput | string
+    verification?: BoolFieldUpdateOperationsInput | boolean
     accounts?: AccountUpdateManyWithoutUserNestedInput
   }
 
@@ -6550,6 +6597,8 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
+    verificationCode?: StringFieldUpdateOperationsInput | string
+    verification?: BoolFieldUpdateOperationsInput | boolean
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -6560,6 +6609,8 @@ export namespace Prisma {
     username: string
     password: string
     imageUrl: string
+    verificationCode: string
+    verification: boolean
   }
 
   export type UserUpdateManyMutationInput = {
@@ -6569,6 +6620,8 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
+    verificationCode?: StringFieldUpdateOperationsInput | string
+    verification?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -6578,6 +6631,8 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
+    verificationCode?: StringFieldUpdateOperationsInput | string
+    verification?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type AccountCreateInput = {
@@ -6820,6 +6875,11 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type AccountListRelationFilter = {
     every?: AccountWhereInput
     some?: AccountWhereInput
@@ -6837,6 +6897,8 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     imageUrl?: SortOrder
+    verificationCode?: SortOrder
+    verification?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -6846,6 +6908,8 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     imageUrl?: SortOrder
+    verificationCode?: SortOrder
+    verification?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -6855,6 +6919,8 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     imageUrl?: SortOrder
+    verificationCode?: SortOrder
+    verification?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -6873,6 +6939,14 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
@@ -7164,6 +7238,10 @@ export namespace Prisma {
     set?: string
   }
 
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
   export type AccountUpdateManyWithoutUserNestedInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -7412,6 +7490,11 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -7438,6 +7521,14 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
@@ -7618,6 +7709,8 @@ export namespace Prisma {
     username: string
     password: string
     imageUrl: string
+    verificationCode: string
+    verification: boolean
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -7627,6 +7720,8 @@ export namespace Prisma {
     username: string
     password: string
     imageUrl: string
+    verificationCode: string
+    verification: boolean
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -7700,6 +7795,8 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
+    verificationCode?: StringFieldUpdateOperationsInput | string
+    verification?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -7709,6 +7806,8 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
+    verificationCode?: StringFieldUpdateOperationsInput | string
+    verification?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ContentUpsertWithWhereUniqueWithoutAccountIdInput = {

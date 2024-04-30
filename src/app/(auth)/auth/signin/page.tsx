@@ -46,10 +46,6 @@ const SignInPage: React.FC = () => {
       setErr("Please fill in all fields.");
       return false;
     }
-    // if (!formData.email.match(regex)) {
-    //   setErr("Invalid email");
-    //   return false;
-    // }
     return true;
   };
   //handling form action
@@ -63,7 +59,7 @@ const SignInPage: React.FC = () => {
         redirect: false,
       });
       if (signinData?.error) {
-        setErr("oops something went wrong");
+        setErr("Credentials do not match");
         return;
       } else {
         route.refresh();

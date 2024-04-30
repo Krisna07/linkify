@@ -176,10 +176,11 @@ const SignInPage: React.FC = () => {
 
     if (validateForm()) {
       const response = await fetch(api, options);
+      const data = await response.json();
       if (response.ok) {
         return route.push("/auth/signin");
       } else {
-        setErr("Regestration failed");
+        setErr(data.message);
         return;
       }
       setErr("");
