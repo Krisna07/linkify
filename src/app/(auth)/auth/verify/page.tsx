@@ -1,17 +1,20 @@
-"use client";
-import React, { useState } from "react";
+import React from "react";
 import Input from "../Formcomponents/Input";
 import { FaLock } from "react-icons/fa";
+import { getCurrentUser } from "@/lib/session";
 
-const verify = () => {
-  const [code, setCode] = useState<string>("");
+const verify = async () => {
+  let code;
+  const user = await getCurrentUser();
+  console.log(user);
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setCode(value);
+    code = value;
   };
 
   return (
     <div className="w-fit ">
+      Email has been sent to
       <h2>Verify the email</h2>
       <Input
         label=""

@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { hash } from "bcrypt";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
+import transporter from "@/lib/mailer";
 
 export const GET = async (req: Request) => {
   const session = await getServerSession(authOptions);
@@ -38,8 +39,23 @@ export async function POST(req: Request) {
 
     const code: string = `${generateRandomCode()}`;
 
-    // Hash password before saving
+    const mailOptions = {
+      from: "noreplylinkify@gmail.com",
+      to: email,
+      subject: "Verify your account ",
+      text: `Please verify your account with this code: ${code}`,
+    };
     const hashedPassword = await hash(password, 10);
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        return NextResponse.json({
+          status: 409,
+          message: error,
+        });
+      }
+    });
+    // Hash password before saving
 
     const newUser = await db.user.create({
       data: {

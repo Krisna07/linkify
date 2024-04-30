@@ -12,7 +12,8 @@ import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/navigation";
 
 import { FiAlertCircle, FiMail, FiUser } from "react-icons/fi";
-import { NextResponse } from "next/server";
+import { signIn } from "next-auth/react";
+import transporter from "@/lib/mailer";
 
 interface User {
   username: string;
@@ -36,6 +37,7 @@ const SignInPage: React.FC = () => {
   // const [signed, setSigned] = useState<boolean>(false);
   const [subscribe, setSubscribe] = useState<boolean>(false);
   const [strengthName, setStrengthName] = useState<string>("Weak");
+  const [code, setCode] = useState<string>();
 
   const route = useRouter();
 
@@ -158,6 +160,24 @@ const SignInPage: React.FC = () => {
   useEffect(() => {
     err && toast(err);
   }, [err]);
+  const generateRandomCode = () => {
+    const min = 1000;
+    const max = 9999;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
+
+  const mailOptions = {
+    from: "noreplylinkify@gmail.com",
+    to: formData.email,
+    subject: "Verify your account ",
+    text: `Please verify your account with this code: ${code}`,
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      setErr(err);
+    }
+  });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -173,17 +193,18 @@ const SignInPage: React.FC = () => {
       }),
     };
     const api = "/api/user";
+    setCode(`${generateRandomCode}`);
 
     if (validateForm()) {
       const response = await fetch(api, options);
       const data = await response.json();
-      if (response.ok) {
-        return route.push("/auth/signin");
+
+      if (data.status == 200) {
+        return route.push("/auth/verify");
       } else {
         setErr(data.message);
         return;
       }
-      setErr("");
     }
   };
 

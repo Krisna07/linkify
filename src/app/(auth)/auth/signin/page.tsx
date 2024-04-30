@@ -65,7 +65,7 @@ const SignInPage: React.FC = () => {
         route.refresh();
         route.push("/dashboard");
       }
-      console.log(signinData);
+      // console.log(signinData);
     }
   };
 
