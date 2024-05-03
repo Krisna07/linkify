@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { hash } from "bcrypt";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
-import transporter from "@/lib/mailer";
+// import transporter from "@/lib/mailer";
 
 export const GET = async (req: Request) => {
   const session = await getServerSession(authOptions);
@@ -30,38 +30,36 @@ export async function POST(req: Request) {
         message: "User already exists please sign in ",
       });
     }
-
-    const generateRandomCode = () => {
-      const min = 1000;
-      const max = 9999;
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    };
-
-    const code: string = `${generateRandomCode()}`;
-
-    const mailOptions = {
-      from: "noreplylinkify@gmail.com",
-      to: email,
-      subject: "Verify your account ",
-      text: `Please verify your account with this code: ${code}`,
-    };
     const hashedPassword = await hash(password, 10);
 
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        return NextResponse.json({
-          status: 409,
-          message: error,
-        });
-      }
-    });
+    // const generateRandomCode = () => {
+    //   const min = 1000;
+    //   const max = 9999;
+    //   return Math.floor(Math.random() * (max - min + 1)) + min;
+    // };
+
+    // const code: string = `${generateRandomCode()}`;
+
+    // const mailOptions = {
+    //   from: "noreplylinkify@gmail.com",
+    //   to: email,
+    //   subject: "Verify your account ",
+    //   text: `Please verify your account with this code: ${code}`,
+    // };
+    // transporter.sendMail(mailOptions, function (error, info) {
+    //   if (error) {
+    //     return NextResponse.json({
+    //       status: 409,
+    //       message: error,
+    //     });
+    //   }
+    // });
     // Hash password before saving
 
     const newUser = await db.user.create({
       data: {
         email,
         username,
-        verificationCode: code,
         verification: false,
         password: hashedPassword,
         name: "", // Provide default value for optional field

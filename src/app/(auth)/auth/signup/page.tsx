@@ -12,8 +12,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/navigation";
 
 import { FiAlertCircle, FiMail, FiUser } from "react-icons/fi";
-import { signIn } from "next-auth/react";
-import transporter from "@/lib/mailer";
+// import transporter from "@/lib/mailer";
 
 interface User {
   username: string;
@@ -166,18 +165,18 @@ const SignInPage: React.FC = () => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
-  const mailOptions = {
-    from: "noreplylinkify@gmail.com",
-    to: formData.email,
-    subject: "Verify your account ",
-    text: `Please verify your account with this code: ${code}`,
-  };
+  // const mailOptions = {
+  //   from: "noreplylinkify@gmail.com",
+  //   to: formData.email,
+  //   subject: "Verify your account ",
+  //   text: `Please verify your account with this code: ${code}`,
+  // };
 
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      setErr(err);
-    }
-  });
+  // transporter.sendMail(mailOptions, function (error, info) {
+  //   if (error) {
+  //     setErr(err);
+  //   }
+  // });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

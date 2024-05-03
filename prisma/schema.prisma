@@ -21,7 +21,6 @@ model User {
   username          String    @unique
   password          String
   imageUrl          String
-  verificationCode  String
   verification      Boolean
   accounts          Account[]
 }

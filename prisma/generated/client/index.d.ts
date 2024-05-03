@@ -1322,7 +1322,6 @@ export namespace Prisma {
     username: string | null
     password: string | null
     imageUrl: string | null
-    verificationCode: string | null
     verification: boolean | null
   }
 
@@ -1333,7 +1332,6 @@ export namespace Prisma {
     username: string | null
     password: string | null
     imageUrl: string | null
-    verificationCode: string | null
     verification: boolean | null
   }
 
@@ -1344,7 +1342,6 @@ export namespace Prisma {
     username: number
     password: number
     imageUrl: number
-    verificationCode: number
     verification: number
     _all: number
   }
@@ -1357,7 +1354,6 @@ export namespace Prisma {
     username?: true
     password?: true
     imageUrl?: true
-    verificationCode?: true
     verification?: true
   }
 
@@ -1368,7 +1364,6 @@ export namespace Prisma {
     username?: true
     password?: true
     imageUrl?: true
-    verificationCode?: true
     verification?: true
   }
 
@@ -1379,7 +1374,6 @@ export namespace Prisma {
     username?: true
     password?: true
     imageUrl?: true
-    verificationCode?: true
     verification?: true
     _all?: true
   }
@@ -1463,7 +1457,6 @@ export namespace Prisma {
     username: string
     password: string
     imageUrl: string
-    verificationCode: string
     verification: boolean
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
@@ -1491,7 +1484,6 @@ export namespace Prisma {
     username?: boolean
     password?: boolean
     imageUrl?: boolean
-    verificationCode?: boolean
     verification?: boolean
     accounts?: boolean | User$accountsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1504,7 +1496,6 @@ export namespace Prisma {
     username?: boolean
     password?: boolean
     imageUrl?: boolean
-    verificationCode?: boolean
     verification?: boolean
   }
 
@@ -1526,7 +1517,6 @@ export namespace Prisma {
       username: string
       password: string
       imageUrl: string
-      verificationCode: string
       verification: boolean
     }, ExtArgs["result"]["user"]>
     composites: {}
@@ -1929,7 +1919,6 @@ export namespace Prisma {
     readonly username: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly imageUrl: FieldRef<"User", 'String'>
-    readonly verificationCode: FieldRef<"User", 'String'>
     readonly verification: FieldRef<"User", 'Boolean'>
   }
     
@@ -6111,7 +6100,6 @@ export namespace Prisma {
     username: 'username',
     password: 'password',
     imageUrl: 'imageUrl',
-    verificationCode: 'verificationCode',
     verification: 'verification'
   };
 
@@ -6266,7 +6254,6 @@ export namespace Prisma {
     username?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     imageUrl?: StringFilter<"User"> | string
-    verificationCode?: StringFilter<"User"> | string
     verification?: BoolFilter<"User"> | boolean
     accounts?: AccountListRelationFilter
   }
@@ -6278,7 +6265,6 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     imageUrl?: SortOrder
-    verificationCode?: SortOrder
     verification?: SortOrder
     accounts?: AccountOrderByRelationAggregateInput
   }
@@ -6293,7 +6279,6 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     imageUrl?: StringFilter<"User"> | string
-    verificationCode?: StringFilter<"User"> | string
     verification?: BoolFilter<"User"> | boolean
     accounts?: AccountListRelationFilter
   }, "id" | "email" | "username">
@@ -6305,7 +6290,6 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     imageUrl?: SortOrder
-    verificationCode?: SortOrder
     verification?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -6322,7 +6306,6 @@ export namespace Prisma {
     username?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     imageUrl?: StringWithAggregatesFilter<"User"> | string
-    verificationCode?: StringWithAggregatesFilter<"User"> | string
     verification?: BoolWithAggregatesFilter<"User"> | boolean
   }
 
@@ -6561,7 +6544,6 @@ export namespace Prisma {
     username: string
     password: string
     imageUrl: string
-    verificationCode: string
     verification: boolean
     accounts?: AccountCreateNestedManyWithoutUserInput
   }
@@ -6573,7 +6555,6 @@ export namespace Prisma {
     username: string
     password: string
     imageUrl: string
-    verificationCode: string
     verification: boolean
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
   }
@@ -6585,7 +6566,6 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
-    verificationCode?: StringFieldUpdateOperationsInput | string
     verification?: BoolFieldUpdateOperationsInput | boolean
     accounts?: AccountUpdateManyWithoutUserNestedInput
   }
@@ -6597,7 +6577,6 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
-    verificationCode?: StringFieldUpdateOperationsInput | string
     verification?: BoolFieldUpdateOperationsInput | boolean
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -6609,7 +6588,6 @@ export namespace Prisma {
     username: string
     password: string
     imageUrl: string
-    verificationCode: string
     verification: boolean
   }
 
@@ -6620,7 +6598,6 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
-    verificationCode?: StringFieldUpdateOperationsInput | string
     verification?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -6631,7 +6608,6 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
-    verificationCode?: StringFieldUpdateOperationsInput | string
     verification?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -6897,7 +6873,6 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     imageUrl?: SortOrder
-    verificationCode?: SortOrder
     verification?: SortOrder
   }
 
@@ -6908,7 +6883,6 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     imageUrl?: SortOrder
-    verificationCode?: SortOrder
     verification?: SortOrder
   }
 
@@ -6919,7 +6893,6 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     imageUrl?: SortOrder
-    verificationCode?: SortOrder
     verification?: SortOrder
   }
 
@@ -7709,7 +7682,6 @@ export namespace Prisma {
     username: string
     password: string
     imageUrl: string
-    verificationCode: string
     verification: boolean
   }
 
@@ -7720,7 +7692,6 @@ export namespace Prisma {
     username: string
     password: string
     imageUrl: string
-    verificationCode: string
     verification: boolean
   }
 
@@ -7795,7 +7766,6 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
-    verificationCode?: StringFieldUpdateOperationsInput | string
     verification?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -7806,7 +7776,6 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
-    verificationCode?: StringFieldUpdateOperationsInput | string
     verification?: BoolFieldUpdateOperationsInput | boolean
   }
 

@@ -28,7 +28,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/lib/mailer.js"
+    "src/lib/mailer.ts"
   ],
   "exclude": ["node_modules"]
 }
