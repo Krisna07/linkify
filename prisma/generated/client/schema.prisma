@@ -34,6 +34,9 @@ model Account {
   avatar        String?
   bio           String?
   email         String?
+  friend        String?
+  followers     String?
+  connections   String?
   content       Content[]
   analytics     Analytics[]
 }

@@ -7,8 +7,10 @@ import socialMediaData from "../../components/dummydata";
 
 import Newpage from "../../components/newpage";
 import Socialmediacard from "../socialmediacard";
-import { ToastContainer, toast } from "react-toastify";
+
 import { useOutsideClick } from "@/app/g_components/outsideclick";
+import { FiAlertCircle } from "react-icons/fi";
+import ToastConatiner from "@/app/g_components/Toast";
 
 export default function Home() {
   const [social, setSocial] = useState(socialMediaData);
@@ -23,6 +25,10 @@ export default function Home() {
 
   const [accounts, setAccounts] = useState<any>([]);
 
+  const errorHandler = (error: string) => {
+    setError(error);
+  };
+
   useEffect(() => {
     if (newItem) {
       setAccounts([newItem, ...accounts]);
@@ -35,7 +41,7 @@ export default function Home() {
   }, []);
 
   const closeAppform = (item: boolean) => {
-    return setAdd(item);
+    return setAdd(!item);
   };
 
   const getSocial = async () => {
@@ -58,23 +64,10 @@ export default function Home() {
 
   useEffect(() => {
     getSocial();
-    console.log(accounts);
   }, [newItem]);
 
   return (
     <div className="w-full laptop:w-[1000px] px-2 h-screen flex flex-col gap-8 box-border overflow-hidden ">
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
       <div className="min-w-full grid tablet:grid-cols-[4fr_230px] grid-cols-1 tablet:gap-2 gap-4 p-2 box-border place-items-center ">
         <div className=" w-full flex items-center gap-4 px-4 py-2 bg-gray-800 box-border rounded-lg">
           <FaSearch />
@@ -109,12 +102,20 @@ export default function Home() {
               children="Add new"
               variant={"primary"}
               size={"default"}
-              onClick={() => setAdd(true)}
+              onClick={() => closeAppform(add)}
               className="w-fit py-2  px-4 "
               rightIcon={!add ? <FaChevronDown /> : <FaChevronUp />}
             />
 
-            {add ? <Newpage item={setItem} add={closeAppform} /> : ""}
+            {add ? (
+              <Newpage
+                item={setItem}
+                add={closeAppform}
+                errorHandler={errorHandler}
+              />
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>
@@ -141,7 +142,22 @@ export default function Home() {
           ))
         )}
       </div>
-      {/* <div className="w-full h-[100vh]"></div> */}
+      {<ToastConatiner message={error} />}
+      {/* {
+        <div
+          className={`w-fit text-sm font-semibold gap-2 ${
+            error ? "right-[10px] opacity-1" : "right-[-1000px] opacity-0"
+          } transition-all  grid place-items-center fixed bottom-2   bg-red-300 rounded-lg overflow-hidden`}
+        >
+          <div className="w-full h-full p-4 flex items-center gap-2 relative ">
+            <FiAlertCircle /> {error}
+            <div
+              style={error ? { width: "100%" } : { width: "0%" }}
+              className={`h-[4px] transition-all duration-[4000ms] bg-green-600 absolute bottom-0 right-0`}
+            ></div>
+          </div>
+        </div>
+      } */}
     </div>
   );
 }

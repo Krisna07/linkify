@@ -30,10 +30,8 @@ const Appdes = () => {
             with your followers. Simply add your links to Linkify, and we'll
             generate a single link that you can share anywhere.
           </p>
-          <Link href="/user_auth/signup">
-            <Button
-              variant={"default"}
-              icon={true}>
+          <Link href="/auth/signup">
+            <Button variant={"default"} icon={true}>
               Sign up for free
             </Button>
           </Link>
@@ -63,7 +61,8 @@ const Appdes = () => {
                   onClick={() => showApp(!app)}
                   className={`icon border-2 border-gray-300/50 p-2 rounded bg-gray-300/75 shadow bg-opacity-1 absolute top-16 left-8 hover:bg-gray-300/[.9] ${
                     app ? "hidden" : ""
-                  }`}>
+                  }`}
+                >
                   <FaLeaf className="text-green-500 text-[30px]" />
                 </div>
                 <div
@@ -71,7 +70,8 @@ const Appdes = () => {
                     flex flex-col absolute  ${
                       app ? "left-[5%]" : "left-[-100%] "
                     }
-                `}>
+                `}
+                >
                   <div className="username w-[40px] h-[40px] rounded-full bg-gray-500"></div>
                   <FaArrowLeft
                     className="absolute  top-12 right-8 hover:text-green hover:scale-125"

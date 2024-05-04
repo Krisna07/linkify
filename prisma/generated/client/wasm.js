@@ -136,7 +136,10 @@ exports.Prisma.AccountScalarFieldEnum = {
   username: 'username',
   avatar: 'avatar',
   bio: 'bio',
-  email: 'email'
+  email: 'email',
+  friend: 'friend',
+  followers: 'followers',
+  connections: 'connections'
 };
 
 exports.Prisma.ContentScalarFieldEnum = {

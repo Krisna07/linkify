@@ -8,13 +8,6 @@ import Provider from "./components/Provider";
 import { getCurrentUser } from "@/lib/session";
 import { title } from "process";
 
-// export interface userTypes {
-//   email: String;
-//   image?: String;
-//   username: String;
-//   name?: String;
-// }
-
 export const metadata = {
   title: "Linkify",
   description: "A link sharing platform",
@@ -44,10 +37,10 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className="w-full p-0 m-0 box-border ">
-        <div className="gap-8 bg-black text-white">
+      <body className="w-full px-0 m-0  bg-black ">
+        <div className="w-full gap-8 bg-black p-0 m-0 text-white">
           <Provider>
-            <header className="sticky top-0 z-20">
+            <header className="w-full sticky top-0 z-20">
               <Mainnav user={user} />
             </header>
             <main className="w-full grid place-items-center py-8 z-10">

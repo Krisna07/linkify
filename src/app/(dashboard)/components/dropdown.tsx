@@ -6,8 +6,8 @@ import { TbColorPicker, TbSettings } from "react-icons/tb";
 
 const Dropdown = ({ user }: any) => {
   return (
-    <div className="grid gap-2 text-base divide-y divide-gray-400/75 leading-6">
-      <div className="flex items-center gap-4 p-4 py-2 border-box">
+    <div className="w-full grid gap-2 text-base  cursor-pointer leading-6">
+      <div className="w-full flex items-center gap-4 px-4 py-2 border-b border-red-200">
         <div className="border-1 rounded ">
           <FaUserAlt />
         </div>
@@ -18,21 +18,21 @@ const Dropdown = ({ user }: any) => {
           <span className="min-w-full block">{user?.email}</span>
         </div>
       </div>
-      <div className="w-fit px-4 py-2">
+      <div className="w-full px-4 py-2 border-b border-red-200">
         <span className="flex items-center gap-4">
           <TbSettings />
-          account settings
+          Account
         </span>
       </div>
-      <div className="grid px-4 py-2">
+      <div className="grid px-4 py-2 border-b border-red-200">
         <div className="flex items-center gap-4">
           <TbColorPicker />
           <span>Theme</span>
         </div>
         <div className="grid px-12">
-          <span className="text-gray-800 hover:text-gray-700">system</span>
-          <span className="text-gray-800 hover:text-gray-700">dark</span>
-          <span className="text-gray-800 hover:text-gray-700">light</span>
+          <span className="text-gray-300 hover:text-gray-400">system</span>
+          <span className="text-gray-300 hover:text-gray-400">dark</span>
+          <span className="text-gray-300 hover:text-gray-400">light</span>
         </div>
       </div>
       <div

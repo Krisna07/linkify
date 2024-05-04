@@ -2269,6 +2269,9 @@ export namespace Prisma {
     avatar: string | null
     bio: string | null
     email: string | null
+    friend: string | null
+    followers: string | null
+    connections: string | null
   }
 
   export type AccountMaxAggregateOutputType = {
@@ -2279,6 +2282,9 @@ export namespace Prisma {
     avatar: string | null
     bio: string | null
     email: string | null
+    friend: string | null
+    followers: string | null
+    connections: string | null
   }
 
   export type AccountCountAggregateOutputType = {
@@ -2289,6 +2295,9 @@ export namespace Prisma {
     avatar: number
     bio: number
     email: number
+    friend: number
+    followers: number
+    connections: number
     _all: number
   }
 
@@ -2301,6 +2310,9 @@ export namespace Prisma {
     avatar?: true
     bio?: true
     email?: true
+    friend?: true
+    followers?: true
+    connections?: true
   }
 
   export type AccountMaxAggregateInputType = {
@@ -2311,6 +2323,9 @@ export namespace Prisma {
     avatar?: true
     bio?: true
     email?: true
+    friend?: true
+    followers?: true
+    connections?: true
   }
 
   export type AccountCountAggregateInputType = {
@@ -2321,6 +2336,9 @@ export namespace Prisma {
     avatar?: true
     bio?: true
     email?: true
+    friend?: true
+    followers?: true
+    connections?: true
     _all?: true
   }
 
@@ -2404,6 +2422,9 @@ export namespace Prisma {
     avatar: string | null
     bio: string | null
     email: string | null
+    friend: string | null
+    followers: string | null
+    connections: string | null
     _count: AccountCountAggregateOutputType | null
     _min: AccountMinAggregateOutputType | null
     _max: AccountMaxAggregateOutputType | null
@@ -2431,6 +2452,9 @@ export namespace Prisma {
     avatar?: boolean
     bio?: boolean
     email?: boolean
+    friend?: boolean
+    followers?: boolean
+    connections?: boolean
     User?: boolean | UserDefaultArgs<ExtArgs>
     content?: boolean | Account$contentArgs<ExtArgs>
     analytics?: boolean | Account$analyticsArgs<ExtArgs>
@@ -2445,6 +2469,9 @@ export namespace Prisma {
     avatar?: boolean
     bio?: boolean
     email?: boolean
+    friend?: boolean
+    followers?: boolean
+    connections?: boolean
   }
 
 
@@ -2471,6 +2498,9 @@ export namespace Prisma {
       avatar: string | null
       bio: string | null
       email: string | null
+      friend: string | null
+      followers: string | null
+      connections: string | null
     }, ExtArgs["result"]["account"]>
     composites: {}
   }
@@ -2877,6 +2907,9 @@ export namespace Prisma {
     readonly avatar: FieldRef<"Account", 'String'>
     readonly bio: FieldRef<"Account", 'String'>
     readonly email: FieldRef<"Account", 'String'>
+    readonly friend: FieldRef<"Account", 'String'>
+    readonly followers: FieldRef<"Account", 'String'>
+    readonly connections: FieldRef<"Account", 'String'>
   }
     
 
@@ -6041,7 +6074,10 @@ export namespace Prisma {
     username: 'username',
     avatar: 'avatar',
     bio: 'bio',
-    email: 'email'
+    email: 'email',
+    friend: 'friend',
+    followers: 'followers',
+    connections: 'connections'
   };
 
   export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeof AccountScalarFieldEnum]
@@ -6248,6 +6284,9 @@ export namespace Prisma {
     avatar?: StringNullableFilter<"Account"> | string | null
     bio?: StringNullableFilter<"Account"> | string | null
     email?: StringNullableFilter<"Account"> | string | null
+    friend?: StringNullableFilter<"Account"> | string | null
+    followers?: StringNullableFilter<"Account"> | string | null
+    connections?: StringNullableFilter<"Account"> | string | null
     User?: XOR<UserRelationFilter, UserWhereInput>
     content?: ContentListRelationFilter
     analytics?: AnalyticsListRelationFilter
@@ -6261,6 +6300,9 @@ export namespace Prisma {
     avatar?: SortOrderInput | SortOrder
     bio?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
+    friend?: SortOrderInput | SortOrder
+    followers?: SortOrderInput | SortOrder
+    connections?: SortOrderInput | SortOrder
     User?: UserOrderByWithRelationInput
     content?: ContentOrderByRelationAggregateInput
     analytics?: AnalyticsOrderByRelationAggregateInput
@@ -6277,6 +6319,9 @@ export namespace Prisma {
     avatar?: StringNullableFilter<"Account"> | string | null
     bio?: StringNullableFilter<"Account"> | string | null
     email?: StringNullableFilter<"Account"> | string | null
+    friend?: StringNullableFilter<"Account"> | string | null
+    followers?: StringNullableFilter<"Account"> | string | null
+    connections?: StringNullableFilter<"Account"> | string | null
     User?: XOR<UserRelationFilter, UserWhereInput>
     content?: ContentListRelationFilter
     analytics?: AnalyticsListRelationFilter
@@ -6290,6 +6335,9 @@ export namespace Prisma {
     avatar?: SortOrderInput | SortOrder
     bio?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
+    friend?: SortOrderInput | SortOrder
+    followers?: SortOrderInput | SortOrder
+    connections?: SortOrderInput | SortOrder
     _count?: AccountCountOrderByAggregateInput
     _max?: AccountMaxOrderByAggregateInput
     _min?: AccountMinOrderByAggregateInput
@@ -6306,6 +6354,9 @@ export namespace Prisma {
     avatar?: StringNullableWithAggregatesFilter<"Account"> | string | null
     bio?: StringNullableWithAggregatesFilter<"Account"> | string | null
     email?: StringNullableWithAggregatesFilter<"Account"> | string | null
+    friend?: StringNullableWithAggregatesFilter<"Account"> | string | null
+    followers?: StringNullableWithAggregatesFilter<"Account"> | string | null
+    connections?: StringNullableWithAggregatesFilter<"Account"> | string | null
   }
 
   export type ContentWhereInput = {
@@ -6546,6 +6597,9 @@ export namespace Prisma {
     avatar?: string | null
     bio?: string | null
     email?: string | null
+    friend?: string | null
+    followers?: string | null
+    connections?: string | null
     User: UserCreateNestedOneWithoutAccountsInput
     content?: ContentCreateNestedManyWithoutAccountIdInput
     analytics?: AnalyticsCreateNestedManyWithoutAccountIdInput
@@ -6559,6 +6613,9 @@ export namespace Prisma {
     avatar?: string | null
     bio?: string | null
     email?: string | null
+    friend?: string | null
+    followers?: string | null
+    connections?: string | null
     content?: ContentUncheckedCreateNestedManyWithoutAccountIdInput
     analytics?: AnalyticsUncheckedCreateNestedManyWithoutAccountIdInput
   }
@@ -6570,6 +6627,9 @@ export namespace Prisma {
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    friend?: NullableStringFieldUpdateOperationsInput | string | null
+    followers?: NullableStringFieldUpdateOperationsInput | string | null
+    connections?: NullableStringFieldUpdateOperationsInput | string | null
     User?: UserUpdateOneRequiredWithoutAccountsNestedInput
     content?: ContentUpdateManyWithoutAccountIdNestedInput
     analytics?: AnalyticsUpdateManyWithoutAccountIdNestedInput
@@ -6583,6 +6643,9 @@ export namespace Prisma {
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    friend?: NullableStringFieldUpdateOperationsInput | string | null
+    followers?: NullableStringFieldUpdateOperationsInput | string | null
+    connections?: NullableStringFieldUpdateOperationsInput | string | null
     content?: ContentUncheckedUpdateManyWithoutAccountIdNestedInput
     analytics?: AnalyticsUncheckedUpdateManyWithoutAccountIdNestedInput
   }
@@ -6595,6 +6658,9 @@ export namespace Prisma {
     avatar?: string | null
     bio?: string | null
     email?: string | null
+    friend?: string | null
+    followers?: string | null
+    connections?: string | null
   }
 
   export type AccountUpdateManyMutationInput = {
@@ -6604,6 +6670,9 @@ export namespace Prisma {
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    friend?: NullableStringFieldUpdateOperationsInput | string | null
+    followers?: NullableStringFieldUpdateOperationsInput | string | null
+    connections?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AccountUncheckedUpdateManyInput = {
@@ -6614,6 +6683,9 @@ export namespace Prisma {
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    friend?: NullableStringFieldUpdateOperationsInput | string | null
+    followers?: NullableStringFieldUpdateOperationsInput | string | null
+    connections?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ContentCreateInput = {
@@ -6903,6 +6975,9 @@ export namespace Prisma {
     avatar?: SortOrder
     bio?: SortOrder
     email?: SortOrder
+    friend?: SortOrder
+    followers?: SortOrder
+    connections?: SortOrder
   }
 
   export type AccountMaxOrderByAggregateInput = {
@@ -6913,6 +6988,9 @@ export namespace Prisma {
     avatar?: SortOrder
     bio?: SortOrder
     email?: SortOrder
+    friend?: SortOrder
+    followers?: SortOrder
+    connections?: SortOrder
   }
 
   export type AccountMinOrderByAggregateInput = {
@@ -6923,6 +7001,9 @@ export namespace Prisma {
     avatar?: SortOrder
     bio?: SortOrder
     email?: SortOrder
+    friend?: SortOrder
+    followers?: SortOrder
+    connections?: SortOrder
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -7549,6 +7630,9 @@ export namespace Prisma {
     avatar?: string | null
     bio?: string | null
     email?: string | null
+    friend?: string | null
+    followers?: string | null
+    connections?: string | null
     content?: ContentCreateNestedManyWithoutAccountIdInput
     analytics?: AnalyticsCreateNestedManyWithoutAccountIdInput
   }
@@ -7560,6 +7644,9 @@ export namespace Prisma {
     avatar?: string | null
     bio?: string | null
     email?: string | null
+    friend?: string | null
+    followers?: string | null
+    connections?: string | null
     content?: ContentUncheckedCreateNestedManyWithoutAccountIdInput
     analytics?: AnalyticsUncheckedCreateNestedManyWithoutAccountIdInput
   }
@@ -7601,6 +7688,9 @@ export namespace Prisma {
     avatar?: StringNullableFilter<"Account"> | string | null
     bio?: StringNullableFilter<"Account"> | string | null
     email?: StringNullableFilter<"Account"> | string | null
+    friend?: StringNullableFilter<"Account"> | string | null
+    followers?: StringNullableFilter<"Account"> | string | null
+    connections?: StringNullableFilter<"Account"> | string | null
   }
 
   export type UserCreateWithoutAccountsInput = {
@@ -7767,6 +7857,9 @@ export namespace Prisma {
     avatar?: string | null
     bio?: string | null
     email?: string | null
+    friend?: string | null
+    followers?: string | null
+    connections?: string | null
     User: UserCreateNestedOneWithoutAccountsInput
     analytics?: AnalyticsCreateNestedManyWithoutAccountIdInput
   }
@@ -7779,6 +7872,9 @@ export namespace Prisma {
     avatar?: string | null
     bio?: string | null
     email?: string | null
+    friend?: string | null
+    followers?: string | null
+    connections?: string | null
     analytics?: AnalyticsUncheckedCreateNestedManyWithoutAccountIdInput
   }
 
@@ -7825,6 +7921,9 @@ export namespace Prisma {
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    friend?: NullableStringFieldUpdateOperationsInput | string | null
+    followers?: NullableStringFieldUpdateOperationsInput | string | null
+    connections?: NullableStringFieldUpdateOperationsInput | string | null
     User?: UserUpdateOneRequiredWithoutAccountsNestedInput
     analytics?: AnalyticsUpdateManyWithoutAccountIdNestedInput
   }
@@ -7837,6 +7936,9 @@ export namespace Prisma {
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    friend?: NullableStringFieldUpdateOperationsInput | string | null
+    followers?: NullableStringFieldUpdateOperationsInput | string | null
+    connections?: NullableStringFieldUpdateOperationsInput | string | null
     analytics?: AnalyticsUncheckedUpdateManyWithoutAccountIdNestedInput
   }
 
@@ -7920,6 +8022,9 @@ export namespace Prisma {
     avatar?: string | null
     bio?: string | null
     email?: string | null
+    friend?: string | null
+    followers?: string | null
+    connections?: string | null
     User: UserCreateNestedOneWithoutAccountsInput
     content?: ContentCreateNestedManyWithoutAccountIdInput
   }
@@ -7932,6 +8037,9 @@ export namespace Prisma {
     avatar?: string | null
     bio?: string | null
     email?: string | null
+    friend?: string | null
+    followers?: string | null
+    connections?: string | null
     content?: ContentUncheckedCreateNestedManyWithoutAccountIdInput
   }
 
@@ -7958,6 +8066,9 @@ export namespace Prisma {
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    friend?: NullableStringFieldUpdateOperationsInput | string | null
+    followers?: NullableStringFieldUpdateOperationsInput | string | null
+    connections?: NullableStringFieldUpdateOperationsInput | string | null
     User?: UserUpdateOneRequiredWithoutAccountsNestedInput
     content?: ContentUpdateManyWithoutAccountIdNestedInput
   }
@@ -7970,6 +8081,9 @@ export namespace Prisma {
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    friend?: NullableStringFieldUpdateOperationsInput | string | null
+    followers?: NullableStringFieldUpdateOperationsInput | string | null
+    connections?: NullableStringFieldUpdateOperationsInput | string | null
     content?: ContentUncheckedUpdateManyWithoutAccountIdNestedInput
   }
 
@@ -7980,6 +8094,9 @@ export namespace Prisma {
     avatar?: string | null
     bio?: string | null
     email?: string | null
+    friend?: string | null
+    followers?: string | null
+    connections?: string | null
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -7989,6 +8106,9 @@ export namespace Prisma {
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    friend?: NullableStringFieldUpdateOperationsInput | string | null
+    followers?: NullableStringFieldUpdateOperationsInput | string | null
+    connections?: NullableStringFieldUpdateOperationsInput | string | null
     content?: ContentUpdateManyWithoutAccountIdNestedInput
     analytics?: AnalyticsUpdateManyWithoutAccountIdNestedInput
   }
@@ -8000,6 +8120,9 @@ export namespace Prisma {
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    friend?: NullableStringFieldUpdateOperationsInput | string | null
+    followers?: NullableStringFieldUpdateOperationsInput | string | null
+    connections?: NullableStringFieldUpdateOperationsInput | string | null
     content?: ContentUncheckedUpdateManyWithoutAccountIdNestedInput
     analytics?: AnalyticsUncheckedUpdateManyWithoutAccountIdNestedInput
   }
@@ -8011,6 +8134,9 @@ export namespace Prisma {
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    friend?: NullableStringFieldUpdateOperationsInput | string | null
+    followers?: NullableStringFieldUpdateOperationsInput | string | null
+    connections?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ContentCreateManyAccountIdInput = {

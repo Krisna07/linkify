@@ -1,7 +1,6 @@
 "use client";
 import Button from "@/app/g_components/Button";
-import { useSession } from "next-auth/react";
-import { NextResponse } from "next/server";
+
 import React, { useState } from "react";
 import {
   FaFacebook,
@@ -33,7 +32,7 @@ export const socialMediaArray: social[] = [
   { value: "Tumblr", icon: <FaTumblr /> },
 ];
 
-export default function Newpage({ item, add }: any) {
+export default function Newpage({ item, add, errorHandler }: any) {
   const [social, setSocial] = useState<string>("Facebook");
   const [username, setUsername] = useState<string>("");
 
@@ -41,7 +40,7 @@ export default function Newpage({ item, add }: any) {
     e.preventDefault();
 
     if (!username || !social) {
-      return console.log("no username ");
+      return errorHandler("no username ");
     }
     const newSocial = {
       username: username,
@@ -65,13 +64,13 @@ export default function Newpage({ item, add }: any) {
 
       if (data.status == 200) {
         item(data.newAccount);
-        console.log(data.newAccount);
+        // console.log(data.newAccount);
         add(false);
       } else {
-        console.log(data.message);
+        return errorHandler(data.message);
       }
     } catch (error) {
-      console.log(error);
+      errorHandler("Network error");
     }
   };
   return (
