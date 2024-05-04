@@ -32,30 +32,6 @@ export async function POST(req: Request) {
     }
     const hashedPassword = await hash(password, 10);
 
-    // const generateRandomCode = () => {
-    //   const min = 1000;
-    //   const max = 9999;
-    //   return Math.floor(Math.random() * (max - min + 1)) + min;
-    // };
-
-    // const code: string = `${generateRandomCode()}`;
-
-    // const mailOptions = {
-    //   from: "noreplylinkify@gmail.com",
-    //   to: email,
-    //   subject: "Verify your account ",
-    //   text: `Please verify your account with this code: ${code}`,
-    // };
-    // transporter.sendMail(mailOptions, function (error, info) {
-    //   if (error) {
-    //     return NextResponse.json({
-    //       status: 409,
-    //       message: error,
-    //     });
-    //   }
-    // });
-    // Hash password before saving
-
     const newUser = await db.user.create({
       data: {
         email,
@@ -68,11 +44,11 @@ export async function POST(req: Request) {
     });
 
     // Send only necessary user data (e.g., user ID) in the response
-    const { password: newUserPassword, ...rest } = newUser;
+    // const { password: newUserPassword, ...rest } = newUser;
 
     return NextResponse.json({
-      status: 201,
-      message: newUser,
+      status: 200,
+      message: "User created successfully ",
     });
   } catch (error) {
     console.error(error);

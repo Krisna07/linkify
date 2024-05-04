@@ -59,7 +59,8 @@ export default function Socialmediacard({ item, list }: SocialmediacardProps) {
   const link = "https://www." + item.type + ".com" + "/" + item.username;
   return (
     <Link
-      href={`dashboard/activity/${item.username}`}
+      // href={`dashboard/activity/${item.username}`}
+      href={link}
       className={`w-full h-fit bg-gray-800 overflow-hidden rounded-lg transition-all ${
         list ? "flex justify-between" : "grid"
       } gap-4 hover:shadow-bs relative `}

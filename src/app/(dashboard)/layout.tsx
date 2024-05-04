@@ -31,7 +31,7 @@ export default async function RootLayout({
     return (
       <html>
         <body>
-          <div className="grid items-center justify-center">
+          <div className="w-full h-screen grid items-center justify-center">
             Restricted area, user not authorized !!
             <Link href={"/auth/signin"}>
               <Button children="Sign In" size={"sm"} variant={"primary"} />
@@ -51,7 +51,9 @@ export default async function RootLayout({
               <Mainnav user={user} />
             </header>
             <main className="w-full grid place-items-center py-8 z-10">
-              <div className="flex items-center justify-center">{children}</div>
+              <div className="w-full flex items-center justify-center">
+                {children}
+              </div>
             </main>
           </Provider>
         </div>

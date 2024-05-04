@@ -1,6 +1,6 @@
 "use client";
 import Button from "@/app/g_components/Button";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { BiGrid } from "react-icons/bi";
 import { FaBars, FaChevronDown, FaChevronUp, FaSearch } from "react-icons/fa";
 import socialMediaData from "../../components/dummydata";
@@ -8,15 +8,14 @@ import socialMediaData from "../../components/dummydata";
 import Newpage from "../../components/newpage";
 import Socialmediacard from "../socialmediacard";
 import { ToastContainer, toast } from "react-toastify";
+import { useOutsideClick } from "@/app/g_components/outsideclick";
 
 export default function Home() {
   const [social, setSocial] = useState(socialMediaData);
-
   const [list, setList] = useState(false);
-
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<String>();
-
+  const [add, setAdd] = useState(false);
   const [newItem, setItem] = useState<any>({
     username: "",
     type: "",
@@ -35,7 +34,9 @@ export default function Home() {
     console.log(accounts);
   }, []);
 
-  const [add, setAdd] = useState(false);
+  const closeAppform = (item: boolean) => {
+    return setAdd(item);
+  };
 
   const getSocial = async () => {
     try {
@@ -61,7 +62,7 @@ export default function Home() {
   }, [newItem]);
 
   return (
-    <div className="laptop:w-[1000px]  w-full grid gap-8 p-2 box-border overflow-hidden ">
+    <div className="w-full laptop:w-[1000px] px-2 h-screen flex flex-col gap-8 box-border overflow-hidden ">
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -74,7 +75,7 @@ export default function Home() {
         pauseOnHover
         theme="light"
       />
-      <div className="w-full grid tablet:grid-cols-[4fr_230px] grid-cols-1 tablet:gap-2 gap-4 p-2 box-border place-items-center ">
+      <div className="min-w-full grid tablet:grid-cols-[4fr_230px] grid-cols-1 tablet:gap-2 gap-4 p-2 box-border place-items-center ">
         <div className=" w-full flex items-center gap-4 px-4 py-2 bg-gray-800 box-border rounded-lg">
           <FaSearch />
           <input
@@ -108,19 +109,19 @@ export default function Home() {
               children="Add new"
               variant={"primary"}
               size={"default"}
-              onClick={() => setAdd(!add)}
+              onClick={() => setAdd(true)}
               className="w-fit py-2  px-4 "
               rightIcon={!add ? <FaChevronDown /> : <FaChevronUp />}
             />
 
-            {add ? <Newpage item={setItem} add={setAdd} /> : ""}
+            {add ? <Newpage item={setItem} add={closeAppform} /> : ""}
           </div>
         </div>
       </div>
       <div
-        className={`w-full grid laptop:grid-cols-${list ? 1 : 3} grid-cols-${
-          list ? 1 : 2
-        }  gap-8 text-gray-400 `}
+        className={`min-w-full grid laptop:grid-cols-${
+          list ? 1 : 3
+        } grid-cols-${list ? 1 : 2}  gap-8 text-gray-400 `}
       >
         {loading ? (
           <div>Loading</div>
@@ -140,7 +141,7 @@ export default function Home() {
           ))
         )}
       </div>
-      <div className="w-full h-[100vh]"></div>
+      {/* <div className="w-full h-[100vh]"></div> */}
     </div>
   );
 }

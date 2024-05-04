@@ -1,14 +1,7 @@
 "use client";
 import { usePathname } from "next/navigation";
 import React from "react";
-import {
-  FaChevronRight,
-  FaCommentAlt,
-  FaEye,
-  FaHeart,
-  FaSearch,
-  FaTwitter,
-} from "react-icons/fa";
+import { FaCommentAlt, FaEye, FaHeart, FaTwitter } from "react-icons/fa";
 import socialMediaData from "../../../components/dummydata";
 
 interface pageProps {}
@@ -18,7 +11,7 @@ export default function page({}: pageProps) {
   const account = route.split("/").splice(-1)[0];
 
   const thisAccount = socialMediaData.filter(
-    (item) => item.link.split("/").splice(-1)[0] === account,
+    (item) => item.link.split("/").splice(-1)[0] === account
   )[0];
 
   const thisNav = route.split("/").splice(-2)[0];
@@ -31,9 +24,7 @@ export default function page({}: pageProps) {
       </div>
       <div className="grid tablet:grid-cols-2 laptop:grid-cols-3 gap-4">
         {thisAccount.posts.map((post: any) => (
-          <div
-            key={post.name}
-            className="grid gap-2">
+          <div key={post.name} className="grid gap-2">
             <div className="w-full h-[200px]  bg-gradient-to-tr from-indigo-300 to-red-400 rounded-lg relative ">
               <div className="absolute bottom-0 w-full p-2 text-black font-[600] grid">
                 <div className="flex gap-4">

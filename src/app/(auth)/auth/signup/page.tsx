@@ -12,6 +12,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/navigation";
 
 import { FiAlertCircle, FiMail, FiUser } from "react-icons/fi";
+import { signIn } from "next-auth/react";
 // import transporter from "@/lib/mailer";
 
 interface User {
@@ -36,7 +37,7 @@ const SignInPage: React.FC = () => {
   // const [signed, setSigned] = useState<boolean>(false);
   const [subscribe, setSubscribe] = useState<boolean>(false);
   const [strengthName, setStrengthName] = useState<string>("Weak");
-  const [code, setCode] = useState<string>();
+  // const [code, setCode] = useState<string>();
 
   const route = useRouter();
 
@@ -159,11 +160,11 @@ const SignInPage: React.FC = () => {
   useEffect(() => {
     err && toast(err);
   }, [err]);
-  const generateRandomCode = () => {
-    const min = 1000;
-    const max = 9999;
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
+  // const generateRandomCode = () => {
+  //   const min = 1000;
+  //   const max = 9999;
+  //   return Math.floor(Math.random() * (max - min + 1)) + min;
+  // };
 
   // const mailOptions = {
   //   from: "noreplylinkify@gmail.com",
@@ -192,14 +193,24 @@ const SignInPage: React.FC = () => {
       }),
     };
     const api = "/api/user";
-    setCode(`${generateRandomCode}`);
+    // setCode(`${generateRandomCode}`);
 
     if (validateForm()) {
       const response = await fetch(api, options);
       const data = await response.json();
 
-      if (data.status == 200) {
-        return route.push("/auth/verify");
+      if (data.status === 200) {
+        const logInData = await signIn("credentials", {
+          email: formData.email.toLocaleLowerCase(),
+          password: formData.password,
+          redirect: false,
+        });
+        if (logInData?.error) {
+          return setErr("Credentials do not match");
+        } else {
+          route.refresh();
+          route.push("/dashboard");
+        }
       } else {
         setErr(data.message);
         return;
