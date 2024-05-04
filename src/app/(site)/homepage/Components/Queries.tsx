@@ -48,7 +48,8 @@ const Queries = () => {
               {queries.map((query) => (
                 <div
                   key={query.name}
-                  className="grid h-full  rounded-md bg-white text-black overflow-hidden gap-4">
+                  className="grid h-full  rounded-md bg-white text-black overflow-hidden gap-4"
+                >
                   <div className="flex items-center justify-between px-4 p-4">
                     <h2>{query.name}</h2>
                     <span className="text-[40px] "> {query.icon}</span>
@@ -57,10 +58,7 @@ const Queries = () => {
                 </div>
               ))}
             </div>
-            <Button
-              variant={"default"}
-              size={"default"}
-              icon={true}>
+            <Button variant={"default"} size={"default"} icon={true}>
               Learn More
             </Button>
             {/* <button className="flex gap-4 items-center bg-white px-4 py-2 font-bold rounded hover:shadow-lg"></button> */}

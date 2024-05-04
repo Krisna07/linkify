@@ -5,6 +5,7 @@ import Queries from "./Components/Queries";
 import Usage from "./Components/Usage";
 import Newsletter from "./Components/Newsletter";
 import PricingTable from "./Components/Pricing";
+import Appdes from "./Components/Hero";
 
 interface HomepageProps {}
 

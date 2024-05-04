@@ -21,7 +21,7 @@ export default function Herosection({}: HerosectionProps) {
             Join us to reshape how you connect and share in the digital age.
           </p>
         </div>
-        <Link href="/user_auth/signup">
+        <Link href="/auth/signup">
           <Button
             children={"Start"}
             variant={"default"}
