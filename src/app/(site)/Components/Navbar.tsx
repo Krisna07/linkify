@@ -5,6 +5,8 @@ import Link from "next/link";
 import { FaBars, FaLeaf, FaTimes } from "react-icons/fa";
 import Button from "../../g_components/Button";
 import { usePathname } from "next/navigation";
+import { RiAccountBoxFill } from "react-icons/ri";
+import { BiSolidUserAccount } from "react-icons/bi";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -20,17 +22,10 @@ const Navbar = () => {
     },
 
     {
-      name: "Marketplace",
-      link: "/marketplace",
-    },
-    {
       name: "Pricings",
       link: "/pricings",
     },
-    {
-      name: "Templates",
-      link: "/templates",
-    },
+
     {
       name: "About",
       link: "/about",
@@ -43,13 +38,29 @@ const Navbar = () => {
 
   const path = usePathname();
 
-  useEffect(() => {});
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflowY = "hidden";
+    } else {
+      document.body.style.overflowY = "";
+    }
+  }, [isOpen]);
+
+  // const getSize = () => {
+  //   const widthBody = document.body.getBoundingClientRect().width;
+  //   if (widthBody > 650) {
+  //     setIsOpen(false);
+  //   }
+  //   console.log(widthBody);
+  // };
+  // window.addEventListener("resize", getSize);
+
   return (
     <nav
-      className={`bg-white fixed grid place-items-center min-w-full top-0 shadow-lg z-[999]  `}
+      className={`bg-white/25 text-white  grid place-items-center min-w-full top-0 shadow-lg z-[999] realtive`}
     >
-      <div className="w-full h-full">
-        <div className="h-full flex items-center justify-between  p-4">
+      <div className="w-full h-full ">
+        <div className="h-full tablet:flex items-center justify-between  hidden  p-4">
           <div className="flex items-center">
             <Link href="/" onClick={() => (isOpen ? setIsOpen(!isOpen) : "")}>
               <span className=" text-lg font-bold flex items-center gap-2">
@@ -57,7 +68,7 @@ const Navbar = () => {
               </span>
             </Link>
           </div>
-          <div className="hidden laptop:block">
+          <div className="hidden tablet:block">
             <ul className="flex items-center space-x-6">
               {NavItems.map((menu) => (
                 <li key={menu.name}>
@@ -77,7 +88,7 @@ const Navbar = () => {
               ))}
             </ul>
           </div>
-          <div className="hidden laptop:block">
+          <div className="hidden tablet:block">
             <Link href="/auth/signin">
               <Button
                 children={"Sign in"}
@@ -85,26 +96,35 @@ const Navbar = () => {
                 size={"sm"}
                 icon={false}
               />
-              {/* <span className=" ">Sign in</span> */}
             </Link>
-          </div>
-          <div className="laptop:hidden">
-            <button
-              className="text-black hover:text-gray-500 focus:outline-none"
-              onClick={toggleNavbar}
-            >
-              {isOpen ? <FaTimes /> : <FaBars />}
-            </button>
           </div>
         </div>
       </div>
-      {/* w-full hover:bg-red-300 flex items-center py-2 */}
-      {isOpen && (
-        <div className="w-full md:hidden h-100% p-4">
-          <ul className="flex flex-col items-center space-y-3 overflow-y-scroll">
+
+      <div
+        className={`w-full ${
+          isOpen ? "min-h-[100vh]" : "min-h-[0vh]"
+        } transition-[min-height] flex flex-col absolute top-0 tablet:hidden p-4 bg-gray-800 overscroll-none `}
+      >
+        <div className="w-full h-fit flex items-center justify-between  ">
+          <Link href="/" onClick={() => (isOpen ? setIsOpen(!isOpen) : "")}>
+            <span className=" text-lg font-bold flex items-center gap-2">
+              Linkify <FaLeaf className="text-green-500" />
+            </span>
+          </Link>
+
+          <button
+            className=" text-gray-500 focus:outline-none "
+            onClick={toggleNavbar}
+          >
+            {isOpen ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
+        {isOpen && (
+          <div className="w-full h-full  flex flex-col place-items-center space-y-3 text-3xl ">
             {NavItems.map((menu) => (
-              <li
-                className="w-full flex items-center py-2"
+              <span
+                className=" flex items-center py-2 "
                 key={menu.name}
                 onClick={() => (isOpen ? setIsOpen(!isOpen) : "")}
               >
@@ -114,17 +134,18 @@ const Navbar = () => {
                 >
                   {menu.name}
                 </Link>
-              </li>
+              </span>
             ))}
-            <li
+            <Link
+              href={"/auth/signin"}
               onClick={() => (isOpen ? setIsOpen(!isOpen) : "")}
-              className="w-full flex items-center py-2 border-b hover:border-[4px] hover:translate-y-2"
+              className=" font-semibold hover:text-gray-500 active:text-gray-500 flex items-center gap-2 "
             >
-              <Link href={"/auth/signin"}>Sign in</Link>
-            </li>
-          </ul>
-        </div>
-      )}
+              Sign in <BiSolidUserAccount />
+            </Link>
+          </div>
+        )}
+      </div>
     </nav>
   );
 };

@@ -28,23 +28,22 @@ const Queries = () => {
   ];
 
   return (
-    <div className="w-full flex items-center justify-center bg-sky-900 py-8 text-sky-100 -skew-y-3">
+    <div className="w-full flex items-center justify-center  py-8 text-sky-100 -skew-y-3">
       <div className="laptop:w-[1024px] lg:w-[1000px] sm:px-6 lg:px-8 grid  gap-16  box-border p-8 skew-y-3">
         <div className="laptop:grid  laptop:grid-cols-2 items-center justify-between box-border gap-8 ">
           <div className="h-full flex flex-col items-start justify-center gap-4 leading-[120%] ">
-            <div className="grid items-start justify-center gap-4">
-              <h3 className="font-bold">Traffic</h3>
+            <div className="grid place-items-center text-center justify-center gap-4">
+              <h3 className="font-bold">Automations</h3>
               <h2 className="text-xl w-3/4 sm:text-3xl font-bold leading-tight text-white">
-                Stage reporting with 50k queries
+                Automations with the help of Ai
               </h2>
               <p className="laptop:w-[60ch]">
-                Unlock deep insights and make informed decisions with our
-                advanced reporting tools. Leverage the power of data to drive
-                success and achieve your goals.
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Voluptas, temporibus.
               </p>
             </div>
 
-            <div className=" w-full grid laptop:grid-cols-2  items-center justify-between gap-8">
+            <div className=" w-full grid tablet:grid-cols-2   justify-between gap-8">
               {queries.map((query) => (
                 <div
                   key={query.name}

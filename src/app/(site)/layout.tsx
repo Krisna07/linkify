@@ -1,12 +1,7 @@
-"use client";
 import "../globals.css";
-import { Inter } from "next/font/google";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
-import "react-toastify/dist/ReactToastify.css";
-import { useRouter } from "next/router";
-
-const inter = Inter({ subsets: ["latin"] });
+import Notice from "./Components/Notice";
 
 export default function RootLayout({
   children,
@@ -18,12 +13,19 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className={"w-full min-h-[100vh] grid place-items-center relative"}>
-        <header className="w-full grid place-items-center shadow-bs fixed z-[999] bg-white ">
-          <Navbar />
+      <body
+        className={
+          "w-full min-h-[100vh] grid place-items-center m-0 p-0 relative bg-slate-900"
+        }
+      >
+        <header className="w-full top-0 grid place-items-center shadow-bs z-[999]   ">
+          <Notice />
         </header>
-        <div className="w-full relative oveflow-hidden pb-0"> {children}</div>
-        <footer className="w-full grid place-items-center p-4 bg-gray-200 ">
+        <nav className=" w-full top-0 grid place-items-center shadow-bs z-[999] sticky ">
+          <Navbar />
+        </nav>
+        <main className="w-full relative oveflow-hidden pb-0"> {children}</main>
+        <footer className="w-full h-fit grid place-items-center p-4 text-white ">
           <Footer />
         </footer>
       </body>

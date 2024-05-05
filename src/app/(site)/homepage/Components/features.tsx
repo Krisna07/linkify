@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   FaExpandAlt,
   FaFacebook,
@@ -15,6 +15,7 @@ import {
 import { BiGitPullRequest, BiShapeTriangle, BiUpArrow } from "react-icons/bi";
 import { GiAutoRepair } from "react-icons/gi";
 import { BsTriangleFill } from "react-icons/bs";
+import { motion, useScroll } from "framer-motion";
 
 const Profilecard = ({ cardStyle, icon }: any) => {
   return (
@@ -64,6 +65,7 @@ const FeaturesSection = () => {
   const [count, setCount] = useState(0);
   const [req, setReq] = useState(0);
   const [download, setDownload] = useState(0);
+  const scrollRef = useRef(null);
 
   useEffect(() => {
     const randomNumbers: any = [];
@@ -132,21 +134,28 @@ const FeaturesSection = () => {
   ];
 
   return (
-    <div className="w-full flex items-center justify-center bg-sky-900 py-12 -skew-y-3 text-sky-100">
+    <div className="w-full flex items-center justify-center  py-12  text-sky-100">
       <div className="laptop:w-[1024px] p-4  grid  gap-8  box-border  skew-y-3">
-        <div className="flex items-center justify-between box-border gap-8 ">
-          <div className="laptop:w-3/5 h-full flex flex-col items-start justify-center gap-2">
+        <div
+          ref={scrollRef}
+          className="flex items-center justify-between box-border gap-8 "
+        >
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ root: scrollRef }}
+            className="laptop:w-3/5 h-full flex flex-col items-start justify-center gap-2"
+          >
             <h3 className="font-bold">Seamless</h3>
             <h2 className="text-4xl w-full md:w-3/4 sm:text-2xl font-bold text-white mb-8 text-gray-700">
-              Share your Linkify from your Instagram, TikTok, Twitter and other
-              bios
+              Connect all your social media from single place
             </h2>
             <p className="w-4/5">
-              Add your unique Linkify URL to all the platforms and places you
-              find your audience. Then use your QR code to drive your offline
-              traffic online.
+              Add all your social media at a place seamlessly. Post several
+              contents to different accounts with ease. Check and evaluate your
+              traffic, create and post ads.
             </p>
-          </div>
+          </motion.div>
           <div className="w-2/5 max-h-full box-border rounded flex hidden laptop:flex relative h-80">
             {profiles.map((card: any, x) => (
               <Profilecard
@@ -160,7 +169,7 @@ const FeaturesSection = () => {
         <div className="w-full grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-4 gap-8">
           {features.map((features) => (
             <div
-              className=" min-h-fit p-4 box-border bg-sky-100 text-slate-900 rounded hover:scale-[1.1] transition hover:shadow-lg"
+              className=" min-h-fit p-4 box-border bg-sky-100 text-slate-900 rounded hover:scale-[1.1] hover:-skew-y-3 transition hover:shadow-lg"
               key={features.id}
             >
               <h3 className="w-fit text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
@@ -173,13 +182,13 @@ const FeaturesSection = () => {
             </div>
           ))}
         </div>
-        <div className="grid laptop:grid-cols-3 gap-4 text-white">
-          <div className=" bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black box-border p-4 rounded">
+        <div className="grid grid-cols-3 gap-4 text-white">
+          <div className="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black box-border p-4 rounded">
             <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
               Users
             </h3>
             <h3 className=" text-xl font-bold mb-2 flex items-center gap-4 text-gray-400">
-              {count}{" "}
+              {count}
               <span>
                 <FaUser className="animate-pulse" />
               </span>
@@ -187,18 +196,18 @@ const FeaturesSection = () => {
           </div>
           <div className=" bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black box-border p-4 rounded">
             <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
-              Request
+              Accounts
             </h3>
             <h3 className=" text-xl font-bold mb-2 flex items-center gap-4 text-gray-400">
               {req}
               <span>
-                <BiGitPullRequest className="animate-spin" />
+                <BiGitPullRequest className="animate" />
               </span>
             </h3>
           </div>
           <div className=" bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black box-border p-4 rounded">
             <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
-              Downloads
+              Shares
             </h3>
             <h3 className=" text-xl font-bold mb-2 flex items-center gap-4 text-gray-400">
               {download}

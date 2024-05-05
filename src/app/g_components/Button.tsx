@@ -9,16 +9,18 @@ const buttonVarients = cva("active:", {
   variants: {
     variant: {
       default:
-        "bg-slate-900 text-sky-100 w-fit h-fit rounded-full relative overflow-hidden font-[500]",
-      ghost:
-        "bg-transparent  rounded-md hover:text-slate-900 overflow-hidden w-fit inline-block h-fit relative font-[500]",
+        "bg-[#000000] text-sky-100 w-fit h-fit rounded-full relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-[0_0_2px_0_gray]",
+      accent:
+        "bg-[#DD5746] text-black w-fit h-fit rounded relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-[0_0_2px_0_gray]",
       primary:
-        "rounded-md text-white bg-gray-400  overflow-hidden w-fit h-fit relative font-[500] text-black",
+        "bg-[#4792AE] text-black w-fit h-fit rounded-lg bg-[#FFC370] relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-[0_0_2px_0_gray]",
+      submit:
+        "bg-[#4792AE] text-sky-100 w-fit h-fit rounded-full relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-[0_0_2px_0_gray]",
     },
 
     size: {
-      default: " py-1 px-4 ",
-      sm: "laptop:py-1 py-2 px-4 laptop:text-sm ",
+      default: "py-1 px-4 text-[14px] ",
+      sm: "laptop:py-1 py-2 px-4 laptop:text-[12px] ",
       lg: "py-2 px-8 text-lg",
     },
     defaultVariants: {
@@ -57,16 +59,19 @@ const Button: FC<ButtonProps> = ({
       className={cn(buttonVarients({ variant, size, className }))}
       {...props}
       onMouseOver={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}>
+      onMouseLeave={() => setHover(false)}
+    >
       <div
-        className={`flex items-center justify-center gap-2 relative z-[99] hover:text-black`}>
-        <span className="block w-fit">{children}</span>
+        className={`flex items-center justify-center gap-2 relative z-[99] hover:text-gray-800`}
+      >
+        <span className="block w-fit ">{children}</span>
         {rightIcon ? rightIcon : iconCheck}
       </div>
       <div
         style={{ width: `${hover ? "100%" : "0%"}` }}
         className={`h-full 
-          left-0 top-0 absolute bg-sky-500 transition-all `}></div>
+          left-0 top-0 absolute bg-blue-300/75  transition-all `}
+      ></div>
     </button>
   );
 };
