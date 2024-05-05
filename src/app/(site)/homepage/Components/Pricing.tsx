@@ -33,7 +33,7 @@ const PricingTable: React.FC = () => {
     },
   ];
   return (
-    <div className="w-full flex items-center flex-col justify-center gap-8 px-8 py-12 overflow-hidden ">
+    <div className="w-full flex items-center flex-col justify-center gap-8 px-8 py-12 overflow-hidden text-white ">
       <div className="laptop:w-[1200px]  grid place-items-center text-center">
         <h2 className="text-4xl font-bold mb-4">Pricing</h2>
         <p className="laptop:w-1/2">
@@ -45,17 +45,20 @@ const PricingTable: React.FC = () => {
       <div className="w-full laptop:w-[1200px] p-4  grid place-items-center laptop:grid-cols-3 grid-cols-1 mb-8 gap-8 space-x-3 relative left-[-400]   ">
         {pricings.map((pricing) => (
           <div
-            className={`laptop:w-fit w-[100%] py-16 px-8 grid place-items-center gap-4 shadow-bs rounded-lg hover:scale-[1.1] transition-all hover:bg-sky-200 ${
-              pricings.indexOf(pricing) == 1 ? "scale-[1.1] bg-sky-200" : ""
+            className={`laptop:w-fit w-[100%] py-16 px-8 grid place-items-center gap-4 shadow-bs rounded-lg hover:scale-[1.1] transition-all hover:bg-[#DD5746] ${
+              pricings.indexOf(pricing) == 1
+                ? "scale-[1.1] bg-[#4792AE]  text-black "
+                : ""
             }`}
-            key={pricing.type}>
+            key={pricing.type}
+          >
             {pricings.indexOf(pricing) == 1 ? (
               <h2 className="text-sm font-bold color-sky-600">Recommended</h2>
             ) : (
               ""
             )}
             <h3 className="text-lg font-semibold mb-2">{pricing.type}</h3>
-            <div className="text-gray-600  text-center">
+            <div className="w-full text-gray-300 ">
               {pricing.des.map((des) => (
                 <li key={des}>{des}</li>
               ))}

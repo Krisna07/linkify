@@ -1,7 +1,6 @@
 import React from "react";
 import { FaCloudscale, FaPenSquare, FaSync, FaUserAlt } from "react-icons/fa";
 import Button from "../../../g_components/Button";
-import Image from "next/image";
 
 const Queries = () => {
   const queries = [
@@ -28,50 +27,65 @@ const Queries = () => {
   ];
 
   return (
-    <div className="w-full flex items-center justify-center  py-8 text-sky-100 -skew-y-3">
-      <div className="laptop:w-[1024px] lg:w-[1000px] sm:px-6 lg:px-8 grid  gap-16  box-border p-8 skew-y-3">
-        <div className="laptop:grid  laptop:grid-cols-2 items-center justify-between box-border gap-8 ">
-          <div className="h-full flex flex-col items-start justify-center gap-4 leading-[120%] ">
-            <div className="grid place-items-center text-center justify-center gap-4">
-              <h3 className="font-bold">Automations</h3>
-              <h2 className="text-xl w-3/4 sm:text-3xl font-bold leading-tight text-white">
-                Automations with the help of Ai
-              </h2>
-              <p className="laptop:w-[60ch]">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Voluptas, temporibus.
-              </p>
-            </div>
-
-            <div className=" w-full grid tablet:grid-cols-2   justify-between gap-8">
+    <div className="w-full flex items-center justify-center py-8 bg-gradient-to-b from-blue-900/25 to-blue-800/25">
+      <div className=" mx-auto px-8 lg:px-16">
+        <div className="grid grid-cols-1 laptop:grid-cols-2 laptop:w-[1000px] gap-12 lg:gap-20">
+          <div className="text-white/50">
+            <h3 className="text-xl font-bold mb-4">
+              Unlock Your Social Media Potential
+            </h3>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+              Take Control with Our Social Media Handler
+            </h2>
+            <p className="text-lg lg:text-xl mb-8">
+              Manage, engage, and grow your social media presence seamlessly
+              with our advanced handler app. Let's revolutionize the way you
+              connect with your audience!
+            </p>
+            <div className="grid grid-cols-1 tablet:grid-cols-2 gap-8 pb-8">
               {queries.map((query) => (
                 <div
                   key={query.name}
-                  className="grid h-full  rounded-md bg-white text-black overflow-hidden gap-4"
+                  className="bg-white/50 rounded-lg grid place-items-center"
                 >
-                  <div className="flex items-center justify-between px-4 p-4">
-                    <h2>{query.name}</h2>
-                    <span className="text-[40px] "> {query.icon}</span>
+                  <div className="w-full h-[100px] bg-gradient-to-t from-blue-400/50 to-indigo-800/50"></div>
+                  <div className="relative grid place-items-center">
+                    <div className="absolute -top-5  bg-green-200 rounded-full p-2 grid place-items-center text-4xl text-black">
+                      {query.icon}
+                    </div>
                   </div>
-                  <div className="bg-gray-200 p-4 text-sm">{query.des}</div>
+                  <div className="w-full text-white/50 grid place-items-center py-10 bg-black/50">
+                    <h2>{query.name}</h2>
+                    <p>{query.des}</p>
+                  </div>
                 </div>
               ))}
             </div>
-            <Button variant={"default"} size={"default"} icon={true}>
-              Learn More
-            </Button>
-            {/* <button className="flex gap-4 items-center bg-white px-4 py-2 font-bold rounded hover:shadow-lg"></button> */}
-          </div>
-          <div className="relative max-h-full box-border rounded laptop:flex hidden">
-            <Image
-              src={
-                "https://voyager.postman.com/illustration/postman-toolbox-api-platform-illustration.svg"
-              }
-              width={500}
-              height={500}
-              className="box-border   rounded"
-              alt=""
+            <Button
+              variant={"primary"}
+              size={"default"}
+              children={"Learn More"}
             />
+          </div>
+          <div className="laptop:grid place-items-center hidden">
+            <div className="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[14px] rounded-[2.5rem] h-[600px] w-[300px]">
+              <div className="h-[32px] w-[3px] bg-gray-800 dark:bg-gray-800 absolute -start-[17px] top-[72px] rounded-s-lg"></div>
+              <div className="h-[46px] w-[3px] bg-gray-800 dark:bg-gray-800 absolute -start-[17px] top-[124px] rounded-s-lg"></div>
+              <div className="h-[46px] w-[3px] bg-gray-800 dark:bg-gray-800 absolute -start-[17px] top-[178px] rounded-s-lg"></div>
+              <div className="h-[64px] w-[3px] bg-gray-800 dark:bg-gray-800 absolute -end-[17px] top-[142px] rounded-e-lg"></div>
+              <div className="rounded-[2rem] overflow-hidden w-[272px] h-[572px] bg-white dark:bg-gray-800">
+                <img
+                  src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/mockup-1-light.png"
+                  className="dark:hidden w-[272px] h-[572px]"
+                  alt=""
+                />
+                <img
+                  src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/mockup-1-dark.png"
+                  className="hidden dark:block w-[272px] h-[572px]"
+                  alt=""
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

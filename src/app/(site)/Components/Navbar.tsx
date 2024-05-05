@@ -57,7 +57,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`bg-white/25 text-white  grid place-items-center min-w-full top-0 shadow-lg z-[999] realtive`}
+      className={`bg-gray-800 text-white  grid place-items-center min-w-full top-0 shadow z-[999] realtive`}
     >
       <div className="w-full h-full ">
         <div className="h-full tablet:flex items-center justify-between  hidden  p-4">
