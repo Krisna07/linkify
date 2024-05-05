@@ -25,7 +25,7 @@ export default function Listing({ job }: any) {
       </div>
       <Button
         children={!req ? "More" : "Hide"}
-        variant={"ghost"}
+        variant={"primary"}
         size={"sm"}
         rightIcon={!req ? <FaChevronDown /> : <FaChevronUp />}
         onClick={() => showReq(!req)}

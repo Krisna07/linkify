@@ -17,13 +17,9 @@ export default function Journey() {
       <div className="w-full grid gap-6">
         <div className="grid gap-2">
           <h3 className="text-xl font-semibold">Our stories</h3>
-          <h2 className="text-2xl font-bold">Humble but not subtle</h2>
+          <h2 className="text-2xl font-bold"></h2>
         </div>
-        <p className="md:w-5/6 font-[500]">
-          We didn't started from the garage. But when the people of good vision
-          combines the thought together a solution is created. A story that
-          starts with people combinig the thought as we more than me.
-        </p>
+        <p className="md:w-5/6 font-[500]"></p>
         <Button
           children={"Read"}
           icon={true}

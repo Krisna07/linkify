@@ -84,7 +84,7 @@ const OurTeam: React.FC = () => {
   return (
     <section className="w-full py-12 grid  place-items-center gap-8 bg-slate-100  relative ">
       <div className="laptop:w-[1200px] mx-auto grid   gap-8 p-4  ">
-        <div className="w-full grid place-items-left gap-4 ">
+        <div className="w-full grid place-items-left gap-4 text-slate-900 ">
           <h2 className="text-3xl font-bold grid">Our Team</h2>
           <p className="laptop:w-3/4">
             A team of elite enginners working together to grasp the potential of
@@ -96,13 +96,10 @@ const OurTeam: React.FC = () => {
           {teamMembers.slice(0, show).map((member, index) => (
             <div
               key={index}
-              className="bg-white  shadow-bs  p-4 rounded-[20px]  grid text-left gap-2">
+              className="bg-white  shadow-bs  p-4 rounded-[20px]  grid text-left gap-2"
+            >
               <div className="w-full bg-gradient-to-r from-gray-600 to-red-100">
-                <img
-                  src={member.image}
-                  alt=""
-                  width={"100%"}
-                />
+                <img src={member.image} alt="" width={"100%"} />
               </div>
               <div>
                 {" "}
@@ -111,7 +108,7 @@ const OurTeam: React.FC = () => {
               </div>
               {/* <p className="text-gray-800">{member.bio}</p> */}
               <Button
-                variant={"default"}
+                variant={"accent"}
                 children={"Connect"}
                 icon={true}
                 className={"w-fit text-[12px] py-1 px-2 bg-slate-600"}
@@ -120,7 +117,7 @@ const OurTeam: React.FC = () => {
           ))}
         </div>
       </div>
-      <div className="laptop:w-[800px] w-full px-4 flex justify-between">
+      <div className=" w-full px-4 flex justify-between">
         {" "}
         <Button
           children={show === 4 ? "View more" : "Show less"}
