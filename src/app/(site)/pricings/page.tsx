@@ -95,13 +95,13 @@ const Pricing = () => {
   ];
 
   return (
-    <div className="w-full  grid place-items-center">
-      <div className="w-full bg-gray-100 grid place-items-center py-32 p-4 bg-gradient-to-tr from-green-100/25 to-gray-100  ">
-        <div className="laptop:w-[1000px] grid place-items-center gap-8 text-center py-16">
-          <h2 className="font-bold text-4xl text-center uppercase text-gray-800 ">
+    <div className="w-full  grid place-items-center text-white/75">
+      <div className="w-full grid place-items-center py-32 p-4 bg-gradient-to-tr from-green-100/25 to-gray-900  ">
+        <div className="laptop:w-[1000px] grid place-items-center gap-8 text-center py-16 text-white/50 ">
+          <h2 className="font-bold text-4xl text-center uppercase  ">
             Get Started For Free
           </h2>
-          <p className="text-lg text-gray-600">
+          <p className="w-[80%] text-lg  font-[600]">
             Browse our services and pricing for it. Choose the annual or the
             monthly recurring plan. Got stuck use our compare table and select
             the plan that suits your need.
@@ -129,28 +129,29 @@ const Pricing = () => {
                 Start with our free plan. No credit card needed.Cancel Anytime
               </p>
             </div>
-            <div className="flex w-fit bg-gray-400 p-2 relative rounded-full box-border overflow-hidden shadow-bs">
+            <div className="cursor-pointer  flex w-fit bg-[#DD5746] p-2 relative rounded-full box-border overflow-hidden shadow-bs text-black/50 font-semibold text-sm">
               <span
                 className={`px-4 py-2 relative z-20 rounded-full`}
-                onClick={() => setMonthly(true)}>
+                onClick={() => setMonthly(true)}
+              >
                 Monthly
               </span>
               <span
                 className={`px-4 py-2  relative z-20 rounded-full`}
-                onClick={() => setMonthly(false)}>
+                onClick={() => setMonthly(false)}
+              >
                 Annually
               </span>
               <div
-                className={`w-1/2 h-[80%] bg-white absolute top-[10%] rounded-full z-10 transition-all ${
+                className={`w-1/2 h-[80%] bg-white/50 absolute top-[10%] rounded-full z-10 transition-all ${
                   monthly ? "left-[3%]" : "left-[47%]"
-                } `}></div>
+                } `}
+              ></div>
             </div>
           </div>
           <div className="w-full grid laptop:grid-cols-4 gap-[20px]">
             {pricingTiers.map((tier) => (
-              <div
-                key={tier.price}
-                className="p-4 grid gap-4 shadow-bs">
+              <div key={tier.price} className="p-4 grid gap-4 shadow-bs">
                 <h3 className="font-semibold text-gray-600">{tier.tierName}</h3>
                 <h2 className="text-xl font-bold">
                   ${tier.price}/{monthly ? "month" : "annually"}
@@ -158,7 +159,7 @@ const Pricing = () => {
                 <div>{tier.des}</div>
                 <Button
                   children="Join"
-                  variant={"default"}
+                  variant={"primary"}
                   size={"sm"}
                   icon={false}
                   className="w-full grid"
@@ -170,24 +171,19 @@ const Pricing = () => {
       </div>
       <div className="laptop:w-[1024px] w-full box-border laptop:py-8 grid gap-4 p-4 overflow-hidden ">
         <h2 className="text-[32px] w-full font-bold text-left ">Features</h2>
-        <div className="overflow-x-scroll scrollbar-hide">
-          <table className="w-[1020px] grid grid-col-4 box-border rounded-lg  scrollbar-hide">
+        <div className="overflow-x-scroll scrollbar-hide ">
+          <table className="w-[1020px] grid grid-col-4 box-border rounded-lg overflow-hidden  scrollbar-hide">
             <thead className="w-full text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 box-border ">
               <tr className="grid grid-cols-5">
-                <th
-                  scope="col"
-                  className="px-4 py-4 "></th>
+                <th scope="col" className="px-4 py-4 "></th>
                 {pricingTiers.map((tier, index) => (
-                  <th
-                    key={index}
-                    scope="col"
-                    className="px-6 py-4">
+                  <th key={index} scope="col" className="px-6 py-4">
                     {tier.tierName}
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody className="w-full grid gap-4 px-4 p-2 bg-gray-200 box-border">
+            <tbody className="w-full grid gap-4 px-4 p-2 bg-gray-200 box-border text-gray-800">
               <tr className="grid grid-cols-5 place-items-center gap-4">
                 <th className="w-full text-left">Price</th>
                 {pricingTiers.map((tier) => (
@@ -197,9 +193,7 @@ const Pricing = () => {
               <tr className="grid grid-cols-5 place-items-center gap-4">
                 <th className="w-full text-left">Storage</th>
                 {pricingTiers.map((tier) => (
-                  <td
-                    key={tier.storage}
-                    scope="col">
+                  <td key={tier.storage} scope="col">
                     {tier.storage}
                   </td>
                 ))}
@@ -207,9 +201,7 @@ const Pricing = () => {
               <tr className="grid grid-cols-5 place-items-center gap-4">
                 <th className="w-full text-left">Users</th>
                 {pricingTiers.map((tier, index) => (
-                  <td
-                    key={index}
-                    scope="col">
+                  <td key={index} scope="col">
                     {tier.usersIncluded}
                   </td>
                 ))}
@@ -217,9 +209,7 @@ const Pricing = () => {
               <tr className="grid grid-cols-5 place-items-center gap-4">
                 <th className="w-full text-left">Basic Features</th>
                 {pricingTiers.map((tier, index) => (
-                  <td
-                    key={index}
-                    scope="col">
+                  <td key={index} scope="col">
                     {tier.features.basic ? (
                       <FaCheck color="skyblue" />
                     ) : (
@@ -231,9 +221,7 @@ const Pricing = () => {
               <tr className="grid grid-cols-5 place-items-center gap-4">
                 <th className="w-full text-left">Advance Features</th>
                 {pricingTiers.map((tier, index) => (
-                  <td
-                    key={index}
-                    scope="col">
+                  <td key={index} scope="col">
                     {tier.features.advanced ? (
                       <FaCheck color="skyblue" />
                     ) : (
@@ -245,9 +233,7 @@ const Pricing = () => {
               <tr className="grid grid-cols-5 place-items-center gap-4">
                 <th className="w-full text-left">Premium Features</th>
                 {pricingTiers.map((tier, index) => (
-                  <td
-                    key={index}
-                    scope="col">
+                  <td key={index} scope="col">
                     {tier.features.premium ? (
                       <FaCheck color="skyblue" />
                     ) : (
@@ -259,9 +245,7 @@ const Pricing = () => {
               <tr className="grid grid-cols-5 place-items-center gap-4">
                 <th className="w-full text-left">Priority Support</th>
                 {pricingTiers.map((tier, index) => (
-                  <td
-                    key={index}
-                    scope="col">
+                  <td key={index} scope="col">
                     {tier.prioritySupport ? (
                       <FaCheck color="skyblue" />
                     ) : (
@@ -273,9 +257,7 @@ const Pricing = () => {
               <tr className="grid grid-cols-5 place-items-center gap-4">
                 <th className="w-full text-left">Customization</th>
                 {pricingTiers.map((tier, index) => (
-                  <td
-                    key={index}
-                    scope="col">
+                  <td key={index} scope="col">
                     {tier.customization ? (
                       <FaCheck color="skyblue" />
                     ) : (
@@ -287,9 +269,7 @@ const Pricing = () => {
               <tr className="grid grid-cols-5 place-items-center gap-4">
                 <th className="w-full text-left">Free Trial</th>
                 {pricingTiers.map((tier, index) => (
-                  <td
-                    key={index}
-                    scope="col">
+                  <td key={index} scope="col">
                     {tier.freeTrial ? (
                       <FaCheck color="skyblue" />
                     ) : (

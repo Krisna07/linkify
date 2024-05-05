@@ -4,7 +4,7 @@ import Button from "@/app/g_components/Button";
 
 const TierAnalysis = ({ tier }: { tier: princingTier }) => {
   return (
-    <div className="tier-analysis bg-white p-4 rounded-lg grid gap-4 shadow-bs">
+    <div className="tier-analysis bg-white/50 p-4 rounded-lg grid gap-4 shadow-bs text-black">
       <h2 className="text-xl font-semibold">{tier.tierName} Tier Analysis</h2>
       <div className="analysis-section mt-4">
         <h3 className="text-lg font-semibold">Pricing</h3>
@@ -16,20 +16,23 @@ const TierAnalysis = ({ tier }: { tier: princingTier }) => {
         <h3 className="text-lg font-semibold">Features</h3>
         <ul className="list-disc pl-4">
           <li
-            className={tier.features.basic ? "text-green-500" : "text-red-500"}>
+            className={tier.features.basic ? "text-green-500" : "text-red-500"}
+          >
             Basic Features: {tier.features.basic ? "Included" : "Not Included"}
           </li>
           <li
             className={
               tier.features.advanced ? "text-green-500" : "text-red-500"
-            }>
+            }
+          >
             Advanced Features:{" "}
             {tier.features.advanced ? "Included" : "Not Included"}
           </li>
           <li
             className={
               tier.features.premium ? "text-green-500" : "text-red-500"
-            }>
+            }
+          >
             Premium Features:{" "}
             {tier.features.premium ? "Included" : "Not Included"}
           </li>
@@ -61,11 +64,7 @@ const TierAnalysis = ({ tier }: { tier: princingTier }) => {
           {tier.freeTrial ? "Available" : "Not Available"}
         </p>
       </div>
-      <Button
-        children="Choose"
-        variant={"default"}
-        size={"sm"}
-      />
+      <Button children="Choose" variant={"default"} size={"sm"} />
     </div>
   );
 };

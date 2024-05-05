@@ -37,10 +37,11 @@ const page = ({}: pageProps) => {
               </div>
             </div>
           </div>
+
           <Button
             children="Share"
             rightIcon={<GiShare />}
-            variant={"ghost"}
+            variant={"default"}
             size={"sm"}
           />
         </div>
@@ -50,10 +51,9 @@ const page = ({}: pageProps) => {
         <div className="grid tablet:grid-cols-2 gap-4">
           <form
             className="w-full grid  gap-4 border-r p-4"
-            onSubmit={submitApplciation}>
-            <label
-              htmlFor="name"
-              className="w-full grid tablet:flex gap-4">
+            onSubmit={submitApplciation}
+          >
+            <label htmlFor="name" className="w-full grid tablet:flex gap-4">
               <div className="grid gap-2">
                 <span className="font-[600]">Firstname</span>
                 <input
@@ -71,9 +71,7 @@ const page = ({}: pageProps) => {
                 />
               </div>
             </label>
-            <label
-              htmlFor="email"
-              className="w-full grid gap-2">
+            <label htmlFor="email" className="w-full grid gap-2">
               <span className="font-[600]"> Email</span>
               <input
                 type="text"
@@ -81,15 +79,11 @@ const page = ({}: pageProps) => {
                 className="px-2 shadow-bs outline-none shadow h-fit "
               />
             </label>
-            <label
-              htmlFor="resume"
-              className="grid gap-2">
+            <label htmlFor="resume" className="grid gap-2">
               <span className="font-[600]">Upload your Resume</span>
               <input type="file" />
             </label>
-            <label
-              htmlFor="cover_letter"
-              className="grid gap-2">
+            <label htmlFor="cover_letter" className="grid gap-2">
               <span className="font-[600]"> Cover letter</span>
               <div className="grid tablet:flex gap-4">
                 <div className="grid gap-2">
@@ -102,11 +96,7 @@ const page = ({}: pageProps) => {
                 </div>
               </div>
             </label>
-            <Button
-              children="Apply"
-              variant={"default"}
-              size={"sm"}
-            />
+            <Button children="Apply" variant={"default"} size={"sm"} />
           </form>
           <div className="grid gap-8 px-4">
             <div className="grid gap-2">

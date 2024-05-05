@@ -30,14 +30,13 @@ const TierTab = ({
 
   return (
     <div
-      className={`w-fit flex items-center gap-2 px-4 py-1  rounded-full ${
+      className={`w-fit flex items-center gap-2 px-4 py-1 text-black font-bold rounded-full ${
         select ? "bg-sky-200 " : "bg-gray-200"
       }`}
-      onClick={() => (!select ? onSelect() : "")}>
+      onClick={() => (!select ? onSelect() : "")}
+    >
       {tier.tierName}
-      <svg
-        height="20"
-        width="20">
+      <svg height="20" width="20">
         <circle
           cx="10"
           cy="10"
@@ -67,9 +66,7 @@ const Compare = ({ compareTier }: { compareTier: princingTier[] }) => {
 
   return (
     <div className="laptop:w-[1000px] px-4 py-4 grid gap-4">
-      <div className="w-full text-center text-lg font-[600] border-b py-2">
-        Compare The Plans
-      </div>
+      <div className="w-full  text-lg font-[600]  py-2">Comparison </div>
       <div className="grid gap-4">
         <div>Pick plans</div>
         <div className="grid grid-cols-4">
@@ -100,17 +97,14 @@ const Compare = ({ compareTier }: { compareTier: princingTier[] }) => {
             )} */}
 
             {selectedTiers.sort(compareByIndex).map((tier) => (
-              <TierAnalysis
-                tier={tier}
-                key={tier.tierName}
-              />
+              <TierAnalysis tier={tier} key={tier.tierName} />
             ))}
           </div>
         )}
         <Link href={"/user_auth/signup"}>
           <Button
             children="Get started for free"
-            variant={"ghost"}
+            variant={"primary"}
             size={"sm"}
             className="bg-gray-200"
           />
