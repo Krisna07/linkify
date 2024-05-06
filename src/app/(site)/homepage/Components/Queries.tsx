@@ -1,7 +1,8 @@
 import React from "react";
 import { FaCloudscale, FaPenSquare, FaSync, FaUserAlt } from "react-icons/fa";
 import Button from "../../../g_components/Button";
-
+import { motion } from "framer-motion";
+import classNames from "classnames";
 const Queries = () => {
   const queries = [
     {
@@ -29,22 +30,69 @@ const Queries = () => {
   return (
     <div className="w-full flex items-center justify-center py-8 bg-gradient-to-b from-blue-900/25 to-blue-800/25">
       <div className=" mx-auto px-8 lg:px-16">
-        <div className="grid grid-cols-1 laptop:grid-cols-2 laptop:w-[1000px] gap-12 lg:gap-20">
+        <div className="grid grid-cols-1 laptop:grid-cols-[60%_40%] laptop:w-[1000px] gap-12 lg:gap-20">
           <div className="text-white/50">
-            <h3 className="text-xl font-bold mb-4">
+            <motion.h3
+              initial={{ opacity: 0 }}
+              whileInView={{
+                opacity: 1,
+                transition: {
+                  type: "spring",
+                  bounce: 0.4,
+                  duration: 0.8,
+                },
+              }}
+              viewport={{ once: true, amount: 0.8 }}
+              className=" text-xl font-bold mb-4"
+            >
               Unlock Your Social Media Potential
-            </h3>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+            </motion.h3>
+            <motion.h2
+              initial={{ opacity: 0 }}
+              whileInView={{
+                opacity: 1,
+                transition: {
+                  type: "spring",
+                  bounce: 0.4,
+                  duration: 0.8,
+                },
+              }}
+              viewport={{ once: true, amount: 0.8 }}
+              className="animate-slidein500 text-4xl lg:text-5xl font-bold text-white/75 mb-6 leading-tight"
+            >
               Take Control with Our Social Media Handler
-            </h2>
-            <p className="text-lg lg:text-xl mb-8">
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{
+                opacity: 1,
+                transition: {
+                  type: "spring",
+                  bounce: 0.4,
+                  duration: 0.8,
+                },
+              }}
+              viewport={{ once: true, amount: 0.8 }}
+              className="animate-slidein700 text-lg lg:text-xl mb-8"
+            >
               Manage, engage, and grow your social media presence seamlessly
               with our advanced handler app. Let's revolutionize the way you
               connect with your audience!
-            </p>
+            </motion.p>
             <div className="grid grid-cols-1 tablet:grid-cols-2 gap-8 pb-8">
               {queries.map((query) => (
-                <div
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                    transition: {
+                      type: "spring",
+                      bounce: 0.4,
+                      duration: 0.8,
+                    },
+                  }}
+                  viewport={{ once: true, amount: 0.8 }}
                   key={query.name}
                   className="bg-white/50 rounded-lg grid place-items-center"
                 >
@@ -54,11 +102,11 @@ const Queries = () => {
                       {query.icon}
                     </div>
                   </div>
-                  <div className="w-full text-white/50 grid place-items-center py-10 bg-black/50">
-                    <h2>{query.name}</h2>
+                  <div className="w-full text-white/50 grid place-items-center pt-10  p-2 text-center bg-black/50">
+                    <h2 className="font-semibold text-white">{query.name}</h2>
                     <p>{query.des}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
             <Button
@@ -68,7 +116,19 @@ const Queries = () => {
             />
           </div>
           <div className="laptop:grid place-items-center hidden">
-            <div className="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[14px] rounded-[2.5rem] h-[600px] w-[300px]">
+            <motion.div
+              initial={{ y: 100 }}
+              whileInView={{
+                y: 0,
+                transition: {
+                  type: "spring",
+                  bounce: 0.4,
+                  duration: 0.8,
+                },
+              }}
+              viewport={{ once: true, amount: 0.8 }}
+              className="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[14px] rounded-[2.5rem] h-[600px] w-[300px]"
+            >
               <div className="h-[32px] w-[3px] bg-gray-800 dark:bg-gray-800 absolute -start-[17px] top-[72px] rounded-s-lg"></div>
               <div className="h-[46px] w-[3px] bg-gray-800 dark:bg-gray-800 absolute -start-[17px] top-[124px] rounded-s-lg"></div>
               <div className="h-[46px] w-[3px] bg-gray-800 dark:bg-gray-800 absolute -start-[17px] top-[178px] rounded-s-lg"></div>
@@ -85,7 +145,7 @@ const Queries = () => {
                   alt=""
                 />
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

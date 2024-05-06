@@ -15,7 +15,7 @@ import {
 import { BiGitPullRequest, BiShapeTriangle, BiUpArrow } from "react-icons/bi";
 import { GiAutoRepair } from "react-icons/gi";
 import { BsTriangleFill } from "react-icons/bs";
-import { motion, useScroll } from "framer-motion";
+import { motion } from "framer-motion";
 
 const Profilecard = ({ cardStyle, icon }: any) => {
   return (
@@ -142,9 +142,17 @@ const FeaturesSection = () => {
         >
           <motion.div
             initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ root: scrollRef }}
-            className="laptop:w-3/5 h-full flex flex-col items-start justify-center gap-2"
+            whileInView={{
+              opacity: 1,
+              rotate: -3,
+              transition: {
+                type: "spring",
+                bounce: 0.4,
+                duration: 0.8,
+              },
+            }}
+            viewport={{ once: true, amount: 0.8 }}
+            className="laptop:w-3/5 h-full flex flex-col items-start justify-center gap-2 relative overflow-hidden"
           >
             <h3 className="font-bold">Seamless</h3>
             <h2 className="text-4xl w-full md:w-3/4 sm:text-2xl font-bold text-white mb-8 text-gray-700">
@@ -166,24 +174,35 @@ const FeaturesSection = () => {
             ))}
           </div>
         </div>
-        <div className="w-full grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-4 gap-8">
-          {features.map((features) => (
-            <div
-              className=" min-h-fit p-4 box-border bg-sky-100 text-slate-900 rounded hover:scale-[1.1] hover:-skew-y-3 transition hover:shadow-lg"
-              key={features.id}
+        <div className="w-full grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-4 gap-8 relative">
+          {features.map((feature) => (
+            <motion.div
+              initial={{ right: `${features.indexOf(feature) * 100}px` }}
+              whileInView={{
+                right: `0px`,
+                // rotate: -10,
+                transition: {
+                  type: "spring",
+                  bounce: 0.4,
+                  duration: 2,
+                },
+              }}
+              whileHover={{ rotate: -3 }}
+              viewport={{ once: true, amount: 0.8 }}
+              className=" relative min-h-fit p-4 box-border bg-sky-100 text-slate-900 rounded hover:scale-[1.1] hover:-skew-y-3 transition hover:shadow-lg"
+              key={feature.id}
             >
               <h3 className="w-fit text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
-                {features.title}{" "}
-                <span className="text-2xl">{features.icon}</span>
+                {feature.title} <span className="text-2xl">{feature.icon}</span>
               </h3>
               <p className="text-slate-800 font-600 text-sm">
-                {features.description}
+                {feature.description}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
-        <div className="grid grid-cols-3 gap-4 text-white">
-          <div className="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black box-border p-4 rounded">
+        <div className="grid grid-cols-3 gap-4 text-white -skew-y-3">
+          <div className="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-800 to-black box-border p-4 rounded">
             <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
               Users
             </h3>
