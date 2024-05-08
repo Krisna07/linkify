@@ -16,11 +16,11 @@ export default function Homepage({}: HomepageProps) {
       <FeaturesSection />
       <Queries />
       <PricingTable />
-      <div className="w-full h-screen fixed inset-0 z-0">
+      {/* <div className="w-full h-screen fixed inset-0 z-0">
         <Canvas>
           <Stars radius={50} count={200} factor={4} fade speed={2} />
         </Canvas>
-      </div>
+      </div> */}
     </div>
   );
 }

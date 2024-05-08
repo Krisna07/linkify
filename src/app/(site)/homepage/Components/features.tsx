@@ -15,7 +15,6 @@ import {
 import { BiGitPullRequest, BiShapeTriangle, BiUpArrow } from "react-icons/bi";
 import { GiAutoRepair } from "react-icons/gi";
 import { BsTriangleFill } from "react-icons/bs";
-import { motion } from "framer-motion";
 
 const Profilecard = ({ cardStyle, icon }: any) => {
   return (
@@ -140,20 +139,7 @@ const FeaturesSection = () => {
           ref={scrollRef}
           className="flex items-center justify-between box-border gap-8 "
         >
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{
-              opacity: 1,
-              rotate: -3,
-              transition: {
-                type: "spring",
-                bounce: 0.4,
-                duration: 0.8,
-              },
-            }}
-            viewport={{ once: true, amount: 0.8 }}
-            className="laptop:w-3/5 h-full flex flex-col items-start justify-center gap-2 relative overflow-hidden"
-          >
+          <div className="laptop:w-3/5 h-full flex flex-col items-start justify-center gap-2 relative overflow-hidden">
             <h3 className="font-bold">Seamless</h3>
             <h2 className="text-4xl w-full md:w-3/4 sm:text-2xl font-bold text-white mb-8 text-gray-700">
               Connect all your social media from single place
@@ -163,7 +149,7 @@ const FeaturesSection = () => {
               contents to different accounts with ease. Check and evaluate your
               traffic, create and post ads.
             </p>
-          </motion.div>
+          </div>
           <div className="w-2/5 max-h-full box-border rounded flex hidden laptop:flex relative h-80">
             {profiles.map((card: any, x) => (
               <Profilecard
@@ -176,20 +162,8 @@ const FeaturesSection = () => {
         </div>
         <div className="w-full grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-4 gap-8 relative">
           {features.map((feature) => (
-            <motion.div
-              initial={{ right: `${features.indexOf(feature) * 100}px` }}
-              whileInView={{
-                right: `0px`,
-                // rotate: -10,
-                transition: {
-                  type: "spring",
-                  bounce: 0.4,
-                  duration: 2,
-                },
-              }}
-              whileHover={{ rotate: -3 }}
-              viewport={{ once: true, amount: 0.8 }}
-              className=" relative min-h-fit p-4 box-border bg-sky-100 text-slate-900 rounded hover:scale-[1.1] hover:-skew-y-3 transition hover:shadow-lg"
+            <div
+              className=" relative min-h-fit p-4 box-border bg-sky-100 text-slate-900 rounded hover:!scale-[1.1] hover:-skew-y-3 transition hover:shadow-lg"
               key={feature.id}
             >
               <h3 className="w-fit text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
@@ -198,7 +172,7 @@ const FeaturesSection = () => {
               <p className="text-slate-800 font-600 text-sm">
                 {feature.description}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
         <div className="grid grid-cols-3 gap-4 text-white -skew-y-3">

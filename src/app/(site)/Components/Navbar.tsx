@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { FaBars, FaLeaf, FaTimes } from "react-icons/fa";
 import Button from "../../g_components/Button";
@@ -55,6 +55,16 @@ const Navbar = () => {
   // };
   // window.addEventListener("resize", getSize);
 
+  const [move, setMove] = useState<number>();
+
+  const hoverNav = (e: any) => {
+    const menu = e.target;
+    const menuWidth: any = menu?.getBoundingClientRect();
+    const parent = e.target.parentElement;
+    // setMove(menuWidth.x - 261);
+    console.log(parent);
+  };
+
   return (
     <nav
       className={`bg-gray-800 text-white  grid place-items-center min-w-full top-0 shadow z-[999] realtive`}
@@ -68,25 +78,29 @@ const Navbar = () => {
               </span>
             </Link>
           </div>
-          <div className="hidden tablet:block">
+          <div className="w-fit hidden relative tablet:block bg-red-200">
             <ul className="flex items-center space-x-6">
               {NavItems.map((menu) => (
-                <li key={menu.name}>
+                <li key={menu.name} onMouseOver={hoverNav}>
                   <Link
                     href={`${menu.link}`}
                     style={path == menu.link ? { color: "gray" } : {}}
                     className="font-semibold hover:text-gray-500 active:text-gray-500 relative grid place-items-center"
                   >
                     {menu.name}
-                    {path == menu.link ? (
+                    {/* {path == menu.link ? (
                       <div className="w-[120%] h-px bg-green-800 absolute bottom-0"></div>
                     ) : (
                       ""
-                    )}
+                    )} */}
                   </Link>
                 </li>
               ))}
             </ul>
+            <div
+              style={{ left: `${move}px` }}
+              className={`absolute w-[50px] h-1 bg-white right-[${move}]`}
+            ></div>
           </div>
           <div className="hidden tablet:block">
             <Link href="/auth/signin">

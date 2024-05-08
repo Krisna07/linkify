@@ -15,7 +15,6 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
-
       animation: {
         text: "text 20s ease infinite",
         slidein300: "slidein 1s ease 300ms",

@@ -1,8 +1,7 @@
 import React from "react";
 import { FaCloudscale, FaPenSquare, FaSync, FaUserAlt } from "react-icons/fa";
 import Button from "../../../g_components/Button";
-import { motion } from "framer-motion";
-import classNames from "classnames";
+
 const Queries = () => {
   const queries = [
     {
@@ -32,67 +31,20 @@ const Queries = () => {
       <div className=" mx-auto px-8 lg:px-16">
         <div className="grid grid-cols-1 laptop:grid-cols-[60%_40%] laptop:w-[1000px] gap-12 lg:gap-20">
           <div className="text-white/50">
-            <motion.h3
-              initial={{ opacity: 0 }}
-              whileInView={{
-                opacity: 1,
-                transition: {
-                  type: "spring",
-                  bounce: 0.4,
-                  duration: 0.8,
-                },
-              }}
-              viewport={{ once: true, amount: 0.8 }}
-              className=" text-xl font-bold mb-4"
-            >
+            <h3 className=" text-xl font-bold mb-4">
               Unlock Your Social Media Potential
-            </motion.h3>
-            <motion.h2
-              initial={{ opacity: 0 }}
-              whileInView={{
-                opacity: 1,
-                transition: {
-                  type: "spring",
-                  bounce: 0.4,
-                  duration: 0.8,
-                },
-              }}
-              viewport={{ once: true, amount: 0.8 }}
-              className="animate-slidein500 text-4xl lg:text-5xl font-bold text-white/75 mb-6 leading-tight"
-            >
+            </h3>
+            <h2 className="animate-slidein500 text-4xl lg:text-5xl font-bold text-white/75 mb-6 leading-tight">
               Take Control with Our Social Media Handler
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{
-                opacity: 1,
-                transition: {
-                  type: "spring",
-                  bounce: 0.4,
-                  duration: 0.8,
-                },
-              }}
-              viewport={{ once: true, amount: 0.8 }}
-              className="animate-slidein700 text-lg lg:text-xl mb-8"
-            >
+            </h2>
+            <p className="animate-slidein700 text-lg lg:text-xl mb-8">
               Manage, engage, and grow your social media presence seamlessly
               with our advanced handler app. Let's revolutionize the way you
               connect with your audience!
-            </motion.p>
+            </p>
             <div className="grid grid-cols-1 tablet:grid-cols-2 gap-8 pb-8">
               {queries.map((query) => (
-                <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{
-                    opacity: 1,
-                    y: 0,
-                    transition: {
-                      type: "spring",
-                      bounce: 0.4,
-                      duration: 0.8,
-                    },
-                  }}
-                  viewport={{ once: true, amount: 0.8 }}
+                <div
                   key={query.name}
                   className="bg-white/50 rounded-lg grid place-items-center"
                 >
@@ -106,7 +58,7 @@ const Queries = () => {
                     <h2 className="font-semibold text-white">{query.name}</h2>
                     <p>{query.des}</p>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
             <Button
@@ -116,19 +68,7 @@ const Queries = () => {
             />
           </div>
           <div className="laptop:grid place-items-center hidden">
-            <motion.div
-              initial={{ y: 100 }}
-              whileInView={{
-                y: 0,
-                transition: {
-                  type: "spring",
-                  bounce: 0.4,
-                  duration: 0.8,
-                },
-              }}
-              viewport={{ once: true, amount: 0.8 }}
-              className="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[14px] rounded-[2.5rem] h-[600px] w-[300px]"
-            >
+            <div className="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[14px] rounded-[2.5rem] h-[600px] w-[300px] ">
               <div className="h-[32px] w-[3px] bg-gray-800 dark:bg-gray-800 absolute -start-[17px] top-[72px] rounded-s-lg"></div>
               <div className="h-[46px] w-[3px] bg-gray-800 dark:bg-gray-800 absolute -start-[17px] top-[124px] rounded-s-lg"></div>
               <div className="h-[46px] w-[3px] bg-gray-800 dark:bg-gray-800 absolute -start-[17px] top-[178px] rounded-s-lg"></div>
@@ -145,7 +85,7 @@ const Queries = () => {
                   alt=""
                 />
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
