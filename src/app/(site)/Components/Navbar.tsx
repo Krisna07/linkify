@@ -56,13 +56,15 @@ const Navbar = () => {
   // window.addEventListener("resize", getSize);
 
   const [move, setMove] = useState<number>();
+  const [bar, setBar] = useState<number>();
 
   const hoverNav = (e: any) => {
     const menu = e.target;
     const menuWidth: any = menu?.getBoundingClientRect();
-    const parent = e.target.parentElement;
-    // setMove(menuWidth.x - 261);
-    console.log(parent);
+    const parent = e.target.offsetParent;
+    const parentx: any = parent?.getBoundingClientRect();
+    setMove(menuWidth.x - parentx.x);
+    setBar(menuWidth.width);
   };
 
   return (
@@ -78,28 +80,37 @@ const Navbar = () => {
               </span>
             </Link>
           </div>
-          <div className="w-fit hidden relative tablet:block bg-red-200">
-            <ul className="flex items-center space-x-6">
+          <div className="w-fit hidden relative tablet:block ">
+            <ul
+              className="flex items-center space-x-6"
+              onMouseLeave={() => setBar(0)}
+            >
               {NavItems.map((menu) => (
                 <li key={menu.name} onMouseOver={hoverNav}>
                   <Link
                     href={`${menu.link}`}
                     style={path == menu.link ? { color: "gray" } : {}}
-                    className="font-semibold hover:text-gray-500 active:text-gray-500 relative grid place-items-center"
+                    className="relative font-semibold hover:text-gray-500 active:text-gray-500 relative grid place-items-center"
                   >
                     {menu.name}
-                    {/* {path == menu.link ? (
-                      <div className="w-[120%] h-px bg-green-800 absolute bottom-0"></div>
+                    {path == menu.link ? (
+                      <div
+                        className={`absolute  -bottom-[2px] w-full h-[2px] bg-white transition-all px-[4px] ${
+                          bar ? "hidden" : ""
+                        } `}
+                      ></div>
                     ) : (
                       ""
-                    )} */}
+                    )}
                   </Link>
                 </li>
               ))}
             </ul>
             <div
-              style={{ left: `${move}px` }}
-              className={`absolute w-[50px] h-1 bg-white right-[${move}]`}
+              style={{ left: `${move}px`, width: `${bar}px` }}
+              className={`absolute h-[2px] bg-white transition-all px-[4px] ${
+                !bar ? "hidden" : ""
+              }`}
             ></div>
           </div>
           <div className="hidden tablet:block">

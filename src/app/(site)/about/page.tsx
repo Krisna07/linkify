@@ -1,10 +1,7 @@
 import React from "react";
-
 import Growth from "./components/Growth";
-import Journey from "./components/Journey";
 import OurTeam from "./components/team";
 import Testimonials from "./components/Testimonial";
-import Values from "./components/Values";
 export default function page() {
   return (
     <div className="w-full grid place-items-center gap-8 overflow-hidden text-white">

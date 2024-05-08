@@ -14,8 +14,8 @@ export default function Contact() {
       <div className="w-full  h-[600px] grid place-items-center relative bg-gradient-to-t from-[#076585] to-[#fff">
         {" "}
         <div className="laptop:w-[600px] text-center grid gap-4 p-4 place-items-center">
-          <h2 className="text-4xl font-bold ">Contact Us</h2>
-          <p className="font-semibold">
+          <h2 className="text-4xl font-bold animate-slidein500">Contact Us</h2>
+          <p className="font-semibold animate-slidein300">
             Thank you for your interest in contacting us. We're here to assist
             you and answer any questions you may have. Please feel free to reach
             out to us using the contact information below or by filling out the
@@ -46,7 +46,8 @@ export default function Contact() {
                 {issues.map((issue) => (
                   <div
                     className=" w-fit p-2 px-4 bg-gray-200 rounded-full shadow hover:shadow-bs font-semibold text-sm"
-                    key={issue}>
+                    key={issue}
+                  >
                     {issue}
                   </div>
                 ))}
@@ -55,7 +56,8 @@ export default function Contact() {
               <div className="mb-4">
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium text-gray-700 mb-1">
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   Your Name
                 </label>
                 <input
@@ -67,7 +69,8 @@ export default function Contact() {
               <div className="mb-4">
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-700 mb-1">
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   Your Email
                 </label>
                 <input

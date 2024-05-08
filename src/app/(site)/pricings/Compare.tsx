@@ -83,7 +83,7 @@ const Compare = ({ compareTier }: { compareTier: princingTier[] }) => {
       <div className="grid gap-4 ">
         {selectedTiers.length > 0 && (
           <div className="grid tablet:grid-cols-2 gap-4">
-            {/* {compareTier.indexOf(selectedTiers[0]) <
+            {compareTier.indexOf(selectedTiers[0]) <
             compareTier.indexOf(selectedTiers[1]) ? (
               <>
                 <TierAnalysis tier={selectedTiers[0]} />
@@ -94,7 +94,7 @@ const Compare = ({ compareTier }: { compareTier: princingTier[] }) => {
                 <TierAnalysis tier={selectedTiers[1]} />
                 <TierAnalysis tier={selectedTiers[0]} />
               </>
-            )} */}
+            )}
 
             {selectedTiers.sort(compareByIndex).map((tier) => (
               <TierAnalysis tier={tier} key={tier.tierName} />

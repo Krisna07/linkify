@@ -172,7 +172,7 @@ const Pricing = () => {
       <div className="laptop:w-[1024px] w-full box-border laptop:py-8 grid gap-4 p-4 overflow-hidden ">
         <h2 className="text-[32px] w-full font-bold text-left ">Features</h2>
         <div className="overflow-x-scroll scrollbar-hide ">
-          <table className="w-[1020px] grid grid-col-4 box-border rounded-lg overflow-hidden  scrollbar-hide">
+          <table className="w-[1020px] grid grid-col-4 box-border rounded-lg overflow-x-scroll  scrollbar-hide">
             <thead className="w-full text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 box-border ">
               <tr className="grid grid-cols-5">
                 <th scope="col" className="px-4 py-4 "></th>
@@ -183,7 +183,7 @@ const Pricing = () => {
                 ))}
               </tr>
             </thead>
-            <tbody className="w-full grid gap-4 px-4 p-2 bg-gray-200 box-border text-gray-800">
+            <tbody className="w-full grid gap-4 px-4 p-2 bg-gray-200 box-border  text-gray-800">
               <tr className="grid grid-cols-5 place-items-center gap-4">
                 <th className="w-full text-left">Price</th>
                 {pricingTiers.map((tier) => (

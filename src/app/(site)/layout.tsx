@@ -25,10 +25,7 @@ export default function RootLayout({
           <Navbar />
         </nav>
 
-        <main className="w-full relative oveflow-hidden pb-0">
-          {" "}
-          {children}{" "}
-        </main>
+        <main className="w-full relative oveflow-hidden pb-0">{children}</main>
         <footer className="w-full h-fit grid place-items-center p-4 text-white ">
           <Footer />
         </footer>
