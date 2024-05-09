@@ -6,6 +6,7 @@ import Queries from "./Components/Queries";
 import PricingTable from "./Components/Pricing";
 import { Canvas } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
+import Appdes from "./Components/Hero";
 
 interface HomepageProps {}
 
@@ -13,10 +14,11 @@ export default function Homepage({}: HomepageProps) {
   return (
     <div className="w-full grid place-items-center">
       <Herosection />
+
       <FeaturesSection />
       <Queries />
       <PricingTable />
-      {/* <div className="w-full h-screen fixed inset-0 z-0">
+      {/* <div className="w-full h-screen fixed inset-0 -z-1">
         <Canvas>
           <Stars radius={50} count={200} factor={4} fade speed={2} />
         </Canvas>

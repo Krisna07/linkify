@@ -36,7 +36,7 @@ export default function Herosection() {
       className="w-full relative grid min-h-screen place-content-center overflow-hidden bg-gray-900 px-4 py-24 text-gray-200"
     >
       <div className="relative z-10 flex flex-col items-center">
-        <motion.span
+        <motion.button
           whileHover={{
             scale: 1.015,
             transform: "translate-y-2px",
@@ -47,7 +47,7 @@ export default function Herosection() {
           className=" animate-slidein300  mb-1.5 inline-block rounded-full bg-gray-600/50  px-3 py-1.5 text-sm overflow-hidden cursor-default"
         >
           Try Demo
-        </motion.span>
+        </motion.button>
         <h1
           className={`animate-slidein700  max-w-3xl font-bold  bg-gradient-to-tr from-white to-[${color}] bg-clip-text text-center text-6xl  leading-tight text-transparent sm:text-5xl sm:leading-tight md:text-7xl md:leading-tight`}
         >

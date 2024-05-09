@@ -134,7 +134,7 @@ const FeaturesSection = () => {
 
   return (
     <div className="w-full flex items-center justify-center  py-12  text-sky-100">
-      <div className="laptop:w-[1024px] p-4  grid  gap-8  box-border  skew-y-3">
+      <div className="laptop:w-[1024px] p-4  grid  gap-8  box-border  ">
         <div
           ref={scrollRef}
           className="flex items-center justify-between box-border gap-8 "
@@ -175,7 +175,7 @@ const FeaturesSection = () => {
             </div>
           ))}
         </div>
-        <div className="grid grid-cols-3 gap-4 text-white -skew-y-3">
+        <div className="grid grid-cols-3 gap-4 text-white ">
           <div className="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-800 to-black box-border p-4 rounded">
             <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
               Users
@@ -187,7 +187,7 @@ const FeaturesSection = () => {
               </span>
             </h3>
           </div>
-          <div className=" bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black box-border p-4 rounded">
+          <div className=" bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-800 to-black box-border p-4 rounded">
             <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
               Accounts
             </h3>
@@ -198,7 +198,7 @@ const FeaturesSection = () => {
               </span>
             </h3>
           </div>
-          <div className=" bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black box-border p-4 rounded">
+          <div className=" bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-800 to-black box-border p-4 rounded">
             <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
               Shares
             </h3>

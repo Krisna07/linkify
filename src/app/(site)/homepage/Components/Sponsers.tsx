@@ -60,13 +60,14 @@ const SponsorsSection = () => {
   return (
     <div className=" overflow-hidden grid place-items-center gap-4 py-8">
       <div className=" text-center grid place-items-center gap-4 font-[500]">
-        <h2 className="w-fit text-center text-xl  ">Sponsors</h2>
+        <h2 className="w-fit text-center text-xl  ">App Support</h2>
       </div>
       <div className="w-full flex justify-between items-center gap-4 overflow-hidden  ">
         {sponsers.map((sponser) => (
           <div
             className="text-[50px] hover:scale-[1.2] transition-all"
-            key={sponser.name}>
+            key={sponser.name}
+          >
             {sponser.logoUrl}
           </div>
         ))}

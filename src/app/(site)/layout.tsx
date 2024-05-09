@@ -19,17 +19,15 @@ export default function RootLayout({
         }
       >
         <header className="w-full top-0 grid place-items-center shadow z-[999]   ">
-          <Notice />
+          {/* <Notice /> */}
         </header>
         <nav className=" w-full top-0 grid place-items-center shadow z-[999] sticky ">
           <Navbar />
         </nav>
-
         <main className="w-full relative oveflow-hidden pb-0">{children}</main>
         <footer className="w-full h-fit grid place-items-center p-4 text-white ">
           <Footer />
         </footer>
-        <div className="absolute inset-0 z-0"></div>
       </body>
     </html>
   );

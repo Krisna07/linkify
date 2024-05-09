@@ -33,7 +33,7 @@ const TierAnalysis = ({ tier }: { tier: princingTier }) => {
               tier.features.premium ? "text-green-500" : "text-red-500"
             }
           >
-            Premium Features:
+            Premium Features:{" "}
             {tier.features.premium ? "Included" : "Not Included"}
           </li>
         </ul>

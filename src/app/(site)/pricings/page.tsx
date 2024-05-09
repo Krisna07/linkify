@@ -1,10 +1,9 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Button from "../../g_components/Button";
-import { FaCheck, FaCoins } from "react-icons/fa";
 
-import { BsX } from "react-icons/bs";
 import Compare from "./Compare";
+import Table from "./Table";
 
 export interface princingTier {
   select?: any;
@@ -119,8 +118,8 @@ const Pricing = () => {
           <h2 className="text-[32px] font-bold ">Pricing Plans </h2>
           <p>Start With Our Free Plan. No Credit Card Needed.Cancel Anytime</p>
         </div>
-        <div className="laptop:w-[1024px] grid gap-4 box-border">
-          <div className="w-full grid gap-4 tablet:grid-cols-2 items-center justify-between">
+        <div className="laptop:w-[1024px] w-full grid gap-4 box-border">
+          <div className="w-full flex items-center justify-between">
             <div>
               <h2 className="text-[32px] font-bold text-left ">
                 Pick the perfect plan
@@ -129,22 +128,35 @@ const Pricing = () => {
                 Start with our free plan. No credit card needed.Cancel Anytime
               </p>
             </div>
-            <div className="cursor-pointer  flex w-fit bg-[#DD5746] p-2 relative rounded-full box-border overflow-hidden shadow-bs text-black/50 font-semibold text-sm">
+            <div className="cursor-pointer  flex w-fit bg-gray-600 p-2 relative rounded-full box-border overflow-hidden shadow-bs text-black/75 font-semibold text-sm">
               <span
-                className={`px-4 py-2 relative z-20 rounded-full`}
+                className={`px-4 py-2 relative z-20 hidden tablet:block rounded-full`}
                 onClick={() => setMonthly(true)}
               >
                 Monthly
               </span>
+
               <span
-                className={`px-4 py-2  relative z-20 rounded-full`}
+                className={`px-4 py-2 hidden tablet:flex relative z-20 rounded-full`}
                 onClick={() => setMonthly(false)}
               >
                 Annually
               </span>
+              <span
+                className={`px-4 py-2 tablet:hidden relative z-20 rounded-full`}
+                onClick={() => setMonthly(true)}
+              >
+                M
+              </span>
+              <span
+                className={`px-4 py-2 tablet:hidden relative z-20 rounded-full`}
+                onClick={() => setMonthly(false)}
+              >
+                A
+              </span>
               <div
                 className={`w-1/2 h-[80%] bg-white/50 absolute top-[10%] rounded-full z-10 transition-all ${
-                  monthly ? "left-[3%]" : "left-[47%]"
+                  monthly ? "left-[3%]" : "left-[47%] "
                 } `}
               ></div>
             </div>
@@ -172,117 +184,10 @@ const Pricing = () => {
       <div className="laptop:w-[1024px] w-full box-border laptop:py-8 grid gap-4 p-4 overflow-hidden ">
         <h2 className="text-[32px] w-full font-bold text-left ">Features</h2>
         <div className="overflow-x-scroll scrollbar-hide ">
-          <table className="w-[1020px] grid grid-col-4 box-border rounded-lg overflow-x-scroll  scrollbar-hide">
-            <thead className="w-full text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 box-border ">
-              <tr className="grid grid-cols-5">
-                <th scope="col" className="px-4 py-4 "></th>
-                {pricingTiers.map((tier, index) => (
-                  <th key={index} scope="col" className="px-6 py-4">
-                    {tier.tierName}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="w-full grid gap-4 px-4 p-2 bg-gray-200 box-border  text-gray-800">
-              <tr className="grid grid-cols-5 place-items-center gap-4">
-                <th className="w-full text-left">Price</th>
-                {pricingTiers.map((tier) => (
-                  <td key={tier.price}>${tier.price}/month</td>
-                ))}
-              </tr>
-              <tr className="grid grid-cols-5 place-items-center gap-4">
-                <th className="w-full text-left">Storage</th>
-                {pricingTiers.map((tier) => (
-                  <td key={tier.storage} scope="col">
-                    {tier.storage}
-                  </td>
-                ))}
-              </tr>
-              <tr className="grid grid-cols-5 place-items-center gap-4">
-                <th className="w-full text-left">Users</th>
-                {pricingTiers.map((tier, index) => (
-                  <td key={index} scope="col">
-                    {tier.usersIncluded}
-                  </td>
-                ))}
-              </tr>
-              <tr className="grid grid-cols-5 place-items-center gap-4">
-                <th className="w-full text-left">Basic Features</th>
-                {pricingTiers.map((tier, index) => (
-                  <td key={index} scope="col">
-                    {tier.features.basic ? (
-                      <FaCheck color="skyblue" />
-                    ) : (
-                      <BsX color="red" />
-                    )}
-                  </td>
-                ))}
-              </tr>
-              <tr className="grid grid-cols-5 place-items-center gap-4">
-                <th className="w-full text-left">Advance Features</th>
-                {pricingTiers.map((tier, index) => (
-                  <td key={index} scope="col">
-                    {tier.features.advanced ? (
-                      <FaCheck color="skyblue" />
-                    ) : (
-                      <BsX color="red" />
-                    )}
-                  </td>
-                ))}
-              </tr>
-              <tr className="grid grid-cols-5 place-items-center gap-4">
-                <th className="w-full text-left">Premium Features</th>
-                {pricingTiers.map((tier, index) => (
-                  <td key={index} scope="col">
-                    {tier.features.premium ? (
-                      <FaCheck color="skyblue" />
-                    ) : (
-                      <BsX color="red" />
-                    )}
-                  </td>
-                ))}
-              </tr>
-              <tr className="grid grid-cols-5 place-items-center gap-4">
-                <th className="w-full text-left">Priority Support</th>
-                {pricingTiers.map((tier, index) => (
-                  <td key={index} scope="col">
-                    {tier.prioritySupport ? (
-                      <FaCheck color="skyblue" />
-                    ) : (
-                      <BsX color="red" />
-                    )}
-                  </td>
-                ))}
-              </tr>
-              <tr className="grid grid-cols-5 place-items-center gap-4">
-                <th className="w-full text-left">Customization</th>
-                {pricingTiers.map((tier, index) => (
-                  <td key={index} scope="col">
-                    {tier.customization ? (
-                      <FaCheck color="skyblue" />
-                    ) : (
-                      <BsX color="red" />
-                    )}
-                  </td>
-                ))}
-              </tr>
-              <tr className="grid grid-cols-5 place-items-center gap-4">
-                <th className="w-full text-left">Free Trial</th>
-                {pricingTiers.map((tier, index) => (
-                  <td key={index} scope="col">
-                    {tier.freeTrial ? (
-                      <FaCheck color="skyblue" />
-                    ) : (
-                      <BsX color="red" />
-                    )}
-                  </td>
-                ))}
-              </tr>
-            </tbody>
-          </table>
+          <Table pricingTiers={pricingTiers} />
         </div>
       </div>
-      <Compare compareTier={pricingTiers} />
+      {/* <Compare compareTier={pricingTiers} /> */}
     </div>
   );
 };

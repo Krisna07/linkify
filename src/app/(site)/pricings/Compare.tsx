@@ -65,7 +65,7 @@ const Compare = ({ compareTier }: { compareTier: princingTier[] }) => {
   };
 
   return (
-    <div className="laptop:w-[1000px] px-4 py-4 grid gap-4">
+    <div className="laptop:w-[1000px] w-full  px-4 py-4 grid gap-4">
       <div className="w-full  text-lg font-[600]  py-2">Comparison </div>
       <div className="grid gap-4">
         <div>Pick plans</div>
@@ -80,10 +80,10 @@ const Compare = ({ compareTier }: { compareTier: princingTier[] }) => {
           ))}
         </div>
       </div>
-      <div className="grid gap-4 ">
+      <div className="w-full grid gap-4 ">
         {selectedTiers.length > 0 && (
           <div className="grid tablet:grid-cols-2 gap-4">
-            {compareTier.indexOf(selectedTiers[0]) <
+            {/* {compareTier.indexOf(selectedTiers[0]) <
             compareTier.indexOf(selectedTiers[1]) ? (
               <>
                 <TierAnalysis tier={selectedTiers[0]} />
@@ -94,7 +94,7 @@ const Compare = ({ compareTier }: { compareTier: princingTier[] }) => {
                 <TierAnalysis tier={selectedTiers[1]} />
                 <TierAnalysis tier={selectedTiers[0]} />
               </>
-            )}
+            )} */}
 
             {selectedTiers.sort(compareByIndex).map((tier) => (
               <TierAnalysis tier={tier} key={tier.tierName} />

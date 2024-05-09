@@ -5,9 +5,5 @@ import Button from "../g_components/Button";
 interface pageProps {}
 
 export default function page({}: pageProps) {
-  return (
-    <div>
-      <Homepage />
-    </div>
-  );
+  return <Homepage />;
 }
