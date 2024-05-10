@@ -27,7 +27,7 @@ const Queries = () => {
   ];
 
   return (
-    <div className="w-full flex items-center justify-center py-8 bg-gradient-to-b from-blue-900/25 to-blue-800/25">
+    <div className="w-full flex items-center justify-center py-8">
       <div className=" mx-auto px-8 lg:px-16">
         <div className="grid grid-cols-1 laptop:grid-cols-[60%_40%] laptop:w-[1000px] gap-12 lg:gap-20">
           <div className="text-white/50">

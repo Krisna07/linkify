@@ -7,6 +7,7 @@ import PricingTable from "./Components/Pricing";
 import { Canvas } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
 import Appdes from "./Components/Hero";
+import Usage from "./Components/Usage";
 
 interface HomepageProps {}
 
@@ -17,6 +18,7 @@ export default function Homepage({}: HomepageProps) {
 
       <FeaturesSection />
       <Queries />
+      <Usage />
       <PricingTable />
       {/* <div className="w-full h-screen fixed inset-0 -z-1">
         <Canvas>
