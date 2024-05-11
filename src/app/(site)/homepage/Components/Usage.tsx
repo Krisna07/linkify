@@ -94,7 +94,7 @@ const Usage = () => {
         <div className="w-full  flex flex-col items-center justify-center p-2  box-border gap-8  ">
           <div className="grid gap-2 text-center">
             <h2 className="text-3xl font-[700]">Discover</h2>
-            <p className="w-full text-xl font-[500] tablet:w-[50ch]">
+            <p className="w-full text-xl  tablet:w-[50ch]">
               Explore curated content, connect effortlessly, and unlock your
               online potential with our discovery features.
             </p>

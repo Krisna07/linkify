@@ -15,10 +15,11 @@ import {
 import { BiGitPullRequest, BiShapeTriangle, BiUpArrow } from "react-icons/bi";
 import { GiAutoRepair } from "react-icons/gi";
 import { BsTriangleFill } from "react-icons/bs";
+import { motion } from "framer-motion";
 
 const Profilecard = ({ cardStyle, icon }: any) => {
   return (
-    <div
+    <motion.div
       className={`w-60 h-60 ${cardStyle} rounded-[10px] p-4 flex justify-between absolute left-0 bottom-0 transition:all`}
     >
       <div className="w-20 h-20 rounded-full bg-rose-200 overflow-hidden">
@@ -28,7 +29,7 @@ const Profilecard = ({ cardStyle, icon }: any) => {
         />
       </div>
       <div>{icon}</div>
-    </div>
+    </motion.div>
   );
 };
 const features = [
@@ -132,6 +133,15 @@ const FeaturesSection = () => {
     },
   ];
 
+  const list = {
+    visible: { opacity: 1 },
+    hidden: { opacity: 0 },
+  };
+
+  const item = {
+    visible: { opacity: 1, x: 0 },
+    hidden: { opacity: 0, x: -100 },
+  };
   return (
     <div className="w-full flex items-center justify-center  py-12  text-sky-100">
       <div className="laptop:w-[1024px] p-4  grid  gap-8  box-border  ">
@@ -139,7 +149,20 @@ const FeaturesSection = () => {
           ref={scrollRef}
           className="flex items-center justify-between box-border gap-8 "
         >
-          <div className="laptop:w-3/5 h-full flex flex-col items-start justify-center gap-2 relative overflow-hidden">
+          <motion.div
+            initial={{ opacity: "0", y: 50 }}
+            whileInView={{
+              y: 0,
+              opacity: "1",
+            }}
+            transition={{
+              type: "spring",
+              damping: 10,
+              stiffness: 100,
+            }}
+            viewport={{ once: true }}
+            className="laptop:w-3/5 h-full flex flex-col items-start justify-center gap-2 relative overflow-hidden"
+          >
             <h3 className="font-bold">Seamless</h3>
             <h2 className="text-4xl w-full md:w-3/4 sm:text-2xl font-bold text-white mb-8 text-gray-700">
               Connect all your social media from single place
@@ -149,7 +172,7 @@ const FeaturesSection = () => {
               contents to different accounts with ease. Check and evaluate your
               traffic, create and post ads.
             </p>
-          </div>
+          </motion.div>
           <div className="w-2/5 max-h-full box-border rounded flex hidden laptop:flex relative h-80">
             {profiles.map((card: any, x) => (
               <Profilecard
@@ -162,8 +185,16 @@ const FeaturesSection = () => {
         </div>
         <div className="w-full grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-4 gap-8 relative">
           {features.map((feature) => (
-            <div
-              className=" relative min-h-fit p-4 box-border bg-sky-100 text-slate-900 rounded hover:!scale-[1.1] hover:-skew-y-3 transition hover:shadow-lg"
+            <motion.div
+              initial={{ left: -100 }}
+              whileInView={{ left: 0 }}
+              transition={{
+                type: "bounce",
+                damping: 10,
+                stiffness: 100,
+              }}
+              viewport={{ once: true }}
+              className=" relative min-h-fit p-4 box-border bg-sky-100 text-slate-900 rounded  hover:-skew-y-3 transition hover:shadow-lg"
               key={feature.id}
             >
               <h3 className="w-fit text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
@@ -172,7 +203,7 @@ const FeaturesSection = () => {
               <p className="text-slate-800 font-600 text-sm">
                 {feature.description}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
         <div className="grid grid-cols-3 gap-4 text-white ">

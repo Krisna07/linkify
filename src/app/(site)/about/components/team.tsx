@@ -82,9 +82,9 @@ const OurTeam: React.FC = () => {
   const [show, setShow] = useState(4);
 
   return (
-    <section className="w-full py-12 grid  place-items-center gap-8 bg-slate-100  relative ">
+    <section className="w-full py-12 grid  place-items-center gap-8 bg-slate-800  relative ">
       <div className="laptop:w-[1200px] mx-auto grid   gap-8 p-4  ">
-        <div className="w-full grid place-items-left gap-4 text-slate-900 ">
+        <div className="w-full grid place-items-left gap-4 text-white ">
           <h2 className="text-3xl font-bold grid">Our Team</h2>
           <p className="laptop:w-3/4">
             A team of elite enginners working together to grasp the potential of
@@ -96,43 +96,45 @@ const OurTeam: React.FC = () => {
           {teamMembers.slice(0, show).map((member, index) => (
             <div
               key={index}
-              className="bg-white  shadow-bs  p-4 rounded-[20px]  grid text-left gap-2"
+              className="bg-white/50  shadow-bs  p-4 rounded-[20px]  grid text-left gap-2"
             >
-              <div className="w-full bg-gradient-to-r from-gray-600 to-red-100">
+              <div className="w-full bg-gradient-to-r from-gray-600 to-red-100 rounded-lg overflow-hidden">
                 <img src={member.image} alt="" width={"100%"} />
               </div>
               <div>
                 {" "}
                 <h3 className="text-lg font-semibold ">{member.name}</h3>
-                <p className="text-gray-600 ">{member.position}</p>
+                <p className="text-white/75 font-semibold ">
+                  {member.position}
+                </p>
               </div>
               {/* <p className="text-gray-800">{member.bio}</p> */}
               <Button
                 variant={"accent"}
                 children={"Connect"}
+                size={"sm"}
                 icon={true}
-                className={"w-fit text-[12px] py-1 px-2 bg-slate-600"}
               />
             </div>
           ))}
         </div>
-      </div>
-      <div className=" w-full px-4 flex justify-between">
-        {" "}
-        <Button
-          children={show === 4 ? "View more" : "Show less"}
-          variant={"default"}
-          className={"w-fit"}
-          size={"sm"}
-          icon={true}
-          onClick={() => setShow(show === 4 ? 13 : 4)}
-        />
-        <Button
-          children={"Join our team"}
-          variant={"default"}
-          size={"sm"}
-          icon={true}
-        />
+        <div className=" w-full px-4 flex justify-between">
+          {" "}
+          <Button
+            children={show === 4 ? "Load more" : "Show less"}
+            variant={"default"}
+            className={"w-fit"}
+            size={"sm"}
+            icon={true}
+            onClick={() => setShow(show === 4 ? 13 : 4)}
+          />
+          <Button
+            children={"Join our team"}
+            variant={"default"}
+            size={"sm"}
+            icon={true}
+          />
+        </div>
       </div>
     </section>
   );

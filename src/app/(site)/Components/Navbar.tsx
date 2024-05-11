@@ -46,14 +46,14 @@ const Navbar = () => {
     }
   }, [isOpen]);
 
-  // const getSize = () => {
-  //   const widthBody = document.body.getBoundingClientRect().width;
-  //   if (widthBody > 650) {
-  //     setIsOpen(false);
-  //   }
-  //   console.log(widthBody);
-  // };
-  // window.addEventListener("resize", getSize);
+  const getSize = () => {
+    const widthBody = document.body.getBoundingClientRect().width;
+    if (widthBody > 650) {
+      setIsOpen(false);
+    }
+    // console.log(widthBody);
+  };
+  window.addEventListener("resize", getSize);
 
   const [move, setMove] = useState<number>();
   const [bar, setBar] = useState<number>();
@@ -89,7 +89,7 @@ const Navbar = () => {
                 <li key={menu.name} onMouseOver={hoverNav}>
                   <Link
                     href={`${menu.link}`}
-                    style={path == menu.link ? { color: "gray" } : {}}
+                    style={path == menu.link ? { color: "#9cd7e5" } : {}}
                     className="relative font-semibold hover:text-gray-500 active:text-gray-500 relative grid place-items-center"
                   >
                     {menu.name}
