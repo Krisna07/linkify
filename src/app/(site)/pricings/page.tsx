@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "../../g_components/Button";
 
-import Compare from "./Compare";
 import Table from "./Table";
 
 export interface princingTier {
@@ -163,8 +162,11 @@ const Pricing = () => {
           </div>
           <div className="w-full grid laptop:grid-cols-4 gap-[20px]">
             {pricingTiers.map((tier) => (
-              <div key={tier.price} className="p-4 grid gap-4 shadow-bs">
-                <h3 className="font-semibold text-gray-600">{tier.tierName}</h3>
+              <div
+                key={tier.price}
+                className="p-4 grid gap-4 shadow-bs transition-all hover:translate-x-1 hover:translate-y-1"
+              >
+                <h3 className="font-semibold text-white/50">{tier.tierName}</h3>
                 <h2 className="text-xl font-bold">
                   ${tier.price}/{monthly ? "month" : "annually"}
                 </h2>

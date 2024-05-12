@@ -17,6 +17,10 @@ export default function Homepage({}: HomepageProps) {
     <motion.div
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
+      transition={{
+        type: "string",
+        delay: 1,
+      }}
       className="w-full grid place-items-center gap-8"
     >
       <Herosection />

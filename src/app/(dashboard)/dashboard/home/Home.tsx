@@ -17,7 +17,7 @@ export default function Home() {
   const [list, setList] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<String>();
-  const [add, setAdd] = useState(false);
+  const [add, setAdd] = useState<boolean>(false);
   const [newItem, setItem] = useState<any>({
     username: "",
     type: "",
@@ -41,19 +41,18 @@ export default function Home() {
   }, []);
 
   const closeAppform = (item: boolean) => {
-    return setAdd(!item);
+    return setAdd(item);
   };
 
   const getSocial = async () => {
     try {
-      const response = await fetch("/api/user/social"); // Assuming you have an endpoint to fetch accounts
-
+      const response = await fetch("/api/user/social");
       if (!response.ok) {
         throw new Error("Failed to fetch accounts");
       }
 
       const data = await response.json();
-      setAccounts(data.data); // Assuming the accounts data is nested under 'data' key
+      setAccounts(data.data);
       setLoading(false);
     } catch (error) {
       console.error("Error fetching accounts:", error);
@@ -102,20 +101,12 @@ export default function Home() {
               children="Add new"
               variant={"primary"}
               size={"default"}
-              onClick={() => closeAppform(add)}
+              onClick={() => setAdd(!add)}
               className="w-fit py-2  px-4 "
               rightIcon={!add ? <FaChevronDown /> : <FaChevronUp />}
             />
 
-            {add ? (
-              <Newpage
-                item={setItem}
-                add={closeAppform}
-                errorHandler={errorHandler}
-              />
-            ) : (
-              ""
-            )}
+            {add ? <Newpage item={setItem} errorHandler={errorHandler} /> : ""}
           </div>
         </div>
       </div>
@@ -142,7 +133,7 @@ export default function Home() {
           ))
         )}
       </div>
-      {<ToastConatiner message={error} />}
+      {/* {<ToastConatiner message={error} />} */}
       {/* {
         <div
           className={`w-fit text-sm font-semibold gap-2 ${

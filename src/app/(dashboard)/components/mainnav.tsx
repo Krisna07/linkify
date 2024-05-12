@@ -37,7 +37,9 @@ export default function Mainnav({ user }: any) {
           </div>
           <span className="text-gray-400  tablet:flex">/</span>
           <div className="flex items-center gap-2 font-[600]">
-            <div className="h-6 w-6 bg-gradient-to-tr from-indigo-600/75  to-pink-200 rounded-full  grid place-items-center">
+            <div
+              className={`h-6 w-6 ${user.image} rounded-full  grid place-items-center`}
+            >
               <span className="text-black font-bold text-sm tablet:hidden">
                 {user.username.split("")[0].toLocaleUpperCase("en-US")}
               </span>
@@ -64,7 +66,7 @@ export default function Mainnav({ user }: any) {
           </div>
           <div className="relative">
             <div
-              className="w-8 h-8 bg-gradient-to-tr from-indigo-300 to-blue-500 to-pink-500 rounded-full relative"
+              className={`w-8 h-8 ${user.image} rounded-full relative`}
               onClick={() => setAccountOptions(!accountOptions)}
             ></div>
             <div

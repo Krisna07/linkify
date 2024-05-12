@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Button from "../../g_components/Button";
+import { FaCircle } from "react-icons/fa";
 
 export default function Contact() {
   const issues = [
@@ -34,7 +35,7 @@ export default function Contact() {
       </div>
       <div className="grid place-items-center w-full ">
         <div className="grid laptop:grid-cols-2 place-items-center   ">
-          <div className="laptop:w-[600px] w-[90%]  laptop:h-[600px] shadow-bs bg-white rounded p-8 -top-[200px] relative">
+          <div className="laptop:w-[600px] w-[90%]   shadow-bs bg-white rounded p-8 -top-[200px] relative">
             <h3 className="text-xl font-semibold mb-4">Get in Touch</h3>
             <p className="text-gray-600 mb-4">
               We'd love to hear from you. Send us a message and we'll get back
@@ -45,10 +46,10 @@ export default function Contact() {
               <div className="flex flex-wrap gap-4 items-center">
                 {issues.map((issue) => (
                   <div
-                    className=" w-fit p-2 px-4 bg-gray-200 rounded-full shadow hover:shadow-bs font-semibold text-sm"
+                    className=" w-fit p-2 px-4 bg-gray-200 rounded-full shadow hover:shadow-bs font-semibold text-sm flex items-center gap-2"
                     key={issue}
                   >
-                    {issue}
+                    {issue}{" "}
                   </div>
                 ))}
               </div>
@@ -79,13 +80,24 @@ export default function Contact() {
                   className="border border-gray-300 rounded-md px-4 py-2 w-full"
                 />
               </div>
+              <div className="mb-4">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Your Message
+                </label>
+                <textarea
+                  id="message"
+                  className="border border-gray-300 rounded-md px-4 py-2 w-full"
+                />
+              </div>
 
               <Button
                 children={"Submit"}
                 variant={"default"}
-                size={"sm"}
+                size={"default"}
                 icon={false}
-                className="grid place-items-center"
               />
             </form>
           </div>

@@ -32,7 +32,7 @@ export const socialMediaArray: social[] = [
   { value: "Tumblr", icon: <FaTumblr /> },
 ];
 
-export default function Newpage({ item, add, errorHandler }: any) {
+export default function Newpage({ item, errorHandler }: any) {
   const [social, setSocial] = useState<string>("Facebook");
   const [username, setUsername] = useState<string>("");
 
@@ -65,7 +65,6 @@ export default function Newpage({ item, add, errorHandler }: any) {
       if (data.status == 200) {
         item(data.newAccount);
         // console.log(data.newAccount);
-        add(false);
       } else {
         return errorHandler(data.message);
       }

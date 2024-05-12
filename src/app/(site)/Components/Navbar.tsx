@@ -46,14 +46,13 @@ const Navbar = () => {
     }
   }, [isOpen]);
 
-  const getSize = () => {
-    const widthBody = document.body.getBoundingClientRect().width;
-    if (widthBody > 650) {
-      setIsOpen(false);
-    }
-    // console.log(widthBody);
-  };
-  window.addEventListener("resize", getSize);
+  // const getSize = () => {
+  //   const widthBody = document.body.getBoundingClientRect().width;
+  //   if (widthBody > 650) {
+  //     setIsOpen(false);
+  //   }
+  //   // console.log(widthBody);
+  // };
 
   const [move, setMove] = useState<number>();
   const [bar, setBar] = useState<number>();

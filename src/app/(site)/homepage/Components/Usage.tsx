@@ -90,7 +90,7 @@ const Usage = () => {
 
   return (
     <div className="w-full flex items-center justify-center py-16 text-white">
-      <div className="w-full laptop:w-[1024px]  grid place-items-center sm:px-6 laptop:px-8 gap-4  box-border p-4 ">
+      <div className="w-full laptop:w-[1024px]  grid place-items-center  laptop:px-8 gap-4  box-border  ">
         <div className="w-full  flex flex-col items-center justify-center p-2  box-border gap-8  ">
           <div className="grid gap-2 text-center">
             <h2 className="text-3xl font-[700]">Discover</h2>

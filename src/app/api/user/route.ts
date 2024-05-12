@@ -31,6 +31,12 @@ export async function POST(req: Request) {
       });
     }
     const hashedPassword = await hash(password, 10);
+    const randomColor =
+      "#" +
+      Math.floor(Math.random() * 16777215)
+        .toString(16)
+        .padStart(6, "0");
+    const gradient = `bg-gradient-to-tr from-[${randomColor}] to-[${randomColor}]`;
 
     const newUser = await db.user.create({
       data: {
@@ -39,7 +45,7 @@ export async function POST(req: Request) {
         verification: false,
         password: hashedPassword,
         name: "", // Provide default value for optional field
-        imageUrl: "", // Provide default value for optional field
+        imageUrl: gradient, // Provide default value for optional field
       },
     });
 
