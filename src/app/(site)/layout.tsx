@@ -2,6 +2,7 @@ import "../globals.css";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import Notice from "./Components/Notice";
+import MainNav from "./Components/MainNav";
 
 export default function RootLayout({
   children,
@@ -21,11 +22,14 @@ export default function RootLayout({
         <header className="w-full top-0 grid place-items-center shadow z-[999]   ">
           {/* <Notice /> */}
         </header>
-        <nav className=" w-full top-0 grid place-items-center shadow z-[999] sticky ">
+        <nav className=" w-full top-0 grid place-items-center z-[999] fixed top-2 ">
           <Navbar />
+          {/* <MainNav /> */}
         </nav>
-        <main className="w-full relative oveflow-hidden pb-0">{children}</main>
-        <footer className="w-full h-fit grid place-items-center p-4 text-white ">
+        <main className="w-full relative oveflow-hidden pb-0 box-border">
+          {children}
+        </main>
+        <footer className="w-full h-fit grid place-items-center text-white ">
           <Footer />
         </footer>
       </body>

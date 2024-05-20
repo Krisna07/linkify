@@ -20,7 +20,7 @@ import { motion } from "framer-motion";
 const Profilecard = ({ cardStyle, icon }: any) => {
   return (
     <motion.div
-      className={`w-60 h-60 ${cardStyle} rounded-[10px] p-4 flex justify-between absolute left-0 bottom-0 transition:all`}
+      className={`laptop:w-60 laptop:h-60 tablet:w-40 tablet:h-40  ${cardStyle} rounded-[10px] p-4 flex justify-between absolute left-0 bottom-0 transition:all`}
     >
       <div className="w-20 h-20 rounded-full bg-rose-200 overflow-hidden">
         <img
@@ -143,11 +143,11 @@ const FeaturesSection = () => {
     hidden: { opacity: 0, x: -100 },
   };
   return (
-    <div className="w-full flex items-center justify-center  py-12  text-sky-100">
-      <div className="laptop:w-[1024px] p-4  grid  gap-8  box-border  ">
+    <div className="w-full h-screen grid place-items-center relative text-white/75 px-4">
+      <div className="laptop:w-[1024px] w-full grid  gap-8  box-border  ">
         <div
           ref={scrollRef}
-          className="flex items-center justify-between box-border gap-8 "
+          className="w-full grid grid-cols-1 laptop:grid-cols-[50%_40%] gap-8 box-border "
         >
           <motion.div
             initial={{ opacity: "0", y: 50 }}
@@ -161,10 +161,10 @@ const FeaturesSection = () => {
               stiffness: 100,
             }}
             viewport={{ once: true }}
-            className="laptop:w-3/5 h-full flex flex-col items-start justify-center gap-2 relative overflow-hidden"
+            className=" h-full flex flex-col items-start justify-center gap-2 relative overflow-hidden"
           >
             <h3 className="font-bold">Seamless</h3>
-            <h2 className="text-4xl w-full md:w-3/4 sm:text-2xl font-bold text-white mb-8 text-gray-700">
+            <h2 className="text-4xl w-full tablet:w-3/4 sm:text-2xl font-bold text-white mb-8 text-gray-700">
               Connect all your social media from single place
             </h2>
             <p className="w-4/5">
@@ -173,7 +173,7 @@ const FeaturesSection = () => {
               traffic, create and post ads.
             </p>
           </motion.div>
-          <div className="w-2/5 max-h-full box-border rounded flex hidden laptop:flex relative h-80">
+          <div className=" max-h-full box-border rounded flex hidden laptop:flex relative h-80">
             {profiles.map((card: any, x) => (
               <Profilecard
                 key={x}
@@ -183,7 +183,7 @@ const FeaturesSection = () => {
             ))}
           </div>
         </div>
-        <div className="w-full grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-4 gap-8 relative">
+        <div className=" grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-4 gap-8 relative">
           {features.map((feature) => (
             <motion.div
               initial={{ left: -100 }}
@@ -194,19 +194,20 @@ const FeaturesSection = () => {
                 stiffness: 100,
               }}
               viewport={{ once: true }}
-              className=" relative min-h-fit p-4 box-border bg-sky-100 text-slate-900 rounded  hover:-skew-y-3 transition hover:shadow-lg"
+              className=" relative min-h-fit p-4 box-border bg-gray-800/50 text-light rounded  hover:-skew-y-3 transition hover:shadow-lg"
               key={feature.id}
             >
               <h3 className="w-fit text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
-                {feature.title} <span className="text-2xl">{feature.icon}</span>
+                {feature.title}{" "}
+                {/* <span className="text-2xl text-white">{feature.icon}</span> */}
               </h3>
-              <p className="text-slate-800 font-600 text-sm">
+              <p className="text-slate-200 font-600 text-sm">
                 {feature.description}
               </p>
             </motion.div>
           ))}
         </div>
-        <div className="grid grid-cols-3 gap-4 text-white ">
+        <div className="w-full grid grid-cols-3 gap-4 text-white ">
           <div className="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-800 to-black box-border p-4 rounded">
             <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
               Users

@@ -75,7 +75,7 @@ const PricingTable: React.FC = () => {
     },
   ];
   return (
-    <div className="w-full flex items-center flex-col justify-center gap-8 px-8 py-12 overflow-hidden text-white ">
+    <div className="w-full flex items-center flex-col justify-center  gap-8 px-8 py-12 overflow-hidden text-white px-4 ">
       <div className="laptop:w-[1200px]  grid place-items-center text-center">
         <h2 className="text-4xl font-bold mb-4">Pricing</h2>
         <p className="laptop:w-1/2">
@@ -84,8 +84,8 @@ const PricingTable: React.FC = () => {
           exceptional value.
         </p>
       </div>
-      <div className="w-full laptop:w-[1200px] p-4   grid-cols-1 mb-8 gap-8 space-x-3 relative left-[-400]   ">
-        <div className="w-full grid laptop:grid-cols-4 gap-[20px]">
+      <div className="w-full laptop:w-[1024px] p-4  grid-cols-1 mb-8 gap-8 space-x-3 relative left-[-400]   ">
+        <div className="w-full grid tablet:grid-cols-2 laptop:grid-cols-4 gap-[20px]">
           {pricings.map((item) => (
             <div
               key={item.price}

@@ -33,7 +33,7 @@ export default function Herosection() {
       style={{
         backgroundImage,
       }}
-      className="w-full relative grid min-h-screen place-content-center overflow-hidden bg-gray-900 px-4 py-24 text-gray-200"
+      className="w-full relative grid min-h-screen place-items-center overflow-hidden bg-gray-900  text-gray-200 border-box"
     >
       <div className="relative z-10 flex flex-col items-center">
         <motion.button

@@ -62,7 +62,7 @@ const Footer: React.FC = () => {
   }, []);
   // console.log(country);
   return (
-    <footer className="w-full   py-4 grid place-items-center box-border relative">
+    <footer className="w-full py-4 grid place-items-center box-border relative">
       <div className="laptop:w-3/4  flex gap-4 justify-between">
         <div className="flex flex-col  justify-start gap-4 ">
           <h2 className="text-lg font-bold">

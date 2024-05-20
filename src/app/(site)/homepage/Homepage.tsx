@@ -21,10 +21,9 @@ export default function Homepage({}: HomepageProps) {
         type: "string",
         delay: 1,
       }}
-      className="w-full grid place-items-center gap-8"
+      className="w-full grid place-items-center gap-8 "
     >
       <Herosection />
-
       <FeaturesSection />
       <motion.div
         initial={{ opacity: 0, y: 100 }}
@@ -55,11 +54,6 @@ export default function Homepage({}: HomepageProps) {
         <Usage />
       </motion.div>
       <PricingTable />
-      {/* <div className="w-full h-screen fixed inset-0 -z-1">
-        <Canvas>
-          <Stars radius={50} count={200} factor={4} fade speed={2} />
-        </Canvas>
-      </div> */}
     </motion.div>
   );
 }

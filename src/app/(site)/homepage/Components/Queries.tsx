@@ -28,8 +28,8 @@ const Queries = () => {
 
   return (
     <div className="w-full flex items-center justify-center py-8">
-      <div className=" mx-auto px-8 lg:px-16">
-        <div className="grid grid-cols-1 laptop:grid-cols-[60%_40%] laptop:w-[1000px] gap-12 lg:gap-20">
+      <div className=" mx-auto px-8 lg:px-4">
+        <div className="grid grid-cols-1 laptop:grid-cols-[60%_40%] laptop:w-[1000px] gap-4 lg:gap-20">
           <div className="text-white/50">
             <h3 className=" text-xl font-bold mb-4">
               Unlock Your Social Media Potential
