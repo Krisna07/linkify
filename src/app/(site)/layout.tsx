@@ -23,8 +23,8 @@ export default function RootLayout({
           {/* <Notice /> */}
         </header>
         <nav className=" w-full top-0 grid place-items-center z-[999] fixed top-2 ">
-          <Navbar />
-          {/* <MainNav /> */}
+          {/* <Navbar /> */}
+          <MainNav />
         </nav>
         <main className="w-full relative oveflow-hidden pb-0 box-border">
           {children}

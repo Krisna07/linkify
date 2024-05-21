@@ -24,6 +24,7 @@ export default function Homepage({}: HomepageProps) {
       className="w-full grid place-items-center gap-8 "
     >
       <Herosection />
+
       <FeaturesSection />
       <motion.div
         initial={{ opacity: 0, y: 100 }}
@@ -36,6 +37,7 @@ export default function Homepage({}: HomepageProps) {
           },
         }}
         viewport={{ once: true }}
+        className="min-h-screen"
       >
         <Queries />
       </motion.div>
