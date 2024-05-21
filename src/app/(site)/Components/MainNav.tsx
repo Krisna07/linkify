@@ -18,7 +18,7 @@ const MainNav = () => {
       path: "/",
       submenu: [
         { name: "Features", path: "#features" },
-        { name: "Discover", path: "#discover}" },
+        { name: "Discover", path: "#discover" },
         { name: "Pricing", path: "#pricing" },
       ],
     },
@@ -62,7 +62,7 @@ const MainNav = () => {
     );
     setSubmenu(getSubmenus(object));
   };
-  console.log(subMenu);
+
   return (
     <div className="tablet:w-[80%] w-full px-8 py-2 bg-gray-800/75 flex items-center justify-between rounded-full text-white sticky top-0 z-10 shadow-md">
       <span className="text-white font-bold text-xl">Linkify</span>
@@ -106,12 +106,14 @@ const MainNav = () => {
             />
             <div className="bg-white -left-4 relative rounded grid place-items-left text-black px-4 py-2">
               {subMenu.map((item: any) => (
-                <span
+                <a
+                  href={item.path}
                   key={item.name}
                   className="cursor-pointer hover:text-gray-500 text-sm transition-all duration-300 ease-in-out "
+                  onClick={() => setSubmenu(undefined)}
                 >
                   {item.name}
-                </span>
+                </a>
               ))}
             </div>
           </div>

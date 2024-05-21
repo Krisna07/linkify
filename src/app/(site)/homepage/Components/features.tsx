@@ -143,8 +143,11 @@ const FeaturesSection = () => {
     hidden: { opacity: 0, x: -100 },
   };
   return (
-    <div className="w-full min-h-screen grid place-items-center relative text-white/75 px-4">
-      <div className="laptop:w-[1024px] w-full grid  gap-8  box-border  ">
+    <div
+      className="w-full min-h-screen grid place-items-center relative text-white/75 px-4"
+      id="features"
+    >
+      <div className="laptop:w-[1024px] w-full grid  gap-8  box-border">
         <div
           ref={scrollRef}
           className="w-full grid grid-cols-1 laptop:grid-cols-[50%_40%] gap-8 box-border "

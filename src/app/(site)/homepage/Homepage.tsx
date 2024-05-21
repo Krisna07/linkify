@@ -52,10 +52,14 @@ export default function Homepage({}: HomepageProps) {
           },
         }}
         viewport={{ once: true }}
+        id="discover"
       >
         <Usage />
       </motion.div>
-      <PricingTable />
+      <div id="pricing">
+        {" "}
+        <PricingTable />{" "}
+      </div>
     </motion.div>
   );
 }
