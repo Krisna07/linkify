@@ -31,12 +31,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 5.13.0
- * Query Engine version: b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b
+ * Prisma Client JS version: 5.16.2
+ * Query Engine version: 34ace0eb2704183d2c05b60b52fba5c43c13f303
  */
 Prisma.prismaVersion = {
-  client: "5.13.0",
-  engine: "b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b"
+  client: "5.16.2",
+  engine: "34ace0eb2704183d2c05b60b52fba5c43c13f303"
 }
 
 Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
@@ -166,7 +166,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\krisn\\linkify\\prisma\\generated\\client",
+      "value": "C:\\Users\\chill\\linkify\\prisma\\generated\\client",
       "fromEnvVar": null
     },
     "config": {
@@ -180,15 +180,15 @@ const config = {
       }
     ],
     "previewFeatures": [],
+    "sourceFilePath": "C:\\Users\\chill\\linkify\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null,
-    "schemaEnvPath": "../../../.env"
+    "rootEnvPath": null
   },
   "relativePath": "../..",
-  "clientVersion": "5.13.0",
-  "engineVersion": "b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b",
+  "clientVersion": "5.16.2",
+  "engineVersion": "34ace0eb2704183d2c05b60b52fba5c43c13f303",
   "datasourceNames": [
     "db"
   ],
@@ -202,8 +202,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\r\n// learn more about it in the docs: (link unavailable)\r\n\r\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\r\n// Try Prisma Accelerate: (link unavailable)\r\n\r\ngenerator client {\r\n  provider = \"prisma-client-js\"\r\n  output   = \"./generated/client\"\r\n}\r\n\r\ndatasource db {\r\n  provider = \"postgresql\"\r\n  url      = env(\"DATABASE_URL\")\r\n}\r\n\r\nmodel User {\r\n  id                String   @id @default(cuid())\r\n  name              String\r\n  email             String    @unique\r\n  username          String    @unique\r\n  password          String\r\n  imageUrl          String\r\n  verification      Boolean\r\n  accounts          Account[]\r\n}\r\n//social media accounts\r\nmodel Account {\r\n  id            String   @id @default(cuid())\r\n  User          User     @relation(fields: [userId], references: [id])\r\n  userId        String\r\n  type          String   \r\n  username      String  \r\n  avatar        String?\r\n  bio           String?\r\n  email         String?\r\n  friend        String?\r\n  followers     String?\r\n  connections   String?\r\n  content       Content[]\r\n  analytics     Analytics[]\r\n}\r\n\r\n\r\nmodel Content {\r\n  id          String   @id @default(cuid())\r\n  accountId   Account   @relation(fields: [id], references: [id])\r\n  type        String   //(e.g. post, image, video)\r\n  text        String\r\n  media       String\r\n  postedAt    DateTime @default(now())\r\n  engagement  Engagement[]\r\n\r\n}\r\n\r\nmodel Engagement {\r\n  id          String   @id @default(cuid())\r\n  contentId   Content   @relation(fields: [id], references: [id])\r\n  type        String   //(e.g. like, comment, share)\r\n  count       Int\r\n}\r\n\r\nmodel Analytics {\r\n  id          String   @id @default(cuid())\r\n  accountId    Account   @relation(fields: [id], references: [id])\r\n  metric       String   //(e.g. followerGrowth, engagementRate)\r\n  value        Float\r\n  timestamp    DateTime @default(now())\r\n}\r\n\r\n// model Team {\r\n//   id       String   @id @default(cuid())\r\n//   name     String\r\n//   users    User[]\r\n//   accounts Account[]\r\n// }\r\n\r\n// model UserRole {\r\n//   id       String   @id @default(cuid())\r\n//   userId   User   @relation(fields: [id], references: [id])\r\n//   role     String   //(e.g. admin, member)\r\n// }\r\n\r\n// model Notification {\r\n//   id       String   @id @default(cuid())\r\n//   userId   User   @relation(fields: [id], references: [id])\r\n//   type     String   //(e.g. mention, message, comment)\r\n//   message  String\r\n//   readAt   DateTime\r\n// }\r\n\r\n// model SocialListening {\r\n//   id       String   @id @default(cuid())\r\n//   accountId User   @relation(fields: [id], references: [id])\r\n//   keyword  String\r\n//   mention  String\r\n//   timestamp DateTime @default(now())\r\n// }\r\n\r\n// model ContentCalendar {\r\n//   id       String   @id @default(cuid())\r\n//   accountId Account   @relation(fields: [id], references: [id])\r\n//   date     DateTime\r\n//   content  Content\r\n// }",
-  "inlineSchemaHash": "daf08e76845af0c56ced54b07140473142604389c606a0c68902c13968b9e536",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: (link unavailable)\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: (link unavailable)\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id           String    @id @default(cuid())\n  name         String\n  email        String    @unique\n  username     String    @unique\n  password     String\n  imageUrl     String\n  verification Boolean\n  accounts     Account[]\n}\n\n//social media accounts\nmodel Account {\n  id          String      @id @default(cuid())\n  User        User        @relation(fields: [userId], references: [id])\n  userId      String\n  type        String\n  username    String\n  avatar      String?\n  bio         String?\n  email       String?\n  friend      String?\n  followers   String?\n  connections String?\n  content     Content[]\n  analytics   Analytics[]\n}\n\nmodel Content {\n  id         String       @id @default(cuid())\n  accountId  Account      @relation(fields: [id], references: [id])\n  type       String //(e.g. post, image, video)\n  text       String\n  media      String\n  postedAt   DateTime     @default(now())\n  engagement Engagement[]\n}\n\nmodel Engagement {\n  id        String  @id @default(cuid())\n  contentId Content @relation(fields: [id], references: [id])\n  type      String //(e.g. like, comment, share)\n  count     Int\n}\n\nmodel Analytics {\n  id        String   @id @default(cuid())\n  accountId Account  @relation(fields: [id], references: [id])\n  metric    String //(e.g. followerGrowth, engagementRate)\n  value     Float\n  timestamp DateTime @default(now())\n}\n\n// model Team {\n//   id       String   @id @default(cuid())\n//   name     String\n//   users    User[]\n//   accounts Account[]\n// }\n\n// model UserRole {\n//   id       String   @id @default(cuid())\n//   userId   User   @relation(fields: [id], references: [id])\n//   role     String   //(e.g. admin, member)\n// }\n\n// model Notification {\n//   id       String   @id @default(cuid())\n//   userId   User   @relation(fields: [id], references: [id])\n//   type     String   //(e.g. mention, message, comment)\n//   message  String\n//   readAt   DateTime\n// }\n\n// model SocialListening {\n//   id       String   @id @default(cuid())\n//   accountId User   @relation(fields: [id], references: [id])\n//   keyword  String\n//   mention  String\n//   timestamp DateTime @default(now())\n// }\n\n// model ContentCalendar {\n//   id       String   @id @default(cuid())\n//   accountId Account   @relation(fields: [id], references: [id])\n//   date     DateTime\n//   content  Content\n// }\n",
+  "inlineSchemaHash": "516072d0a3c34f1d6ec80715d2f2974266b63099dbacc87ba71c469e78103616",
   "copyEngine": true
 }
 
