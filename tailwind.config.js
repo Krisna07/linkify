@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
+
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,6 +11,17 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    colors: {
+      transparent: "transparent",
+      current: "currentColor",
+      white: "#ffffff",
+      dark: "#000000",
+      primary: "#115e59",
+      accent: "#565584",
+      tahiti: "#3ab7bf",
+      silver: "#ecebff",
+      bermuda: "#78dcca",
+    },
     extend: {
       boxShadow: {
         bs: "0 0 4px 0 rgb(171, 183, 183)",
@@ -18,7 +31,6 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
-
       animation: {
         text: "text 20s ease infinite",
         slidein300: "slidein 1s ease 300ms",
@@ -50,13 +62,8 @@ module.exports = {
     },
     screens: {
       tablet: "640px",
-      // => @media (min-width: 640px) { ... }
-
       laptop: "1024px",
-      // => @media (min-width: 1024px) { ... }
-
       desktop: "1280px",
-      // => @media (min-width: 1280px) { ... }
     },
   },
   plugins: [],

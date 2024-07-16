@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { BiBell } from "react-icons/bi";
 import Dropdown from "./dropdown";
 import Image from "next/image";
-import Button from "../../../components/Global_components/Button";
+
 import { TbShare } from "react-icons/tb";
 
 export default function Mainnav({ user }: any) {
@@ -23,7 +23,7 @@ export default function Mainnav({ user }: any) {
   const thisNav = `${route.split("/").splice(-2)[0]}`;
 
   return (
-    <div className="w-full  grid gap-4 bg-gray-800 border-b border-b-gray-600 border-b-[1px] relative box-border overflow">
+    <div className="w-full  grid gap-4 bg-gray-800  border-b-gray-600 border-b-[1px] relative box-border overflow">
       <div className=" flex items-center justify-between box-border p-2  gap-4">
         <div className=" flex items-center py-2  gap-2">
           <div className="h-6 w-6  rounded-full overflow-hidden  tablet:flex">

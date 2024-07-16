@@ -1,8 +1,9 @@
 import "../globals.css";
 
-import Footer from "../../components/Landing_components/Footer";
+import Landingpage from "../../components/Layouts/Landingpage";
+import { Inter } from "next/font/google";
 
-import MainNav from "../../components/Landing_components/MainNav";
+const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -15,20 +16,9 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body
-        className={
-          "w-full min-h-[100vh] grid place-items-center m-0 p-0 relative bg-slate-900"
-        }
+        className={`${inter.className} w-full h-fit p-0 m-[0_auto]  dark:bg-dark leading -[100%] `}
       >
-        <header className="w-full top-0 grid place-items-center shadow z-[999]   "></header>
-        <nav className=" w-full grid place-items-center z-[999] fixed top-2 ">
-          <MainNav />
-        </nav>
-        <main className="w-full relative oveflow-hidden pb-0 box-border">
-          {children}
-        </main>
-        <footer className="w-full h-fit grid place-items-center text-white ">
-          <Footer />
-        </footer>
+        <Landingpage children={children} />
       </body>
     </html>
   );

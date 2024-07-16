@@ -9,23 +9,28 @@ const buttonVarients = cva("active:", {
   variants: {
     variant: {
       default:
-        "bg-[#000000] text-sky-100 w-fit h-fit rounded-full relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-[0_0_2px_0_gray]",
+        "bg-teal rounded text-silver w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs",
       accent:
-        "bg-[#DD5746] text-black w-fit h-fit rounded relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-[0_0_2px_0_gray]",
+        "bg-accent rounded text-black w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs",
       primary:
-        "bg-[#4792AE] text-black w-fit h-fit rounded-lg bg-[#FFC370] relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-[0_0_2px_0_gray]",
+        "bg-dark rounded text-black w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs",
       submit:
-        "bg-[#4792AE] text-sky-100 w-fit h-fit rounded-full relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-[0_0_2px_0_gray]",
+        "bg-dark rounded text-sky-100 w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs",
     },
-
+    // border: {
+    //   default: "border-rounded",
+    //   round: "rounded-full",
+    // },
     size: {
-      default: "py-1 px-4 text-[14px] ",
+      default: "py-1 px-4 ",
       sm: "laptop:py-1 py-2 px-4 laptop:text-[12px] ",
       lg: "py-2 px-8 text-lg",
     },
+
     defaultVariants: {
       variant: "default",
       size: "default",
+      border: "default",
     },
   },
 });
@@ -36,6 +41,7 @@ export interface ButtonProps
   icon?: Boolean;
   className?: string;
   rightIcon?: any;
+
   leftIcon?: IconType;
 }
 
@@ -43,6 +49,7 @@ const Button: FC<ButtonProps> = ({
   className,
   children,
   variant,
+
   size,
   icon,
   rightIcon,
@@ -62,16 +69,16 @@ const Button: FC<ButtonProps> = ({
       onMouseLeave={() => setHover(false)}
     >
       <div
-        className={`flex items-center justify-center gap-2 relative z-[99] hover:text-gray-800`}
+        className={`flex items-center justify-center gap-2 relative z-[99] `}
       >
         <span className="block w-fit ">{children}</span>
         {rightIcon ? rightIcon : iconCheck}
       </div>
-      <div
+      {/* <div
         style={{ width: `${hover ? "100%" : "0%"}` }}
         className={`h-full 
-          left-0 top-0 absolute bg-blue-300/75  transition-all `}
-      ></div>
+          left-0 top-0 absolute   transition-all `}
+      ></div> */}
     </button>
   );
 };

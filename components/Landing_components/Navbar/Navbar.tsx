@@ -1,18 +1,12 @@
 "use client";
-
-import { Console } from "console";
-import { get } from "http";
-import { HtmlContext } from "next/dist/server/future/route-modules/app-page/vendored/contexts/entrypoints";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
-import { BiChevronUp } from "react-icons/bi";
 import { BsTriangleFill } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
-import { FaPerson } from "react-icons/fa6";
-import Button from "../Global_components/Button";
+import Button from "../../Global_components/Button";
 
-const MainNav = () => {
+const Navbar = () => {
   const menus = [
     {
       name: "Home",
@@ -127,18 +121,9 @@ const MainNav = () => {
       </div>
       <div className="tablet:hidden p-2 rounded-full bg-black/75 ">
         <FaUser />
-        {/* <div className=" absolute top-[100%] grid gap-2 w-fit">
-          <Button children="Login" variant={"default"} size={"default"} />
-          <Button
-            children="Sign Up"
-            variant={"default"}
-            size={"default"}
-            className="w-fit"
-          />
-        </div> */}
       </div>
     </div>
   );
 };
 
-export default MainNav;
+export default Navbar;
