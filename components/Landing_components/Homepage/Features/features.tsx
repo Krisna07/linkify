@@ -1,65 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import {
-  FaExpandAlt,
-  FaFacebook,
-  FaInstagram,
-  FaLink,
-  FaShareSquare,
-  FaSnapchat,
-  FaTiktok,
-  FaTwitter,
-  FaUser,
-} from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import { BiGitPullRequest, BiShapeTriangle, BiUpArrow } from "react-icons/bi";
-import { GiAutoRepair } from "react-icons/gi";
+
 import { BsTriangleFill } from "react-icons/bs";
 import { motion } from "framer-motion";
-
-const Profilecard = ({ cardStyle, icon }: any) => {
-  return (
-    <motion.div
-      className={`laptop:w-60 laptop:h-60 tablet:w-40 tablet:h-40  ${cardStyle} rounded-[10px] p-4 flex justify-between absolute left-0 bottom-0 transition:all`}
-    >
-      <div className="w-20 h-20 rounded-full bg-rose-200 overflow-hidden">
-        <img
-          src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA1LzUwNC1meC0xMy1qb2IxNzU4XzEucG5n.png"
-          alt=""
-        />
-      </div>
-      <div>{icon}</div>
-    </motion.div>
-  );
-};
-const features = [
-  {
-    id: 1,
-    icon: <FaExpandAlt className=" text-gray-800" />,
-    title: "Scalable",
-    description: "Linkify can handle any number of links you throw at it. ",
-  },
-  {
-    id: 2,
-    icon: <FaLink className=" text-gray-800" />,
-    title: "Easy to Use",
-    description: "Linkify has a simple and intuitive interface t",
-  },
-  {
-    id: 3,
-    icon: <GiAutoRepair className=" text-gray-800" />,
-    title: "Automatic ",
-    description:
-      "Linkify automatically detects broken links and removes them from your list.",
-  },
-  {
-    id: 4,
-    icon: <FaShareSquare className=" text-gray-800" />,
-    title: "Share Everywhere",
-    description:
-      "Linkify provides you with a single link that you can share on all platforms.",
-  },
-];
+import Profilecard from "./Profilecard";
+import Featurecards from "./Featurecards";
+import Counter from "./Counter";
 
 const FeaturesSection = () => {
   const [count, setCount] = useState(0);
@@ -106,33 +55,6 @@ const FeaturesSection = () => {
     return () => clearInterval(interval);
   }, [count, req, download]);
 
-  const profiles = [
-    {
-      cardStyle: "bg-[red] z-50 bottom-0 left-0",
-      icon: <FaTiktok size={32} />,
-    },
-    {
-      cardStyle:
-        "bg-[blue] z-40 bottom-12 left-12 z-40 hover:translate-y-[-40px] transition-all",
-      icon: <FaFacebook size={32} />,
-    },
-    {
-      cardStyle:
-        "bg-[Yellow] bottom-24 left-24 z-30 hover:translate-y-[-40px] transition-all",
-      icon: <FaSnapchat size={32} />,
-    },
-    {
-      cardStyle:
-        "bg-[blue]/75 bottom-36 left-36 z-20 hover:translate-y-[-40px] transition-all",
-      icon: <FaTwitter size={32} />,
-    },
-    {
-      cardStyle:
-        "bg-gradient-to-r from-[indigo] via-[purple] to-[pink] bottom-48 left-48 z-10 hover:translate-y-[-40px] transition-all",
-      icon: <FaInstagram size={32} />,
-    },
-  ];
-
   const list = {
     visible: { opacity: 1 },
     hidden: { opacity: 0 },
@@ -177,49 +99,19 @@ const FeaturesSection = () => {
             </p>
           </motion.div>
           <div className=" max-h-full box-border rounded  hidden laptop:flex relative h-80">
-            {profiles.map((card: any, x) => (
-              <Profilecard
-                key={x}
-                cardStyle={card.cardStyle}
-                icon={card.icon}
-              />
-            ))}
+            <Profilecard />
           </div>
         </div>
         <div className=" grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-4 gap-8 relative">
-          {features.map((feature) => (
-            <motion.div
-              initial={{ left: -100 }}
-              whileInView={{ left: 0 }}
-              transition={{
-                type: "bounce",
-                damping: 10,
-                stiffness: 100,
-              }}
-              viewport={{ once: true }}
-              className="group relative min-h-fit p-4 box-border bg-silver hover:bg-bermuda  text-dark text-light rounded   transition-all duration-300 hover:shadow-lg"
-              key={feature.id}
-            >
-              <h3 className="w-full text-lg font-bold mb-2 flex items-center relaxed justify-between">
-                {feature.title}
-                <span className="group-hover:scale-[1.1] group-hover:text-accent ">
-                  {" "}
-                  {feature.icon}
-                </span>
-              </h3>
-              <p className="text-slate-200 font-600 text-sm">
-                {feature.description}
-              </p>
-            </motion.div>
-          ))}
+          <Featurecards />
         </div>
-        <div className="w-full grid grid-cols-3 gap-4 text-silver ">
+        <div className="w-full grid grid-cols-1 tablet:grid-cols-3 gap-4 text-silver ">
           <div className="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-[gray] via-dark to-black box-border p-4 rounded">
             <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
               Users
             </h3>
             <h3 className=" text-xl font-bold mb-2 flex items-center gap-4 text-gray-400">
-              {count}
+              <Counter number={count} />
               <span>
                 <FaUser className="animate-pulse" />
               </span>
@@ -230,7 +122,7 @@ const FeaturesSection = () => {
               Accounts
             </h3>
             <h3 className=" text-xl font-bold mb-2 flex items-center gap-4 text-gray-400">
-              {req}
+              <Counter number={req} />
               <span>
                 <BiGitPullRequest className="animate" />
               </span>
@@ -241,7 +133,7 @@ const FeaturesSection = () => {
               Shares
             </h3>
             <h3 className=" text-xl font-bold mb-2 flex items-center gap-4 text-gray-400">
-              {download}
+              <Counter number={download} />
               <span>
                 <BsTriangleFill className="animate-bounce" />
               </span>

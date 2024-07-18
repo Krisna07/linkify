@@ -28,7 +28,9 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/lib/mailer.ts"
+    "src/lib/mailer.ts",
+    "components/Landing_components/Homepage/Features/Counter.tsx",
+    "components/Landing_components/Homepage/Features/Digits.js"
   ],
   "exclude": ["node_modules"]
 }

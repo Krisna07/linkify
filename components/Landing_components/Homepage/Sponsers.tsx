@@ -12,6 +12,7 @@ import {
   FaSnapchatSquare,
   FaStripe,
 } from "react-icons/fa";
+import Marquee from "react-fast-marquee";
 
 const SponsorsSection = () => {
   const sponsers = [
@@ -56,22 +57,21 @@ const SponsorsSection = () => {
       logoUrl: <FaFacebookSquare color="blue" />,
     },
   ];
-
+  const width = `${window.innerWidth / sponsers.length}px`;
+  console.log(width);
   return (
-    <div className=" overflow-hidden grid place-items-center gap-4 py-8">
-      <div className=" text-center grid place-items-center gap-4 font-[500]">
-        <h2 className="w-fit text-center text-xl  ">App Support</h2>
-      </div>
-      <div className="w-full flex justify-between items-center gap-4 overflow-hidden  ">
+    <div className="w-full  grid place-items-center gap-4 py-16 bg-primary">
+      <Marquee>
         {sponsers.map((sponser) => (
           <div
-            className="text-[50px] hover:scale-[1.2] transition-all"
+            style={{ width: `${width}` }}
+            className={`w-[10%] text-[100px] hover:scale-[1.2] transition-all`}
             key={sponser.name}
           >
             {sponser.logoUrl}
           </div>
         ))}
-      </div>
+      </Marquee>
     </div>
   );
 };
