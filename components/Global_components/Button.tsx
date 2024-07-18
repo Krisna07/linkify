@@ -9,20 +9,20 @@ const buttonVarients = cva("active:", {
   variants: {
     variant: {
       default:
-        "bg-teal rounded text-silver w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs",
+        "bg-dark rounded transition-all text-silver w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs hover:translate-y-[-1px]",
       accent:
-        "bg-accent rounded text-black w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs",
+        "bg-accent rounded transition-all text-black w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs",
       primary:
-        "bg-dark rounded text-black w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs",
+        "bg-primary rounded transition-all text-white w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs",
       submit:
-        "bg-dark rounded text-sky-100 w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs",
+        "bg-dark rounded transition-all text-sky-100 w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs",
     },
     // border: {
     //   default: "border-rounded",
     //   round: "rounded-full",
     // },
     size: {
-      default: "py-1 px-4 ",
+      default: "py-1 px-4  ",
       sm: "laptop:py-1 py-2 px-4 laptop:text-[12px] ",
       lg: "py-2 px-8 text-lg",
     },

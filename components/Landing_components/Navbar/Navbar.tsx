@@ -59,8 +59,8 @@ const Navbar = () => {
   };
 
   return (
-    <div className="tablet:w-[80%] w-full px-8 py-2 bg-gray-800/75 flex items-center justify-between rounded-full text-white sticky top-0 z-10 shadow-md">
-      <span className="text-white font-bold text-xl">Linkify</span>
+    <div className="tablet:w-[80%] max-w-[1200px] bg-bermuda w-full px-8 py-2  flex items-center justify-between rounded-full  fixed top-2 z-20 shadow-md">
+      <span className=" font-bold text-xl">Linkify</span>
       <div
         className="flex gap-4 relative"
         onMouseLeave={() => setSubmenu(undefined)}
@@ -71,7 +71,7 @@ const Navbar = () => {
               href={`${menu.path}`}
               key={menu.name}
               className={`transition-all duration-300 ease-in-out ${
-                active === menu.path ? "text-white/50" : "text-white"
+                active === menu.path ? "text-dark/75" : ""
               }`}
               onClick={() => setActive(menu.path)}
               onMouseOver={(e: any) => {
@@ -97,14 +97,14 @@ const Navbar = () => {
           >
             <BsTriangleFill
               size={12}
-              className="absolute top-[-8px] text-white"
+              className="absolute top-[-8px] text-dark "
             />
-            <div className="bg-white -left-4 relative rounded grid place-items-left text-black px-4 py-2">
+            <div className="bg-dark text-white -left-4 relative rounded flex  place-items-left gap-2 text-black px-4 py-2">
               {subMenu.map((item: any) => (
                 <a
                   href={item.path}
                   key={item.name}
-                  className="cursor-pointer hover:text-gray-500 text-sm transition-all duration-300 ease-in-out "
+                  className="cursor-pointer hover:text-gray-500 transition-all duration-300 ease-in-out hover:text-primary "
                   onClick={() => setSubmenu(undefined)}
                 >
                   {item.name}
@@ -116,8 +116,12 @@ const Navbar = () => {
       </div>
 
       <div className=" gap-4 hidden tablet:flex" role="group">
-        <Button children="Login" variant={"default"} size={"default"} />
-        <Button children="Sign Up" variant={"default"} size={"default"} />
+        <Button
+          children="Join now "
+          variant={"primary"}
+          size={"default"}
+          icon={true}
+        />
       </div>
       <div className="tablet:hidden p-2 rounded-full bg-black/75 ">
         <FaUser />

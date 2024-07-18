@@ -16,7 +16,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body
-        className={`${inter.className} w-full h-fit p-0 m-[0_auto]  dark:bg-dark leading -[100%] `}
+        className={`${inter.className} w-full h-fit p-0 m-0 grid place-items-center  dark:bg-dark leading -[100%]  `}
       >
         <Landingpage children={children} />
       </body>
