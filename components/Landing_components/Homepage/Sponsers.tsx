@@ -60,12 +60,12 @@ const SponsorsSection = () => {
   const width = `${window.innerWidth / sponsers.length}px`;
   console.log(width);
   return (
-    <div className="w-full  grid place-items-center gap-4 py-16 bg-primary">
+    <div className="w-full h-fit overflow-hidden grid place-items-center gap-4 py-16 bg-primary">
       <Marquee>
         {sponsers.map((sponser) => (
           <div
             style={{ width: `${width}` }}
-            className={`w-[10%] text-[100px] hover:scale-[1.2] transition-all`}
+            className={`min-w-[100px] text-[100px] transition-all`}
             key={sponser.name}
           >
             {sponser.logoUrl}

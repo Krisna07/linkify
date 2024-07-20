@@ -59,7 +59,10 @@ const Navbar = () => {
   };
 
   return (
-    <div className="tablet:w-[80%] max-w-[1200px] bg-bermuda w-full px-8 py-2  flex items-center justify-between rounded-full  fixed top-2 z-20 shadow-md">
+    <div
+      className="  text-white w-full px-8 py-2 bg-primary flex items-center justify-between shadow-bs  z-[100] "
+      id="nav"
+    >
       <span className=" font-bold text-xl">Linkify</span>
       <div
         className="flex gap-4 relative"
@@ -70,8 +73,8 @@ const Navbar = () => {
             <Link
               href={`${menu.path}`}
               key={menu.name}
-              className={`transition-all duration-300 ease-in-out ${
-                active === menu.path ? "text-dark/75" : ""
+              className={`transition-all duration-300 font-[600] ease-in-out ${
+                active === menu.path ? "text-silver/75" : ""
               }`}
               onClick={() => setActive(menu.path)}
               onMouseOver={(e: any) => {
@@ -118,7 +121,7 @@ const Navbar = () => {
       <div className=" gap-4 hidden tablet:flex" role="group">
         <Button
           children="Join now "
-          variant={"primary"}
+          variant={"default"}
           size={"default"}
           icon={true}
         />

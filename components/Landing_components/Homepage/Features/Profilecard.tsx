@@ -25,7 +25,8 @@ export default function Profilecard() {
       icon: <FaFacebook size={32} />,
     },
     {
-      cardStyle: "bg-[Yellow]  z-30 hover:translate-y-[-40px] transition-all",
+      cardStyle:
+        "bg-[Yellow] text-accent  z-30 hover:translate-y-[-40px] transition-all",
       icon: <FaSnapchat size={32} />,
     },
     {
@@ -52,7 +53,7 @@ export default function Profilecard() {
             damping: 10,
             stiffness: 100,
           }}
-          viewport={{ once: false }}
+          viewport={{ once: true }}
           key={x}
           className={`laptop:w-60 laptop:h-60 tablet:w-40 tablet:h-40  ${card.cardStyle} rounded-[10px] p-4 flex justify-between absolute left-0 bottom-0 transition:all`}
         >

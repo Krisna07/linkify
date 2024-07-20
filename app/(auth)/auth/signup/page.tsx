@@ -3,14 +3,14 @@ import React, { useEffect, useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { FaFacebook, FaGithub, FaLeaf, FaLock, FaUser } from "react-icons/fa";
 import Input from "../Formcomponents/Input";
-import Button from "../../../components/Global_components/Button";
+
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 import "react-toastify/dist/ReactToastify.css";
 
 import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/navigation";
-
+import Button from "../../../../components/Global_components/Button";
 import { FiAlertCircle, FiMail, FiUser } from "react-icons/fi";
 import { signIn } from "next-auth/react";
 // import transporter from "@/lib/mailer";
@@ -102,7 +102,7 @@ const SignInPage: React.FC = () => {
 
   const nameCheck = (object: string) => {
     return (
-      !object.match(/^[A-Za-z0-9]+(?:[._][A-Za-z0-9]+)*$/u) &&
+      !object.match(/^[A-Za-z0-9]+(?:[._][A-Za-z0-9]+)*$/) &&
       setErr("Invalid characters username")
     );
   };

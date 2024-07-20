@@ -81,7 +81,7 @@ const FeaturesSection = () => {
               opacity: "1",
             }}
             transition={{
-              type: "spring",
+              type: "bounce",
               damping: 10,
               stiffness: 100,
             }}
@@ -117,7 +117,7 @@ const FeaturesSection = () => {
               </span>
             </h3>
           </div>
-          <div className=" bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-800 to-black box-border p-4 rounded">
+          <div className="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-[gray] via-dark to-black box-border p-4 rounded">
             <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
               Accounts
             </h3>
@@ -128,7 +128,7 @@ const FeaturesSection = () => {
               </span>
             </h3>
           </div>
-          <div className=" bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-gray-700 via-gray-800 to-black box-border p-4 rounded">
+          <div className="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-[gray] via-dark to-black box-border p-4 rounded">
             <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
               Shares
             </h3>

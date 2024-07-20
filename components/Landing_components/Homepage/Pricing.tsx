@@ -76,7 +76,10 @@ const PricingTable: React.FC = () => {
     },
   ];
   return (
-    <div className="w-full flex items-center flex-col justify-center  gap-8 px-8 py-12 overflow-hidden text-white px-4 ">
+    <div
+      className="w-full flex items-center flex-col justify-center  gap-8 py-12 overflow-hidden text-white px-4"
+      id="pricing"
+    >
       <div className="laptop:w-[1200px]  grid place-items-center text-center">
         <h2 className="text-4xl font-bold mb-4">Pricing</h2>
         <p className="laptop:w-1/2">
@@ -90,16 +93,16 @@ const PricingTable: React.FC = () => {
           {pricings.map((item) => (
             <div
               key={item.price}
-              className="p-4 grid gap-4 shadow-bs transition-all hover:translate-x-1 hover:-translate-y-1"
+              className="p-4 grid gap-4 hover:shadow-bs bg-bermuda hover:bg-bermuda/50 text-dark transition-all hover:translate-x-1 hover:-translate-y-1"
             >
-              <h3 className="font-semibold text-white/50">{item.tierName}</h3>
+              <h3 className="font-semibold text-dark/50">{item.tierName}</h3>
               <h2 className="text-xl font-bold">
                 ${item.price}/{monthly ? "month" : "annually"}
               </h2>
               <div>{item.des}</div>
               <Button
                 children="Join"
-                variant={"primary"}
+                variant={"default"}
                 size={"sm"}
                 icon={false}
                 className="w-full grid"

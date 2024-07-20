@@ -74,11 +74,6 @@ const Button: FC<ButtonProps> = ({
         <span className="block w-fit ">{children}</span>
         {rightIcon ? rightIcon : iconCheck}
       </div>
-      {/* <div
-        style={{ width: `${hover ? "100%" : "0%"}` }}
-        className={`h-full 
-          left-0 top-0 absolute   transition-all `}
-      ></div> */}
     </button>
   );
 };
