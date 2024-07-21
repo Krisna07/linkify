@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
 
-import Link from "next/link";
 import { princingTier } from "../../../app/(site)/pricings/page";
 import Button from "../../Global_components/Button";
+import { motion } from "framer-motion";
 
 const PricingTable: React.FC = () => {
   const [monthly, setMonthly] = useState<boolean>(true);
@@ -76,16 +76,21 @@ const PricingTable: React.FC = () => {
     },
   ];
   return (
-    <div
-      className="w-full flex items-center flex-col justify-center  gap-8 py-12 overflow-hidden text-white px-4"
+    <motion.div
+      initial={{ opacity: "0.5", y: 50 }}
+      whileInView={{
+        y: 0,
+        opacity: "1",
+      }}
+      viewport={{ once: false }}
+      className="w-full   grid place-items-center  gap-8 py-12 overflow-hidden text-white px-4"
       id="pricing"
     >
       <div className="laptop:w-[1200px]  grid place-items-center text-center">
         <h2 className="text-4xl font-bold mb-4">Pricing</h2>
         <p className="laptop:w-1/2">
-          Choose a plan that fits your needs. Enjoy the benefits of our
-          feature-rich platform, designed to elevate your experience and offer
-          exceptional value.
+          Choose the plan that best suits your needs and start building your
+          project links today.
         </p>
       </div>
       <div className="w-full laptop:w-[1024px] p-4  grid-cols-1 mb-8 gap-8 space-x-3 relative left-[-400]   ">
@@ -111,15 +116,7 @@ const PricingTable: React.FC = () => {
           ))}
         </div>
       </div>
-      {/* <Link href={"./pricings"}>
-        <Button
-          children={"Learn more"}
-          variant={"primary"}
-          size={"sm"}
-          icon={true}
-        />
-      </Link> */}
-    </div>
+    </motion.div>
   );
 };
 

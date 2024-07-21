@@ -5,6 +5,7 @@ import FeaturesSection from "../../components/Landing_components/Homepage/Featur
 // import SponsorsSection from "../../components/Landing_components/Homepage/Sponsers";
 import Queries from "../../components/Landing_components/Homepage/Queries";
 import PricingTable from "../../components/Landing_components/Homepage/Pricing";
+import Usage from "../../components/Landing_components/Homepage/Usage";
 
 export default function page() {
   return (
@@ -17,8 +18,11 @@ export default function page() {
       <div className="w-full bg-accent text-white" id="discover">
         <Queries />
       </div>
-      <div className="w-full bg-accent text-white" id="#pricing ">
+      <div className="w-full bg-accent text-white " id="#pricing ">
         <PricingTable />
+      </div>
+      <div className="w-full bg-accent text-white " id="#pricing ">
+        <Usage />
       </div>
     </>
   );

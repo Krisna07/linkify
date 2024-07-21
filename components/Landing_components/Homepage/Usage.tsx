@@ -38,7 +38,7 @@ const Usage = () => {
       topic: "Social",
       title: "Social Hub",
       subtitle: "Manage all your social media accounts in one place",
-      gradient: "bg-gradient-to-tr from-blue-200 to-red-600",
+      gradient: "bg-gradient-to-tr from-primary to-[red]",
       description:
         "Simplify your online presence by centralizing the management of your social media accounts. Access and interact with your feeds, messages, and notifications seamlessly.",
       image: "social_hub_image.jpg", // Placeholder image URL
@@ -47,7 +47,7 @@ const Usage = () => {
     {
       topic: "Content",
       title: "Content Discovery",
-      gradient: "bg-gradient-to-tr from-blue-600 to-green-400",
+      gradient: "bg-gradient-to-tr from-[blue] to-[green]",
       subtitle: "Discover trending content tailored to your interests",
       description:
         "Explore trending topics and discover new content based on your interests. Stay informed and engaged with the latest news, articles, and videos curated just for you.",
@@ -57,7 +57,7 @@ const Usage = () => {
     {
       topic: "Community",
       title: "Community Engagement",
-      gradient: "bg-gradient-to-tr from-blue-400 to-yellow-600",
+      gradient: "bg-gradient-to-tr from-accent to-[yellow]",
       subtitle: "Connect with like-minded individuals and communities",
       description:
         "Join vibrant communities and engage with like-minded individuals who share your interests and passions. Foster meaningful connections, participate in discussions, and collaborate on projects.",
@@ -67,7 +67,7 @@ const Usage = () => {
     {
       topic: "Dashboard",
       title: "Engaging Dashboard",
-      gradient: "bg-gradient-to-tr from-blue-300 to-gray-600",
+      gradient: "bg-gradient-to-tr from-[blue] to-[gray]",
       subtitle: "Track your social media analytics at a glance",
       description:
         "Get insights into your social media performance with customizable dashboards. Monitor key metrics, track audience engagement, and optimize your social media strategy for maximum impact.",
@@ -90,17 +90,17 @@ const Usage = () => {
 
   return (
     <div className="w-full flex items-center justify-center py-16 text-white">
-      <div className="w-full laptop:w-[1024px]  grid place-items-center  laptop:px-8 gap-4  box-border  ">
+      <div className="w-full desktop:w-[1024px]  grid place-items-center  laptop:px-8 gap-4  box-border  ">
         <div className="w-full  flex flex-col items-center justify-center p-2  box-border gap-8  ">
           <div className="grid gap-2 text-center">
             <h2 className="text-3xl font-[700]">Discover</h2>
-            <p className="w-full text-xl  tablet:w-[50ch]">
+            <p className="w-full   tablet:w-[50ch]">
               Explore curated content, connect effortlessly, and unlock your
               online potential with our discovery features.
             </p>
           </div>
           <div className="grid tablet:grid-cols-2   gap-4 overflow-hidden ">
-            <div className="w-full  hover:shadow-lg border-l-2 border-sky-900 box-border  flex  rounded  relative overflow-hidden">
+            <div className="w-full  hover:shadow-lg border-r-2 border-[sky] overflow-hidden shadow-bs box-border  flex  rounded  relative ">
               {discover.map((usuage) => (
                 <div
                   className={`min-w-full   grid gap-2  relative transition-all overflow-hidden ${usuage.gradient}`}
@@ -117,8 +117,8 @@ const Usage = () => {
                   <span
                     className={
                       index === discover.indexOf(usuage)
-                        ? `px-4 py-2 my-2 rounded ${usuage.gradient} text-white shadow-[4px_-2px_2px_1px_white] border-b border-b-white border-b-[2px]`
-                        : `  px-4 py-2 my-2 rounded hover:bg-sky-500 hover:text-white hover:shadow-[4px_-2px_2px_2px_white] `
+                        ? `px-4 py-2 my-2 rounded  text-white/75    `
+                        : `  px-4 py-2 my-2 rounded  hover:text-white hover:shadow-bs transition-all  `
                     }
                     key={discover.indexOf(usuage)}
                     onClick={(e) => {
@@ -141,7 +141,7 @@ const Usage = () => {
                 </span>
               </div>
 
-              <div className="w-full  hover:shadow-lg  box-border tablet:text-left text-center flex  rounded  relative overflow-hidden">
+              <div className="w-full    box-border tablet:text-left text-center flex  rounded  relative overflow-hidden">
                 {discover.map((usuage) => (
                   <div
                     className={`min-w-full  text-left grid gap-2 rounded p-4 relative transition-all overflow-hidden `}
