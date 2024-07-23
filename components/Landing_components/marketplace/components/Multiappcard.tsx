@@ -9,10 +9,7 @@ const Multiappcard = ({}: MultiappcardProps) => {
       <div className="tablet:w-[300px]">
         <div className="flex items-center justify-between">
           <h2 className="text-[40px] font-[800]">Facebook</h2>
-          <FaFacebookSquare
-            size={100}
-            color="blue"
-          />
+          <FaFacebookSquare size={100} color="blue" />
         </div>
         <div>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, rem.

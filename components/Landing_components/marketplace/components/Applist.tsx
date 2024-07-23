@@ -33,6 +33,10 @@ const ApplistComponent = ({ applications }: any) => {
       description =
         "Grow your connections. Make your connections, friends, and followers easy to connect to you.";
       break;
+    case "finance":
+      description =
+        "Manage your finances with ease. Share your favorite financial tools and platforms.";
+      break;
     default:
       description = "Description not available";
       break;
@@ -44,7 +48,8 @@ const ApplistComponent = ({ applications }: any) => {
         <h2 className="text-2xl font-bold">{title.toUpperCase()}</h2>
         <button
           className="font-semibold text-slate-800 cursor-pointer hover:text-sky-600"
-          onClick={() => setShowapp(!showapp)}>
+          onClick={() => setShowapp(!showapp)}
+        >
           {showapp ? " less" : `+see more ${applications.length - 6}`} apps
         </button>
       </div>
@@ -52,20 +57,19 @@ const ApplistComponent = ({ applications }: any) => {
         <div className="grid gap-4 tablet:grid-cols-2 ">
           <div className="flex items-center gap-4">
             <div
-              className={`w-fit bg-${applications[0].accent} text-[80px] p-4  shadow-bs`}>
+              style={{ background: `${applications[0].accent}` }}
+              className={`w-fit  text-[80px] p-4  shadow-bs`}
+            >
               {applications[0].logo}
             </div>
             <div>
               <h2 className="text-xl font-[600]">{applications[0].name}</h2>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quibusdam, modi!
-              </p>
+              <p>{applications[0].des}</p>
             </div>
           </div>
-          <div className="p-4  rounded-lg shadow-bs grid place-items-center text-md relative">
-            <div className="absolute w-8 h-8 bg-yellow-400 rounded-full top-1 right-1 grid place-items-center">
-              <div className="w-8 h-8 right-1 top-0 bg-black relative rounded-full grid hover:-rotate-45 text-white hover:text-yellow-300 place-items-center transition-all">
+          <div className="p-4  rounded-lg shadow-bs grid place-items-center text-md relative bg-primary text-white">
+            <div className="absolute w-8 h-8  hover:bg-accent rounded-full top-2 right-2 grid place-items-center">
+              <div className="w-8 h-8  top-0 bg-black relative bg-dark rounded-full grid hover:-rotate-45  hover:right-1 text-white place-items-center transition-all">
                 <FaArrowRight />
               </div>
             </div>
@@ -78,9 +82,12 @@ const ApplistComponent = ({ applications }: any) => {
             .map((app: Applist) => (
               <div
                 className="w-full flex items-center gap-4 cursor-default "
-                key={app.name}>
+                key={app.name}
+              >
                 <div
-                  className={`bg-${app.accent} rounded text-3xl p-4 grid place-items-center shadow-bs hover:scale-[1.05] transition`}>
+                  style={{ backgroundColor: `${app.accent}` }}
+                  className={` rounded text-3xl p-4 grid place-items-center shadow-bs hover:scale-[1.05] transition`}
+                >
                   {app.logo}
                 </div>
                 <div>

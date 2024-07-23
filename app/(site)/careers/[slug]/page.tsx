@@ -1,36 +1,50 @@
 "use client";
 import { usePathname, useRouter } from "next/navigation";
-import React from "react";
-import Joblists from "../Joblists";
-import Button from "../../../components/Global_components/Button";
+import React, { useEffect, useState } from "react";
+import Joblists, {
+  JobListProps,
+} from "../../../../components/Landing_components/careers/Joblists";
 
 import { GiShare } from "react-icons/gi";
+import Button from "../../../../components/Global_components/Button";
 
-interface pageProps {}
-
-const page = ({}: pageProps) => {
+const page = () => {
   const router = usePathname().split("/")[2];
-  const jobTitle = router.split("_")[0] + " " + router.split("_")[1];
-  const allJobs = Joblists;
-  const thisjob: any = Joblists.find((job) => job.title == jobTitle);
-
+  const [job, setJob] = useState<JobListProps>({
+    title: "",
+    location: "",
+    datePosted: "",
+    endDate: "",
+    description: "",
+    requirements: [],
+    salary: "",
+    department: "",
+    jobType: "",
+  });
   const navigate = useRouter();
+  useEffect(() => {
+    const jobTitle = router.split("_").join(" ");
+    const thisjob: any = Joblists.find((job) => job.title == jobTitle);
+    setJob(thisjob);
+  }, []);
+
   const submitApplciation = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     navigate.push("/careers");
   };
+  console.log(job);
 
   return (
-    <div className="py-20 min-h-[80vh] grid place-items-center">
+    <div className="py-20 min-h-[80vh] grid place-items-center bg-transparent text-silver">
       <div className="laptop:w-[1000px]  grid  gap-4">
         <div className="px-4 grid gap-4">
-          <span className=" text-2xl font-bold">{thisjob.title}</span>
+          <span className=" text-2xl font-bold">{job.title}</span>
           <span className="font-semibold text-sm">2023/01/22</span>
         </div>
         <div className="flex items-center justify-between border-b p-4">
           <div className="grid gap-2">
             <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-red-300 rounded-full"></div>
+              <div className="w-10 h-10 bg-[#da3c3c] rounded-full"></div>
               <div className=" text-sm flex flex-col leading-[120%]">
                 <span>Dominic Fike</span>
                 <span className=" font-semibold text-xs">HR Manager</span>
@@ -59,7 +73,7 @@ const page = ({}: pageProps) => {
                 <input
                   type="text"
                   placeholder="Firstname"
-                  className="w-full shadow-bs px-2 outline-none shadow h-fit"
+                  className="w-full shadow-bs px-2 outline-none  h-fit"
                 />
               </div>
               <div className="grid gap-2">
@@ -67,7 +81,7 @@ const page = ({}: pageProps) => {
                 <input
                   type="text"
                   placeholder="Lastname"
-                  className=" px-2 w-full shadow-bs outline-none shadow h-fit"
+                  className=" px-2 w-full shadow-bs outline-none  h-fit"
                 />
               </div>
             </label>
@@ -76,7 +90,7 @@ const page = ({}: pageProps) => {
               <input
                 type="text"
                 placeholder="Email"
-                className="px-2 shadow-bs outline-none shadow h-fit "
+                className="px-2 shadow-bs outline-none  h-fit "
               />
             </label>
             <label htmlFor="resume" className="grid gap-2">
@@ -101,13 +115,11 @@ const page = ({}: pageProps) => {
           <div className="grid gap-8 px-4">
             <div className="grid gap-2">
               <h2 className="font-[600]">Descriptions</h2>
-              {thisjob.des.map((item: string) => (
-                <li key={item}>{item}</li>
-              ))}
+              {job.description}
             </div>
             <div className="grid gap-2">
               <h2 className="font-[600]">Requirements</h2>
-              {thisjob.requirements.map((item: string) => (
+              {job.requirements.map((item: string) => (
                 <li key={item}>{item}</li>
               ))}
             </div>

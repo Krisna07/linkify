@@ -1,4 +1,4 @@
-interface Job {
+export interface JobListProps {
   title: string;
   location: string;
   datePosted: string;
@@ -9,7 +9,7 @@ interface Job {
   department: string;
   jobType: string;
 }
-const JobLists = [
+const JobLists: JobListProps[] = [
   {
     title: "Full Stack Developer",
     location: "San Francisco, CA",

@@ -1,6 +1,7 @@
 "use client";
-import Button from "../../../../components/Global_components/Button";
+
 import React, { useState } from "react";
+import Button from "../../Global_components/Button";
 
 const OurTeam: React.FC = () => {
   const teamMembers = [
