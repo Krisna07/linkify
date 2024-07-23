@@ -18,7 +18,7 @@ const Count = ({ num }: any) => {
         damping: 10,
         stiffness: 100,
       }}
-      viewport={{ once: false }}
+      viewport={{ once: true }}
       className={`text-white grid leading-[100%] relative duration-[0.8s]  font-[700] `}
     >
       {digits.map((item) => (

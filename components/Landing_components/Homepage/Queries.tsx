@@ -44,7 +44,7 @@ const Queries = () => {
               damping: 10,
               stiffness: 100,
             }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
           >
             <h3 className=" text-silver/75 text-xl font-bold mb-4">
               Unlock Your Social Media Potential
@@ -70,6 +70,7 @@ const Queries = () => {
                     damping: 10,
                     stiffness: 100,
                   }}
+                  viewport={{ once: true }}
                   key={query.name}
                   className="bg-dark/50 rounded-lg grid shadow-bs overflow-hidden"
                 >

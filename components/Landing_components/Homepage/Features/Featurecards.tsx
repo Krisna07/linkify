@@ -43,7 +43,7 @@ const Featurecards = () => {
             damping: 10,
             stiffness: 100,
           }}
-          //   viewport={{ once: true }}
+          viewport={{ once: true }}
           className="group relative min-h-fit p-4 box-border bg-silver hover:bg-bermuda  text-dark text-light rounded   transition-all duration-300 hover:shadow-lg"
           key={feature.id}
         >

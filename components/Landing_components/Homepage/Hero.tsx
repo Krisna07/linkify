@@ -27,18 +27,9 @@ export default function Hero() {
   return (
     <motion.section className="w-full relative grid min-h-screen place-items-center overflow-hidden text-white  bg-primary  border-box">
       <div className="relative z-10 flex flex-col items-center">
-        <motion.button
-          whileHover={{
-            scale: 1.015,
-            transform: "translate-y-2px",
-          }}
-          whileTap={{
-            scale: 0.985,
-          }}
-          className=" animate-slidein300  mb-1.5 inline-block rounded-full bg-dark/50  px-3 py-1.5  text-sm overflow-hidden cursor-default"
-        >
+        <button className=" animate-slidein300 scale-1  mb-1.5 inline-block rounded-full bg-dark/50  px-3 py-1.5  text-sm overflow-hidden cursor-default">
           Try Demo
-        </motion.button>
+        </button>
         <h1
           className={`animate-slidein700  max-w-3xl font-bold  bg-gradient-to-tr from-white to-[${color}] bg-clip-text text-center text-6xl  leading-tight text-transparent sm:text-5xl sm:leading-tight md:text-7xl md:leading-tight`}
         >

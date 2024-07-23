@@ -82,7 +82,7 @@ const PricingTable: React.FC = () => {
         y: 0,
         opacity: "1",
       }}
-      viewport={{ once: false }}
+      viewport={{ once: true }}
       className="w-full   grid place-items-center  gap-8 py-12 overflow-hidden text-white px-4"
       id="pricing"
     >
