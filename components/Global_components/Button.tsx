@@ -9,7 +9,7 @@ const buttonVarients = cva("active:", {
   variants: {
     variant: {
       default:
-        "bg-dark rounded transition-all text-silver w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs hover:translate-y-[-1px]",
+        "bg-dark rounded transition-all text-silver w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs ",
       accent:
         "bg-accent rounded transition-all text-black w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs",
       primary:
@@ -58,7 +58,18 @@ const Button: FC<ButtonProps> = ({
 }) => {
   const [hover, setHover] = useState(false);
   const iconCheck: any = icon ? (
-    <span>{hover ? <FaArrowRight /> : <FaChevronRight />}</span>
+    <span className="flex w-fit ">
+      <FaArrowRight
+        className={`transition-all ${
+          hover ? "relative opacity-1 " : "absolute opacity-0 "
+        }`}
+      />{" "}
+      <FaChevronRight
+        className={` transition-all ${
+          hover ? "absolute opacity-0 " : "relative opacity-1 "
+        }`}
+      />
+    </span>
   ) : null;
 
   return (
