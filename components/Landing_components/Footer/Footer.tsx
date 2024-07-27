@@ -1,8 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { FaLeaf } from "react-icons/fa";
-import CountryList from "../Global_components/countries";
+
 import Image from "next/image";
+import CountryList from "../../Global_components/countries";
 
 const Footer: React.FC = () => {
   const [country, setCountry] = useState<any>();
