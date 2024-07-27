@@ -12,8 +12,8 @@ const Background = () => {
 
   const calculatePoints = () => {
     const rect = getRect(bgRef.current);
-    const Widthnumbers = rect.width / 100;
-    const heightNum = rect.height / 100;
+    const Widthnumbers = rect.width / 50;
+    const heightNum = rect.height / 50;
     setPoints(Math.round(Widthnumbers * heightNum));
   };
 
@@ -28,13 +28,13 @@ const Background = () => {
 
   return (
     <div ref={bgRef} className="absolute w-full h-full grid place-items-center">
-      <div className=" p-[100px] w-full h-full  z-20  flex  gap-[100px] flex-wrap overflow-hidden  ">
+      <div className=" p-[100px] w-full h-full  z-20  flex  gap-[50px] flex-wrap overflow-hidden  ">
         {Array.from({ length: points }).map((_, i) => (
           <div
             key={i}
-            className="w-2 h-2 rounded-full bg-gradient-to-b from-primary to-accent animate-pulse"
+            className="w-2 h-2 rounded-full bg-gradient-to-b from-primary to-accent animate-pulse duration-[3s]"
           >
-            <div className="w-2 h-2 rounded-full bg-gradient-to-b from-primary to-accent animate-ping absolute"></div>
+            {/* <div className="w-2 h-2 rounded-full bg-gradient-to-b from-primary to-accent animate-ping absolute"></div> */}
           </div>
         ))}
       </div>

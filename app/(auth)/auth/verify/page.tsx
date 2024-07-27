@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Input from "../Formcomponents/Input";
 import { FaLock } from "react-icons/fa";
-import { getCurrentUser } from "@/lib/session";
-import Button from "../../../components/Global_components/Button";
+import { getCurrentUser } from "../../../../lib/session";
+import Button from "../../../../components/Global_components/Button";
 
 const verify = async () => {
   let code;

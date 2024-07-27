@@ -1,6 +1,6 @@
-import Button from "../../../components/Global_components/Button";
 import React from "react";
 import { RiAddCircleFill } from "react-icons/ri";
+import Button from "../../../../components/Global_components/Button";
 
 const Templates = () => {
   return (
