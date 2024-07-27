@@ -1,8 +1,9 @@
-import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
-import { hash } from "bcrypt";
-import { authOptions } from "@/lib/auth";
+
 import { getServerSession } from "next-auth";
+import { authOptions } from "../../../lib/auth";
+import { db } from "../../../lib/db";
+import { hash } from "bcryptjs";
 // import transporter from "@/lib/mailer";
 
 export const GET = async (req: Request) => {

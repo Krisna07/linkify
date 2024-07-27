@@ -219,7 +219,7 @@ const SignInPage: React.FC = () => {
   };
 
   return (
-    <div className="w-full h-screen text-black box-border tablet:h-fit px-4 py-8  rounded flex flex-col  justify-center tablet:grid tablet:grid-cols-2 gap-12 place-items-center relative z-30 bg-dark text-white">
+    <div className="w-full h-screen text-black box-border tablet:h-fit px-4 py-8  rounded flex flex-col  justify-center tablet:grid tablet:grid-cols-2 gap-12 place-items-center relative z-30 bg-silver ">
       <div className="w-full px-2 box-border tablet:h-full grid gap-2">
         <div className="w-full flex tablet:flex-col items-center tablet:items-start justify-between tablet:justify-start border-b tablet:border-none py-2  ">
           <FaLeaf color="green" size={40} className="tablet:block hidden" />
@@ -286,13 +286,13 @@ const SignInPage: React.FC = () => {
         />
 
         {formData.password ? (
-          <div className="w-full h-4 bg-white shadow relative px-2  rounded-full flex items-center">
+          <div className="w-full h-4 bg-white shadow relative mx-2 text-white  rounded-full flex items-center">
             <div
               style={{ width: `${strength}%` }}
               className={`rounded-full relative transition-all h-full  ${
                 strength < 80
-                  ? "bg-gradient-to-r from-red-400 to-red-300 "
-                  : "bg-green-300"
+                  ? "bg-gradient-to-r from-[red]/25 to-[red]/75 "
+                  : "bg-primary"
               } flex items-center`}
             >
               <FaLock size={12} className="absolute right-2" />

@@ -39,8 +39,8 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className="w-full px-0 m-0  bg-black ">
-        <div className="w-full gap-8 bg-black p-0 m-0 text-white">
+      <body className="w-full px-0 m-0  bg-dark ">
+        <div className="w-full gap-8 bg-dark p-0 m-0 text-white">
           <Provider>
             <header className="w-full sticky top-0 z-20">
               <Mainnav user={user} />

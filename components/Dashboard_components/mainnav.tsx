@@ -23,7 +23,7 @@ export default function Mainnav({ user }: any) {
   const thisNav = `${route.split("/").splice(-2)[0]}`;
 
   return (
-    <div className="w-full  grid gap-4 bg-gray-800  border-b-gray-600 border-b-[1px] relative box-border overflow">
+    <div className="w-full  grid gap-4 bg-dark/75  border-b-gray-600 border-b-[1px] relative box-border overflow">
       <div className=" flex items-center justify-between box-border p-2  gap-4">
         <div className=" flex items-center py-2  gap-2">
           <div className="h-6 w-6  rounded-full overflow-hidden  tablet:flex">
@@ -46,21 +46,21 @@ export default function Mainnav({ user }: any) {
             </div>
             <span className="hidden tablet:block"> {user.username}</span>
           </div>
-          <div className="bg-gray-600  hidden px-3 py-[2px] tablet:flex items-center rounded-full text-sm font-[600]">
+          <div className="bg-dark/50  hidden px-3 py-[2px] tablet:flex items-center rounded-full text-sm font-[600]">
             social
           </div>
         </div>
         <div className="flex items-center gap-4 text-gray-300 box-border">
-          <div className="flex items-center gap-2 bg-gray-600/75 p-[2px] px-2 text-sm shadow-bs rounded-full">
+          <div className="flex items-center gap-2 bg-dark/50 p-[2px] px-2 text-sm shadow-bs rounded-full">
             <span className="hidden tablet:flex"> Share</span>
-            <div className="w-4 h-4 bg-blue-600 rounded-full text-white text-[10px] grid place-items-center">
+            <div className="w-4 h-4 bg-tahiti rounded-full text-white text-[10px] grid place-items-center">
               <TbShare />
             </div>
           </div>
 
           <div className="flex items-center gap-1 p-[4px] px-2 shadow-bs rounded-full">
             <BiBell />
-            <div className="w-4 h-4 bg-blue-600 rounded-full text-white text-[10px] grid place-items-center">
+            <div className="w-4 h-4 bg-tahiti rounded-full text-white text-[10px] grid place-items-center">
               0
             </div>
           </div>
@@ -72,7 +72,7 @@ export default function Mainnav({ user }: any) {
             <div
               className={`${
                 accountOptions ? "h-fit " : "h-0 "
-              }  transition-all absolute  top-[120%] right-0 bg-gray-600 z-[999] rounded overflow-hidden`}
+              }  transition-all absolute  top-[120%] right-0 bg-dark/50 z-[999] rounded overflow-hidden`}
             >
               <Dropdown user={user} />
             </div>
@@ -92,12 +92,12 @@ export default function Mainnav({ user }: any) {
                     ? "white"
                     : "",
               }}
-              className="hover:text-white hover:bg-gray-600 p-2 py-1 rounded-md relative grid items-center"
+              className="hover:text-white hover:bg-dark/50 p-2 py-1 rounded-md relative grid items-center"
             >
               {items.name}
               {items.link == route ||
               thisNav == items.name.toLocaleLowerCase() ? (
-                <div className="w-full h-[2px] bg-white absolute -bottom-2"></div>
+                <div className="w-full h-[2px] bg-silver absolute -bottom-2"></div>
               ) : (
                 ""
               )}
