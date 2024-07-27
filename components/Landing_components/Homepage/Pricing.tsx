@@ -1,9 +1,8 @@
 "use client";
 import React, { useState } from "react";
-
-import { princingTier } from "../../../app/(site)/pricings/page";
 import Button from "../../Global_components/Button";
 import { motion } from "framer-motion";
+import { princingTier } from "../pricings/page";
 
 const PricingTable: React.FC = () => {
   const [monthly, setMonthly] = useState<boolean>(true);
