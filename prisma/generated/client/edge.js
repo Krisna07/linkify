@@ -165,7 +165,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/user/linkify/prisma/generated/client",
+      "value": "C:\\Users\\chill\\linkify\\prisma\\generated\\client",
       "fromEnvVar": null
     },
     "config": {
@@ -174,12 +174,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "debian-openssl-1.1.x",
+        "value": "windows",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/user/linkify/prisma/schema.prisma",
+    "sourceFilePath": "C:\\Users\\chill\\linkify\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {

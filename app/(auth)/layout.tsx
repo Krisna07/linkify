@@ -2,6 +2,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import "../globals.css";
 import Link from "next/link";
 import Authlayout from "../../components/Layouts/Authlayout";
+import Background from "../../components/Landing_components/Background";
 
 export const metadata = {
   title: "Linkify",
@@ -21,9 +22,10 @@ export default function RootLayout({
       </head>
       <body
         className={
-          "w-full min-h-[100vh] grid place-items-center relative bg-gray-200 "
+          "w-full min-h-[100vh] grid place-items-center relative bg-gray-200 overflow-hidden "
         }
       >
+        <Background />
         <Authlayout children={children} />
       </body>
     </html>

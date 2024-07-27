@@ -46,6 +46,7 @@
     "uuidv4": "^6.2.13"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/nodemailer": "^6.4.14",
     "prisma": "^5.13.0"
   }

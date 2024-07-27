@@ -219,7 +219,7 @@ const SignInPage: React.FC = () => {
   };
 
   return (
-    <div className="w-full h-screen text-black box-border tablet:h-fit px-4 py-8  rounded flex flex-col  justify-center tablet:grid tablet:grid-cols-2 gap-12 place-items-center">
+    <div className="w-full h-screen text-black box-border tablet:h-fit px-4 py-8  rounded flex flex-col  justify-center tablet:grid tablet:grid-cols-2 gap-12 place-items-center relative z-30 bg-dark text-white">
       <div className="w-full px-2 box-border tablet:h-full grid gap-2">
         <div className="w-full flex tablet:flex-col items-center tablet:items-start justify-between tablet:justify-start border-b tablet:border-none py-2  ">
           <FaLeaf color="green" size={40} className="tablet:block hidden" />
@@ -233,9 +233,9 @@ const SignInPage: React.FC = () => {
         <div className="h-fit grid gap-2">
           <span className="text-sm font-semibold">Contiune with</span>
           <div className="flex gap-2 text-[20px]">
-            <FaGithub className="scale-[1.1]" />
-            <FcGoogle className="scale-[1.1]" />
-            <FaFacebook className="scale-[1.1]" />
+            <FaGithub className="hover:scale-[1.1]" />
+            <FcGoogle className="hover:scale-[1.1]" />
+            <FaFacebook className="hover:scale-[1.1]" />
           </div>
         </div>
       </div>
@@ -302,7 +302,7 @@ const SignInPage: React.FC = () => {
           ""
         )}
 
-        <div>
+        {/* <div>
           <label
             htmlFor="subs"
             className="px-2 flex gap-2 items-center text-sm"
@@ -320,14 +320,14 @@ const SignInPage: React.FC = () => {
 
             <span>I want to receive the newsletter </span>
           </label>
-        </div>
+        </div> */}
         <span className="px-2 flex gap-2 items-center text-sm">
           Already a member?
           <Link href={"./signin"} className="underline">
             Login here
           </Link>
         </span>
-        <Button type="submit" variant={"default"} size={"sm"}>
+        <Button type="submit" variant={"accent"} size={"sm"}>
           Submit
         </Button>
       </form>

@@ -1,4 +1,3 @@
-
 import "../globals.css";
 
 // import Landingpage from "../../components/Layouts/Landingpage";
@@ -13,7 +12,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-
   return (
     <html lang="en">
       <head>
@@ -22,7 +20,7 @@ export default function RootLayout({
       <body
         className={`${inter.className} w-full h-fit p-0 m-0 grid place-items-center  bg-dark leading -[100%]  text-silver relative`}
       >
-        <Background/>
+        <Background />
         <div className="w-full h-screen grid place-items-center  relative z-40 ">
           <div className="grid place-items-center gap-4 p-2 shadow-bs rounded-lg text-center bg-primary p-4">
             <span className="flex gap-2 items-center text-xl font-bold">
