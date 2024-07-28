@@ -27,8 +27,11 @@ const Background = () => {
   }, []);
 
   return (
-    <div ref={bgRef} className="absolute w-full h-full grid place-items-center">
-      <div className=" p-[100px] w-full h-full  z-20  flex  gap-[50px] flex-wrap overflow-hidden  ">
+    <div
+      ref={bgRef}
+      className="absolute w-full h-full grid place-items-center "
+    >
+      <div className=" w-full h-full z-20  flex  gap-[50px] flex-wrap overflow-hidden  box-border">
         {Array.from({ length: points }).map((_, i) => (
           <div
             key={i}

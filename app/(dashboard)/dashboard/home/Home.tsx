@@ -8,6 +8,7 @@ import socialMediaData from "../../../../components/Dashboard_components/dummyda
 import Newpage from "../../../../components/Dashboard_components/newpage";
 import Socialmediacard from "../socialmediacard";
 import Button from "../../../../components/Global_components/Button";
+import ToastConatiner from "../../../../components/Global_components/Toast";
 
 export default function Home() {
   const [social, setSocial] = useState(socialMediaData);
@@ -59,18 +60,20 @@ export default function Home() {
   };
 
   useEffect(() => {
+    closeAppform(false);
     getSocial();
+    localStorage.setItem("accounts", JSON.stringify(accounts));
   }, [newItem]);
 
   return (
-    <div className="w-full laptop:w-[1000px] px-2 h-screen flex flex-col gap-8 box-border overflow-hidden ">
-      <div className="min-w-full grid tablet:grid-cols-[4fr_230px] grid-cols-1 tablet:gap-2 gap-4 p-2 box-border place-items-center ">
-        <div className=" w-full flex items-center gap-4 px-4 py-2 bg-gray-800 box-border rounded-lg">
+    <div className="w-full laptop:max-w-[1200px] px-2 h-screen flex flex-col gap-8 box-border overflow-hidden ">
+      <div className="min-w-full grid tablet:grid-cols-[4fr_230px] grid-cols-1 tablet:gap-2 gap-4 box-border place-items-center  bg-accent/50 rounded-lg">
+        <div className=" w-full flex items-center gap-4 px-4   box-border rounded-lg ">
           <FaSearch />
           <input
             type="text"
             placeholder="Search"
-            className="bg-gray-800 px-2 outline-none w-[100%]"
+            className="bg-dark px-2 p-2 outline-none w-[100%]"
           />
         </div>
         <div className="w-full   flex gap-4 items-center justify-between relative z-[10]">
@@ -88,7 +91,7 @@ export default function Home() {
               <FaBars />
             </div>
             <div
-              className={`absolute w-1/2 h-[90%] bg-gray-900 top-[2px] ${
+              className={`absolute w-1/2 h-[90%] bg-primary top-[2px] ${
                 !list ? "left-[1%]" : "left-[49%]"
               }  rounded-md z-10 transition-all`}
             ></div>
@@ -107,11 +110,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div
-        className={`min-w-full grid laptop:grid-cols-${
-          list ? 1 : 3
-        } grid-cols-${list ? 1 : 2}  gap-8 text-gray-400 `}
-      >
+      <div className={` flex flex-wrap gap-8 text-[gray] `}>
         {loading ? (
           <div>Loading</div>
         ) : (
@@ -130,7 +129,7 @@ export default function Home() {
           ))
         )}
       </div>
-      {/* {<ToastConatiner message={error} />} */}
+      {<ToastConatiner message={error} />}
       {/* {
         <div
           className={`w-fit text-sm font-semibold gap-2 ${

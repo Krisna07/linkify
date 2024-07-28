@@ -61,7 +61,7 @@ export default function Socialmediacard({ item, list }: SocialmediacardProps) {
     <Link
       // href={`dashboard/activity/${item.username}`}
       href={link}
-      className={`w-full h-fit bg-gray-800 overflow-hidden rounded-lg transition-all ${
+      className={`w-fit h-fit bg-primary/75 overflow-hidden rounded-lg transition-all ${
         list ? "flex justify-between" : "grid"
       } gap-4 hover:shadow-bs relative `}
       key={item.username}
@@ -78,7 +78,7 @@ export default function Socialmediacard({ item, list }: SocialmediacardProps) {
           {/* <p className="tablet:hidden block">{renderLink}</p> */}
         </div>
       </div>
-      <div className="grid gap-2 tablet:block hidden px-4">
+      <div className=" gap-2 tablet:block hidden px-4">
         {/* {renderMetrics()} */}
         <span className="gap-2 tablet:flex items-center hidden">
           <BiLinkAlt />{" "}
@@ -91,7 +91,7 @@ export default function Socialmediacard({ item, list }: SocialmediacardProps) {
         <div className="w-full gap-2 tablet:flex flex-col text-left hidden ">
           <span className="px-4"> {item.date}</span>
 
-          <div className="p-2 px-4 flex gap-4 items-center bg-gray-600 text-gray-100">
+          <div className="p-2 px-4 flex gap-4 items-center bg-[gray] text-silver">
             <FaPen /> {item.bio}
           </div>
         </div>

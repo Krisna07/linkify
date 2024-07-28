@@ -64,7 +64,8 @@ export default function Newpage({ item, errorHandler }: any) {
 
       if (data.status == 200) {
         item(data.newAccount);
-        // console.log(data.newAccount);
+
+        console.log(data.newAccount);
       } else {
         return errorHandler(data.message);
       }
@@ -74,7 +75,7 @@ export default function Newpage({ item, errorHandler }: any) {
   };
   return (
     <form
-      className="w-fit h-fit  absolute p-4 top-[120%] right-0  rounded-lg z-40 text-black bg-primary grid gap-4 transition-all"
+      className="w-fit h-fit  absolute p-4 top-[120%] right-0  rounded-lg z-40 text-dark bg-white shadow-bs grid gap-4 transition-all"
       onSubmit={submitForm}
     >
       <div className="w-[max-content] block font-semibold ">Add new social</div>
@@ -84,7 +85,9 @@ export default function Newpage({ item, errorHandler }: any) {
             <label
               htmlFor=""
               className={`w-fit p-[2px] flex items-center text-lg relative text-dark ${
-                social === item.value ? "shadow-[0_0_2px_0_gray] bg-accent" : ""
+                social === item.value
+                  ? "shadow-[0_0_2px_0_gray] bg-dark text-white rounded"
+                  : ""
               }`}
               key={index}
             >
@@ -108,7 +111,7 @@ export default function Newpage({ item, errorHandler }: any) {
           name="username"
           placeholder="@username"
           onChange={(e) => setUsername(e.target.value)}
-          className="w-full  outline-none bg-none px-2 p-1 bg-tahiti border-bottom border-b-2 border-black focus:border-green-400"
+          className="w-full  outline-none bg-none px-2 p-1  border-bottom border-b-2 border-black focus:border-green-400"
         />
       </div>
       <Button variant={"default"} children="Add" size={"sm"} />
