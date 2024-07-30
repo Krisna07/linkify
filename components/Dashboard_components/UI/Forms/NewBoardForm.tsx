@@ -14,7 +14,7 @@ import {
   FaTumblr,
 } from "react-icons/fa";
 import Button from "../../../Global_components/Button";
-import { motion } from "framer-motion";
+import ErrorHandler from "../../../../lib/errorhandler";
 
 interface social {
   value: string;
@@ -34,7 +34,7 @@ export const socialMediaArray: social[] = [
 ];
 interface NewBoardForm {
   item: any;
-  errorHandler: any;
+  errorHandler: void;
   add: boolean;
 }
 
@@ -46,38 +46,40 @@ export default function NewBoardForm({ item, errorHandler, add }: any) {
     e.preventDefault();
 
     if (!username || !social) {
-      return errorHandler("no username ");
+      // console.log("no username ");
+      // console.log("no username or social ");
+      return errorHandler("no username or social ");
     }
     const newSocial = {
       username: username,
       type: social,
     };
 
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/Json",
-      },
-      body: JSON.stringify({
-        type: social.toLowerCase(),
-        username: username.toLocaleLowerCase(),
-      }),
-    };
-    const api = "/api/user/social";
-    try {
-      const response = await fetch(api, options);
-      const data = await response.json();
+    // const options = {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/Json",
+    //   },
+    //   body: JSON.stringify({
+    //     type: social.toLowerCase(),
+    //     username: username.toLocaleLowerCase(),
+    //   }),
+    // };
+    // const api = "/api/user/social";
+    // try {
+    //   const response = await fetch(api, options);
+    //   const data = await response.json();
 
-      if (data.status == 200) {
-        item(data.newAccount);
-
-        console.log(data.newAccount);
-      } else {
-        return errorHandler(data.message);
-      }
-    } catch (error) {
-      errorHandler("Network error");
-    }
+    //   if (data.status == 200) {
+    //     item(data.newAccount);
+    //     console.log(data.newAccount);
+    //   } else {
+    //     console.log(data.message);
+    //     return errorHandler(data.message);
+    //   }
+    // } catch (error) {
+    //   errorHandler("Network error");
+    // }
   };
   return (
     <form
@@ -124,7 +126,12 @@ export default function NewBoardForm({ item, errorHandler, add }: any) {
           className="w-full  outline-none bg-none px-2 p-1  border-bottom border-b-2 border-black focus:border-green-400"
         />
       </div>
-      <Button variant={"default"} children="Add" size={"sm"} />
+      <Button
+        variant={"default"}
+        children="Add"
+        size={"sm"}
+        onClick={() => submitForm}
+      />
     </form>
   );
 }

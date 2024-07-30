@@ -29,6 +29,7 @@ export async function GET(req: Request) {
     });
   }
 }
+
 //post new accounts to db
 export async function POST(req: Request) {
   try {

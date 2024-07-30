@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { BiLinkExternal, BiLinkAlt } from "react-icons/bi";
 import { FaPen } from "react-icons/fa";
 import Link from "next/link";
-import { socialMediaArray } from "../../../components/Dashboard_components/UI/Forms/NewBoardForm";
+import { socialMediaArray } from "../Forms/NewBoardForm";
 
 interface SocialmediacardProps {
   item: {
@@ -60,7 +60,7 @@ export default function Socialmediacard({ item, list }: SocialmediacardProps) {
     <Link
       // href={`dashboard/activity/${item.username}`}
       href={link}
-      className={`w-fit h-fit bg-primary/75 overflow-hidden rounded-lg transition-all ${
+      className={`w-full h-fit bg-primary/75 overflow-hidden rounded-lg transition-all ${
         list ? "flex justify-between" : "grid"
       } gap-4 hover:shadow-bs relative `}
       key={item.username}
@@ -73,13 +73,13 @@ export default function Socialmediacard({ item, list }: SocialmediacardProps) {
         </div>
         <div className="grid">
           <h2 className="text-white text-[18px]">{item.username}</h2>
-          <p className="text-sm tablet:inline hidden">{link}</p>
+          <p className="text-sm tablet:inline ">{link}</p>
           {/* <p className="tablet:hidden block">{renderLink}</p> */}
         </div>
       </div>
-      <div className=" gap-2 tablet:block hidden px-4">
+      <div className=" gap-2 block  px-4">
         {/* {renderMetrics()} */}
-        <span className="gap-2 tablet:flex items-center hidden">
+        <span className="gap-2 flex items-center ">
           <BiLinkAlt />{" "}
           <span className="flex items-center ">
             From {item.username.toLowerCase()}
@@ -87,7 +87,7 @@ export default function Socialmediacard({ item, list }: SocialmediacardProps) {
         </span>
       </div>
       {!list ? (
-        <div className="w-full gap-2 tablet:flex flex-col text-left hidden ">
+        <div className="w-full gap-2 tablet:flex flex-col text-left  ">
           <span className="px-4"> {item.date}</span>
 
           <div className="p-2 px-4 flex gap-4 items-center bg-[gray] text-silver">
