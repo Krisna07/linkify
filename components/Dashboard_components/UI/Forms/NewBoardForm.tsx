@@ -13,7 +13,8 @@ import {
   FaTiktok,
   FaTumblr,
 } from "react-icons/fa";
-import Button from "../Global_components/Button";
+import Button from "../../../Global_components/Button";
+import { motion } from "framer-motion";
 
 interface social {
   value: string;
@@ -31,8 +32,13 @@ export const socialMediaArray: social[] = [
   { value: "TikTok", icon: <FaTiktok /> },
   { value: "Tumblr", icon: <FaTumblr /> },
 ];
+interface NewBoardForm {
+  item: any;
+  errorHandler: any;
+  add: boolean;
+}
 
-export default function Newpage({ item, errorHandler }: any) {
+export default function NewBoardForm({ item, errorHandler, add }: any) {
   const [social, setSocial] = useState<string>("Facebook");
   const [username, setUsername] = useState<string>("");
 
@@ -75,7 +81,11 @@ export default function Newpage({ item, errorHandler }: any) {
   };
   return (
     <form
-      className="w-fit h-fit  absolute p-4 top-[120%] right-0  rounded-lg z-40 text-dark bg-white shadow-bs grid gap-4 transition-all"
+      className={`w-fit h-fit ${
+        add
+          ? "top-[120%] right-0 opacity-1"
+          : "top-0 right-0  opacity-0 z-[-20]"
+      } absolute p-4   rounded-lg z-40 text-dark bg-white shadow-bs grid gap-4  transition-all duration-500`}
       onSubmit={submitForm}
     >
       <div className="w-[max-content] block font-semibold ">Add new social</div>

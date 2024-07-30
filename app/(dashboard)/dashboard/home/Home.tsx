@@ -3,15 +3,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { BiGrid } from "react-icons/bi";
 import { FaBars, FaChevronDown, FaChevronUp, FaSearch } from "react-icons/fa";
-import socialMediaData from "../../../../components/Dashboard_components/dummydata";
 
-import Newpage from "../../../../components/Dashboard_components/newpage";
 import Socialmediacard from "../socialmediacard";
 import Button from "../../../../components/Global_components/Button";
 import ToastConatiner from "../../../../components/Global_components/Toast";
+import Homenav from "../../../../components/Dashboard_components/UI/Navbar/HomeNav";
 
 export default function Home() {
-  const [social, setSocial] = useState(socialMediaData);
   const [list, setList] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<String>();
@@ -67,49 +65,7 @@ export default function Home() {
 
   return (
     <div className="w-full laptop:max-w-[1200px] px-2 h-screen flex flex-col gap-8 box-border overflow-hidden ">
-      <div className="min-w-full grid tablet:grid-cols-[4fr_230px] grid-cols-1 tablet:gap-2 gap-4 box-border place-items-center  bg-accent/50 rounded-lg">
-        <div className=" w-full flex items-center gap-4 px-4   box-border rounded-lg ">
-          <FaSearch />
-          <input
-            type="text"
-            placeholder="Search"
-            className="bg-dark px-2 p-2 outline-none w-[100%]"
-          />
-        </div>
-        <div className="w-full   flex gap-4 items-center justify-between relative z-[10]">
-          <div className="flex gap-2 p-1 bg-gray-800 text-[18px] rounded-lg text-gray-400 relative">
-            <div
-              className="p-2 relative z-20 rounded-md"
-              onClick={() => setList(false)}
-            >
-              <BiGrid />
-            </div>
-            <div
-              className="p-2  rounded-md relative z-20"
-              onClick={() => setList(true)}
-            >
-              <FaBars />
-            </div>
-            <div
-              className={`absolute w-1/2 h-[90%] bg-primary top-[2px] ${
-                !list ? "left-[1%]" : "left-[49%]"
-              }  rounded-md z-10 transition-all`}
-            ></div>
-          </div>
-          <div className="relative ">
-            <Button
-              children="Add new"
-              variant={"primary"}
-              size={"default"}
-              onClick={() => setAdd(!add)}
-              className="w-fit py-2  px-4 "
-              rightIcon={!add ? <FaChevronDown /> : <FaChevronUp />}
-            />
-
-            {add ? <Newpage item={setItem} errorHandler={errorHandler} /> : ""}
-          </div>
-        </div>
-      </div>
+      <Homenav />
       <div className={` flex flex-wrap gap-8 text-[gray] `}>
         {loading ? (
           <div>Loading</div>

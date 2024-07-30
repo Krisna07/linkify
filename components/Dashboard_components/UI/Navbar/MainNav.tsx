@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { BiBell } from "react-icons/bi";
-import Dropdown from "./dropdown";
+import Dropdown from "../components/dropdown";
 import Image from "next/image";
 
 import { TbShare } from "react-icons/tb";
@@ -38,7 +38,8 @@ export default function Mainnav({ user }: any) {
           <span className="text-gray-400  tablet:flex">/</span>
           <div className="flex items-center gap-2 font-[600]">
             <div
-              className={`h-6 w-6 bg-accent rounded-full  grid place-items-center`}
+              style={{ backgroundImage: user.image }}
+              className={`h-6 w-6 rounded-full  grid place-items-center`}
             >
               <span className="text-black font-bold text-sm tablet:hidden">
                 {user.username.split("")[0].toLocaleUpperCase("en-US")}
@@ -66,7 +67,8 @@ export default function Mainnav({ user }: any) {
           </div>
           <div className="relative">
             <div
-              className={`w-8 h-8 ${user.image} bg-[gray] rounded-full relative`}
+              style={{ backgroundImage: user.image }}
+              className={`w-8 h-8  bg-[gray] rounded-full relative`}
               onClick={() => setAccountOptions(!accountOptions)}
             ></div>
             <div
@@ -89,10 +91,10 @@ export default function Mainnav({ user }: any) {
                 color:
                   items.link == route ||
                   thisNav == items.name.toLocaleLowerCase()
-                    ? "white"
+                    ? "primary"
                     : "",
               }}
-              className="hover:text-white hover:bg-dark/50 p-2 py-1 rounded-md relative grid items-center"
+              className={`hover:text-white hover:bg-primary/50 p-2 py-1 rounded-md relative grid items-center`}
             >
               {items.name}
               {items.link == route ||

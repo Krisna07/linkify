@@ -37,7 +37,7 @@ export async function POST(req: Request) {
       Math.floor(Math.random() * 16777215)
         .toString(16)
         .padStart(6, "0");
-    const gradient = `bg-gradient-to-tr from-[${randomColor}] to-[${randomColor}]`;
+    const gradient = ` linear-gradient(135deg, ${randomColor} 0%, ${randomColor} 45%);`;
 
     const newUser = await db.user.create({
       data: {

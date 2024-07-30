@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  FaChevronDown,
-  FaFacebook,
-  FaInstagram,
-  FaTwitter,
-} from "react-icons/fa";
+
 import Templates from "./Templates";
 
 interface pageProps {}

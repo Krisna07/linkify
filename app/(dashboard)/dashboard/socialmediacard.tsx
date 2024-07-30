@@ -3,13 +3,13 @@ import React, { useEffect, useState } from "react";
 import { BiLinkExternal, BiLinkAlt } from "react-icons/bi";
 import { FaPen } from "react-icons/fa";
 import Link from "next/link";
+import { socialMediaArray } from "../../../components/Dashboard_components/UI/Forms/NewBoardForm";
 
 interface SocialmediacardProps {
   item: {
     username: string;
     type: string;
     link: string;
-
     email: string;
     avatar: string;
     date: string;
@@ -17,7 +17,6 @@ interface SocialmediacardProps {
   };
   list: boolean;
 }
-import { socialMediaArray } from "../../../components/Dashboard_components/newpage";
 
 export default function Socialmediacard({ item, list }: SocialmediacardProps) {
   const [hover, setHover] = useState<boolean>(false);

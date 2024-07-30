@@ -4,7 +4,6 @@ import { FiAlertCircle } from "react-icons/fi";
 
 const ToastConatiner = ({ message }: any) => {
   const [err, setErr] = useState<any>(message);
-  console.log(message);
   useEffect(() => {
     const timeout: any = setTimeout(() => setErr(""), 5000);
     timeout;
