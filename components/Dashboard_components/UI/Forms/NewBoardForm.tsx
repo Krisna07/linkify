@@ -62,10 +62,9 @@ export default function NewBoardForm({ add }: any) {
     description: "Enter the description",
     link: "",
     image: "",
-    tags: ["Enter the tags"],
+    tags: [],
   });
-  const textareaRef = React.useRef(null);
-  const MIN_TEXTAREA_HEIGHT = 32;
+  const [tagItem, setTag] = useState<string[]>();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formdata, [e.target.name]: e.target.value });
@@ -77,13 +76,12 @@ export default function NewBoardForm({ add }: any) {
   };
 
   const handleTags = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.innerHTML === "&nbsp;") {
-      console.log("enter value");
-    } else {
-      const tag = e.target.innerHTML.split("," || "&nbsp;");
-      setFormData({ ...formdata, tags: tag });
-      console.log(formdata.tags);
-    }
+    const tag = e.target.value.split(",");
+    setTag(tag);
+    console.log(tagItem);
+    // setTag(tag)
+    tagItem && setFormData({ ...formdata, tags: tagItem });
+    console.log(formdata.tags);
   };
 
   // React.useLayoutEffect(() => {
@@ -144,34 +142,53 @@ export default function NewBoardForm({ add }: any) {
               : ""
           }
           className={`w-[40ch] shadow-bs px-2 py-1 outline-none  ${
-            formdata.description === "Enter the description"
+            formdata.description === "Enter the description" ||
+            formdata.description === ""
               ? "text-[gray]"
               : "text-black"
           }  border-inset border-box rounded-md`}
         >
-          {formdata.description}
+          {formdata.description === "" && "Enter the description"}
         </div>
       </label>
       <label htmlFor="" className="w-full grid gap-1 border-box">
         <span className="mx-2 font-semibold">Tags</span>
-        {formdata.tags.map((tag, index) => (
-          <span key={index}>{tag}</span>
-        ))}
-        <div
-          suppressContentEditableWarning={true}
-          contentEditable="true"
-          defaultValue={formdata.description}
-          onInput={handleTags}
-          onFocus={(e) =>
-            e.target.innerText === "Enter the tags"
-              ? (e.target.innerText = "")
-              : ""
-          }
-          className={`w-[40ch] shadow-bs px-2 py-1 outline-none  ${
-            formdata.tags[0] === "Enter the tags" ? "text-[gray]" : "text-black"
-          }  border-inset border-box rounded-md`}
-        >
-          Enter the tags
+        <div className="grid gap-2 relative">
+          <div className="flex items-center gap-2 flex-wrap ">
+            {formdata.tags.map(
+              (tag, index) =>
+                tag !== "" && (
+                  <Button
+                    children={tag}
+                    variant="primary"
+                    key={index}
+                    className="px-2  "
+                  />
+                )
+            )}
+          </div>
+          <input
+            placeholder={"Start typing tag"}
+            className="px-2 py-1 rounded-md   shadow-bs outline-none   border-inset border-box"
+            onChange={handleTags}
+            // value={formdata.tags[formdata.tags.length - 1]}
+          />
+          {/* <div
+            suppressContentEditableWarning={true}
+            contentEditable="true"
+            defaultValue={formdata.description}
+            onInput={handleTags}
+            onFocus={(e) =>
+              e.target.innerText === "Enter the tags"
+                ? (e.target.innerText = "")
+                : ""
+            }
+            className={`w-[40ch] shadow-bs px-2 py-1 outline-none  ${
+              formdata.tags[0] === "Enter the tags"
+                ? "text-[gray]"
+                : "text-black"
+            }  border-inset border-box rounded-md`}
+          ></div> */}
         </div>
       </label>
       <Button variant={"accent"} size={"sm"}>
