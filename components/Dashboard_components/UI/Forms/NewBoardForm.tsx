@@ -1,45 +1,16 @@
 "use client";
 
-import React, { useState, useRef } from "react";
-import {
-  FaFacebook,
-  FaTwitter,
-  FaInstagram,
-  FaLinkedin,
-  FaSnapchat,
-  FaPinterest,
-  FaYoutube,
-  FaReddit,
-  FaTiktok,
-  FaTumblr,
-} from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+
 import Button from "../../../Global_components/Button";
 import AddSocial from "./addBoard";
 import { boardProps } from "../../utils/Interfaces";
-
-// import ErrorHandler from "../../../../lib/errorhandler";
+import { FaX } from "react-icons/fa6";
 
 interface social {
   value: string;
   icon: JSX.Element;
 }
-// export const socialMediaArray: social[] = [
-//   { value: "Facebook", icon: <FaFacebook /> },
-//   { value: "Twitter", icon: <FaTwitter /> },
-//   { value: "Instagram", icon: <FaInstagram /> },
-//   { value: "LinkedIn", icon: <FaLinkedin /> },
-//   { value: "Snapchat", icon: <FaSnapchat /> },
-//   { value: "Pinterest", icon: <FaPinterest /> },
-//   { value: "YouTube", icon: <FaYoutube /> },
-//   { value: "Reddit", icon: <FaReddit /> },
-//   { value: "TikTok", icon: <FaTiktok /> },
-//   { value: "Tumblr", icon: <FaTumblr /> },
-// ];
-// interface NewBoardForm {
-//   item: any;
-//   errorHandler: void;
-//   add: boolean;
-// }
 
 export function FormLabel({ label, value, handleChange }: any) {
   return (
@@ -64,8 +35,9 @@ export default function NewBoardForm({ add }: any) {
     image: "",
     tags: [],
   });
-  const [tagItem, setTag] = useState<string[]>();
-
+  // const tag: string[] = [];
+  const [tag, setTagValue] = useState<string>();
+  let tagValue;
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formdata, [e.target.name]: e.target.value });
   };
@@ -76,33 +48,20 @@ export default function NewBoardForm({ add }: any) {
   };
 
   const handleTags = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const tag = e.target.value.split(",");
-    setTag(tag);
-    console.log(tagItem);
-    // setTag(tag)
-    tagItem && setFormData({ ...formdata, tags: tagItem });
-    console.log(formdata.tags);
+    if (e.target.innerText.includes(",")) {
+      const enteredTag = e.target.innerText.split(",");
+      setTagValue(enteredTag[0]);
+      formdata.tags.push(enteredTag[0]);
+      return (e.target.innerText = "");
+    }
   };
 
-  // React.useLayoutEffect(() => {
-  //     // Reset height - important to shrink on delete
-  //    textareaRef.current ? textareaRef.current.style.height = "inherit";
-  //     // Set height
-  //     textareaRef.current.style.height = `${Math.max(
-  //       textareaRef.current.scrollHeight,
-  //       MIN_TEXTAREA_HEIGHT
-  //     )}px`;
-  //   }, [value]);
-  // const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const file = e.target.files?.[0];
-  //   if (file) {
-  //     const reader = new FileReader();
-  //     reader.onload = (e) => {
-  //       setFormData({ ...formdata, image: e.target?.result as string });
-  //     };
-  //     reader.readAsDataURL(file);
-  //   }
-  // };
+  const deleteTag = (e: any) => {
+    const thisele = e.target.parentElement.innerText;
+    formdata.tags.splice(formdata.tags.indexOf(thisele));
+    console.log(formdata.tags);
+  };
+  // useEffect(() => setFormData({ ...formdata, tags: tag }), [entered]);
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -153,27 +112,26 @@ export default function NewBoardForm({ add }: any) {
       </label>
       <label htmlFor="" className="w-full grid gap-1 border-box">
         <span className="mx-2 font-semibold">Tags</span>
-        <div className="grid gap-2 relative">
-          <div className="flex items-center gap-2 flex-wrap ">
-            {formdata.tags.map(
-              (tag, index) =>
-                tag !== "" && (
-                  <Button
-                    children={tag}
-                    variant="primary"
-                    key={index}
-                    className="px-2  "
-                  />
-                )
-            )}
-          </div>
-          <input
+        <div className="flex gap-2 relative flex-wrap shadow-bs px-2 py-1 ">
+          {formdata.tags.map(
+            (tag, index) =>
+              tag !== "" && (
+                <span
+                  key={index}
+                  className="bg-tahiti px-2 rounded-full flex items-center gap-2 hover:shadow-bs"
+                >
+                  {tag} <FaX size="12" onClick={deleteTag} />
+                </span>
+              )
+          )}
+
+          {/* <input
             placeholder={"Start typing tag"}
             className="px-2 py-1 rounded-md   shadow-bs outline-none   border-inset border-box"
             onChange={handleTags}
-            // value={formdata.tags[formdata.tags.length - 1]}
-          />
-          {/* <div
+            value={tag[tag.length - 1]}
+          /> */}
+          <div
             suppressContentEditableWarning={true}
             contentEditable="true"
             defaultValue={formdata.description}
@@ -183,12 +141,14 @@ export default function NewBoardForm({ add }: any) {
                 ? (e.target.innerText = "")
                 : ""
             }
-            className={`w-[40ch] shadow-bs px-2 py-1 outline-none  ${
+            className={`max-w-[40ch] min-w-[10ch]  outline-none  ${
               formdata.tags[0] === "Enter the tags"
                 ? "text-[gray]"
                 : "text-black"
             }  border-inset border-box rounded-md`}
-          ></div> */}
+          >
+            {tagValue}
+          </div>
         </div>
       </label>
       <Button variant={"accent"} size={"sm"}>
