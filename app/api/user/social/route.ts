@@ -13,9 +13,9 @@ export async function GET(req: Request) {
     });
   }
   try {
-    const accounts = await db.account.findMany({
+    const accounts = await db.board.findMany({
       where: { userId: user?.id },
-      include: { content: true, analytics: true }, // Include nested profile data
+      // Include nested profile data
     });
 
     return NextResponse.json({
@@ -31,64 +31,65 @@ export async function GET(req: Request) {
 }
 
 //post new accounts to db
-export async function POST(req: Request) {
-  try {
-    const user = await getCurrentUser();
+// export async function POST(req: Request) {
+//   try {
+//     const user = await getCurrentUser();
 
-    if (!user) {
-      return NextResponse.json({
-        status: 401,
-        message: "Restricted area: User not authenticated",
-      });
-    }
+//     if (!user) {
+//       return NextResponse.json({
+//         status: 401,
+//         message: "Restricted area: User not authenticated",
+//       });
+//     }
 
-    const body = await req.json();
-    const { type, username } = body;
+//     const body = await req.json();
+//     // console.log(body);
+//     const { type, username } = body;
 
-    if (!type || !username) {
-      return NextResponse.json({
-        status: 400,
-        message: "Missing required account data",
-      });
-    }
+//     if (!type || !username) {
+//       return NextResponse.json({
+//         status: 400,
+//         message: "Missing required account data",
+//       });
+//     }
 
-    // Check if the username is already taken for the given account type
-    const existingAccount = await db.account.findFirst({
-      where: {
-        AND: [{ type }, { username }],
-      },
-    });
+//     // Check if the username is already taken for the given account type
+//     const existingAccount = await db.account.findFirst({
+//       where: {
+//         AND: [{ type }, { username }],
+//       },
+//     });
 
-    if (existingAccount) {
-      return NextResponse.json({
-        status: 401,
-        message: "The account has already been added",
-      });
-    }
+//     if (existingAccount) {
+//       return NextResponse.json({
+//         status: 401,
+//         message: "The account has already been added",
+//       });
+//     }
 
-    const newAccount = await db.account.create({
-      data: {
-        userId: user.id,
-        type,
-        username,
-        avatar: "",
-      },
-    });
+//     const newAccount = await db.account.create({
+//       data: {
+//         userId: user.id,
+//         type,
+//         username,
+//         avatar: "",
+//       },
+//     });
 
-    return NextResponse.json({
-      status: 200,
-      user,
-      newAccount,
-      message: "New account added",
-    });
-  } catch (error) {
-    console.error(error);
-    return NextResponse.json({
-      status: 500,
-      message: "Error creating account",
-    });
-  }
-}
+//     return NextResponse.json({
+//       status: 200,
+//       user,
+//       newAccount,
+//       message: "New account added",
+//     });
+//   } catch (error) {
+//     console.error(error);
+//     return NextResponse.json({
+//       status: 500,
+//       message: "Error creating account",
+//     });
+//   }
+// }
 
 // **GET Specific Account**
 // export async function GET(_req, id) {

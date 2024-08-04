@@ -4,22 +4,25 @@ import { FaBars, FaChevronDown, FaChevronUp, FaSearch } from "react-icons/fa";
 import Button from "../../../Global_components/Button";
 import NewBoardForm from "../Forms/NewBoardForm";
 interface HomeNavProps {
-  errorHandler: void;
-  closeAppform: void;
-  add: boolean;
-  item: void;
+  errorHandler?: any;
+  closeAppform?: void;
+  add?: boolean;
+  item?: void;
   list: boolean;
   changeView: any;
 }
+export interface boardProps {
+  title: string;
+  description: string;
+  type: string;
+  link: string;
+  image: string;
+}
 
-const Homenav = ({
-  errorHandler,
-  closeAppform,
-  add,
-  item,
-  list,
-  changeView,
-}: any) => {
+const Homenav = ({ list, changeView }: HomeNavProps) => {
+  const [add, setAdd] = useState<boolean>(false);
+  const [formdate, setFormdata] = useState<boardProps>();
+
   return (
     <div className="min-w-full grid tablet:grid-cols-[4fr_230px] p-2 tablet:p-0  grid-cols-1 tablet:gap-2 gap-4 box-border place-items-center  bg-accent/50 rounded-lg sticky top-32 z-20">
       <div className=" w-full flex items-center gap-4 px-4   box-border rounded-lg ">
@@ -55,7 +58,7 @@ const Homenav = ({
             children="Add new"
             variant={"primary"}
             size={"default"}
-            onClick={() => closeAppform(!add)}
+            onClick={() => setAdd(!add)}
             className="w-fit py-2  px-4 "
             rightIcon={
               <FaChevronUp
@@ -66,7 +69,7 @@ const Homenav = ({
             }
           />
           {}
-          <NewBoardForm item={item} errorHandler={errorHandler} add={add} />
+          <NewBoardForm add={add} />
         </div>
       </div>
     </div>

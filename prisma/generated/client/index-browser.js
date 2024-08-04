@@ -129,37 +129,22 @@ exports.Prisma.UserScalarFieldEnum = {
   verification: 'verification'
 };
 
-exports.Prisma.AccountScalarFieldEnum = {
+exports.Prisma.BoardScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  type: 'type',
-  username: 'username',
-  avatar: 'avatar',
-  bio: 'bio',
-  email: 'email',
-  friend: 'friend',
-  followers: 'followers',
-  connections: 'connections'
+  description: 'description',
+  title: 'title',
+  link: 'link',
+  image: 'image',
+  tags: 'tags',
+  timestamp: 'timestamp'
 };
 
-exports.Prisma.ContentScalarFieldEnum = {
+exports.Prisma.FeedbackScalarFieldEnum = {
   id: 'id',
-  type: 'type',
-  text: 'text',
-  media: 'media',
-  postedAt: 'postedAt'
-};
-
-exports.Prisma.EngagementScalarFieldEnum = {
-  id: 'id',
-  type: 'type',
-  count: 'count'
-};
-
-exports.Prisma.AnalyticsScalarFieldEnum = {
-  id: 'id',
-  metric: 'metric',
-  value: 'value',
+  Username: 'Username',
+  Rating: 'Rating',
+  comment: 'comment',
   timestamp: 'timestamp'
 };
 
@@ -173,18 +158,11 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
-};
-
 
 exports.Prisma.ModelName = {
   User: 'User',
-  Account: 'Account',
-  Content: 'Content',
-  Engagement: 'Engagement',
-  Analytics: 'Analytics'
+  Board: 'Board',
+  Feedback: 'Feedback'
 };
 
 /**

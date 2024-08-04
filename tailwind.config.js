@@ -36,6 +36,7 @@ module.exports = {
         slidein300: "slidein 1s ease 300ms",
         slidein500: "slidein 1s ease 500ms",
         slidein700: "slidein 1s ease 700ms",
+        "spin-slow": "spin 3s linear infinite",
       },
       keyframes: {
         text: {
