@@ -8,6 +8,8 @@ import Socialmediacard from "../../../../components/Dashboard_components/UI/comp
 import { BiChevronRight } from "react-icons/bi";
 import { error } from "console";
 import getBoards from "../../../../components/Dashboard_components/utils/Fetchbaords";
+import { boardProps } from "../../../../components/Dashboard_components/utils/Interfaces";
+import { ToastContainer, toast } from "react-toastify";
 interface HomeProps {
   accounts: {
     username: string;
@@ -20,10 +22,7 @@ export default function Home() {
   const [list, setList] = useState<boolean>(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>();
-  const [newItem, setItem] = useState<newItems>({
-    username: "",
-    type: "",
-  });
+  const [newItem, setItem] = useState<boardProps[]>([]);
 
   const [boards, setBoards] = useState<any>([]);
 
@@ -31,65 +30,12 @@ export default function Home() {
     setError(err);
   };
 
-  //handling the error message
-  // const errorHandler = (item: string) => {
-  // console.log(item);
-  // return setError(item);
-  // console.log(error);
-  // };
-  // useEffect(() => {
-  //   errorHandler(error);
-  // }, [error]);
-
-  //function to close and open the addnewitem form
-  // const closeAppform = (item: boolean) => {
-  //   return setAdd(item);
-  // };
-
   //changing the page view
   const changeView = (view: boolean) => {
     setList(view);
   };
-  // useEffect(() => {
-  //   //checking if new account has been added and adding it to the accounts
-  //   if (newItem) {
-  //     setAccounts([newItem, ...accounts]);
-  //     //clearing the form
-  //     setItem({
-  //       username: "",
-  //       type: "",
-  //     });
-  //   }
-  //   console.log(accounts);
-  // }, []);
-
-  //fecthing the social media accounts from database
-  // const getBoard = async () => {
-  //   try {
-  //     //need to add  the api to the .env file
-  //     const response = await fetch("/api/user/boards");
-  //     if (!response.ok) {
-  //       throw new Error("Failed to fetch boards");
-  //     }
-  //     const data = await response.json();
-  //     setBoards(data.data);
-  //     setLoading(false);
-  //   } catch (error) {
-  //     console.error("Error fetching accounts:", error);
-  //     setError("Failed to fetch accounts");
-  //     setLoading(false);
-  //   }
-  // };
 
   console.log(getBoards());
-
-  // useEffect(() => {
-  //   closeAppform(false);
-  //   // getSocial();
-  //   localStorage.setItem("accounts", JSON.stringify(accounts));
-
-  //   setError("Account added");
-  // }, [newItem]);
 
   setTimeout(() => {
     setLoading(false);
@@ -132,7 +78,6 @@ export default function Home() {
           )}
         </div>
       )}
-      {error ? <ToastConatiner message={error} /> : ""}
     </div>
   );
 }

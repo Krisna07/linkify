@@ -1,6 +1,7 @@
 import React from "react";
 import Provider from "../Dashboard_components/utils/Provider";
 import Mainnav from "../Dashboard_components/UI/Navbar/MainNav";
+
 interface Dashboardprops {
   children: React.ReactNode;
   user: any;

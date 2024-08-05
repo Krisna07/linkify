@@ -2,10 +2,8 @@ import "../globals.css";
 
 import "react-toastify/dist/ReactToastify.css";
 
-import Link from "next/link";
-
 import { getCurrentUser } from "../../lib/session";
-import Button from "../../components/Global_components/Button";
+
 import Dashboardlayout from "../../components/Layouts/Dashboardlayout";
 import ErrorPage from "../../components/Layouts/ErrorPage";
 

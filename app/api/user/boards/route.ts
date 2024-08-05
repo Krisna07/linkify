@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getCurrentUser } from "../../../../lib/session";
 import { db } from "../../../../lib/db";
 import RandomBgGenerator from "../../../../lib/randombggenerator";
+import GenerateLink from "../../../../lib/linksluggenerator";
 
 export async function GET(req: Request) {
   const user = await getCurrentUser();
@@ -55,13 +56,25 @@ export async function POST(req: Request) {
         message: "Missing required board data",
       });
     }
+    // check if the board already exist
+    const existingBoard = await db.board.findFirst({
+      where: {
+        AND: [{ title }],
+      },
+    });
 
+    if (existingBoard) {
+      return NextResponse.json({
+        status: 401,
+        message: "The board has already been added",
+      });
+    }
     const newBoard = await db.board.create({
       data: {
         userId: user.id,
         title: title,
         description: description,
-        link: "",
+        link: GenerateLink(title),
         tags,
         image: image ? image : RandomBgGenerator(),
       },
