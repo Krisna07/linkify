@@ -30,7 +30,7 @@ export function FormLabel({ label, value, handleChange }: any) {
   );
 }
 
-export default function NewBoardForm({ add }: any) {
+export default function NewBoardForm({ add, handleForm }: any) {
   const [formdata, setFormData] = useState<boardProps>({
     title: "",
     description: "Enter the description",
@@ -91,6 +91,7 @@ export default function NewBoardForm({ add }: any) {
           image: "",
           tags: [],
         });
+        handleForm(false);
         return toast(`${data.message}`);
       }
       toast(`${data.message}`);
@@ -102,15 +103,12 @@ export default function NewBoardForm({ add }: any) {
   return (
     <form
       className={`w-fit h-fit ${
-        !add
+        add
           ? "top-[120%] right-0 opacity-1"
           : "top-0 right-0  opacity-0 z-[-20]"
       } absolute p-4   rounded-lg z-40 text-dark bg-white shadow-bs grid gap-4  transition-all duration-500`}
       onSubmit={submitForm}
     >
-      <div className="absolute">
-        <ToastContainer />
-      </div>
       <div className="w-[max-content] block font-semibold ">Add new board</div>
       <label htmlFor="title" className="w-full grid gap-1 border-box">
         <span className="mx-2 font-semibold">Title</span>

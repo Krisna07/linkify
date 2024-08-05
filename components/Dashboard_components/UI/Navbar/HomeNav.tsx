@@ -23,6 +23,10 @@ const Homenav = ({ list, changeView }: HomeNavProps) => {
   const [add, setAdd] = useState<boolean>(false);
   const [formdate, setFormdata] = useState<boardProps>();
 
+  const handleForm = (item: boolean) => {
+    setAdd(item);
+  };
+
   return (
     <div className="min-w-full grid tablet:grid-cols-[4fr_230px] p-2 tablet:p-0  grid-cols-1 tablet:gap-2 gap-4 box-border place-items-center  bg-accent/50 rounded-lg sticky top-32 z-20">
       <div className=" w-full flex items-center gap-4 px-4   box-border rounded-lg ">
@@ -69,7 +73,7 @@ const Homenav = ({ list, changeView }: HomeNavProps) => {
             }
           />
           {}
-          <NewBoardForm add={add} />
+          <NewBoardForm add={add} handleForm={handleForm} />
         </div>
       </div>
     </div>

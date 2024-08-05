@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 
-import ToastConatiner from "../../../../components/Global_components/Toast";
+// import ToastConatiner from "../../../../components/Global_components/Toast";
 import Homenav from "../../../../components/Dashboard_components/UI/Navbar/HomeNav";
 import Socialmediacard from "../../../../components/Dashboard_components/UI/components/socialmediacard";
 import { BiChevronRight } from "react-icons/bi";
@@ -23,11 +23,9 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>();
   const [newItem, setItem] = useState<boardProps[]>([]);
-
-  const [boards, setBoards] = useState<any>([]);
-
+  const [boards, setBoards] = useState<boardProps[]>([]);
   const HandleError = (err: string) => {
-    setError(err);
+    toast(err);
   };
 
   //changing the page view
@@ -35,15 +33,31 @@ export default function Home() {
     setList(view);
   };
 
-  console.log(getBoards());
+  useEffect(() => {
+    const fetchBoards = async () => {
+      try {
+        const data = await getBoards();
+        setBoards(data.data);
+      } catch (err: any) {
+        HandleError(err.message || "An error occurred");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchBoards();
+  }, []);
 
-  setTimeout(() => {
-    setLoading(false);
-  }, 5000);
+  const addBoards = () => {};
+
+  useState(() => {});
+  console.log(boards);
 
   return (
     <div className="w-full laptop:max-w-[1200px] px-2  flex flex-col gap-8 box-border  ">
       <Homenav list={list} changeView={changeView} errorHandler={HandleError} />
+      <div className="absolute">
+        <ToastContainer />
+      </div>
       {loading ? (
         <div className=" grid place-items-center ">
           <div className="w-40 h-40 bg-white rounded-full relative grid place-items-center animate-spin-slow overflow-hidden ">
@@ -54,23 +68,23 @@ export default function Home() {
         </div>
       ) : (
         <div
-          className={` grid ${
+          className={`grid ${
             list
               ? "grid-cols-1"
               : "laptop:grid-cols-3 tablet:grid-cols-2 grid-cols-1"
           } gap-8 relative z-10 text-[gray] `}
         >
           {boards.length > 0 ? (
-            boards.map((item: any, index: number) => (
+            boards.map((item: boardProps, index: number) => (
               <div key={index} className="grid gap-2 p-2">
-                {list ? (
-                  <div className="font-semibold text-white">
-                    {item.type}/{item.username}
-                  </div>
-                ) : (
-                  ""
-                )}
-                <Socialmediacard item={item} list={list} />
+                <div
+                  style={{ background: `${item.image}` }}
+                  className="font-semibold text-white"
+                >
+                  {item.title}
+                </div>
+
+                {/* <Socialmediacard item={item} list={list} /> */}
               </div>
             ))
           ) : (
