@@ -4,20 +4,12 @@ import React, { useState, useEffect, useRef } from "react";
 
 // import ToastConatiner from "../../../../components/Global_components/Toast";
 import Homenav from "../../../../components/Dashboard_components/UI/Navbar/HomeNav";
-import Socialmediacard from "../../../../components/Dashboard_components/UI/components/socialmediacard";
-import { BiChevronRight } from "react-icons/bi";
-import { error } from "console";
+
 import getBoards from "../../../../components/Dashboard_components/utils/Fetchbaords";
 import { boardProps } from "../../../../components/Dashboard_components/utils/Interfaces";
 import { ToastContainer, toast } from "react-toastify";
-interface HomeProps {
-  accounts: {
-    username: string;
-    type: string;
-  };
-  loading: boolean;
-  error: string;
-}
+import Board from "../../../../components/Dashboard_components/UI/components/Board";
+
 export default function Home() {
   const [list, setList] = useState<boolean>(false);
   const [loading, setLoading] = useState(true);
@@ -54,7 +46,7 @@ export default function Home() {
   // console.log(boards);
 
   return (
-    <div className="w-full laptop:max-w-[1200px] min-h-screen overflow-x-hidden px-2  flex flex-col gap-8 box-border ">
+    <div className="w-full laptop:max-w-[1200px] min-h-screen  overflow-hidden  px-2  flex flex-col gap-8 box-border ">
       <Homenav
         list={list}
         changeView={changeView}
@@ -75,23 +67,13 @@ export default function Home() {
       ) : (
         <div
           className={`h-fit grid ${
-            list
-              ? "grid-cols-1"
-              : "laptop:grid-cols-3 tablet:grid-cols-2 grid-cols-1"
+            list ? "grid-cols-1" : " tablet:grid-cols-3 grid-cols-1"
           } gap-8 relative z-10 text-[gray] `}
         >
+          {/* <Socialmediacard item={item} list={list} /> */}
           {boards.length > 0 ? (
             boards.map((item: boardProps, index: number) => (
-              <div key={index} className="grid gap-2 p-2">
-                <div
-                  style={{ background: `${item.image}` }}
-                  className="font-semibold text-white"
-                >
-                  {item.title}
-                </div>
-
-                {/* <Socialmediacard item={item} list={list} /> */}
-              </div>
+              <Board board={item} key={index} />
             ))
           ) : (
             <>No accounts please add accounts</>

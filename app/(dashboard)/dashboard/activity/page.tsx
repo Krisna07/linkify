@@ -1,6 +1,5 @@
 import React from "react";
 import { FaFacebookSquare } from "react-icons/fa";
-import socialMediaData from "../../../../components/Dashboard_components/dummydata";
 
 interface pageProps {}
 

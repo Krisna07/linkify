@@ -1,22 +1,20 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-
 import Button from "../../../Global_components/Button";
-import AddSocial from "./addBoard";
 import { boardProps } from "../../utils/Interfaces";
 import { FaX } from "react-icons/fa6";
-import { ToastContainer, toast } from "react-toastify";
-
 import { CiImageOn } from "react-icons/ci";
 import AddBoard from "../../utils/addBoard";
 import EditableComponents from "./EditableComponents";
-interface social {
+
+interface labelProps {
+  label: string;
   value: string;
-  icon: JSX.Element;
+  handleChange: any;
 }
 
-export function FormLabel({ label, value, handleChange }: any) {
+export function FormLabel({ label, value, handleChange }: labelProps) {
   return (
     <label htmlFor="" className="w-full grid gap-1 border-box">
       <span className="mx-2 font-semibold">{label}</span>
@@ -31,7 +29,12 @@ export function FormLabel({ label, value, handleChange }: any) {
   );
 }
 
-export default function NewBoardForm({ add, handleForm, updateBoard }: any) {
+export default function NewBoardForm({
+  add,
+  handleForm,
+  updateBoard,
+  errorHandler,
+}: any) {
   const [formdata, setFormData] = useState<boardProps>({
     title: "",
     description: "",
@@ -39,24 +42,13 @@ export default function NewBoardForm({ add, handleForm, updateBoard }: any) {
     image: "",
     tags: [],
   });
-  const [error, setError] = useState<string>();
 
   const [tag, setTagValue] = useState<string>();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formdata, [e.target.name]: e.target.value });
   };
-  const [isPlaceholder, setIsplaceholder] = useState<boolean>();
 
-  const actionPlaceHolder = (
-    e: React.FocusEvent<HTMLDivElement, Element>,
-    value: string
-  ) => {
-    const placeHolder = e.target.innerHTML;
-    if (placeHolder === value) {
-      setIsplaceholder(false);
-    }
-  };
   const updateDescription = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formdata, description: e.target.innerText });
   };
@@ -81,15 +73,19 @@ export default function NewBoardForm({ add, handleForm, updateBoard }: any) {
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const regex = /^[a-zA-Z\s]*$/;
+    if (!formdata.title || formdata.title === "Enter the title") {
+      errorHandler("Please enter the title");
+      return;
+    }
     if (!regex.test(formdata.title)) {
-      toast("Please check the title");
+      errorHandler("Please check the title");
       return;
     }
     if (
       !formdata.description ||
       formdata.description === "Enter the description"
     ) {
-      return toast("Please enter the description");
+      return errorHandler("Please enter the description");
     }
 
     try {
@@ -104,11 +100,11 @@ export default function NewBoardForm({ add, handleForm, updateBoard }: any) {
         });
         handleForm(false);
         updateBoard(data.newBoard);
-        return toast(`${data.message}`);
+        return errorHandler(`${data.message}`);
       }
-      toast(`${data.message}`);
+      errorHandler(`${data.message}`);
     } catch (error) {
-      toast(`${error}`);
+      errorHandler(`${error}`);
     }
   };
 
@@ -117,7 +113,7 @@ export default function NewBoardForm({ add, handleForm, updateBoard }: any) {
       className={`tablet:w-[20rem] w-[96vw]   ${
         add
           ? " -right-[2vw] tablet:right-0 opacity-1"
-          : " right-[-120%]   opacity-0 z-[-20]"
+          : " right-[-100vw]   opacity-0 z-[-20]"
       } absolute p-4 top-[140%] rounded-lg z-40 text-dark bg-white shadow-bs grid gap-4  transition-all duration-500`}
       onSubmit={submitForm}
     >
@@ -174,7 +170,7 @@ export default function NewBoardForm({ add, handleForm, updateBoard }: any) {
       </label>
       <label htmlFor="image" className="w-full grid gap-1 border-box">
         <span className="mx-2 font-semibold">Image</span>
-        <div className="w-[200px]  bg-dark/25 rounded-md overflow-hidden relative grid place-items-center">
+        <div className="w-[200px]  bg-silver rounded-md overflow-hidden relative grid place-items-center">
           <CiImageOn size={"100px"} />
           <span>Select Background</span>
           <input

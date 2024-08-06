@@ -23,8 +23,8 @@ export default function Mainnav({ user }: any) {
   const thisNav = `${route.split("/").splice(-2)[0]}`;
 
   return (
-    <div className="w-full  grid gap-4 bg-dark  border-b-[gray] border-b-[1px] relative box-border overflow">
-      <div className=" flex items-center justify-between box-border p-2  gap-4">
+    <div className="w-full  grid gap-4 bg-dark  border-b-[gray] border-b-[1px] relative z-[100] box-border ">
+      <div className="w-full flex items-center justify-between box-border p-2  gap-4 relative  ">
         <div className=" flex items-center py-2  gap-2">
           <div className="h-6 w-6  rounded-full overflow-hidden  tablet:flex">
             <Image
@@ -65,20 +65,20 @@ export default function Mainnav({ user }: any) {
               0
             </div>
           </div>
-          <div className="relative">
+          <div className="w-full  z-[100]">
             <div
               style={{ backgroundImage: user.image }}
               className={`w-8 h-8  bg-[gray] rounded-full relative`}
               onClick={() => setAccountOptions(!accountOptions)}
             ></div>
-            <div
-              className={`${
-                accountOptions ? "h-fit " : "h-0 "
-              }  transition-all absolute  top-[120%] right-0 bg-dark/50 z-[999] rounded overflow-hidden`}
-            >
-              <Dropdown user={user} />
-            </div>
           </div>
+        </div>
+        <div
+          className={`${
+            !accountOptions ? "-right-[100vw]" : "right-[2vw] tablet:right-4 "
+          }  transition-all min-w-fit min-h-fit absolute  top-[100%]   bg-tahiti text-dark z-[999] rounded overflow-hidden`}
+        >
+          <Dropdown user={user} />
         </div>
       </div>
       <div className="w-full overflow-hidden sticky top-0 box-border">

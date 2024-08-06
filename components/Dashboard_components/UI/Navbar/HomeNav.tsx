@@ -20,7 +20,12 @@ export interface boardProps {
   image: string;
 }
 
-const Homenav = ({ list, changeView, updateBoard }: HomeNavProps) => {
+const Homenav = ({
+  list,
+  changeView,
+  updateBoard,
+  errorHandler,
+}: HomeNavProps) => {
   const [add, setAdd] = useState<boolean>(false);
   const handleForm = (item: boolean) => {
     setAdd(item);
@@ -76,6 +81,7 @@ const Homenav = ({ list, changeView, updateBoard }: HomeNavProps) => {
               add={add}
               handleForm={handleForm}
               updateBoard={updateBoard}
+              errorHandler={errorHandler}
             />
           </div>
         </div>

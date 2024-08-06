@@ -7,6 +7,7 @@ export interface userProps {
 }
 
 export interface boardProps {
+  id?: string;
   title: string;
   description: string;
   link: string;
