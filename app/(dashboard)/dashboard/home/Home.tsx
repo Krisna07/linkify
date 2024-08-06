@@ -21,8 +21,7 @@ interface HomeProps {
 export default function Home() {
   const [list, setList] = useState<boolean>(false);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string>();
-  const [newItem, setItem] = useState<boardProps[]>([]);
+
   const [boards, setBoards] = useState<boardProps[]>([]);
   const HandleError = (err: string) => {
     toast(err);
@@ -47,14 +46,21 @@ export default function Home() {
     fetchBoards();
   }, []);
 
-  const addBoards = () => {};
+  const actionBoardUpdate = (newBoard: boardProps) => {
+    setBoards([...boards, newBoard]);
+  };
 
-  useState(() => {});
-  console.log(boards);
+  // useState(() => {});
+  // console.log(boards);
 
   return (
-    <div className="w-full laptop:max-w-[1200px] px-2  flex flex-col gap-8 box-border  ">
-      <Homenav list={list} changeView={changeView} errorHandler={HandleError} />
+    <div className="w-full laptop:max-w-[1200px] min-h-screen overflow-x-hidden px-2  flex flex-col gap-8 box-border ">
+      <Homenav
+        list={list}
+        changeView={changeView}
+        errorHandler={HandleError}
+        updateBoard={actionBoardUpdate}
+      />
       <div className="absolute">
         <ToastContainer />
       </div>
@@ -68,7 +74,7 @@ export default function Home() {
         </div>
       ) : (
         <div
-          className={`grid ${
+          className={`h-fit grid ${
             list
               ? "grid-cols-1"
               : "laptop:grid-cols-3 tablet:grid-cols-2 grid-cols-1"

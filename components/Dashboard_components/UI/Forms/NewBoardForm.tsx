@@ -10,6 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 import { CiImageOn } from "react-icons/ci";
 import AddBoard from "../../utils/addBoard";
+import EditableComponents from "./EditableComponents";
 interface social {
   value: string;
   icon: JSX.Element;
@@ -30,10 +31,10 @@ export function FormLabel({ label, value, handleChange }: any) {
   );
 }
 
-export default function NewBoardForm({ add, handleForm }: any) {
+export default function NewBoardForm({ add, handleForm, updateBoard }: any) {
   const [formdata, setFormData] = useState<boardProps>({
     title: "",
-    description: "Enter the description",
+    description: "",
     link: "",
     image: "",
     tags: [],
@@ -45,7 +46,17 @@ export default function NewBoardForm({ add, handleForm }: any) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formdata, [e.target.name]: e.target.value });
   };
+  const [isPlaceholder, setIsplaceholder] = useState<boolean>();
 
+  const actionPlaceHolder = (
+    e: React.FocusEvent<HTMLDivElement, Element>,
+    value: string
+  ) => {
+    const placeHolder = e.target.innerHTML;
+    if (placeHolder === value) {
+      setIsplaceholder(false);
+    }
+  };
   const updateDescription = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formdata, description: e.target.innerText });
   };
@@ -92,6 +103,7 @@ export default function NewBoardForm({ add, handleForm }: any) {
           tags: [],
         });
         handleForm(false);
+        updateBoard(data.newBoard);
         return toast(`${data.message}`);
       }
       toast(`${data.message}`);
@@ -102,14 +114,16 @@ export default function NewBoardForm({ add, handleForm }: any) {
 
   return (
     <form
-      className={`w-fit h-fit ${
+      className={`tablet:w-[20rem] w-[96vw]   ${
         add
-          ? "top-[120%] right-0 opacity-1"
-          : "top-0 right-0  opacity-0 z-[-20]"
-      } absolute p-4   rounded-lg z-40 text-dark bg-white shadow-bs grid gap-4  transition-all duration-500`}
+          ? " -right-[2vw] tablet:right-0 opacity-1"
+          : " right-[-120%]   opacity-0 z-[-20]"
+      } absolute p-4 top-[140%] rounded-lg z-40 text-dark bg-white shadow-bs grid gap-4  transition-all duration-500`}
       onSubmit={submitForm}
     >
-      <div className="w-[max-content] block font-semibold ">Add new board</div>
+      <div className="w-[max-content]  block font-semibold sticky top-0 ">
+        Add new board
+      </div>
       <label htmlFor="title" className="w-full grid gap-1 border-box">
         <span className="mx-2 font-semibold">Title</span>
         <input
@@ -118,28 +132,18 @@ export default function NewBoardForm({ add, handleForm }: any) {
           className="px-2 py-1 rounded-md   shadow-bs outline-none   border-inset border-box"
           name={"title"}
           onChange={handleChange}
+          value={formdata.title}
         />
       </label>
       <label htmlFor="description" className="w-full grid gap-1 border-box">
         <span className="mx-2 font-semibold">Description</span>
-        <div
-          suppressContentEditableWarning={true}
-          contentEditable="true"
-          defaultValue={formdata.description}
-          onInput={updateDescription}
-          onFocus={(e) =>
-            e.target.innerText === "Enter the description"
-              ? (e.target.innerText = "")
-              : ""
-          }
-          className={`w-[40ch] shadow-bs px-2 py-1 outline-none  ${
-            formdata.description === "Enter the description" ||
-            formdata.description === ""
-              ? "text-[gray]"
-              : "text-black"
-          }  border-inset border-box rounded-md`}
-        >
-          {formdata.description === "" && "Enter the description"}
+        <div className="shadow-bs rounded-md">
+          {" "}
+          <EditableComponents
+            valueUpdate={updateDescription}
+            placeholder={"Enter the description"}
+            isEditable={true}
+          />
         </div>
       </label>
       <label htmlFor="tags" className="w-full grid gap-1 border-box">
@@ -161,24 +165,11 @@ export default function NewBoardForm({ add, handleForm }: any) {
                 </div>
               )
           )}
-          <div
-            suppressContentEditableWarning={true}
-            contentEditable={formdata.tags.length < 5 ? "true" : "false"}
-            defaultValue={formdata.description}
-            onInput={handleTags}
-            onFocus={(e) =>
-              e.target.innerText === "Enter the tags"
-                ? (e.target.innerText = "")
-                : ""
-            }
-            className={`max-w-[40ch] min-w-[10ch]  outline-none  ${
-              formdata.tags[0] === "Enter the tags"
-                ? "text-[gray]"
-                : "text-black"
-            }  border-inset border-box rounded-md`}
-          >
-            Enter the tags
-          </div>
+          <EditableComponents
+            valueUpdate={handleTags}
+            placeholder={formdata.tags.length == 5 ? "" : "Enter the Tags"}
+            isEditable={formdata.tags.length == 5 ? false : true}
+          />
         </div>
       </label>
       <label htmlFor="image" className="w-full grid gap-1 border-box">
@@ -197,4 +188,7 @@ export default function NewBoardForm({ add, handleForm }: any) {
       </Button>
     </form>
   );
+}
+function updateBoard(newBoard: any) {
+  throw new Error("Function not implemented.");
 }
