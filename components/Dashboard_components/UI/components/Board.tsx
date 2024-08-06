@@ -2,7 +2,6 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 import { TbReportAnalytics } from "react-icons/tb";
 import { boardProps } from "../../utils/Interfaces";
-import { Span } from "next/dist/trace";
 
 interface BoardProps {
   board: boardProps;

@@ -70,7 +70,6 @@ export default function Home() {
             list ? "grid-cols-1" : " tablet:grid-cols-3 grid-cols-1"
           } gap-8 relative z-10 text-[gray] `}
         >
-          {/* <Socialmediacard item={item} list={list} /> */}
           {boards.length > 0 ? (
             boards.map((item: boardProps, index: number) => (
               <Board board={item} key={index} />
