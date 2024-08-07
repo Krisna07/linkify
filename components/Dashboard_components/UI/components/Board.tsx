@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { FaStar } from "react-icons/fa";
 import { TbReportAnalytics } from "react-icons/tb";
 import { boardProps } from "../../utils/Interfaces";
@@ -18,10 +18,7 @@ const Board = ({ board }: BoardProps) => {
         <span className="text-silver leading-[100%] text-2xl font-semibold">
           {board.title}
         </span>
-        <span>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores
-          expedita blanditiis tenetur.
-        </span>
+        <span>{board.description}</span>
       </div>
       <div className="flex items-center gap-2 flex-wrap">
         {board.tags &&

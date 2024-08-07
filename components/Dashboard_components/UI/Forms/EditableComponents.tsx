@@ -18,7 +18,6 @@ const EditableComponents = ({
       contentEditable={isEditable}
       onInput={valueUpdate}
       onFocus={(e) => {
-        console.log("focus");
         const placeHolder = e.target.innerHTML;
         const value = placeholder;
         if (placeHolder === value) {
@@ -27,7 +26,6 @@ const EditableComponents = ({
         }
       }}
       onBlur={(e) => {
-        console.log("blur");
         const placeHolder = e.target.innerHTML;
         const value = placeholder;
         if (placeHolder.length < 1) {

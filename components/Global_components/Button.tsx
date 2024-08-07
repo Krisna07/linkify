@@ -9,13 +9,13 @@ const buttonVarients = cva("active:", {
   variants: {
     variant: {
       default:
-        "bg-dark rounded transition-all text-silver w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs ",
+        "bg-dark rounded whitespace-nowrap transition-all text-silver w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs ",
       accent:
-        "bg-accent rounded transition-all text-black w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs",
+        "bg-accent rounded whitespace-nowrap transition-all text-black w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs",
       primary:
-        "bg-primary rounded transition-all text-white w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs",
+        "bg-primary rounded whitespace-nowrap transition-all text-white w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs",
       submit:
-        "bg-dark rounded transition-all text-sky-100 w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs",
+        "bg-dark rounded whitespace-nowrap transition-all text-sky-100 w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs",
     },
     // border: {
     //   default: "border-rounded",
@@ -79,12 +79,8 @@ const Button: FC<ButtonProps> = ({
       onMouseOver={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <div
-        className={`flex items-center justify-center gap-2 relative z-[99] `}
-      >
-        <span className="block w-fit ">{children}</span>
-        {rightIcon ? rightIcon : iconCheck}
-      </div>
+      {children}
+      {rightIcon ? rightIcon : iconCheck}
     </button>
   );
 };

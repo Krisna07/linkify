@@ -42,9 +42,6 @@ export default function Home() {
     setBoards([...boards, newBoard]);
   };
 
-  // useState(() => {});
-  // console.log(boards);
-
   return (
     <div className="w-full laptop:max-w-[1200px] min-h-screen  overflow-hidden  px-2  flex flex-col gap-8 box-border ">
       <Homenav
@@ -70,7 +67,7 @@ export default function Home() {
             list ? "grid-cols-1" : " tablet:grid-cols-3 grid-cols-1"
           } gap-8 relative z-10 text-[gray] `}
         >
-          {boards.length > 0 ? (
+          {boards ? (
             boards.map((item: boardProps, index: number) => (
               <Board board={item} key={index} />
             ))

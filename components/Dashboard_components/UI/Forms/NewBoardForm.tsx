@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Button from "../../../Global_components/Button";
 import { boardProps } from "../../utils/Interfaces";
 import { FaX } from "react-icons/fa6";

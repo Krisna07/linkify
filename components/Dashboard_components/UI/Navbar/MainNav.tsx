@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BiBell } from "react-icons/bi";
 import Dropdown from "../components/dropdown";
 import Image from "next/image";
@@ -21,7 +21,18 @@ export default function Mainnav({ user }: any) {
   const route = usePathname();
   const [accountOptions, setAccountOptions] = useState<boolean>(false);
   const thisNav = `${route.split("/").splice(-2)[0]}`;
-
+  const dropdownRef = useRef(null);
+  useEffect(() =>
+    document.addEventListener("click", (e: any) => {
+      const ClickedItem: any = e.target;
+      const openItem: any = dropdownRef.current;
+      if (openItem && openItem.contains(ClickedItem)) {
+        return;
+      } else {
+        setAccountOptions(false);
+      }
+    })
+  );
   return (
     <div className="w-full  grid gap-4 bg-dark  border-b-[gray] border-b-[1px] relative z-[100] box-border ">
       <div className="w-full flex items-center justify-between box-border p-2  gap-4 relative  ">
@@ -65,20 +76,20 @@ export default function Mainnav({ user }: any) {
               0
             </div>
           </div>
-          <div className="w-full  z-[100]">
+          <div ref={dropdownRef} className="w-full relative  z-[100]">
             <div
               style={{ backgroundImage: user.image }}
-              className={`w-8 h-8  bg-[gray] rounded-full relative`}
+              className={`w-8 h-8   rounded-full relative`}
               onClick={() => setAccountOptions(!accountOptions)}
             ></div>
+            <div
+              className={`w-[300px] ${
+                !accountOptions ? "-right-[100vw]" : "right-0 "
+              }  transition-all duration-300 min-w-fit min-h-fit absolute  top-[120%]   bg-tahiti text-dark z-[999] rounded overflow-hidden`}
+            >
+              <Dropdown user={user} />
+            </div>
           </div>
-        </div>
-        <div
-          className={`${
-            !accountOptions ? "-right-[100vw]" : "right-[2vw] tablet:right-4 "
-          }  transition-all min-w-fit min-h-fit absolute  top-[100%]   bg-tahiti text-dark z-[999] rounded overflow-hidden`}
-        >
-          <Dropdown user={user} />
         </div>
       </div>
       <div className="w-full overflow-hidden sticky top-0 box-border">

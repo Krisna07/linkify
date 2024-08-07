@@ -35,7 +35,7 @@ const Background = () => {
         {Array.from({ length: points }).map((_, i) => (
           <div
             key={i}
-            className="w-2 h-2 rounded-full bg-gradient-to-b from-primary to-accent animate-pulse duration-[3s]"
+            className="w-1 h-1 rounded-full bg-gradient-to-b from-primary to-accent animate-pulse duration-[3s]"
           >
             {/* <div className="w-2 h-2 rounded-full bg-gradient-to-b from-primary to-accent animate-ping absolute"></div> */}
           </div>
