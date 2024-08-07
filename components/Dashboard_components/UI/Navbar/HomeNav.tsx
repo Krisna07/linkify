@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { BiGrid } from "react-icons/bi";
-import { FaBars, FaChevronDown, FaChevronUp, FaSearch } from "react-icons/fa";
+import { FaBars, FaChevronUp, FaSearch } from "react-icons/fa";
 import Button from "../../../Global_components/Button";
 import NewBoardForm from "../Forms/NewBoardForm";
 import { boardProps } from "../../utils/Interfaces";
@@ -14,6 +14,7 @@ interface HomeNavProps {
   updateBoard: any;
   handleSearch: any;
   search: boardProps[];
+  handleSelectedBoard?: any;
 }
 // export interface boardProps {
 //   title: string;
@@ -30,6 +31,7 @@ const Homenav = ({
   errorHandler,
   handleSearch,
   search,
+  handleSelectedBoard,
 }: HomeNavProps) => {
   const [add, setAdd] = useState<boolean>(false);
   const handleForm = (item: boolean) => {
@@ -47,6 +49,12 @@ const Homenav = ({
       }
     })
   );
+  const selectSearch = (e: any) => {
+    console.log(e.target.innerText);
+    handleSelectedBoard(
+      search.filter((item: boardProps) => item.title === e.target.innerText)
+    );
+  };
 
   return (
     <div className="min-w-full   grid tablet:grid-cols-[4fr_230px]   tablet:p-0 grid-cols-1 tablet:gap-2 gap-4 border-box place-items-center  bg-accent/50 rounded-md top-0 sticky z-20">
@@ -61,7 +69,10 @@ const Homenav = ({
         {search.length > 0 && (
           <div className="absolute top-[110%]   divide-y-[2px] divide-solid divide-tahiti rounded-md text-lg grid  text-left overflow-hidden">
             {search.map((item: boardProps) => (
-              <div className="w-full p-2 px-4 bg-accent hover:bg-accent/[90%] hover:text-tahiti transition-all duration-300 cursor-pointer">
+              <div
+                className="w-full p-2 px-4 bg-accent hover:bg-accent/[90%] hover:text-tahiti transition-all duration-300 cursor-pointer"
+                onClick={selectSearch}
+              >
                 {item.title}
               </div>
             ))}

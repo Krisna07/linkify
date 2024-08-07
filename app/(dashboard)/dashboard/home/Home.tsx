@@ -41,14 +41,17 @@ export default function Home() {
   const actionBoardUpdate = (newBoard: boardProps) => {
     setBoards([...boards, newBoard]);
   };
+  const handleSelectedBoard = (item: boardProps[]) => {
+    setBoards(item);
+  };
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.target.value
+  const handleSearch = (item: any) => {
+    item.target.value
       ? setSearch(
           boards.filter((board: boardProps) => {
             return board.title
               .toLowerCase()
-              .includes(e.target.value.toLowerCase());
+              .includes(item.target.value.toLowerCase());
           })
         )
       : setSearch([]);
@@ -62,6 +65,7 @@ export default function Home() {
         errorHandler={HandleError}
         updateBoard={actionBoardUpdate}
         handleSearch={handleSearch}
+        handleSelectedBoard={handleSelectedBoard}
         search={search}
       />
 
