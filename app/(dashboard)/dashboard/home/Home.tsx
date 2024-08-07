@@ -13,8 +13,8 @@ import Board from "../../../../components/Dashboard_components/UI/components/Boa
 export default function Home() {
   const [list, setList] = useState<boolean>(false);
   const [loading, setLoading] = useState(true);
-
   const [boards, setBoards] = useState<boardProps[]>([]);
+  const [search, setSearch] = useState<boardProps[]>([]);
   const HandleError = (err: string) => {
     toast(err);
   };
@@ -42,6 +42,18 @@ export default function Home() {
     setBoards([...boards, newBoard]);
   };
 
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.target.value
+      ? setSearch(
+          boards.filter((board: boardProps) => {
+            return board.title
+              .toLowerCase()
+              .includes(e.target.value.toLowerCase());
+          })
+        )
+      : setSearch([]);
+  };
+
   return (
     <div className="w-full laptop:max-w-[1200px] min-h-screen  overflow-hidden  px-2  flex flex-col gap-8 box-border ">
       <Homenav
@@ -49,7 +61,10 @@ export default function Home() {
         changeView={changeView}
         errorHandler={HandleError}
         updateBoard={actionBoardUpdate}
+        handleSearch={handleSearch}
+        search={search}
       />
+
       <div className="absolute">
         <ToastContainer />
       </div>
