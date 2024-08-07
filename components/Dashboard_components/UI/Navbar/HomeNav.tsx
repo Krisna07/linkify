@@ -49,20 +49,35 @@ const Homenav = ({
       }
     })
   );
+
+  const [selectedSearch, setSelectedSearch] = useState<string[]>([]);
+
   const selectSearch = (e: any) => {
-    console.log(e.target.innerText);
     handleSelectedBoard(
       search.filter((item: boardProps) => item.title === e.target.innerText)
     );
+    const findDups = selectedSearch.filter(
+      (search) => search == e.target.innerText
+    );
+    if (findDups.length) {
+      console.log(selectedSearch);
+    } else {
+      setSelectedSearch([...selectedSearch, e.target.innerText]);
+    }
   };
+  // useEffect(() => {
+  //   search.map((board) => setSelectedSearch([...selectedSearch, board.title]));
+  //   console.log(selectedSearch);
+  // }, [handleSelectedBoard]);
 
   return (
     <div className="min-w-full   grid tablet:grid-cols-[4fr_230px]   tablet:p-0 grid-cols-1 tablet:gap-2 gap-4 border-box place-items-center  bg-accent/50 rounded-md top-0 sticky z-20">
       <div className=" w-full flex items-center gap-4 px-4 p-1   box-border rounded-lg relative z-20  ">
         <FaSearch />
+        {}
         <input
           type="text"
-          placeholder="Search"
+          placeholder={"Search"}
           onChange={handleSearch}
           className="bg-dark px-2 p-2 outline-none w-[100%]"
         />
@@ -70,6 +85,7 @@ const Homenav = ({
           <div className="absolute top-[110%]   divide-y-[2px] divide-solid divide-tahiti rounded-md text-lg grid  text-left overflow-hidden">
             {search.map((item: boardProps) => (
               <div
+                key={item.title}
                 className="w-full p-2 px-4 bg-accent hover:bg-accent/[90%] hover:text-tahiti transition-all duration-300 cursor-pointer"
                 onClick={selectSearch}
               >

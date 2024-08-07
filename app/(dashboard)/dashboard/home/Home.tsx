@@ -15,6 +15,8 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [boards, setBoards] = useState<boardProps[]>([]);
   const [search, setSearch] = useState<boardProps[]>([]);
+  const [displayBoard, setDisplayBoard] = useState<boardProps[]>([]);
+
   const HandleError = (err: string) => {
     toast(err);
   };
@@ -42,8 +44,12 @@ export default function Home() {
     setBoards([...boards, newBoard]);
   };
   const handleSelectedBoard = (item: boardProps[]) => {
-    setBoards(item);
+    setDisplayBoard(item);
+    setSearch(item);
   };
+  useEffect(() => {
+    search.length < 1 ? setDisplayBoard(boards) : setDisplayBoard(search);
+  }, [boards, search]);
 
   const handleSearch = (item: any) => {
     item.target.value
@@ -56,7 +62,7 @@ export default function Home() {
         )
       : setSearch([]);
   };
-
+  console.log(boards);
   return (
     <div className="w-full laptop:max-w-[1200px] min-h-screen  overflow-hidden  px-2  flex flex-col gap-8 box-border ">
       <Homenav
@@ -86,8 +92,8 @@ export default function Home() {
             list ? "grid-cols-1" : " tablet:grid-cols-3 grid-cols-1"
           } gap-8 relative z-10 text-[gray] `}
         >
-          {boards ? (
-            boards.map((item: boardProps, index: number) => (
+          {displayBoard ? (
+            displayBoard.map((item: boardProps, index: number) => (
               <Board board={item} key={index} />
             ))
           ) : (
