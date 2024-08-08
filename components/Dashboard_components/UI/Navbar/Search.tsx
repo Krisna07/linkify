@@ -45,18 +45,7 @@ const Search = ({ boards, handleSearch }: SearchProps) => {
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     event.target.value = "";
   };
-  //   useEffect(() =>
-  //     document.addEventListener("click", (e) => {
-  //       const ClickedItem: EventTarget | null = e && e.target;
-  //       const openItem: any = searchOptionsRef.current;
-  //       if (openItem?.contains(ClickedItem)) {
-  //         return;
-  //       } else {
-  //         setSearch([]);
-  //       }
-  //       console.log("clicks");
-  //     })
-  //   );
+
   return (
     <div className="group w-full flex items-center gap-4 px-4 p-1   box-border rounded-lg relative z-20  ">
       <FaSearch size={24} />

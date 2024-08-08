@@ -1,10 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-
-// import ToastConatiner from "../../../../components/Global_components/Toast";
 import Homenav from "../../../../components/Dashboard_components/UI/Navbar/HomeNav";
-
 import getBoards from "../../../../components/Dashboard_components/utils/Fetchbaords";
 import { boardProps } from "../../../../components/Dashboard_components/utils/Interfaces";
 import { ToastContainer, toast } from "react-toastify";
@@ -44,10 +41,6 @@ export default function Home() {
     setBoards([...boards, newBoard]);
   };
 
-  const handleSelectedBoard = (item: boardProps[]) => {
-    setDisplayBoard(item);
-  };
-
   const handleSearch = (item: boardProps[]) => {
     setSearch(item);
   };
@@ -63,7 +56,6 @@ export default function Home() {
         changeView={changeView}
         errorHandler={HandleError}
         updateBoard={actionBoardUpdate}
-        handleSelectedBoard={handleSelectedBoard}
         handleSearch={handleSearch}
       />
 
@@ -81,7 +73,9 @@ export default function Home() {
       ) : (
         <div
           className={`h-fit grid ${
-            list ? "grid-cols-1" : " tablet:grid-cols-3 grid-cols-1"
+            list
+              ? "grid-cols-1"
+              : "laptop:grid-cols-3  tablet:grid-cols-2 grid-cols-1"
           } gap-8 relative z-10 text-[gray] `}
         >
           {displayBoard && displayBoard.length > 0 ? (
