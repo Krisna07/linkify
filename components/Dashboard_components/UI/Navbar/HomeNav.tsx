@@ -85,7 +85,10 @@ const Homenav = ({
               }
             />
           </div>
-          <div className="bg-primary flex items-center rounded-lg p-2 w-fit tablet:hidden">
+          <div
+            className="bg-primary flex items-center rounded-lg p-2 w-fit tablet:hidden"
+            onClick={() => setAdd(!add)}
+          >
             <FaPlusCircle />
           </div>
           <NewBoardForm
