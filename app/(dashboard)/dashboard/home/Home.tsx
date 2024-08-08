@@ -43,36 +43,28 @@ export default function Home() {
   const actionBoardUpdate = (newBoard: boardProps) => {
     setBoards([...boards, newBoard]);
   };
+
   const handleSelectedBoard = (item: boardProps[]) => {
     setDisplayBoard(item);
+  };
+
+  const handleSearch = (item: boardProps[]) => {
     setSearch(item);
   };
   useEffect(() => {
     search.length < 1 ? setDisplayBoard(boards) : setDisplayBoard(search);
   }, [boards, search]);
 
-  const handleSearch = (item: any) => {
-    item.target.value
-      ? setSearch(
-          boards.filter((board: boardProps) => {
-            return board.title
-              .toLowerCase()
-              .includes(item.target.value.toLowerCase());
-          })
-        )
-      : setSearch([]);
-  };
-  console.log(boards);
   return (
     <div className="w-full laptop:max-w-[1200px] min-h-screen  overflow-hidden  px-2  flex flex-col gap-8 box-border ">
       <Homenav
         list={list}
+        boards={boards}
         changeView={changeView}
         errorHandler={HandleError}
         updateBoard={actionBoardUpdate}
-        handleSearch={handleSearch}
         handleSelectedBoard={handleSelectedBoard}
-        search={search}
+        handleSearch={handleSearch}
       />
 
       <div className="absolute">
@@ -92,12 +84,12 @@ export default function Home() {
             list ? "grid-cols-1" : " tablet:grid-cols-3 grid-cols-1"
           } gap-8 relative z-10 text-[gray] `}
         >
-          {displayBoard ? (
+          {displayBoard && displayBoard.length > 0 ? (
             displayBoard.map((item: boardProps, index: number) => (
               <Board board={item} key={index} />
             ))
           ) : (
-            <>No accounts please add accounts</>
+            <>No matching accounts</>
           )}
         </div>
       )}

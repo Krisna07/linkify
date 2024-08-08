@@ -4,42 +4,39 @@ import { FaBars, FaChevronUp, FaSearch } from "react-icons/fa";
 import Button from "../../../Global_components/Button";
 import NewBoardForm from "../Forms/NewBoardForm";
 import { boardProps } from "../../utils/Interfaces";
+import { Span } from "next/dist/trace";
+import { FaX } from "react-icons/fa6";
+import Search from "./Search";
 interface HomeNavProps {
   errorHandler?: any;
   closeAppform?: void;
+  boards?: boardProps[];
   add?: boolean;
   item?: void;
   list: boolean;
   changeView: any;
   updateBoard: any;
-  handleSearch: any;
-  search: boardProps[];
+  handleSearch?: any;
+
   handleSelectedBoard?: any;
 }
-// export interface boardProps {
-//   title: string;
-//   description: string;
-//   type: string;
-//   link: string;
-//   image: string;
-// }
 
 const Homenav = ({
   list,
   changeView,
   updateBoard,
   errorHandler,
+  boards,
   handleSearch,
-  search,
-  handleSelectedBoard,
 }: HomeNavProps) => {
   const [add, setAdd] = useState<boolean>(false);
+
   const handleForm = (item: boolean) => {
     setAdd(item);
   };
   const boardRef: React.MutableRefObject<null> = useRef(null);
   useEffect(() =>
-    document.addEventListener("click", (e: MouseEvent) => {
+    document.addEventListener("click", (e) => {
       const ClickedItem: EventTarget | null = e && e.target;
       const openItem: any = boardRef.current;
       if (openItem?.contains(ClickedItem)) {
@@ -50,51 +47,9 @@ const Homenav = ({
     })
   );
 
-  const [selectedSearch, setSelectedSearch] = useState<string[]>([]);
-
-  const selectSearch = (e: any) => {
-    handleSelectedBoard(
-      search.filter((item: boardProps) => item.title === e.target.innerText)
-    );
-    const findDups = selectedSearch.filter(
-      (search) => search == e.target.innerText
-    );
-    if (findDups.length) {
-      console.log(selectedSearch);
-    } else {
-      setSelectedSearch([...selectedSearch, e.target.innerText]);
-    }
-  };
-  // useEffect(() => {
-  //   search.map((board) => setSelectedSearch([...selectedSearch, board.title]));
-  //   console.log(selectedSearch);
-  // }, [handleSelectedBoard]);
-
   return (
     <div className="min-w-full   grid tablet:grid-cols-[4fr_230px]   tablet:p-0 grid-cols-1 tablet:gap-2 gap-4 border-box place-items-center  bg-accent/50 rounded-md top-0 sticky z-20">
-      <div className=" w-full flex items-center gap-4 px-4 p-1   box-border rounded-lg relative z-20  ">
-        <FaSearch />
-        {}
-        <input
-          type="text"
-          placeholder={"Search"}
-          onChange={handleSearch}
-          className="bg-dark px-2 p-2 outline-none w-[100%]"
-        />
-        {search.length > 0 && (
-          <div className="absolute top-[110%]   divide-y-[2px] divide-solid divide-tahiti rounded-md text-lg grid  text-left overflow-hidden">
-            {search.map((item: boardProps) => (
-              <div
-                key={item.title}
-                className="w-full p-2 px-4 bg-accent hover:bg-accent/[90%] hover:text-tahiti transition-all duration-300 cursor-pointer"
-                onClick={selectSearch}
-              >
-                {item.title}
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+      <Search boards={boards} handleSearch={handleSearch} />
       <div className="w-full   flex gap-4 items-center justify-between relative z-[10]">
         <div className="flex gap-2 p-1 bg-gray-800 text-[18px] rounded-lg text-gray-400 relative">
           <div
