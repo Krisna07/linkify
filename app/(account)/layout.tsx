@@ -6,6 +6,7 @@ import { getCurrentUser } from "../../lib/session";
 
 import Dashboardlayout from "../../components/Layouts/Dashboardlayout";
 import ErrorPage from "../../components/Layouts/ErrorPage";
+import MiscLayout from "../../components/Layouts/MiscLayout";
 import { userProps } from "../../components/Dashboard_components/utils/Interfaces";
 
 export const metadata = {
@@ -24,5 +25,5 @@ export default async function RootLayout({
     return <ErrorPage />;
   }
 
-  return <Dashboardlayout children={children} user={user} />;
+  return <MiscLayout children={children} user={user} />;
 }

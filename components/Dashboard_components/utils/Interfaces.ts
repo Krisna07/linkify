@@ -1,7 +1,7 @@
 export interface userProps {
   username: string;
   email: string;
-  name: string;
+  name?: string;
   image: string;
   id: string;
 }

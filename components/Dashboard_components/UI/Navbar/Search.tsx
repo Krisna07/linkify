@@ -10,7 +10,7 @@ interface SearchProps {
 const Search = ({ boards, handleSearch }: SearchProps) => {
   const [search, setSearch] = useState<boardProps[]>([]);
   const [selectedSearch, setSelectedSearch] = useState<string[]>([]);
-  const [selectedBoards, setSelectedBoards] = useState<boardProps[]>();
+  // const [selectedBoards, setSelectedBoards] = useState<boardProps[]>();
   const searchOptionsRef = useRef(null);
 
   const selectSearch = (e: React.MouseEvent<HTMLDivElement>) => {
