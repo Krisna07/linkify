@@ -38,12 +38,14 @@ export default function RootLayout({
                 icon={true}
               />
             </Link>
-            <Button
-              variant={"accent"}
-              children="Sign up"
-              size={"default"}
-              icon={true}
-            />
+            <Link href={"/auth/signup"}>
+              <Button
+                variant={"accent"}
+                children="Sign up"
+                size={"default"}
+                icon={true}
+              />
+            </Link>
           </div>
         </div>
         {/* <Landingpage children={children} /> */}

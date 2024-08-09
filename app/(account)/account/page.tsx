@@ -2,6 +2,7 @@ import React from "react";
 import { getCurrentUser } from "../../../lib/session";
 import { userProps } from "../../../components/Dashboard_components/utils/Interfaces";
 import { BiImageAlt } from "react-icons/bi";
+import Button from "../../../components/Global_components/Button";
 
 const page = async () => {
   const user: userProps = await getCurrentUser();
@@ -86,6 +87,9 @@ const page = async () => {
             </span>
           </div>
         </label>
+        <Button variant={"primary"} size={"sm"}>
+          Update
+        </Button>
       </form>
     </div>
   );
