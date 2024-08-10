@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { use, useRef, useState } from "react";
+import React, { use, useEffect, useRef, useState } from "react";
 
 import { TbShare } from "react-icons/tb";
 import { BiBell } from "react-icons/bi";
@@ -11,8 +11,24 @@ import Link from "next/link";
 
 const Appnav = ({ user }: NavProps) => {
   const [accountOptions, setAccountOptions] = useState<boolean>(false);
-  const dropdownRef = useRef(null);
   const getUrl: string = usePathname();
+
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const clickedItem = e.target as HTMLElement;
+      const openItem = dropdownRef.current;
+      if (openItem && !openItem.contains(clickedItem)) {
+        setAccountOptions(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="w-full flex items-center justify-between box-border p-2  gap-4  top-0 ">
