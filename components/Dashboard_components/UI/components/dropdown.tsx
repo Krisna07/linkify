@@ -1,5 +1,6 @@
 "use client";
 import { signOut } from "next-auth/react";
+import Link from "next/link";
 import React from "react";
 import { FaSignOutAlt, FaUserAlt } from "react-icons/fa";
 import { TbColorPicker, TbSettings } from "react-icons/tb";
@@ -21,10 +22,10 @@ const Dropdown = ({ user }: any) => {
         </div>
       </div>
       <div className="w-full px-4 py-2 border-b border-red-200">
-        <span className="flex items-center gap-4">
+        <Link href={"/account"} className="flex items-center gap-4">
           <TbSettings />
           Account
-        </span>
+        </Link>
       </div>
       <div className="grid px-4 py-2 border-b border-red-200">
         <div className="flex items-center gap-4">

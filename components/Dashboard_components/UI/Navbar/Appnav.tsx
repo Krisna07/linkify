@@ -7,6 +7,7 @@ import { BiBell } from "react-icons/bi";
 import Dropdown from "../components/dropdown";
 import { NavProps } from "./MainNav";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 const Appnav = ({ user }: NavProps) => {
   const [accountOptions, setAccountOptions] = useState<boolean>(false);
@@ -16,7 +17,10 @@ const Appnav = ({ user }: NavProps) => {
   return (
     <div className="w-full flex items-center justify-between box-border p-2  gap-4  top-0 ">
       <div className=" flex items-center py-2  gap-2">
-        <div className="h-6 w-6  rounded-full overflow-hidden  tablet:flex">
+        <Link
+          href={"/dashboard"}
+          className="h-6 w-6  rounded-full overflow-hidden  tablet:flex"
+        >
           <Image
             src="/favicon.ico"
             width={10}
@@ -24,7 +28,7 @@ const Appnav = ({ user }: NavProps) => {
             alt={"icon"}
             className="w-full h-full cover rounded-full "
           />
-        </div>
+        </Link>
         <span className="text-gray-400  tablet:flex">/</span>
         <div className="flex items-center gap-2 font-[600]">
           <div
@@ -37,9 +41,9 @@ const Appnav = ({ user }: NavProps) => {
           </div>
           <span className="hidden tablet:block"> {user.username}</span>
         </div>
-        {/* <div className="bg-accent hidden px-3 py-[2px] tablet:flex items-center rounded-full text-sm font-[600]">
-          social
-        </div> */}
+        <div className="bg-primary hidden px-3 py-[2px] tablet:flex items-center rounded-full text-sm font-[600]">
+          Title
+        </div>
       </div>
       <div className="flex items-center gap-4 text-gray-300 box-border  ">
         {getUrl.includes("dashboard") && (

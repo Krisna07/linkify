@@ -23,7 +23,26 @@ model User {
   imageUrl          String
   verification      Boolean
   boards            Board[]
+  userDetails       userDetails @relation(fields: [id], references: [userId])
+  timestamp         DateTime @default(now())
 }
+model userDetails{
+  id            String @id @default(cuid())
+  userId        String
+  bio            String
+  jobTitle       String 
+  location       String
+  website        String
+  github         String
+  linkedin       String
+  twitter        String
+  skills         String[]
+  interests      String[]
+  experience     String[]
+  education      String[]
+  timestamp      DateTime @default(now())
+}
+
 
 //Boards
 model Board {
