@@ -110,11 +110,11 @@ export default function NewBoardForm({
 
   return (
     <form
-      className={`tablet:w-[20rem] w-[96vw]   ${
+      className={` w-[20rem] ${
         add
-          ? " -right-[2vw] tablet:right-0 opacity-1"
-          : " right-[-100vw]   opacity-0 z-[-20]"
-      } absolute p-4 top-[140%] rounded-lg z-40 text-dark bg-white shadow-bs grid gap-4  transition-all duration-500`}
+          ? " translate-x-0  opacity-1"
+          : " translate-x-full   opacity-0 z-[-20]"
+      } absolute p-4 top-[140%] right-0 rounded-lg z-40 text-dark bg-white shadow-bs grid gap-4  transition-all duration-500`}
       onSubmit={submitForm}
     >
       <div className="w-[max-content]  block font-semibold sticky top-0 ">

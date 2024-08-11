@@ -5,7 +5,9 @@ import Homenav from "../../../../components/Dashboard_components/UI/Navbar/HomeN
 import getBoards from "../../../../components/Dashboard_components/utils/Fetchbaords";
 import { boardProps } from "../../../../components/Dashboard_components/utils/Interfaces";
 import { ToastContainer, toast } from "react-toastify";
-import Board from "../../../../components/Dashboard_components/UI/components/Board";
+
+import DisplayBoards from "../../../../components/Dashboard_components/UI/components/Home/DisplayBoards";
+import HomepageCardConatiner1 from "../../../../components/Dashboard_components/UI/components/Home/HomepageCardConatiner1";
 
 export default function Home() {
   const [list, setList] = useState<boolean>(false);
@@ -50,6 +52,9 @@ export default function Home() {
 
   return (
     <div className="w-full laptop:max-w-[1200px] min-h-screen  overflow-hidden  px-2  flex flex-col gap-8 box-border ">
+      <div className="absolute">
+        <ToastContainer />
+      </div>
       <Homenav
         list={list}
         boards={boards}
@@ -58,35 +63,21 @@ export default function Home() {
         updateBoard={actionBoardUpdate}
         handleSearch={handleSearch}
       />
+      <HomepageCardConatiner1 />
 
-      <div className="absolute">
-        <ToastContainer />
-      </div>
-      {loading ? (
-        <div className=" grid place-items-center ">
-          <div className="w-40 h-40 bg-white rounded-full relative grid place-items-center animate-spin-slow overflow-hidden ">
-            <div className="absolute w-1/2 h-1/2 bg-primary right-1/2 z-0  "></div>
-            <div className="w-36 h-36 bg-dark rounded-full z-10 grid place-items-center animate-none"></div>
+      <>
+        {loading ? (
+          <div className=" grid place-items-center ">
+            <div className="w-40 h-40 bg-white rounded-full relative grid place-items-center animate-spin-slow overflow-hidden ">
+              <div className="absolute w-1/2 h-1/2 bg-primary right-1/2 z-0  "></div>
+              <div className="w-36 h-36 bg-dark rounded-full z-10 grid place-items-center animate-none"></div>
+            </div>
+            <div className="absolute text-2xl">Loading...</div>
           </div>
-          <div className="absolute text-2xl">Loading...</div>
-        </div>
-      ) : (
-        <div
-          className={`h-fit grid ${
-            list
-              ? "grid-cols-1"
-              : "laptop:grid-cols-3  tablet:grid-cols-2 grid-cols-1"
-          } gap-8 relative z-10 text-[gray] `}
-        >
-          {displayBoard && displayBoard.length > 0 ? (
-            displayBoard.map((item: boardProps, index: number) => (
-              <Board board={item} key={index} />
-            ))
-          ) : (
-            <>No matching accounts</>
-          )}
-        </div>
-      )}
+        ) : (
+          <DisplayBoards boardList={displayBoard} list={list} />
+        )}
+      </>
     </div>
   );
 }

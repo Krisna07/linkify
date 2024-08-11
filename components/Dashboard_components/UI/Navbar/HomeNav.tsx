@@ -32,39 +32,45 @@ const Homenav = ({
     setAdd(item);
   };
   const boardRef: React.MutableRefObject<null> = useRef(null);
-  useEffect(() =>
-    document.addEventListener("click", (e) => {
-      const ClickedItem: EventTarget | null = e && e.target;
+  useEffect(() => {
+    const handleOutSideClick = (e: MouseEvent) => {
+      const ClickedItem = e.target as HTMLElement;
       const openItem: any = boardRef.current;
-      if (openItem?.contains(ClickedItem)) {
-        return;
-      } else {
+      if (openItem && !openItem.contains(ClickedItem)) {
         handleForm(false);
       }
-    })
-  );
+    };
+    document.addEventListener("click", handleOutSideClick);
+    return () => {
+      document.removeEventListener("click", handleOutSideClick);
+    };
+  }, []);
 
   return (
     <div className="min-w-full   grid tablet:grid-cols-[4fr_1fr]  grid-cols-[4fr_40px] tablet:p-0  tablet:gap-2 gap-4 border-box place-items-center  bg-accent/50 rounded-md top-0 sticky z-20">
       <Search boards={boards} handleSearch={handleSearch} />
       <div className="w-full   flex gap-4 items-center justify-between relative z-[10]">
-        <div className="hidden tablet:flex gap-2 p-1 bg-gray-800 text-[18px] rounded-lg text-gray-400 relative">
+        <div className="w-fit hidden    tablet:flex  bg-gray-800 text-[18px] rounded-lg text-gray-400 relative">
           <div
-            className="p-2 relative z-20 rounded-md"
+            className={`w-fit relative p-2 transition-all duration-300 ease-in-out   z-20 rounded-md ${
+              !list ? "text-silver" : "text-dark"
+            }`}
             onClick={() => changeView(false)}
           >
-            <BiGrid />
+            <BiGrid size={20} />
           </div>
           <div
-            className="p-2  rounded-md relative z-20"
+            className={`p-2 rounded-md relative z-20 ${
+              list ? "text-silver" : "text-dark"
+            }`}
             onClick={() => changeView(true)}
           >
-            <FaBars />
+            <FaBars size={20} />
           </div>
           <div
-            className={`absolute w-1/2 h-[90%] bg-primary top-[2px] ${
-              !list ? "left-[1%]" : "left-[49%]"
-            }  rounded-md z-10 transition-all`}
+            className={`absolute w-1/2 h-full left-0 bg-primary  ${
+              !list ? "translate-x-0" : "translate-x-full"
+            }  rounded-md z-10  transition-all duration-300`}
           ></div>
         </div>
         <div ref={boardRef} className="relative pr-1 ">

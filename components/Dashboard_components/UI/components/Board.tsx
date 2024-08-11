@@ -2,17 +2,21 @@ import React, { useRef } from "react";
 import { FaStar } from "react-icons/fa";
 import { TbReportAnalytics } from "react-icons/tb";
 import { boardProps } from "../../utils/Interfaces";
+import { FaRightToBracket } from "react-icons/fa6";
+import { BsArrowDownLeftSquare } from "react-icons/bs";
+import { BiEdit } from "react-icons/bi";
 
 interface BoardProps {
   board: boardProps;
 }
 
 const Board = ({ board }: BoardProps) => {
+  console.log(board);
   return (
-    <div className="w-full grid gap-4 p-2 shadow-bs rounded-md ">
+    <div className="group w-full grid gap-4 p-2 shadow-bs border border-transparent rounded-md transition-all duration-500 hover:border-white/50 relative overflow-hidden">
       <div
         style={{ background: `${board.image}` }}
-        className="w-full min-h-[200px] "
+        className="w-full min-h-[200px] relative"
       ></div>
       <div className="grid gap-2">
         <span className="text-silver leading-[100%] text-2xl font-semibold">
@@ -39,9 +43,12 @@ const Board = ({ board }: BoardProps) => {
         <div className="flex items-center justify-between gap-2">
           <span>20 reviwer</span>
           <span>
-            <TbReportAnalytics />
+            <BiEdit />
           </span>
         </div>
+      </div>
+      <div className="p-[12px] rounded-full overflow-hidden opacity-0 group-hover:opacity-[1] group-hover:translate-x-0 translate-x-full  transition-all duration-500 absolute right-4 top-4 bg-dark grid place-items-center">
+        <BsArrowDownLeftSquare className="rotate-[180deg]" />
       </div>
     </div>
   );

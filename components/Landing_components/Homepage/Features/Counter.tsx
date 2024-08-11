@@ -4,10 +4,11 @@ import { motion } from "framer-motion";
 
 interface CounterProps {
   number: number;
+  size?: number;
 }
-const Count = ({ num }: any) => {
+const Count = ({ num, size }: any) => {
   const digits = Array.from(Array(10).keys());
-  const top = `-${30 * parseInt(num)}px`;
+  const top = `-${size ? size * parseInt(num) : 30 * parseInt(num)}px`;
 
   return (
     <motion.div
@@ -28,7 +29,7 @@ const Count = ({ num }: any) => {
   );
 };
 
-const Counter = ({ number }: CounterProps) => {
+const Counter = ({ number, size }: CounterProps) => {
   const [counter, setCounter] = useState<string[]>([]);
 
   useEffect(() => {
@@ -38,10 +39,17 @@ const Counter = ({ number }: CounterProps) => {
   }, [number]);
 
   return (
-    <div className="w-fit h-fit bg-none text-[30px] text-white">
-      <div className="h-[30px] relative flex items-start justify-center overflow-hidden">
+    <div
+      style={{ fontSize: `${size ? size : 30}px` }}
+      className={`w-fit h-fit bg-none  text-white`}
+    >
+      <div
+        style={{ height: `${size ? size : 30}px` }}
+        className={` relative flex items-start justify-center overflow-hidden`}
+      >
         {counter.map(
-          (num, index) => counter.length > 0 && <Count key={index} num={num} />
+          (num, index) =>
+            counter.length > 0 && <Count key={index} num={num} size={size} />
         )}
       </div>
     </div>

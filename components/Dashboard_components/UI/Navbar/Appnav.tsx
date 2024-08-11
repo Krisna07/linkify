@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { use, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { TbShare } from "react-icons/tb";
 import { BiBell } from "react-icons/bi";
@@ -87,8 +87,8 @@ const Appnav = ({ user }: NavProps) => {
           ></div>
           <div
             className={`w-[300px] ${
-              !accountOptions ? "-right-[100vw]" : "right-0 "
-            }  transition-all duration-300 min-w-fit min-h-fit absolute  top-[120%]   bg-tahiti text-dark z-[999] rounded overflow-hidden`}
+              !accountOptions ? "translate-x-[400px]" : "translate-x-0"
+            }  transition-all right-0  duration-300 min-w-fit min-h-fit absolute  top-[120%]   bg-tahiti text-dark z-[999] rounded overflow-hidden`}
           >
             <Dropdown user={user} />
           </div>
