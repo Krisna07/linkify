@@ -15,90 +15,37 @@ datasource db {
 }
 
 model User {
-  id           String    @id @default(cuid())
+  id           String  @id @default(cuid())
   name         String
-  email        String    @unique
-  username     String    @unique
+  email        String  @unique
+  username     String  @unique
   password     String
   imageUrl     String
   verification Boolean
-  accounts     Account[]
+  boards       Board[]
 }
 
-//social media accounts
-model Account {
-  id          String      @id @default(cuid())
-  User        User        @relation(fields: [userId], references: [id])
+//Boards
+model Board {
+  id          String     @id @default(cuid())
+  User        User       @relation(fields: [userId], references: [id])
   userId      String
-  type        String
-  username    String
-  avatar      String?
-  bio         String?
-  email       String?
-  friend      String?
-  followers   String?
-  connections String?
-  content     Content[]
-  analytics   Analytics[]
+  description String
+  title       String
+  link        String
+  image       String
+  tags        String[]
+  Feedbacks   Feedback[]
+  timestamp   DateTime   @default(now())
 }
 
-model Content {
-  id         String       @id @default(cuid())
-  accountId  Account      @relation(fields: [id], references: [id])
-  type       String //(e.g. post, image, video)
-  text       String
-  media      String
-  postedAt   DateTime     @default(now())
-  engagement Engagement[]
-}
+//baords feedback
 
-model Engagement {
-  id        String  @id @default(cuid())
-  contentId Content @relation(fields: [id], references: [id])
-  type      String //(e.g. like, comment, share)
-  count     Int
-}
-
-model Analytics {
+model Feedback {
   id        String   @id @default(cuid())
-  accountId Account  @relation(fields: [id], references: [id])
-  metric    String //(e.g. followerGrowth, engagementRate)
-  value     Float
+  boardId   Board    @relation(fields: [id], references: [id])
+  Username  String
+  Rating    Float
+  comment   String
   timestamp DateTime @default(now())
 }
-
-// model Team {
-//   id       String   @id @default(cuid())
-//   name     String
-//   users    User[]
-//   accounts Account[]
-// }
-
-// model UserRole {
-//   id       String   @id @default(cuid())
-//   userId   User   @relation(fields: [id], references: [id])
-//   role     String   //(e.g. admin, member)
-// }
-
-// model Notification {
-//   id       String   @id @default(cuid())
-//   userId   User   @relation(fields: [id], references: [id])
-//   type     String   //(e.g. mention, message, comment)
-//   message  String
-//   readAt   DateTime
-// }
-
-// model SocialListening {
-//   id       String   @id @default(cuid())
-//   accountId User   @relation(fields: [id], references: [id])
-//   keyword  String
-//   mention  String
-//   timestamp DateTime @default(now())
-// }
-
-// model ContentCalendar {
-//   id       String   @id @default(cuid())
-//   accountId Account   @relation(fields: [id], references: [id])
-//   date     DateTime
-//   content  Content
-// }

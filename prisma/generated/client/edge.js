@@ -143,7 +143,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\chill\\linkify\\prisma\\generated\\client",
+      "value": "/home/user/linkify/prisma/generated/client",
       "fromEnvVar": null
     },
     "config": {
@@ -152,17 +152,16 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "debian-openssl-1.1.x",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\chill\\linkify\\prisma\\schema.prisma",
+    "sourceFilePath": "/home/user/linkify/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null,
-    "schemaEnvPath": "../../../.env"
+    "rootEnvPath": null
   },
   "relativePath": "../..",
   "clientVersion": "5.17.0",
@@ -171,6 +170,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -179,8 +179,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: (link unavailable)\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: (link unavailable)\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id           String  @id @default(cuid())\n  name         String\n  email        String  @unique\n  username     String  @unique\n  password     String\n  imageUrl     String\n  verification Boolean\n  boards       Board[]\n}\n\n//social media accounts\nmodel Board {\n  id          String     @id @default(cuid())\n  User        User       @relation(fields: [userId], references: [id])\n  userId      String\n  description String\n  title       String\n  link        String\n  image       String\n  tags        String[]\n  Feedbacks   Feedback[]\n  timestamp   DateTime   @default(now())\n}\n\nmodel Feedback {\n  id        String   @id @default(cuid())\n  boardId   Board    @relation(fields: [id], references: [id])\n  Username  String\n  Rating    Float\n  comment   String\n  timestamp DateTime @default(now())\n}\n",
-  "inlineSchemaHash": "a2a9a5d4de20794a9bace62c8815558909e23b22a081d0d4e7f6184813fa4f30",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: (link unavailable)\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: (link unavailable)\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id           String  @id @default(cuid())\n  name         String\n  email        String  @unique\n  username     String  @unique\n  password     String\n  imageUrl     String\n  verification Boolean\n  boards       Board[]\n}\n\n//Boards\nmodel Board {\n  id          String     @id @default(cuid())\n  User        User       @relation(fields: [userId], references: [id])\n  userId      String\n  description String\n  title       String\n  link        String\n  image       String\n  tags        String[]\n  Feedbacks   Feedback[]\n  timestamp   DateTime   @default(now())\n}\n\n//baords feedback\n\nmodel Feedback {\n  id        String   @id @default(cuid())\n  boardId   Board    @relation(fields: [id], references: [id])\n  Username  String\n  Rating    Float\n  comment   String\n  timestamp DateTime @default(now())\n}\n",
+  "inlineSchemaHash": "90f14dcc6f60965257135563e1ebb26b1ba1a4a9e72a67f66a9908d654c3a5d4",
   "copyEngine": true
 }
 config.dirname = '/'
