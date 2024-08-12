@@ -23,7 +23,6 @@ model User {
   imageUrl          String
   verification      Boolean
   boards            Board[]
-
   timestamp         DateTime @default(now())
 }
 
