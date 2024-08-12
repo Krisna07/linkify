@@ -1129,6 +1129,7 @@ export namespace Prisma {
     password: string | null
     imageUrl: string | null
     verification: boolean | null
+    timestamp: Date | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1139,6 +1140,7 @@ export namespace Prisma {
     password: string | null
     imageUrl: string | null
     verification: boolean | null
+    timestamp: Date | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1149,6 +1151,7 @@ export namespace Prisma {
     password: number
     imageUrl: number
     verification: number
+    timestamp: number
     _all: number
   }
 
@@ -1161,6 +1164,7 @@ export namespace Prisma {
     password?: true
     imageUrl?: true
     verification?: true
+    timestamp?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1171,6 +1175,7 @@ export namespace Prisma {
     password?: true
     imageUrl?: true
     verification?: true
+    timestamp?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -1181,6 +1186,7 @@ export namespace Prisma {
     password?: true
     imageUrl?: true
     verification?: true
+    timestamp?: true
     _all?: true
   }
 
@@ -1264,6 +1270,7 @@ export namespace Prisma {
     password: string
     imageUrl: string
     verification: boolean
+    timestamp: Date
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -1291,6 +1298,7 @@ export namespace Prisma {
     password?: boolean
     imageUrl?: boolean
     verification?: boolean
+    timestamp?: boolean
     boards?: boolean | User$boardsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
@@ -1303,6 +1311,7 @@ export namespace Prisma {
     password?: boolean
     imageUrl?: boolean
     verification?: boolean
+    timestamp?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -1313,6 +1322,7 @@ export namespace Prisma {
     password?: boolean
     imageUrl?: boolean
     verification?: boolean
+    timestamp?: boolean
   }
 
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1334,6 +1344,7 @@ export namespace Prisma {
       password: string
       imageUrl: string
       verification: boolean
+      timestamp: Date
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -1735,6 +1746,7 @@ export namespace Prisma {
     readonly password: FieldRef<"User", 'String'>
     readonly imageUrl: FieldRef<"User", 'String'>
     readonly verification: FieldRef<"User", 'Boolean'>
+    readonly timestamp: FieldRef<"User", 'DateTime'>
   }
     
 
@@ -4062,7 +4074,8 @@ export namespace Prisma {
     username: 'username',
     password: 'password',
     imageUrl: 'imageUrl',
-    verification: 'verification'
+    verification: 'verification',
+    timestamp: 'timestamp'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -4191,6 +4204,7 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     imageUrl?: StringFilter<"User"> | string
     verification?: BoolFilter<"User"> | boolean
+    timestamp?: DateTimeFilter<"User"> | Date | string
     boards?: BoardListRelationFilter
   }
 
@@ -4202,6 +4216,7 @@ export namespace Prisma {
     password?: SortOrder
     imageUrl?: SortOrder
     verification?: SortOrder
+    timestamp?: SortOrder
     boards?: BoardOrderByRelationAggregateInput
   }
 
@@ -4216,6 +4231,7 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     imageUrl?: StringFilter<"User"> | string
     verification?: BoolFilter<"User"> | boolean
+    timestamp?: DateTimeFilter<"User"> | Date | string
     boards?: BoardListRelationFilter
   }, "id" | "email" | "username">
 
@@ -4227,6 +4243,7 @@ export namespace Prisma {
     password?: SortOrder
     imageUrl?: SortOrder
     verification?: SortOrder
+    timestamp?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -4243,6 +4260,7 @@ export namespace Prisma {
     password?: StringWithAggregatesFilter<"User"> | string
     imageUrl?: StringWithAggregatesFilter<"User"> | string
     verification?: BoolWithAggregatesFilter<"User"> | boolean
+    timestamp?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
   export type BoardWhereInput = {
@@ -4383,6 +4401,7 @@ export namespace Prisma {
     password: string
     imageUrl: string
     verification: boolean
+    timestamp?: Date | string
     boards?: BoardCreateNestedManyWithoutUserInput
   }
 
@@ -4394,6 +4413,7 @@ export namespace Prisma {
     password: string
     imageUrl: string
     verification: boolean
+    timestamp?: Date | string
     boards?: BoardUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -4405,6 +4425,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     verification?: BoolFieldUpdateOperationsInput | boolean
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
     boards?: BoardUpdateManyWithoutUserNestedInput
   }
 
@@ -4416,6 +4437,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     verification?: BoolFieldUpdateOperationsInput | boolean
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
     boards?: BoardUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -4427,6 +4449,7 @@ export namespace Prisma {
     password: string
     imageUrl: string
     verification: boolean
+    timestamp?: Date | string
   }
 
   export type UserUpdateManyMutationInput = {
@@ -4437,6 +4460,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     verification?: BoolFieldUpdateOperationsInput | boolean
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -4447,6 +4471,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     verification?: BoolFieldUpdateOperationsInput | boolean
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BoardCreateInput = {
@@ -4604,6 +4629,17 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type BoardListRelationFilter = {
     every?: BoardWhereInput
     some?: BoardWhereInput
@@ -4622,6 +4658,7 @@ export namespace Prisma {
     password?: SortOrder
     imageUrl?: SortOrder
     verification?: SortOrder
+    timestamp?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -4632,6 +4669,7 @@ export namespace Prisma {
     password?: SortOrder
     imageUrl?: SortOrder
     verification?: SortOrder
+    timestamp?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -4642,6 +4680,7 @@ export namespace Prisma {
     password?: SortOrder
     imageUrl?: SortOrder
     verification?: SortOrder
+    timestamp?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -4670,15 +4709,7 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type StringNullableListFilter<$PrismaModel = never> = {
-    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    has?: string | StringFieldRefInput<$PrismaModel> | null
-    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
-    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
-    isEmpty?: boolean
-  }
-
-  export type DateTimeFilter<$PrismaModel = never> = {
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -4686,7 +4717,18 @@ export namespace Prisma {
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
   }
 
   export type UserRelationFilter = {
@@ -4733,20 +4775,6 @@ export namespace Prisma {
     link?: SortOrder
     image?: SortOrder
     timestamp?: SortOrder
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type FloatFilter<$PrismaModel = never> = {
@@ -4835,6 +4863,10 @@ export namespace Prisma {
     set?: boolean
   }
 
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
   export type BoardUpdateManyWithoutUserNestedInput = {
     create?: XOR<BoardCreateWithoutUserInput, BoardUncheckedCreateWithoutUserInput> | BoardCreateWithoutUserInput[] | BoardUncheckedCreateWithoutUserInput[]
     connectOrCreate?: BoardCreateOrConnectWithoutUserInput | BoardCreateOrConnectWithoutUserInput[]
@@ -4890,10 +4922,6 @@ export namespace Prisma {
   export type BoardUpdatetagsInput = {
     set?: string[]
     push?: string | string[]
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
   }
 
   export type UserUpdateOneRequiredWithoutBoardsNestedInput = {
@@ -4973,6 +5001,17 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -5007,17 +5046,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -5131,6 +5159,7 @@ export namespace Prisma {
     password: string
     imageUrl: string
     verification: boolean
+    timestamp?: Date | string
   }
 
   export type UserUncheckedCreateWithoutBoardsInput = {
@@ -5141,6 +5170,7 @@ export namespace Prisma {
     password: string
     imageUrl: string
     verification: boolean
+    timestamp?: Date | string
   }
 
   export type UserCreateOrConnectWithoutBoardsInput = {
@@ -5191,6 +5221,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     verification?: BoolFieldUpdateOperationsInput | boolean
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateWithoutBoardsInput = {
@@ -5201,6 +5232,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     verification?: BoolFieldUpdateOperationsInput | boolean
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FeedbackUpsertWithWhereUniqueWithoutBoardIdInput = {

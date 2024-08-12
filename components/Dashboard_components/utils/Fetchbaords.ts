@@ -1,6 +1,5 @@
 export default async function getBoards() {
   try {
-    //need to add  the api to the .env file
     const response = await fetch("/api/user/boards");
     if (!response.ok) {
       throw new Error("Failed to fetch boards");

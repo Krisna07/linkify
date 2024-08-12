@@ -23,6 +23,7 @@ model User {
   imageUrl     String
   verification Boolean
   boards       Board[]
+<<<<<<< HEAD
 }
 
 //Boards
@@ -49,3 +50,33 @@ model Feedback {
   comment   String
   timestamp DateTime @default(now())
 }
+=======
+
+  timestamp DateTime @default(now())
+}
+
+//Boards
+model Board {
+  id          String     @id @default(cuid())
+  User        User       @relation(fields: [userId], references: [id])
+  userId      String
+  description String
+  title       String
+  link        String
+  image       String
+  tags        String[]
+  Feedbacks   Feedback[]
+  timestamp   DateTime   @default(now())
+}
+
+//baords feedback
+
+model Feedback {
+  id        String   @id @default(cuid())
+  boardId   Board    @relation(fields: [id], references: [id])
+  Username  String
+  Rating    Float
+  comment   String
+  timestamp DateTime @default(now())
+}
+>>>>>>> refs/remotes/origin/main

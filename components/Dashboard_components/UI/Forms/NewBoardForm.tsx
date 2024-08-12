@@ -1,21 +1,20 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-
+import React, { useState } from "react";
 import Button from "../../../Global_components/Button";
-import AddSocial from "./addBoard";
 import { boardProps } from "../../utils/Interfaces";
 import { FaX } from "react-icons/fa6";
-import { ToastContainer, toast } from "react-toastify";
-
 import { CiImageOn } from "react-icons/ci";
 import AddBoard from "../../utils/addBoard";
-interface social {
+import EditableComponents from "./EditableComponents";
+
+interface labelProps {
+  label: string;
   value: string;
-  icon: JSX.Element;
+  handleChange: any;
 }
 
-export function FormLabel({ label, value, handleChange }: any) {
+export function FormLabel({ label, value, handleChange }: labelProps) {
   return (
     <label htmlFor="" className="w-full grid gap-1 border-box">
       <span className="mx-2 font-semibold">{label}</span>
@@ -30,15 +29,19 @@ export function FormLabel({ label, value, handleChange }: any) {
   );
 }
 
-export default function NewBoardForm({ add, handleForm }: any) {
+export default function NewBoardForm({
+  add,
+  handleForm,
+  updateBoard,
+  errorHandler,
+}: any) {
   const [formdata, setFormData] = useState<boardProps>({
     title: "",
-    description: "Enter the description",
+    description: "",
     link: "",
     image: "",
     tags: [],
   });
-  const [error, setError] = useState<string>();
 
   const [tag, setTagValue] = useState<string>();
 
@@ -70,15 +73,19 @@ export default function NewBoardForm({ add, handleForm }: any) {
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const regex = /^[a-zA-Z\s]*$/;
+    if (!formdata.title || formdata.title === "Enter the title") {
+      errorHandler("Please enter the title");
+      return;
+    }
     if (!regex.test(formdata.title)) {
-      toast("Please check the title");
+      errorHandler("Please check the title");
       return;
     }
     if (
       !formdata.description ||
       formdata.description === "Enter the description"
     ) {
-      return toast("Please enter the description");
+      return errorHandler("Please enter the description");
     }
 
     try {
@@ -92,24 +99,27 @@ export default function NewBoardForm({ add, handleForm }: any) {
           tags: [],
         });
         handleForm(false);
-        return toast(`${data.message}`);
+        updateBoard(data.newBoard);
+        return errorHandler(`${data.message}`);
       }
-      toast(`${data.message}`);
+      errorHandler(`${data.message}`);
     } catch (error) {
-      toast(`${error}`);
+      errorHandler(`${error}`);
     }
   };
 
   return (
     <form
-      className={`w-fit h-fit ${
+      className={` w-[20rem] ${
         add
-          ? "top-[120%] right-0 opacity-1"
-          : "top-0 right-0  opacity-0 z-[-20]"
-      } absolute p-4   rounded-lg z-40 text-dark bg-white shadow-bs grid gap-4  transition-all duration-500`}
+          ? " translate-x-0  opacity-1"
+          : " translate-x-full   opacity-0 z-[-20]"
+      } absolute p-4 top-[140%] right-0 rounded-lg z-40 text-dark bg-white shadow-bs grid gap-4  transition-all duration-500`}
       onSubmit={submitForm}
     >
-      <div className="w-[max-content] block font-semibold ">Add new board</div>
+      <div className="w-[max-content]  block font-semibold sticky top-0 ">
+        Add new board
+      </div>
       <label htmlFor="title" className="w-full grid gap-1 border-box">
         <span className="mx-2 font-semibold">Title</span>
         <input
@@ -118,28 +128,18 @@ export default function NewBoardForm({ add, handleForm }: any) {
           className="px-2 py-1 rounded-md   shadow-bs outline-none   border-inset border-box"
           name={"title"}
           onChange={handleChange}
+          value={formdata.title}
         />
       </label>
       <label htmlFor="description" className="w-full grid gap-1 border-box">
         <span className="mx-2 font-semibold">Description</span>
-        <div
-          suppressContentEditableWarning={true}
-          contentEditable="true"
-          defaultValue={formdata.description}
-          onInput={updateDescription}
-          onFocus={(e) =>
-            e.target.innerText === "Enter the description"
-              ? (e.target.innerText = "")
-              : ""
-          }
-          className={`w-[40ch] shadow-bs px-2 py-1 outline-none  ${
-            formdata.description === "Enter the description" ||
-            formdata.description === ""
-              ? "text-[gray]"
-              : "text-black"
-          }  border-inset border-box rounded-md`}
-        >
-          {formdata.description === "" && "Enter the description"}
+        <div className="shadow-bs rounded-md">
+          {" "}
+          <EditableComponents
+            valueUpdate={updateDescription}
+            placeholder={"Enter the description"}
+            isEditable={true}
+          />
         </div>
       </label>
       <label htmlFor="tags" className="w-full grid gap-1 border-box">
@@ -161,29 +161,16 @@ export default function NewBoardForm({ add, handleForm }: any) {
                 </div>
               )
           )}
-          <div
-            suppressContentEditableWarning={true}
-            contentEditable={formdata.tags.length < 5 ? "true" : "false"}
-            defaultValue={formdata.description}
-            onInput={handleTags}
-            onFocus={(e) =>
-              e.target.innerText === "Enter the tags"
-                ? (e.target.innerText = "")
-                : ""
-            }
-            className={`max-w-[40ch] min-w-[10ch]  outline-none  ${
-              formdata.tags[0] === "Enter the tags"
-                ? "text-[gray]"
-                : "text-black"
-            }  border-inset border-box rounded-md`}
-          >
-            Enter the tags
-          </div>
+          <EditableComponents
+            valueUpdate={handleTags}
+            placeholder={formdata.tags.length == 5 ? "" : "Enter the Tags"}
+            isEditable={formdata.tags.length == 5 ? false : true}
+          />
         </div>
       </label>
       <label htmlFor="image" className="w-full grid gap-1 border-box">
         <span className="mx-2 font-semibold">Image</span>
-        <div className="w-[200px]  bg-dark/25 rounded-md overflow-hidden relative grid place-items-center">
+        <div className="w-[200px]  bg-silver rounded-md overflow-hidden relative grid place-items-center">
           <CiImageOn size={"100px"} />
           <span>Select Background</span>
           <input
@@ -197,4 +184,7 @@ export default function NewBoardForm({ add, handleForm }: any) {
       </Button>
     </form>
   );
+}
+function updateBoard(newBoard: any) {
+  throw new Error("Function not implemented.");
 }

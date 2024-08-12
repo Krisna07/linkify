@@ -1,28 +1,31 @@
 "use client";
 import { signOut } from "next-auth/react";
+import Link from "next/link";
 import React from "react";
 import { FaSignOutAlt, FaUserAlt } from "react-icons/fa";
 import { TbColorPicker, TbSettings } from "react-icons/tb";
 
 const Dropdown = ({ user }: any) => {
   return (
-    <div className="w-full grid gap-2 text-base  cursor-pointer leading-6">
-      <div className="w-full flex items-center gap-4 px-4 py-2 border-b border-red-200">
+    <div className="grid gap-2   cursor-pointer leading-6">
+      <div className="min-w-fit flex items-center gap-4 px-4 py-2 border-b border-red-200">
         <div className="border-1 rounded ">
           <FaUserAlt />
         </div>
-        <div className="grid ">
-          <span className="text-xl text-white font-semibold">
+        <div className="min-w-fit grid  ">
+          <span className="text-xl opacity-75 font-semibold">
             {user?.username}
           </span>
-          <span className="min-w-full block">{user?.email}</span>
+          <span className="min-w-full block overflow-x-auto">
+            {user?.email}
+          </span>
         </div>
       </div>
       <div className="w-full px-4 py-2 border-b border-red-200">
-        <span className="flex items-center gap-4">
+        <Link href={"/account"} className="flex items-center gap-4">
           <TbSettings />
           Account
-        </span>
+        </Link>
       </div>
       <div className="grid px-4 py-2 border-b border-red-200">
         <div className="flex items-center gap-4">
@@ -36,7 +39,7 @@ const Dropdown = ({ user }: any) => {
         </div>
       </div>
       <div
-        className="flex items-center gap-4 px-4 py-2 text-white"
+        className="flex items-center gap-4 px-4 py-2 "
         onClick={() =>
           signOut({
             redirect: true,
