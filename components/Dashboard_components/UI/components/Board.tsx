@@ -12,7 +12,6 @@ interface BoardProps {
 }
 
 const Board = ({ board }: BoardProps) => {
-  console.log(board);
   return (
     <div className="group w-full grid gap-4 p-2 shadow-bs border border-transparent rounded-md transition-all duration-500 hover:border-white/50 relative overflow-hidden">
       <div
