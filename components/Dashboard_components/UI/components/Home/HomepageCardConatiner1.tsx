@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { FiTriangle } from "react-icons/fi";
 import Counter from "../../../../Landing_components/Homepage/Features/Counter";
-import { boardProps } from "../../../utils/Interfaces";
 
 const HomepageCardConatiner1 = ({ boardList }: any) => {
   return (

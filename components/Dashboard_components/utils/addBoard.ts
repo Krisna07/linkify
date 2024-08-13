@@ -6,7 +6,8 @@ export default async function AddBoard(formdata: newBoardProps) {
 
   if (formdata.file) {
     const file = formdata.file;
-    const { data }: any = await supabase.storage
+
+    const { data } = await supabase.storage
       .from("Boards")
       .upload(`${file.name}-${formdata.title}`, file, {
         cacheControl: "292500",
@@ -14,6 +15,7 @@ export default async function AddBoard(formdata: newBoardProps) {
       });
     imageurl = data?.path;
   }
+  console.log(imageurl);
 
   const options = {
     method: "POST",

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { FaStar } from "react-icons/fa";
 
 import { boardProps } from "../../utils/Interfaces";
@@ -28,7 +28,7 @@ const Board = ({ board }: BoardProps) => {
         )}
       </div>
       <div className="grid gap-2">
-        <span className="text-silver leading-[100%] text-2xl font-semibold">
+        <span className="text-silver leading-[100%] text-2xl font-semibold uppercase">
           {board.title}
         </span>
         <span>{board.description}</span>
