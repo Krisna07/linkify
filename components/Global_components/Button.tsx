@@ -11,11 +11,11 @@ const buttonVarients = cva("active:", {
       default:
         "bg-dark rounded whitespace-nowrap transition-all text-silver w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs ",
       accent:
-        "bg-accent rounded whitespace-nowrap transition-all text-black w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs",
+        "bg-accent rounded whitespace-nowrap text-tahiti transition-all  w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs",
       primary:
         "bg-primary rounded whitespace-nowrap transition-all text-white w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs",
       submit:
-        "bg-dark rounded whitespace-nowrap transition-all text-sky-100 w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs",
+        "bg-dark rounded whitespace-nowrap text-silver transition-all uppercase w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs",
     },
     // border: {
     //   default: "border-rounded",

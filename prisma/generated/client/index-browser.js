@@ -125,8 +125,26 @@ exports.Prisma.UserScalarFieldEnum = {
   email: 'email',
   username: 'username',
   password: 'password',
-  imageUrl: 'imageUrl',
+  avatar: 'avatar',
   verification: 'verification',
+  timestamp: 'timestamp'
+};
+
+exports.Prisma.UserDetailsScalarFieldEnum = {
+  userId: 'userId',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  dob: 'dob',
+  gender: 'gender',
+  bio: 'bio',
+  phoneNumber: 'phoneNumber',
+  imageUrl: 'imageUrl',
+  address: 'address',
+  occupation: 'occupation',
+  company: 'company',
+  jobTitle: 'jobTitle',
+  socials: 'socials',
+  website: 'website',
   timestamp: 'timestamp'
 };
 
@@ -143,8 +161,10 @@ exports.Prisma.BoardScalarFieldEnum = {
 
 exports.Prisma.FeedbackScalarFieldEnum = {
   id: 'id',
-  Username: 'Username',
-  Rating: 'Rating',
+  boardId: 'boardId',
+  username: 'username',
+  email: 'email',
+  rating: 'rating',
   comment: 'comment',
   timestamp: 'timestamp'
 };
@@ -159,9 +179,15 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 
 exports.Prisma.ModelName = {
   User: 'User',
+  UserDetails: 'UserDetails',
   Board: 'Board',
   Feedback: 'Feedback'
 };

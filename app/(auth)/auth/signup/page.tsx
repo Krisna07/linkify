@@ -13,6 +13,8 @@ import { useRouter } from "next/navigation";
 import Button from "../../../../components/Global_components/Button";
 import { FiAlertCircle, FiMail, FiUser } from "react-icons/fi";
 import { signIn } from "next-auth/react";
+import calculatePasswordStrength from "../lib/PasswordStrengthCheck";
+import RandomBgGenerator from "../../../../lib/randombggenerator";
 // import transporter from "@/lib/mailer";
 
 interface User {
@@ -35,8 +37,8 @@ const SignInPage: React.FC = () => {
   const [err, setErr] = useState<string>("");
   const [strength, setStrength] = useState<number>(0);
   // const [signed, setSigned] = useState<boolean>(false);
-  const [subscribe, setSubscribe] = useState<boolean>(false);
-  const [strengthName, setStrengthName] = useState<string>("Weak");
+  // const [subscribe, setSubscribe] = useState<boolean>(false);
+  // const [strengthName, setStrengthName] = useState<string>("Weak");
   // const [code, setCode] = useState<string>();
 
   const route = useRouter();
@@ -52,53 +54,6 @@ const SignInPage: React.FC = () => {
   };
   const regex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>]).{8,}$/;
-
-  const calculatePasswordStrength = (object: string) => {
-    const lengthWeight = 20;
-    const uppercaseWeight = 20;
-    const lowercaseWeight = 20;
-    const digitWeight = 20;
-    const specialCharWeight = 20;
-    //length
-    const lengthScore = object.length > 8 ? 20 : (object.length / 8) * 20;
-
-    // Check uppercase letters
-    const uppercaseScore = object.match(/[A-Z]/) ? uppercaseWeight : 0;
-
-    // Check lowercase letters
-    const lowercaseScore = object.match(/[a-z]/) ? lowercaseWeight : 0;
-
-    // Check digits
-    const digitScore = object.match(/\d/) ? digitWeight : 0;
-
-    // Check special characters
-    const specialCharScore = object.match(/[!@#$%^&*()\-_=+{};:,<.>]/)
-      ? specialCharWeight
-      : 0;
-
-    // Calculate total score
-    const totalScore =
-      lengthScore +
-      uppercaseScore +
-      lowercaseScore +
-      digitScore +
-      specialCharScore;
-
-    if (totalScore <= 0) {
-      setStrengthName("No password");
-    }
-
-    if (totalScore < 50) {
-      setStrengthName("Weak");
-    }
-    if (totalScore > 50 && totalScore < 80) {
-      setStrengthName("Still not there");
-    }
-    if (totalScore > 80) {
-      setStrengthName("Strong");
-    }
-    return Math.floor(totalScore);
-  };
 
   const nameCheck = (object: string) => {
     return (
@@ -118,10 +73,6 @@ const SignInPage: React.FC = () => {
   useEffect(() => {
     formData.username && nameCheck(formData.username);
   }, [formData.username]);
-
-  // useEffect(() => {
-  //   formData.lastname && nameCheck(formData.lastname);
-  // }, [formData.lastname]);
 
   const validateForm = () => {
     const PasswordLength = formData.password.split("").length;
@@ -217,12 +168,13 @@ const SignInPage: React.FC = () => {
       }
     }
   };
+  RandomBgGenerator();
 
   return (
     <div className="w-full h-screen text-black box-border tablet:h-fit px-4 py-8  rounded flex flex-col  justify-center tablet:grid tablet:grid-cols-2 gap-12 place-items-center relative z-30 bg-silver ">
       <div className="w-full px-2 box-border tablet:h-full grid gap-2">
         <div className="w-full flex tablet:flex-col items-center tablet:items-start justify-between tablet:justify-start border-b tablet:border-none py-2  ">
-          <FaLeaf color="green" size={40} className="tablet:block hidden" />
+          {/* <FaLeaf color="green" size={40} className="tablet:block hidden" /> */}
 
           <div>
             <h3 className="font-semibold text-xl ">Sign up</h3>
@@ -302,34 +254,18 @@ const SignInPage: React.FC = () => {
           ""
         )}
 
-        {/* <div>
-          <label
-            htmlFor="subs"
-            className="px-2 flex gap-2 items-center text-sm"
-            onClick={() => setSubscribe(!subscribe)}
-          >
-            <div className="relative w-4 h-4">
-              <div className="w-4 h-4 bg-white grid place-items-center  rounded-full z-10  top-0  absolute shadow ">
-                <span
-                  className={`w-2 h-2 ${
-                    subscribe && "bg-black"
-                  }  rounded-full border-black border-[1px]`}
-                ></span>
-              </div>
-            </div>
-
-            <span>I want to receive the newsletter </span>
-          </label>
-        </div> */}
         <span className="px-2 flex gap-2 items-center text-sm">
           Already a member?
           <Link href={"./signin"} className="underline">
             Login here
           </Link>
         </span>
-        <Button type="submit" variant={"accent"} size={"sm"}>
-          Submit
-        </Button>
+        <Button
+          type="submit"
+          variant={"submit"}
+          size={"sm"}
+          children={"submit"}
+        />
       </form>
       {
         <div

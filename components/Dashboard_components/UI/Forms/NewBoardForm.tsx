@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Button from "../../../Global_components/Button";
-import { boardProps } from "../../utils/Interfaces";
+
 import { FaX } from "react-icons/fa6";
 import { CiImageOn } from "react-icons/ci";
 import AddBoard from "../../utils/addBoard";
@@ -12,6 +12,15 @@ interface labelProps {
   label: string;
   value: string;
   handleChange: any;
+}
+
+export interface newBoardProps {
+  title: string;
+  description: string;
+  link: string;
+  image: string;
+  file?: string;
+  tags: string[];
 }
 
 export function FormLabel({ label, value, handleChange }: labelProps) {
@@ -35,7 +44,7 @@ export default function NewBoardForm({
   updateBoard,
   errorHandler,
 }: any) {
-  const [formdata, setFormData] = useState<boardProps>({
+  const [formdata, setFormData] = useState<newBoardProps>({
     title: "",
     description: "",
     link: "",
@@ -108,6 +117,12 @@ export default function NewBoardForm({
     }
   };
 
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file: any = e.target;
+    console.log("damn");
+    console.log(e.target.files);
+  };
+
   return (
     <form
       className={` w-[20rem] ${
@@ -175,6 +190,7 @@ export default function NewBoardForm({
           <span>Select Background</span>
           <input
             type="file"
+            onInput={handleImageUpload}
             className="outline-none absolute w-full h-full opacity-0"
           />
         </div>

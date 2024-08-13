@@ -42,7 +42,7 @@ export async function POST(req: Request) {
         verification: false,
         password: hashedPassword,
         name: "", // Provide default value for optional field
-        imageUrl: RandomBgGenerator(), // Provide default value for optional field
+        avatar: RandomBgGenerator(), // Provide default value for optional field
       },
     });
 

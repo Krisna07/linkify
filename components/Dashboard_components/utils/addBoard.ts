@@ -1,6 +1,6 @@
-import { boardProps } from "./Interfaces";
+import { newBoardProps } from "../UI/Forms/NewBoardForm";
 
-export default async function AddBoard(formdata: boardProps) {
+export default async function AddBoard(formdata: newBoardProps) {
   const options = {
     method: "POST",
     headers: {

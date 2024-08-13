@@ -1,7 +1,5 @@
 import "../globals.css";
 
-import "react-toastify/dist/ReactToastify.css";
-
 import { getCurrentUser } from "../../lib/session";
 
 import Dashboardlayout from "../../components/Layouts/Dashboardlayout";
