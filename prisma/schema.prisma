@@ -42,16 +42,17 @@ model UserDetails {
 }
 
 model Board {
-  id            String       @id @default(cuid())
-  userId        String
-  user          User         @relation(fields: [userId], references: [id])
-  description   String
-  title         String
-  link          String?
-  image         String?
-  tags          String[]
-  feedbacks     Feedback[]
-  timestamp     DateTime     @default(now())
+  id                String       @id @default(cuid())
+  userId            String
+  user              User         @relation(fields: [userId], references: [id])
+  description       String
+  title             String
+  link              String?
+  image             String?
+  boardColor        String
+  tags              String[]
+  feedbacks         Feedback[]
+  timestamp         DateTime     @default(now())
 }
 
 model Feedback {

@@ -252,8 +252,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 5.17.0
-   * Query Engine version: 393aa359c9ad4a4bb28630fb5613f9c281cde053
+   * Prisma Client JS version: 5.18.0
+   * Query Engine version: 4c784e32044a8a016d99474bd02a3b6123742169
    */
   export type PrismaVersion = {
     client: string
@@ -3266,6 +3266,7 @@ export namespace Prisma {
     title: string | null
     link: string | null
     image: string | null
+    boardColor: string | null
     timestamp: Date | null
   }
 
@@ -3276,6 +3277,7 @@ export namespace Prisma {
     title: string | null
     link: string | null
     image: string | null
+    boardColor: string | null
     timestamp: Date | null
   }
 
@@ -3286,6 +3288,7 @@ export namespace Prisma {
     title: number
     link: number
     image: number
+    boardColor: number
     tags: number
     timestamp: number
     _all: number
@@ -3299,6 +3302,7 @@ export namespace Prisma {
     title?: true
     link?: true
     image?: true
+    boardColor?: true
     timestamp?: true
   }
 
@@ -3309,6 +3313,7 @@ export namespace Prisma {
     title?: true
     link?: true
     image?: true
+    boardColor?: true
     timestamp?: true
   }
 
@@ -3319,6 +3324,7 @@ export namespace Prisma {
     title?: true
     link?: true
     image?: true
+    boardColor?: true
     tags?: true
     timestamp?: true
     _all?: true
@@ -3403,6 +3409,7 @@ export namespace Prisma {
     title: string
     link: string | null
     image: string | null
+    boardColor: string
     tags: string[]
     timestamp: Date
     _count: BoardCountAggregateOutputType | null
@@ -3431,6 +3438,7 @@ export namespace Prisma {
     title?: boolean
     link?: boolean
     image?: boolean
+    boardColor?: boolean
     tags?: boolean
     timestamp?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -3445,6 +3453,7 @@ export namespace Prisma {
     title?: boolean
     link?: boolean
     image?: boolean
+    boardColor?: boolean
     tags?: boolean
     timestamp?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -3457,6 +3466,7 @@ export namespace Prisma {
     title?: boolean
     link?: boolean
     image?: boolean
+    boardColor?: boolean
     tags?: boolean
     timestamp?: boolean
   }
@@ -3483,6 +3493,7 @@ export namespace Prisma {
       title: string
       link: string | null
       image: string | null
+      boardColor: string
       tags: string[]
       timestamp: Date
     }, ExtArgs["result"]["board"]>
@@ -3886,6 +3897,7 @@ export namespace Prisma {
     readonly title: FieldRef<"Board", 'String'>
     readonly link: FieldRef<"Board", 'String'>
     readonly image: FieldRef<"Board", 'String'>
+    readonly boardColor: FieldRef<"Board", 'String'>
     readonly tags: FieldRef<"Board", 'String[]'>
     readonly timestamp: FieldRef<"Board", 'DateTime'>
   }
@@ -5287,6 +5299,7 @@ export namespace Prisma {
     title: 'title',
     link: 'link',
     image: 'image',
+    boardColor: 'boardColor',
     tags: 'tags',
     timestamp: 'timestamp'
   };
@@ -5590,6 +5603,7 @@ export namespace Prisma {
     title?: StringFilter<"Board"> | string
     link?: StringNullableFilter<"Board"> | string | null
     image?: StringNullableFilter<"Board"> | string | null
+    boardColor?: StringFilter<"Board"> | string
     tags?: StringNullableListFilter<"Board">
     timestamp?: DateTimeFilter<"Board"> | Date | string
     user?: XOR<UserRelationFilter, UserWhereInput>
@@ -5603,6 +5617,7 @@ export namespace Prisma {
     title?: SortOrder
     link?: SortOrderInput | SortOrder
     image?: SortOrderInput | SortOrder
+    boardColor?: SortOrder
     tags?: SortOrder
     timestamp?: SortOrder
     user?: UserOrderByWithRelationInput
@@ -5619,6 +5634,7 @@ export namespace Prisma {
     title?: StringFilter<"Board"> | string
     link?: StringNullableFilter<"Board"> | string | null
     image?: StringNullableFilter<"Board"> | string | null
+    boardColor?: StringFilter<"Board"> | string
     tags?: StringNullableListFilter<"Board">
     timestamp?: DateTimeFilter<"Board"> | Date | string
     user?: XOR<UserRelationFilter, UserWhereInput>
@@ -5632,6 +5648,7 @@ export namespace Prisma {
     title?: SortOrder
     link?: SortOrderInput | SortOrder
     image?: SortOrderInput | SortOrder
+    boardColor?: SortOrder
     tags?: SortOrder
     timestamp?: SortOrder
     _count?: BoardCountOrderByAggregateInput
@@ -5649,6 +5666,7 @@ export namespace Prisma {
     title?: StringWithAggregatesFilter<"Board"> | string
     link?: StringNullableWithAggregatesFilter<"Board"> | string | null
     image?: StringNullableWithAggregatesFilter<"Board"> | string | null
+    boardColor?: StringWithAggregatesFilter<"Board"> | string
     tags?: StringNullableListFilter<"Board">
     timestamp?: DateTimeWithAggregatesFilter<"Board"> | Date | string
   }
@@ -5936,6 +5954,7 @@ export namespace Prisma {
     title: string
     link?: string | null
     image?: string | null
+    boardColor: string
     tags?: BoardCreatetagsInput | string[]
     timestamp?: Date | string
     user: UserCreateNestedOneWithoutBoardsInput
@@ -5949,6 +5968,7 @@ export namespace Prisma {
     title: string
     link?: string | null
     image?: string | null
+    boardColor: string
     tags?: BoardCreatetagsInput | string[]
     timestamp?: Date | string
     feedbacks?: FeedbackUncheckedCreateNestedManyWithoutBoardInput
@@ -5960,6 +5980,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    boardColor?: StringFieldUpdateOperationsInput | string
     tags?: BoardUpdatetagsInput | string[]
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutBoardsNestedInput
@@ -5973,6 +5994,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    boardColor?: StringFieldUpdateOperationsInput | string
     tags?: BoardUpdatetagsInput | string[]
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
     feedbacks?: FeedbackUncheckedUpdateManyWithoutBoardNestedInput
@@ -5985,6 +6007,7 @@ export namespace Prisma {
     title: string
     link?: string | null
     image?: string | null
+    boardColor: string
     tags?: BoardCreatetagsInput | string[]
     timestamp?: Date | string
   }
@@ -5995,6 +6018,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    boardColor?: StringFieldUpdateOperationsInput | string
     tags?: BoardUpdatetagsInput | string[]
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6006,6 +6030,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    boardColor?: StringFieldUpdateOperationsInput | string
     tags?: BoardUpdatetagsInput | string[]
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6343,6 +6368,7 @@ export namespace Prisma {
     title?: SortOrder
     link?: SortOrder
     image?: SortOrder
+    boardColor?: SortOrder
     tags?: SortOrder
     timestamp?: SortOrder
   }
@@ -6354,6 +6380,7 @@ export namespace Prisma {
     title?: SortOrder
     link?: SortOrder
     image?: SortOrder
+    boardColor?: SortOrder
     timestamp?: SortOrder
   }
 
@@ -6364,6 +6391,7 @@ export namespace Prisma {
     title?: SortOrder
     link?: SortOrder
     image?: SortOrder
+    boardColor?: SortOrder
     timestamp?: SortOrder
   }
 
@@ -6821,6 +6849,7 @@ export namespace Prisma {
     title: string
     link?: string | null
     image?: string | null
+    boardColor: string
     tags?: BoardCreatetagsInput | string[]
     timestamp?: Date | string
     feedbacks?: FeedbackCreateNestedManyWithoutBoardInput
@@ -6832,6 +6861,7 @@ export namespace Prisma {
     title: string
     link?: string | null
     image?: string | null
+    boardColor: string
     tags?: BoardCreatetagsInput | string[]
     timestamp?: Date | string
     feedbacks?: FeedbackUncheckedCreateNestedManyWithoutBoardInput
@@ -6912,6 +6942,7 @@ export namespace Prisma {
     title?: StringFilter<"Board"> | string
     link?: StringNullableFilter<"Board"> | string | null
     image?: StringNullableFilter<"Board"> | string | null
+    boardColor?: StringFilter<"Board"> | string
     tags?: StringNullableListFilter<"Board">
     timestamp?: DateTimeFilter<"Board"> | Date | string
   }
@@ -7152,6 +7183,7 @@ export namespace Prisma {
     title: string
     link?: string | null
     image?: string | null
+    boardColor: string
     tags?: BoardCreatetagsInput | string[]
     timestamp?: Date | string
     user: UserCreateNestedOneWithoutBoardsInput
@@ -7164,6 +7196,7 @@ export namespace Prisma {
     title: string
     link?: string | null
     image?: string | null
+    boardColor: string
     tags?: BoardCreatetagsInput | string[]
     timestamp?: Date | string
   }
@@ -7190,6 +7223,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    boardColor?: StringFieldUpdateOperationsInput | string
     tags?: BoardUpdatetagsInput | string[]
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutBoardsNestedInput
@@ -7202,6 +7236,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    boardColor?: StringFieldUpdateOperationsInput | string
     tags?: BoardUpdatetagsInput | string[]
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7212,6 +7247,7 @@ export namespace Prisma {
     title: string
     link?: string | null
     image?: string | null
+    boardColor: string
     tags?: BoardCreatetagsInput | string[]
     timestamp?: Date | string
   }
@@ -7222,6 +7258,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    boardColor?: StringFieldUpdateOperationsInput | string
     tags?: BoardUpdatetagsInput | string[]
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
     feedbacks?: FeedbackUpdateManyWithoutBoardNestedInput
@@ -7233,6 +7270,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    boardColor?: StringFieldUpdateOperationsInput | string
     tags?: BoardUpdatetagsInput | string[]
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
     feedbacks?: FeedbackUncheckedUpdateManyWithoutBoardNestedInput
@@ -7244,6 +7282,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    boardColor?: StringFieldUpdateOperationsInput | string
     tags?: BoardUpdatetagsInput | string[]
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }

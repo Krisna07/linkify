@@ -75,7 +75,6 @@ const Homenav = ({
         </div>
         <div ref={boardRef} className="relative pr-1 ">
           <div className="hidden tablet:block">
-            {" "}
             <Button
               children="Add new"
               variant={"primary"}

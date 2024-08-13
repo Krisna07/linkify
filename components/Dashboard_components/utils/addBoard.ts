@@ -1,6 +1,20 @@
+import { supabase } from "../../../lib/supabase";
 import { newBoardProps } from "../UI/Forms/NewBoardForm";
 
 export default async function AddBoard(formdata: newBoardProps) {
+  let imageurl;
+
+  if (formdata.file) {
+    const file = formdata.file;
+    const { data } = await supabase.storage
+      .from("Boards")
+      .upload(`${file.name}-${formdata.title}`, file, {
+        cacheControl: "292500",
+        contentType: file.type,
+      });
+    imageurl = data?.path;
+  }
+
   const options = {
     method: "POST",
     headers: {
@@ -10,7 +24,7 @@ export default async function AddBoard(formdata: newBoardProps) {
       title: formdata.title,
       description: formdata.description,
       link: formdata.link,
-      image: formdata.image,
+      image: imageurl ? imageurl : "",
       tags: formdata.tags,
     }),
   };

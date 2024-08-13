@@ -11,6 +11,7 @@ export interface boardProps {
   title: string;
   description: string;
   link: string;
-  image: string;
+  image?: string;
+  boardColor: string;
   tags: string[];
 }

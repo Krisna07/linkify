@@ -1,4 +1,6 @@
 import "../globals.css";
+// _app.js or _app.tsx
+import "react-toastify/dist/ReactToastify.css";
 
 import { getCurrentUser } from "../../lib/session";
 

@@ -1,12 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { cache, ChangeEvent, useState } from "react";
 import Button from "../../../Global_components/Button";
 
 import { FaX } from "react-icons/fa6";
 import { CiImageOn } from "react-icons/ci";
 import AddBoard from "../../utils/addBoard";
 import EditableComponents from "./EditableComponents";
+import Image from "next/image";
+import { supabase } from "../../../../lib/supabase";
 
 interface labelProps {
   label: string;
@@ -18,8 +20,8 @@ export interface newBoardProps {
   title: string;
   description: string;
   link: string;
-  image: string;
-  file?: string;
+  image?: string;
+  file?: File;
   tags: string[];
 }
 
@@ -49,10 +51,12 @@ export default function NewBoardForm({
     description: "",
     link: "",
     image: "",
+    file: undefined,
     tags: [],
   });
 
   const [tag, setTagValue] = useState<string>();
+  const [imagePreview, setImagePreview] = useState<string>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formdata, [e.target.name]: e.target.value });
@@ -99,15 +103,17 @@ export default function NewBoardForm({
 
     try {
       const data = await AddBoard(formdata);
-      if (data.status === 200) {
+      if (data.status === 201) {
         setFormData({
           title: "",
           description: "",
           link: "",
           image: "",
+          file: undefined,
           tags: [],
         });
         handleForm(false);
+        console.log(add);
         updateBoard(data.newBoard);
         return errorHandler(`${data.message}`);
       }
@@ -117,10 +123,21 @@ export default function NewBoardForm({
     }
   };
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file: any = e.target;
-    console.log("damn");
-    console.log(e.target.files);
+  const handleImageUpload = async (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      // Set image preview for display
+      setImagePreview(URL.createObjectURL(file));
+      setFormData({ ...formdata, file: file });
+
+      // Upload the file to Supabase
+    }
+  };
+
+  const clearImage = () => {
+    setFormData({ ...formdata, file: undefined });
+    setImagePreview("");
+    handleForm(true);
   };
 
   return (
@@ -186,13 +203,31 @@ export default function NewBoardForm({
       <label htmlFor="image" className="w-full grid gap-1 border-box">
         <span className="mx-2 font-semibold">Image</span>
         <div className="w-[200px]  bg-silver rounded-md overflow-hidden relative grid place-items-center">
-          <CiImageOn size={"100px"} />
-          <span>Select Background</span>
-          <input
-            type="file"
-            onInput={handleImageUpload}
-            className="outline-none absolute w-full h-full opacity-0"
-          />
+          {!imagePreview ? (
+            <>
+              <input
+                type="file"
+                onInput={handleImageUpload}
+                className="outline-none absolute w-full h-full opacity-0 "
+              />
+              <CiImageOn size={"100px"} />
+            </>
+          ) : (
+            <div className="w-full h-full relative ">
+              <Image
+                src={imagePreview}
+                alt="image"
+                width={"200"}
+                height={"100"}
+              />
+              <FaX
+                className="absolute right-4 top-4 cursor-pointer text-[red]"
+                onClick={clearImage}
+              />
+            </div>
+          )}
+
+          <span>{imagePreview ? "Board Image" : "Select Background"}</span>
         </div>
       </label>
       <Button variant={"primary"} size={"sm"} icon={true}>

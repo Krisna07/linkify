@@ -82,7 +82,8 @@ export async function POST(req: Request) {
         description,
         link: GenerateLink(title),
         tags,
-        image: image || RandomBgGenerator(),
+        boardColor: RandomBgGenerator(),
+        image: image,
       },
     });
 

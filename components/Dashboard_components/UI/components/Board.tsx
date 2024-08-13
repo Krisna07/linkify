@@ -1,10 +1,11 @@
 import React, { useRef } from "react";
 import { FaStar } from "react-icons/fa";
-import { TbReportAnalytics } from "react-icons/tb";
+
 import { boardProps } from "../../utils/Interfaces";
-import { FaRightToBracket } from "react-icons/fa6";
+
 import { BsArrowDownLeftSquare } from "react-icons/bs";
 import { BiEdit } from "react-icons/bi";
+import Image from "next/image";
 
 interface BoardProps {
   board: boardProps;
@@ -15,9 +16,18 @@ const Board = ({ board }: BoardProps) => {
   return (
     <div className="group w-full grid gap-4 p-2 shadow-bs border border-transparent rounded-md transition-all duration-500 hover:border-white/50 relative overflow-hidden">
       <div
-        style={{ background: `${board.image}` }}
-        className="w-full min-h-[200px] relative"
-      ></div>
+        style={{ background: `${board.boardColor}` }}
+        className="w-full min-h-[200px] relative opacity-[.8] group-hover:opacity-100 transition-all duration-500 "
+      >
+        {board.image && (
+          <Image
+            src={`https://kbglzqgrxnmdqvauagdb.supabase.co/storage/v1/object/public/Boards/${board.image}`}
+            alt={`${board.title + "_image"}`}
+            fill
+            className="object-cover"
+          />
+        )}
+      </div>
       <div className="grid gap-2">
         <span className="text-silver leading-[100%] text-2xl font-semibold">
           {board.title}
@@ -25,12 +35,16 @@ const Board = ({ board }: BoardProps) => {
         <span>{board.description}</span>
       </div>
       <div className="flex items-center gap-2 flex-wrap">
-        {board.tags &&
-          board.tags.map((tag: string) => (
-            <span key={tag} className="bg-tahiti text-dark px-2  rounded-md">
-              #{tag}
-            </span>
-          ))}
+        {board.tags.length > 0
+          ? board.tags.map((tag: string, index: number) => (
+              <span
+                key={index}
+                className="bg-tahiti text-dark px-2  rounded-md"
+              >
+                #{tag}
+              </span>
+            ))
+          : "No tags"}
       </div>
       <div className="grid gap-2">
         <span className="flex items-center gap-2">

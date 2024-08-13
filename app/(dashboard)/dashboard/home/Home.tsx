@@ -52,7 +52,9 @@ export default function Home() {
 
   return (
     <div className="w-full laptop:max-w-[1200px] min-h-screen  overflow-hidden  px-2  flex flex-col gap-8 box-border ">
-      <div className="absolute">{/* <ToastContainer /> */}</div>
+      <div className="absolute">
+        <ToastContainer />
+      </div>
       <Homenav
         list={list}
         boards={boards}
@@ -61,7 +63,7 @@ export default function Home() {
         updateBoard={actionBoardUpdate}
         handleSearch={handleSearch}
       />
-      <HomepageCardConatiner1 />
+      <HomepageCardConatiner1 boardList={displayBoard} />
 
       <>
         {loading ? (
