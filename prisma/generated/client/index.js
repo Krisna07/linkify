@@ -173,6 +173,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -181,8 +182,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: (link unavailable)\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: (link unavailable)\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id           String  @id @default(cuid())\n  name         String\n  email        String  @unique\n  username     String  @unique\n  password     String\n  imageUrl     String\n  verification Boolean\n  boards       Board[]\n\n  timestamp DateTime @default(now())\n}\n\n//Boards\nmodel Board {\n  id          String     @id @default(cuid())\n  User        User       @relation(fields: [userId], references: [id])\n  userId      String\n  description String\n  title       String\n  link        String\n  image       String\n  tags        String[]\n  Feedbacks   Feedback[]\n  timestamp   DateTime   @default(now())\n}\n\n//baords feedback\n\nmodel Feedback {\n  id        String   @id @default(cuid())\n  boardId   Board    @relation(fields: [id], references: [id])\n  Username  String\n  Rating    Float\n  comment   String\n  timestamp DateTime @default(now())\n}\n",
-  "inlineSchemaHash": "87cec4546433c469462675502ddcbadb74e08bcdd23c9eee91d2d3b470eb82e9",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: (link unavailable)\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: (link unavailable)\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id           String   @id @default(cuid())\n  name         String\n  email        String   @unique\n  username     String   @unique\n  password     String\n  imageUrl     String\n  verification Boolean\n  boards       Board[]\n  timestamp    DateTime @default(now())\n}\n\n//Boards\nmodel Board {\n  id          String     @id @default(cuid())\n  User        User       @relation(fields: [userId], references: [id])\n  userId      String\n  description String\n  title       String\n  link        String\n  image       String\n  tags        String[]\n  Feedbacks   Feedback[]\n  timestamp   DateTime   @default(now())\n}\n\n//baords feedback\n\nmodel Feedback {\n  id        String   @id @default(cuid())\n  boardId   Board    @relation(fields: [id], references: [id])\n  Username  String\n  Rating    Float\n  comment   String\n  timestamp DateTime @default(now())\n}\n",
+  "inlineSchemaHash": "9a86f17ef8d7a5846e1670ea5c9620710b976963edbdc5bbc0f3a0f837ab873a",
   "copyEngine": true
 }
 
