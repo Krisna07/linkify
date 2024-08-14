@@ -9,11 +9,11 @@ interface displayBoardProps {
 const DisplayBoards = ({ boardList, list }: displayBoardProps) => {
   return (
     <div
-      className={`h-fit grid ${
+      className={`min-h-[400px] grid ${
         list
           ? "grid-cols-1"
           : "laptop:grid-cols-3  tablet:grid-cols-2 grid-cols-1"
-      } gap-8 relative z-10 text-[gray] `}
+      } place-items-start gap-8 relative z-10 text-[gray] `}
     >
       {boardList && boardList.length > 0 ? (
         boardList.map((item: boardProps, index: number) => (
