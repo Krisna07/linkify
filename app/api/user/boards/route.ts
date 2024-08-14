@@ -65,6 +65,7 @@ export async function POST(req: Request) {
     const existingBoard = await db.board.findFirst({
       where: {
         title,
+        userId: user.id,
       },
     });
 

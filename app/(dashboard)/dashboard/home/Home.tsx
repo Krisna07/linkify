@@ -7,6 +7,7 @@ import { boardProps } from "../../../../components/Dashboard_components/utils/In
 
 import DisplayBoards from "../../../../components/Dashboard_components/UI/components/Home/DisplayBoards";
 import HomepageCardConatiner1 from "../../../../components/Dashboard_components/UI/components/Home/HomepageCardConatiner1";
+import { toast } from "react-toastify";
 
 export default function Home() {
   const [list, setList] = useState<boolean>(false);
@@ -16,7 +17,7 @@ export default function Home() {
   const [displayBoard, setDisplayBoard] = useState<boardProps[]>([]);
 
   const HandleError = (err: string) => {
-    console.log(err);
+    toast.error(err);
   };
 
   //changing the page view
@@ -51,7 +52,6 @@ export default function Home() {
 
   return (
     <div className="w-full laptop:max-w-[1200px] min-h-screen  overflow-hidden  px-2  flex flex-col gap-8 box-border ">
-      <div className="absolute"></div>
       <Homenav
         list={list}
         boards={boards}

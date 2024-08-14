@@ -11,7 +11,7 @@ const EditableComponents = ({
   placeholder,
   isEditable,
 }: EditableComponentsProps) => {
-  const [isPlaceholder, setIsplaceholder] = useState<boolean>();
+  const [isPlaceholder, setIsplaceholder] = useState<boolean>(true);
   return (
     <div
       suppressContentEditableWarning={true}

@@ -7,13 +7,17 @@ export default async function AddBoard(formdata: newBoardProps) {
   if (formdata.file) {
     const file = formdata.file;
 
-    const { data } = await supabase.storage
-      .from("Boards")
-      .upload(`${file.name}-${formdata.title}`, file, {
-        cacheControl: "292500",
-        contentType: file.type,
-      });
-    imageurl = data?.path;
+    try {
+      const { data } = await supabase.storage
+        .from("Boards")
+        .upload(`${file.name}-${formdata.title}`, file, {
+          cacheControl: "292500",
+          contentType: file.type,
+        });
+      imageurl = data?.path;
+    } catch (error) {
+      return error;
+    }
   }
   console.log(imageurl);
 

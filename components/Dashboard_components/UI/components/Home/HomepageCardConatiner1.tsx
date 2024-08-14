@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { FiTriangle } from "react-icons/fi";
 import Counter from "../../../../Landing_components/Homepage/Features/Counter";
+import { boardProps } from "../../../utils/Interfaces";
 
-const HomepageCardConatiner1 = ({ boardList }: any) => {
+interface BoardItesm {
+  boardList: boardProps[];
+}
+const HomepageCardConatiner1 = ({ boardList }: BoardItesm) => {
   return (
     <div className="w-full flex flex-wrap gap-4 ">
       <div className="flex items-center gap-4 w-full">
@@ -12,7 +16,7 @@ const HomepageCardConatiner1 = ({ boardList }: any) => {
             <span>Total Boards</span>
             <div className=" flex items-center gap-4">
               <span className="text-4xl">
-                <Counter number={boardList.length} size={50} />
+                <Counter number={boardList && boardList.length} size={50} />
               </span>
               <div className="flex items-center gap-2">
                 <span className="grid gap-[2px] place-items-center">

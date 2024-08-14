@@ -1,17 +1,13 @@
 "use client";
 
 import React, { ChangeEvent, useState } from "react";
-import Button from "../../../Global_components/Button";
-import { FaX } from "react-icons/fa6";
-import { CiImageOn } from "react-icons/ci";
-import AddBoard from "../../utils/addBoard";
-import EditableComponents from "./EditableComponents";
-import Image from "next/image";
 import { toast } from "react-toastify";
-import { FormLabel } from "./Boardform/BoardformLabel";
-import DescriptionHandler from "./Boardform/DescriptionHandler";
-import TagHandler from "./Boardform/TagHandler";
-import ImageHandler from "./Boardform/ImageHandler";
+import AddBoard from "../../../utils/addBoard";
+import { FormLabel } from "./BoardformLabel";
+import DescriptionHandler from "./DescriptionHandler";
+import TagHandler from "./TagHandler";
+import ImageHandler from "./ImageHandler";
+import Button from "../../../../Global_components/Button";
 
 export interface NewBoardProps {
   title: string;
@@ -47,30 +43,28 @@ const NewBoardForm: React.FC<NewBoardFormProps> = ({
   const [imagePreview, setImagePreview] = useState<string>("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const updateDescription = (e: ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, description: e.target.innerText });
+    setFormData((prev) => ({ ...prev, description: e.target.value }));
   };
 
   const handleTags = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.innerText.includes(",")) {
-      const value = e.target.innerText;
-      const enteredTag = value.split(",");
-      setFormData((prevState) => ({
-        ...prevState,
-        tags: [...prevState.tags, enteredTag[0].trimStart()],
-      }));
-      e.target.innerText = "";
+    const value = e.target.value;
+    if (value.includes(",")) {
+      const [newTag] = value.split(",").map((tag) => tag.trimStart());
+      setFormData((prev) => ({ ...prev, tags: [...prev.tags, newTag] }));
+      e.target.value = "";
     }
   };
 
-  const deleteTag = (event: React.MouseEvent, tag: string) => {
-    event.stopPropagation(); // Prevent the click event from propagating
-    setFormData((prevState) => ({
-      ...prevState,
-      tags: prevState.tags.filter((t) => t !== tag),
+  const deleteTag = (e: React.MouseEvent, tag: string) => {
+    e.stopPropagation();
+    setFormData((prev) => ({
+      ...prev,
+      tags: prev.tags.filter((t) => t !== tag),
     }));
   };
 
@@ -78,16 +72,13 @@ const NewBoardForm: React.FC<NewBoardFormProps> = ({
     const file = e.target.files?.[0];
     if (file) {
       setImagePreview(URL.createObjectURL(file));
-      setFormData({ ...formData, file });
+      setFormData((prev) => ({ ...prev, file }));
     }
   };
 
-  const clearImage = (event: React.MouseEvent) => {
-    event.stopPropagation();
-    console.log("Clearing image");
-    setFormData((prevState) => {
-      return { ...prevState, file: undefined };
-    });
+  const clearImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setFormData((prev) => ({ ...prev, file: undefined }));
     setImagePreview("");
   };
 
@@ -138,12 +129,10 @@ const NewBoardForm: React.FC<NewBoardFormProps> = ({
   return (
     <form
       className={`w-[20rem] ${
-        add == true
-          ? "translate-x-0 opacity-1"
-          : "translate-x-full opacity-0 z-[-20]"
+        add ? "translate-x-0 opacity-1" : "translate-x-full opacity-0 z-[-20]"
       } absolute p-4 top-[140%] right-0 rounded-lg z-40 text-dark bg-white shadow-bs grid gap-4 transition-all duration-500`}
       onSubmit={submitForm}
-      onClick={(event) => event.stopPropagation()} // Prevent form clicks from propagating
+      onClick={(e) => e.stopPropagation()}
     >
       <div className="w-[max-content] block font-semibold sticky top-0">
         Add new board
@@ -160,7 +149,6 @@ const NewBoardForm: React.FC<NewBoardFormProps> = ({
         handleImageUpload={handleImageUpload}
         clearImage={clearImage}
       />
-
       <Button variant="primary" size="sm" icon>
         Add
       </Button>
