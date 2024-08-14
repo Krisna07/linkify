@@ -1,12 +1,9 @@
 "use client";
 
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
 import Button from "../../../Global_components/Button";
-import { FaX } from "react-icons/fa6";
-import { CiImageOn } from "react-icons/ci";
+
 import AddBoard from "../../utils/addBoard";
-import EditableComponents from "./EditableComponents";
-import Image from "next/image";
 import { toast } from "react-toastify";
 import { FormLabel } from "./Boardform/BoardformLabel";
 import DescriptionHandler from "./Boardform/DescriptionHandler";
@@ -26,14 +23,12 @@ interface NewBoardFormProps {
   add: boolean;
   handleForm: (state: boolean) => void;
   updateBoard: (board: NewBoardProps) => void;
-  errorHandler: (error: any) => void;
 }
 
 const NewBoardForm: React.FC<NewBoardFormProps> = ({
   add,
   handleForm,
   updateBoard,
-  errorHandler,
 }) => {
   const [formData, setFormData] = useState<NewBoardProps>({
     title: "",
@@ -50,44 +45,41 @@ const NewBoardForm: React.FC<NewBoardFormProps> = ({
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const updateDescription = (e: ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, description: e.target.innerText });
+  const updateDescription = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setFormData({ ...formData, description: e.target.value });
   };
 
-  const handleTags = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.innerText.includes(",")) {
-      const value = e.target.innerText;
+  const handleTags = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (value.includes(",")) {
       const enteredTag = value.split(",");
       setFormData((prevState) => ({
         ...prevState,
-        tags: [...prevState.tags, enteredTag[0].trimStart()],
+        tags: [...prevState.tags, enteredTag[0].trim()],
       }));
-      e.target.innerText = "";
+      e.target.value = "";
     }
-  };
+  }, []);
 
-  const deleteTag = (event: React.MouseEvent, tag: string) => {
-    event.stopPropagation(); // Prevent the click event from propagating
+  const deleteTag = useCallback((event: React.MouseEvent, tag: string) => {
+    event.stopPropagation();
     setFormData((prevState) => ({
       ...prevState,
       tags: prevState.tags.filter((t) => t !== tag),
     }));
-  };
+  }, []);
 
   const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       setImagePreview(URL.createObjectURL(file));
-      setFormData({ ...formData, file });
+      setFormData((prevState) => ({ ...prevState, file }));
     }
   };
 
   const clearImage = (event: React.MouseEvent) => {
     event.stopPropagation();
-    console.log("Clearing image");
-    setFormData((prevState) => {
-      return { ...prevState, file: undefined };
-    });
+    setFormData((prevState) => ({ ...prevState, file: undefined }));
     setImagePreview("");
   };
 
@@ -130,20 +122,26 @@ const NewBoardForm: React.FC<NewBoardFormProps> = ({
         toast.error(data.message);
       }
     } catch (error) {
-      errorHandler(error);
       toast.error(`${error}`);
     }
   };
 
+  useEffect(() => {
+    // Clean up the image preview URL when the component unmounts
+    return () => {
+      if (imagePreview) {
+        URL.revokeObjectURL(imagePreview);
+      }
+    };
+  }, [imagePreview]);
+
   return (
     <form
       className={`w-[20rem] ${
-        add == true
-          ? "translate-x-0 opacity-1"
-          : "translate-x-full opacity-0 z-[-20]"
+        add ? "translate-x-0 opacity-1" : "translate-x-full opacity-0 z-[-20]"
       } absolute p-4 top-[140%] right-0 rounded-lg z-40 text-dark bg-white shadow-bs grid gap-4 transition-all duration-500`}
       onSubmit={submitForm}
-      onClick={(event) => event.stopPropagation()} // Prevent form clicks from propagating
+      onClick={(event) => event.stopPropagation()}
     >
       <div className="w-[max-content] block font-semibold sticky top-0">
         Add new board
@@ -160,7 +158,6 @@ const NewBoardForm: React.FC<NewBoardFormProps> = ({
         handleImageUpload={handleImageUpload}
         clearImage={clearImage}
       />
-
       <Button variant="primary" size="sm" icon>
         Add
       </Button>

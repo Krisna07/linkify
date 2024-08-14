@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { BiGrid } from "react-icons/bi";
 import { FaBars, FaChevronUp, FaPlusCircle } from "react-icons/fa";
 import Button from "../../../Global_components/Button";
@@ -14,24 +14,24 @@ interface HomeNavProps {
   item?: void;
   list: boolean;
   changeView: (listView: boolean) => void;
-  updateBoard: (board: boardProps) => void;
-  handleSearch?: (query: string) => void;
+  updateBoard: any;
+  handleSearch?: (items: boardProps[]) => void; // Updated type
 }
 
 const HomeNav: React.FC<HomeNavProps> = ({
   list,
   changeView,
   updateBoard,
-  errorHandler,
+
   boards,
   handleSearch,
 }) => {
   const [add, setAdd] = useState<boolean>(false);
   const boardRef = useRef<HTMLDivElement>(null);
 
-  const handleForm = (item: boolean) => {
+  const handleForm = useCallback((item: boolean) => {
     setAdd(item);
-  };
+  }, []);
 
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
@@ -45,7 +45,7 @@ const HomeNav: React.FC<HomeNavProps> = ({
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
-  }, []);
+  }, [handleForm]);
 
   return (
     <div className="min-w-full grid tablet:grid-cols-[4fr_1fr] grid-cols-[4fr_40px] tablet:p-0 tablet:gap-2 gap-4 border-box place-items-center bg-accent/50 rounded-md top-0 sticky z-20">
@@ -57,6 +57,7 @@ const HomeNav: React.FC<HomeNavProps> = ({
               !list ? "text-silver" : "text-dark"
             }`}
             onClick={() => changeView(false)}
+            aria-label="Grid view"
           >
             <BiGrid size={20} />
           </div>
@@ -65,6 +66,7 @@ const HomeNav: React.FC<HomeNavProps> = ({
               list ? "text-silver" : "text-dark"
             }`}
             onClick={() => changeView(true)}
+            aria-label="List view"
           >
             <FaBars size={20} />
           </div>
@@ -79,7 +81,7 @@ const HomeNav: React.FC<HomeNavProps> = ({
             <Button
               variant="primary"
               size="default"
-              onClick={() => setAdd(!add)}
+              onClick={() => setAdd((prev) => !prev)}
               className="w-fit py-2 px-4"
               rightIcon={
                 <FaChevronUp
@@ -88,13 +90,15 @@ const HomeNav: React.FC<HomeNavProps> = ({
                   } min-w-fit transition-all ease-in-out duration-500`}
                 />
               }
+              aria-label="Add new board"
             >
               Add new
             </Button>
           </div>
           <div
             className="bg-primary flex items-center rounded-lg p-2 w-fit tablet:hidden"
-            onClick={() => setAdd(!add)}
+            onClick={() => setAdd((prev) => !prev)}
+            aria-label="Add new board"
           >
             <FaPlusCircle />
           </div>
@@ -102,7 +106,6 @@ const HomeNav: React.FC<HomeNavProps> = ({
             add={add}
             handleForm={handleForm}
             updateBoard={updateBoard}
-            errorHandler={errorHandler}
           />
         </div>
       </div>
