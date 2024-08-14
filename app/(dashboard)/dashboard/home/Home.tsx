@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Homenav from "../../../../components/Dashboard_components/UI/Navbar/HomeNav";
 import getBoards from "../../../../components/Dashboard_components/utils/Fetchbaords";
 import { boardProps } from "../../../../components/Dashboard_components/utils/Interfaces";
-import { ToastContainer, toast } from "react-toastify";
 
 import DisplayBoards from "../../../../components/Dashboard_components/UI/components/Home/DisplayBoards";
 import HomepageCardConatiner1 from "../../../../components/Dashboard_components/UI/components/Home/HomepageCardConatiner1";
@@ -17,7 +16,7 @@ export default function Home() {
   const [displayBoard, setDisplayBoard] = useState<boardProps[]>([]);
 
   const HandleError = (err: string) => {
-    toast(err);
+    console.log(err);
   };
 
   //changing the page view
@@ -52,9 +51,7 @@ export default function Home() {
 
   return (
     <div className="w-full laptop:max-w-[1200px] min-h-screen  overflow-hidden  px-2  flex flex-col gap-8 box-border ">
-      <div className="absolute">
-        <ToastContainer />
-      </div>
+      <div className="absolute"></div>
       <Homenav
         list={list}
         boards={boards}

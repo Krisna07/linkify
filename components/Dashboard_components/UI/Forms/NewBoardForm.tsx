@@ -8,7 +8,6 @@ import { CiImageOn } from "react-icons/ci";
 import AddBoard from "../../utils/addBoard";
 import EditableComponents from "./EditableComponents";
 import Image from "next/image";
-import { supabase } from "../../../../lib/supabase";
 
 interface labelProps {
   label: string;
@@ -166,10 +165,11 @@ export default function NewBoardForm({
       <label htmlFor="description" className="w-full grid gap-1 border-box">
         <span className="mx-2 font-semibold">Description</span>
         <div className="shadow-bs rounded-md">
-          {" "}
           <EditableComponents
             valueUpdate={updateDescription}
-            placeholder={"Enter the description"}
+            placeholder={
+              formdata.description.length ? "" : "Enter the description"
+            }
             isEditable={true}
           />
         </div>
@@ -195,7 +195,7 @@ export default function NewBoardForm({
           )}
           <EditableComponents
             valueUpdate={handleTags}
-            placeholder={formdata.tags.length == 5 ? "" : "Enter the Tags"}
+            placeholder={formdata.tags.length ? "" : "Enter the Tags"}
             isEditable={formdata.tags.length == 5 ? false : true}
           />
         </div>
