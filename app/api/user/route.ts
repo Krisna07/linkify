@@ -53,7 +53,7 @@ export async function POST(req: Request) {
         sender,
         receiver: receipients,
         subject: "Welcome to Linkify",
-        message: `Please verigfy your account using code: ${code}`,
+        message: `Please verify your account using code: ${code}`,
       });
       Response.json({
         accepted: result.accepted,
@@ -89,68 +89,68 @@ export async function POST(req: Request) {
   }
 }
 // Handle PUT requests (update user information)
-// export async function PUT(req: Request) {
-//   try {
-//     const { id, ...updateData } = await req.json(); // Destructure id and update data
+export async function PUT(req: Request) {
+  try {
+    const { id, ...updateData } = await req.json(); // Destructure id and update data
 
-//     const updatedUser = await db.user.update({
-//       where: { id },
-//       data: updateData,
-//     });
+    const updatedUser = await db.user.update({
+      where: { id },
+      data: updateData,
+    });
 
-//     if (!updatedUser) {
-//       return NextResponse.json({
-//         status: 404,
-//         message: "User not found",
-//       });
-//     }
+    if (!updatedUser) {
+      return NextResponse.json({
+        status: 404,
+        message: "User not found",
+      });
+    }
 
-//     return NextResponse.json({
-//       status: 200,
-//       message: "User updated successfully",
-//     });
-//   } catch (error) {
-//     console.error(error);
-//     return NextResponse.json({
-//       status: 500,
-//       message: "Error updating user",
-//     });
-//   }
-// }
+    return NextResponse.json({
+      status: 200,
+      message: "User updated successfully",
+    });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({
+      status: 500,
+      message: "Error updating user",
+    });
+  }
+}
 
 // Handle DELETE requests (delete a user)
-// export async function DELETE(req: Request) {
-//   try {
-//     const url = new URL(req.url, `http://${req.headers.get("host")}`); // Create a URL object
-//     const userId = url.searchParams.get("id"); // Get user ID from query parameter
+export async function DELETE(req: Request) {
+  try {
+    const url = new URL(req.url, `http://${req.headers.get("host")}`); // Create a URL object
+    const userId = url.searchParams.get("id"); // Get user ID from query parameter
 
-//     if (!userId) {
-//       return NextResponse.json({
-//         status: 400,
-//         message: url,
-//       });
-//     }
+    if (!userId) {
+      return NextResponse.json({
+        status: 400,
+        message: url,
+      });
+    }
 
-//     const deletedUser = await db.user.delete({
-//       where: { id: userId },
-//     });
+    const deletedUser = await db.user.delete({
+      where: { id: userId },
+    });
 
-//     if (!deletedUser) {
-//       return NextResponse.json({
-//         status: 404,
-//         message: "User not found",
-//       });
-//     }
+    if (!deletedUser) {
+      return NextResponse.json({
+        status: 404,
+        message: "User not found",
+      });
+    }
 
-//     return NextResponse.json({
-//       status: 200,
-//       message: "User deleted successfully",
-//     });
-//   } catch (error) {
-//     console.error(error);
-//     return NextResponse.json({
-//       status: 500,
-//       message: "Error deleting user",
-//     });
-//   }
-// }
+    return NextResponse.json({
+      status: 200,
+      message: "User deleted successfully",
+    });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({
+      status: 500,
+      message: "Error deleting user",
+    });
+  }
+}
