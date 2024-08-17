@@ -1,8 +1,9 @@
 import { FaArrowLeft } from "react-icons/fa";
 import "../globals.css";
-import Link from "next/link";
+import "react-toastify/dist/ReactToastify.css";
 import Authlayout from "../../components/Layouts/Authlayout";
 import Background from "../../components/Landing_components/Background";
+import { ToastContainer } from "react-toastify";
 
 export const metadata = {
   title: "Linkify",
@@ -25,6 +26,9 @@ export default function RootLayout({
           "w-full min-h-[100vh] grid place-items-center relative bg-gray-200 overflow-hidden "
         }
       >
+        <div className="absolute">
+          <ToastContainer />
+        </div>
         <Background />
         <Authlayout children={children} />
       </body>

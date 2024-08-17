@@ -25,33 +25,29 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        // Add logic here to look up the user from the credentials supplied
         if (!credentials?.email || !credentials?.password) {
-          return null;
+          throw new Error("Email and password are required.");
         }
 
         const existingUser = await db.user.findFirst({
           where: {
-            OR: [
-              { email: credentials?.email },
-              {
-                username: credentials?.email,
-              },
-            ],
+            OR: [{ email: credentials.email }, { username: credentials.email }],
           },
         });
 
         if (!existingUser) {
-          return null;
+          throw new Error("No user found with the provided credentials.");
         }
+
         const passwordMatch = await bcrypt.compare(
           credentials.password,
           existingUser.password
         );
 
         if (!passwordMatch) {
-          return null;
+          throw new Error("Password does not match.");
         }
+
         return {
           id: `${existingUser.id}`,
           username: existingUser.username,
@@ -83,7 +79,6 @@ export const authOptions: NextAuthOptions = {
           id: token.id,
         },
       };
-      return session;
     },
   },
 };

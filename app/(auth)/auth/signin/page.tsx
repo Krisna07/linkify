@@ -9,6 +9,8 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { FiAlertCircle } from "react-icons/fi";
 import Button from "../../../../components/Global_components/Button";
+import { toast } from "react-toastify";
+// import ValidateForm from "../lib/FormValidation";
 
 interface User {
   email: string;
@@ -22,9 +24,6 @@ const SignInPage: React.FC = () => {
   });
 
   const route = useRouter();
-  const regex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>]).{8,}$/;
-  //setting error states
   const [err, setErr] = useState<string>("");
   //handling input change
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,29 +43,42 @@ const SignInPage: React.FC = () => {
 
   const validateForm = (data: User) => {
     if (!data.email || !data.password) {
-      setErr("Please fill in all fields.");
       return false;
     }
     return true;
   };
+
   //handling form action
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     //signin authentication
-    if (validateForm(formData)) {
+    if (!validateForm(formData)) {
+      toast.warn("Please fill out all fields correctly.");
+      return;
+    }
+
+    try {
+      // Show loading toast
+      toast.loading("Loading....");
+      // Attempt to sign in
       const signinData = await signIn("credentials", {
-        email: formData.email.toLocaleLowerCase(),
+        email: formData.email.toLowerCase(),
         password: formData.password,
         redirect: false,
       });
+      signinData && toast.dismiss();
+      // Handle sign-in errors
       if (signinData?.error) {
-        setErr("Credentials do not match");
+        toast.warn(signinData.error);
         return;
-      } else {
-        route.refresh();
-        route.push("/dashboard");
       }
-      // console.log(signinData);
+      // Success: Redirect and show success toast
+      route.push("/dashboard");
+      toast.success("Login Successful");
+    } catch (error) {
+      // Handle unexpected errors
+      console.error("Login failed: ", error);
+      toast.error("An unexpected error occurred. Please try again.");
     }
   };
 
@@ -76,7 +88,6 @@ const SignInPage: React.FC = () => {
         <div className="w-full flex tablet:flex-col items-center tablet:items-start justify-between tablet:justify-start border-b tablet:border-none py-2  ">
           <FaLeaf color="green" size={40} className="tablet:block hidden" />
           <div>
-            {" "}
             <h3 className="font-semibold text-xl ">Sign in</h3>
             <p>Continue with Linkify</p>
           </div>
@@ -84,7 +95,6 @@ const SignInPage: React.FC = () => {
         </div>
       </div>
       <form onSubmit={handleSubmit} className="w-full grid gap-2 box-border">
-        {/* {err && <div className="text-red-500">{err}</div>} */}
         <Input
           label="Email/ Username"
           placeholder="Email"
@@ -111,7 +121,12 @@ const SignInPage: React.FC = () => {
             signup here
           </Link>
         </span>
-        <Button type="submit" variant={"accent"} size={"default"}>
+        <Button
+          type="submit"
+          variant={"accent"}
+          size={"default"}
+          className="mx-2"
+        >
           Submit
         </Button>
       </form>

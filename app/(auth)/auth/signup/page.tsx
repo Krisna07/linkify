@@ -9,12 +9,13 @@ import Link from "next/link";
 import "react-toastify/dist/ReactToastify.css";
 
 import { toast, ToastContainer } from "react-toastify";
-import { useRouter } from "next/navigation";
+
 import Button from "../../../../components/Global_components/Button";
 import { FiAlertCircle, FiMail, FiUser } from "react-icons/fi";
 import { signIn } from "next-auth/react";
 import calculatePasswordStrength from "../lib/PasswordStrengthCheck";
 import RandomBgGenerator from "../../../../lib/randombggenerator";
+import CreateUser from "./createUser";
 // import transporter from "@/lib/mailer";
 
 interface User {
@@ -36,12 +37,6 @@ const SignInPage: React.FC = () => {
   //defineing the states
   const [err, setErr] = useState<string>("");
   const [strength, setStrength] = useState<number>(0);
-  // const [signed, setSigned] = useState<boolean>(false);
-  // const [subscribe, setSubscribe] = useState<boolean>(false);
-  // const [strengthName, setStrengthName] = useState<string>("Weak");
-  // const [code, setCode] = useState<string>();
-
-  const route = useRouter();
 
   //handling the input check
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,7 +69,7 @@ const SignInPage: React.FC = () => {
     formData.username && nameCheck(formData.username);
   }, [formData.username]);
 
-  const validateForm = () => {
+  const validateForm = (formData: User) => {
     const PasswordLength = formData.password.split("").length;
     if (!formData.email || !formData.password) {
       setErr("Please fill in all fields.");
@@ -111,64 +106,15 @@ const SignInPage: React.FC = () => {
   useEffect(() => {
     err && toast(err);
   }, [err]);
-  // const generateRandomCode = () => {
-  //   const min = 1000;
-  //   const max = 9999;
-  //   return Math.floor(Math.random() * (max - min + 1)) + min;
-  // };
-
-  // const mailOptions = {
-  //   from: "noreplylinkify@gmail.com",
-  //   to: formData.email,
-  //   subject: "Verify your account ",
-  //   text: `Please verify your account with this code: ${code}`,
-  // };
-
-  // transporter.sendMail(mailOptions, function (error, info) {
-  //   if (error) {
-  //     setErr(err);
-  //   }
-  // });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/Json",
-      },
-      body: JSON.stringify({
-        username: formData.username.toLowerCase(),
-        email: formData.email.toLocaleLowerCase(),
-        password: formData.password,
-      }),
-    };
-    const api = "/api/user";
-    // setCode(`${generateRandomCode}`);
-
-    if (validateForm()) {
-      const response = await fetch(api, options);
-      const data = await response.json();
-
-      if (data.status === 200) {
-        const logInData = await signIn("credentials", {
-          email: formData.email.toLocaleLowerCase(),
-          password: formData.password,
-          redirect: false,
-        });
-        if (logInData?.error) {
-          return setErr("Credentials do not match");
-        } else {
-          route.refresh();
-          route.push("/dashboard");
-        }
-      } else {
-        setErr(data.message);
-        return;
-      }
+    if (validateForm(formData)) {
+      CreateUser(formData);
+    } else {
+      return;
     }
   };
-  RandomBgGenerator();
 
   return (
     <div className="w-full h-screen text-black box-border tablet:h-fit px-4 py-8  rounded flex flex-col  justify-center tablet:grid tablet:grid-cols-2 gap-12 place-items-center relative z-30 bg-silver ">
@@ -192,12 +138,6 @@ const SignInPage: React.FC = () => {
         </div>
       </div>
       <form onSubmit={handleSubmit} className="w-full grid gap-2 box-border">
-        {/* {err && (
-          <div className="w-full text-red-600 text-sm font-semibold ">
-            {err}
-          </div>
-        )} */}
-
         <Input
           label="Username"
           placeholder="Username"
@@ -265,6 +205,7 @@ const SignInPage: React.FC = () => {
           variant={"submit"}
           size={"sm"}
           children={"submit"}
+          className="mx-2"
         />
       </form>
       {

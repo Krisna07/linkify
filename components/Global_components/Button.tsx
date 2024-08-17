@@ -11,7 +11,7 @@ const buttonVarients = cva("active:", {
       default:
         "bg-dark rounded whitespace-nowrap transition-all text-silver w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs ",
       accent:
-        "bg-accent rounded whitespace-nowrap text-tahiti transition-all  w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs",
+        "bg-accent rounded whitespace-nowrap text-white transition-all  w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs",
       primary:
         "bg-primary rounded whitespace-nowrap transition-all text-white w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs",
       submit:

@@ -6,8 +6,8 @@ const ErrorPage = () => {
   return (
     <html>
       <body>
-        <div className="w-full h-screen grid items-center justify-center">
-          <div className="grid h-fit w-fit bg-primary text-white rounded-md">
+        <div className="w-full h-screen grid items-center justify-center px-16 py-8">
+          <div className="grid place-items-center h-fit w-fit bg-primary text-white rounded-md">
             Restricted area, user not authorized !!
             <Link href={"/auth/signin"}>
               <Button children="Sign In" size={"sm"} variant={"default"} />
