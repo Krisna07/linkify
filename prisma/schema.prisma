@@ -16,7 +16,8 @@ model User {
   username          String       @unique
   password          String
   avatar            String?
-  verification      Boolean
+  verificationCode  Int    ?
+  verified          Boolean      @default(false)
   boards            Board[]
   userDetails       UserDetails? @relation("UserUserDetails")
   timestamp         DateTime     @default(now())

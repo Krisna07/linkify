@@ -5,6 +5,8 @@ import { authOptions } from "../../../lib/auth";
 import { db } from "../../../lib/db";
 import { hash } from "bcryptjs";
 import RandomBgGenerator from "../../../lib/randombggenerator";
+import RandomCodeGenerator from "../../../lib/radomcodegenerator";
+import { sendEmail } from "../../../lib/mailer";
 // import transporter from "@/lib/mailer";
 
 export const GET = async (req: Request) => {
@@ -33,28 +35,53 @@ export async function POST(req: Request) {
       });
     }
     const hashedPassword = await hash(password, 10);
-    console.log(RandomBgGenerator());
+
+    //verification code handler
+    const code = RandomCodeGenerator();
+    const sender = {
+      name: "The Linkify",
+      address: process.env.MAILER_EMAIL as string,
+    };
+    const receipients = [
+      {
+        name: username,
+        address: email,
+      },
+    ];
+    try {
+      const result = await sendEmail({
+        sender,
+        receiver: receipients,
+        subject: "Welcome to Linkify",
+        message: `Please verigfy your account using code: ${code}`,
+      });
+      Response.json({
+        accepted: result.accepted,
+      });
+    } catch (error) {
+      Response.json({
+        status: 500,
+        message: "Unable to send email",
+      });
+    }
 
     const newUser = await db.user.create({
       data: {
         email,
         username,
-        verification: false,
+        verified: false,
+        verificationCode: code,
         password: hashedPassword,
         name: "", // Provide default value for optional field
         avatar: RandomBgGenerator(), // Provide default value for optional field
       },
     });
 
-    // Send only necessary user data (e.g., user ID) in the response
-    // const { password: newUserPassword, ...rest } = newUser;
-
     return NextResponse.json({
       status: 200,
       message: "User created successfully ",
     });
   } catch (error) {
-    console.error(error);
     return NextResponse.json({
       status: 500,
       message: "Error creating user",

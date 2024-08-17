@@ -12,11 +12,10 @@ import { toast, ToastContainer } from "react-toastify";
 
 import Button from "../../../../components/Global_components/Button";
 import { FiAlertCircle, FiMail, FiUser } from "react-icons/fi";
-import { signIn } from "next-auth/react";
 import calculatePasswordStrength from "../lib/PasswordStrengthCheck";
-import RandomBgGenerator from "../../../../lib/randombggenerator";
-import CreateUser from "./createUser";
-// import transporter from "@/lib/mailer";
+
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 interface User {
   username: string;
@@ -106,15 +105,53 @@ const SignInPage: React.FC = () => {
   useEffect(() => {
     err && toast(err);
   }, [err]);
-
+  const route = useRouter();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     if (validateForm(formData)) {
-      CreateUser(formData);
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/Json",
+        },
+        body: JSON.stringify({
+          username: formData.username.toLowerCase(),
+          email: formData.email.toLocaleLowerCase(),
+          password: formData.password,
+        }),
+      };
+      const api = "/api/user";
+      toast.loading("Creating user......");
+      const response = await fetch(api, options);
+      response && toast.dismiss();
+      const data = await response.json();
+
+      if (data.status === 200) {
+        toast.success(`${data.message} "Logging in "`);
+        const logInData = await signIn("credentials", {
+          email: formData.email.toLocaleLowerCase(),
+          password: formData.password,
+          redirect: false,
+        });
+        if (logInData?.error) {
+          return toast.error("Credentials do not match");
+        } else {
+          route.refresh();
+          route.push("/dashboard");
+        }
+      } else {
+        toast.error(data.message);
+        return;
+      }
     } else {
       return;
     }
   };
+  // const MailingOption = {
+  //   email: "krisnachhetri07@gmail.com",
+  //   message: "This is the teset email ",
+  // };
 
   return (
     <div className="w-full h-screen text-black box-border tablet:h-fit px-4 py-8  rounded flex flex-col  justify-center tablet:grid tablet:grid-cols-2 gap-12 place-items-center relative z-30 bg-silver ">

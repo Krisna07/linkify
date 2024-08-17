@@ -10,16 +10,17 @@ datasource db {
 }
 
 model User {
-  id           String       @id @default(cuid())
-  name         String
-  email        String       @unique
-  username     String       @unique
-  password     String
-  avatar       String?
-  verification Boolean
-  boards       Board[]
-  userDetails  UserDetails? @relation("UserUserDetails")
-  timestamp    DateTime     @default(now())
+  id               String       @id @default(cuid())
+  name             String
+  email            String       @unique
+  username         String       @unique
+  password         String
+  avatar           String?
+  verificationCode Int?
+  verified         Boolean      @default(false)
+  boards           Board[]
+  userDetails      UserDetails? @relation("UserUserDetails")
+  timestamp        DateTime     @default(now())
 }
 
 model UserDetails {
