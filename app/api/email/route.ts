@@ -23,11 +23,11 @@ export async function POST(req: Request) {
         subject: "Welcome to new application",
         message: `Please verigfy your account using code: ${code}`,
       });
-      return Response.json({
+      return NextResponse.json({
         accepted: result.accepted,
       });
     } catch (error) {
-      return Response.json({
+      return NextResponse.json({
         status: 500,
         message: "Unable to send email",
       });
