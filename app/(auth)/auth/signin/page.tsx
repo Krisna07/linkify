@@ -77,7 +77,7 @@ const SignInPage: React.FC = () => {
       toast.success("Login Successful");
     } catch (error) {
       // Handle unexpected errors
-      console.error("Login failed: ", error);
+      // console.error("Login failed: ", error);
       toast.error("An unexpected error occurred. Please try again.");
     }
   };
