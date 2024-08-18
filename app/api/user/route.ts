@@ -55,11 +55,11 @@ export async function POST(req: Request) {
         subject: "Welcome to Linkify",
         message: `Please verify your account using code: ${code}`,
       });
-      Response.json({
+      NextResponse.json({
         accepted: result.accepted,
       });
     } catch (error) {
-      Response.json({
+      NextResponse.json({
         status: 500,
         message: "Unable to send email",
       });
