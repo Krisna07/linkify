@@ -1,7 +1,7 @@
 import { supabase } from "../../../lib/supabase";
-import { newBoardProps } from "../UI/Forms/NewBoardForm";
+import { NewBoardProps } from "../UI/Forms/Boardform/Boardform";
 
-export default async function AddBoard(formdata: newBoardProps) {
+export default async function AddBoard(formdata: NewBoardProps) {
   let imageurl;
 
   if (formdata.file) {

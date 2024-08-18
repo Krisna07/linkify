@@ -13,7 +13,7 @@ interface BoardProps {
 
 const Board = ({ board }: BoardProps) => {
   return (
-    <div className="group w-full grid gap-4 p-2 shadow-bs border border-transparent rounded-md transition-all duration-500 hover:border-white/50 relative overflow-hidden">
+    <div className="group w-full h-full grid gap-4 p-2 shadow-bs border border-transparent rounded-md transition-all duration-500 hover:border-white/50 relative overflow-hidden">
       <div
         style={{ background: `${board.boardColor}` }}
         className="w-full min-h-[200px] relative opacity-[.8] group-hover:opacity-100 transition-all duration-500 "
@@ -28,7 +28,7 @@ const Board = ({ board }: BoardProps) => {
         )}
       </div>
       <div className="grid gap-2">
-        <span className="text-silver leading-[100%] text-2xl font-semibold uppercase">
+        <span className="text-silver leading-[100%] text-2xl font-semibold capitalize">
           {board.title}
         </span>
         <span>{board.description}</span>

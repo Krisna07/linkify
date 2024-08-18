@@ -10,7 +10,7 @@ interface Dashboardprops {
 }
 
 const Dashboardlayout = ({ children, user }: Dashboardprops) => {
-  console.log(user);
+  // console.log(user);
   return (
     <html lang="en">
       <body className="w-full min-h-screen relative   px-0 m-0  bg-dark  ">

@@ -9,7 +9,7 @@ interface displayBoardProps {
 const DisplayBoards = ({ boardList, list }: displayBoardProps) => {
   return (
     <div
-      className={`min-h-[400px] grid ${
+      className={`h-full grid ${
         list
           ? "grid-cols-1"
           : "laptop:grid-cols-3  tablet:grid-cols-2 grid-cols-1"

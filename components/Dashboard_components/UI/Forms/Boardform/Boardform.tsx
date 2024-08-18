@@ -90,44 +90,24 @@ const NewBoardForm: React.FC<NewBoardFormProps> = ({
       return;
     }
     try {
-      await AddBoard(formData)
-        .then((data) => {
-          if (data.status === 201) {
-            toast.dismiss();
-            setFormData({
-              title: "",
-              description: "",
-              link: "",
-              image: "",
-              file: undefined,
-              tags: [],
-            });
-            handleForm(false);
-            updateBoard(data.newBoard);
-            toast.success(data.message);
-            setImagePreview("");
-          }
-        })
-        .catch((error) => {
-          toast.error(`${error}`);
+      const data = await AddBoard(formData);
+      data && toast.dismiss();
+      if (data.status === 201) {
+        setFormData({
+          title: "",
+          description: "",
+          link: "",
+          image: "",
+          file: undefined,
+          tags: [],
         });
-      // const data = await AddBoard(formData);
-      // if (data.status === 201) {
-      //   setFormData({
-      //     title: "",
-      //     description: "",
-      //     link: "",
-      //     image: "",
-      //     file: undefined,
-      //     tags: [],
-      //   });
-      //   handleForm(false);
-      //   updateBoard(data.newBoard);
-      //   toast.success(data.message);
-      //   setImagePreview("");
-      // } else {
-      //   toast.error(data.message);
-      // }
+        handleForm(false);
+        updateBoard(data.newBoard);
+        toast.success(data.message);
+        setImagePreview("");
+      } else {
+        toast.error(data.message);
+      }
     } catch (error) {
       toast.error(`${error}`);
     }

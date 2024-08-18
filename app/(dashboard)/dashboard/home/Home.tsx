@@ -59,7 +59,7 @@ export default function Home() {
         updateBoard={actionBoardUpdate}
         handleSearch={handleSearch}
       />
-      <HomepageCardConatiner1 boardList={displayBoard} />
+      <HomepageCardConatiner1 boardList={boards} />
 
       {loading ? (
         <div className="grid place-items-center">

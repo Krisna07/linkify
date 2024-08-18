@@ -4,6 +4,7 @@ export interface userProps {
   name?: string;
   image: string;
   id: string;
+  verified?: boolean;
 }
 
 export interface boardProps {

@@ -113,11 +113,6 @@ const HomeNav: React.FC<HomeNavProps> = ({
             handleForm={handleForm}
             updateBoard={updateBoard}
           />
-          {/* <NewBoardForm
-            add={add}
-            handleForm={handleForm}
-            updateBoard={updateBoard}
-          /> */}
         </div>
       </div>
     </div>

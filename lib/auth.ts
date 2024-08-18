@@ -77,6 +77,7 @@ export const authOptions: NextAuthOptions = {
         user: {
           ...session.user,
           username: token.username,
+          verified: token.verified,
           id: token.id,
         },
       };

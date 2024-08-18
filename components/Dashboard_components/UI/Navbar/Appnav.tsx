@@ -9,10 +9,13 @@ import { NavProps } from "./MainNav";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
+interface notificationProps {
+  message: string;
+}
+
 const Appnav = ({ user }: NavProps) => {
   const [accountOptions, setAccountOptions] = useState<boolean>(false);
   const getUrl: string = usePathname();
-
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -29,6 +32,13 @@ const Appnav = ({ user }: NavProps) => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
+
+  const [notification, setNotification] = useState<notificationProps[]>([]);
+  // console.log(user);
+
+  // if (!user.verified) {
+  //   setNotification([...notification, { message: "Please verify your email" }]);
+  // }
 
   return (
     <div className="w-full flex items-center justify-between box-border p-2  gap-4  top-0 ">
@@ -57,8 +67,8 @@ const Appnav = ({ user }: NavProps) => {
           </div>
           <span className="hidden tablet:block"> {user.username}</span>
         </div>
-        <div className="bg-primary hidden px-3 py-[2px] tablet:flex items-center rounded-full text-sm font-[600]">
-          Title
+        <div className="bg-primary hidden px-3  py-[2px] tablet:flex items-center rounded-full text-[10px] font-[600]">
+          {user.verified ? "Verified" : "Not Verified"}
         </div>
       </div>
       <div className="flex items-center gap-4 text-gray-300 box-border  ">
@@ -74,7 +84,7 @@ const Appnav = ({ user }: NavProps) => {
             <div className="flex items-center gap-1 text-silver/50 hover:text-silver p-[4px] px-2 hover:shadow-[0_0_4px_0_white] transition-all duration-300  shadow-[0_0_2px_0_white] rounded-[4px] hover:rounded-[12px] ">
               <BiBell />
               <div className="w-4 h-4 text-tahiti rounded-full  text-[10px] grid place-items-center">
-                0
+                1
               </div>
             </div>
           </>
