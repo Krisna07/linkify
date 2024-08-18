@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import Button from "../../../Global_components/Button";
 import { FaX } from "react-icons/fa6";
 import { CiImageOn } from "react-icons/ci";
@@ -78,9 +78,10 @@ export default function NewBoardForm({
     const tagValue = selectTag && selectTag.split("#")[1];
     const index = formdata.tags.indexOf(tagValue);
     formdata.tags.splice(index, 1);
-
     setFormData({ ...formdata, tags: formdata.tags });
   };
+
+  useEffect(() => console.log(add), [add]);
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

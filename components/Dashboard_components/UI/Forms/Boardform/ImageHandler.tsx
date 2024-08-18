@@ -7,7 +7,7 @@ const ImageHandler = ({ imagePreview, handleImageUpload, clearImage }: any) => {
   return (
     <label htmlFor="image" className="w-full grid gap-1 border-box">
       <span className="mx-2 font-semibold">Image</span>
-      <div className="w-[200px] bg-silver rounded-md overflow-hidden relative grid place-items-center">
+      <div className="w-full bg-silver rounded-md overflow-hidden relative grid place-items-center">
         {!imagePreview ? (
           <>
             <input
@@ -18,15 +18,23 @@ const ImageHandler = ({ imagePreview, handleImageUpload, clearImage }: any) => {
             <CiImageOn size="100px" />
           </>
         ) : (
-          <div className="w-full h-full relative">
-            <Image src={imagePreview} alt="image" width={200} height={100} />
-            <FaX
-              className="absolute right-4 top-4 cursor-pointer text-[red]"
-              onClick={clearImage}
+          <div className="w-[100%] h-[300px] relative">
+            <Image
+              src={imagePreview}
+              alt="image"
+              fill={true}
+              className="w-full h-full object-cover"
             />
+            <div className="p-1 bg-dark  absolute right-4 top-4 rounded-md">
+              {" "}
+              <FaX
+                className=" cursor-pointer text-[red] "
+                onClick={clearImage}
+              />
+            </div>
           </div>
         )}
-        <span>{imagePreview ? "Board Image" : "Select Background"}</span>
+        <span>{imagePreview ? "Board Image" : "Select Board Image"}</span>
       </div>
     </label>
   );

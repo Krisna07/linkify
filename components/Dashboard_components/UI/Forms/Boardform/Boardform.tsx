@@ -1,13 +1,13 @@
 "use client";
-
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import AddBoard from "../../../utils/addBoard";
-import { FormLabel } from "./BoardformLabel";
+// import { FormLabel } from "./BoardformLabel";
 import DescriptionHandler from "./DescriptionHandler";
 import TagHandler from "./TagHandler";
 import ImageHandler from "./ImageHandler";
 import Button from "../../../../Global_components/Button";
+import { nextTick } from "process";
 
 export interface NewBoardProps {
   title: string;
@@ -22,14 +22,13 @@ interface NewBoardFormProps {
   add: boolean;
   handleForm: (state: boolean) => void;
   updateBoard: (board: NewBoardProps) => void;
-  errorHandler: (error: any) => void;
+  errorHandler?: (error: any) => void;
 }
 
 const NewBoardForm: React.FC<NewBoardFormProps> = ({
   add,
   handleForm,
   updateBoard,
-  errorHandler,
 }) => {
   const [formData, setFormData] = useState<NewBoardProps>({
     title: "",
@@ -48,24 +47,11 @@ const NewBoardForm: React.FC<NewBoardFormProps> = ({
   };
 
   const updateDescription = (e: ChangeEvent<HTMLInputElement>) => {
-    setFormData((prev) => ({ ...prev, description: e.target.value }));
+    setFormData((prev) => ({ ...prev, description: e.target.innerText }));
   };
 
-  const handleTags = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    if (value.includes(",")) {
-      const [newTag] = value.split(",").map((tag) => tag.trimStart());
-      setFormData((prev) => ({ ...prev, tags: [...prev.tags, newTag] }));
-      e.target.value = "";
-    }
-  };
-
-  const deleteTag = (e: React.MouseEvent, tag: string) => {
-    e.stopPropagation();
-    setFormData((prev) => ({
-      ...prev,
-      tags: prev.tags.filter((t) => t !== tag),
-    }));
+  const updateTags = (tags: string[]) => {
+    setFormData((prev) => ({ ...prev, tags }));
   };
 
   const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
@@ -78,14 +64,16 @@ const NewBoardForm: React.FC<NewBoardFormProps> = ({
 
   const clearImage = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setFormData((prev) => ({ ...prev, file: undefined }));
-    setImagePreview("");
+    nextTick(() => {
+      setFormData((prev) => ({ ...prev, file: undefined }));
+      setImagePreview("");
+    });
   };
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const titleRegex = /^[a-zA-Z\s]*$/;
-
+    toast.loading("Adding board....");
     if (!formData.title || formData.title === "Enter the title") {
       toast.error("Please enter the title");
       return;
@@ -101,30 +89,63 @@ const NewBoardForm: React.FC<NewBoardFormProps> = ({
       toast.error("Please enter the description");
       return;
     }
-
     try {
-      const data = await AddBoard(formData);
-
-      if (data.status === 201) {
-        setFormData({
-          title: "",
-          description: "",
-          link: "",
-          image: "",
-          file: undefined,
-          tags: [],
+      await AddBoard(formData)
+        .then((data) => {
+          if (data.status === 201) {
+            toast.dismiss();
+            setFormData({
+              title: "",
+              description: "",
+              link: "",
+              image: "",
+              file: undefined,
+              tags: [],
+            });
+            handleForm(false);
+            updateBoard(data.newBoard);
+            toast.success(data.message);
+            setImagePreview("");
+          }
+        })
+        .catch((error) => {
+          toast.error(`${error}`);
         });
-        handleForm(false);
-        updateBoard(data.newBoard);
-        toast.success(data.message);
-      } else {
-        toast.error(data.message);
-      }
+      // const data = await AddBoard(formData);
+      // if (data.status === 201) {
+      //   setFormData({
+      //     title: "",
+      //     description: "",
+      //     link: "",
+      //     image: "",
+      //     file: undefined,
+      //     tags: [],
+      //   });
+      //   handleForm(false);
+      //   updateBoard(data.newBoard);
+      //   toast.success(data.message);
+      //   setImagePreview("");
+      // } else {
+      //   toast.error(data.message);
+      // }
     } catch (error) {
-      errorHandler(error);
       toast.error(`${error}`);
     }
+    // console.log(formData);
   };
+
+  useEffect(() => {
+    add === false &&
+      setFormData({
+        title: "",
+        description: "",
+        link: "",
+        image: "",
+        file: undefined,
+        tags: [],
+      });
+    setImagePreview("");
+  }, [handleForm, add]);
 
   return (
     <form
@@ -137,13 +158,20 @@ const NewBoardForm: React.FC<NewBoardFormProps> = ({
       <div className="w-[max-content] block font-semibold sticky top-0">
         Add new board
       </div>
-      <FormLabel label="Title" value="title" handleChange={handleChange} />
-      <DescriptionHandler updateDescription={updateDescription} />
-      <TagHandler
-        formData={formData}
-        handleTags={handleTags}
-        deleteTag={deleteTag}
-      />
+      <label htmlFor={"title"} className="w-full grid gap-1 border-box">
+        <span className="mx-2 font-semibold">Title</span>
+        <input
+          type="text"
+          placeholder={`Enter the title`}
+          className="px-2 py-1 rounded-md shadow-bs outline-none border-inset border-box"
+          name={"title"}
+          value={formData.title}
+          // value={value}
+          onChange={handleChange}
+        />
+      </label>
+      <DescriptionHandler updateDescription={updateDescription} add={add} />
+      <TagHandler formData={formData} updateTags={updateTags} add={add} />
       <ImageHandler
         imagePreview={imagePreview}
         handleImageUpload={handleImageUpload}

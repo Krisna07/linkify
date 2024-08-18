@@ -2,9 +2,10 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import { BiGrid } from "react-icons/bi";
 import { FaBars, FaChevronUp, FaPlusCircle } from "react-icons/fa";
 import Button from "../../../Global_components/Button";
-import NewBoardForm from "../Forms/NewBoardForm";
+
 import { boardProps } from "../../utils/Interfaces";
 import Search from "./Search";
+import NewBoardForm from "../Forms/Boardform/Boardform";
 
 interface HomeNavProps {
   errorHandler?: (error: any) => void;
@@ -35,7 +36,12 @@ const HomeNav: React.FC<HomeNavProps> = ({
 
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
-      if (boardRef.current && !boardRef.current.contains(e.target as Node)) {
+      if (
+        boardRef.current &&
+        !boardRef.current.contains(e.target as HTMLElement)
+      ) {
+        // console.log("clicked outside");
+        setAdd(false);
         handleForm(false);
       }
     };
@@ -107,6 +113,11 @@ const HomeNav: React.FC<HomeNavProps> = ({
             handleForm={handleForm}
             updateBoard={updateBoard}
           />
+          {/* <NewBoardForm
+            add={add}
+            handleForm={handleForm}
+            updateBoard={updateBoard}
+          /> */}
         </div>
       </div>
     </div>
