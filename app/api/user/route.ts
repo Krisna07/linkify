@@ -9,10 +9,14 @@ import RandomCodeGenerator from "../../../lib/radomcodegenerator";
 import { sendEmail } from "../../../lib/mailer";
 // import transporter from "@/lib/mailer";
 
+// Handle GET requests (check if user is authenticated)
 export const GET = async (req: Request) => {
   const session = await getServerSession(authOptions);
+
   return NextResponse.json({ authenticated: !!session });
 };
+
+// Handle POST requests (create a new user)
 export async function POST(req: Request) {
   try {
     const body = await req.json();
@@ -117,6 +121,8 @@ export async function PUT(req: Request) {
     });
   }
 }
+//handle the verification key update
+export async function PATCH(req: Request) {}
 
 // Handle DELETE requests (delete a user)
 export async function DELETE(req: Request) {

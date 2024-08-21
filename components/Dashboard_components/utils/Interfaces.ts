@@ -5,6 +5,7 @@ export interface userProps {
   image: string;
   id: string;
   verified?: boolean;
+  timestamp?: number;
 }
 
 export interface boardProps {

@@ -55,6 +55,7 @@ export const authOptions: NextAuthOptions = {
           image: existingUser.avatar,
           name: existingUser.name,
           verified: existingUser.verified,
+          timestamp: existingUser.timestamp,
         };
       },
     }),
@@ -66,6 +67,8 @@ export const authOptions: NextAuthOptions = {
           ...token,
           username: user.username,
           id: user.id,
+          verified: user.verified,
+          timestamp: user.timestamp,
         };
       }
       return token;
@@ -78,6 +81,7 @@ export const authOptions: NextAuthOptions = {
           ...session.user,
           username: token.username,
           verified: token.verified,
+          timestamp: token.timestamp,
           id: token.id,
         },
       };

@@ -6,7 +6,13 @@ interface CounterProps {
   number: number;
   size?: number;
 }
-const Count = ({ num, size }: any) => {
+
+// Helper function to format digits
+const formatDigit = (num: string) => {
+  return num.padStart(2, "0");
+};
+
+const Count = ({ num, size }: { num: string; size?: number }) => {
   const digits = Array.from(Array(10).keys());
   const top = `-${size ? size * parseInt(num) : 30 * parseInt(num)}px`;
 
@@ -20,7 +26,7 @@ const Count = ({ num, size }: any) => {
         stiffness: 100,
       }}
       viewport={{ once: true }}
-      className={`text-white grid leading-[100%] relative duration-[0.8s]  font-[700] `}
+      className={`text-white grid leading-[100%] relative duration-[0.8s] font-[700]`}
     >
       {digits.map((item) => (
         <span key={item}>{item}</span>
@@ -34,18 +40,19 @@ const Counter = ({ number, size }: CounterProps) => {
 
   useEffect(() => {
     if (number !== undefined) {
-      setCounter(number.toString().split(""));
+      const formattedNumber = number.toString().padStart(2, "0");
+      setCounter(formattedNumber.split(""));
     }
   }, [number]);
 
   return (
     <div
       style={{ fontSize: `${size ? size : 30}px` }}
-      className={`w-fit h-fit bg-none  text-white`}
+      className={`w-fit h-fit bg-none text-white`}
     >
       <div
         style={{ height: `${size ? size : 30}px` }}
-        className={` relative flex items-start justify-center overflow-hidden`}
+        className={`relative flex items-start justify-center overflow-hidden`}
       >
         {counter.map(
           (num, index) =>
