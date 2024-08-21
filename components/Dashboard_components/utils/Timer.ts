@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 export default function Timer(time: number) {
   const timestamp = `${time}`;
   // Create a Date object from the ISO string
@@ -19,10 +17,12 @@ export default function Timer(time: number) {
   const hours = Math.floor((remainingTime % 86400) / 3600);
   const minutes = Math.floor((remainingTime % 3600) / 60);
   const remainingSeconds = Math.floor(remainingTime % 60);
+  const exceeded = remainingTime < 0 ? true : false;
 
   return {
     hours,
     minutes,
     seconds: remainingSeconds,
+    exceeded,
   };
 }

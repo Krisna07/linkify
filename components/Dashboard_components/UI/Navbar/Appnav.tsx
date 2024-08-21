@@ -35,31 +35,49 @@ const Appnav = ({ user }: NavProps) => {
     };
   }, []);
 
-  // const timestamp = `${user.timestamp}`;
-
-  // // Create a Date object from the ISO string
-  // const date = new Date(timestamp);
-
-  // // Get the number of milliseconds since the Unix epoch
-  // const milliseconds = date.getTime();
-
-  // // Convert milliseconds to seconds
-  // const seconds = Math.floor(milliseconds / 1000);
+  //handling the timer
   const [time, setTime] = useState({
     hours: 0,
     minutes: 0,
     seconds: 0,
+    exceeded: false,
   });
 
+  // if (!user.verified && !time.exceeded) {
+  //   if (!time.exceeded) {
+  //     useEffect(() => {
+  //       const timestamp: number = user.timestamp as number;
+  //       setInterval(() => {
+  //         const timeValue = Timer(timestamp);
+  //         setTime(timeValue);
+  //       }, 1000);
+  //     }, []);
+  //   } else {
+  //     setTime({
+  //       hours: 0,
+  //       minutes: 0,
+  //       seconds: 0,
+  //       exceeded: true,
+  //     });
+  //   }
+  // }
   useEffect(() => {
-    const timestamp: number = user.timestamp as number;
-    setInterval(() => {
+    if (user.verified || time.exceeded) return;
+
+    const timestamp = user.timestamp as number;
+    const updateTimer = () => {
       const timeValue = Timer(timestamp);
       setTime(timeValue);
-    }, 1000);
-  }, []);
+    };
 
-  console.log();
+    // Update timer immediately and then set an interval
+    updateTimer();
+    const intervalId = setInterval(updateTimer, 1000);
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(intervalId);
+  }, [user, time.exceeded]);
+
   return (
     <div className="w-full flex items-center justify-between box-border p-2  gap-4  top-0 ">
       <div className=" flex items-center py-2  gap-2">
@@ -90,11 +108,17 @@ const Appnav = ({ user }: NavProps) => {
         <div className="bg-primary hidden px-3  py-[2px] tablet:flex items-center rounded-full text-[10px] font-[600]">
           {user.verified ? "Verified" : "Not Verified"}
         </div>
-        <div className="bg-accent hidden px-3  py-[2px] tablet:flex items-center rounded-full text-[10px] font-[600]">
-          <Counter number={time.hours} size={12} />:
-          <Counter number={time.minutes} size={12} />:
-          <Counter number={time.seconds} size={12} />
-        </div>
+        {!user.verified && (
+          <div
+            className={`${
+              time.exceeded ? "bg-[red]/75" : "bg-accent"
+            } hidden px-3 cursor-pointer py-[2px] gap-1 tablet:flex items-center rounded hover:rounded-full transition-all duration-500 text-[10px] font-[600]`}
+          >
+            <Counter number={time.hours} size={12} />:
+            <Counter number={time.minutes} size={12} />:
+            <Counter number={time.seconds} size={12} />
+          </div>
+        )}
       </div>
       <div className="flex items-center gap-4 text-gray-300 box-border  ">
         {getUrl.includes("dashboard") && (

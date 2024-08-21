@@ -7,9 +7,13 @@ interface CounterProps {
   size?: number;
 }
 
-// Helper function to format digits
-const formatDigit = (num: string) => {
-  return num.padStart(2, "0");
+// Helper function to format each digit to always be two characters
+const formatDigit = (num: number) => {
+  const value = num.toString();
+  if (value.length == 1) {
+    return `0${value}`;
+  }
+  return value;
 };
 
 const Count = ({ num, size }: { num: string; size?: number }) => {
@@ -40,7 +44,8 @@ const Counter = ({ number, size }: CounterProps) => {
 
   useEffect(() => {
     if (number !== undefined) {
-      const formattedNumber = number.toString().padStart(2, "0");
+      // Format number and split into digits
+      const formattedNumber = formatDigit(number);
       setCounter(formattedNumber.split(""));
     }
   }, [number]);
@@ -54,10 +59,9 @@ const Counter = ({ number, size }: CounterProps) => {
         style={{ height: `${size ? size : 30}px` }}
         className={`relative flex items-start justify-center overflow-hidden`}
       >
-        {counter.map(
-          (num, index) =>
-            counter.length > 0 && <Count key={index} num={num} size={size} />
-        )}
+        {counter.map((num, index) => (
+          <Count key={index} num={num} size={size} />
+        ))}
       </div>
     </div>
   );
