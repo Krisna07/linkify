@@ -29,7 +29,6 @@ const HomeNav: React.FC<HomeNavProps> = ({
 }) => {
   const [add, setAdd] = useState<boolean>(false);
   const boardRef = useRef<HTMLDivElement>(null);
-
   const handleForm = useCallback((item: boolean) => {
     setAdd(item);
   }, []);
@@ -40,7 +39,6 @@ const HomeNav: React.FC<HomeNavProps> = ({
         boardRef.current &&
         !boardRef.current.contains(e.target as HTMLElement)
       ) {
-        // console.log("clicked outside");
         setAdd(false);
         handleForm(false);
       }

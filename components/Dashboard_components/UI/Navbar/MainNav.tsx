@@ -63,7 +63,7 @@ export default function Mainnav({ user }: NavProps) {
   const styles = {
     hoverIndicator: {
       width: `${hoverItemDimension.width}px`,
-      left: `${hoverItemDimension.position}px`,
+      transform: `translateX(${hoverItemDimension.position}px)`,
     },
   };
 
@@ -72,7 +72,7 @@ export default function Mainnav({ user }: NavProps) {
       <Appnav user={user} />
       <div className="w-full overflow-hidden pb-1">
         <div
-          className="w-full flex relative overflow-hidden tablet:px-8 gap-4 text-gray-400 overflow-x-scroll scrollbar-hide group"
+          className="w-full flex items-center relative overflow-hidden tablet:px-8 gap-4 text-gray-400 overflow-x-scroll scrollbar-hide group"
           onMouseLeave={resetHover}
         >
           {navlinks.map((item) => (
@@ -81,7 +81,7 @@ export default function Mainnav({ user }: NavProps) {
               key={item.name}
               onMouseOver={handleHover}
               onClick={handleHover}
-              className={`p-2 px-2 py-1 transition-all border-inset relative grid items-center z-20 ${
+              className={` px-2 py-1 transition-all border-inset relative grid items-center z-20 ${
                 isActiveMenu(item)
                   ? "text-silver border-b active font-semibold"
                   : "text-silver/75"
@@ -90,12 +90,13 @@ export default function Mainnav({ user }: NavProps) {
               {item.name}
             </Link>
           ))}
+
           <div
             style={styles.hoverIndicator}
             className={`${
               !isHovering ? "hidden" : ""
-            } h-full bg-primary/75 absolute z-10 bottom-0 transition-all duration-300 ease-in-out rounded`}
-          />
+            } h-full bg-primary/75 transition-all duration-300 left-0 absolute z-10 bottom-0 rounded`}
+          ></div>
         </div>
       </div>
     </div>

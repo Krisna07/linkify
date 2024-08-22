@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
-
+import { motion } from "framer-motion";
 import { TbShare } from "react-icons/tb";
 import { BiBell } from "react-icons/bi";
 import Dropdown from "../components/dropdown";
@@ -10,6 +10,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Timer from "../../utils/Timer";
 import Counter from "../../../Landing_components/Homepage/Features/Counter";
+import { RiVerifiedBadgeFill, RiVerifiedBadgeLine } from "react-icons/ri";
 
 interface notificationProps {
   message: string;
@@ -36,34 +37,15 @@ const Appnav = ({ user }: NavProps) => {
   }, []);
 
   //handling the timer
-  const [time, setTime] = useState({
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-    exceeded: false,
-  });
+  interface time {
+    hours: number;
+    minutes: number;
+    seconds: number;
+    exceeded: boolean;
+  }
+  const [time, setTime] = useState<time>();
 
-  // if (!user.verified && !time.exceeded) {
-  //   if (!time.exceeded) {
-  //     useEffect(() => {
-  //       const timestamp: number = user.timestamp as number;
-  //       setInterval(() => {
-  //         const timeValue = Timer(timestamp);
-  //         setTime(timeValue);
-  //       }, 1000);
-  //     }, []);
-  //   } else {
-  //     setTime({
-  //       hours: 0,
-  //       minutes: 0,
-  //       seconds: 0,
-  //       exceeded: true,
-  //     });
-  //   }
-  // }
   useEffect(() => {
-    if (user.verified || time.exceeded) return;
-
     const timestamp = user.timestamp as number;
     const updateTimer = () => {
       const timeValue = Timer(timestamp);
@@ -76,7 +58,7 @@ const Appnav = ({ user }: NavProps) => {
 
     // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
-  }, [user, time.exceeded]);
+  }, [user]);
 
   return (
     <div className="w-full flex items-center justify-between box-border p-2  gap-4  top-0 ">
@@ -106,14 +88,20 @@ const Appnav = ({ user }: NavProps) => {
           <span className="hidden tablet:block"> {user.username}</span>
         </div>
         <div className="bg-primary hidden px-3  py-[2px] tablet:flex items-center rounded-full text-[10px] font-[600]">
-          {user.verified ? "Verified" : "Not Verified"}
+          {user.verified ? (
+            <RiVerifiedBadgeFill color="skyblue" />
+          ) : (
+            "Not Verified"
+          )}
         </div>
-        {!user.verified && (
+
+        {!user.verified && time && (
           <div
             className={`${
               time.exceeded ? "bg-[red]/75" : "bg-accent"
-            } hidden px-3 cursor-pointer py-[2px] gap-1 tablet:flex items-center rounded hover:rounded-full transition-all duration-500 text-[10px] font-[600]`}
+            }  px-3 cursor-pointer group relative py-[2px] gap-1 flex items-center justify-center  rounded hover:rounded-[8px] transition-all duration-500 text-[10px] font-[600]`}
           >
+            {time.exceeded ? "-" : ""}
             <Counter number={time.hours} size={12} />:
             <Counter number={time.minutes} size={12} />:
             <Counter number={time.seconds} size={12} />
@@ -129,11 +117,10 @@ const Appnav = ({ user }: NavProps) => {
                 <TbShare />
               </div>
             </div>
-
             <div className="flex items-center gap-1 text-silver/50 hover:text-silver p-[4px] px-2 hover:shadow-[0_0_4px_0_white] transition-all duration-300  shadow-[0_0_2px_0_white] rounded-[4px] hover:rounded-[12px] ">
               <BiBell />
               <div className="w-4 h-4 text-tahiti rounded-full  text-[10px] grid place-items-center">
-                1
+                <Counter number={1} size={12} />
               </div>
             </div>
           </>

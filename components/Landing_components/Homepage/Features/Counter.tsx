@@ -9,10 +9,8 @@ interface CounterProps {
 
 // Helper function to format each digit to always be two characters
 const formatDigit = (num: number) => {
-  const value = num.toString();
-  if (value.length == 1) {
-    return `0${value}`;
-  }
+  const value = num.toString().padStart(2, "0");
+
   return value;
 };
 
@@ -44,9 +42,7 @@ const Counter = ({ number, size }: CounterProps) => {
 
   useEffect(() => {
     if (number !== undefined) {
-      // Format number and split into digits
-      const formattedNumber = formatDigit(number);
-      setCounter(formattedNumber.split(""));
+      setCounter(Math.abs(number).toString().padStart(2, "0").split(""));
     }
   }, [number]);
 

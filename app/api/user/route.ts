@@ -12,7 +12,6 @@ import { sendEmail } from "../../../lib/mailer";
 // Handle GET requests (check if user is authenticated)
 export const GET = async (req: Request) => {
   const session = await getServerSession(authOptions);
-
   return NextResponse.json({ authenticated: !!session });
 };
 
