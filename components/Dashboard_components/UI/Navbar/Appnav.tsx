@@ -88,7 +88,7 @@ const Appnav = ({ user }: NavProps) => {
           </div>
           <span className="hidden tablet:block"> {user.username}</span>
         </div>
-        <div className="bg-primary hidden px-3  py-[2px] tablet:flex items-center rounded-full text-[10px] font-[600]">
+        <div className="">
           {user.verified ? <RiVerifiedBadgeFill color="skyblue" /> : <Verify />}
         </div>
 

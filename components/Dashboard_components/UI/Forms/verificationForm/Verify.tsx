@@ -1,6 +1,10 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, Variants } from "framer-motion";
 import { toast } from "react-toastify";
+
+import useOutsideClick from "../../../../../lib/outsideclick";
+import { RiVerifiedBadgeFill } from "react-icons/ri";
+import { FaTimes } from "react-icons/fa";
 
 const itemVariants: Variants = {
   open: {
@@ -14,6 +18,12 @@ const itemVariants: Variants = {
 export default function Verify() {
   const [isOpen, setIsOpen] = useState(false);
   const [otp, setOtp] = useState<string>("");
+
+  const clickhandler = () => setIsOpen(false);
+  const scrollHandler = () => setIsOpen(false);
+
+  const verifyRef = useRef(null);
+  useOutsideClick(verifyRef, clickhandler, scrollHandler);
 
   const submitOTP = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,13 +39,23 @@ export default function Verify() {
     <motion.div
       initial={false}
       animate={isOpen ? "open" : "closed"}
-      className="relative grid place-items-center "
+      className="tablet:relative grid place-items-center "
+      ref={verifyRef}
     >
       <motion.button
         whileTap={{ scale: 0.97 }}
         onClick={() => setIsOpen(!isOpen)}
+        className="bg-primary hidden  px-3  py-[2px] tablet:flex items-center rounded-full text-[10px] font-[600] "
       >
         Not verified
+      </motion.button>
+      <motion.button
+        whileTap={{ scale: 0.97 }}
+        onClick={() => setIsOpen(!isOpen)}
+        className="tablet:hidden text-[red] bg-[gray]/50 px-3  py-[2px] flex items-center rounded-full  font-[600] "
+      >
+        <RiVerifiedBadgeFill />
+        <FaTimes />
       </motion.button>
       <motion.div
         variants={{
@@ -59,10 +79,9 @@ export default function Verify() {
           },
         }}
         style={{ pointerEvents: isOpen ? "auto" : "none" }}
-        className="absolute  z-[100]  inset-y-[150%] w-fit h-fit p-4 bg-white text-dark grid place-items-center gap-2"
+        className="absolute w-full z-[100] inset-0 inset-y-[50%] tablet:inset-y-[150%] tablet:w-fit h-fit p-4 bg-white text-dark grid place-items-center gap-2"
       >
         <motion.div variants={itemVariants}>
-          {" "}
           <div className="font-semibold text-2xl">
             <p>Email Verification</p>
           </div>
