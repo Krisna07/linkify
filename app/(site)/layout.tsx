@@ -6,7 +6,7 @@ import Button from "../../components/Global_components/Button";
 import { FaLeaf } from "react-icons/fa";
 import Link from "next/link";
 import Background from "../../components/Landing_components/Background";
-const inter = Inter({ subsets: ["latin"] });
+
 export default function RootLayout({
   children,
 }: {
@@ -18,7 +18,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body
-        className={`${inter.className} w-full h-fit p-0 m-0 grid place-items-center  bg-dark leading -[100%]  text-silver relative`}
+        className={` w-full h-fit p-0 m-0 grid place-items-center  bg-dark leading -[100%]  text-silver relative`}
       >
         <Background />
         <div className="w-full h-screen grid place-items-center  relative z-40 ">

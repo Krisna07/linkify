@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { jersey } from "../../../../fonts/fonts";
 
 interface CounterProps {
   number: number;
@@ -14,24 +15,26 @@ const formatDigit = (num: number) => {
   return value;
 };
 
-const Count = ({ num, size }: { num: string; size?: number }) => {
+const Count = ({ num, size }: { num: string; size: number }) => {
   const digits = Array.from(Array(10).keys());
-  const top = `-${size ? size * parseInt(num) : 30 * parseInt(num)}px`;
+  const top = `-${size * parseInt(num)}px`;
 
   return (
     <motion.div
-      initial={{ translateY: 0 }}
-      whileInView={{ translateY: top }}
+      animate={{ transform: `translateY(${top})` }}
       transition={{
-        type: "bounce",
-        damping: 10,
+        type: "spring",
         stiffness: 100,
+        damping: 10,
+        // duration: 0.1,
       }}
-      viewport={{ once: true }}
-      className={`text-white grid leading-[100%] relative duration-[0.8s] font-[700]`}
+      initial={{ y: 0 }}
+      className={`${jersey.className} text-white  grid  relative gap-[20px] font-[700]   tabular-nums `}
     >
       {digits.map((item) => (
-        <span key={item}>{item}</span>
+        <span key={item} className=" leading-[100%]  ">
+          {item}
+        </span>
       ))}
     </motion.div>
   );
@@ -39,6 +42,7 @@ const Count = ({ num, size }: { num: string; size?: number }) => {
 
 const Counter = ({ number, size }: CounterProps) => {
   const [counter, setCounter] = useState<string[]>([]);
+  const digitSize = size ? size + 20 : 30 + 20;
 
   useEffect(() => {
     if (number !== undefined) {
@@ -49,14 +53,14 @@ const Counter = ({ number, size }: CounterProps) => {
   return (
     <div
       style={{ fontSize: `${size ? size : 30}px` }}
-      className={`w-fit h-fit bg-none text-white`}
+      className={`w-fit h-fit  `}
     >
       <div
         style={{ height: `${size ? size : 30}px` }}
-        className={`relative flex items-start justify-center overflow-hidden`}
+        className={`relative flex items-start justify-center  overflow-hidden  `}
       >
         {counter.map((num, index) => (
-          <Count key={index} num={num} size={size} />
+          <Count key={index} num={num} size={digitSize} />
         ))}
       </div>
     </div>

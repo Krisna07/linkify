@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Authlayout from "../../components/Layouts/Authlayout";
 import Background from "../../components/Landing_components/Background";
 import { ToastContainer } from "react-toastify";
+import { inter, roboto } from "../../fonts/fonts";
 
 export const metadata = {
   title: "Linkify",
@@ -22,9 +23,7 @@ export default function RootLayout({
         <title>The Linkify</title>
       </head>
       <body
-        className={
-          "w-full min-h-[100vh] grid place-items-center relative bg-gray-200 overflow-hidden "
-        }
+        className={`${inter.className} w-full min-h-[100vh] grid place-items-center relative bg-gray-200 overflow-hidden `}
       >
         <div className="absolute">
           <ToastContainer />
