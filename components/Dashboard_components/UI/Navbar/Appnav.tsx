@@ -11,6 +11,7 @@ import Link from "next/link";
 import Timer from "../../utils/Timer";
 import Counter from "../../../Landing_components/Homepage/Features/Counter";
 import { RiVerifiedBadgeFill, RiVerifiedBadgeLine } from "react-icons/ri";
+import Verify from "../Forms/verificationForm/Verify";
 
 interface notificationProps {
   message: string;
@@ -88,11 +89,7 @@ const Appnav = ({ user }: NavProps) => {
           <span className="hidden tablet:block"> {user.username}</span>
         </div>
         <div className="bg-primary hidden px-3  py-[2px] tablet:flex items-center rounded-full text-[10px] font-[600]">
-          {user.verified ? (
-            <RiVerifiedBadgeFill color="skyblue" />
-          ) : (
-            "Not Verified"
-          )}
+          {user.verified ? <RiVerifiedBadgeFill color="skyblue" /> : <Verify />}
         </div>
 
         {!user.verified && time && (
