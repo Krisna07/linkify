@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import useOutsideClick from "../../../../../lib/outsideclick";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { FaTimes } from "react-icons/fa";
+import VerifyCode from "../../../utils/verify";
 
 const itemVariants: Variants = {
   open: {
@@ -31,6 +32,7 @@ export default function Verify() {
       toast("otp must be 4 digits");
     } else {
       setIsOpen(false);
+      VerifyCode(otp);
       console.log(otp);
     }
   };

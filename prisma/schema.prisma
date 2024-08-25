@@ -16,16 +16,26 @@ model User {
   username          String       @unique
   password          String
   avatar            String?
-  verificationCode  Int    ?
-  verified          Boolean      @default(false)
   boards            Board[]
-  userDetails       UserDetails? @relation("UserUserDetails")
+  userDetails       UserDetails?
+  verification      Verification?
   timestamp         DateTime     @default(now())
 }
 
+model Verification {
+  id                String       @id @default(cuid())
+  userId            String       @unique
+  user              User         @relation(fields: [userId], references: [id])
+  verificationCode  Int?
+  verified          Boolean      @default(false)
+  timestamp         DateTime     @default(now())
+  lastUpdated       DateTime     @default(now()) 
+}
+
 model UserDetails {
-  userId            String       @id
-  user              User         @relation("UserUserDetails", fields: [userId], references: [id])
+  id                String       @id @default(cuid())
+  userId            String       @unique
+  user              User         @relation(fields: [userId], references: [id])
   firstName         String
   lastName          String
   dob               DateTime?

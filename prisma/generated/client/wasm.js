@@ -126,12 +126,20 @@ exports.Prisma.UserScalarFieldEnum = {
   username: 'username',
   password: 'password',
   avatar: 'avatar',
-  verificationCode: 'verificationCode',
-  verified: 'verified',
   timestamp: 'timestamp'
 };
 
+exports.Prisma.VerificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  verificationCode: 'verificationCode',
+  verified: 'verified',
+  timestamp: 'timestamp',
+  lastUpdated: 'lastUpdated'
+};
+
 exports.Prisma.UserDetailsScalarFieldEnum = {
+  id: 'id',
   userId: 'userId',
   firstName: 'firstName',
   lastName: 'lastName',
@@ -189,6 +197,7 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   User: 'User',
+  Verification: 'Verification',
   UserDetails: 'UserDetails',
   Board: 'Board',
   Feedback: 'Feedback'

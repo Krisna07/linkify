@@ -47,6 +47,9 @@ export const authOptions: NextAuthOptions = {
         if (!passwordMatch) {
           throw new Error("Password does not match.");
         }
+        const verification = await db.verification.findFirst({
+          where: { userId: existingUser.id },
+        });
 
         return {
           id: `${existingUser.id}`,
@@ -54,7 +57,7 @@ export const authOptions: NextAuthOptions = {
           email: existingUser.email,
           image: existingUser.avatar,
           name: existingUser.name,
-          verified: existingUser.verified,
+          verified: verification && verification.verified,
           timestamp: existingUser.timestamp,
         };
       },
