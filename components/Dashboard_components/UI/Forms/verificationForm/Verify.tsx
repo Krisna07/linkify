@@ -6,6 +6,8 @@ import useOutsideClick from "../../../../../lib/outsideclick";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { FaTimes } from "react-icons/fa";
 import VerifyCode from "../../../utils/verify";
+import { sendEmail } from "../../../../../lib/mailer";
+import { userProps } from "../../../utils/Interfaces";
 
 const itemVariants: Variants = {
   open: {
@@ -16,7 +18,7 @@ const itemVariants: Variants = {
   closed: { opacity: 0, y: 20, transition: { duration: 0.2 } },
 };
 
-export default function Verify() {
+export default function Verify({ user }: { user: userProps }) {
   const [isOpen, setIsOpen] = useState(false);
   const [otp, setOtp] = useState<string>("");
 
@@ -24,7 +26,7 @@ export default function Verify() {
   const scrollHandler = () => setIsOpen(false);
 
   const verifyRef = useRef(null);
-  useOutsideClick(verifyRef, clickhandler, scrollHandler);
+  useOutsideClick(verifyRef, clickhandler);
 
   const submitOTP = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -32,11 +34,15 @@ export default function Verify() {
       toast("otp must be 4 digits");
     } else {
       setIsOpen(false);
-      VerifyCode(otp);
+      const data = {
+        code: otp,
+        id: user.id,
+      };
+      VerifyCode(data);
       console.log(otp);
     }
   };
-
+  // console.log(user);
   return (
     <motion.div
       initial={false}
@@ -91,7 +97,7 @@ export default function Verify() {
             <p className="whitespace-nowrap">
               We have sent a code to your email{" "}
             </p>
-            <span className="text-primary"> ba**@dipainhouse.com</span>
+            <span className="text-primary"> {user.email}</span>
           </div>
         </motion.div>
 
@@ -132,14 +138,7 @@ export default function Verify() {
 
                 <div className="flex flex-row items-center justify-center text-center text-sm font-medium space-x-1 text-gray-500">
                   <p>Didn't recieve code?</p>{" "}
-                  <a
-                    className="flex flex-row items-center text-blue-600"
-                    href="http://"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Resend
-                  </a>
+                  <div className="w-fit font-bold text-primary">Resend</div>
                 </div>
               </div>
             </div>

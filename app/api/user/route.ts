@@ -19,15 +19,18 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { email, username, password } = body;
 
-    // Validate user data (implement validation logic here)
+    // Validate user data
+    if (!email || !username || !password) {
+      return NextResponse.json({
+        status: 400,
+        message: "Email, username, and password are required.",
+      });
+    }
+    // Additional validation logic can be added here (e.g., regex for email)
 
     // Check for existing user or username conflicts
-    const existingUser = await db.user.findUnique({
-      where: { email },
-    });
-    const usernameConflict = await db.user.findUnique({
-      where: { username },
-    });
+    const existingUser = await db.user.findUnique({ where: { email } });
+    const usernameConflict = await db.user.findUnique({ where: { username } });
 
     if (existingUser || usernameConflict) {
       return NextResponse.json({
@@ -36,7 +39,7 @@ export async function POST(req: Request) {
       });
     }
 
-    const hashedPassword = await hash(password, 10);
+    const hashedPassword = await hash(password, 12); // Increased salt rounds for better security
 
     // Create new user
     const newUser = await db.user.create({
@@ -48,6 +51,8 @@ export async function POST(req: Request) {
         avatar: RandomBgGenerator(), // Provide default value for optional field
       },
     });
+
+    //after the user is created call the post api for verification
 
     // Generate verification code
     const code = RandomCodeGenerator();
@@ -66,12 +71,7 @@ export async function POST(req: Request) {
       name: "The Linkify",
       address: process.env.MAILER_EMAIL as string,
     };
-    const recipients = [
-      {
-        name: username,
-        address: email,
-      },
-    ];
+    const recipients = [{ name: username, address: email }];
 
     try {
       const result = await sendEmail({
@@ -124,7 +124,6 @@ export async function PUT(req: Request) {
       message: "User updated successfully",
     });
   } catch (error) {
-    console.error(error);
     return NextResponse.json({
       status: 500,
       message: "Error updating user",
@@ -162,7 +161,6 @@ export async function PATCH(req: Request) {
       message: "Verification successful.",
     });
   } catch (error) {
-    console.error("Error during verification:", error);
     return NextResponse.json({
       status: 500,
       message: "Error during verification.",
@@ -199,7 +197,6 @@ export async function DELETE(req: Request) {
       message: "User deleted successfully.",
     });
   } catch (error) {
-    console.error("Error deleting user:", error);
     return NextResponse.json({
       status: 500,
       message: "Error deleting user.",

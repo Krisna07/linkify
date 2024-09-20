@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { TbShare } from "react-icons/tb";
 import { BiBell } from "react-icons/bi";
@@ -12,9 +12,17 @@ import Timer from "../../utils/Timer";
 import Counter from "../../../Landing_components/Homepage/Features/Counter";
 import { RiVerifiedBadgeFill, RiVerifiedBadgeLine } from "react-icons/ri";
 import Verify from "../Forms/verificationForm/Verify";
+import useOutsideClick from "../../../../lib/outsideclick";
 
 interface notificationProps {
   message: string;
+}
+//handling the timer
+interface time {
+  hours: number;
+  minutes: number;
+  seconds: number;
+  exceeded: boolean;
 }
 
 const Appnav = ({ user }: NavProps) => {
@@ -22,34 +30,24 @@ const Appnav = ({ user }: NavProps) => {
   const getUrl: string = usePathname();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      const clickedItem = e.target as HTMLElement;
-      const openItem = dropdownRef.current;
-      if (openItem && !openItem.contains(clickedItem)) {
-        setAccountOptions(false);
-      }
-    };
+  const hideItems = () => {
+    setAccountOptions(false);
+  };
 
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
+  useOutsideClick(dropdownRef, hideItems);
 
-  //handling the timer
-  interface time {
-    hours: number;
-    minutes: number;
-    seconds: number;
-    exceeded: boolean;
-  }
   const [time, setTime] = useState<time>();
+  const timestampRef = useRef(user.timestamp);
+  const memoizedUser = useMemo(() => user, [user.id]); // Assuming user has a unique id
+  // console.log(memoizedUser);
 
   useEffect(() => {
-    const timestamp = user.timestamp as number;
+    timestampRef.current = memoizedUser.timestamp;
+  }, [memoizedUser.timestamp]);
+
+  useEffect(() => {
     const updateTimer = () => {
-      const timeValue = Timer(timestamp);
+      const timeValue = Timer(timestampRef.current as number);
       setTime(timeValue);
     };
 
@@ -59,7 +57,7 @@ const Appnav = ({ user }: NavProps) => {
 
     // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
-  }, [user]);
+  }, []);
 
   return (
     <div className="w-full flex items-center justify-between box-border p-2  gap-4  top-0 ">
@@ -89,7 +87,11 @@ const Appnav = ({ user }: NavProps) => {
           <span className="hidden tablet:block"> {user.username}</span>
         </div>
         <div className="">
-          {user.verified ? <RiVerifiedBadgeFill color="skyblue" /> : <Verify />}
+          {user.verified ? (
+            <RiVerifiedBadgeFill color="skyblue" />
+          ) : (
+            <Verify user={user} />
+          )}
         </div>
 
         {!user.verified && time && (

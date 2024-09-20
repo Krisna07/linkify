@@ -3,12 +3,6 @@ import nodemailer from "nodemailer";
 import Mail from "nodemailer/lib/mailer";
 import SMTPTransport from "nodemailer/lib/smtp-transport";
 
-// interface MailerProps {
-//   receiver: string;
-//   subject?: string;
-//   message: string;
-// }
-// export default function Mailer({ MailingOption }: any) {
 const transporter = nodemailer.createTransport({
   service: "gmail",
   secure: true,

@@ -57,7 +57,7 @@ export const authOptions: NextAuthOptions = {
           email: existingUser.email,
           image: existingUser.avatar,
           name: existingUser.name,
-          verified: verification && verification.verified,
+          // verified: verification && verification.verified,
           timestamp: existingUser.timestamp,
         };
       },
@@ -70,7 +70,7 @@ export const authOptions: NextAuthOptions = {
           ...token,
           username: user.username,
           id: user.id,
-          verified: user.verified,
+          // verified: user.verified,
           timestamp: user.timestamp,
         };
       }
@@ -83,7 +83,7 @@ export const authOptions: NextAuthOptions = {
         user: {
           ...session.user,
           username: token.username,
-          verified: token.verified,
+          // verified: token.verified,
           timestamp: token.timestamp,
           id: token.id,
         },

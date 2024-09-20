@@ -80,7 +80,7 @@ const SignInPage: React.FC = () => {
       toast.error("An unexpected error occurred. Please try again.");
     }
   };
-  const [number, setNumber] = useState(30);
+
   return (
     <div className="w-full  text-black box-border tablet:h-fit px-4 py-8  rounded flex flex-col  justify-center tablet:grid tablet:grid-cols-2 gap-12 place-items-center  z-30 bg-silver">
       <div className="w-full px-2 box-border tablet:h-full grid gap-2">
