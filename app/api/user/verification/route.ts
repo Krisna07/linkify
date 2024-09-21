@@ -41,7 +41,7 @@ export async function GET(req: Request) {
         verificationCode: isExpired ? null : verification.verificationCode,
         verified: verification.verified,
         isExpired,
-        lastUpdated: verification.lastUpdated,
+        timeSinceLastUpdate,
       },
     });
   } catch (error) {

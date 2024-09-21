@@ -31,7 +31,10 @@ export default function Verify({ user }: { user: userProps }) {
   });
   const clickhandler = () => setIsOpen(false);
   // const scrollHandler = () => setIsOpen(false);
-  const [timer, setTimer] = useState<number>();
+  const [timer, setTimer] = useState({
+    mins: 0,
+    sec: 0,
+  });
 
   const verifyRef = useRef(null);
   useOutsideClick(verifyRef, clickhandler);
@@ -44,21 +47,53 @@ export default function Verify({ user }: { user: userProps }) {
         setVerificationData({
           isVerified: data.isVerified, // Ensure isVerified is included
           isExpired: data.isExpired,
-          lastupdated: data.lastUpdated as number,
+          lastupdated: data.timeSinceLastUpdate,
         });
       } catch (error) {
         console.error("Failed to fetch verification details:", error);
       }
     };
     getData();
-  }, []); // Added dependency array to avoid infinite loop
-
-  useEffect(() => {
-    const updatedTime = new Date(verificationData.lastupdated).getTime();
-    const currentTime = new Date().getTime();
-    const expiryTime = updatedTime + 60 * 60;
-    setTimer(currentTime - updatedTime);
   }, []);
+
+  // Added the missing third argument
+  // console.log(
+  //   `${
+  //     Math.floor(60 - Math.floor(verificationData.lastupdated / 1000 / 60)) +
+  //     ":" +
+  //     Math.floor(60 - Math.floor(verificationData.lastupdated / 1000 / 60 / 60))
+  //   }`
+  // );
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (!verificationData.isExpired) {
+        const mins = Math.floor(60 - verificationData.lastupdated / 1000 / 60);
+        const sec = Math.floor(
+          60 - Math.floor(verificationData.lastupdated / 1000 / 60 / 60)
+        );
+        setTimer({
+          mins: mins,
+          sec: sec,
+        });
+      }
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [verificationData.lastupdated, verificationData.isExpired]);
+
+  console.log(timer);
+  //   const expiryTime = updatedTime + 60 * 60 * 1000;
+  //   const timeLeft = expiryTime - currentTime;
+  //   if (timeLeft >= 0) {
+  //     const intervalId = setInterval(() => {
+  //       setTimer(Math.floor(timeLeft / 1000)); // Decrease timer by 1 second
+  //     }, 1000);
+  //     console.log(timer);
+  //     return () => clearInterval(intervalId); // Cleanup interval on component unmount
+  //   } else {
+  //     setTimer(0); // Reset timer if expired
+  //   }
+  // }, []); // Added dependency to re-run effect when lastupdated changes
 
   const submitOTP = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -164,6 +199,7 @@ export default function Verify({ user }: { user: userProps }) {
                         className=" pl-[3rem] py-2 text-2xl tracking-[4rem] bg-transparent relative outline-none"
                       />
                     </div>
+                    {/* <div className="">{timer && timer}</div> */}
                     <div>
                       <motion.button
                         whileTap={{ scale: 0.97 }}
