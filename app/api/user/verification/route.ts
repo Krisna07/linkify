@@ -41,6 +41,7 @@ export async function GET(req: Request) {
         verificationCode: isExpired ? null : verification.verificationCode,
         verified: verification.verified,
         isExpired,
+        lastUpdated: verification.lastUpdated,
       },
     });
   } catch (error) {
@@ -53,21 +54,26 @@ export async function GET(req: Request) {
 }
 
 // Handle PATCH requests (resend verification code if expired)
-export async function PATCH(
-  req: Request,
-  { params }: { params: { userId: string } }
-) {
-  const { userId } = params;
+export async function PATCH(req: Request) {
+  const { id } = await req.json(); // Extract the user ID from the request body
 
   try {
     const verification = await db.verification.findUnique({
-      where: { userId },
+      where: { userId: id }, // Use the extracted ID to find the verification record
     });
 
     if (!verification) {
       return NextResponse.json({
         status: 404,
         message: "Verification not found.",
+      });
+    }
+
+    // Check if the verification code is null
+    if (verification.verificationCode === null) {
+      return NextResponse.json({
+        status: 400,
+        message: "Verification code is null. Please request a new code.",
       });
     }
 
@@ -86,12 +92,12 @@ export async function PATCH(
     // Generate and send a new verification code
     const verificationCode = RandomCodeGenerator();
     await db.verification.update({
-      where: { userId },
+      where: { userId: id }, // Use the extracted ID to update the verification record
       data: { verificationCode, lastUpdated: currentTime, verified: false },
     });
 
     const user = await db.user.findUnique({
-      where: { id: userId },
+      where: { id }, // Use the extracted ID to find the user
     });
 
     if (!user) {
