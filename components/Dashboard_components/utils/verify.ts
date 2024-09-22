@@ -6,6 +6,31 @@ const VerifyCode = async (data: any) => {
 
 //Getting the verification data from database
 
+export const handleVerification = async (data: any) => {
+  const id = data.id;
+  const code = data.code;
+  try {
+    const response = await fetch("/api/user/verification", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: id, // Use optional chaining to avoid errors if data is undefined
+        code: code, // Use optional chaining to avoid errors if data is undefined
+      }),
+    });
+    if (!response.ok) {
+      throw new Error("Failed to send PATCH request");
+    }
+    const data = await response.json(); // Parse the JSON response
+    return data; // Return the parsed data
+  } catch (error) {
+    console.error(error); // Log the error
+    return null; // Return null on error
+  }
+};
+
 export const GetVerificationDetails = async () => {
   try {
     const response = await fetch("/api/user/verification");

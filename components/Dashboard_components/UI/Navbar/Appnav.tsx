@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { motion } from "framer-motion";
+
 import { TbShare } from "react-icons/tb";
 import { BiBell } from "react-icons/bi";
 import Dropdown from "../components/dropdown";
@@ -14,6 +14,7 @@ import { RiVerifiedBadgeFill } from "react-icons/ri";
 import Verify from "../Forms/verificationForm/Verify";
 import useOutsideClick from "../../../../lib/outsideclick";
 import { fetchVerificationData } from "../../utils/FetchDatas";
+import { HandleNewCode } from "../../utils/verify";
 
 interface NotificationProps {
   message: string;
@@ -66,14 +67,15 @@ const Appnav = ({ user }: NavProps) => {
   useEffect(() => {
     fetchVerificationData().then((res) => {
       const verificationData = res.data;
+      console.log(res.data);
       setVerification({
         verificationCode: verificationData.code || null,
-        isVerified: verificationData.isVerified,
+        isVerified: verificationData.verified,
         isExpired: verificationData.isExpired, // Added missing property
-        expiryTime: verificationData.timeSinceLastUpdate, // Added missing property
+        expiryTime: new Date(verificationData.lastUpdated).getTime(), // Added missing property
       });
     });
-  }, []);
+  }, [HandleNewCode]);
 
   return (
     <div className="w-full flex items-center justify-between box-border p-2 gap-4 top-0">

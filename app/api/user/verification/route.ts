@@ -41,7 +41,7 @@ export async function GET(req: Request) {
         verificationCode: isExpired ? null : verification.verificationCode,
         verified: verification.verified,
         isExpired,
-        timeSinceLastUpdate,
+        lastUpdated: verification.lastUpdated,
       },
     });
   } catch (error) {
@@ -128,7 +128,12 @@ export async function PATCH(req: Request) {
 
       return NextResponse.json({
         status: 200,
-        message: "New verification code sent successfully.",
+        data: {
+          verificationCode: verification.verificationCode,
+          verified: verification.verified,
+          isExpired: false,
+          lastUpdated: verification.lastUpdated,
+        },
       });
     } catch (error) {
       console.error("Error sending email:", error);
@@ -147,15 +152,12 @@ export async function PATCH(req: Request) {
 }
 
 // Handle DELETE requests (clear verification and mark as verified)
-export async function DELETE(
-  req: Request,
-  { params }: { params: { userId: string } }
-) {
-  const { userId } = params;
+export async function DELETE(req: Request) {
+  const { id, code } = await req.json();
 
   try {
     const verification = await db.verification.findUnique({
-      where: { userId },
+      where: { userId: id },
     });
 
     if (!verification) {
@@ -164,9 +166,14 @@ export async function DELETE(
         message: "Verification not found.",
       });
     }
-
+    if (code !== verification.verificationCode) {
+      return NextResponse.json({
+        status: 400,
+        message: "uh oh ! code didnot match",
+      });
+    }
     await db.verification.update({
-      where: { userId },
+      where: { userId: id },
       data: { verificationCode: null, verified: true, lastUpdated: new Date() },
     });
 
