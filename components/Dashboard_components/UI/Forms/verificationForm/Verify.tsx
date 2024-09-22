@@ -9,7 +9,7 @@ import { FaTimes } from "react-icons/fa";
 import VerifyCode, { HandleNewCode } from "../../../utils/verify";
 
 import { userProps } from "../../../utils/Interfaces";
-import { verificationProps } from "../../Navbar/Appnav";
+import { VerificationProps } from "../../Navbar/Appnav";
 
 const itemVariants: Variants = {
   open: {
@@ -20,31 +20,34 @@ const itemVariants: Variants = {
   closed: { opacity: 0, y: 20, transition: { duration: 0.2 } },
 };
 
+interface TimerProps {
+  mins: number;
+  sec: number;
+}
 export default function Verify({
   user,
   verification,
 }: {
   user: userProps;
-  verification: verificationProps;
+  verification: VerificationProps;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [otp, setOtp] = useState<string>("");
 
   const clickhandler = () => setIsOpen(false);
   // const scrollHandler = () => setIsOpen(false);
-  const [timer, setTimer] = useState({
-    mins: 0,
-    sec: 0,
-  });
+  const [timer, setTimer] = useState<TimerProps | null>(null);
 
   const verifyRef = useRef(null);
   useOutsideClick(verifyRef, clickhandler);
 
+  // console.log(verification);
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       if (!verification.isExpired) {
-        const mins = Math.floor((verification.timeStamp % 3600) / 60);
-        const sec = Math.floor(Math.floor(verification.timeStamp % 60));
+        const mins = Math.floor((verification.expiryTime % 3600) / 60);
+        const sec = Math.floor(Math.floor(verification.expiryTime % 60));
         setTimer({
           mins: mins,
           sec: sec,
@@ -53,7 +56,7 @@ export default function Verify({
     }, 1000);
 
     return () => clearInterval(intervalId);
-  }, [verification.timeStamp, verification.isExpired]);
+  }, [verification.expiryTime, verification.isExpired]);
 
   const submitOTP = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -72,7 +75,8 @@ export default function Verify({
     console.log("Sending new code ");
     const patchResponse = await HandleNewCode(user.id); // Call the function to handle the PATCH request
     console.log(patchResponse);
-  }; // console.log(user);
+  };
+
   return (
     <motion.div
       initial={false}
@@ -159,7 +163,7 @@ export default function Verify({
                         className=" pl-[3rem] py-2 text-2xl tracking-[4rem] bg-transparent relative outline-none"
                       />
                     </div>
-                    {/* <div className="">{timer && timer}</div> */}
+                    <div className="">{timer && <>{timer.mins}</>}</div>
                     <div>
                       <motion.button
                         whileTap={{ scale: 0.97 }}
@@ -173,7 +177,7 @@ export default function Verify({
                       <p>Didn't recieve code?</p>{" "}
                       <div
                         className="w-fit font-bold text-primary cursor-pointer"
-                        onClick={() => ActionResendCode()}
+                        onClick={() => ActionResendCode}
                       >
                         Resend
                       </div>
