@@ -14,12 +14,16 @@ export default function Timer(time: number) {
   //   console.log(expiryTime);
   const remainingTime = expiryTime - currentTime;
 
+  // console.log(remainingTime);
+
   const hours = Math.floor((remainingTime % 86400) / 3600);
   const minutes = Math.floor((remainingTime % 3600) / 60);
   const remainingSeconds = Math.floor(remainingTime % 60);
   const exceeded = remainingTime < 0 ? true : false;
+  const days = Math.floor(remainingTime / 86400);
 
   return {
+    days,
     hours,
     minutes,
     seconds: remainingSeconds,

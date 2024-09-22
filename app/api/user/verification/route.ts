@@ -1,14 +1,14 @@
 import { NextResponse } from "next/server";
 import RandomCodeGenerator from "../../../../lib/radomcodegenerator";
 import { db } from "../../../../lib/db";
-import { getCurrentUser } from "../../../../lib/session";
+
 import { sendEmail } from "../../../../lib/mailer";
+import { getCurrentUser } from "../../../../lib/session";
 
 const ONE_HOUR_IN_MS = 60 * 60 * 1000;
 
 export async function GET(req: Request) {
   const user = await getCurrentUser();
-
   if (!user) {
     return NextResponse.json({
       status: 401, // Unauthorized

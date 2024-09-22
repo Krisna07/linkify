@@ -13,6 +13,7 @@ import Counter from "../../../Landing_components/Homepage/Features/Counter";
 import { RiVerifiedBadgeFill, RiVerifiedBadgeLine } from "react-icons/ri";
 import Verify from "../Forms/verificationForm/Verify";
 import useOutsideClick from "../../../../lib/outsideclick";
+import { fetchVerificationData } from "../../utils/FetchDatas";
 
 interface notificationProps {
   message: string;
@@ -24,9 +25,17 @@ interface time {
   seconds: number;
   exceeded: boolean;
 }
+export interface verificationProps {
+  verificationCode?: number;
+  isVerified: boolean;
+  isExpired: boolean;
+  expiryTime: number;
+}
 
 const Appnav = ({ user }: NavProps) => {
   const [accountOptions, setAccountOptions] = useState<boolean>(false);
+  const [verification, setVerification] = useState<verificationProps | null>();
+
   const getUrl: string = usePathname();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
@@ -39,7 +48,6 @@ const Appnav = ({ user }: NavProps) => {
   const [time, setTime] = useState<time>();
   const timestampRef = useRef(user.timestamp);
   const memoizedUser = useMemo(() => user, [user.id]); // Assuming user has a unique id
-  // console.log(memoizedUser);
 
   useEffect(() => {
     timestampRef.current = memoizedUser.timestamp;
@@ -57,6 +65,11 @@ const Appnav = ({ user }: NavProps) => {
 
     // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
+  }, []);
+  useEffect(() => {
+    fetchVerificationData().then((res) => {
+      setVerification(res.data);
+    });
   }, []);
 
   return (
@@ -87,14 +100,15 @@ const Appnav = ({ user }: NavProps) => {
           <span className="hidden tablet:block"> {user.username}</span>
         </div>
         <div className="">
-          {user.verified ? (
+          {verification && verification?.isVerified ? (
             <RiVerifiedBadgeFill color="skyblue" />
           ) : (
-            <Verify user={user} />
+            <> </>
+            // <Verify user={user} />
           )}
         </div>
 
-        {!user.verified && time && (
+        {!verification?.isVerified && time && (
           <div
             className={`${
               time.exceeded ? "bg-[red]/75" : "bg-accent"

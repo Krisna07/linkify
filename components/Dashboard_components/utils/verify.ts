@@ -1,21 +1,28 @@
-import { toast } from "react-toastify";
-import { getVerificationDetails } from "./getVerification";
-
+//handling the verificayion process
 const VerifyCode = async (data: any) => {
-  const code = data.code; // Extract the code from data
-  console.log(data);
-  // Await verification details to ensure you get the resolved value
-  const verificationDetails = await getVerificationDetails();
+  const verificationDetails = await GetVerificationDetails();
   console.log(verificationDetails);
-  if (verificationDetails.isExpired) {
-    const patchResponse = await handlePatchRequest(data.id); // Call the function to handle the PATCH request
-    console.log(patchResponse);
-  } // Log the resolved verification details
 };
 
-export const handlePatchRequest = async (id: any) => {
+//Getting the verification data from database
+
+export const GetVerificationDetails = async () => {
   try {
-    console.log(id);
+    const response = await fetch("/api/user/verification");
+    if (!response.ok) {
+      throw new Error("Failed to fetch verification details");
+    }
+    const data = await response.json(); // Parse the JSON response
+    return data.data; // Return the parsed data
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+//sending new code when verification is expired
+export const HandleNewCode = async (id: string) => {
+  try {
     const response = await fetch("/api/user/verification", {
       method: "PATCH",
       headers: {
@@ -23,7 +30,6 @@ export const handlePatchRequest = async (id: any) => {
       },
       body: JSON.stringify({
         id: id,
-        /* Add necessary data for the PATCH request */
       }),
     });
     if (!response.ok) {
