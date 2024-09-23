@@ -38,7 +38,6 @@ export async function GET(req: Request) {
     return NextResponse.json({
       status: 200,
       data: {
-        verificationCode: isExpired ? null : verification.verificationCode,
         verified: verification.verified,
         isExpired,
         lastUpdated: verification.lastUpdated,
@@ -84,8 +83,7 @@ export async function PATCH(req: Request) {
     if (timeSinceLastUpdate < ONE_HOUR_IN_MS) {
       return NextResponse.json({
         status: 400,
-        message:
-          "Verification code is still valid. Please wait until it expires.",
+        message: "Verification code is still valid. Please check your email.",
       });
     }
 
@@ -129,7 +127,6 @@ export async function PATCH(req: Request) {
       return NextResponse.json({
         status: 200,
         data: {
-          verificationCode: verification.verificationCode,
           verified: verification.verified,
           isExpired: false,
           lastUpdated: verification.lastUpdated,
@@ -166,7 +163,7 @@ export async function DELETE(req: Request) {
         message: "Verification not found.",
       });
     }
-    if (code !== verification.verificationCode) {
+    if (code !== verification.verificationCode?.toString()) {
       return NextResponse.json({
         status: 400,
         message: "uh oh ! code didnot match",
@@ -180,6 +177,11 @@ export async function DELETE(req: Request) {
     return NextResponse.json({
       status: 200,
       message: "User verified successfully. Verification code cleared.",
+      data: {
+        verified: verification.verified,
+        isExpired: false,
+        lastUpdated: verification.lastUpdated,
+      },
     });
   } catch (error) {
     console.error("Error verifying user:", error);

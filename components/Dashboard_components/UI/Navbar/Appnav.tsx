@@ -8,23 +8,14 @@ import Dropdown from "../components/dropdown";
 import { NavProps } from "./MainNav";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import Timer from "../../utils/Timer";
 import Counter from "../../../Landing_components/Homepage/Features/Counter";
-import { RiVerifiedBadgeFill } from "react-icons/ri";
-import Verify from "../Forms/verificationForm/Verify";
 import useOutsideClick from "../../../../lib/outsideclick";
 import { fetchVerificationData } from "../../utils/FetchDatas";
-import { HandleNewCode } from "../../utils/verify";
+import { HandleNewCode, handleVerification } from "../../utils/verify";
+import Verification from "./Verification";
 
 interface NotificationProps {
   message: string;
-}
-
-interface Time {
-  hours: number;
-  minutes: number;
-  seconds: number;
-  exceeded: boolean;
 }
 
 export interface VerificationProps {
@@ -39,43 +30,28 @@ const Appnav = ({ user }: NavProps) => {
   const [verification, setVerification] = useState<VerificationProps | null>(
     null
   );
-  const [time, setTime] = useState<Time | null>(null);
 
   const getUrl = usePathname();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
-  const timestampRef = useRef(user.timestamp);
-  const memoizedUser = useMemo(() => user, [user.id]);
-
   useOutsideClick(dropdownRef, () => setAccountOptions(false));
 
-  useEffect(() => {
-    timestampRef.current = memoizedUser.timestamp;
-  }, [memoizedUser.timestamp]);
+  const updateVerificationData = (data: any) => {
+    setVerification({
+      isVerified: data.verified,
+      isExpired: data.isExpired, // Added missing property
+      expiryTime: new Date(data.lastUpdated).getTime(), // Added missing property
+    });
 
-  useEffect(() => {
-    const updateTimer = () => {
-      const timeValue = Timer(timestampRef.current as number);
-      setTime(timeValue);
-    };
-
-    updateTimer();
-    const intervalId = setInterval(updateTimer, 1000);
-
-    return () => clearInterval(intervalId);
-  }, []);
+    console.log(verification);
+  };
 
   useEffect(() => {
     fetchVerificationData().then((res) => {
       const verificationData = res.data;
-      console.log(res.data);
-      setVerification({
-        verificationCode: verificationData.code || null,
-        isVerified: verificationData.verified,
-        isExpired: verificationData.isExpired, // Added missing property
-        expiryTime: new Date(verificationData.lastUpdated).getTime(), // Added missing property
-      });
+      // console.log(verificationData);
+      updateVerificationData(verificationData);
     });
-  }, [HandleNewCode]);
+  }, [Verification]);
 
   return (
     <div className="w-full flex items-center justify-between box-border p-2 gap-4 top-0">
@@ -104,33 +80,11 @@ const Appnav = ({ user }: NavProps) => {
           </div>
           <span className="hidden tablet:block">{user.username}</span>
         </div>
-        {verification && !verification.isVerified && (
-          <>
-            <div>
-              {verification?.isVerified ? (
-                <RiVerifiedBadgeFill color="skyblue" />
-              ) : (
-                <Verify user={user} verification={verification} />
-              )}
-            </div>
-            {!verification?.isVerified && time && (
-              <div
-                className={`${
-                  time.exceeded ? "bg-[red]/75" : "bg-accent"
-                } px-3 cursor-pointer group relative py-[2px] gap-1 flex items-center justify-center rounded hover:rounded-[8px] transition-all duration-500 text-[10px] font-[600]`}
-              >
-                {time.exceeded ? (
-                  <span className=" -translate-y-[1px]">-</span>
-                ) : (
-                  ""
-                )}
-                <Counter number={time.hours} size={12} />:
-                <Counter number={time.minutes} size={12} />:
-                <Counter number={time.seconds} size={12} />
-              </div>
-            )}
-          </>
+
+        {verification && (
+          <Verification {...{ verification, user, updateVerificationData }} />
         )}
+        {/* )} */}
       </div>
       <div className="flex items-center gap-4 text-gray-300 box-border">
         {getUrl.includes("dashboard") && (

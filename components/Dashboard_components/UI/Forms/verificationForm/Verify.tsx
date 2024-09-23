@@ -28,6 +28,11 @@ interface TimerProps {
   mins: number;
   sec: number;
 }
+interface VerificationComponentProps {
+  verification: VerificationProps;
+  user: userProps;
+  updateVerificationData: (data: any) => void; // Add fetchData prop
+}
 
 const useTimer = (expiryTime: any, isExpired: boolean) => {
   const [timer, setTimer] = useState<TimerProps | null>(null);
@@ -49,46 +54,54 @@ const useTimer = (expiryTime: any, isExpired: boolean) => {
   return timer;
 };
 
-const useOTP = (user: userProps) => {
+export default function Verify({
+  verification,
+  user,
+  updateVerificationData,
+}: VerificationComponentProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const verifyRef = useRef(null);
+  // const [isExpired, setIsExpired] = useState(verification.);
+  // const [verified, setIsVerified] = useState();
+
+  useOutsideClick(verifyRef, () => setIsOpen(false));
+
+  const timer = useTimer(verification.expiryTime, verification.isExpired);
   const [otp, setOtp] = useState<string>("");
   const [isverifying, setIsverifying] = useState(false);
 
   const submitOTP = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsverifying(true);
     if (otp.length !== 4) {
       toast("otp must be 4 digits");
+      setIsverifying(false);
     } else {
-      handleVerification({ code: otp, id: user.id }).then((res) =>
-        console.log(res)
-      );
+      handleVerification({ code: otp, id: user.id }).then((res) => {
+        if (res.status == 200) {
+          toast("Account verified");
+          updateVerificationData(res.data);
+          return setIsverifying(false);
+        } else {
+          toast(res.message);
+
+          return setIsverifying(false);
+        }
+      });
     }
   };
 
-  return { otp, setOtp, submitOTP };
-};
-
-export default function Verify({
-  user,
-  verification,
-}: {
-  user: userProps;
-  verification: VerificationProps;
-}) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const verifyRef = useRef(null);
-
-  useOutsideClick(verifyRef, () => setIsOpen(false));
-
-  const timer = useTimer(verification.expiryTime, verification.isExpired);
-  const { otp, setOtp, submitOTP } = useOTP(user);
-
   const ActionResendCode = async () => {
     setIsLoading(true);
-    console.log("Sending new code");
-    const patchResponse = await HandleNewCode(user.id);
-    console.log(patchResponse);
-    setIsLoading(false);
+    await HandleNewCode(user.id).then((response) => {
+      if (response.status == 200) {
+        updateVerificationData(response.data);
+        return setIsLoading(false);
+      }
+      toast(response.message);
+      setIsLoading(false);
+    });
   };
   // console.log(verification);
 
@@ -104,7 +117,7 @@ export default function Verify({
         onClick={() => setIsOpen(!isOpen)}
         className="bg-primary hidden px-3 py-[2px] tablet:flex items-center rounded-full text-[10px] font-[600]"
       >
-        {!verification.isVerified && "Not verified"}
+        {!verification.isVerified ? "Not verified" : <RiVerifiedBadgeFill />}
       </motion.button>
       <motion.button
         whileTap={{ scale: 0.97 }}
@@ -195,7 +208,7 @@ export default function Verify({
                         whileTap={{ scale: 0.97 }}
                         className="flex flex-row items-center justify-center text-center w-full border rounded-xl outline-none py-2 bg-primary border-none text-white text-sm shadow-sm"
                       >
-                        Verify Account
+                        {isverifying ? "Veryfing Account" : "Verify Account"}
                       </motion.button>
                     </div>
 
