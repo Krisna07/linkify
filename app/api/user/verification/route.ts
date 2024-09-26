@@ -32,15 +32,15 @@ export async function GET(req: Request) {
     const timeSinceLastUpdate =
       currentTime.getTime() - new Date(verification.lastUpdated).getTime();
 
-    // Check if the verification code is expired
+    // checking the expiry of verification code
     const isExpired = timeSinceLastUpdate >= ONE_HOUR_IN_MS;
-
+    //sending data to user
     return NextResponse.json({
       status: 200,
       data: {
-        verified: verification.verified,
+        isverified: verification.verified,
         isExpired,
-        lastUpdated: verification.lastUpdated,
+        expiryTime: new Date(verification.lastUpdated).getTime() / 1000 + 3600,
       },
     });
   } catch (error) {
@@ -54,11 +54,11 @@ export async function GET(req: Request) {
 
 // Handle PATCH requests (resend verification code if expired)
 export async function PATCH(req: Request) {
-  const { id } = await req.json(); // Extract the user ID from the request body
+  const { id } = await req.json(); // Extracting the user ID from the request body
 
   try {
     const verification = await db.verification.findUnique({
-      where: { userId: id }, // Use the extracted ID to find the verification record
+      where: { userId: id }, // Useing the extracted ID to find the verification record
     });
 
     if (!verification) {
@@ -68,7 +68,7 @@ export async function PATCH(req: Request) {
       });
     }
 
-    // Check if the verification code is null
+    // Checking if the verification code is null
     if (verification.verificationCode === null) {
       return NextResponse.json({
         status: 400,

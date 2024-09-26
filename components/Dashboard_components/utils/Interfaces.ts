@@ -17,3 +17,9 @@ export interface boardProps {
   boardColor: string;
   tags: string[];
 }
+
+export interface VerificationProps {
+  isExpired: boolean;
+  isVerified: boolean;
+  expiryTime: number;
+}

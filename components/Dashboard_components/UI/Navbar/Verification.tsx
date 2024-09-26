@@ -2,8 +2,8 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import Verify from "../Forms/verificationForm/Verify";
 import Counter from "../../../Landing_components/Homepage/Features/Counter";
-import { userProps } from "../../utils/Interfaces";
-import { VerificationProps } from "./Appnav";
+import { userProps, VerificationProps } from "../../utils/Interfaces";
+
 import Timer from "../../utils/Timer";
 
 interface Time {
@@ -15,13 +15,10 @@ interface Time {
 interface Verification {
   verification: VerificationProps;
   user: userProps;
-  updateVerificationData: () => void;
+  updateVerificationData?: () => void;
 }
-const Verification = ({
-  verification,
-  user,
-  updateVerificationData,
-}: Verification) => {
+
+const Verification = ({ verification, user }: Verification) => {
   const [time, setTime] = useState<Time | null>(null);
   const timestampRef = useRef(user.timestamp);
   const memoizedUser = useMemo(() => user, [user.id]);
@@ -41,26 +38,23 @@ const Verification = ({
 
     return () => clearInterval(intervalId);
   }, []);
+
   return (
     <>
       <div>
         {verification?.isVerified ? (
           <RiVerifiedBadgeFill color="skyblue" />
         ) : (
-          <Verify
-            user={user}
-            verification={verification}
-            updateVerificationData={updateVerificationData}
-          />
+          <Verify user={user} verification={verification} />
         )}
       </div>
       {!verification?.isVerified && time && (
         <div
-          className={`${
+          className={`px-3 cursor-pointer group relative py-[2px] gap-1 flex items-center justify-center rounded ${
             time.exceeded ? "bg-[red]/75" : "bg-accent"
-          } px-3 cursor-pointer group relative py-[2px] gap-1 flex items-center justify-center rounded hover:rounded-[8px] transition-all duration-500 text-[10px] font-[600]`}
+          } transition-all duration-500`}
         >
-          {time.exceeded ? <span className=" -translate-y-[1px]">-</span> : ""}
+          {time.exceeded && <span className="-translate-y-[1px]">-</span>}
           <Counter number={time.hours} size={12} />:
           <Counter number={time.minutes} size={12} />:
           <Counter number={time.seconds} size={12} />
