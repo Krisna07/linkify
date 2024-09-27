@@ -35,7 +35,7 @@ interface TimerProps {
 interface VerificationComponentProps {
   verification: VerificationProps;
   user: userProps;
-  updateVerificationData: (data: any) => void;
+  updateVerificationData: any;
 }
 
 const useTimer = (expiryTime: number, isExpired: boolean) => {
@@ -137,18 +137,20 @@ export default function Verify({
     e.preventDefault();
     setIsVerifying(true);
     const otp = code.join("");
+    console.log(otp);
     if (otp.length !== 4) {
       toast("OTP must be 4 digits");
       setIsVerifying(false);
     } else {
       try {
-        const res = await handleVerification({ code: otp, id: user.id });
-        if (res.status === 200) {
-          toast("Account verified");
-          updateVerificationData(res.data);
-        } else {
-          toast(res.message);
-        }
+        await handleVerification({ code: otp, id: user.id }).then((res) => {
+          if (res.status === 200) {
+            updateVerificationData();
+            return toast("Account verified");
+          } else {
+            toast(res.message);
+          }
+        });
       } catch (error) {
         toast("An error occurred during verification");
       } finally {
@@ -160,14 +162,15 @@ export default function Verify({
   const ActionResendCode = async () => {
     setIsLoading(true);
     try {
-      const response = await HandleNewCode(user.id);
-      console.log(response);
-      // if (response.status === 200) {
-      //   updateVerificationData(response.data);
-      //   toast("New code sent successfully");
-      // } else {
-      //   toast(response.message);
-      // }
+      await HandleNewCode(user.id).then((response) => {
+        if (response.status === 200) {
+          updateVerificationData();
+          console.log(verification);
+          return toast("New code sent");
+        } else {
+          toast(response.message);
+        }
+      });
     } catch (error) {
       toast("An error occurred while resending the code");
     } finally {

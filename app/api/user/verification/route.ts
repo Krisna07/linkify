@@ -38,7 +38,7 @@ export async function GET(req: Request) {
     return NextResponse.json({
       status: 200,
       data: {
-        isverified: verification.verified,
+        isVerified: verification.verified,
         isExpired,
         expiryTime: new Date(verification.lastUpdated).getTime() / 1000 + 3600,
       },
@@ -69,12 +69,12 @@ export async function PATCH(req: Request) {
     }
 
     // Checking if the verification code is null
-    if (verification.verificationCode === null) {
-      return NextResponse.json({
-        status: 400,
-        message: "Verification code is null. Please request a new code.",
-      });
-    }
+    // if (verification.verificationCode === null) {
+    //   return NextResponse.json({
+    //     status: 400,
+    //     message: "Verification code is null. Please request a new code.",
+    //   });
+    // }
 
     const currentTime = new Date();
     const timeSinceLastUpdate =
@@ -127,7 +127,7 @@ export async function PATCH(req: Request) {
       return NextResponse.json({
         status: 200,
         data: {
-          verified: verification.verified,
+          isVerified: verification.verified,
           isExpired: false,
           lastUpdated: verification.lastUpdated,
         },
@@ -178,7 +178,7 @@ export async function DELETE(req: Request) {
       status: 200,
       message: "User verified successfully. Verification code cleared.",
       data: {
-        verified: verification.verified,
+        isVerified: verification.verified,
         isExpired: false,
         lastUpdated: verification.lastUpdated,
       },

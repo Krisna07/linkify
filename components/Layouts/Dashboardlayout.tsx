@@ -3,14 +3,13 @@ import Provider from "../Dashboard_components/utils/Provider";
 import Mainnav from "../Dashboard_components/UI/Navbar/MainNav";
 import { userProps } from "../Dashboard_components/utils/Interfaces";
 import { ToastContainer } from "react-toastify";
-import { fetchVerificationData } from "../Dashboard_components/utils/FetchDatas";
 
 interface Dashboardprops {
   children: React.ReactNode;
   user: userProps;
 }
 
-const Dashboardlayout = async ({ children, user }: Dashboardprops) => {
+const Dashboardlayout = ({ children, user }: Dashboardprops) => {
   return (
     <html lang="en">
       <body className="w-full min-h-screen relative  bg-dark  px-0 m-0   ">

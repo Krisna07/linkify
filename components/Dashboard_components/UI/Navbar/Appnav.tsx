@@ -13,7 +13,7 @@ import { fetchVerificationData } from "../../utils/FetchDatas";
 
 import Verification from "./Verification";
 import { VerificationProps } from "../../utils/Interfaces";
-import { HandleNewCode } from "../../utils/verify";
+import { HandleNewCode, handleVerification } from "../../utils/verify";
 
 const Appnav = ({ user }: NavProps) => {
   const [accountOptions, setAccountOptions] = useState(false);
@@ -24,21 +24,23 @@ const Appnav = ({ user }: NavProps) => {
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   useOutsideClick(dropdownRef, () => setAccountOptions(false));
 
-  const updateVerificationData = (data: VerificationProps) => {
-    setVerification({
-      isVerified: data.isVerified,
-      isExpired: data.isExpired,
-      expiryTime: data.expiryTime,
+  const updateVerificationData = async () => {
+    await fetchVerificationData().then((response: any) => {
+      const data = response.data;
+      return setVerification({
+        isVerified: data.isVerified,
+        isExpired: data.isExpired,
+        expiryTime: data.expiryTime,
+      });
     });
   };
 
   useEffect(() => {
-    fetchVerificationData().then((res) => updateVerificationData(res.data));
-    verification && console.log(verification);
-  }, [HandleNewCode]);
+    updateVerificationData();
+  }, [HandleNewCode, handleVerification]);
 
   return (
-    <div className="w-full flex items-center justify-between p-2 gap-4">
+    <div className="w-full flex items-center justify-between px-4 py-1 gap-4">
       <div className="flex items-center py-2 gap-2">
         <Link
           href="/dashboard"
@@ -65,7 +67,11 @@ const Appnav = ({ user }: NavProps) => {
           <span className="hidden tablet:block">{user.username}</span>
         </div>
         {verification && (
-          <Verification verification={verification} user={user} />
+          <Verification
+            verification={verification}
+            user={user}
+            updateVerificationData={updateVerificationData}
+          />
         )}
       </div>
       <div className="flex items-center gap-4 text-gray-300">
@@ -99,7 +105,7 @@ const ActionButton = ({
   label: string;
   counter?: React.ReactNode;
 }) => (
-  <div className="flex items-center gap-2 bg-dark/50 p-2 text-silver/50 hover:text-silver rounded transition-all duration-300">
+  <div className="flex items-center gap-2 bg-accent px-2 py-1 text-silver/50 hover:text-silver rounded hover:rounded-full transition-all duration-300">
     {counter}
     <span className="hidden tablet:flex">{label}</span>
     <div className="w-4 h-4 text-tahiti rounded-full grid place-items-center">
@@ -114,14 +120,14 @@ const AccountDropdown = ({
   setAccountOptions,
   dropdownRef,
 }: any) => (
-  <div ref={dropdownRef} className="relative z-[100]">
+  <div ref={dropdownRef} className="relative z-[200]  ">
     <div
       style={{ backgroundImage: user.image }}
       className="w-8 h-8 rounded-full"
       onClick={() => setAccountOptions(!accountOptions)}
     />
     <div
-      className={`absolute right-0 top-[120%] w-[300px] transition-all duration-300 ${
+      className={`absolute bg-dark/75 text-silver/75 right-0 top-[120%] w-[300px] transition-all duration-300 ${
         accountOptions ? "translate-x-0" : "translate-x-[400px]"
       }`}
     >

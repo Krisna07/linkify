@@ -15,17 +15,21 @@ interface Time {
 interface Verification {
   verification: VerificationProps;
   user: userProps;
-  updateVerificationData?: () => void;
+  updateVerificationData?: any;
 }
 
-const Verification = ({ verification, user }: Verification) => {
+const Verification = ({
+  verification,
+  user,
+  updateVerificationData,
+}: Verification) => {
   const [time, setTime] = useState<Time | null>(null);
   const timestampRef = useRef(user.timestamp);
   const memoizedUser = useMemo(() => user, [user.id]);
 
   useEffect(() => {
     timestampRef.current = memoizedUser.timestamp;
-  }, [memoizedUser.timestamp]);
+  }, [memoizedUser.timestamp, verification]);
 
   useEffect(() => {
     const updateTimer = () => {
@@ -42,10 +46,14 @@ const Verification = ({ verification, user }: Verification) => {
   return (
     <>
       <div>
-        {verification?.isVerified ? (
+        {verification.isVerified ? (
           <RiVerifiedBadgeFill color="skyblue" />
         ) : (
-          <Verify user={user} verification={verification} />
+          <Verify
+            user={user}
+            verification={verification}
+            updateVerificationData={updateVerificationData}
+          />
         )}
       </div>
       {!verification?.isVerified && time && (
