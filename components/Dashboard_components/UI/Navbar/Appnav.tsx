@@ -105,9 +105,9 @@ const ActionButton = ({
   label: string;
   counter?: React.ReactNode;
 }) => (
-  <div className="flex items-center gap-2 bg-accent px-2 py-1 text-silver/50 hover:text-silver rounded hover:rounded-full transition-all duration-300">
+  <div className="flex items-center gap-2 bg-accent px-2 py-1  text-silver/50 hover:text-silver rounded-[8px] hover:rounded-[9999px] transition-all duration-300">
     {counter}
-    <span className="hidden tablet:flex">{label}</span>
+    <span className="hidden tablet:flex text-sm">{label}</span>
     <div className="w-4 h-4 text-tahiti rounded-full grid place-items-center">
       {icon}
     </div>
@@ -127,7 +127,7 @@ const AccountDropdown = ({
       onClick={() => setAccountOptions(!accountOptions)}
     />
     <div
-      className={`absolute bg-dark/75 text-silver/75 right-0 top-[120%] w-[300px] transition-all duration-300 ${
+      className={`absolute bg-dark text-silver/75 right-0 top-[120%] w-[300px] transition-all duration-300 ${
         accountOptions ? "translate-x-0" : "translate-x-[400px]"
       }`}
     >

@@ -73,7 +73,6 @@ const NewBoardForm: React.FC<NewBoardFormProps> = ({
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const titleRegex = /^[a-zA-Z\s]*$/;
-    toast.loading("Adding board....");
     if (!formData.title || formData.title === "Enter the title") {
       toast.error("Please enter the title");
       return;
@@ -89,27 +88,30 @@ const NewBoardForm: React.FC<NewBoardFormProps> = ({
       toast.error("Please enter the description");
       return;
     }
+    toast.loading("Adding board....");
     try {
-      const data = await AddBoard(formData);
-      data && toast.dismiss();
-      if (data.status === 201) {
-        setFormData({
-          title: "",
-          description: "",
-          link: "",
-          image: "",
-          file: undefined,
-          tags: [],
-        });
-        handleForm(false);
-        updateBoard(data.newBoard);
-        toast.success(data.message);
-        setImagePreview("");
-      } else {
-        toast.error(data.message);
-      }
+      await AddBoard(formData).then((data) => {
+        if (data.status === 201) {
+          setFormData({
+            title: "",
+            description: "",
+            link: "",
+            image: "",
+            file: undefined,
+            tags: [],
+          });
+          handleForm(false);
+          updateBoard(data.newBoard);
+          toast.success(data.message);
+          setImagePreview("");
+          toast.dismiss();
+        } else {
+          toast.error(data.message);
+        }
+      });
     } catch (error) {
       toast.error(`${error}`);
+    } finally {
     }
     // console.log(formData);
   };

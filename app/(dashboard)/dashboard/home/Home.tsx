@@ -38,7 +38,7 @@ export default function Home() {
   }, []);
 
   const actionBoardUpdate = (newBoard: boardProps) => {
-    setBoards((prevBoards) => [...prevBoards, newBoard]);
+    setBoards((prevBoards: boardProps[]) => [...prevBoards, newBoard]); // Ensure prevBoards is an array
   };
 
   const handleSearch = (item: boardProps[]) => {

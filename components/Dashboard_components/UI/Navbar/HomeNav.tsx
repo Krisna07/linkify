@@ -23,7 +23,6 @@ const HomeNav: React.FC<HomeNavProps> = ({
   list,
   changeView,
   updateBoard,
-
   boards,
   handleSearch,
 }) => {
