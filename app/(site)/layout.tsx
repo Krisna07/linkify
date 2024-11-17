@@ -22,7 +22,7 @@ export default function RootLayout({
       >
         <Background />
         <div className="w-full h-screen grid place-items-center  relative z-40 ">
-          <div className="grid place-items-center gap-4 p-2 shadow-bs rounded-lg text-center bg-primary p-4">
+          <div className="grid place-items-center gap-4  shadow-bs rounded-lg text-center bg-primary p-4">
             <span className="flex gap-2 items-center text-xl font-bold">
               Linkify <FaLeaf color="green" />
             </span>

@@ -7,11 +7,9 @@ const page = ({}: pageProps) => {
   //   console.log(socialMediaData);
   return (
     <div className="grid gap-4">
-      <h2>Your activities</h2>
+      <h2>Total Baords</h2>
       <div className="">
         <div className="flex items-center gap-4 bg-gray-600/25 p-2 w-fit rounded-lg">
-          <FaFacebookSquare className="text-[40px]" />
-          255 new friends
           <div></div>
         </div>
       </div>

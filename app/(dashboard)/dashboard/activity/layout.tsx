@@ -10,7 +10,7 @@ const Page = ({ children }: { children: React.ReactNode }) => {
         <div className="px-8 pb-8  w-full text-2xl font-[600]">ACTIVITY</div>
       </div>
       <div className="grid tablet:grid-cols-[1fr_3fr] relative z-10">
-        <div className="tablet:w-fit  border-r tablet:grid hidden  ">
+        {/* <div className="tablet:w-fit  border-r tablet:grid hidden  ">
           <span className="p-4 text-2xl">Filters</span>
           <div className=" w-fit p-4 tablet:grid flex gap-4">
             <select className="w-full h-fit box-border bg-gray-600 p-2 px-4 gap-2 grid rounded-full outline-none ">
@@ -72,7 +72,7 @@ const Page = ({ children }: { children: React.ReactNode }) => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="py-8">{children}</div>
       </div>
     </div>

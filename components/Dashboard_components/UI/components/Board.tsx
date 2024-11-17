@@ -46,7 +46,7 @@ const Board = ({ board }: BoardProps) => {
           : "No tags"}
       </div>
       <div className="grid gap-2">
-        <span className="flex items-center gap-2">
+        <span className="flex items-center gap-2 text-[yellow]/50">
           <FaStar />
           <FaStar />
           <FaStar />
@@ -54,7 +54,7 @@ const Board = ({ board }: BoardProps) => {
           <FaStar />
         </span>
         <div className="flex items-center justify-between gap-2">
-          <span>20 reviwer</span>
+          <span>0 reviwer</span>
           <span>
             <BiEdit />
           </span>

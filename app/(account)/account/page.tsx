@@ -1,3 +1,4 @@
+// "use client";
 import React from "react";
 import { getCurrentUser } from "../../../lib/session";
 import { userProps } from "../../../components/Dashboard_components/utils/Interfaces";
@@ -10,6 +11,10 @@ const page = async () => {
   const handleChange = (e: any) => {
     console.log(e.target.value);
   };
+
+  // const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  // };
   return (
     <div className="w-full grid place-items-center gap-4">
       <div className="px-2 w-full tablet:w-[80%] grid place-items-center text-center gap-1">
