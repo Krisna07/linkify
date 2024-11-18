@@ -11,19 +11,18 @@ export default function page() {
   return (
     <>
       <Hero />
-
-      <div className="w-full bg-gradient-to-b from-primary to-accent text-silver">
+      <div className="w-full bg-gradient-to-b  text-silver">
         <FeaturesSection />
       </div>
-      <div className="w-full bg-accent text-white" id="discover">
+      {/* <div className="w-full  text-white" id="discover">
         <Queries />
       </div>
-      <div className="w-full bg-accent text-white " id="#pricing ">
+      <div className="w-full  text-white " id="#pricing ">
         <PricingTable />
       </div>
-      <div className="w-full bg-accent text-white " id="#pricing ">
+      <div className="w-full  text-white " id="#pricing ">
         <Usage />
-      </div>
+      </div> */}
     </>
   );
 }

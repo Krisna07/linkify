@@ -23,7 +23,7 @@ const Landingpage = ({ children }: LandingpageProps) => {
   }, [isInView]);
 
   return (
-    <div className="w-full h-full z-10 grid place-items-center bg-primary">
+    <div className="w-full h-full z-10 grid place-items-center ">
       <motion.div ref={ref} className="w-full relative z-[1000]">
         <Navbar />
       </motion.div>

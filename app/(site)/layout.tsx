@@ -6,6 +6,7 @@ import Button from "../../components/Global_components/Button";
 import { FaLeaf } from "react-icons/fa";
 import Link from "next/link";
 import Background from "../../components/Landing_components/Background";
+import Landingpage from "../../components/Layouts/Landingpage";
 
 export default function RootLayout({
   children,
@@ -20,8 +21,8 @@ export default function RootLayout({
       <body
         className={` w-full h-fit p-0 m-0 grid place-items-center  bg-dark leading -[100%]  text-silver relative`}
       >
-        <Background />
-        <div className="w-full h-screen grid place-items-center  relative z-40 ">
+        {/* <Background /> */}
+        {/* <div className="w-full h-screen grid place-items-center  relative z-40 ">
           <div className="grid place-items-center gap-4  shadow-bs rounded-lg text-center bg-primary p-4">
             <span className="flex gap-2 items-center text-xl font-bold">
               Linkify <FaLeaf color="green" />
@@ -47,8 +48,8 @@ export default function RootLayout({
               />
             </Link>
           </div>
-        </div>
-        {/* <Landingpage children={children} /> */}
+        </div> */}
+        <Landingpage children={children} />
       </body>
     </html>
   );

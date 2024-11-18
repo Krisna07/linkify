@@ -13,23 +13,29 @@ export default function Journey() {
   console.log(combined);
 `;
   return (
-    <div className="journeyContainer laptop:w-[1100px] flex items-center gap-8  p-4 ">
-      <div className="w-full grid gap-6">
-        <div className="grid gap-2">
-          <h3 className="text-xl font-semibold">Our stories</h3>
-          <h2 className="text-2xl font-bold"></h2>
+    <div className="journeyContainer w-full min-h-[80vh] flex items-center justify-center gap-8  p-4 bg-gradient-to-tr from-accent via-tahiti to-bermuda animate-bg ">
+      <div className="w-full   grid place-items-center gap-6">
+        <div className="grid gap-2 text-center">
+          <h3 className="text-xl font-semibold">Our Journey</h3>
+          <h2 className="text-2xl font-bold">
+            From Humble Beginnings to Innovation
+          </h2>
         </div>
-        <p className="md:w-5/6 font-[500]"></p>
+        <p className="md:w-5/6 font-[500] text-center">
+          Discover how our passion for technology and innovation led us to{" "}
+          <br />
+          create solutions that transform lives.
+        </p>
         <Button
-          children={"Read"}
+          children={"Read Our Story"}
           icon={true}
           variant={"default"}
           size={"sm"}
           className={"w-fit"}
         />
       </div>
-      <div className="hidden laptop:block">
-        <div className="w-[400px] animate-text shadow-lg overflow-hidden h-[400px]  bg-gradient-to-br from-zinc-700 via-slate-800 to-slate-900 rounded-md relative animate">
+      {/* <div className="hidden laptop:block">
+        <div className="w-[400px] animate-text shadow-lg overflow-hidden h-[400px]  bg-gradient-to-br from-dark to-dark rounded-md relative animate">
           <div className="w-full bg-gray-600 h-fit flex overflow-hidden">
             <div className="flex gap-1 p-2 ">
               <div className="w-4 h-4 bg-white rounded-full "></div>
@@ -42,7 +48,7 @@ export default function Journey() {
           </div>
           <div className="text-white"> </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

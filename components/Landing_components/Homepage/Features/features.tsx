@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import Profilecard from "./Profilecard";
 import Featurecards from "./Featurecards";
 import Counter from "./Counter";
+import Button from "../../../Global_components/Button";
 
 const FeaturesSection = () => {
   const [count, setCount] = useState(0);
@@ -66,10 +67,104 @@ const FeaturesSection = () => {
   };
   return (
     <div
-      className="w-full min-h-screen grid place-items-center relative  px-4"
+      className="w-full min-h-[600px] grid laptop:grid-cols-4 tablet:grid-cols-2 grid-cols-1 justify-center relative divide-none "
       id="features"
     >
-      <div className="laptop:w-[1024px] w-full grid  gap-8  box-border">
+      <div className="min-w-full   bg-[orange] text-dark grid grid-flow-row">
+        <div className="text-center grid ">
+          <h2 className="text-3xl p-4"> Our app is scalable</h2>
+          <div className="w-full h-[400px] bg-dark"></div>
+        </div>
+        <div className="w-full bg-[#51c49d]/75  box-border p-4 h-fit grid place-self-end">
+          <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
+            Request handled a day
+          </h3>
+          <h3 className=" text-xl font-bold mb-2 flex items-center gap-4 text-gray-400">
+            <Counter number={req} />
+            <span>
+              <BiGitPullRequest className="animate" />
+            </span>
+          </h3>
+          <Button
+            children="Discover more"
+            variant={"default"}
+            size={"lg"}
+            icon={true}
+          />
+        </div>
+      </div>
+      <div className="min-w-full text-dark grid grid-flow-row  laptop:w-1/4 bg-[#51c49d]">
+        {" "}
+        <div className="text-center grid ">
+          <h2 className="text-3xl p-4"> Our app is scalable</h2>
+          <div className="w-full h-[400px] bg-dark"></div>
+        </div>
+        <div className="w-full bg-[#ff009d]/75 box-border p-4 h-fit grid place-self-end">
+          <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
+            Request handled a day
+          </h3>
+          <h3 className=" text-xl font-bold mb-2 flex items-center gap-4 text-gray-400">
+            <Counter number={req} />
+            <span>
+              <BiGitPullRequest className="animate" />
+            </span>
+          </h3>
+          <Button
+            children="Discover more"
+            variant={"default"}
+            size={"lg"}
+            icon={true}
+          />
+        </div>
+      </div>
+      <div className="min-w-full text-dark grid grid-flow-row  laptop:w-1/4 bg-[#ff009d]">
+        <div className="text-left grid ">
+          <h2 className="text-3xl p-4"> Boards can be saved to your device</h2>
+          <div className="w-full h-[400px] bg-dark"></div>
+        </div>
+        <div className="w-full bg-[#00ffdd]/75  box-border p-4 h-fit grid place-self-end">
+          <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
+            Request handled a day
+          </h3>
+          <h3 className=" text-xl font-bold mb-2 flex items-center gap-4 text-gray-400">
+            <Counter number={download} />
+            <span>
+              <BiGitPullRequest className="animate" />
+            </span>
+          </h3>
+          <Button
+            children="Discover more"
+            variant={"default"}
+            size={"lg"}
+            icon={true}
+          />
+        </div>
+      </div>
+      <div className="min-w-full text-dark grid grid-flow-row  laptop:w-1/4 bg-[#00ffdd]">
+        <div className="text-center grid ">
+          <h2 className="text-3xl p-4"> Our app is scalable</h2>
+          <div className="w-full h-[400px] bg-dark"></div>
+        </div>
+        <div className="w-full bg-[orange]/75  box-border p-4 h-fit grid place-self-end">
+          <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
+            Request handled a day
+          </h3>
+          <h3 className=" text-xl font-bold mb-2 flex items-center gap-4 text-gray-400">
+            <Counter number={count} />
+            <span>
+              <BiGitPullRequest className="animate" />
+            </span>
+          </h3>
+          <Button
+            children="Discover more"
+            variant={"default"}
+            size={"lg"}
+            icon={true}
+          />
+        </div>
+      </div>
+
+      {/* <div className=" w-full grid  gap-8  box-border">
         <div
           ref={scrollRef}
           className="w-full grid grid-cols-1 laptop:grid-cols-[50%_40%] gap-8 box-border "
@@ -140,7 +235,7 @@ const FeaturesSection = () => {
             </h3>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
