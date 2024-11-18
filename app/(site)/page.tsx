@@ -14,7 +14,7 @@ export default function page() {
       <div className="w-full bg-gradient-to-b  text-silver">
         <FeaturesSection />
       </div>
-      {/* <div className="w-full  text-white" id="discover">
+      <div className="w-full  text-white" id="discover">
         <Queries />
       </div>
       <div className="w-full  text-white " id="#pricing ">
@@ -22,7 +22,7 @@ export default function page() {
       </div>
       <div className="w-full  text-white " id="#pricing ">
         <Usage />
-      </div> */}
+      </div>
     </>
   );
 }
