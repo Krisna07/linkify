@@ -68,48 +68,11 @@ const FeaturesSection = () => {
   };
   return (
     <div
-      className="w-full min-h-[600px] grid laptop:grid-cols-4 tablet:grid-cols-2 grid-cols-1 justify-center relative divide-none "
+      className="w-full min-h-[600px]  grid laptop:grid-cols-4 tablet:grid-cols-2 grid-cols-1 justify-center relative divide-none "
       id="features"
     >
-      <motion.div
-        initial={{ opacity: "0", y: 50 }}
-        whileInView={{
-          y: 0,
-          opacity: "1",
-        }}
-        transition={{
-          type: "bounce",
-          damping: 10,
-          stiffness: 100,
-        }}
-        viewport={{ once: true }}
-        className="min-w-full   bg-[orange] text-dark grid grid-flow-row"
-      >
-        <div className="text-left grid ">
-          <h2 className="text-3xl p-4 hover:underline">
-            Create revent ideas for your projects
-          </h2>
-        </div>
-        <div className="w-full bg-[#51c49d]/75  box-border p-4 h-fit grid place-self-end">
-          <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
-            Request handled a day
-          </h3>
-          <h3 className=" text-xl font-bold mb-2 flex items-center gap-4 text-gray-400">
-            <Counter number={req} />
-            <span>
-              <BiGitPullRequest className="animate" />
-            </span>
-          </h3>
-          <Button
-            children="Discover more"
-            variant={"default"}
-            size={"lg"}
-            icon={true}
-          />
-        </div>
-      </motion.div>
-      <div className="min-w-full text-dark grid grid-flow-row  laptop:w-1/4 bg-white/75">
-        {" "}
+      <Featurecards />
+      {/* <div className="min-w-full text-dark grid grid-flow-row  laptop:w-1/4 bg-white/75">
         <div className="text-left grid ">
           <h2 className="text-3xl p-4 hover:underline">
             Scale your ideas with all your friends
@@ -191,7 +154,7 @@ const FeaturesSection = () => {
             icon={true}
           />
         </div>
-      </div>
+      </div> */}
 
       {/* <div className=" w-full grid  gap-8  box-border">
         <div

@@ -60,7 +60,7 @@ const Navbar = () => {
 
   return (
     <div
-      className="  text-white w-full px-8 py-2 bg-primary flex items-center justify-between shadow-bs  z-[100] "
+      className="  text-white w-full px-8 py-2 flex items-center justify-between shadow-bs  z-[100] "
       id="nav"
     >
       <span className=" font-bold text-xl">Linkify</span>
