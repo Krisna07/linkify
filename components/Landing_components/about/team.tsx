@@ -97,9 +97,9 @@ const OurTeam: React.FC = () => {
           {teamMembers.slice(0, show).map((member, index) => (
             <div
               key={index}
-              className="bg-white/50  shadow-bs  p-4 rounded-[20px]  grid text-left gap-2"
+              className="  shadow-bs  p-4 rounded-[20px]  grid text-left gap-2"
             >
-              <div className="w-full bg-gradient-to-r from-gray-600 to-red-100 rounded-lg overflow-hidden">
+              <div className="w-full bg-gradient-to-r from-gray-600 to-red-100 rounded-full overflow-hidden">
                 <img src={member.image} alt="" width={"100%"} />
               </div>
               <div>
@@ -111,7 +111,7 @@ const OurTeam: React.FC = () => {
               </div>
               {/* <p className="text-gray-800">{member.bio}</p> */}
               <Button
-                variant={"accent"}
+                variant={"default"}
                 children={"Connect"}
                 size={"sm"}
                 icon={true}
@@ -123,7 +123,7 @@ const OurTeam: React.FC = () => {
           {" "}
           <Button
             children={show === 4 ? "Load more" : "Show less"}
-            variant={"default"}
+            variant={"primary"}
             className={"w-fit"}
             size={"sm"}
             icon={true}
@@ -131,7 +131,7 @@ const OurTeam: React.FC = () => {
           />
           <Button
             children={"Join our team"}
-            variant={"default"}
+            variant={"primary"}
             size={"sm"}
             icon={true}
           />

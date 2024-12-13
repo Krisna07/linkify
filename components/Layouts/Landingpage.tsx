@@ -24,7 +24,7 @@ const Landingpage = ({ children }: LandingpageProps) => {
 
   return (
     <div className="w-full h-full z-10 grid place-items-center ">
-      <motion.div ref={ref} className="w-full relative z-[1000]">
+      <motion.div ref={ref} className="w-full z-[1000] sticky top-0 bg-dark">
         <Navbar />
       </motion.div>
       <main className="w-full  oveflow-hidden pb-0 box-border">{children}</main>

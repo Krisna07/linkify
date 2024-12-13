@@ -10,16 +10,15 @@ export default function Contact() {
     "Login issue",
   ];
   return (
-    <section className="bg-white py-12 relative grid  gap-4 ">
-      <div className="w-full  h-[600px] grid place-items-center relative bg-gradient-to-t from-[#076585] to-[#fff">
-        {" "}
-        <div className="laptop:w-[600px] text-center grid gap-4 p-4 place-items-center">
+    <section className=" py-12 relative grid  gap-4 bg-white ">
+      <div className="w-full  h-[600px] grid place-items-center mb-16 relative bg-gradient-to-t from-[#076585] to-[#fff">
+        <div className="laptop:w-[600px] text-center grid gap-4 p-4 place-items-center text-dark">
           <h2 className="text-4xl font-bold animate-slidein500">Contact Us</h2>
           <p className="font-semibold animate-slidein300">
-            Thank you for your interest in contacting us. We're here to assist
-            you and answer any questions you may have. Please feel free to reach
-            out to us using the contact information below or by filling out the
-            contact form.
+            We appreciate your interest in reaching out to us. Our team is
+            dedicated to providing assistance and addressing any inquiries you
+            may have. You can get in touch with us through the contact details
+            provided below or by submitting the contact form.
           </p>
           <Link href="/about">
             <Button
@@ -33,8 +32,8 @@ export default function Contact() {
         </div>
       </div>
       <div className="grid place-items-center w-full ">
-        <div className="grid laptop:grid-cols-2 place-items-center   ">
-          <div className="laptop:w-[600px] w-[90%]   shadow-bs bg-white rounded p-8 -top-[200px] relative">
+        <div className="grid laptop:grid-cols-2 place-items-center  text-dark  ">
+          <div className="laptop:w-[600px] w-[90%]   shadow-bs bg-silver rounded p-8 -top-[200px] relative">
             <h3 className="text-xl font-semibold mb-4">Get in Touch</h3>
             <p className="text-gray-600 mb-4">
               We'd love to hear from you. Send us a message and we'll get back

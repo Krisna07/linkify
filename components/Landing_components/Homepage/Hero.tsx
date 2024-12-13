@@ -1,13 +1,8 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { FiArrowRight } from "react-icons/fi";
-import {
-  useMotionTemplate,
-  useMotionValue,
-  motion,
-  animate,
-} from "framer-motion";
+
+import { useMotionValue, motion, animate } from "framer-motion";
 import Link from "next/link";
 import Button from "../../Global_components/Button";
 
@@ -26,15 +21,17 @@ export default function Hero() {
   }, []);
 
   return (
-    <motion.section className="w-full relative grid py-16 place-items-center overflow-hidden text-white    border-box">
+    <motion.section className="w-full h-[80vh] relative grid py-16 place-items-center overflow-hidden text-white    border-box">
       <div className="relative z-10 flex flex-col items-center">
-        <button className=" animate-slidein300 scale-1  mb-1.5 inline-block rounded-full bg-white/50 text-dark  px-3 py-1.5  text-sm overflow-hidden cursor-default">
+        <button className=" animate-slidein300 scale-1  mb-1.5 inline-block rounded-full bg-white text-dark font-bold px-3 py-1.5  text-sm overflow-hidden cursor-default">
           Try Demo
         </button>
         <h1
-          className={`animate-slidein700  max-w-3xl font-bold  bg-gradient-to-tr from-white to-[${color}] bg-clip-text text-center text-6xl  leading-tight text-transparent sm:text-5xl sm:leading-tight md:text-7xl md:leading-tight`}
+          className={` animate-slidein700   font-semibold  bg-gradient-to-tr from-white to-[${color}] bg-clip-text text-center text-6xl  leading-tight text-transparent sm:text-5xl sm:leading-tight md:text-7xl md:leading-tight`}
         >
-          <span className="animate-text"> A place for your Ideas</span>
+          <span className="animate-text whitespace-nowrap">
+            A place for your Ideas to shine
+          </span>
         </h1>
         <p className="text-silver animate-slidein500 my-6 max-w-xl text-center text-base leading-relaxed md:text-lg md:leading-relaxed">
           Create boards with your ideas and share them with friends and the

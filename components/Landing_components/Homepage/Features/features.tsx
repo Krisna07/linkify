@@ -1,8 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { FaUser } from "react-icons/fa";
-import { BiGitPullRequest, BiShapeTriangle, BiUpArrow } from "react-icons/bi";
+import { FaShareSquare, FaUser } from "react-icons/fa";
+import {
+  BiExpand,
+  BiGitPullRequest,
+  BiShapeTriangle,
+  BiUpArrow,
+} from "react-icons/bi";
 
 import { BsTriangleFill } from "react-icons/bs";
 import { motion } from "framer-motion";
@@ -11,6 +16,16 @@ import Featurecards from "./Featurecards";
 import Counter from "./Counter";
 import Button from "../../../Global_components/Button";
 import Image from "next/image";
+import { FaLink } from "react-icons/fa6";
+import { GiAutoRepair } from "react-icons/gi";
+
+export interface Feature {
+  id: number;
+  icon: JSX.Element;
+  title: string;
+  description: string;
+  background: string;
+}
 
 const FeaturesSection = () => {
   const [count, setCount] = useState(0);
@@ -66,97 +81,57 @@ const FeaturesSection = () => {
     visible: { opacity: 1, x: 0 },
     hidden: { opacity: 0, x: -100 },
   };
+
+  const features: Feature[] = [
+    {
+      id: 1,
+      icon: <BiExpand className=" text-gray-800" />,
+      title: "Scalable",
+      description: "Linkify can handle any number of links you throw at it. ",
+      background: "orange",
+    },
+    {
+      id: 2,
+      icon: <FaLink className=" text-gray-800" />,
+      title: "Easy to Use",
+      description:
+        "Linkify has a simple and intuitive interface the app is eay to use",
+      background: "skyblue",
+    },
+    {
+      id: 3,
+      icon: <GiAutoRepair className=" text-gray-800" />,
+      title: "Automatic ",
+      description:
+        "Linkify automatically detects broken links and removes them from your list.",
+      background: "olive",
+    },
+    {
+      id: 4,
+      icon: <FaShareSquare className=" text-gray-800" />,
+      title: "Share Everywhere",
+      description:
+        "Linkify provides you with a single link that you can share on all platforms.",
+      background: "yellow",
+    },
+  ];
+
   return (
     <div
       className="w-full min-h-[600px]  grid laptop:grid-cols-4 tablet:grid-cols-2 grid-cols-1 justify-center relative divide-none "
       id="features"
     >
-      <Featurecards />
-      {/* <div className="min-w-full text-dark grid grid-flow-row  laptop:w-1/4 bg-white/75">
-        <div className="text-left grid ">
-          <h2 className="text-3xl p-4 hover:underline">
-            Scale your ideas with all your friends
-          </h2>
-          <div className="w-full h-[400px] ">
-            <Image
-              alt="ideas"
-              width={400}
-              height={200}
-              className="min-h-full w-full object-cover"
-              src="/assets/landingpage/ideas.png"
-            />
-          </div>
-        </div>
-        <div className="w-full bg-[#ff009d]/75 box-border p-4 h-fit grid place-self-end">
-          <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
-            Request handled a day
-          </h3>
-          <h3 className=" text-xl font-bold mb-2 flex items-center gap-4 text-gray-400">
-            <Counter number={req} />
-            <span>
-              <BiGitPullRequest className="animate" />
-            </span>
-          </h3>
-          <Button
-            children="Discover more"
-            variant={"default"}
-            size={"lg"}
-            icon={true}
-          />
-        </div>
-      </div>
-      <div className="min-w-full text-dark grid grid-flow-row  laptop:w-1/4 bg-[#ad7196]">
-        <div className="text-left grid ">
-          <h2 className="text-3xl p-4 hover:underline">
-            {" "}
-            Boards can be saved to your device
-          </h2>
-        </div>
-        <div className="w-full bg-[#00ffdd]/75  box-border p-4 h-fit grid place-self-end">
-          <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
-            Downloads handled in a day
-          </h3>
-          <h3 className=" text-xl font-bold mb-2 flex items-center gap-4 text-gray-400">
-            <Counter number={download} />
-            <span>
-              <BiGitPullRequest className="animate" />
-            </span>
-          </h3>
-          <Button
-            children="Discover more"
-            variant={"default"}
-            size={"lg"}
-            icon={true}
-          />
-        </div>
-      </div>
-      <div className="min-w-full text-dark grid grid-flow-row  laptop:w-1/4 bg-[white]">
-        <div className="text-left grid ">
-          <h2 className="text-3xl p-4 hover:underline">
-            {" "}
-            Optimize and analyse your ideas and boards
-          </h2>
-        </div>
-        <div className="w-full bg-[orange]/75  box-border p-4 h-fit grid place-self-end">
-          <h3 className="text-lg font-bold mb-2 flex items-center w-full relaxed justify-between">
-            Total boards and counting
-          </h3>
-          <h3 className=" text-xl font-bold mb-2 flex items-center gap-4 text-gray-400">
-            <Counter number={count} />
-            <span>
-              <BiGitPullRequest className="animate" />
-            </span>
-          </h3>
-          <Button
-            children="Discover more"
-            variant={"default"}
-            size={"lg"}
-            icon={true}
-          />
-        </div>
-      </div> */}
+      {features.map((feature: Feature) => (
+        <Featurecards key={feature.id} {...feature} />
+      ))}
+    </div>
+  );
+};
 
-      {/* <div className=" w-full grid  gap-8  box-border">
+export default FeaturesSection;
+
+{
+  /* <div className=" w-full grid  gap-8  box-border">
         <div
           ref={scrollRef}
           className="w-full grid grid-cols-1 laptop:grid-cols-[50%_40%] gap-8 box-border "
@@ -227,9 +202,5 @@ const FeaturesSection = () => {
             </h3>
           </div>
         </div>
-      </div> */}
-    </div>
-  );
-};
-
-export default FeaturesSection;
+      </div> */
+}
