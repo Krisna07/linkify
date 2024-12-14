@@ -11,18 +11,18 @@ const Footer: React.FC = () => {
   const [langauge, setLangauge] = useState();
   const [countries, setCountries] = useState<any>([]);
   const [langOptions, setLangOptions] = useState<boolean>();
+  const fetchCountries = async () => {
+    try {
+      const response = await fetch("https://restcountries.com/v3.1/all");
+      const data = await response.json();
+      setCountries(data);
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching countries:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchCountries = async () => {
-      try {
-        const response = await fetch("https://restcountries.com/v3.1/all");
-        const data = await response.json();
-        setCountries(data);
-      } catch (error) {
-        console.error("Error fetching countries:", error);
-      }
-    };
-
     fetchCountries();
   }, [country]);
 
@@ -32,49 +32,49 @@ const Footer: React.FC = () => {
       : "";
     return setCountry(selectedCountry);
   };
-  useEffect(() => {
-    const getLocation = () => {
-      if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(
-          async (position) => {
-            const latitude = position.coords.latitude;
-            const longitude = position.coords.longitude;
+  const getLocation = () => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
 
-            try {
-              const response = await fetch(
-                `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
-              );
-              const data = await response.json();
-              console.log(data.address.country);
-              getUserCountryName(data.address.country);
-            } catch (error) {
-              console.error("Error getting country:", error);
-            }
-          },
-          (error) => {
-            console.error("Error getting location:", error);
+          try {
+            const response = await fetch(
+              `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
+            );
+            const data = await response.json();
+            console.log(data.address.country);
+            getUserCountryName(data.address.country);
+          } catch (error) {
+            console.error("Error getting country:", error);
           }
-        );
-      } else {
-        console.log("Geolocation is not supported by your browser.");
-      }
-    };
+        },
+        (error) => {
+          console.error("Error getting location:", error);
+        }
+      );
+    } else {
+      console.log("Geolocation is not supported by your browser.");
+    }
+  };
+  useEffect(() => {
     return getLocation();
   }, []);
   // console.log(country);
   return (
-    <footer className="w-full py-4 grid place-items-center box-border relative">
-      <div className="laptop:w-3/4  flex gap-4 justify-between">
-        <div className="flex flex-col  justify-start gap-4 ">
+    <footer className="w-full  grid laptop:place-items-center box-border relative px-4 bg-accent/50 py-20 ">
+      <div className="laptop:w-3/4  grid tablet:grid-cols-2 gap-4 justify-between">
+        <div className="flex tablet:flex-col h-fit  justify-start gap-4 ">
           <h2 className="text-lg font-bold">
             <a
               href="#"
-              className=" hover:text-gray-500 font-semibold flex items-center"
+              className={`hover:text-gray-500 font-semibold flex items-center font-serif text-5xl`}
             >
               Linkify <FaLeaf />
             </a>
           </h2>
-          <div className="w-full inline-flex relative">
+          <div className="w-full inline-flex ">
             {
               <div
                 className="w-fit flex items-center gap-2 p-2 px-4 shadow-bs rounded font-semibold"
@@ -86,7 +86,7 @@ const Footer: React.FC = () => {
                   width={24}
                   height={16}
                 />
-                <div className="laptop:block hidden">
+                <div className="laptop:block ">
                   {country ? country.name.common : "English"}
                 </div>
               </div>
@@ -103,7 +103,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className=" tablet:grid grid-cols-3 md:gap-32 gap-4 hidden">
+        <div className="grid grid-cols-3 md:gap-32 gap-4 ">
           <a href="#" className=" hover:text-gray-500 font-semibold">
             About Us
           </a>

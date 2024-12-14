@@ -7,9 +7,7 @@ const Newsletter: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Perform actions with the submitted email (e.g., send it to an API)
     console.log("Submitted email:", email);
-    // Clear the input field
     setEmail("");
   };
 
@@ -20,13 +18,13 @@ const Newsletter: React.FC = () => {
           Subscribe to our Newsletter
         </h2>
         <form
-          className="flex gap-4 md:flex-row flex-col items-center justify-center"
+          className="laptop:w-[800px] w-full flex gap-4 md:flex-row flex-col items-center justify-center"
           onSubmit={handleSubmit}
         >
           <input
             type="email"
             placeholder="Enter your email"
-            className="py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 flex-grow text-slate-900 bg-gray-200"
+            className=" w-full py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 flex-grow text-slate-900 bg-gray-200"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required

@@ -5,6 +5,7 @@ import Navbar from "../Landing_components/Navbar/Navbar";
 import Link from "next/link";
 import { FaArrowUp } from "react-icons/fa";
 import { motion, useInView } from "framer-motion";
+import Footer from "../Landing_components/Footer/Footer";
 
 interface LandingpageProps {
   children: React.ReactNode;
@@ -36,6 +37,8 @@ const Landingpage = ({ children }: LandingpageProps) => {
           <FaArrowUp />
         </Link>
       )}
+
+      <Footer />
     </div>
   );
 };

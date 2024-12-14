@@ -29,7 +29,7 @@ export default function Hero() {
         <h1
           className={` animate-slidein700   font-semibold  bg-gradient-to-tr from-white to-[${color}] bg-clip-text text-center text-6xl  leading-tight text-transparent sm:text-5xl sm:leading-tight md:text-7xl md:leading-tight`}
         >
-          <span className="animate-text whitespace-nowrap">
+          <span className="animate-text laptop:whitespace-nowrap">
             A place for your Ideas to shine
           </span>
         </h1>

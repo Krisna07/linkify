@@ -10,7 +10,6 @@ const page = () => {
     <>
       <div className="grid place-items-center">
         <Journey />
-
         <Growth />
         <OurTeam />
         <Values />

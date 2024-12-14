@@ -9,7 +9,7 @@ const buttonVarients = cva("active:", {
   variants: {
     variant: {
       default:
-        "bg-dark rounded whitespace-nowrap transition-all text-silver w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs ",
+        "bg-dark rounded whitespace-nowrap transition-all text-silver w-fit h-fit  relative flex items-center  gap-2 overflow-hidden font-[500] hover:shadow-bs border ",
       accent:
         "bg-accent rounded whitespace-nowrap text-white transition-all  w-fit h-fit  relative flex items-center gap-2 overflow-hidden font-[500] hover:shadow-bs",
       primary:
