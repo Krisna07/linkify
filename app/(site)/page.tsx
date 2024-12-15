@@ -16,7 +16,7 @@ export default function page() {
         <FeaturesSection />
       </div>
       <Newsletter />
-      <div className="w-full  text-white" id="discover">
+      <div className="w-full  text-white" id="#discover">
         <Queries />
       </div>
       <div className="w-full  text-white " id="#pricing ">

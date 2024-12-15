@@ -61,11 +61,11 @@ const Footer: React.FC = () => {
   useEffect(() => {
     return getLocation();
   }, []);
-  // console.log(country);
+
   return (
     <footer className="w-full  grid laptop:place-items-center box-border relative px-4 bg-accent/50 py-20 ">
       <div className="laptop:w-3/4  grid tablet:grid-cols-2 gap-4 justify-between">
-        <div className="flex tablet:flex-col h-fit  justify-start gap-4 ">
+        <div className="flex tablet:flex-col h-fit  justify-start gap-4 realtive ">
           <h2 className="text-lg font-bold">
             <a
               href="#"

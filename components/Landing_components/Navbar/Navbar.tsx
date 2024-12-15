@@ -118,14 +118,18 @@ const Navbar = () => {
         )}
       </div>
 
-      <div className=" gap-4 hidden tablet:flex" role="group">
+      <Link
+        href={"/auth/signup"}
+        className=" gap-4 hidden tablet:flex"
+        role="group"
+      >
         <Button
           children="Join now "
           variant={"default"}
           size={"default"}
           icon={true}
         />
-      </div>
+      </Link>
       <div className="tablet:hidden p-2 rounded-full bg-black/75 ">
         <FaUser />
       </div>

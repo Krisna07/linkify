@@ -22,7 +22,7 @@ const CountryList = ({
     return setShowCountries(matchedCountries);
   };
   return (
-    <div className="shadow-bs w-fit h-[600px] mx-4 overflow-scroll scrollbar-hide bottom-full bg-white text-dark px-4 grid gap-8 rounded-[20px] absolute z-[90] ">
+    <div className="shadow-bs laptop:w-[800px]  h-[600px] mx-4 overflow-scroll scrollbar-hide bottom-full bg-white text-dark px-4 grid gap-8 rounded-[20px] absolute z-[90] left-0 tablet:left-auto  ">
       <div className="w-full overflow-x-scroll scrollbar-hide  ">
         <div className="w-full flex items-center gap-2 sticky top-0 py-4 bg-white">
           <h2 className=" text-xl font-semibold">Select langauge</h2>
