@@ -12,7 +12,7 @@ export default function page() {
   return (
     <>
       <Hero />
-      <div className="w-full bg-gradient-to-b  text-silver">
+      <div className="w-full  place-items-center  text-silver">
         <FeaturesSection />
       </div>
       <Newsletter />
