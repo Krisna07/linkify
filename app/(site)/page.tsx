@@ -15,14 +15,17 @@ export default function page() {
       <div className="w-full  place-items-center  text-silver">
         <FeaturesSection />
       </div>
-      <Newsletter />
-      <div className="w-full  text-white" id="#discover">
+      {/* <Newsletter /> */}
+      <div
+        className="w-full place-items-center text-white my-32"
+        id="#discover"
+      >
         <Queries />
       </div>
       <div className="w-full  text-white " id="#pricing ">
         <PricingTable />
       </div>
-      <div className="w-full  text-white " id="#pricing ">
+      <div className="w-full place-items-center  text-white " id="#pricing ">
         <Usage />
       </div>
     </>

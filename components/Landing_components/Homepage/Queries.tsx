@@ -2,6 +2,7 @@
 import React from "react";
 import { FaPencilRuler, FaUsers, FaCloud, FaMagic } from "react-icons/fa";
 import { motion } from "framer-motion";
+import Button from "../../Global_components/Button";
 
 const Queries = () => {
   const queries = [
@@ -36,26 +37,29 @@ const Queries = () => {
   ];
 
   return (
-    <div className="w-full flex items-center justify-center py-8">
-      <div className="mx-auto px-8 laptop:px-4">
-        <div className="grid grid-cols-1 laptop:w-[1000px] gap-4 lg:gap-20">
+    <div className="desktop:w-[1400px] w-full grid place-items-center  py-8">
+      <div className="w-full mx-auto px-8 laptop:px-4">
+        <div className="w-full grid grid-cols-1  gap-4 lg:gap-20">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ type: "bounce", damping: 10, stiffness: 100 }}
             viewport={{ once: true }}
+            className="w-full"
           >
             <h3 className="text-silver/75 text-xl font-bold mb-4">
               How It Works
             </h3>
-            <h2 className="animate-slidein500 text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+            <h2 className="animate-slidein500 text-4xl lg:text-5xl font-bold mb-2 leading-tight">
               Empower Your Creative Process
             </h2>
             <p className="animate-slidein700 text-lg lg:text-xl mb-8">
-              Discover how our platform makes it easier to organize, share, and
-              enhance your creative ideas.
+              Explore how our platform simplifies the organization, sharing, and
+              enhancement of your creative projects, providing you with
+              intuitive tools to elevate your creative output and collaborate
+              more effectively.
             </p>
-            <div className="grid laptop:grid-cols-4 tablet:grid-cols-2 gap-4 text-dark">
+            <div className=" grid laptop:grid-cols-4 tablet:grid-cols-2 place-items-center gap-4 text-dark">
               {queries.map((query, index) => (
                 <motion.div
                   key={index}
@@ -63,16 +67,25 @@ const Queries = () => {
                   whileInView={{ y: 0, opacity: 1 }}
                   transition={{ type: "spring", damping: 10, stiffness: 100 }}
                   viewport={{ once: true }}
-                  className=" bg-white rounded-lg p-4 shadow-lg grid grid-flow-row grid-rows-3"
+                  className=" bg-white h-full rounded-lg p-4 shadow-lg grid gap-4 place-items-center"
                 >
-                  <div className="flex place-items-center gap-4 leadin-[120%] border-b">
-                    <div className="text-3xl mb-2">{query.icon}</div>
-                    <h3 className="font-bold text-lg mb-2">{query.name}</h3>
+                  <div className="w-12 h-12 bg-dark rounded-full grid place-items-center">
+                    <div className="w-4 h-4 bg-primary rounded-full"></div>
                   </div>
-                  <p>{query.description}</p>
-                  <button className="mt-4 bg-blue-500  rounded px-4 py-2">
-                    {query.buttonText}
-                  </button>
+                  <div className="grid gap-2 bg-primary/25 mt-16 p-4 rounded-3xl">
+                    <div className="grid  gap-2 leading-4 ">
+                      <div className=" text-[gray] ">{query.icon}</div>
+                      <span className="font-bold mb-2">{query.name}</span>
+                    </div>
+                    <p className="w-[80%] text-left">{query.description}</p>
+                    <Button
+                      children={`${query.buttonText}`}
+                      variant={"accent"}
+                      size={"sm"}
+                      icon={true}
+                      className="leading-4 mt-8"
+                    />
+                  </div>
                 </motion.div>
               ))}
             </div>

@@ -1,17 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
-import {
-  FaEye,
-  FaFacebookSquare,
-  FaInstagramSquare,
-  FaKey,
-  FaLink,
-  FaPlusSquare,
-  FaShare,
-  FaTwitterSquare,
-} from "react-icons/fa";
+import React, { useEffect, useRef, useState } from "react";
 import Button from "../../Global_components/Button";
+import { motion } from "framer-motion";
 
 const Usage = () => {
   // const addLinks = <div>{/* <Demo /> */}</div>;
@@ -79,6 +70,7 @@ const Usage = () => {
   const [index, setIndex] = useState<number>(0);
   const [width, setWidth] = useState<number>(0);
   const [position, setPosition] = useState<number>(0);
+  const activeTabRef = useRef<HTMLDivElement>(null);
 
   const getWidthandPos = (e: any) => {
     const element = e.target.getBoundingClientRect();
@@ -87,36 +79,70 @@ const Usage = () => {
     setPosition(element.x - parent.x);
     console.log(element.x);
   };
+  useEffect(() => {
+    // Get initial width and position of the first tab
+    if (activeTabRef.current) {
+      const element = activeTabRef.current.getBoundingClientRect();
+      const parent =
+        activeTabRef.current?.offsetParent?.getBoundingClientRect();
+      if (parent) {
+        setWidth(element.width);
+        setPosition(element.x - parent.x);
+      }
+    }
+  }, []);
 
   return (
-    <div className="w-full flex items-center justify-center py-16 text-white">
-      <div className="w-full desktop:w-[1024px]  grid place-items-center  laptop:px-8 gap-4  box-border  ">
+    <motion.div
+      initial={{ y: 100, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      transition={{ type: "spring", damping: 10, stiffness: 100 }}
+      className="laptop:w-[1400px] w-full  py-16 text-white "
+    >
+      <div className="w-full grid place-items-center  laptop:px-8 gap-4  box-border  ">
         <div className="w-full  flex flex-col items-center justify-center p-2  box-border gap-8  ">
-          <div className="grid gap-2 text-center">
-            <h2 className="text-3xl font-[700]">Discover</h2>
-            <p className="w-full   tablet:w-[50ch]">
-              Explore curated content, connect effortlessly, and unlock your
-              online potential with our discovery features.
+          <div className="w-full grid gap-2 text-left">
+            <h2 className="text-3xl font-[700] animate-slidein500">Discover</h2>
+            <p className="w-full   tablet:w-[60%] animate-slidein700">
+              Dive into a world of curated content, connect effortlessly with
+              others, and fully unlock your online potential through our
+              comprehensive discovery features. Experience a seamless journey of
+              exploration and engagement that enhances your digital
+              interactions.
             </p>
           </div>
-          <div className="grid tablet:grid-cols-2   gap-4 overflow-hidden ">
-            <div className="w-full  hover:shadow-lg border-r-2 border-[sky] overflow-hidden shadow-bs box-border  flex  rounded  relative ">
+          <div className="w-full grid tablet:grid-cols-2 grid-cols-1  gap-4 overflow-hidden ">
+            <motion.div
+              initial={{ y: 100, x: 400, opacity: 0 }}
+              whileInView={{ y: 0, x: 0, opacity: 1 }}
+              transition={{
+                type: "spring",
+                damping: 10,
+                stiffness: 100,
+              }}
+              className="w-full  hover:shadow-lg  border overflow-hidden shadow-bs box-border  flex  rounded  relative "
+            >
               {discover.map((usuage) => (
-                <div
-                  className={`min-w-full   grid gap-2  relative transition-all overflow-hidden ${usuage.gradient}`}
+                <motion.div
+                  className={`min-w-full h-[400px]   grid gap-2  relative transition-all overflow-hidden ${usuage.gradient}`}
                   style={{
                     left: `-${index * 100}%`,
                   }}
                   key={discover.indexOf(usuage)}
-                ></div>
+                ></motion.div>
               ))}
-            </div>
-            <div className="w-full grid gap-0 ">
-              <div className="w-full h-fit  flex items-center justify-between  font-[600] relative px-2">
+            </motion.div>
+            <div className="w-full  ">
+              <div className="w-full h-fit  flex items-center justify-between  font-[600] relative px-2 border-b">
                 {discover.map((usuage, x) => (
-                  <span
+                  <motion.div
+                    ref={
+                      discover.indexOf(usuage) === index ? activeTabRef : null
+                    }
+                    initial={{ x: `-${discover.indexOf(usuage) * 50}px` }}
+                    whileInView={{ x: 0 }}
                     className={
-                      index === discover.indexOf(usuage)
+                      index === discover.indexOf(usuage) || index == 0
                         ? `px-4 py-2 my-2 rounded  text-white/75    `
                         : `  px-4 py-2 my-2 rounded  hover:text-white hover:shadow-bs transition-all  `
                     }
@@ -128,7 +154,7 @@ const Usage = () => {
                     }}
                   >
                     {usuage.topic}
-                  </span>
+                  </motion.div>
                 ))}
                 <span className="w-full absolute bottom-[4px] left-[2px]  h-2  flex items-center justify-center">
                   <span
@@ -160,7 +186,7 @@ const Usage = () => {
                     <Button
                       children="Read"
                       size={"default"}
-                      variant={"submit"}
+                      variant={"accent"}
                       icon={true}
                     />
                   </div>
@@ -169,39 +195,8 @@ const Usage = () => {
             </div>
           </div>
         </div>
-        {/* <div className="laptop:w-1/2 w-full  laptop:flex items-center box-border gap-4  p-2">
-          <div className=" laptop:w-3/5 w-full grid gap-4 leading-[120%]">
-            <div>
-              <h3 className="font-[600] text-lg">Discover</h3>
-              <h2 className="font-[700] text-2xl ">
-                Connect and Share with Ease
-              </h2>
-              <p className="text-sm">
-                Seamlessly share your favorite links with friends and followers.
-                Our platform lets you stay connected and engaged, bringing
-                people closer through shared content and discussions.
-              </p>
-            </div>
-            <Link href={"/marketplace"}>
-              {" "}
-              <Button
-                children="Learn more"
-                variant={"default"}
-                size={"sm"}
-                icon={true}
-              />
-            </Link>
-          </div>
-          <div className="laptop:w-2/5  bg-gray-100 rounded text-center hover:shadow-lg">
-            <img
-              src="https://img.freepik.com/free-vector/image-viewer-concept-illustration_114360-4532.jpg?w=826&t=st=1681968634~exp=1681969234~hmac=28c31796a43307c4988128c10cb50b02137fb2e4b2ef1996b2e5dbed22cf4f54"
-              alt=""
-              width={"100%"}
-            />
-          </div>
-        </div> */}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
