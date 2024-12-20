@@ -30,14 +30,18 @@ const CentralizeFeature = () => {
             />
             <h2 className="font-semibold">Ugon Times</h2>
             <table className="text-[12px] font-bold text-[gray]">
-              <tr>
-                <td className="text-[12px] font-bold ">Projects</td>
-                <td className="text-dark">40</td>
-              </tr>
-              <tr>
-                <td className="text-[12px] font-bold ">Completed</td>
-                <td className="text-dark">15</td>
-              </tr>
+              <thead>
+                <tr>
+                  <td className="text-[12px] font-bold ">Projects</td>
+                  <td className="text-dark">40</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="text-[12px] font-bold ">Completed</td>
+                  <td className="text-dark">15</td>
+                </tr>
+              </tbody>
             </table>
             <div className="flex gap-2">
               <div className="w-fit flex items-center gap-2  font-[500] py-1 text-white bg-dark px-2 rounded-full">

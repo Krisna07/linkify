@@ -6,8 +6,7 @@ import Link from "next/link";
 import { FaArrowUp } from "react-icons/fa";
 import { motion, useInView } from "framer-motion";
 import Footer from "../Landing_components/Footer/Footer";
-import { inter, jersey, roboto } from "../../fonts/fonts";
-import { Inter } from "next/font/google";
+import { inter } from "../../fonts/fonts";
 
 interface LandingpageProps {
   children: React.ReactNode;
@@ -27,18 +26,19 @@ const Landingpage = ({ children }: LandingpageProps) => {
 
   return (
     <div className="w-full h-full z-10 grid place-items-center ">
-      <motion.div ref={ref} className="w-full z-[1000] sticky top-0 bg-dark">
+      <motion.div className="w-full z-[900] sticky top-0 bg-dark" id="nav">
         <Navbar />
       </motion.div>
       <main
-        className={`${inter.className} w-full  oveflow-hidden pb-0 box-border `}
+        className={`${inter.className} w-full  oveflow-hidden pb-0 box-border relative `}
       >
+        <div ref={ref} className="absolute"></div>
         {children}
       </main>
       {!state && (
         <Link
           href="#nav"
-          className="fixed bottom-16 right-4 bg-dark text-silver rounded-lg p-4 hover:shadow-bs transition-all "
+          className="fixed bottom-16 right-4 bg-silver/25 text-silver rounded-lg p-4 hover:shadow-bs transition-all z-[1000] "
         >
           <FaArrowUp />
         </Link>

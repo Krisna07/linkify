@@ -110,7 +110,10 @@ const PricingTable: React.FC = () => {
         <div className="w-full grid tablet:grid-cols-2 gap-8 ">
           <div className=" grid laptop:grid-cols-2 gap-2">
             {features.map((feature) => (
-              <motion.div className="flex place-items-center gap-2">
+              <motion.div
+                className="flex place-items-center gap-2"
+                key={feature}
+              >
                 <div className="text-sm bg-bermuda rounded-full p-1 text-dark">
                   <FaCheck />
                 </div>

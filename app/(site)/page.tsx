@@ -1,12 +1,11 @@
 import React from "react";
 // import Homepage from "./homepage/Homepage";
 import Hero from "../../components/Landing_components/Homepage/Hero";
-import FeaturesSection from "../../components/Landing_components/Homepage/Features/features";
-
 import Queries from "../../components/Landing_components/Homepage/Queries";
 import PricingTable from "../../components/Landing_components/Homepage/Pricing";
 import Usage from "../../components/Landing_components/Homepage/Usage";
 import Newsletter from "../../components/Landing_components/Homepage/Newsletter";
+import FeaturesSection from "../../components/Landing_components/Homepage/Features/features";
 
 export default function page() {
   return (

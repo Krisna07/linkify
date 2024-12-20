@@ -38,7 +38,7 @@ export default function Hero() {
           internet. Unlock your creativity and bring your ideas to life.
         </p>
         <Link href={"/auth/signup"}>
-          <motion.button
+          <motion.div
             whileHover={{
               scale: 1.015,
             }}
@@ -47,8 +47,8 @@ export default function Hero() {
             }}
             children={
               <Button
-                children="SIGN UP"
-                variant={"accent"}
+                children="Get Started"
+                variant={"default"}
                 size={"default"}
                 icon={true}
               />
