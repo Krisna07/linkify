@@ -1,3 +1,4 @@
+"use client";
 import ScaleableFeature from "./ScaleableFeature";
 import CentralizeFeature from "./CentralizeFeature";
 import CollaborateFeature from "./CollaborateFeature";
