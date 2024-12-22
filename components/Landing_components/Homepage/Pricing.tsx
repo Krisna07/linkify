@@ -89,13 +89,13 @@ const PricingTable: React.FC = () => {
   // ];
   return (
     <motion.div
-      initial={{ opacity: "0.5", y: 50 }}
+      initial={{ opacity: 0, y: 50 }}
       whileInView={{
         y: 0,
-        opacity: "1",
+        opacity: 1,
       }}
       viewport={{ once: true }}
-      className="w-full flex    justify-center   gap-8 py-12 overflow-hidden text-white px-4"
+      className="w-full flex    justify-center   gap-8 py-12 my-16 overflow-hidden text-white px-4"
       id="pricing"
     >
       <div className="laptop:w-[1000px] w-full grid gap-4">
@@ -109,9 +109,13 @@ const PricingTable: React.FC = () => {
         </p>
         <div className="w-full grid tablet:grid-cols-2 gap-8 ">
           <div className=" grid laptop:grid-cols-2 gap-2">
-            {features.map((feature) => (
+            {features.map((feature, index) => (
               <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: (index + 1) * 0.1 }}
                 className="flex place-items-center gap-2"
+                viewport={{ once: true }}
                 key={feature}
               >
                 <div className="text-sm bg-bermuda rounded-full p-1 text-dark">
@@ -153,7 +157,7 @@ const PricingTable: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="bg-white text-dark p-4 hidden gap-4 relative group laptop:grid">
+      <div className="bg-white text-dark p-4 hidden gap-4 relative group laptop:grid animate-slidein500">
         <div className="text-4xl font-serif"> Standard Free</div>
         <span className="text-lg">
           Create up to 10 boards for single project

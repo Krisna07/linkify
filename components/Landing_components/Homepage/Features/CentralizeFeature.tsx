@@ -2,6 +2,7 @@ import { FaPencilAlt } from "react-icons/fa";
 import { CiSettings } from "react-icons/ci";
 import { BsTelephone } from "react-icons/bs";
 import FeatureCard from "./FeatureCard";
+import { motion } from "framer-motion";
 
 const CentralizeFeature = () => {
   return (
@@ -20,7 +21,12 @@ const CentralizeFeature = () => {
           </span>
         </div>
         <div className="w-full h-full grid place-items-center   relative ">
-          <div className="relative w-full grid gap-4 z-[20] bg-white p-4 shadow-bs rounded-3xl">
+          <motion.div
+            initial={{ scale: 1.5 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            className="relative w-full grid gap-4 z-[20] bg-white p-4 shadow-bs rounded-3xl"
+          >
             <img
               src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA1LzUwNC1meC0xMy1qb2IxNzU4XzEucG5n.png"
               width={40}
@@ -52,14 +58,19 @@ const CentralizeFeature = () => {
                 <span className="text-[10px]">Message</span>
               </div>
             </div>
-          </div>
-          <div className="absolute w-[80%] h-full bg-white shadow-bs rounded-3xl z-[10] translate-y-4"></div>
+          </motion.div>
+          <motion.div
+            initial={{ y: 0 }}
+            whileInView={{ y: 20 }}
+            transition={{ delay: 0.2, type: "spring", duration: 1 }}
+            className="absolute w-[80%] h-full bg-white shadow-bs rounded-3xl z-[10] "
+          ></motion.div>
         </div>
         <div className=" grid place-items-center gap-4 ">
           <div className="bg-dark w-8 h-8   rounded-full border-2 border-white  shadow-bs grid place-items-center">
             <div className="w-2 h-2 bg-white  rounded-full self-center"></div>
           </div>
-          <div className="grid ">
+          <div className="grid">
             <div className="bg-primary w-8 h-8   rounded-full border-2 border-white  shadow-bs grid place-items-center"></div>{" "}
             <div className="bg-[orange] w-8 h-8   rounded-full border-2 border-white shadow-bs grid place-items-center -translate-y-4"></div>{" "}
             <div className="bg-accent w-8 h-8   rounded-full border-2 border-white shadow-bs grid place-items-center -translate-y-8"></div>

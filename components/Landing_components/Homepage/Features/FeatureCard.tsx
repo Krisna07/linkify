@@ -26,14 +26,16 @@ const FeatureCard = ({
         stiffness: 100,
       }}
       viewport={{ once: true }}
-      className="max-w-[400px] h-full grid place-items-start p-4 px-8 bg-white text-dark rounded-lg gap-16"
+      className="max-w-[400px] h-full grid place-items-start p-4 select-none px-8 bg-white text-dark rounded-lg gap-16"
     >
       <div className="grid gap-2 leading-[120%]">
-        <span className="text-[gray] font-bold">{heading}</span>
-        <h2 className="font-[600]">{subheading}</h2>
+        <span className="text-[gray] font-bold animate-slidein300">
+          {heading}
+        </span>
+        <h2 className="font-[600] animate-slidein500">{subheading}</h2>
       </div>
       {children}
-      <p className="text-sm text-dark/75 mt-8 font-[500] text-justify">
+      <p className="text-sm text-dark/75 mt-8 font-[500] text-justify animate-slidein700">
         {description}
       </p>
     </motion.div>

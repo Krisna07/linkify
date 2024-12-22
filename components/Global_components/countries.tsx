@@ -1,7 +1,8 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import Button from "./Button";
+import React, { useEffect, useRef, useState } from "react";
+
 import { FaSearch } from "react-icons/fa";
+import { motion, useInView } from "framer-motion";
 
 const CountryList = ({
   countries,
@@ -10,11 +11,13 @@ const CountryList = ({
   langOptions,
 }: any) => {
   const [focus, setFocus] = useState(false);
+  const countriesRef = useRef<HTMLDivElement>(null);
 
   const [showCountries, setShowCountries] = useState(countries);
 
   const searchCountry = (e: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(e.target.value);
+    !e.target.value && setShowCountries(countries);
     const matchedCountries = countries.filter((country: any) =>
       country.name.common.toLowerCase().match(e.target.value.toLowerCase())
     );
@@ -22,27 +25,56 @@ const CountryList = ({
     return setShowCountries(matchedCountries);
   };
 
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      if (!entries[0].isIntersecting) {
+        setLangOptions(false);
+      }
+    });
+
+    if (countriesRef.current) {
+      observer.observe(countriesRef.current);
+    }
+
+    return () => {
+      if (countriesRef.current) {
+        observer.unobserve(countriesRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <div className="shadow-bs laptop:w-[800px]  h-[600px] mx-4 overflow-scroll scrollbar-hide bottom-full bg-white text-dark px-4 grid gap-8 rounded-[20px] absolute z-[90] left-0 tablet:left-auto  ">
+    <div
+      ref={countriesRef}
+      className="shadow-bs laptop:w-[800px] tablet:min-w-[500px]  w-full h-[600px] transition-all ease-in-out duration-300 mx-4 overflow-scroll scrollbar-hide bottom-full bg-white text-dark px-4 grid gap-8 rounded-[20px] absolute z-[90] left-0 tablet:left-auto  "
+    >
       <div className="w-full overflow-x-scroll scrollbar-hide  ">
-        <div className="w-full flex items-center gap-2 sticky top-0 py-4 bg-white">
-          <h2 className=" text-xl font-semibold">Select langauge</h2>
+        <div className="w-full flex flex-col tablet:flex-row items-start gap-2 sticky top-0 py-4 bg-white">
+          <h2 className=" text-xl font-semibold">Select Location</h2>
           <div
-            className="bg-dark/25 flex items-center gap-2 px-4 rounded-full p-1"
+            className=" flex items-center justify-center  rounded-full "
             onClick={() => setFocus(true)}
           >
             <input
               onFocus={() => setFocus(true)}
+              onBlur={(e) => {
+                setFocus(false);
+                e.target.value = "";
+              }}
               onInput={searchCountry}
               type="text"
-              className={`shadow-bs  text-dark bg-transparent ${
-                focus ? "w-[100px]" : "w-0"
+              className={` text-dark p-1 px-2  transition-all ease-in-out duration-500 ${
+                focus
+                  ? "tablet:w-[100px] w-[200px] bg-dark/25 "
+                  : "w-0 bg-transparent "
               } outline-none`}
             />
-            <FaSearch className="" />
+            <div className="p-2 bg-dark/25 rounded-e">
+              <FaSearch className=" " />
+            </div>
           </div>
         </div>
-        <ul className="w-fit grid  grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-4 text-dark">
+        <ul className="w-full grid  grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-4 text-dark">
           {showCountries.map((country: any) => (
             <li
               key={country.name.common}

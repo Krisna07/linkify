@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { FaLeaf } from "react-icons/fa";
 import CountryList from "../../Global_components/countries";
@@ -19,12 +19,43 @@ interface GeoLocationResponse {
   };
 }
 
+const FooterLinks: React.FC = () => {
+  const links = [
+    "About Us",
+    "Services",
+    "Products",
+    "Contact Us",
+    "FAQ",
+    "Careers",
+    "Blog",
+    "Support",
+    "Terms of Service",
+    "Privacy Policy",
+  ];
+
+  return (
+    <>
+      {links.map((link) => (
+        <a key={link} href="#" className="hover:text-gray-500 font-semibold">
+          {link}
+        </a>
+      ))}
+    </>
+  );
+};
+
 const Footer: React.FC = () => {
   const [country, setCountry] = useState<Country | undefined>();
   const [countries, setCountries] = useState<Country[]>([]);
   const [langOptions, setLangOptions] = useState<boolean>(false);
   const [location, setLocation] = useState<string>();
   const countryRef = useRef<HTMLDivElement>(null);
+
+  // const getUserTimeZone = () => {
+  //   const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  //   console.log(timeZone);
+  // };
+  // getUserTimeZone();
 
   useEffect(() => {
     if ("geolocation" in navigator) {
@@ -50,6 +81,7 @@ const Footer: React.FC = () => {
       console.log("Geolocation is not supported by your browser.");
     }
   }, []);
+
   const fetchCountries = async () => {
     try {
       const response = await fetch("https://restcountries.com/v3.1/all");
@@ -75,12 +107,11 @@ const Footer: React.FC = () => {
   }, [location]);
 
   useOutsideClick(countryRef, () => setLangOptions(false));
-  document.addEventListener("scroll", () => setLangOptions(false));
 
   return (
     <footer className="w-full grid laptop:place-items-center box-border relative px-4 bg-accent/50 py-20">
       <div className="laptop:w-3/4 grid tablet:grid-cols-2 gap-4 justify-between">
-        <div className="flex tablet:flex-col h-fit justify-start gap-4 relative">
+        <div className="w-full flex tablet:flex-col h-fit justify-start gap-4 relative">
           <h2 className="text-lg font-bold">
             <a
               href="#"
@@ -91,7 +122,7 @@ const Footer: React.FC = () => {
           </h2>
           <div className="w-full inline-flex" ref={countryRef}>
             <div
-              className="w-fit flex items-center gap-2 p-2 px-4 shadow-bs rounded font-semibold cursor-pointer"
+              className="w-fit flex items-center gap-2 p-2 px-4 shadow-bs rounded font-semibold cursor-pointer "
               onClick={() => setLangOptions(!langOptions)}
             >
               {country && (
@@ -123,32 +154,6 @@ const Footer: React.FC = () => {
         </div>
       </div>
     </footer>
-  );
-};
-
-// Separated footer links into a component for better organization
-const FooterLinks: React.FC = () => {
-  const links = [
-    "About Us",
-    "Services",
-    "Products",
-    "Contact Us",
-    "FAQ",
-    "Careers",
-    "Blog",
-    "Support",
-    "Terms of Service",
-    "Privacy Policy",
-  ];
-
-  return (
-    <>
-      {links.map((link) => (
-        <a key={link} href="#" className="hover:text-gray-500 font-semibold">
-          {link}
-        </a>
-      ))}
-    </>
   );
 };
 

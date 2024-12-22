@@ -5,6 +5,7 @@ import React, { useEffect } from "react";
 import { useMotionValue, motion, animate } from "framer-motion";
 import Link from "next/link";
 import Button from "../../Global_components/Button";
+import SponsorsSection from "./Sponsers";
 
 const COLORS_TOP = ["#13FFAA", "#1E67C6", "#CE84CF", "#DD335C"];
 
@@ -21,7 +22,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <motion.section className="w-full h-[80vh] relative grid py-16 place-items-center overflow-hidden text-white  border-box">
+    <motion.section className="w-full h-[100vh] relative grid py-16 place-items-center overflow-hidden text-white  border-box">
       <div className="relative z-10 flex flex-col items-center">
         <button className=" animate-slidein300 scale-1  mb-1.5 inline-block rounded-full bg-white text-dark font-bold px-3 py-1.5  text-sm overflow-hidden cursor-default">
           Try Demo
@@ -57,6 +58,7 @@ export default function Hero() {
           />
         </Link>
       </div>
+      <SponsorsSection />
     </motion.section>
   );
 }

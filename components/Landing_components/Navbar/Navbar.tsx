@@ -96,7 +96,7 @@ const Navbar = () => {
             style={{
               left: `${left && left - 4}px`,
             }}
-            className={`absolute rounded-full top-[130%] px-0 py-0 transition-all duration-300 ease-in-out`}
+            className={`absolute rounded-full top-[100%] px-0 py-0 transition-all duration-300 ease-in-out`}
           >
             <BsTriangleFill
               size={12}

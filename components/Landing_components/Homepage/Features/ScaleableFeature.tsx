@@ -1,6 +1,7 @@
 import { FaRegUserCircle, FaRegClipboard, FaRegStar } from "react-icons/fa";
 import { TbUsersGroup, TbProgress } from "react-icons/tb";
 import FeatureCard from "./FeatureCard";
+import { motion } from "framer-motion";
 
 type FeatureItem = {
   icon: JSX.Element;
@@ -44,11 +45,25 @@ const ScaleableFeature = () => {
       description="Our platform is designed for scalability, effortlessly managing large number of boards,  projects,  groups, and collective reviews to meet the growing needs of our users while ensuring optimal organization and efficiency."
     >
       <div className="w-full grid gap-8 relative z-10">
-        <div className="w-full grid grid-cols-2 gap-8">
+        <div className="w-full grid grid-cols-2 gap-8 relative">
           {featureItems.map((item, index) => (
-            <div
+            <motion.div
+              initial={{
+                x: index % 2 ? "-60%" : "60%",
+                y: index > 1 ? "-60%" : "60%",
+              }}
+              whileInView={{
+                x: index % 2 ? "0" : "0",
+                y: index > 1 ? "0" : "0",
+              }}
+              transition={{
+                type: "spring",
+                stiffness: "100",
+                damping: 10,
+              }}
+              viewport={{ once: true }}
               key={index}
-              className="w-full grid bg-white rounded-2xl shadow-bs p-2"
+              className={`w-full grid bg-white rounded-2xl shadow-bs p-2 `}
             >
               <span className="flex place-items-center font-[600] gap-2">
                 {item.icon} {item.label}
@@ -57,12 +72,24 @@ const ScaleableFeature = () => {
                 <span className="font-bold">{item.value}</span>
                 {item.suffix}
               </span>
-            </div>
+            </motion.div>
           ))}
         </div>
-        <div className="w-full grid place-items-center">
+        <div className="w-full grid place-items-center animate-none">
           <div className="flex items-center gap-2 font-[500] py-1 text-white bg-dark px-2 rounded-full">
-            <TbProgress /> <span className="text-[10px]">Track</span>
+            <motion.div
+              initial={{ rotate: 360 }}
+              whileInView={{ rotate: 0 }}
+              transition={{
+                type: "just",
+                stiffness: "100",
+                damping: 10,
+                duration: 1,
+              }}
+            >
+              <TbProgress />{" "}
+            </motion.div>
+            <span className="text-[10px]">Track</span>
           </div>
         </div>
       </div>

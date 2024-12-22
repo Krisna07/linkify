@@ -97,12 +97,17 @@ const Usage = () => {
       initial={{ y: 100, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
       transition={{ type: "spring", damping: 10, stiffness: 100 }}
-      className="laptop:w-[1400px] w-full  py-16 text-white "
+      viewport={{ once: true }}
+      className="desktop:w-[1400px] w-full  py-16 text-white "
     >
       <div className="w-full grid place-items-center  laptop:px-8 gap-4  box-border  ">
         <div className="w-full  flex flex-col items-center justify-center p-2  box-border gap-8  ">
           <div className="w-full grid gap-2 text-left">
-            <h2 className="text-3xl font-[700] animate-slidein500">Discover</h2>
+            {/* <h3 className="font-serif text-2xl">All new idea</h3> */}
+            <h2 className="text-5xl font-[400]  animate-slidein500 ">
+              Discover New Way of{" "}
+              <span className="font-serif text-primary">Sharing</span> Ideas
+            </h2>
             <p className="w-full   tablet:w-[60%] animate-slidein700">
               Dive into a world of curated content, connect effortlessly with
               others, and fully unlock your online potential through our
@@ -120,6 +125,7 @@ const Usage = () => {
                 damping: 10,
                 stiffness: 100,
               }}
+              viewport={{ once: true }}
               className="w-full  hover:shadow-lg  border overflow-hidden shadow-bs box-border  flex  rounded  relative "
             >
               {discover.map((usuage) => (
@@ -141,6 +147,7 @@ const Usage = () => {
                     }
                     initial={{ x: `-${discover.indexOf(usuage) * 50}px` }}
                     whileInView={{ x: 0 }}
+                    viewport={{ once: true }}
                     className={
                       index === discover.indexOf(usuage) || index == 0
                         ? `px-4 py-2 my-2 rounded  text-white/75    `
