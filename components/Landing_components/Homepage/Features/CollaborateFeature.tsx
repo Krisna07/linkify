@@ -3,14 +3,7 @@ import { BsPinAngleFill, BsRocketFill } from "react-icons/bs";
 import { TbStarFilled } from "react-icons/tb";
 import { MdOutlineAddReaction } from "react-icons/md";
 import FeatureCard from "./FeatureCard";
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
-import { useEffect, useState } from "react";
-
-type TypewriterTextProps = {
-  text: string; // The text to be animated
-  speed?: number;
-  className?: string; // Speed of the typing effect in milliseconds
-};
+import { motion } from "framer-motion";
 
 const CollaborateFeature = () => {
   return (
