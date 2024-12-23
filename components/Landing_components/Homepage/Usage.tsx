@@ -138,7 +138,7 @@ const Usage = () => {
                 ></motion.div>
               ))}
             </motion.div>
-            <div className="w-full  ">
+            <div className="w-full ">
               <div className="w-full h-fit  flex items-center justify-between  font-[600] relative px-2 border-b">
                 {discover.map((usuage, x) => (
                   <motion.div
@@ -148,11 +148,11 @@ const Usage = () => {
                     initial={{ x: `-${discover.indexOf(usuage) * 50}px` }}
                     whileInView={{ x: 0 }}
                     viewport={{ once: true }}
-                    className={
+                    className={`${
                       index === discover.indexOf(usuage) || index == 0
-                        ? `px-4 py-2 my-2 rounded  text-white/75    `
-                        : `  px-4 py-2 my-2 rounded  hover:text-white hover:shadow-bs transition-all  `
-                    }
+                        ? `px-2 py-2 my-2 rounded  text-white/75  `
+                        : `  px-2 py-2 my-2 rounded  `
+                    } hover:text-white hover:shadow-bs transition-all  `}
                     key={discover.indexOf(usuage)}
                     onClick={(e) => {
                       getWidthandPos(e);

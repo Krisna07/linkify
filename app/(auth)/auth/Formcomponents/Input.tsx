@@ -11,6 +11,7 @@ interface InputProps {
   secondIcon?: any;
   data?: string | number | readonly string[] | undefined;
   onchange?: any;
+  error?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -23,6 +24,7 @@ const Input: React.FC<InputProps> = ({
   secondIcon,
   data,
   onchange,
+  error,
 }) => {
   const [active, setActive] = useState<boolean>(false);
   const [inputType, setType] = useState<boolean>(false);
@@ -31,10 +33,16 @@ const Input: React.FC<InputProps> = ({
   });
 
   return (
-    <label className={`w-full p-2 bg-${color} grid gap-2`}>
+    <label className={`w-full p-2 bg-${color} grid gap-2 rounded-md`}>
       <span className="text-[16px] font-semibold">{label}</span>
 
-      <div className="relative">
+      <div
+        className={`relative ${
+          active
+            ? "shadow-[2px_2px_4px_0_green] -translate-y-[2px]"
+            : "shadow-bs translate-y-0"
+        } rounded-md overflow-hidden transition-all ease-in-out duration-300`}
+      >
         <input
           type={inputType ? "text" : type}
           name={name ? name : label.toLocaleLowerCase()}
@@ -44,13 +52,13 @@ const Input: React.FC<InputProps> = ({
           value={data}
           onChange={onchange}
           autoComplete="false"
-          className={`w-full outline-none shadow-[0_0_4px_0_gray] px-2 py-1 rounded `}
+          className={`w-full outline-none  px-2 py-1 `}
         />
 
-        <div className="absolute right-0 top-0 h-full bg-white px-2 grid place-items-center">
+        <div className="absolute right-0 top-0 h-full  px-2 grid place-items-center">
           <div
             className={` right-[2px] top-[2px] rounded-full text-[12px] p-2 ${
-              active ? "shadow bg-green-300" : "shadow-none bg-gray-300"
+              active ? " bg-green-300" : "shadow-none bg-gray-300"
             }`}
             onClick={() => setType(!inputType)}
           >

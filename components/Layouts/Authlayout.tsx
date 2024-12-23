@@ -8,10 +8,10 @@ interface Authprops {
 
 const Authlayout = ({ children }: Authprops) => {
   return (
-    <div className="w-full tablet:w-[800px] relative oveflow-hidden pb-0 p-4 grid place-items-center bg-white tablet:rounded box-border">
+    <div className="w-full tablet:w-[800px] relative oveflow-hidden pb-0 p-4 grid place-items-center bg-white tablet:rounded box-border ">
       {children}
       <Link href={"/"}>
-        <div className="w-8 h-8 bg-dark absolute top-4 right-4 rounded-full grid place-items-center rotate-[45deg] hover:rotate-0 transition-all">
+        <div className="w-8 h-8  absolute bottom-2 right-6 rotate-[45deg]  grid place-items-center hover:rotate-0 transition-all z-[100]">
           <FaArrowLeft />
         </div>
       </Link>

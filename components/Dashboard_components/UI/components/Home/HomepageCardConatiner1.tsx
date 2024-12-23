@@ -6,62 +6,43 @@ import { boardProps } from "../../../utils/Interfaces";
 interface BoardItesm {
   boardList: boardProps[];
 }
+interface items {
+  name: string;
+  count: number;
+}
 const HomepageCardConatiner1 = ({ boardList }: BoardItesm) => {
+  // const newBoards = boardList.find((board:boardProps)=>board.)
+
+  const items: items[] = [
+    {
+      name: "Total Boards",
+      count: boardList && boardList.length,
+    },
+    {
+      name: "Active Cards",
+      count: 0,
+    },
+    {
+      name: "Toatl Visits",
+      count: 0,
+    },
+  ];
   return (
     <div className="w-full flex flex-wrap gap-4 ">
-      <div className="flex items-center gap-4 w-full">
+      <div className="w-full flex items-center justify-between tablet:gap-8 gap-2 ">
         {" "}
-        <div className="w-full h-fit  p-4 shadow-bs rounded-lg">
-          <div className="grid gap-4">
-            <span>Total Boards</span>
-            <div className=" flex items-center gap-4">
-              <span className="text-4xl">
-                <Counter number={boardList && boardList.length} size={50} />
-              </span>
-              <div className="flex items-center gap-2">
-                <span className="grid gap-[2px] place-items-center">
-                  <FiTriangle className="" color="green" />
-                  <FiTriangle className="rotate-180" color="red" />
+        {items.map((item: items) => (
+          <div className="w-full h-fit  p-4 shadow-bs rounded-lg">
+            <div className=" tablet:grid gap-1 whitespace-nowrap">
+              <span>{item.name}</span>
+              <div className=" flex items-center gap-4">
+                <span className="text-4xl">
+                  <Counter number={item.count} size={50} />
                 </span>
-                <span className="text-primary -translate-y-2">1 new</span>
               </div>
             </div>
           </div>
-        </div>
-        <div className="w-full h-fit  p-4 shadow-bs rounded-lg">
-          <div className="grid gap-4">
-            <span>Active Cards</span>
-            <div className=" flex items-center gap-4">
-              <span className="text-4xl">
-                <Counter number={0} size={50} />
-              </span>
-              <div className="flex items-center gap-2">
-                <span className="grid gap-[2px] place-items-center">
-                  <FiTriangle className="" color="green" />
-                  <FiTriangle className="rotate-180" color="red" />
-                </span>
-                <span className="text-primary -translate-y-2">1 new</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="w-full h-fit  p-4 shadow-bs rounded-lg">
-        <div className="grid gap-4">
-          <span>Total Visitors</span>
-          <div className=" flex items-center gap-4">
-            <span className="shrink-1">
-              <Counter number={102} size={50} />
-            </span>
-            <div className="flex items-center gap-2">
-              <span className="grid gap-[2px] place-items-center">
-                <FiTriangle className="" color="green" />
-                <FiTriangle className="rotate-180" color="red" />
-              </span>
-              <span className="text-primary -translate-y-2">1 new</span>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

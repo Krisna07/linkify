@@ -1,9 +1,7 @@
 export default function Timer(time: number) {
   const timestamp = `${time}`;
-  // Create a Date object from the ISO string
+  // Creating the date from timestamp
   const date = new Date(timestamp);
-
-  // Get the number of milliseconds since the Unix epoch
   const milliseconds = date.getTime();
 
   // Convert milliseconds to seconds

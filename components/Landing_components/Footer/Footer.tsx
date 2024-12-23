@@ -51,12 +51,6 @@ const Footer: React.FC = () => {
   const [location, setLocation] = useState<string>();
   const countryRef = useRef<HTMLDivElement>(null);
 
-  // const getUserTimeZone = () => {
-  //   const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  //   console.log(timeZone);
-  // };
-  // getUserTimeZone();
-
   useEffect(() => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
@@ -103,7 +97,11 @@ const Footer: React.FC = () => {
     return setLangOptions(!langOptions);
   };
   useEffect(() => {
-    location && getUserCountryName(location);
+    location &&
+      setCountry(
+        countries &&
+          countries.find((country) => country.name.common === location)
+      );
   }, [location]);
 
   useOutsideClick(countryRef, () => setLangOptions(false));

@@ -7,6 +7,7 @@ import { boardProps } from "../../../../components/Dashboard_components/utils/In
 import DisplayBoards from "../../../../components/Dashboard_components/UI/components/Home/DisplayBoards";
 import HomepageCardConatiner1 from "../../../../components/Dashboard_components/UI/components/Home/HomepageCardConatiner1";
 import { toast } from "react-toastify";
+import Loading from "../../../(auth)/auth/Formcomponents/Loading";
 
 export default function Home() {
   const [list, setList] = useState<boolean>(false);
@@ -62,13 +63,7 @@ export default function Home() {
       <HomepageCardConatiner1 boardList={boards} />
 
       {loading ? (
-        <div className="grid place-items-center">
-          <div className="w-40 h-40 bg-white rounded-full relative grid place-items-center animate-spin-slow overflow-hidden">
-            <div className="absolute w-1/2 h-1/2 bg-primary right-1/2 z-0"></div>
-            <div className="w-36 h-36 bg-dark rounded-full z-10 grid place-items-center animate-none"></div>
-          </div>
-          <div className="absolute text-2xl">Loading...</div>
-        </div>
+        <Loading />
       ) : (
         <DisplayBoards boardList={displayBoard} list={list} />
       )}

@@ -1,4 +1,3 @@
-import { FaArrowLeft } from "react-icons/fa";
 import "../globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import Authlayout from "../../components/Layouts/Authlayout";

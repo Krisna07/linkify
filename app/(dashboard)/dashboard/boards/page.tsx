@@ -1,7 +1,7 @@
 import React from "react";
 
 const Page = () => {
-  return <div>Links</div>;
+  return <div>This is a board page </div>;
 };
 
 export default Page;
