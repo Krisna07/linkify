@@ -11,8 +11,8 @@ export default async function getBoards() {
       throw new Error("Failed to fetch boards");
     }
     const data = await response.json();
-    cachedBoards = data; // Cache the fetched data
-    return data;
+    cachedBoards = data.data; // Cache the fetched data
+    return cachedBoards; // Return the fetched data
   } catch (error) {
     return error;
   }

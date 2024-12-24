@@ -101,3 +101,81 @@ export async function POST(req: Request) {
     });
   }
 }
+
+// PUT handler to update a board
+export async function PUT(
+  req: Request,
+  { params }: { params: { slug: string } }
+) {
+  const user = await getCurrentUser();
+
+  if (!user) {
+    return NextResponse.json({
+      status: 401, // Unauthorized
+      message: "Not authorized user",
+    });
+  }
+
+  const { slug } = params; // Assuming slug is the board ID
+  const body = await req.json();
+  const { title, description, tags, image, boardColor } = body;
+
+  try {
+    const updatedBoard = await db.board.update({
+      where: { id: slug, userId: user.id }, // Ensure the user owns the board
+      data: {
+        title,
+        description,
+        tags,
+        image,
+        boardColor,
+      },
+    });
+
+    return NextResponse.json({
+      status: 200, // OK
+      message: "Board updated successfully",
+      updatedBoard,
+    });
+  } catch (error) {
+    console.error(error); // Logging the error for debugging
+    return NextResponse.json({
+      status: 500, // Internal Server Error
+      message: "Error updating board",
+    });
+  }
+}
+
+// DELETE handler to delete a board
+export async function DELETE(
+  req: Request,
+  { params }: { params: { slug: string } }
+) {
+  const user = await getCurrentUser();
+
+  if (!user) {
+    return NextResponse.json({
+      status: 401, // Unauthorized
+      message: "Not authorized user",
+    });
+  }
+
+  const { slug } = params; // Assuming slug is the board ID
+
+  try {
+    await db.board.delete({
+      where: { id: slug, userId: user.id }, // Ensure the user owns the board
+    });
+
+    return NextResponse.json({
+      status: 200, // OK
+      message: "Board deleted successfully",
+    });
+  } catch (error) {
+    console.error(error); // Logging the error for debugging
+    return NextResponse.json({
+      status: 500, // Internal Server Error
+      message: "Error deleting board",
+    });
+  }
+}

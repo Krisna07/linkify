@@ -32,7 +32,10 @@ const HomepageCardConatiner1 = ({ boardList }: BoardItesm) => {
       <div className="w-full flex items-center justify-between tablet:gap-8 gap-2 ">
         {" "}
         {items.map((item: items) => (
-          <div className="w-full h-fit  p-4 shadow-bs rounded-lg">
+          <div
+            key={item.name}
+            className="w-full h-fit  p-4 shadow-bs rounded-lg"
+          >
             <div className=" tablet:grid gap-1 whitespace-nowrap">
               <span>{item.name}</span>
               <div className=" flex items-center gap-4">

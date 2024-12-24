@@ -27,8 +27,8 @@ export default function Home() {
   useEffect(() => {
     const fetchBoards = async () => {
       try {
-        const data = await getBoards();
-        setBoards(data.data);
+        const res = await getBoards();
+        setBoards(res);
       } catch (err: any) {
         HandleError(err.message || "An error occurred");
       } finally {
