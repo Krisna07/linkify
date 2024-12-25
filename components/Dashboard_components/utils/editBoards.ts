@@ -1,3 +1,5 @@
+import { deleteImageFromStorage } from "./storage"; // Adjust the path as necessary
+
 export async function updateBoard(boardId: string, updatedData: any) {
   try {
     const response = await fetch(`/api/user/boards/${boardId}`, {
@@ -19,10 +21,21 @@ export async function updateBoard(boardId: string, updatedData: any) {
   }
 }
 
-export async function deleteBoard(boardId: string): Promise<boolean> {
+export async function deleteBoard(
+  boardId: string,
+  image: string | undefined
+): Promise<boolean> {
   console.log("Attempting to delete board with ID:", boardId);
 
   try {
+    // First, delete the image from storage
+    if (image) {
+      const imageDeleted = await deleteImageFromStorage(image);
+      if (!imageDeleted) {
+        console.error("Failed to delete image from storage.");
+      }
+    }
+
     const response = await fetch(`/api/user/boards/${boardId}`, {
       method: "DELETE",
       headers: {

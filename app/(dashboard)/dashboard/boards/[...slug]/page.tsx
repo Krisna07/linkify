@@ -60,7 +60,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   const handleDeleteBoard = async () => {
     console.log("Attempting to delete board with slug:", slug); // Log the slug
-    const result = await deleteBoard(slug); // Ensure slug is the correct board ID
+    const result = await deleteBoard(slug, board?.image); // Ensure slug is the correct board ID
     if (result) {
       toast.success("Board deleted successfully!");
       route.push("/dashboard/boards"); // Redirect after deletion

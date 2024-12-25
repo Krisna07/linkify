@@ -1,25 +1,15 @@
 import { supabase } from "../../../lib/supabase";
 import { NewBoardProps } from "../UI/Forms/Boardform/Boardform";
+import { uploadImageToStorage } from "./storage";
 
 export default async function AddBoard(formdata: NewBoardProps) {
   let imageurl;
 
   if (formdata.file) {
     const file = formdata.file;
-
-    try {
-      const { data } = await supabase.storage
-        .from("Boards")
-        .upload(`${file.name}-${formdata.title}`, file, {
-          cacheControl: "292500",
-          contentType: file.type,
-        });
-      imageurl = data?.path;
-    } catch (error) {
-      return error;
-    }
+    imageurl = await uploadImageToStorage(file, formdata.title);
+    console.log(imageurl);
   }
-  console.log(imageurl);
 
   const options = {
     method: "POST",

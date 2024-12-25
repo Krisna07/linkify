@@ -1,9 +1,9 @@
 let cachedBoards: any = null; // Cache variable
 
 export default async function getBoards() {
-  if (cachedBoards) {
-    return cachedBoards; // Return cached data if available
-  }
+  // if (cachedBoards) {
+  //   return cachedBoards; // Return cached data if available
+  // }
 
   try {
     const response = await fetch("/api/user/boards");
