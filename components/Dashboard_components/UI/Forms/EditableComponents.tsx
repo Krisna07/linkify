@@ -47,7 +47,7 @@ const EditableComponents = ({
       }}
       className={`${
         isPlaceholder && "text-[gray]"
-      }  px-2 py-1 outline-none border-inset border-box rounded-md`}
+      }  px-2 py-1 outline-none border-inset border-box rounded-md text-left`}
     >
       {placeholder}
     </div>

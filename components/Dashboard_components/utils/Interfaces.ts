@@ -23,3 +23,8 @@ export interface VerificationProps {
   isVerified: boolean;
   expiryTime: number;
 }
+
+export interface Projects {
+  name: string;
+  type: string;
+}

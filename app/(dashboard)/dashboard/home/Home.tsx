@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Homenav from "../../../../components/Dashboard_components/UI/Navbar/HomeNav";
-import getBoards from "../../../../components/Dashboard_components/utils/Fetchbaords";
+import getBoards from "../../../../components/Dashboard_components/utils/fetchBoards";
 import { boardProps } from "../../../../components/Dashboard_components/utils/Interfaces";
 import DisplayBoards from "../../../../components/Dashboard_components/UI/components/Home/DisplayBoards";
 import HomepageCardConatiner1 from "../../../../components/Dashboard_components/UI/components/Home/HomepageCardConatiner1";
@@ -39,7 +39,13 @@ export default function Home() {
   }, []);
 
   const actionBoardUpdate = (newBoard: boardProps) => {
-    setBoards((prevBoards: boardProps[]) => [...prevBoards, newBoard]); // Ensure prevBoards is an array
+    setBoards((prevBoards: boardProps[] | null) => {
+      if (Array.isArray(prevBoards)) {
+        return [...prevBoards, newBoard];
+      } else {
+        return [newBoard];
+      }
+    });
   };
 
   const handleSearch = (item: boardProps[]) => {

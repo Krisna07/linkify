@@ -15,7 +15,7 @@ const Board = ({ board }: BoardProps) => {
   const Route = useRouter();
   return (
     <div
-      onClick={() => Route.push(`/dashboard/boards/${board.id}`)}
+      onClick={() => Route.push(`/dashboard/boards/${board.link}`)}
       className="group w-full h-full grid gap-4 p-2 cursor-pointer shadow-bs border border-transparent rounded-md transition-all duration-500 hover:border-white/50 relative overflow-hidden"
     >
       <div

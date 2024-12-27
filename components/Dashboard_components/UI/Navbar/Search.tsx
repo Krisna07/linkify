@@ -47,13 +47,13 @@ const Search = ({ boards, handleSearch }: SearchProps) => {
   };
 
   return (
-    <div className="group w-full flex items-center gap-4 px-4 p-1   box-border rounded-lg relative z-20  ">
-      <FaSearch size={24} />
+    <div className="group w-full flex items-center gap-4 px-4 p-1 border border-accent/50   box-border rounded-lg relative z-20 focus:border-white transition-all duration-300">
+      <FaSearch size={16} />
       {selectedSearch &&
         selectedSearch.map((search) => (
           <span
             key={search}
-            className=" flex  items-center gap-2  px-2 py-1 whitespace-nowrap bg-silver text-dark rounded-md leading-[110%]"
+            className=" flex  items-center gap-2 text-sm  px-2 py-1 whitespace-nowrap bg-silver text-dark rounded-md leading-[110%]"
           >
             {search}{" "}
             <FaX
@@ -73,7 +73,7 @@ const Search = ({ boards, handleSearch }: SearchProps) => {
           placeholder={"Search"}
           onBlur={handleBlur}
           onChange={handlesearch}
-          className="bg-dark px-2 p-2 outline-none w-[100%] focus:rounded-lg"
+          className="bg-dark px-2 p-1 text-sm outline-none w-[100%] "
         />
         {search.length > 0 && (
           <div
@@ -83,7 +83,7 @@ const Search = ({ boards, handleSearch }: SearchProps) => {
             {search.map((item: boardProps) => (
               <div
                 key={item.title}
-                className="w-full p-2 px-4 bg-accent hover:bg-accent/[90%] hover:text-tahiti transition-all duration-300 cursor-pointer"
+                className="w-full p-2 px-4 text-sm bg-accent hover:bg-accent/[90%] hover:text-tahiti transition-all duration-300 cursor-pointer"
                 onClick={selectSearch}
               >
                 {item.title}

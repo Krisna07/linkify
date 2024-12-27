@@ -1,15 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
-import getBoards from "../../../../../components/Dashboard_components/utils/Fetchbaords";
+import getBoards from "../../../../../components/Dashboard_components/utils/fetchBoards";
 import { boardProps } from "../../../../../components/Dashboard_components/utils/Interfaces";
 import { toast } from "react-toastify";
 import Loading from "../../../../(auth)/auth/Formcomponents/Loading";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import {
-  updateBoard,
-  deleteBoard,
-} from "../../../../../components/Dashboard_components/utils/editBoards";
+import { updateBoard } from "../../../../../components/Dashboard_components/utils/editBoards";
+import { deleteBoard } from "../../../../../components/Dashboard_components/utils/deleteBoard";
 
 export default function Page({ params }: { params: { slug: string } }) {
   const slug = params.slug;
@@ -27,7 +25,7 @@ export default function Page({ params }: { params: { slug: string } }) {
     const fetchBoards = async () => {
       try {
         const data = await getBoards();
-        const thisData = data.find((board: boardProps) => board.id == slug);
+        const thisData = data.find((board: boardProps) => board.link == slug);
         if (thisData) {
           setBoard(thisData);
           setUpdatedData({
@@ -44,29 +42,25 @@ export default function Page({ params }: { params: { slug: string } }) {
         setLoading(false);
       }
     };
+
     fetchBoards();
   }, []);
 
+  board && console.log(board);
   const handleUpdateBoard = async () => {
     const result = await updateBoard(slug, updatedData);
     if (result) {
       toast.success("Board updated successfully!");
-      setIsEditing(false); // Close the edit form
-      setBoard((prev) => (prev ? { ...prev, ...updatedData } : null)); // Update local state safely
+      setIsEditing(false);
+      setBoard((prev) => (prev ? { ...prev, ...updatedData } : null));
     } else {
       toast.error("Failed to update board.");
     }
   };
 
   const handleDeleteBoard = async () => {
-    console.log("Attempting to delete board with slug:", slug); // Log the slug
-    const result = await deleteBoard(slug, board?.image); // Ensure slug is the correct board ID
-    if (result) {
-      toast.success("Board deleted successfully!");
-      route.push("/dashboard/boards"); // Redirect after deletion
-    } else {
-      toast.error("Failed to delete board.");
-    }
+    console.log("Attempting to delete board with slug:", slug);
+    const result = await deleteBoard(slug, `${board?.image}`);
   };
 
   if (loading || !board) {

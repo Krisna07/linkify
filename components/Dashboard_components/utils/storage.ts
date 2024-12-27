@@ -2,9 +2,9 @@ import { supabase } from "../../../lib/supabase";
 
 // Function to delete an image from Supabase storage
 export async function deleteImageFromStorage(imagePath: string) {
+  console.log(imagePath);
   try {
     const { error } = await supabase.storage.from("Boards").remove([imagePath]);
-
     if (error) {
       throw new Error(`Error deleting image: ${error.message}`);
     }
