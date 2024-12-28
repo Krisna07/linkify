@@ -24,7 +24,14 @@ export interface VerificationProps {
   expiryTime: number;
 }
 
-export interface Projects {
+export interface Board {
+  id: string;
+  title: string;
+  description?: string;
+}
+
+export interface Project {
   name: string;
   type: string;
+  boards: Board[];
 }
