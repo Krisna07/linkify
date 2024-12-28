@@ -41,7 +41,7 @@ const Appnav = ({ user }: NavProps) => {
 
   return (
     <div className="w-full flex items-center justify-between px-4 py-1 gap-4">
-      <div className="flex items-center py-2 gap-2">
+      <div className="flex items-center py-2 gap-2 ">
         <Link
           href="/dashboard"
           className="h-6 w-6 rounded-full overflow-hidden"

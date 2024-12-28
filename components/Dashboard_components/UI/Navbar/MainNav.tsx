@@ -25,7 +25,7 @@ export default function Mainnav({ user }: NavProps) {
   const navlinks: MenuProps[] = [
     { name: "Overview", link: "/dashboard" },
     { name: "Activity", link: "/dashboard/activity" },
-    { name: "Usage", link: "/dashboard/usage" },
+    // { name: "Usage", link: "/dashboard/usage" },
     { name: "Boards", link: "/dashboard/boards" },
   ];
 
@@ -72,7 +72,7 @@ export default function Mainnav({ user }: NavProps) {
       <Appnav user={user} />
       <div className="w-full overflow-hidden pb-1">
         <div
-          className="w-full flex items-center relative overflow-hidden tablet:px-8 gap-4 text-gray-400 overflow-x-scroll scrollbar-hide group"
+          className="w-full flex items-center sticky top-0 overflow-hidden tablet:px-8 gap-4 text-gray-400 overflow-x-scroll scrollbar-hide group "
           onMouseLeave={resetHover}
         >
           {navlinks.map((item) => (
