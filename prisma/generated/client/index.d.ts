@@ -231,7 +231,6 @@ export namespace Prisma {
   export import PrismaClientRustPanicError = runtime.PrismaClientRustPanicError
   export import PrismaClientInitializationError = runtime.PrismaClientInitializationError
   export import PrismaClientValidationError = runtime.PrismaClientValidationError
-  export import NotFoundError = runtime.NotFoundError
 
   /**
    * Re-export of sql-template-tag
@@ -241,6 +240,8 @@ export namespace Prisma {
   export import join = runtime.join
   export import raw = runtime.raw
   export import Sql = runtime.Sql
+
+
 
   /**
    * Decimal.js
@@ -268,8 +269,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 5.19.1
-   * Query Engine version: 69d742ee20b815d88e17e54db4a2a7a3b30324e3
+   * Prisma Client JS version: 6.1.0
+   * Query Engine version: 11f085a2012c0f4778414c8db2651556ee0ef959
    */
   export type PrismaVersion = {
     client: string
@@ -4313,6 +4314,7 @@ export namespace Prisma {
     title: string | null
     link: string | null
     image: string | null
+    category: string | null
     boardColor: string | null
     timestamp: Date | null
   }
@@ -4324,6 +4326,7 @@ export namespace Prisma {
     title: string | null
     link: string | null
     image: string | null
+    category: string | null
     boardColor: string | null
     timestamp: Date | null
   }
@@ -4335,6 +4338,7 @@ export namespace Prisma {
     title: number
     link: number
     image: number
+    category: number
     boardColor: number
     tags: number
     timestamp: number
@@ -4349,6 +4353,7 @@ export namespace Prisma {
     title?: true
     link?: true
     image?: true
+    category?: true
     boardColor?: true
     timestamp?: true
   }
@@ -4360,6 +4365,7 @@ export namespace Prisma {
     title?: true
     link?: true
     image?: true
+    category?: true
     boardColor?: true
     timestamp?: true
   }
@@ -4371,6 +4377,7 @@ export namespace Prisma {
     title?: true
     link?: true
     image?: true
+    category?: true
     boardColor?: true
     tags?: true
     timestamp?: true
@@ -4456,6 +4463,7 @@ export namespace Prisma {
     title: string
     link: string | null
     image: string | null
+    category: string
     boardColor: string
     tags: string[]
     timestamp: Date
@@ -4485,6 +4493,7 @@ export namespace Prisma {
     title?: boolean
     link?: boolean
     image?: boolean
+    category?: boolean
     boardColor?: boolean
     tags?: boolean
     timestamp?: boolean
@@ -4500,6 +4509,7 @@ export namespace Prisma {
     title?: boolean
     link?: boolean
     image?: boolean
+    category?: boolean
     boardColor?: boolean
     tags?: boolean
     timestamp?: boolean
@@ -4513,6 +4523,7 @@ export namespace Prisma {
     title?: boolean
     link?: boolean
     image?: boolean
+    category?: boolean
     boardColor?: boolean
     tags?: boolean
     timestamp?: boolean
@@ -4540,6 +4551,7 @@ export namespace Prisma {
       title: string
       link: string | null
       image: string | null
+      category: string
       boardColor: string
       tags: string[]
       timestamp: Date
@@ -4944,6 +4956,7 @@ export namespace Prisma {
     readonly title: FieldRef<"Board", 'String'>
     readonly link: FieldRef<"Board", 'String'>
     readonly image: FieldRef<"Board", 'String'>
+    readonly category: FieldRef<"Board", 'String'>
     readonly boardColor: FieldRef<"Board", 'String'>
     readonly tags: FieldRef<"Board", 'String[]'>
     readonly timestamp: FieldRef<"Board", 'DateTime'>
@@ -6358,6 +6371,7 @@ export namespace Prisma {
     title: 'title',
     link: 'link',
     image: 'image',
+    category: 'category',
     boardColor: 'boardColor',
     tags: 'tags',
     timestamp: 'timestamp'
@@ -6486,8 +6500,8 @@ export namespace Prisma {
     avatar?: StringNullableFilter<"User"> | string | null
     timestamp?: DateTimeFilter<"User"> | Date | string
     boards?: BoardListRelationFilter
-    userDetails?: XOR<UserDetailsNullableRelationFilter, UserDetailsWhereInput> | null
-    verification?: XOR<VerificationNullableRelationFilter, VerificationWhereInput> | null
+    userDetails?: XOR<UserDetailsNullableScalarRelationFilter, UserDetailsWhereInput> | null
+    verification?: XOR<VerificationNullableScalarRelationFilter, VerificationWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
@@ -6515,8 +6529,8 @@ export namespace Prisma {
     avatar?: StringNullableFilter<"User"> | string | null
     timestamp?: DateTimeFilter<"User"> | Date | string
     boards?: BoardListRelationFilter
-    userDetails?: XOR<UserDetailsNullableRelationFilter, UserDetailsWhereInput> | null
-    verification?: XOR<VerificationNullableRelationFilter, VerificationWhereInput> | null
+    userDetails?: XOR<UserDetailsNullableScalarRelationFilter, UserDetailsWhereInput> | null
+    verification?: XOR<VerificationNullableScalarRelationFilter, VerificationWhereInput> | null
   }, "id" | "email" | "username">
 
   export type UserOrderByWithAggregationInput = {
@@ -6555,7 +6569,7 @@ export namespace Prisma {
     verified?: BoolFilter<"Verification"> | boolean
     timestamp?: DateTimeFilter<"Verification"> | Date | string
     lastUpdated?: DateTimeFilter<"Verification"> | Date | string
-    user?: XOR<UserRelationFilter, UserWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type VerificationOrderByWithRelationInput = {
@@ -6578,7 +6592,7 @@ export namespace Prisma {
     verified?: BoolFilter<"Verification"> | boolean
     timestamp?: DateTimeFilter<"Verification"> | Date | string
     lastUpdated?: DateTimeFilter<"Verification"> | Date | string
-    user?: XOR<UserRelationFilter, UserWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "userId">
 
   export type VerificationOrderByWithAggregationInput = {
@@ -6627,7 +6641,7 @@ export namespace Prisma {
     socials?: StringNullableListFilter<"UserDetails">
     website?: StringNullableFilter<"UserDetails"> | string | null
     timestamp?: DateTimeFilter<"UserDetails"> | Date | string
-    user?: XOR<UserRelationFilter, UserWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type UserDetailsOrderByWithRelationInput = {
@@ -6670,7 +6684,7 @@ export namespace Prisma {
     socials?: StringNullableListFilter<"UserDetails">
     website?: StringNullableFilter<"UserDetails"> | string | null
     timestamp?: DateTimeFilter<"UserDetails"> | Date | string
-    user?: XOR<UserRelationFilter, UserWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "userId">
 
   export type UserDetailsOrderByWithAggregationInput = {
@@ -6727,10 +6741,11 @@ export namespace Prisma {
     title?: StringFilter<"Board"> | string
     link?: StringNullableFilter<"Board"> | string | null
     image?: StringNullableFilter<"Board"> | string | null
+    category?: StringFilter<"Board"> | string
     boardColor?: StringFilter<"Board"> | string
     tags?: StringNullableListFilter<"Board">
     timestamp?: DateTimeFilter<"Board"> | Date | string
-    user?: XOR<UserRelationFilter, UserWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     feedbacks?: FeedbackListRelationFilter
   }
 
@@ -6741,6 +6756,7 @@ export namespace Prisma {
     title?: SortOrder
     link?: SortOrderInput | SortOrder
     image?: SortOrderInput | SortOrder
+    category?: SortOrder
     boardColor?: SortOrder
     tags?: SortOrder
     timestamp?: SortOrder
@@ -6758,10 +6774,11 @@ export namespace Prisma {
     title?: StringFilter<"Board"> | string
     link?: StringNullableFilter<"Board"> | string | null
     image?: StringNullableFilter<"Board"> | string | null
+    category?: StringFilter<"Board"> | string
     boardColor?: StringFilter<"Board"> | string
     tags?: StringNullableListFilter<"Board">
     timestamp?: DateTimeFilter<"Board"> | Date | string
-    user?: XOR<UserRelationFilter, UserWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     feedbacks?: FeedbackListRelationFilter
   }, "id">
 
@@ -6772,6 +6789,7 @@ export namespace Prisma {
     title?: SortOrder
     link?: SortOrderInput | SortOrder
     image?: SortOrderInput | SortOrder
+    category?: SortOrder
     boardColor?: SortOrder
     tags?: SortOrder
     timestamp?: SortOrder
@@ -6790,6 +6808,7 @@ export namespace Prisma {
     title?: StringWithAggregatesFilter<"Board"> | string
     link?: StringNullableWithAggregatesFilter<"Board"> | string | null
     image?: StringNullableWithAggregatesFilter<"Board"> | string | null
+    category?: StringWithAggregatesFilter<"Board"> | string
     boardColor?: StringWithAggregatesFilter<"Board"> | string
     tags?: StringNullableListFilter<"Board">
     timestamp?: DateTimeWithAggregatesFilter<"Board"> | Date | string
@@ -6806,7 +6825,7 @@ export namespace Prisma {
     rating?: FloatFilter<"Feedback"> | number
     comment?: StringFilter<"Feedback"> | string
     timestamp?: DateTimeFilter<"Feedback"> | Date | string
-    board?: XOR<BoardRelationFilter, BoardWhereInput>
+    board?: XOR<BoardScalarRelationFilter, BoardWhereInput>
   }
 
   export type FeedbackOrderByWithRelationInput = {
@@ -6831,7 +6850,7 @@ export namespace Prisma {
     rating?: FloatFilter<"Feedback"> | number
     comment?: StringFilter<"Feedback"> | string
     timestamp?: DateTimeFilter<"Feedback"> | Date | string
-    board?: XOR<BoardRelationFilter, BoardWhereInput>
+    board?: XOR<BoardScalarRelationFilter, BoardWhereInput>
   }, "id">
 
   export type FeedbackOrderByWithAggregationInput = {
@@ -7144,6 +7163,7 @@ export namespace Prisma {
     title: string
     link?: string | null
     image?: string | null
+    category: string
     boardColor: string
     tags?: BoardCreatetagsInput | string[]
     timestamp?: Date | string
@@ -7158,6 +7178,7 @@ export namespace Prisma {
     title: string
     link?: string | null
     image?: string | null
+    category: string
     boardColor: string
     tags?: BoardCreatetagsInput | string[]
     timestamp?: Date | string
@@ -7170,6 +7191,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: StringFieldUpdateOperationsInput | string
     boardColor?: StringFieldUpdateOperationsInput | string
     tags?: BoardUpdatetagsInput | string[]
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7184,6 +7206,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: StringFieldUpdateOperationsInput | string
     boardColor?: StringFieldUpdateOperationsInput | string
     tags?: BoardUpdatetagsInput | string[]
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7197,6 +7220,7 @@ export namespace Prisma {
     title: string
     link?: string | null
     image?: string | null
+    category: string
     boardColor: string
     tags?: BoardCreatetagsInput | string[]
     timestamp?: Date | string
@@ -7208,6 +7232,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: StringFieldUpdateOperationsInput | string
     boardColor?: StringFieldUpdateOperationsInput | string
     tags?: BoardUpdatetagsInput | string[]
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7220,6 +7245,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: StringFieldUpdateOperationsInput | string
     boardColor?: StringFieldUpdateOperationsInput | string
     tags?: BoardUpdatetagsInput | string[]
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7341,12 +7367,12 @@ export namespace Prisma {
     none?: BoardWhereInput
   }
 
-  export type UserDetailsNullableRelationFilter = {
+  export type UserDetailsNullableScalarRelationFilter = {
     is?: UserDetailsWhereInput | null
     isNot?: UserDetailsWhereInput | null
   }
 
-  export type VerificationNullableRelationFilter = {
+  export type VerificationNullableScalarRelationFilter = {
     is?: VerificationWhereInput | null
     isNot?: VerificationWhereInput | null
   }
@@ -7456,7 +7482,7 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type UserRelationFilter = {
+  export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
   }
@@ -7625,6 +7651,7 @@ export namespace Prisma {
     title?: SortOrder
     link?: SortOrder
     image?: SortOrder
+    category?: SortOrder
     boardColor?: SortOrder
     tags?: SortOrder
     timestamp?: SortOrder
@@ -7637,6 +7664,7 @@ export namespace Prisma {
     title?: SortOrder
     link?: SortOrder
     image?: SortOrder
+    category?: SortOrder
     boardColor?: SortOrder
     timestamp?: SortOrder
   }
@@ -7648,6 +7676,7 @@ export namespace Prisma {
     title?: SortOrder
     link?: SortOrder
     image?: SortOrder
+    category?: SortOrder
     boardColor?: SortOrder
     timestamp?: SortOrder
   }
@@ -7663,7 +7692,7 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type BoardRelationFilter = {
+  export type BoardScalarRelationFilter = {
     is?: BoardWhereInput
     isNot?: BoardWhereInput
   }
@@ -8187,6 +8216,7 @@ export namespace Prisma {
     title: string
     link?: string | null
     image?: string | null
+    category: string
     boardColor: string
     tags?: BoardCreatetagsInput | string[]
     timestamp?: Date | string
@@ -8199,6 +8229,7 @@ export namespace Prisma {
     title: string
     link?: string | null
     image?: string | null
+    category: string
     boardColor: string
     tags?: BoardCreatetagsInput | string[]
     timestamp?: Date | string
@@ -8303,6 +8334,7 @@ export namespace Prisma {
     title?: StringFilter<"Board"> | string
     link?: StringNullableFilter<"Board"> | string | null
     image?: StringNullableFilter<"Board"> | string | null
+    category?: StringFilter<"Board"> | string
     boardColor?: StringFilter<"Board"> | string
     tags?: StringNullableListFilter<"Board">
     timestamp?: DateTimeFilter<"Board"> | Date | string
@@ -8637,6 +8669,7 @@ export namespace Prisma {
     title: string
     link?: string | null
     image?: string | null
+    category: string
     boardColor: string
     tags?: BoardCreatetagsInput | string[]
     timestamp?: Date | string
@@ -8650,6 +8683,7 @@ export namespace Prisma {
     title: string
     link?: string | null
     image?: string | null
+    category: string
     boardColor: string
     tags?: BoardCreatetagsInput | string[]
     timestamp?: Date | string
@@ -8677,6 +8711,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: StringFieldUpdateOperationsInput | string
     boardColor?: StringFieldUpdateOperationsInput | string
     tags?: BoardUpdatetagsInput | string[]
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8690,6 +8725,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: StringFieldUpdateOperationsInput | string
     boardColor?: StringFieldUpdateOperationsInput | string
     tags?: BoardUpdatetagsInput | string[]
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8701,6 +8737,7 @@ export namespace Prisma {
     title: string
     link?: string | null
     image?: string | null
+    category: string
     boardColor: string
     tags?: BoardCreatetagsInput | string[]
     timestamp?: Date | string
@@ -8712,6 +8749,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: StringFieldUpdateOperationsInput | string
     boardColor?: StringFieldUpdateOperationsInput | string
     tags?: BoardUpdatetagsInput | string[]
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8724,6 +8762,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: StringFieldUpdateOperationsInput | string
     boardColor?: StringFieldUpdateOperationsInput | string
     tags?: BoardUpdatetagsInput | string[]
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8736,6 +8775,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: StringFieldUpdateOperationsInput | string
     boardColor?: StringFieldUpdateOperationsInput | string
     tags?: BoardUpdatetagsInput | string[]
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8778,38 +8818,6 @@ export namespace Prisma {
   }
 
 
-
-  /**
-   * Aliases for legacy arg types
-   */
-    /**
-     * @deprecated Use UserCountOutputTypeDefaultArgs instead
-     */
-    export type UserCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserCountOutputTypeDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use BoardCountOutputTypeDefaultArgs instead
-     */
-    export type BoardCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = BoardCountOutputTypeDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use UserDefaultArgs instead
-     */
-    export type UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use VerificationDefaultArgs instead
-     */
-    export type VerificationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = VerificationDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use UserDetailsDefaultArgs instead
-     */
-    export type UserDetailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserDetailsDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use BoardDefaultArgs instead
-     */
-    export type BoardArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = BoardDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use FeedbackDefaultArgs instead
-     */
-    export type FeedbackArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = FeedbackDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

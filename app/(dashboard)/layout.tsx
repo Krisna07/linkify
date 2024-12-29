@@ -19,6 +19,8 @@ export default async function RootLayout({
 }) {
   const user: userProps | null = await getCurrentUser();
 
+  console.log(user);
+
   if (!user) {
     return <ErrorPage />;
   }

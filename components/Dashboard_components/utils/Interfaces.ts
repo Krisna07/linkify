@@ -4,7 +4,7 @@ export interface userProps {
   name?: string;
   image: string;
   id: string;
-  verified?: boolean;
+  isVerified?: boolean;
   timestamp?: number;
 }
 
@@ -24,14 +24,7 @@ export interface VerificationProps {
   expiryTime: number;
 }
 
-export interface Board {
-  id: string;
-  title: string;
-  description?: string;
-}
-
-export interface Project {
+export interface Projects {
   name: string;
   type: string;
-  boards: Board[];
 }

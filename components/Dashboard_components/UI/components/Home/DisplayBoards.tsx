@@ -13,7 +13,7 @@ const DisplayBoards = ({ boardList, list }: displayBoardProps) => {
         list
           ? "grid-cols-1"
           : "laptop:grid-cols-3  tablet:grid-cols-2 grid-cols-1"
-      } place-items-start gap-8 relative z-10 text-[gray] `}
+      } place-items-start gap-8 pb-4 relative z-10 text-[gray] `}
     >
       {boardList && boardList.length > 0 ? (
         boardList.map((item: boardProps, index: number) => (

@@ -113,7 +113,6 @@ const NewBoardForm: React.FC<NewBoardFormProps> = ({
       toast.error(`${error}`);
     } finally {
     }
-    // console.log(formData);
   };
 
   useEffect(() => {

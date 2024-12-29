@@ -57,7 +57,7 @@ export default function Home() {
   }, [boards, search]);
 
   return (
-    <div className="w-full laptop:max-w-[1200px] overflow-x-auto overflow-hidden px-2 flex flex-col gap-8 box-border">
+    <div className="w-full laptop:max-w-[1200px] overflow-x-auto overflow-hidden px-2  flex flex-col gap-8 box-border">
       <Homenav
         list={list}
         boards={boards}

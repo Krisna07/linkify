@@ -19,6 +19,8 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { email, username, password } = body;
 
+    console.log(body);
+
     // Validate user data
     if (!email || !username || !password) {
       return NextResponse.json({
