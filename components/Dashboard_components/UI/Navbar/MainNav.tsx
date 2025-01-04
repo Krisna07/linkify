@@ -27,6 +27,7 @@ export default function Mainnav({ user }: NavProps) {
     { name: "Activity", link: "/dashboard/activity" },
     // { name: "Usage", link: "/dashboard/usage" },
     { name: "Boards", link: "/dashboard/boards" },
+    { name: "Projects", link: "/dashboard/projects" },
   ];
 
   const route = usePathname();
@@ -95,7 +96,7 @@ export default function Mainnav({ user }: NavProps) {
             style={styles.hoverIndicator}
             className={`${
               !isHovering ? "hidden" : ""
-            } h-full bg-primary/75 transition-all duration-300 left-0 absolute z-10 bottom-0 rounded`}
+            } h-full bg-primary/25 transition-all duration-300 left-0 absolute z-10 bottom-0 rounded`}
           ></div>
         </div>
       </div>

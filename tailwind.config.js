@@ -63,7 +63,7 @@ module.exports = {
     },
     screens: {
       tablet: "600px",
-      laptop: "1400px",
+      laptop: "1000px",
       desktop: "1800px",
     },
   },
