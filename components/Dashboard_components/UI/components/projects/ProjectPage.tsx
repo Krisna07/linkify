@@ -230,14 +230,16 @@ const ProjectsPage = () => {
               >
                 <div className="max-[450px]:grid flex items-center gap-1">
                   <div className="flex items-center gap-2 mr-2">
-                    <div className="w-6 h-6 rounded-full overflow-hidden">
-                      <Image
-                        src={item.image}
-                        alt="boardimage"
-                        width={1}
-                        height={1}
-                        className="object-fill w-full h-full"
-                      />
+                    <div className="w-6 h-6 rounded-full overflow-hidden bg-gradient-to-tl from-primary to-accent/50">
+                      {item.image && (
+                        <Image
+                          src={item.image}
+                          alt="boardimage"
+                          width={1}
+                          height={1}
+                          className="object-fill w-full h-full"
+                        />
+                      )}
                     </div>
                     <span className="text-silver/75 font-semibold whitespace-nowrap flex items-center gap-1">
                       {item.name}

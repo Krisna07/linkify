@@ -21,7 +21,7 @@ export async function PUT(
 
   try {
     const updatedBoard = await db.board.update({
-      where: { id: slug, userId: user.id }, // Ensure the user owns the board
+      where: { id: slug, creator: user.username }, // Ensure the user owns the board
       data: {
         title,
         description,
@@ -64,7 +64,7 @@ export async function DELETE(
 
   try {
     const existingBoard = await db.board.findUnique({
-      where: { id: slug, userId: user.id },
+      where: { id: slug, creator: user.username },
     });
 
     if (!existingBoard) {
@@ -75,7 +75,7 @@ export async function DELETE(
     }
 
     await db.board.delete({
-      where: { id: slug, userId: user.id },
+      where: { id: slug, creator: user.username },
     });
 
     return NextResponse.json({
