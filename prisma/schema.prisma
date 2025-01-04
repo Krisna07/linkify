@@ -16,7 +16,7 @@ model User {
   username          String       @unique
   password          String
   avatar            String?
-  boards            Board[]
+  projects          Project[]
   userDetails       UserDetails?
   verification      Verification?
   timestamp         DateTime     @default(now())
@@ -52,10 +52,23 @@ model UserDetails {
   timestamp         DateTime     @default(now())
 }
 
+model Project {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  name        String
+  type        String
+  createdOn   DateTime @default(now())
+  isPrivate   Boolean
+  image       String?
+  boards      Board[]  @relation("ProjectBoards")
+}
+
 model Board {
   id                String       @id @default(cuid())
-  userId            String
-  user              User         @relation(fields: [userId], references: [id])
+  projectId         String
+  project           Project? @relation("ProjectBoards", fields: [projectId], references: [id])
+  creator           String
   description       String
   title             String
   link              String?
@@ -64,6 +77,7 @@ model Board {
   boardColor        String
   tags              String[]
   feedbacks         Feedback[]
+  likes             Float
   timestamp         DateTime     @default(now())
 }
 

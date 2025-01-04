@@ -16,7 +16,7 @@ export async function GET(req: Request) {
 
   try {
     const boards = await db.board.findMany({
-      where: { userId: user.id },
+      where: { creator: user.username },
       include: { feedbacks: true }, // Ensure the relation name matches your schema
     });
 
@@ -52,9 +52,9 @@ export async function POST(req: Request) {
     }
 
     const body = await req.json();
-    const { title, description, tags, image } = body;
+    const { title, description, tags, image, category } = body;
 
-    if (!title || !description) {
+    if (!title || !description || !category) {
       return NextResponse.json({
         status: 400, // Bad Request
         message: "Missing required board data",
@@ -65,7 +65,7 @@ export async function POST(req: Request) {
     const existingBoard = await db.board.findFirst({
       where: {
         title,
-        userId: user.id,
+        creator: user.username,
       },
     });
 
@@ -78,13 +78,15 @@ export async function POST(req: Request) {
 
     const newBoard = await db.board.create({
       data: {
-        userId: user.id,
+        creator: user.username,
         title,
         description,
         link: GenerateLink(title),
         tags,
         boardColor: RandomBgGenerator(),
         image: image,
+        category,
+        likes: 0,
       },
     });
 

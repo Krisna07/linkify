@@ -29,6 +29,11 @@ export type Verification = $Result.DefaultSelection<Prisma.$VerificationPayload>
  */
 export type UserDetails = $Result.DefaultSelection<Prisma.$UserDetailsPayload>
 /**
+ * Model Project
+ * 
+ */
+export type Project = $Result.DefaultSelection<Prisma.$ProjectPayload>
+/**
  * Model Board
  * 
  */
@@ -191,6 +196,16 @@ export class PrismaClient<
     * ```
     */
   get userDetails(): Prisma.UserDetailsDelegate<ExtArgs>;
+
+  /**
+   * `prisma.project`: Exposes CRUD operations for the **Project** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Projects
+    * const projects = await prisma.project.findMany()
+    * ```
+    */
+  get project(): Prisma.ProjectDelegate<ExtArgs>;
 
   /**
    * `prisma.board`: Exposes CRUD operations for the **Board** model.
@@ -654,6 +669,7 @@ export namespace Prisma {
     User: 'User',
     Verification: 'Verification',
     UserDetails: 'UserDetails',
+    Project: 'Project',
     Board: 'Board',
     Feedback: 'Feedback'
   };
@@ -671,7 +687,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "verification" | "userDetails" | "board" | "feedback"
+      modelProps: "user" | "verification" | "userDetails" | "project" | "board" | "feedback"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -882,6 +898,76 @@ export namespace Prisma {
           count: {
             args: Prisma.UserDetailsCountArgs<ExtArgs>
             result: $Utils.Optional<UserDetailsCountAggregateOutputType> | number
+          }
+        }
+      }
+      Project: {
+        payload: Prisma.$ProjectPayload<ExtArgs>
+        fields: Prisma.ProjectFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProjectFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProjectFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload>
+          }
+          findFirst: {
+            args: Prisma.ProjectFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProjectFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload>
+          }
+          findMany: {
+            args: Prisma.ProjectFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload>[]
+          }
+          create: {
+            args: Prisma.ProjectCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload>
+          }
+          createMany: {
+            args: Prisma.ProjectCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ProjectCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload>[]
+          }
+          delete: {
+            args: Prisma.ProjectDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload>
+          }
+          update: {
+            args: Prisma.ProjectUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProjectDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProjectUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ProjectUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectPayload>
+          }
+          aggregate: {
+            args: Prisma.ProjectAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProject>
+          }
+          groupBy: {
+            args: Prisma.ProjectGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProjectGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProjectCountArgs<ExtArgs>
+            result: $Utils.Optional<ProjectCountAggregateOutputType> | number
           }
         }
       }
@@ -1186,11 +1272,11 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    boards: number
+    projects: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    boards?: boolean | UserCountOutputTypeCountBoardsArgs
+    projects?: boolean | UserCountOutputTypeCountProjectsArgs
   }
 
   // Custom InputTypes
@@ -1207,7 +1293,38 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountBoardsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeCountProjectsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectWhereInput
+  }
+
+
+  /**
+   * Count Type ProjectCountOutputType
+   */
+
+  export type ProjectCountOutputType = {
+    boards: number
+  }
+
+  export type ProjectCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    boards?: boolean | ProjectCountOutputTypeCountBoardsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectCountOutputType
+     */
+    select?: ProjectCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountBoardsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: BoardWhereInput
   }
 
@@ -1427,7 +1544,7 @@ export namespace Prisma {
     password?: boolean
     avatar?: boolean
     timestamp?: boolean
-    boards?: boolean | User$boardsArgs<ExtArgs>
+    projects?: boolean | User$projectsArgs<ExtArgs>
     userDetails?: boolean | User$userDetailsArgs<ExtArgs>
     verification?: boolean | User$verificationArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1454,7 +1571,7 @@ export namespace Prisma {
   }
 
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    boards?: boolean | User$boardsArgs<ExtArgs>
+    projects?: boolean | User$projectsArgs<ExtArgs>
     userDetails?: boolean | User$userDetailsArgs<ExtArgs>
     verification?: boolean | User$verificationArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1464,7 +1581,7 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      boards: Prisma.$BoardPayload<ExtArgs>[]
+      projects: Prisma.$ProjectPayload<ExtArgs>[]
       userDetails: Prisma.$UserDetailsPayload<ExtArgs> | null
       verification: Prisma.$VerificationPayload<ExtArgs> | null
     }
@@ -1840,7 +1957,7 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    boards<T extends User$boardsArgs<ExtArgs> = {}>(args?: Subset<T, User$boardsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BoardPayload<ExtArgs>, T, "findMany"> | Null>
+    projects<T extends User$projectsArgs<ExtArgs> = {}>(args?: Subset<T, User$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany"> | Null>
     userDetails<T extends User$userDetailsArgs<ExtArgs> = {}>(args?: Subset<T, User$userDetailsArgs<ExtArgs>>): Prisma__UserDetailsClient<$Result.GetResult<Prisma.$UserDetailsPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     verification<T extends User$verificationArgs<ExtArgs> = {}>(args?: Subset<T, User$verificationArgs<ExtArgs>>): Prisma__VerificationClient<$Result.GetResult<Prisma.$VerificationPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     /**
@@ -2193,23 +2310,23 @@ export namespace Prisma {
   }
 
   /**
-   * User.boards
+   * User.projects
    */
-  export type User$boardsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$projectsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Board
+     * Select specific fields to fetch from the Project
      */
-    select?: BoardSelect<ExtArgs> | null
+    select?: ProjectSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BoardInclude<ExtArgs> | null
-    where?: BoardWhereInput
-    orderBy?: BoardOrderByWithRelationInput | BoardOrderByWithRelationInput[]
-    cursor?: BoardWhereUniqueInput
+    include?: ProjectInclude<ExtArgs> | null
+    where?: ProjectWhereInput
+    orderBy?: ProjectOrderByWithRelationInput | ProjectOrderByWithRelationInput[]
+    cursor?: ProjectWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: BoardScalarFieldEnum | BoardScalarFieldEnum[]
+    distinct?: ProjectScalarFieldEnum | ProjectScalarFieldEnum[]
   }
 
   /**
@@ -4298,42 +4415,1040 @@ export namespace Prisma {
 
 
   /**
+   * Model Project
+   */
+
+  export type AggregateProject = {
+    _count: ProjectCountAggregateOutputType | null
+    _min: ProjectMinAggregateOutputType | null
+    _max: ProjectMaxAggregateOutputType | null
+  }
+
+  export type ProjectMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    name: string | null
+    type: string | null
+    createdOn: Date | null
+    isPrivate: boolean | null
+    image: string | null
+  }
+
+  export type ProjectMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    name: string | null
+    type: string | null
+    createdOn: Date | null
+    isPrivate: boolean | null
+    image: string | null
+  }
+
+  export type ProjectCountAggregateOutputType = {
+    id: number
+    userId: number
+    name: number
+    type: number
+    createdOn: number
+    isPrivate: number
+    image: number
+    _all: number
+  }
+
+
+  export type ProjectMinAggregateInputType = {
+    id?: true
+    userId?: true
+    name?: true
+    type?: true
+    createdOn?: true
+    isPrivate?: true
+    image?: true
+  }
+
+  export type ProjectMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    name?: true
+    type?: true
+    createdOn?: true
+    isPrivate?: true
+    image?: true
+  }
+
+  export type ProjectCountAggregateInputType = {
+    id?: true
+    userId?: true
+    name?: true
+    type?: true
+    createdOn?: true
+    isPrivate?: true
+    image?: true
+    _all?: true
+  }
+
+  export type ProjectAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Project to aggregate.
+     */
+    where?: ProjectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Projects to fetch.
+     */
+    orderBy?: ProjectOrderByWithRelationInput | ProjectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProjectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Projects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Projects.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Projects
+    **/
+    _count?: true | ProjectCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProjectMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProjectMaxAggregateInputType
+  }
+
+  export type GetProjectAggregateType<T extends ProjectAggregateArgs> = {
+        [P in keyof T & keyof AggregateProject]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProject[P]>
+      : GetScalarType<T[P], AggregateProject[P]>
+  }
+
+
+
+
+  export type ProjectGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectWhereInput
+    orderBy?: ProjectOrderByWithAggregationInput | ProjectOrderByWithAggregationInput[]
+    by: ProjectScalarFieldEnum[] | ProjectScalarFieldEnum
+    having?: ProjectScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProjectCountAggregateInputType | true
+    _min?: ProjectMinAggregateInputType
+    _max?: ProjectMaxAggregateInputType
+  }
+
+  export type ProjectGroupByOutputType = {
+    id: string
+    userId: string
+    name: string
+    type: string
+    createdOn: Date
+    isPrivate: boolean
+    image: string | null
+    _count: ProjectCountAggregateOutputType | null
+    _min: ProjectMinAggregateOutputType | null
+    _max: ProjectMaxAggregateOutputType | null
+  }
+
+  type GetProjectGroupByPayload<T extends ProjectGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProjectGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProjectGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProjectGroupByOutputType[P]>
+            : GetScalarType<T[P], ProjectGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProjectSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    name?: boolean
+    type?: boolean
+    createdOn?: boolean
+    isPrivate?: boolean
+    image?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    boards?: boolean | Project$boardsArgs<ExtArgs>
+    _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["project"]>
+
+  export type ProjectSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    name?: boolean
+    type?: boolean
+    createdOn?: boolean
+    isPrivate?: boolean
+    image?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["project"]>
+
+  export type ProjectSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    name?: boolean
+    type?: boolean
+    createdOn?: boolean
+    isPrivate?: boolean
+    image?: boolean
+  }
+
+  export type ProjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    boards?: boolean | Project$boardsArgs<ExtArgs>
+    _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ProjectIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ProjectPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Project"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      boards: Prisma.$BoardPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      name: string
+      type: string
+      createdOn: Date
+      isPrivate: boolean
+      image: string | null
+    }, ExtArgs["result"]["project"]>
+    composites: {}
+  }
+
+  type ProjectGetPayload<S extends boolean | null | undefined | ProjectDefaultArgs> = $Result.GetResult<Prisma.$ProjectPayload, S>
+
+  type ProjectCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ProjectFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ProjectCountAggregateInputType | true
+    }
+
+  export interface ProjectDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Project'], meta: { name: 'Project' } }
+    /**
+     * Find zero or one Project that matches the filter.
+     * @param {ProjectFindUniqueArgs} args - Arguments to find a Project
+     * @example
+     * // Get one Project
+     * const project = await prisma.project.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProjectFindUniqueArgs>(args: SelectSubset<T, ProjectFindUniqueArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Project that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {ProjectFindUniqueOrThrowArgs} args - Arguments to find a Project
+     * @example
+     * // Get one Project
+     * const project = await prisma.project.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProjectFindUniqueOrThrowArgs>(args: SelectSubset<T, ProjectFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Project that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFindFirstArgs} args - Arguments to find a Project
+     * @example
+     * // Get one Project
+     * const project = await prisma.project.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProjectFindFirstArgs>(args?: SelectSubset<T, ProjectFindFirstArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Project that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFindFirstOrThrowArgs} args - Arguments to find a Project
+     * @example
+     * // Get one Project
+     * const project = await prisma.project.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProjectFindFirstOrThrowArgs>(args?: SelectSubset<T, ProjectFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Projects that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Projects
+     * const projects = await prisma.project.findMany()
+     * 
+     * // Get first 10 Projects
+     * const projects = await prisma.project.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const projectWithIdOnly = await prisma.project.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProjectFindManyArgs>(args?: SelectSubset<T, ProjectFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Project.
+     * @param {ProjectCreateArgs} args - Arguments to create a Project.
+     * @example
+     * // Create one Project
+     * const Project = await prisma.project.create({
+     *   data: {
+     *     // ... data to create a Project
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProjectCreateArgs>(args: SelectSubset<T, ProjectCreateArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Projects.
+     * @param {ProjectCreateManyArgs} args - Arguments to create many Projects.
+     * @example
+     * // Create many Projects
+     * const project = await prisma.project.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProjectCreateManyArgs>(args?: SelectSubset<T, ProjectCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Projects and returns the data saved in the database.
+     * @param {ProjectCreateManyAndReturnArgs} args - Arguments to create many Projects.
+     * @example
+     * // Create many Projects
+     * const project = await prisma.project.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Projects and only return the `id`
+     * const projectWithIdOnly = await prisma.project.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ProjectCreateManyAndReturnArgs>(args?: SelectSubset<T, ProjectCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a Project.
+     * @param {ProjectDeleteArgs} args - Arguments to delete one Project.
+     * @example
+     * // Delete one Project
+     * const Project = await prisma.project.delete({
+     *   where: {
+     *     // ... filter to delete one Project
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProjectDeleteArgs>(args: SelectSubset<T, ProjectDeleteArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Project.
+     * @param {ProjectUpdateArgs} args - Arguments to update one Project.
+     * @example
+     * // Update one Project
+     * const project = await prisma.project.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProjectUpdateArgs>(args: SelectSubset<T, ProjectUpdateArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Projects.
+     * @param {ProjectDeleteManyArgs} args - Arguments to filter Projects to delete.
+     * @example
+     * // Delete a few Projects
+     * const { count } = await prisma.project.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProjectDeleteManyArgs>(args?: SelectSubset<T, ProjectDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Projects.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Projects
+     * const project = await prisma.project.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProjectUpdateManyArgs>(args: SelectSubset<T, ProjectUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Project.
+     * @param {ProjectUpsertArgs} args - Arguments to update or create a Project.
+     * @example
+     * // Update or create a Project
+     * const project = await prisma.project.upsert({
+     *   create: {
+     *     // ... data to create a Project
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Project we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProjectUpsertArgs>(args: SelectSubset<T, ProjectUpsertArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Projects.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectCountArgs} args - Arguments to filter Projects to count.
+     * @example
+     * // Count the number of Projects
+     * const count = await prisma.project.count({
+     *   where: {
+     *     // ... the filter for the Projects we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProjectCountArgs>(
+      args?: Subset<T, ProjectCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProjectCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Project.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProjectAggregateArgs>(args: Subset<T, ProjectAggregateArgs>): Prisma.PrismaPromise<GetProjectAggregateType<T>>
+
+    /**
+     * Group by Project.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProjectGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProjectGroupByArgs['orderBy'] }
+        : { orderBy?: ProjectGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProjectGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProjectGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Project model
+   */
+  readonly fields: ProjectFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Project.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProjectClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    boards<T extends Project$boardsArgs<ExtArgs> = {}>(args?: Subset<T, Project$boardsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BoardPayload<ExtArgs>, T, "findMany"> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Project model
+   */ 
+  interface ProjectFieldRefs {
+    readonly id: FieldRef<"Project", 'String'>
+    readonly userId: FieldRef<"Project", 'String'>
+    readonly name: FieldRef<"Project", 'String'>
+    readonly type: FieldRef<"Project", 'String'>
+    readonly createdOn: FieldRef<"Project", 'DateTime'>
+    readonly isPrivate: FieldRef<"Project", 'Boolean'>
+    readonly image: FieldRef<"Project", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Project findUnique
+   */
+  export type ProjectFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    /**
+     * Filter, which Project to fetch.
+     */
+    where: ProjectWhereUniqueInput
+  }
+
+  /**
+   * Project findUniqueOrThrow
+   */
+  export type ProjectFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    /**
+     * Filter, which Project to fetch.
+     */
+    where: ProjectWhereUniqueInput
+  }
+
+  /**
+   * Project findFirst
+   */
+  export type ProjectFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    /**
+     * Filter, which Project to fetch.
+     */
+    where?: ProjectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Projects to fetch.
+     */
+    orderBy?: ProjectOrderByWithRelationInput | ProjectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Projects.
+     */
+    cursor?: ProjectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Projects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Projects.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Projects.
+     */
+    distinct?: ProjectScalarFieldEnum | ProjectScalarFieldEnum[]
+  }
+
+  /**
+   * Project findFirstOrThrow
+   */
+  export type ProjectFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    /**
+     * Filter, which Project to fetch.
+     */
+    where?: ProjectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Projects to fetch.
+     */
+    orderBy?: ProjectOrderByWithRelationInput | ProjectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Projects.
+     */
+    cursor?: ProjectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Projects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Projects.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Projects.
+     */
+    distinct?: ProjectScalarFieldEnum | ProjectScalarFieldEnum[]
+  }
+
+  /**
+   * Project findMany
+   */
+  export type ProjectFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    /**
+     * Filter, which Projects to fetch.
+     */
+    where?: ProjectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Projects to fetch.
+     */
+    orderBy?: ProjectOrderByWithRelationInput | ProjectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Projects.
+     */
+    cursor?: ProjectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Projects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Projects.
+     */
+    skip?: number
+    distinct?: ProjectScalarFieldEnum | ProjectScalarFieldEnum[]
+  }
+
+  /**
+   * Project create
+   */
+  export type ProjectCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Project.
+     */
+    data: XOR<ProjectCreateInput, ProjectUncheckedCreateInput>
+  }
+
+  /**
+   * Project createMany
+   */
+  export type ProjectCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Projects.
+     */
+    data: ProjectCreateManyInput | ProjectCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Project createManyAndReturn
+   */
+  export type ProjectCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many Projects.
+     */
+    data: ProjectCreateManyInput | ProjectCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Project update
+   */
+  export type ProjectUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Project.
+     */
+    data: XOR<ProjectUpdateInput, ProjectUncheckedUpdateInput>
+    /**
+     * Choose, which Project to update.
+     */
+    where: ProjectWhereUniqueInput
+  }
+
+  /**
+   * Project updateMany
+   */
+  export type ProjectUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Projects.
+     */
+    data: XOR<ProjectUpdateManyMutationInput, ProjectUncheckedUpdateManyInput>
+    /**
+     * Filter which Projects to update
+     */
+    where?: ProjectWhereInput
+  }
+
+  /**
+   * Project upsert
+   */
+  export type ProjectUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Project to update in case it exists.
+     */
+    where: ProjectWhereUniqueInput
+    /**
+     * In case the Project found by the `where` argument doesn't exist, create a new Project with this data.
+     */
+    create: XOR<ProjectCreateInput, ProjectUncheckedCreateInput>
+    /**
+     * In case the Project was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProjectUpdateInput, ProjectUncheckedUpdateInput>
+  }
+
+  /**
+   * Project delete
+   */
+  export type ProjectDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    /**
+     * Filter which Project to delete.
+     */
+    where: ProjectWhereUniqueInput
+  }
+
+  /**
+   * Project deleteMany
+   */
+  export type ProjectDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Projects to delete
+     */
+    where?: ProjectWhereInput
+  }
+
+  /**
+   * Project.boards
+   */
+  export type Project$boardsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Board
+     */
+    select?: BoardSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BoardInclude<ExtArgs> | null
+    where?: BoardWhereInput
+    orderBy?: BoardOrderByWithRelationInput | BoardOrderByWithRelationInput[]
+    cursor?: BoardWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BoardScalarFieldEnum | BoardScalarFieldEnum[]
+  }
+
+  /**
+   * Project without action
+   */
+  export type ProjectDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Board
    */
 
   export type AggregateBoard = {
     _count: BoardCountAggregateOutputType | null
+    _avg: BoardAvgAggregateOutputType | null
+    _sum: BoardSumAggregateOutputType | null
     _min: BoardMinAggregateOutputType | null
     _max: BoardMaxAggregateOutputType | null
   }
 
+  export type BoardAvgAggregateOutputType = {
+    likes: number | null
+  }
+
+  export type BoardSumAggregateOutputType = {
+    likes: number | null
+  }
+
   export type BoardMinAggregateOutputType = {
     id: string | null
-    userId: string | null
+    projectId: string | null
+    creator: string | null
     description: string | null
     title: string | null
     link: string | null
     image: string | null
     category: string | null
     boardColor: string | null
+    likes: number | null
     timestamp: Date | null
   }
 
   export type BoardMaxAggregateOutputType = {
     id: string | null
-    userId: string | null
+    projectId: string | null
+    creator: string | null
     description: string | null
     title: string | null
     link: string | null
     image: string | null
     category: string | null
     boardColor: string | null
+    likes: number | null
     timestamp: Date | null
   }
 
   export type BoardCountAggregateOutputType = {
     id: number
-    userId: number
+    projectId: number
+    creator: number
     description: number
     title: number
     link: number
@@ -4341,38 +5456,52 @@ export namespace Prisma {
     category: number
     boardColor: number
     tags: number
+    likes: number
     timestamp: number
     _all: number
   }
 
 
+  export type BoardAvgAggregateInputType = {
+    likes?: true
+  }
+
+  export type BoardSumAggregateInputType = {
+    likes?: true
+  }
+
   export type BoardMinAggregateInputType = {
     id?: true
-    userId?: true
+    projectId?: true
+    creator?: true
     description?: true
     title?: true
     link?: true
     image?: true
     category?: true
     boardColor?: true
+    likes?: true
     timestamp?: true
   }
 
   export type BoardMaxAggregateInputType = {
     id?: true
-    userId?: true
+    projectId?: true
+    creator?: true
     description?: true
     title?: true
     link?: true
     image?: true
     category?: true
     boardColor?: true
+    likes?: true
     timestamp?: true
   }
 
   export type BoardCountAggregateInputType = {
     id?: true
-    userId?: true
+    projectId?: true
+    creator?: true
     description?: true
     title?: true
     link?: true
@@ -4380,6 +5509,7 @@ export namespace Prisma {
     category?: true
     boardColor?: true
     tags?: true
+    likes?: true
     timestamp?: true
     _all?: true
   }
@@ -4422,6 +5552,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: BoardAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BoardSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: BoardMinAggregateInputType
@@ -4452,13 +5594,16 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: BoardCountAggregateInputType | true
+    _avg?: BoardAvgAggregateInputType
+    _sum?: BoardSumAggregateInputType
     _min?: BoardMinAggregateInputType
     _max?: BoardMaxAggregateInputType
   }
 
   export type BoardGroupByOutputType = {
     id: string
-    userId: string
+    projectId: string
+    creator: string
     description: string
     title: string
     link: string | null
@@ -4466,8 +5611,11 @@ export namespace Prisma {
     category: string
     boardColor: string
     tags: string[]
+    likes: number
     timestamp: Date
     _count: BoardCountAggregateOutputType | null
+    _avg: BoardAvgAggregateOutputType | null
+    _sum: BoardSumAggregateOutputType | null
     _min: BoardMinAggregateOutputType | null
     _max: BoardMaxAggregateOutputType | null
   }
@@ -4488,7 +5636,8 @@ export namespace Prisma {
 
   export type BoardSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    userId?: boolean
+    projectId?: boolean
+    creator?: boolean
     description?: boolean
     title?: boolean
     link?: boolean
@@ -4496,15 +5645,17 @@ export namespace Prisma {
     category?: boolean
     boardColor?: boolean
     tags?: boolean
+    likes?: boolean
     timestamp?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | Board$projectArgs<ExtArgs>
     feedbacks?: boolean | Board$feedbacksArgs<ExtArgs>
     _count?: boolean | BoardCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["board"]>
 
   export type BoardSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    userId?: boolean
+    projectId?: boolean
+    creator?: boolean
     description?: boolean
     title?: boolean
     link?: boolean
@@ -4512,13 +5663,15 @@ export namespace Prisma {
     category?: boolean
     boardColor?: boolean
     tags?: boolean
+    likes?: boolean
     timestamp?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | Board$projectArgs<ExtArgs>
   }, ExtArgs["result"]["board"]>
 
   export type BoardSelectScalar = {
     id?: boolean
-    userId?: boolean
+    projectId?: boolean
+    creator?: boolean
     description?: boolean
     title?: boolean
     link?: boolean
@@ -4526,27 +5679,29 @@ export namespace Prisma {
     category?: boolean
     boardColor?: boolean
     tags?: boolean
+    likes?: boolean
     timestamp?: boolean
   }
 
   export type BoardInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | Board$projectArgs<ExtArgs>
     feedbacks?: boolean | Board$feedbacksArgs<ExtArgs>
     _count?: boolean | BoardCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type BoardIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | Board$projectArgs<ExtArgs>
   }
 
   export type $BoardPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Board"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
+      project: Prisma.$ProjectPayload<ExtArgs> | null
       feedbacks: Prisma.$FeedbackPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      userId: string
+      projectId: string
+      creator: string
       description: string
       title: string
       link: string | null
@@ -4554,6 +5709,7 @@ export namespace Prisma {
       category: string
       boardColor: string
       tags: string[]
+      likes: number
       timestamp: Date
     }, ExtArgs["result"]["board"]>
     composites: {}
@@ -4919,7 +6075,7 @@ export namespace Prisma {
    */
   export interface Prisma__BoardClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    project<T extends Board$projectArgs<ExtArgs> = {}>(args?: Subset<T, Board$projectArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     feedbacks<T extends Board$feedbacksArgs<ExtArgs> = {}>(args?: Subset<T, Board$feedbacksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -4951,7 +6107,8 @@ export namespace Prisma {
    */ 
   interface BoardFieldRefs {
     readonly id: FieldRef<"Board", 'String'>
-    readonly userId: FieldRef<"Board", 'String'>
+    readonly projectId: FieldRef<"Board", 'String'>
+    readonly creator: FieldRef<"Board", 'String'>
     readonly description: FieldRef<"Board", 'String'>
     readonly title: FieldRef<"Board", 'String'>
     readonly link: FieldRef<"Board", 'String'>
@@ -4959,6 +6116,7 @@ export namespace Prisma {
     readonly category: FieldRef<"Board", 'String'>
     readonly boardColor: FieldRef<"Board", 'String'>
     readonly tags: FieldRef<"Board", 'String[]'>
+    readonly likes: FieldRef<"Board", 'Float'>
     readonly timestamp: FieldRef<"Board", 'DateTime'>
   }
     
@@ -5275,6 +6433,21 @@ export namespace Prisma {
      * Filter which Boards to delete
      */
     where?: BoardWhereInput
+  }
+
+  /**
+   * Board.project
+   */
+  export type Board$projectArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    where?: ProjectWhereInput
   }
 
   /**
@@ -6364,9 +7537,23 @@ export namespace Prisma {
   export type UserDetailsScalarFieldEnum = (typeof UserDetailsScalarFieldEnum)[keyof typeof UserDetailsScalarFieldEnum]
 
 
-  export const BoardScalarFieldEnum: {
+  export const ProjectScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
+    name: 'name',
+    type: 'type',
+    createdOn: 'createdOn',
+    isPrivate: 'isPrivate',
+    image: 'image'
+  };
+
+  export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
+
+
+  export const BoardScalarFieldEnum: {
+    id: 'id',
+    projectId: 'projectId',
+    creator: 'creator',
     description: 'description',
     title: 'title',
     link: 'link',
@@ -6374,6 +7561,7 @@ export namespace Prisma {
     category: 'category',
     boardColor: 'boardColor',
     tags: 'tags',
+    likes: 'likes',
     timestamp: 'timestamp'
   };
 
@@ -6499,7 +7687,7 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     avatar?: StringNullableFilter<"User"> | string | null
     timestamp?: DateTimeFilter<"User"> | Date | string
-    boards?: BoardListRelationFilter
+    projects?: ProjectListRelationFilter
     userDetails?: XOR<UserDetailsNullableScalarRelationFilter, UserDetailsWhereInput> | null
     verification?: XOR<VerificationNullableScalarRelationFilter, VerificationWhereInput> | null
   }
@@ -6512,7 +7700,7 @@ export namespace Prisma {
     password?: SortOrder
     avatar?: SortOrderInput | SortOrder
     timestamp?: SortOrder
-    boards?: BoardOrderByRelationAggregateInput
+    projects?: ProjectOrderByRelationAggregateInput
     userDetails?: UserDetailsOrderByWithRelationInput
     verification?: VerificationOrderByWithRelationInput
   }
@@ -6528,7 +7716,7 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     avatar?: StringNullableFilter<"User"> | string | null
     timestamp?: DateTimeFilter<"User"> | Date | string
-    boards?: BoardListRelationFilter
+    projects?: ProjectListRelationFilter
     userDetails?: XOR<UserDetailsNullableScalarRelationFilter, UserDetailsWhereInput> | null
     verification?: XOR<VerificationNullableScalarRelationFilter, VerificationWhereInput> | null
   }, "id" | "email" | "username">
@@ -6731,12 +7919,81 @@ export namespace Prisma {
     timestamp?: DateTimeWithAggregatesFilter<"UserDetails"> | Date | string
   }
 
+  export type ProjectWhereInput = {
+    AND?: ProjectWhereInput | ProjectWhereInput[]
+    OR?: ProjectWhereInput[]
+    NOT?: ProjectWhereInput | ProjectWhereInput[]
+    id?: StringFilter<"Project"> | string
+    userId?: StringFilter<"Project"> | string
+    name?: StringFilter<"Project"> | string
+    type?: StringFilter<"Project"> | string
+    createdOn?: DateTimeFilter<"Project"> | Date | string
+    isPrivate?: BoolFilter<"Project"> | boolean
+    image?: StringNullableFilter<"Project"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    boards?: BoardListRelationFilter
+  }
+
+  export type ProjectOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    createdOn?: SortOrder
+    isPrivate?: SortOrder
+    image?: SortOrderInput | SortOrder
+    user?: UserOrderByWithRelationInput
+    boards?: BoardOrderByRelationAggregateInput
+  }
+
+  export type ProjectWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ProjectWhereInput | ProjectWhereInput[]
+    OR?: ProjectWhereInput[]
+    NOT?: ProjectWhereInput | ProjectWhereInput[]
+    userId?: StringFilter<"Project"> | string
+    name?: StringFilter<"Project"> | string
+    type?: StringFilter<"Project"> | string
+    createdOn?: DateTimeFilter<"Project"> | Date | string
+    isPrivate?: BoolFilter<"Project"> | boolean
+    image?: StringNullableFilter<"Project"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    boards?: BoardListRelationFilter
+  }, "id">
+
+  export type ProjectOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    createdOn?: SortOrder
+    isPrivate?: SortOrder
+    image?: SortOrderInput | SortOrder
+    _count?: ProjectCountOrderByAggregateInput
+    _max?: ProjectMaxOrderByAggregateInput
+    _min?: ProjectMinOrderByAggregateInput
+  }
+
+  export type ProjectScalarWhereWithAggregatesInput = {
+    AND?: ProjectScalarWhereWithAggregatesInput | ProjectScalarWhereWithAggregatesInput[]
+    OR?: ProjectScalarWhereWithAggregatesInput[]
+    NOT?: ProjectScalarWhereWithAggregatesInput | ProjectScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Project"> | string
+    userId?: StringWithAggregatesFilter<"Project"> | string
+    name?: StringWithAggregatesFilter<"Project"> | string
+    type?: StringWithAggregatesFilter<"Project"> | string
+    createdOn?: DateTimeWithAggregatesFilter<"Project"> | Date | string
+    isPrivate?: BoolWithAggregatesFilter<"Project"> | boolean
+    image?: StringNullableWithAggregatesFilter<"Project"> | string | null
+  }
+
   export type BoardWhereInput = {
     AND?: BoardWhereInput | BoardWhereInput[]
     OR?: BoardWhereInput[]
     NOT?: BoardWhereInput | BoardWhereInput[]
     id?: StringFilter<"Board"> | string
-    userId?: StringFilter<"Board"> | string
+    projectId?: StringFilter<"Board"> | string
+    creator?: StringFilter<"Board"> | string
     description?: StringFilter<"Board"> | string
     title?: StringFilter<"Board"> | string
     link?: StringNullableFilter<"Board"> | string | null
@@ -6744,14 +8001,16 @@ export namespace Prisma {
     category?: StringFilter<"Board"> | string
     boardColor?: StringFilter<"Board"> | string
     tags?: StringNullableListFilter<"Board">
+    likes?: FloatFilter<"Board"> | number
     timestamp?: DateTimeFilter<"Board"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    project?: XOR<ProjectNullableScalarRelationFilter, ProjectWhereInput> | null
     feedbacks?: FeedbackListRelationFilter
   }
 
   export type BoardOrderByWithRelationInput = {
     id?: SortOrder
-    userId?: SortOrder
+    projectId?: SortOrder
+    creator?: SortOrder
     description?: SortOrder
     title?: SortOrder
     link?: SortOrderInput | SortOrder
@@ -6759,8 +8018,9 @@ export namespace Prisma {
     category?: SortOrder
     boardColor?: SortOrder
     tags?: SortOrder
+    likes?: SortOrder
     timestamp?: SortOrder
-    user?: UserOrderByWithRelationInput
+    project?: ProjectOrderByWithRelationInput
     feedbacks?: FeedbackOrderByRelationAggregateInput
   }
 
@@ -6769,7 +8029,8 @@ export namespace Prisma {
     AND?: BoardWhereInput | BoardWhereInput[]
     OR?: BoardWhereInput[]
     NOT?: BoardWhereInput | BoardWhereInput[]
-    userId?: StringFilter<"Board"> | string
+    projectId?: StringFilter<"Board"> | string
+    creator?: StringFilter<"Board"> | string
     description?: StringFilter<"Board"> | string
     title?: StringFilter<"Board"> | string
     link?: StringNullableFilter<"Board"> | string | null
@@ -6777,14 +8038,16 @@ export namespace Prisma {
     category?: StringFilter<"Board"> | string
     boardColor?: StringFilter<"Board"> | string
     tags?: StringNullableListFilter<"Board">
+    likes?: FloatFilter<"Board"> | number
     timestamp?: DateTimeFilter<"Board"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    project?: XOR<ProjectNullableScalarRelationFilter, ProjectWhereInput> | null
     feedbacks?: FeedbackListRelationFilter
   }, "id">
 
   export type BoardOrderByWithAggregationInput = {
     id?: SortOrder
-    userId?: SortOrder
+    projectId?: SortOrder
+    creator?: SortOrder
     description?: SortOrder
     title?: SortOrder
     link?: SortOrderInput | SortOrder
@@ -6792,10 +8055,13 @@ export namespace Prisma {
     category?: SortOrder
     boardColor?: SortOrder
     tags?: SortOrder
+    likes?: SortOrder
     timestamp?: SortOrder
     _count?: BoardCountOrderByAggregateInput
+    _avg?: BoardAvgOrderByAggregateInput
     _max?: BoardMaxOrderByAggregateInput
     _min?: BoardMinOrderByAggregateInput
+    _sum?: BoardSumOrderByAggregateInput
   }
 
   export type BoardScalarWhereWithAggregatesInput = {
@@ -6803,7 +8069,8 @@ export namespace Prisma {
     OR?: BoardScalarWhereWithAggregatesInput[]
     NOT?: BoardScalarWhereWithAggregatesInput | BoardScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Board"> | string
-    userId?: StringWithAggregatesFilter<"Board"> | string
+    projectId?: StringWithAggregatesFilter<"Board"> | string
+    creator?: StringWithAggregatesFilter<"Board"> | string
     description?: StringWithAggregatesFilter<"Board"> | string
     title?: StringWithAggregatesFilter<"Board"> | string
     link?: StringNullableWithAggregatesFilter<"Board"> | string | null
@@ -6811,6 +8078,7 @@ export namespace Prisma {
     category?: StringWithAggregatesFilter<"Board"> | string
     boardColor?: StringWithAggregatesFilter<"Board"> | string
     tags?: StringNullableListFilter<"Board">
+    likes?: FloatWithAggregatesFilter<"Board"> | number
     timestamp?: DateTimeWithAggregatesFilter<"Board"> | Date | string
   }
 
@@ -6889,7 +8157,7 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     timestamp?: Date | string
-    boards?: BoardCreateNestedManyWithoutUserInput
+    projects?: ProjectCreateNestedManyWithoutUserInput
     userDetails?: UserDetailsCreateNestedOneWithoutUserInput
     verification?: VerificationCreateNestedOneWithoutUserInput
   }
@@ -6902,7 +8170,7 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     timestamp?: Date | string
-    boards?: BoardUncheckedCreateNestedManyWithoutUserInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     userDetails?: UserDetailsUncheckedCreateNestedOneWithoutUserInput
     verification?: VerificationUncheckedCreateNestedOneWithoutUserInput
   }
@@ -6915,7 +8183,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
-    boards?: BoardUpdateManyWithoutUserNestedInput
+    projects?: ProjectUpdateManyWithoutUserNestedInput
     userDetails?: UserDetailsUpdateOneWithoutUserNestedInput
     verification?: VerificationUpdateOneWithoutUserNestedInput
   }
@@ -6928,7 +8196,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
-    boards?: BoardUncheckedUpdateManyWithoutUserNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     userDetails?: UserDetailsUncheckedUpdateOneWithoutUserNestedInput
     verification?: VerificationUncheckedUpdateOneWithoutUserNestedInput
   }
@@ -7157,8 +8425,82 @@ export namespace Prisma {
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ProjectCreateInput = {
+    id?: string
+    name: string
+    type: string
+    createdOn?: Date | string
+    isPrivate: boolean
+    image?: string | null
+    user: UserCreateNestedOneWithoutProjectsInput
+    boards?: BoardCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateInput = {
+    id?: string
+    userId: string
+    name: string
+    type: string
+    createdOn?: Date | string
+    isPrivate: boolean
+    image?: string | null
+    boards?: BoardUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+    isPrivate?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: UserUpdateOneRequiredWithoutProjectsNestedInput
+    boards?: BoardUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+    isPrivate?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    boards?: BoardUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectCreateManyInput = {
+    id?: string
+    userId: string
+    name: string
+    type: string
+    createdOn?: Date | string
+    isPrivate: boolean
+    image?: string | null
+  }
+
+  export type ProjectUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+    isPrivate?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ProjectUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+    isPrivate?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type BoardCreateInput = {
     id?: string
+    creator: string
     description: string
     title: string
     link?: string | null
@@ -7166,14 +8508,16 @@ export namespace Prisma {
     category: string
     boardColor: string
     tags?: BoardCreatetagsInput | string[]
+    likes: number
     timestamp?: Date | string
-    user: UserCreateNestedOneWithoutBoardsInput
+    project?: ProjectCreateNestedOneWithoutBoardsInput
     feedbacks?: FeedbackCreateNestedManyWithoutBoardInput
   }
 
   export type BoardUncheckedCreateInput = {
     id?: string
-    userId: string
+    projectId: string
+    creator: string
     description: string
     title: string
     link?: string | null
@@ -7181,12 +8525,14 @@ export namespace Prisma {
     category: string
     boardColor: string
     tags?: BoardCreatetagsInput | string[]
+    likes: number
     timestamp?: Date | string
     feedbacks?: FeedbackUncheckedCreateNestedManyWithoutBoardInput
   }
 
   export type BoardUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    creator?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7194,14 +8540,16 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     boardColor?: StringFieldUpdateOperationsInput | string
     tags?: BoardUpdatetagsInput | string[]
+    likes?: FloatFieldUpdateOperationsInput | number
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutBoardsNestedInput
+    project?: ProjectUpdateOneWithoutBoardsNestedInput
     feedbacks?: FeedbackUpdateManyWithoutBoardNestedInput
   }
 
   export type BoardUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    creator?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7209,13 +8557,15 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     boardColor?: StringFieldUpdateOperationsInput | string
     tags?: BoardUpdatetagsInput | string[]
+    likes?: FloatFieldUpdateOperationsInput | number
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
     feedbacks?: FeedbackUncheckedUpdateManyWithoutBoardNestedInput
   }
 
   export type BoardCreateManyInput = {
     id?: string
-    userId: string
+    projectId: string
+    creator: string
     description: string
     title: string
     link?: string | null
@@ -7223,11 +8573,13 @@ export namespace Prisma {
     category: string
     boardColor: string
     tags?: BoardCreatetagsInput | string[]
+    likes: number
     timestamp?: Date | string
   }
 
   export type BoardUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    creator?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7235,12 +8587,14 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     boardColor?: StringFieldUpdateOperationsInput | string
     tags?: BoardUpdatetagsInput | string[]
+    likes?: FloatFieldUpdateOperationsInput | number
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BoardUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    creator?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7248,6 +8602,7 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     boardColor?: StringFieldUpdateOperationsInput | string
     tags?: BoardUpdatetagsInput | string[]
+    likes?: FloatFieldUpdateOperationsInput | number
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -7361,10 +8716,10 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type BoardListRelationFilter = {
-    every?: BoardWhereInput
-    some?: BoardWhereInput
-    none?: BoardWhereInput
+  export type ProjectListRelationFilter = {
+    every?: ProjectWhereInput
+    some?: ProjectWhereInput
+    none?: ProjectWhereInput
   }
 
   export type UserDetailsNullableScalarRelationFilter = {
@@ -7382,7 +8737,7 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type BoardOrderByRelationAggregateInput = {
+  export type ProjectOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -7634,6 +8989,62 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type BoardListRelationFilter = {
+    every?: BoardWhereInput
+    some?: BoardWhereInput
+    none?: BoardWhereInput
+  }
+
+  export type BoardOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ProjectCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    createdOn?: SortOrder
+    isPrivate?: SortOrder
+    image?: SortOrder
+  }
+
+  export type ProjectMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    createdOn?: SortOrder
+    isPrivate?: SortOrder
+    image?: SortOrder
+  }
+
+  export type ProjectMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    createdOn?: SortOrder
+    isPrivate?: SortOrder
+    image?: SortOrder
+  }
+
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type ProjectNullableScalarRelationFilter = {
+    is?: ProjectWhereInput | null
+    isNot?: ProjectWhereInput | null
+  }
+
   export type FeedbackListRelationFilter = {
     every?: FeedbackWhereInput
     some?: FeedbackWhereInput
@@ -7646,7 +9057,8 @@ export namespace Prisma {
 
   export type BoardCountOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
+    projectId?: SortOrder
+    creator?: SortOrder
     description?: SortOrder
     title?: SortOrder
     link?: SortOrder
@@ -7654,34 +9066,47 @@ export namespace Prisma {
     category?: SortOrder
     boardColor?: SortOrder
     tags?: SortOrder
+    likes?: SortOrder
     timestamp?: SortOrder
+  }
+
+  export type BoardAvgOrderByAggregateInput = {
+    likes?: SortOrder
   }
 
   export type BoardMaxOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
+    projectId?: SortOrder
+    creator?: SortOrder
     description?: SortOrder
     title?: SortOrder
     link?: SortOrder
     image?: SortOrder
     category?: SortOrder
     boardColor?: SortOrder
+    likes?: SortOrder
     timestamp?: SortOrder
   }
 
   export type BoardMinOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
+    projectId?: SortOrder
+    creator?: SortOrder
     description?: SortOrder
     title?: SortOrder
     link?: SortOrder
     image?: SortOrder
     category?: SortOrder
     boardColor?: SortOrder
+    likes?: SortOrder
     timestamp?: SortOrder
   }
 
-  export type FloatFilter<$PrismaModel = never> = {
+  export type BoardSumOrderByAggregateInput = {
+    likes?: SortOrder
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
     notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -7689,7 +9114,12 @@ export namespace Prisma {
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type BoardScalarRelationFilter = {
@@ -7735,27 +9165,11 @@ export namespace Prisma {
     rating?: SortOrder
   }
 
-  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
-  }
-
-  export type BoardCreateNestedManyWithoutUserInput = {
-    create?: XOR<BoardCreateWithoutUserInput, BoardUncheckedCreateWithoutUserInput> | BoardCreateWithoutUserInput[] | BoardUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: BoardCreateOrConnectWithoutUserInput | BoardCreateOrConnectWithoutUserInput[]
-    createMany?: BoardCreateManyUserInputEnvelope
-    connect?: BoardWhereUniqueInput | BoardWhereUniqueInput[]
+  export type ProjectCreateNestedManyWithoutUserInput = {
+    create?: XOR<ProjectCreateWithoutUserInput, ProjectUncheckedCreateWithoutUserInput> | ProjectCreateWithoutUserInput[] | ProjectUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutUserInput | ProjectCreateOrConnectWithoutUserInput[]
+    createMany?: ProjectCreateManyUserInputEnvelope
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
   }
 
   export type UserDetailsCreateNestedOneWithoutUserInput = {
@@ -7770,11 +9184,11 @@ export namespace Prisma {
     connect?: VerificationWhereUniqueInput
   }
 
-  export type BoardUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<BoardCreateWithoutUserInput, BoardUncheckedCreateWithoutUserInput> | BoardCreateWithoutUserInput[] | BoardUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: BoardCreateOrConnectWithoutUserInput | BoardCreateOrConnectWithoutUserInput[]
-    createMany?: BoardCreateManyUserInputEnvelope
-    connect?: BoardWhereUniqueInput | BoardWhereUniqueInput[]
+  export type ProjectUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ProjectCreateWithoutUserInput, ProjectUncheckedCreateWithoutUserInput> | ProjectCreateWithoutUserInput[] | ProjectUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutUserInput | ProjectCreateOrConnectWithoutUserInput[]
+    createMany?: ProjectCreateManyUserInputEnvelope
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
   }
 
   export type UserDetailsUncheckedCreateNestedOneWithoutUserInput = {
@@ -7801,18 +9215,18 @@ export namespace Prisma {
     set?: Date | string
   }
 
-  export type BoardUpdateManyWithoutUserNestedInput = {
-    create?: XOR<BoardCreateWithoutUserInput, BoardUncheckedCreateWithoutUserInput> | BoardCreateWithoutUserInput[] | BoardUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: BoardCreateOrConnectWithoutUserInput | BoardCreateOrConnectWithoutUserInput[]
-    upsert?: BoardUpsertWithWhereUniqueWithoutUserInput | BoardUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: BoardCreateManyUserInputEnvelope
-    set?: BoardWhereUniqueInput | BoardWhereUniqueInput[]
-    disconnect?: BoardWhereUniqueInput | BoardWhereUniqueInput[]
-    delete?: BoardWhereUniqueInput | BoardWhereUniqueInput[]
-    connect?: BoardWhereUniqueInput | BoardWhereUniqueInput[]
-    update?: BoardUpdateWithWhereUniqueWithoutUserInput | BoardUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: BoardUpdateManyWithWhereWithoutUserInput | BoardUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: BoardScalarWhereInput | BoardScalarWhereInput[]
+  export type ProjectUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ProjectCreateWithoutUserInput, ProjectUncheckedCreateWithoutUserInput> | ProjectCreateWithoutUserInput[] | ProjectUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutUserInput | ProjectCreateOrConnectWithoutUserInput[]
+    upsert?: ProjectUpsertWithWhereUniqueWithoutUserInput | ProjectUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ProjectCreateManyUserInputEnvelope
+    set?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    disconnect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    delete?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    update?: ProjectUpdateWithWhereUniqueWithoutUserInput | ProjectUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ProjectUpdateManyWithWhereWithoutUserInput | ProjectUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
   }
 
   export type UserDetailsUpdateOneWithoutUserNestedInput = {
@@ -7835,18 +9249,18 @@ export namespace Prisma {
     update?: XOR<XOR<VerificationUpdateToOneWithWhereWithoutUserInput, VerificationUpdateWithoutUserInput>, VerificationUncheckedUpdateWithoutUserInput>
   }
 
-  export type BoardUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<BoardCreateWithoutUserInput, BoardUncheckedCreateWithoutUserInput> | BoardCreateWithoutUserInput[] | BoardUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: BoardCreateOrConnectWithoutUserInput | BoardCreateOrConnectWithoutUserInput[]
-    upsert?: BoardUpsertWithWhereUniqueWithoutUserInput | BoardUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: BoardCreateManyUserInputEnvelope
-    set?: BoardWhereUniqueInput | BoardWhereUniqueInput[]
-    disconnect?: BoardWhereUniqueInput | BoardWhereUniqueInput[]
-    delete?: BoardWhereUniqueInput | BoardWhereUniqueInput[]
-    connect?: BoardWhereUniqueInput | BoardWhereUniqueInput[]
-    update?: BoardUpdateWithWhereUniqueWithoutUserInput | BoardUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: BoardUpdateManyWithWhereWithoutUserInput | BoardUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: BoardScalarWhereInput | BoardScalarWhereInput[]
+  export type ProjectUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ProjectCreateWithoutUserInput, ProjectUncheckedCreateWithoutUserInput> | ProjectCreateWithoutUserInput[] | ProjectUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutUserInput | ProjectCreateOrConnectWithoutUserInput[]
+    upsert?: ProjectUpsertWithWhereUniqueWithoutUserInput | ProjectUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ProjectCreateManyUserInputEnvelope
+    set?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    disconnect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    delete?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    update?: ProjectUpdateWithWhereUniqueWithoutUserInput | ProjectUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ProjectUpdateManyWithWhereWithoutUserInput | ProjectUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
   }
 
   export type UserDetailsUncheckedUpdateOneWithoutUserNestedInput = {
@@ -7922,14 +9336,70 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUserDetailsInput, UserUpdateWithoutUserDetailsInput>, UserUncheckedUpdateWithoutUserDetailsInput>
   }
 
+  export type UserCreateNestedOneWithoutProjectsInput = {
+    create?: XOR<UserCreateWithoutProjectsInput, UserUncheckedCreateWithoutProjectsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProjectsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type BoardCreateNestedManyWithoutProjectInput = {
+    create?: XOR<BoardCreateWithoutProjectInput, BoardUncheckedCreateWithoutProjectInput> | BoardCreateWithoutProjectInput[] | BoardUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: BoardCreateOrConnectWithoutProjectInput | BoardCreateOrConnectWithoutProjectInput[]
+    createMany?: BoardCreateManyProjectInputEnvelope
+    connect?: BoardWhereUniqueInput | BoardWhereUniqueInput[]
+  }
+
+  export type BoardUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<BoardCreateWithoutProjectInput, BoardUncheckedCreateWithoutProjectInput> | BoardCreateWithoutProjectInput[] | BoardUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: BoardCreateOrConnectWithoutProjectInput | BoardCreateOrConnectWithoutProjectInput[]
+    createMany?: BoardCreateManyProjectInputEnvelope
+    connect?: BoardWhereUniqueInput | BoardWhereUniqueInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutProjectsNestedInput = {
+    create?: XOR<UserCreateWithoutProjectsInput, UserUncheckedCreateWithoutProjectsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProjectsInput
+    upsert?: UserUpsertWithoutProjectsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProjectsInput, UserUpdateWithoutProjectsInput>, UserUncheckedUpdateWithoutProjectsInput>
+  }
+
+  export type BoardUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<BoardCreateWithoutProjectInput, BoardUncheckedCreateWithoutProjectInput> | BoardCreateWithoutProjectInput[] | BoardUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: BoardCreateOrConnectWithoutProjectInput | BoardCreateOrConnectWithoutProjectInput[]
+    upsert?: BoardUpsertWithWhereUniqueWithoutProjectInput | BoardUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: BoardCreateManyProjectInputEnvelope
+    set?: BoardWhereUniqueInput | BoardWhereUniqueInput[]
+    disconnect?: BoardWhereUniqueInput | BoardWhereUniqueInput[]
+    delete?: BoardWhereUniqueInput | BoardWhereUniqueInput[]
+    connect?: BoardWhereUniqueInput | BoardWhereUniqueInput[]
+    update?: BoardUpdateWithWhereUniqueWithoutProjectInput | BoardUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: BoardUpdateManyWithWhereWithoutProjectInput | BoardUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: BoardScalarWhereInput | BoardScalarWhereInput[]
+  }
+
+  export type BoardUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<BoardCreateWithoutProjectInput, BoardUncheckedCreateWithoutProjectInput> | BoardCreateWithoutProjectInput[] | BoardUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: BoardCreateOrConnectWithoutProjectInput | BoardCreateOrConnectWithoutProjectInput[]
+    upsert?: BoardUpsertWithWhereUniqueWithoutProjectInput | BoardUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: BoardCreateManyProjectInputEnvelope
+    set?: BoardWhereUniqueInput | BoardWhereUniqueInput[]
+    disconnect?: BoardWhereUniqueInput | BoardWhereUniqueInput[]
+    delete?: BoardWhereUniqueInput | BoardWhereUniqueInput[]
+    connect?: BoardWhereUniqueInput | BoardWhereUniqueInput[]
+    update?: BoardUpdateWithWhereUniqueWithoutProjectInput | BoardUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: BoardUpdateManyWithWhereWithoutProjectInput | BoardUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: BoardScalarWhereInput | BoardScalarWhereInput[]
+  }
+
   export type BoardCreatetagsInput = {
     set: string[]
   }
 
-  export type UserCreateNestedOneWithoutBoardsInput = {
-    create?: XOR<UserCreateWithoutBoardsInput, UserUncheckedCreateWithoutBoardsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutBoardsInput
-    connect?: UserWhereUniqueInput
+  export type ProjectCreateNestedOneWithoutBoardsInput = {
+    create?: XOR<ProjectCreateWithoutBoardsInput, ProjectUncheckedCreateWithoutBoardsInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutBoardsInput
+    connect?: ProjectWhereUniqueInput
   }
 
   export type FeedbackCreateNestedManyWithoutBoardInput = {
@@ -7951,12 +9421,22 @@ export namespace Prisma {
     push?: string | string[]
   }
 
-  export type UserUpdateOneRequiredWithoutBoardsNestedInput = {
-    create?: XOR<UserCreateWithoutBoardsInput, UserUncheckedCreateWithoutBoardsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutBoardsInput
-    upsert?: UserUpsertWithoutBoardsInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutBoardsInput, UserUpdateWithoutBoardsInput>, UserUncheckedUpdateWithoutBoardsInput>
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type ProjectUpdateOneWithoutBoardsNestedInput = {
+    create?: XOR<ProjectCreateWithoutBoardsInput, ProjectUncheckedCreateWithoutBoardsInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutBoardsInput
+    upsert?: ProjectUpsertWithoutBoardsInput
+    disconnect?: ProjectWhereInput | boolean
+    delete?: ProjectWhereInput | boolean
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutBoardsInput, ProjectUpdateWithoutBoardsInput>, ProjectUncheckedUpdateWithoutBoardsInput>
   }
 
   export type FeedbackUpdateManyWithoutBoardNestedInput = {
@@ -7991,14 +9471,6 @@ export namespace Prisma {
     create?: XOR<BoardCreateWithoutFeedbacksInput, BoardUncheckedCreateWithoutFeedbacksInput>
     connectOrCreate?: BoardCreateOrConnectWithoutFeedbacksInput
     connect?: BoardWhereUniqueInput
-  }
-
-  export type FloatFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type BoardUpdateOneRequiredWithoutFeedbacksNestedInput = {
@@ -8210,39 +9682,33 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type BoardCreateWithoutUserInput = {
+  export type ProjectCreateWithoutUserInput = {
     id?: string
-    description: string
-    title: string
-    link?: string | null
+    name: string
+    type: string
+    createdOn?: Date | string
+    isPrivate: boolean
     image?: string | null
-    category: string
-    boardColor: string
-    tags?: BoardCreatetagsInput | string[]
-    timestamp?: Date | string
-    feedbacks?: FeedbackCreateNestedManyWithoutBoardInput
+    boards?: BoardCreateNestedManyWithoutProjectInput
   }
 
-  export type BoardUncheckedCreateWithoutUserInput = {
+  export type ProjectUncheckedCreateWithoutUserInput = {
     id?: string
-    description: string
-    title: string
-    link?: string | null
+    name: string
+    type: string
+    createdOn?: Date | string
+    isPrivate: boolean
     image?: string | null
-    category: string
-    boardColor: string
-    tags?: BoardCreatetagsInput | string[]
-    timestamp?: Date | string
-    feedbacks?: FeedbackUncheckedCreateNestedManyWithoutBoardInput
+    boards?: BoardUncheckedCreateNestedManyWithoutProjectInput
   }
 
-  export type BoardCreateOrConnectWithoutUserInput = {
-    where: BoardWhereUniqueInput
-    create: XOR<BoardCreateWithoutUserInput, BoardUncheckedCreateWithoutUserInput>
+  export type ProjectCreateOrConnectWithoutUserInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutUserInput, ProjectUncheckedCreateWithoutUserInput>
   }
 
-  export type BoardCreateManyUserInputEnvelope = {
-    data: BoardCreateManyUserInput | BoardCreateManyUserInput[]
+  export type ProjectCreateManyUserInputEnvelope = {
+    data: ProjectCreateManyUserInput | ProjectCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -8308,36 +9774,33 @@ export namespace Prisma {
     create: XOR<VerificationCreateWithoutUserInput, VerificationUncheckedCreateWithoutUserInput>
   }
 
-  export type BoardUpsertWithWhereUniqueWithoutUserInput = {
-    where: BoardWhereUniqueInput
-    update: XOR<BoardUpdateWithoutUserInput, BoardUncheckedUpdateWithoutUserInput>
-    create: XOR<BoardCreateWithoutUserInput, BoardUncheckedCreateWithoutUserInput>
+  export type ProjectUpsertWithWhereUniqueWithoutUserInput = {
+    where: ProjectWhereUniqueInput
+    update: XOR<ProjectUpdateWithoutUserInput, ProjectUncheckedUpdateWithoutUserInput>
+    create: XOR<ProjectCreateWithoutUserInput, ProjectUncheckedCreateWithoutUserInput>
   }
 
-  export type BoardUpdateWithWhereUniqueWithoutUserInput = {
-    where: BoardWhereUniqueInput
-    data: XOR<BoardUpdateWithoutUserInput, BoardUncheckedUpdateWithoutUserInput>
+  export type ProjectUpdateWithWhereUniqueWithoutUserInput = {
+    where: ProjectWhereUniqueInput
+    data: XOR<ProjectUpdateWithoutUserInput, ProjectUncheckedUpdateWithoutUserInput>
   }
 
-  export type BoardUpdateManyWithWhereWithoutUserInput = {
-    where: BoardScalarWhereInput
-    data: XOR<BoardUpdateManyMutationInput, BoardUncheckedUpdateManyWithoutUserInput>
+  export type ProjectUpdateManyWithWhereWithoutUserInput = {
+    where: ProjectScalarWhereInput
+    data: XOR<ProjectUpdateManyMutationInput, ProjectUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type BoardScalarWhereInput = {
-    AND?: BoardScalarWhereInput | BoardScalarWhereInput[]
-    OR?: BoardScalarWhereInput[]
-    NOT?: BoardScalarWhereInput | BoardScalarWhereInput[]
-    id?: StringFilter<"Board"> | string
-    userId?: StringFilter<"Board"> | string
-    description?: StringFilter<"Board"> | string
-    title?: StringFilter<"Board"> | string
-    link?: StringNullableFilter<"Board"> | string | null
-    image?: StringNullableFilter<"Board"> | string | null
-    category?: StringFilter<"Board"> | string
-    boardColor?: StringFilter<"Board"> | string
-    tags?: StringNullableListFilter<"Board">
-    timestamp?: DateTimeFilter<"Board"> | Date | string
+  export type ProjectScalarWhereInput = {
+    AND?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
+    OR?: ProjectScalarWhereInput[]
+    NOT?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
+    id?: StringFilter<"Project"> | string
+    userId?: StringFilter<"Project"> | string
+    name?: StringFilter<"Project"> | string
+    type?: StringFilter<"Project"> | string
+    createdOn?: DateTimeFilter<"Project"> | Date | string
+    isPrivate?: BoolFilter<"Project"> | boolean
+    image?: StringNullableFilter<"Project"> | string | null
   }
 
   export type UserDetailsUpsertWithoutUserInput = {
@@ -8422,7 +9885,7 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     timestamp?: Date | string
-    boards?: BoardCreateNestedManyWithoutUserInput
+    projects?: ProjectCreateNestedManyWithoutUserInput
     userDetails?: UserDetailsCreateNestedOneWithoutUserInput
   }
 
@@ -8434,7 +9897,7 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     timestamp?: Date | string
-    boards?: BoardUncheckedCreateNestedManyWithoutUserInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     userDetails?: UserDetailsUncheckedCreateNestedOneWithoutUserInput
   }
 
@@ -8462,7 +9925,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
-    boards?: BoardUpdateManyWithoutUserNestedInput
+    projects?: ProjectUpdateManyWithoutUserNestedInput
     userDetails?: UserDetailsUpdateOneWithoutUserNestedInput
   }
 
@@ -8474,7 +9937,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
-    boards?: BoardUncheckedUpdateManyWithoutUserNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     userDetails?: UserDetailsUncheckedUpdateOneWithoutUserNestedInput
   }
 
@@ -8486,7 +9949,7 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     timestamp?: Date | string
-    boards?: BoardCreateNestedManyWithoutUserInput
+    projects?: ProjectCreateNestedManyWithoutUserInput
     verification?: VerificationCreateNestedOneWithoutUserInput
   }
 
@@ -8498,7 +9961,7 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     timestamp?: Date | string
-    boards?: BoardUncheckedCreateNestedManyWithoutUserInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     verification?: VerificationUncheckedCreateNestedOneWithoutUserInput
   }
 
@@ -8526,7 +9989,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
-    boards?: BoardUpdateManyWithoutUserNestedInput
+    projects?: ProjectUpdateManyWithoutUserNestedInput
     verification?: VerificationUpdateOneWithoutUserNestedInput
   }
 
@@ -8538,11 +10001,11 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
-    boards?: BoardUncheckedUpdateManyWithoutUserNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     verification?: VerificationUncheckedUpdateOneWithoutUserNestedInput
   }
 
-  export type UserCreateWithoutBoardsInput = {
+  export type UserCreateWithoutProjectsInput = {
     id?: string
     name: string
     email: string
@@ -8554,7 +10017,7 @@ export namespace Prisma {
     verification?: VerificationCreateNestedOneWithoutUserInput
   }
 
-  export type UserUncheckedCreateWithoutBoardsInput = {
+  export type UserUncheckedCreateWithoutProjectsInput = {
     id?: string
     name: string
     email: string
@@ -8566,9 +10029,143 @@ export namespace Prisma {
     verification?: VerificationUncheckedCreateNestedOneWithoutUserInput
   }
 
-  export type UserCreateOrConnectWithoutBoardsInput = {
+  export type UserCreateOrConnectWithoutProjectsInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutBoardsInput, UserUncheckedCreateWithoutBoardsInput>
+    create: XOR<UserCreateWithoutProjectsInput, UserUncheckedCreateWithoutProjectsInput>
+  }
+
+  export type BoardCreateWithoutProjectInput = {
+    id?: string
+    creator: string
+    description: string
+    title: string
+    link?: string | null
+    image?: string | null
+    category: string
+    boardColor: string
+    tags?: BoardCreatetagsInput | string[]
+    likes: number
+    timestamp?: Date | string
+    feedbacks?: FeedbackCreateNestedManyWithoutBoardInput
+  }
+
+  export type BoardUncheckedCreateWithoutProjectInput = {
+    id?: string
+    creator: string
+    description: string
+    title: string
+    link?: string | null
+    image?: string | null
+    category: string
+    boardColor: string
+    tags?: BoardCreatetagsInput | string[]
+    likes: number
+    timestamp?: Date | string
+    feedbacks?: FeedbackUncheckedCreateNestedManyWithoutBoardInput
+  }
+
+  export type BoardCreateOrConnectWithoutProjectInput = {
+    where: BoardWhereUniqueInput
+    create: XOR<BoardCreateWithoutProjectInput, BoardUncheckedCreateWithoutProjectInput>
+  }
+
+  export type BoardCreateManyProjectInputEnvelope = {
+    data: BoardCreateManyProjectInput | BoardCreateManyProjectInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutProjectsInput = {
+    update: XOR<UserUpdateWithoutProjectsInput, UserUncheckedUpdateWithoutProjectsInput>
+    create: XOR<UserCreateWithoutProjectsInput, UserUncheckedCreateWithoutProjectsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutProjectsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutProjectsInput, UserUncheckedUpdateWithoutProjectsInput>
+  }
+
+  export type UserUpdateWithoutProjectsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    userDetails?: UserDetailsUpdateOneWithoutUserNestedInput
+    verification?: VerificationUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutProjectsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    userDetails?: UserDetailsUncheckedUpdateOneWithoutUserNestedInput
+    verification?: VerificationUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type BoardUpsertWithWhereUniqueWithoutProjectInput = {
+    where: BoardWhereUniqueInput
+    update: XOR<BoardUpdateWithoutProjectInput, BoardUncheckedUpdateWithoutProjectInput>
+    create: XOR<BoardCreateWithoutProjectInput, BoardUncheckedCreateWithoutProjectInput>
+  }
+
+  export type BoardUpdateWithWhereUniqueWithoutProjectInput = {
+    where: BoardWhereUniqueInput
+    data: XOR<BoardUpdateWithoutProjectInput, BoardUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type BoardUpdateManyWithWhereWithoutProjectInput = {
+    where: BoardScalarWhereInput
+    data: XOR<BoardUpdateManyMutationInput, BoardUncheckedUpdateManyWithoutProjectInput>
+  }
+
+  export type BoardScalarWhereInput = {
+    AND?: BoardScalarWhereInput | BoardScalarWhereInput[]
+    OR?: BoardScalarWhereInput[]
+    NOT?: BoardScalarWhereInput | BoardScalarWhereInput[]
+    id?: StringFilter<"Board"> | string
+    projectId?: StringFilter<"Board"> | string
+    creator?: StringFilter<"Board"> | string
+    description?: StringFilter<"Board"> | string
+    title?: StringFilter<"Board"> | string
+    link?: StringNullableFilter<"Board"> | string | null
+    image?: StringNullableFilter<"Board"> | string | null
+    category?: StringFilter<"Board"> | string
+    boardColor?: StringFilter<"Board"> | string
+    tags?: StringNullableListFilter<"Board">
+    likes?: FloatFilter<"Board"> | number
+    timestamp?: DateTimeFilter<"Board"> | Date | string
+  }
+
+  export type ProjectCreateWithoutBoardsInput = {
+    id?: string
+    name: string
+    type: string
+    createdOn?: Date | string
+    isPrivate: boolean
+    image?: string | null
+    user: UserCreateNestedOneWithoutProjectsInput
+  }
+
+  export type ProjectUncheckedCreateWithoutBoardsInput = {
+    id?: string
+    userId: string
+    name: string
+    type: string
+    createdOn?: Date | string
+    isPrivate: boolean
+    image?: string | null
+  }
+
+  export type ProjectCreateOrConnectWithoutBoardsInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutBoardsInput, ProjectUncheckedCreateWithoutBoardsInput>
   }
 
   export type FeedbackCreateWithoutBoardInput = {
@@ -8599,39 +10196,35 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type UserUpsertWithoutBoardsInput = {
-    update: XOR<UserUpdateWithoutBoardsInput, UserUncheckedUpdateWithoutBoardsInput>
-    create: XOR<UserCreateWithoutBoardsInput, UserUncheckedCreateWithoutBoardsInput>
-    where?: UserWhereInput
+  export type ProjectUpsertWithoutBoardsInput = {
+    update: XOR<ProjectUpdateWithoutBoardsInput, ProjectUncheckedUpdateWithoutBoardsInput>
+    create: XOR<ProjectCreateWithoutBoardsInput, ProjectUncheckedCreateWithoutBoardsInput>
+    where?: ProjectWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutBoardsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutBoardsInput, UserUncheckedUpdateWithoutBoardsInput>
+  export type ProjectUpdateToOneWithWhereWithoutBoardsInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutBoardsInput, ProjectUncheckedUpdateWithoutBoardsInput>
   }
 
-  export type UserUpdateWithoutBoardsInput = {
+  export type ProjectUpdateWithoutBoardsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    avatar?: NullableStringFieldUpdateOperationsInput | string | null
-    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
-    userDetails?: UserDetailsUpdateOneWithoutUserNestedInput
-    verification?: VerificationUpdateOneWithoutUserNestedInput
+    type?: StringFieldUpdateOperationsInput | string
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+    isPrivate?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: UserUpdateOneRequiredWithoutProjectsNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutBoardsInput = {
+  export type ProjectUncheckedUpdateWithoutBoardsInput = {
     id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    avatar?: NullableStringFieldUpdateOperationsInput | string | null
-    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
-    userDetails?: UserDetailsUncheckedUpdateOneWithoutUserNestedInput
-    verification?: VerificationUncheckedUpdateOneWithoutUserNestedInput
+    type?: StringFieldUpdateOperationsInput | string
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+    isPrivate?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type FeedbackUpsertWithWhereUniqueWithoutBoardInput = {
@@ -8665,6 +10258,7 @@ export namespace Prisma {
 
   export type BoardCreateWithoutFeedbacksInput = {
     id?: string
+    creator: string
     description: string
     title: string
     link?: string | null
@@ -8672,13 +10266,15 @@ export namespace Prisma {
     category: string
     boardColor: string
     tags?: BoardCreatetagsInput | string[]
+    likes: number
     timestamp?: Date | string
-    user: UserCreateNestedOneWithoutBoardsInput
+    project?: ProjectCreateNestedOneWithoutBoardsInput
   }
 
   export type BoardUncheckedCreateWithoutFeedbacksInput = {
     id?: string
-    userId: string
+    projectId: string
+    creator: string
     description: string
     title: string
     link?: string | null
@@ -8686,6 +10282,7 @@ export namespace Prisma {
     category: string
     boardColor: string
     tags?: BoardCreatetagsInput | string[]
+    likes: number
     timestamp?: Date | string
   }
 
@@ -8707,6 +10304,7 @@ export namespace Prisma {
 
   export type BoardUpdateWithoutFeedbacksInput = {
     id?: StringFieldUpdateOperationsInput | string
+    creator?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8714,13 +10312,15 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     boardColor?: StringFieldUpdateOperationsInput | string
     tags?: BoardUpdatetagsInput | string[]
+    likes?: FloatFieldUpdateOperationsInput | number
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutBoardsNestedInput
+    project?: ProjectUpdateOneWithoutBoardsNestedInput
   }
 
   export type BoardUncheckedUpdateWithoutFeedbacksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    creator?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8728,11 +10328,51 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     boardColor?: StringFieldUpdateOperationsInput | string
     tags?: BoardUpdatetagsInput | string[]
+    likes?: FloatFieldUpdateOperationsInput | number
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type BoardCreateManyUserInput = {
+  export type ProjectCreateManyUserInput = {
     id?: string
+    name: string
+    type: string
+    createdOn?: Date | string
+    isPrivate: boolean
+    image?: string | null
+  }
+
+  export type ProjectUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+    isPrivate?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    boards?: BoardUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+    isPrivate?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    boards?: BoardUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+    isPrivate?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type BoardCreateManyProjectInput = {
+    id?: string
+    creator: string
     description: string
     title: string
     link?: string | null
@@ -8740,11 +10380,13 @@ export namespace Prisma {
     category: string
     boardColor: string
     tags?: BoardCreatetagsInput | string[]
+    likes: number
     timestamp?: Date | string
   }
 
-  export type BoardUpdateWithoutUserInput = {
+  export type BoardUpdateWithoutProjectInput = {
     id?: StringFieldUpdateOperationsInput | string
+    creator?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8752,12 +10394,14 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     boardColor?: StringFieldUpdateOperationsInput | string
     tags?: BoardUpdatetagsInput | string[]
+    likes?: FloatFieldUpdateOperationsInput | number
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
     feedbacks?: FeedbackUpdateManyWithoutBoardNestedInput
   }
 
-  export type BoardUncheckedUpdateWithoutUserInput = {
+  export type BoardUncheckedUpdateWithoutProjectInput = {
     id?: StringFieldUpdateOperationsInput | string
+    creator?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8765,12 +10409,14 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     boardColor?: StringFieldUpdateOperationsInput | string
     tags?: BoardUpdatetagsInput | string[]
+    likes?: FloatFieldUpdateOperationsInput | number
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
     feedbacks?: FeedbackUncheckedUpdateManyWithoutBoardNestedInput
   }
 
-  export type BoardUncheckedUpdateManyWithoutUserInput = {
+  export type BoardUncheckedUpdateManyWithoutProjectInput = {
     id?: StringFieldUpdateOperationsInput | string
+    creator?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8778,6 +10424,7 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     boardColor?: StringFieldUpdateOperationsInput | string
     tags?: BoardUpdatetagsInput | string[]
+    likes?: FloatFieldUpdateOperationsInput | number
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

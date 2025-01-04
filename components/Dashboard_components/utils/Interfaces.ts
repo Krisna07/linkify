@@ -8,6 +8,16 @@ export interface userProps {
   timestamp?: number;
 }
 
+export interface ProjectProps {
+  id?: string;
+  userId?: string;
+  name: string;
+  type: string;
+  createdon?: Date;
+  isPrivate: boolean;
+  image?: string;
+}
+
 export interface boardProps {
   id?: string;
 

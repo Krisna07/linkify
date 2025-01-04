@@ -155,9 +155,20 @@ exports.Prisma.UserDetailsScalarFieldEnum = {
   timestamp: 'timestamp'
 };
 
-exports.Prisma.BoardScalarFieldEnum = {
+exports.Prisma.ProjectScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  name: 'name',
+  type: 'type',
+  createdOn: 'createdOn',
+  isPrivate: 'isPrivate',
+  image: 'image'
+};
+
+exports.Prisma.BoardScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  creator: 'creator',
   description: 'description',
   title: 'title',
   link: 'link',
@@ -165,6 +176,7 @@ exports.Prisma.BoardScalarFieldEnum = {
   category: 'category',
   boardColor: 'boardColor',
   tags: 'tags',
+  likes: 'likes',
   timestamp: 'timestamp'
 };
 
@@ -198,6 +210,7 @@ exports.Prisma.ModelName = {
   User: 'User',
   Verification: 'Verification',
   UserDetails: 'UserDetails',
+  Project: 'Project',
   Board: 'Board',
   Feedback: 'Feedback'
 };

@@ -1,80 +1,74 @@
 "use client";
 import React, { FormEvent, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { boardProps } from "../../../utils/Interfaces";
+import { boardProps, ProjectProps } from "../../../utils/Interfaces";
 import Button from "../../../../Global_components/Button";
 import Image from "next/image";
-import { once } from "events";
+
 import { FaLock, FaMagnifyingGlass, FaUpDown } from "react-icons/fa6";
 import { RiIncreaseDecreaseLine } from "react-icons/ri";
 import { BiChevronUp, BiUserPlus } from "react-icons/bi";
 import { inter, roboto } from "../../../../../fonts/fonts";
 import RandomCodeGenerator from "../../../../../lib/radomcodegenerator";
-
-interface Project {
-  name: string;
-  type: string;
-  createdon: Date;
-  private: boolean;
-  image: string;
-  boards: boardProps[];
-}
+import getProjects, { createProject } from "./projectactions";
+import { toast } from "react-toastify";
+import { supabase } from "../../../../../lib/supabase";
 
 const ProjectsPage = () => {
   const [projectName, setProjectName] = useState<string>("");
   const [selectedType, setSelectedType] = useState<string>("");
   const [showOptions, setShowOptions] = useState<boolean>(false);
 
-  const [projects, setProjects] = useState<Project[]>([
+  const [projects, setProjects] = useState<ProjectProps[]>([
     {
       name: "Project Alpha",
       type: "Educational",
       createdon: new Date("2023-01-01"),
-      private: false,
+      isPrivate: false,
       image: "https://picsum.photos/200/200?random=1",
-      boards: [],
     },
     {
       name: "Project Beta",
       type: "Personal",
       createdon: new Date("2023-02-01"),
-      private: true,
+      isPrivate: true,
       image: "https://picsum.photos/200/200?random=2",
-      boards: [],
     },
     {
       name: "Project Gamma",
       type: "Professional",
       createdon: new Date("2023-03-01"),
-      private: false,
+      isPrivate: false,
       image: "https://picsum.photos/200/200?random=3",
-      boards: [],
     },
     {
       name: "Project Delta",
       type: "Other",
       createdon: new Date("2023-04-01"),
-      private: true,
+      isPrivate: true,
       image: "https://picsum.photos/200/200?random=4",
-      boards: [],
     },
     {
       name: "Project Epsilon",
       type: "Research",
       createdon: new Date("2023-05-01"),
-      private: false,
+      isPrivate: false,
       image: "https://picsum.photos/200/200?random=5",
-      boards: [],
     },
     {
       name: "Project Zeta",
       type: "Development",
       createdon: new Date("2023-06-01"),
-      private: true,
+      isPrivate: true,
       image: "https://picsum.photos/200/200?random=6",
-      boards: [],
     },
   ]);
+
+  useEffect(() => {
+    const newProjects = getProjects();
+    console.log(newProjects);
+    console.log(projects);
+  }, [projects]);
   const trendingBoards: any = [
     {
       id: "1",
@@ -117,23 +111,30 @@ const ProjectsPage = () => {
       tags: ["marketing", "strategy", "planning"],
     },
   ];
-  const handleCreateNew = (e: FormEvent) => {
+  const handleCreateNew = async (e: FormEvent) => {
     e.preventDefault();
     if (projectName && selectedType) {
-      const newProject: Project = {
+      const newProject: ProjectProps = {
         name: projectName,
         type: selectedType,
-        createdon: new Date(),
-        private: true,
+        isPrivate: true,
         image: `https://picsum.photos/200/200?random=${RandomCodeGenerator}`,
-        boards: [],
       };
+
       setProjects((prev) => [...prev, newProject]);
-      console.log(projects);
+      const response = await createProject(newProject);
+      if (response.status !== 200) {
+        return console.log(response);
+      }
+      toast.success("Project added");
     } else {
       console.log("No data to add");
     }
   };
+  // const getProjectshere = async () => {
+  //   let data = await supabase.from("Project").select("*");
+  //   return data.data
+  // };
 
   return (
     <div
@@ -240,12 +241,12 @@ const ProjectsPage = () => {
                     </div>
                     <span className="text-silver/75 font-semibold whitespace-nowrap flex items-center gap-1">
                       {item.name}
-                      {item.private && <FaLock size={8} color="" />}
+                      {item.isPrivate && <FaLock size={8} color="" />}
                     </span>
                   </div>
 
                   <span className="text-silver/75 text-[12px]">
-                    {item.createdon.toDateString()}
+                    {item.createdon?.toDateString()}
                   </span>
                 </div>
                 <Button
