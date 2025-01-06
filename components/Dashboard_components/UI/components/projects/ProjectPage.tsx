@@ -233,8 +233,8 @@ const ProjectsPage = () => {
           </div>
         </div>
       </form>
-      <div className="min-w-full grid min-[800px]:flex   px-4 gap-4 ">
-        <div className="w-full  relative  p-4 shadow-bs rounded-lg ">
+      <div className="min-w-full  grid min-[800px]:flex   px-4 gap-4  ">
+        <div className="w-full max-h-full  relative  p-4 shadow-bs rounded-lg  ">
           <h2 className="w-full font-semibold  mb-4">Recent Projects</h2>
           <div className="w-full py-1 px-2 mb-2 flex rounded-lg border border-accent/75 overflow-hidden items-center gap-2">
             <FaMagnifyingGlass size={24} />
@@ -246,11 +246,11 @@ const ProjectsPage = () => {
               className="w-full py-1 bg-transparent outline-none "
             />
           </div>
-          <div className="w-full grid divide-y-[1px] divide-accent/75 border rounded-lg border-accent/75">
+          <div className="w-full h-[361px] grid divide-y-[1px] divide-accent/75 border rounded-lg border-accent/75 box-border  overflow-hidden overflow-y-auto">
             {projects.slice(0, 8).map((item, index) => (
               <div
                 key={index}
-                className="flex items-center justify-between p-2  "
+                className={`flex items-center justify-between p-2`}
               >
                 <div className="max-[450px]:grid flex items-center gap-1">
                   <div className="flex items-center gap-2 mr-2">
@@ -285,8 +285,18 @@ const ProjectsPage = () => {
               </div>
             ))}
           </div>
+          <div className="p-2">
+            {" "}
+            <Button
+              children="Load more ..."
+              icon={true}
+              variant={"accent"}
+              size={"default"}
+              className="text-sm bg-white/75 text-dark"
+            />
+          </div>
         </div>
-        <div className="w-full p-4 shadow-bs rounded-lg ">
+        <div className="w-full max-h-full p-4 shadow-bs rounded-lg ">
           <div className="mb-4">
             <h2>Trending Boards</h2>
           </div>
