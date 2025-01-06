@@ -1,23 +1,26 @@
 "use client";
 import React, { FormEvent, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { boardProps, ProjectProps } from "../../../utils/Interfaces";
+import { ProjectProps } from "../../../utils/Interfaces";
 import Button from "../../../../Global_components/Button";
 import Image from "next/image";
 
-import { FaLock, FaMagnifyingGlass, FaUpDown } from "react-icons/fa6";
-import { RiIncreaseDecreaseLine } from "react-icons/ri";
+import { FaLock, FaMagnifyingGlass } from "react-icons/fa6";
+
 import { BiChevronUp, BiUserPlus } from "react-icons/bi";
-import { inter, roboto } from "../../../../../fonts/fonts";
+import { inter } from "../../../../../fonts/fonts";
 import RandomCodeGenerator from "../../../../../lib/radomcodegenerator";
 import getProjects, { createProject } from "./projectactions";
 import { toast } from "react-toastify";
-import { supabase } from "../../../../../lib/supabase";
+
+import { BsEye } from "react-icons/bs";
+import { CiLock } from "react-icons/ci";
 
 const ProjectsPage = () => {
   const [projectName, setProjectName] = useState<string>("");
   const [selectedType, setSelectedType] = useState<string>("");
   const [showOptions, setShowOptions] = useState<boolean>(false);
+  const [isPrivate, setisPrivate] = useState<boolean>(false);
 
   const [projects, setProjects] = useState<ProjectProps[]>([
     {
@@ -64,11 +67,14 @@ const ProjectsPage = () => {
     },
   ]);
 
+  const fetchProjects = async () => {
+    const projectsinDb = await getProjects();
+    projectsinDb && setProjects(projectsinDb);
+    console.log(projectsinDb);
+  };
   useEffect(() => {
-    const newProjects = getProjects();
-    console.log(newProjects);
-    console.log(projects);
-  }, [projects]);
+    fetchProjects();
+  }, []);
   const trendingBoards: any = [
     {
       id: "1",
@@ -117,24 +123,23 @@ const ProjectsPage = () => {
       const newProject: ProjectProps = {
         name: projectName,
         type: selectedType,
-        isPrivate: true,
-        image: `https://picsum.photos/200/200?random=${RandomCodeGenerator}`,
+        isPrivate: isPrivate,
+        image: `https://picsum.photos/200/200?random=${RandomCodeGenerator()}`,
       };
 
       setProjects((prev) => [...prev, newProject]);
       const response = await createProject(newProject);
-      if (response.status !== 200) {
-        return console.log(response);
+      if (response.status !== 201) {
+        return toast.error(response.message);
       }
-      toast.success("Project added");
+      setProjectName("");
+      setSelectedType("");
+      setisPrivate(false);
+      return toast.error(response.message);
     } else {
-      console.log("No data to add");
+      toast.error("Please enter the name and select type.");
     }
   };
-  // const getProjectshere = async () => {
-  //   let data = await supabase.from("Project").select("*");
-  //   return data.data
-  // };
 
   return (
     <div
@@ -181,37 +186,56 @@ const ProjectsPage = () => {
           />
         </div>
 
-        <div className="w-full flex flex-wrap items-start px-4 gap-2 absolute top-full p-1  z-10 ">
-          {["Educational", "Personal", "Professional", "Other"].map(
-            (type, index) => (
-              <motion.label
-                key={index}
-                animate={
-                  showOptions ? { y: 0, opacity: 1 } : { y: -24, opacity: 0 }
-                }
-                transition={{
-                  type: "spring",
-                  duration: 1,
-                  delay: index * 0.1,
-                }}
-                className="flex gap-2 items-center bg-accent rounded-full px-2 leading-[150%] text-sm"
-              >
-                <input
-                  type="radio"
-                  className="text-sm"
-                  value={type}
-                  checked={selectedType === type}
-                  onChange={() => setSelectedType(type)}
-                />
-                <span>{type}</span>
-              </motion.label>
-            )
-          )}
+        <div className="w-full absolute top-full p-1  z-10 flex justify-between px-4">
+          <div className="w-full flex flex-wrap items-center gap-2 ">
+            {["Educational", "Personal", "Professional", "Other"].map(
+              (type, index) => (
+                <motion.label
+                  key={index}
+                  animate={
+                    showOptions ? { y: 0, opacity: 1 } : { y: -24, opacity: 0 }
+                  }
+                  transition={{
+                    type: "spring",
+                    duration: 1,
+                    delay: index * 0.1,
+                  }}
+                  className="flex gap-2 items-center bg-accent rounded-full px-2 leading-[150%] text-sm"
+                >
+                  <input
+                    type="radio"
+                    className="text-sm"
+                    value={type}
+                    checked={selectedType === type}
+                    onChange={() => setSelectedType(type)}
+                  />
+                  <span>{type}</span>
+                </motion.label>
+              )
+            )}
+          </div>
+
+          <div
+            onClick={() => setisPrivate(!isPrivate)}
+            className="h-full text-[12px]  flex items-center rounded-full relative box-border shadow-bs"
+          >
+            <div className="w-6 p-1 justify place-items-center  h-full z-20 ">
+              <BsEye />
+            </div>
+            <div
+              className={`w-4 h-4 bg-accent left-1 absolute  transition-transform ease-in-out  rounded-full z-10 ${
+                isPrivate ? "translate-x-6" : ""
+              }`}
+            ></div>
+            <div className="w-6  p-1 justify place-items-center  h-full z-20">
+              <CiLock />
+            </div>
+          </div>
         </div>
       </form>
       <div className="min-w-full grid min-[800px]:flex   px-4 gap-4 ">
         <div className="w-full  relative  p-4 shadow-bs rounded-lg ">
-          <h2 className="w-full font-semibold  mb-4">Projects</h2>
+          <h2 className="w-full font-semibold  mb-4">Recent Projects</h2>
           <div className="w-full py-1 px-2 mb-2 flex rounded-lg border border-accent/75 overflow-hidden items-center gap-2">
             <FaMagnifyingGlass size={24} />
             <input
@@ -223,7 +247,7 @@ const ProjectsPage = () => {
             />
           </div>
           <div className="w-full grid divide-y-[1px] divide-accent/75 border rounded-lg border-accent/75">
-            {projects.map((item, index) => (
+            {projects.slice(0, 8).map((item, index) => (
               <div
                 key={index}
                 className="flex items-center justify-between p-2  "
@@ -261,36 +285,6 @@ const ProjectsPage = () => {
               </div>
             ))}
           </div>
-
-          {/* <div className=" w-full grid place-items-center relative bg-primary  ">
-            {[...Array(5)].map((items, index) => (
-              <motion.div
-                initial={{ scale: 2, opacity: 0 }}
-                animate={{
-                  scale: 1,
-                  opacity: 1,
-                }}
-                transition={{ duration: index * 0.1 }}
-                draggable="true"
-                key={index}
-                style={{
-                  rotate:
-                    index % 2
-                      ? `${index * 5 + "deg"}`
-                      : `-${index * 5 + "deg"}`,
-                }}
-                className={`text-left p-2  text-dark absolute bg-silver z-[${
-                  5 - index
-                }] `}
-              >
-                <img
-                  src={`https://picsum.photos/200/200?random=${index}`}
-                  alt="boardimage"
-                  className="object-fill w-full h-full"
-                />
-              </motion.div>
-            ))}
-          </div> */}
         </div>
         <div className="w-full p-4 shadow-bs rounded-lg ">
           <div className="mb-4">

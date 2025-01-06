@@ -1,5 +1,3 @@
-import { getCurrentUser } from "../../../../../lib/session";
-import { supabase } from "../../../../../lib/supabase";
 import { ProjectProps } from "../../../utils/Interfaces";
 
 export default async function getProjects() {
