@@ -15,53 +15,55 @@ import { toast } from "react-toastify";
 
 import { BsEye } from "react-icons/bs";
 import { CiLock } from "react-icons/ci";
+import Link from "next/link";
 
 const ProjectsPage = () => {
   const [projectName, setProjectName] = useState<string>("");
   const [selectedType, setSelectedType] = useState<string>("");
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const [isPrivate, setisPrivate] = useState<boolean>(false);
+  const [dispayProject, setDisplayProject] = useState<number>(8);
 
   const [projects, setProjects] = useState<ProjectProps[]>([
     {
       name: "Project Alpha",
       type: "Educational",
-      createdon: new Date("2023-01-01"),
+      createdOn: new Date("2023-01-01"),
       isPrivate: false,
       image: "https://picsum.photos/200/200?random=1",
     },
     {
       name: "Project Beta",
       type: "Personal",
-      createdon: new Date("2023-02-01"),
+      createdOn: new Date("2023-02-01"),
       isPrivate: true,
       image: "https://picsum.photos/200/200?random=2",
     },
     {
       name: "Project Gamma",
       type: "Professional",
-      createdon: new Date("2023-03-01"),
+      createdOn: new Date("2023-03-01"),
       isPrivate: false,
       image: "https://picsum.photos/200/200?random=3",
     },
     {
       name: "Project Delta",
       type: "Other",
-      createdon: new Date("2023-04-01"),
+      createdOn: new Date("2023-04-01"),
       isPrivate: true,
       image: "https://picsum.photos/200/200?random=4",
     },
     {
       name: "Project Epsilon",
       type: "Research",
-      createdon: new Date("2023-05-01"),
+      createdOn: new Date("2023-05-01"),
       isPrivate: false,
       image: "https://picsum.photos/200/200?random=5",
     },
     {
       name: "Project Zeta",
       type: "Development",
-      createdon: new Date("2023-06-01"),
+      createdOn: new Date("2023-06-01"),
       isPrivate: true,
       image: "https://picsum.photos/200/200?random=6",
     },
@@ -138,6 +140,14 @@ const ProjectsPage = () => {
       return toast.error(response.message);
     } else {
       toast.error("Please enter the name and select type.");
+    }
+  };
+
+  const updateProjectsNumber = () => {
+    if (dispayProject + 4 > projects.length) {
+      setDisplayProject(projects.length);
+    } else {
+      setDisplayProject(dispayProject + 4);
     }
   };
 
@@ -246,11 +256,11 @@ const ProjectsPage = () => {
               className="w-full py-1 bg-transparent outline-none "
             />
           </div>
-          <div className="w-full h-[361px] grid divide-y-[1px] divide-accent/75 border rounded-lg border-accent/75 box-border  overflow-hidden overflow-y-auto">
-            {projects.slice(0, 8).map((item, index) => (
+          <div className="w-full tablet:h-[320px] grid divide-y-[1px] divide-accent/75 border rounded-lg border-accent/75 box-border  overflow-hidden overflow-y-auto">
+            {projects.slice(0, dispayProject).map((item, index) => (
               <div
                 key={index}
-                className={`flex items-center justify-between p-2`}
+                className={`flex items-center justify-between p-1`}
               >
                 <div className="max-[450px]:grid flex items-center gap-1">
                   <div className="flex items-center gap-2 mr-2">
@@ -265,34 +275,37 @@ const ProjectsPage = () => {
                         />
                       )}
                     </div>
-                    <span className="text-silver/75 font-semibold whitespace-nowrap flex items-center gap-1">
+                    <span className="text-silver/75 font-semibold whitespace-nowrap flex items-center gap-1 capitalize text-sm">
                       {item.name}
                       {item.isPrivate && <FaLock size={8} color="" />}
                     </span>
                   </div>
 
                   <span className="text-silver/75 text-[12px]">
-                    {item.createdon?.toDateString()}
+                    {item.createdOn &&
+                      new Date(`${item.createdOn}`).toDateString()}
                   </span>
                 </div>
-                <Button
-                  children="View"
-                  icon={true}
-                  variant={"accent"}
-                  size={"default"}
-                  className="text-sm bg-white/75 text-dark"
-                />
+                <Link href={`./projects/${item.name.split(" ").join("_")}`}>
+                  <Button
+                    children="View"
+                    icon={true}
+                    variant={"default"}
+                    size={"default"}
+                    className="text-sm shadow-bs border-none p-[2px_4px]"
+                  />
+                </Link>
               </div>
             ))}
           </div>
           <div className="p-2">
-            {" "}
             <Button
-              children="Load more ..."
+              children="Load More"
               icon={true}
-              variant={"accent"}
+              variant={"default"}
               size={"default"}
-              className="text-sm bg-white/75 text-dark"
+              className="text-sm shadow-bs border-none"
+              onClick={updateProjectsNumber}
             />
           </div>
         </div>
@@ -345,9 +358,9 @@ const ProjectsPage = () => {
           <div className="mb-4 p-2 flex items-center justify-between">
             <h2 className="font-semibold">Suggested users</h2>
             <Button
-              className="w-fit text-[12px]"
+              className="w-fit text-[12px] shadow-bs border-none"
               size={"sm"}
-              variant={"primary"}
+              variant={"default"}
               icon={true}
               children="All public profiles"
             />

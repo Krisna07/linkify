@@ -7,8 +7,6 @@ export default async function getProjects() {
       throw new Error("Failed to fetch boards");
     }
     const projects = await response.json();
-    console.log(projects);
-
     return projects.data;
   } catch (error) {
     console.log(error);

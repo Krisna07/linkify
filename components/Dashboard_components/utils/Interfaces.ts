@@ -13,7 +13,7 @@ export interface ProjectProps {
   userId?: string;
   name: string;
   type: string;
-  createdon?: Date;
+  createdOn?: Date;
   isPrivate: boolean;
   image?: string;
 }
