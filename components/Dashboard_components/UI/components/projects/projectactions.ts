@@ -35,3 +35,21 @@ export async function createProject(formdata: ProjectProps) {
     console.log("Network error");
   }
 }
+
+// Function to delete a project by slug
+export async function deleteProject(id: string) {
+  try {
+    const response = await fetch(`/api/user/projects/${id}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to delete project");
+    }
+
+    return response.status; // Return true if deletion was successful
+  } catch (error) {
+    console.error("Error deleting project:", error);
+    return false; // Return false to indicate failure
+  }
+}

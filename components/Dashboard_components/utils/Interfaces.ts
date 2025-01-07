@@ -9,7 +9,7 @@ export interface userProps {
 }
 
 export interface ProjectProps {
-  id?: string;
+  id: string;
   userId?: string;
   name: string;
   type: string;

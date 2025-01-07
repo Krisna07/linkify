@@ -16,9 +16,9 @@ export async function GET(
   }
 
   try {
-    const project = await db.project.findUnique({
-      where: { name: params.slug, userId: user.id },
-      include: { boards: true }, // Ensure the relation name matches your schema
+    const project = await db.project.findFirst({
+      where: { name: params.slug.split("_").join(" ") },
+      include: { boards: true },
     });
 
     if (!project) {
@@ -59,7 +59,7 @@ export async function PUT(
     const { name, type, isPrivate, image } = body;
 
     const updatedProject = await db.project.update({
-      where: { name: params.slug, userId: user.id },
+      where: { id: params.slug },
       data: {
         name,
         type,
@@ -84,7 +84,7 @@ export async function PUT(
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { slug: string } }
+  { params }: { params: { id: string } }
 ) {
   const user = await getCurrentUser();
 
@@ -97,7 +97,7 @@ export async function DELETE(
 
   try {
     await db.project.delete({
-      where: { name: params.slug, userId: user.id },
+      where: { id: params.id },
     });
 
     return NextResponse.json({
