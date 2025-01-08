@@ -87,6 +87,7 @@ export async function POST(req: Request) {
     return NextResponse.json({
       status: 201, // Created
       message: `New project ${name} added `,
+      newProject,
     });
   } catch (error) {
     console.error(error); // Logging the error for debugging

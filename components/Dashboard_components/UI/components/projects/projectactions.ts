@@ -1,4 +1,5 @@
 import { ProjectProps } from "../../../utils/Interfaces";
+import { NewProjectProps } from "./ProjectPage";
 
 export default async function getProjects() {
   try {
@@ -13,7 +14,7 @@ export default async function getProjects() {
   }
 }
 
-export async function createProject(formdata: ProjectProps) {
+export async function createProject(formdata: NewProjectProps) {
   const options = {
     method: "POST",
     headers: {
@@ -39,15 +40,16 @@ export async function createProject(formdata: ProjectProps) {
 // Function to delete a project by slug
 export async function deleteProject(id: string) {
   try {
+    // console.log(id);
     const response = await fetch(`/api/user/projects/${id}`, {
       method: "DELETE",
     });
-
-    if (!response.ok) {
+    console.log(response);
+    if (response.status != 200) {
       throw new Error("Failed to delete project");
     }
 
-    return response.status; // Return true if deletion was successful
+    return response; // Return true if deletion was successful
   } catch (error) {
     console.error("Error deleting project:", error);
     return false; // Return false to indicate failure

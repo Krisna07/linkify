@@ -4,18 +4,22 @@ import { motion } from "framer-motion";
 import { ProjectProps } from "../../../utils/Interfaces";
 import Button from "../../../../Global_components/Button";
 import Image from "next/image";
-
 import { FaLock, FaMagnifyingGlass } from "react-icons/fa6";
-
 import { BiChevronUp, BiUserPlus } from "react-icons/bi";
 import { inter } from "../../../../../fonts/fonts";
 import RandomCodeGenerator from "../../../../../lib/radomcodegenerator";
 import getProjects, { createProject } from "./projectactions";
 import { toast } from "react-toastify";
-
 import { BsEye } from "react-icons/bs";
 import { CiLock } from "react-icons/ci";
 import Link from "next/link";
+import CreateProject from "../../Forms/ProjectForm/CreateProject";
+export interface NewProjectProps {
+  name: string;
+  type: string;
+  isPrivate: boolean;
+  image: string;
+}
 
 const ProjectsPage = () => {
   const [projectName, setProjectName] = useState<string>("");
@@ -23,56 +27,65 @@ const ProjectsPage = () => {
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const [isPrivate, setisPrivate] = useState<boolean>(false);
   const [dispayProject, setDisplayProject] = useState<number>(8);
-
   const [projects, setProjects] = useState<ProjectProps[]>([
-    {
-      name: "Project Alpha",
-      type: "Educational",
-      createdOn: new Date("2023-01-01"),
-      isPrivate: false,
-      image: "https://picsum.photos/200/200?random=1",
-    },
-    {
-      name: "Project Beta",
-      type: "Personal",
-      createdOn: new Date("2023-02-01"),
-      isPrivate: true,
-      image: "https://picsum.photos/200/200?random=2",
-    },
-    {
-      name: "Project Gamma",
-      type: "Professional",
-      createdOn: new Date("2023-03-01"),
-      isPrivate: false,
-      image: "https://picsum.photos/200/200?random=3",
-    },
-    {
-      name: "Project Delta",
-      type: "Other",
-      createdOn: new Date("2023-04-01"),
-      isPrivate: true,
-      image: "https://picsum.photos/200/200?random=4",
-    },
-    {
-      name: "Project Epsilon",
-      type: "Research",
-      createdOn: new Date("2023-05-01"),
-      isPrivate: false,
-      image: "https://picsum.photos/200/200?random=5",
-    },
-    {
-      name: "Project Zeta",
-      type: "Development",
-      createdOn: new Date("2023-06-01"),
-      isPrivate: true,
-      image: "https://picsum.photos/200/200?random=6",
-    },
+    // {
+    //   id: "12",
+    //   name: "Project Alpha",
+    //   type: "Educational",
+    //   createdOn: new Date("2023-01-01"),
+    //   isPrivate: false,
+    //   image: "https://picsum.photos/200/200?random=1",
+    // },
+    // {
+    //   id: "13",
+    //   name: "Project Beta",
+    //   type: "Personal",
+    //   createdOn: new Date("2023-02-01"),
+    //   isPrivate: true,
+    //   image: "https://picsum.photos/200/200?random=2",
+    // },
+    // {
+    //   id: "14",
+    //   name: "Project Gamma",
+    //   type: "Professional",
+    //   createdOn: new Date("2023-03-01"),
+    //   isPrivate: false,
+    //   image: "https://picsum.photos/200/200?random=3",
+    // },
+    // {
+    //   id: "15",
+    //   name: "Project Delta",
+    //   type: "Other",
+    //   createdOn: new Date("2023-04-01"),
+    //   isPrivate: true,
+    //   image: "https://picsum.photos/200/200?random=4",
+    // },
+    // {
+    //   id: "16",
+    //   name: "Project Epsilon",
+    //   type: "Research",
+    //   createdOn: new Date("2023-05-01"),
+    //   isPrivate: false,
+    //   image: "https://picsum.photos/200/200?random=5",
+    // },
+    // {
+    //   id: "18",
+    //   name: "Project Zeta",
+    //   type: "Development",
+    //   createdOn: new Date("2023-06-01"),
+    //   isPrivate: true,
+    //   image: "https://picsum.photos/200/200?random=6",
+    // },
   ]);
+
+  // const updateProjects =(newProjects:)=>{
+  //   setProjects()
+
+  // }
 
   const fetchProjects = async () => {
     const projectsinDb = await getProjects();
     projectsinDb && setProjects(projectsinDb);
-    console.log(projectsinDb);
   };
   useEffect(() => {
     fetchProjects();
@@ -119,29 +132,6 @@ const ProjectsPage = () => {
       tags: ["marketing", "strategy", "planning"],
     },
   ];
-  const handleCreateNew = async (e: FormEvent) => {
-    e.preventDefault();
-    if (projectName && selectedType) {
-      const newProject: ProjectProps = {
-        name: projectName,
-        type: selectedType,
-        isPrivate: isPrivate,
-        image: `https://picsum.photos/200/200?random=${RandomCodeGenerator()}`,
-      };
-
-      setProjects((prev) => [...prev, newProject]);
-      const response = await createProject(newProject);
-      if (response.status !== 201) {
-        return toast.error(response.message);
-      }
-      setProjectName("");
-      setSelectedType("");
-      setisPrivate(false);
-      return toast.error(response.message);
-    } else {
-      toast.error("Please enter the name and select type.");
-    }
-  };
 
   const updateProjectsNumber = () => {
     if (dispayProject + 4 > projects.length) {
@@ -168,81 +158,11 @@ const ProjectsPage = () => {
             children="Collaborate With Pro trial"
             variant={"default"}
             size={"default"}
-            className="rounded-lg border-accent hover:shadow-bs"
+            className="rounded-lg border-accent hover:shadow-bs w-fit"
           />
         </div>
       </div>
-      <form className="grid gap-2 relative" onSubmit={handleCreateNew}>
-        <div
-          className={`mx-4 p-1 flex border border-accent rounded-lg   box-border overflow-hidden relative z-20 ${
-            showOptions && "shadow-bs"
-          } transition-all ease-in-out duration-300`}
-        >
-          <input
-            type="text"
-            // name="projectName"
-            className="w-full px-2 py-1 bg-dark border-none outline-none"
-            value={projectName}
-            onFocus={() => setShowOptions(true)}
-            onBlur={() => !projectName && setShowOptions(false)}
-            onChange={(e) => setProjectName(e.target.value)}
-          />
-          <Button
-            children="Create New"
-            variant={"default"}
-            size={"default"}
-            className="min-w-fit shadow-bs border-silver/25 text-silver/75 hover:border-silver/75"
-            onClick={handleCreateNew}
-          />
-        </div>
-
-        <div className="w-full absolute top-full p-1  z-10 flex justify-between px-4">
-          <div className="w-full flex flex-wrap items-center gap-2 ">
-            {["Educational", "Personal", "Professional", "Other"].map(
-              (type, index) => (
-                <motion.label
-                  key={index}
-                  animate={
-                    showOptions ? { y: 0, opacity: 1 } : { y: -24, opacity: 0 }
-                  }
-                  transition={{
-                    type: "spring",
-                    duration: 1,
-                    delay: index * 0.1,
-                  }}
-                  className="flex gap-2 items-center bg-accent rounded-full px-2 leading-[150%] text-sm"
-                >
-                  <input
-                    type="radio"
-                    className="text-sm"
-                    value={type}
-                    checked={selectedType === type}
-                    onChange={() => setSelectedType(type)}
-                  />
-                  <span>{type}</span>
-                </motion.label>
-              )
-            )}
-          </div>
-
-          <div
-            onClick={() => setisPrivate(!isPrivate)}
-            className="h-full text-[12px]  flex items-center rounded-full relative box-border shadow-bs"
-          >
-            <div className="w-6 p-1 justify place-items-center  h-full z-20 ">
-              <BsEye />
-            </div>
-            <div
-              className={`w-4 h-4 bg-accent left-1 absolute  transition-transform ease-in-out  rounded-full z-10 ${
-                isPrivate ? "translate-x-6" : ""
-              }`}
-            ></div>
-            <div className="w-6  p-1 justify place-items-center  h-full z-20">
-              <CiLock />
-            </div>
-          </div>
-        </div>
-      </form>
+      <CreateProject setProjects={setProjects} />
       <div className="min-w-full  grid min-[800px]:flex   px-4 gap-4  ">
         <div className="w-full max-h-full  relative  p-4 shadow-bs rounded-lg  ">
           <h2 className="w-full font-semibold  mb-4">Recent Projects</h2>
@@ -256,58 +176,88 @@ const ProjectsPage = () => {
               className="w-full py-1 bg-transparent outline-none "
             />
           </div>
-          <div className="w-full tablet:h-[320px] grid divide-y-[1px] divide-accent/75 border rounded-lg border-accent/75 box-border  overflow-hidden overflow-y-auto">
-            {projects.slice(0, dispayProject).map((item, index) => (
-              <div
-                key={index}
-                className={`flex items-center justify-between p-1`}
+          {projects.length > 0 && (
+            <>
+              <motion.div
+                initial={{ maxHeight: 0 }}
+                animate={{ maxHeight: 320 }}
+                transition={{
+                  type: "spring",
+                }}
+                className={`w-full tablet:max-h-[320px]  grid divide-y-[1px] divide-accent/75 border rounded-lg border-accent/75 box-border  overflow-hidden ${
+                  dispayProject > 8 && "overflow-y-auto"
+                }`}
               >
-                <div className="max-[450px]:grid flex items-center gap-1">
-                  <div className="flex items-center gap-2 mr-2">
-                    <div className="w-6 h-6 rounded-full overflow-hidden bg-gradient-to-tl from-primary to-accent/50">
-                      {item.image && (
-                        <Image
-                          src={item.image}
-                          alt="boardimage"
-                          width={1}
-                          height={1}
-                          className="object-fill w-full h-full"
-                        />
-                      )}
-                    </div>
-                    <span className="text-silver/75 font-semibold whitespace-nowrap flex items-center gap-1 capitalize text-sm">
-                      {item.name}
-                      {item.isPrivate && <FaLock size={8} color="" />}
-                    </span>
-                  </div>
+                {projects &&
+                  projects.slice(0, dispayProject).map(
+                    (item, index) =>
+                      item && (
+                        <motion.div
+                          initial={{ y: 50, height: 0, opacity: 0 }}
+                          animate={{ y: 0, height: 320 / 8, opacity: 1 }}
+                          transition={{
+                            type: "spring",
+                            duration:
+                              index < projects.length ? index * 0.1 : 0.3,
+                          }}
+                          key={index}
+                          className={`flex items-center justify-between p-1 h-[px] `}
+                        >
+                          <div className="max-[450px]:grid flex items-center gap-1 h-full">
+                            <div className="flex items-center gap-2 mr-2">
+                              <div className="w-6 h-6 rounded-full overflow-hidden bg-gradient-to-tl from-primary to-accent/50">
+                                {item.image && (
+                                  <Image
+                                    src={item.image}
+                                    alt="boardimage"
+                                    width={1}
+                                    height={1}
+                                    className="object-fill w-full h-full"
+                                  />
+                                )}
+                              </div>
+                              <span className="text-silver/75 font-semibold whitespace-nowrap flex items-center gap-1 capitalize text-sm">
+                                {item.name}
+                                {item.isPrivate && <FaLock size={8} color="" />}
+                              </span>
+                            </div>
 
-                  <span className="text-silver/75 text-[12px]">
-                    {item.createdOn &&
-                      new Date(`${item.createdOn}`).toDateString()}
-                  </span>
-                </div>
-                <Link href={`./projects/${item.name.split(" ").join("_")}`}>
+                            <span className="text-silver/75 text-[12px]">
+                              {item.createdOn &&
+                                new Date(`${item.createdOn}`).toDateString()}
+                            </span>
+                          </div>
+                          <Link
+                            href={`./projects/${item.name
+                              .split(" ")
+                              .join("_")}`}
+                          >
+                            <Button
+                              children="View"
+                              icon={true}
+                              variant={"default"}
+                              size={"default"}
+                              className="text-sm shadow-bs border-none p-[2px_4px]"
+                            />
+                          </Link>
+                        </motion.div>
+                      )
+                  )}
+              </motion.div>
+              {projects.length > 8 && (
+                <div className="p-2">
                   <Button
-                    children="View"
+                    children="Load More"
                     icon={true}
                     variant={"default"}
                     size={"default"}
-                    className="text-sm shadow-bs border-none p-[2px_4px]"
+                    className="text-sm shadow-bs border-none"
+                    onClick={updateProjectsNumber}
                   />
-                </Link>
-              </div>
-            ))}
-          </div>
-          <div className="p-2">
-            <Button
-              children="Load More"
-              icon={true}
-              variant={"default"}
-              size={"default"}
-              className="text-sm shadow-bs border-none"
-              onClick={updateProjectsNumber}
-            />
-          </div>
+                </div>
+              )}
+            </>
+          )}
         </div>
         <div className="w-full max-h-full p-4 shadow-bs rounded-lg ">
           <div className="mb-4">

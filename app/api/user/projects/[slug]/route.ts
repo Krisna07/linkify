@@ -84,7 +84,7 @@ export async function PUT(
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: { slug: string } }
 ) {
   const user = await getCurrentUser();
 
@@ -94,10 +94,9 @@ export async function DELETE(
       message: "Not authorized user",
     });
   }
-
   try {
     await db.project.delete({
-      where: { id: params.id },
+      where: { id: params.slug },
     });
 
     return NextResponse.json({
