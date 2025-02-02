@@ -24,7 +24,7 @@ interface User {
   passwordmatch: string;
 }
 
-const SignInPage: React.FC = () => {
+const signuppage: React.FC = () => {
   //defining objects
   const [formData, setFormData] = useState<User>({
     username: "",
@@ -105,7 +105,9 @@ const SignInPage: React.FC = () => {
   useEffect(() => {
     err && toast(err);
   }, [err]);
+
   const route = useRouter();
+  //submit form data
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -124,6 +126,7 @@ const SignInPage: React.FC = () => {
       const api = "/api/user";
       toast.loading("Creating user......");
       const response = await fetch(api, options);
+
       response && toast.dismiss();
       const data = await response.json();
 
@@ -142,6 +145,7 @@ const SignInPage: React.FC = () => {
         }
       } else {
         toast.error(data.message);
+        setErr(data.message);
         return;
       }
     } else {
@@ -249,7 +253,7 @@ const SignInPage: React.FC = () => {
         <div
           className={`w-fit text-sm font-semibold gap-2 ${
             err ? "right-[10px] opacity-1" : "right-[-1000px] opacity-0"
-          } transition-all  grid place-items-center fixed bottom-2   bg-red-300 rounded-lg overflow-hidden`}
+          } transition-all  grid place-items-center fixed bottom-2   bg-red-300 rounded-lg overflow-hidden bg-white`}
         >
           <div className="w-full h-full p-4 flex items-center gap-2 relative ">
             <FiAlertCircle /> {err}
@@ -264,4 +268,4 @@ const SignInPage: React.FC = () => {
   );
 };
 
-export default SignInPage;
+export default signuppage;

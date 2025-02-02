@@ -127,6 +127,12 @@ const SignInPage: React.FC = () => {
               data={formData.password}
               onchange={handleInputChange}
             />
+            <Link
+              href={`./reset/${formData.email}`}
+              className="underline px-2 text-sm"
+            >
+              Forgot Password?
+            </Link>
 
             <span className="px-2 flex gap-2 items-center text-sm">
               New here?{" "}

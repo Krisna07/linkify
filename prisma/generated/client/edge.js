@@ -196,7 +196,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\chill\\linkify\\prisma\\generated\\client",
+      "value": "C:\\Users\\krisn\\linkify\\prisma\\generated\\client",
       "fromEnvVar": null
     },
     "config": {
@@ -210,7 +210,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\chill\\linkify\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\krisn\\linkify\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
