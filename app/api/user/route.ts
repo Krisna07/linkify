@@ -17,9 +17,19 @@ export const GET = async (req: Request) => {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { email, username, password } = body;
-
-    console.log(body);
+    const { email, username, password, checkUser } = body;
+    // Check if the request is to check user existence
+    if (checkUser) {
+      const existingUser = await db.user.findUnique({ where: { email } });
+      if (existingUser) {
+        return NextResponse.json({ status: 200, id: existingUser.id });
+      } else {
+        return NextResponse.json({
+          status: 404,
+          message: "User does not exist.",
+        });
+      }
+    }
 
     // Validate user data
     if (!email || !username || !password) {
@@ -136,36 +146,27 @@ export async function PUT(req: Request) {
 // Handle the verification key update (e.g., when the user submits the verification code)
 export async function PATCH(req: Request) {
   try {
-    const { userId, verificationCode } = await req.json();
+    const { userId, password } = await req.json();
 
     // Find the verification record
-    const verification = await db.verification.findUnique({
-      where: { userId },
-    });
-
-    if (!verification || verification.verificationCode !== verificationCode) {
-      return NextResponse.json({
-        status: 400,
-        message: "Invalid verification code.",
-      });
-    }
+    const hashedPassword = await hash(password, 12);
 
     // Update the verification status
-    await db.verification.update({
-      where: { userId },
+    await db.user.update({
+      where: { id: userId },
       data: {
-        verified: true,
+        password: hashedPassword,
       },
     });
 
     return NextResponse.json({
       status: 200,
-      message: "Verification successful.",
+      message: "Password reset successful, please login.",
     });
   } catch (error) {
     return NextResponse.json({
       status: 500,
-      message: "Error during verification.",
+      message: "Error during password reset.",
     });
   }
 }

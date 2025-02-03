@@ -10,10 +10,14 @@ import {
 } from "react";
 import { motion, Variants } from "framer-motion";
 import { toast } from "react-toastify";
-import { RiVerifiedBadgeFill } from "react-icons/ri";
-import { FaTimes } from "react-icons/fa";
-import useOutsideClick from "../../../../../lib/outsideclick";
-import { useParams } from "next/navigation";
+
+import { useParams, useRouter } from "next/navigation";
+import { handleVerification } from "../../../../../components/Dashboard_components/utils/verify";
+import Input from "../../Formcomponents/Input";
+import { BiLock } from "react-icons/bi";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
+import calculatePasswordStrength from "../../lib/PasswordStrengthCheck";
+import { FaLock } from "react-icons/fa";
 
 const itemVariants: Variants = {
   open: {
@@ -29,145 +33,125 @@ interface TimerProps {
   sec: number;
 }
 
-const useTimer = (expiryTime: number, isExpired: boolean) => {
-  const [timer, setTimer] = useState<TimerProps | null>(null);
+// const useTimer = (expiryTime: number, isExpired: boolean) => {
+//   const [timer, setTimer] = useState<TimerProps | null>(null);
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      if (!isExpired) {
-        const currentTime = Math.floor(new Date().getTime() / 1000);
-        const willExpireIn = expiryTime;
-        const timeLeft = willExpireIn - currentTime;
+//   useEffect(() => {
+//     const intervalId = setInterval(() => {
+//       if (!isExpired) {
+//         const currentTime = Math.floor(new Date().getTime() / 1000);
+//         const willExpireIn = expiryTime;
+//         const timeLeft = willExpireIn - currentTime;
 
-        if (timeLeft <= 0) {
-          clearInterval(intervalId);
-          setTimer(null);
-        } else {
-          const mins = Math.floor((timeLeft % 3600) / 60);
-          const sec = Math.floor(timeLeft % 60);
-          setTimer({ mins, sec });
-        }
-      }
-    }, 1000);
+//         if (timeLeft <= 0) {
+//           clearInterval(intervalId);
+//           setTimer(null);
+//         } else {
+//           const mins = Math.floor((timeLeft % 3600) / 60);
+//           const sec = Math.floor(timeLeft % 60);
+//           setTimer({ mins, sec });
+//         }
+//       }
+//     }, 1000);
 
-    return () => clearInterval(intervalId);
-  }, [expiryTime, isExpired]);
+//     return () => clearInterval(intervalId);
+//   }, [expiryTime, isExpired]);
 
-  return timer;
-};
+//   return timer;
+// };
 
 export default function Verify() {
-  const [isOpen, setIsOpen] = useState(true);
+  const router = useRouter();
+  const path = useParams();
   const [isLoading, setIsLoading] = useState(false);
-  const verifyRef = useRef(null);
-  const [code, setCode] = useState(["", "", "", ""]);
-  const inputs = useRef<(HTMLInputElement | null)[]>([]);
   const [isVerifying, setIsVerifying] = useState(false);
+  const [formdata, setFormData] = useState({
+    code: "",
+    password: "",
+    passwordmatch: "",
+  });
+  const [strength, setStrength] = useState<number>(0);
 
-  const handleChange = (index: number, value: string) => {
-    const numericValue = value.replace(/[^0-9]/g, "");
-    const newCode = [...code];
-    newCode[index] = numericValue;
-    setCode(newCode);
+  useEffect(() => {
+    setStrength(calculatePasswordStrength(formdata.password));
+  }, [formdata.password]);
 
-    if (numericValue && index < 3) {
-      inputs.current[index + 1]?.focus();
-    }
-  };
-
-  const handleKeyDown = (index: number, e: KeyboardEvent<HTMLInputElement>) => {
-    if (
-      !/^[0-9]$/.test(e.key) &&
-      !["Backspace", "ArrowLeft", "ArrowRight", "Tab"].includes(e.key) &&
-      !(e.metaKey || e.ctrlKey)
-    ) {
-      e.preventDefault();
-      toast("Please enter only numeric values.");
-    }
-
-    if (e.key === "Backspace" && !code[index] && index > 0) {
-      inputs.current[index - 1]?.focus();
-    }
-
-    if (e.key === "ArrowRight" && index < 3) {
-      inputs.current[index + 1]?.focus();
-    }
-
-    if (e.key === "ArrowLeft" && index > 0) {
-      inputs.current[index - 1]?.focus();
-    }
-  };
-
-  const handlePaste = (e: ClipboardEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const pastedData = e.clipboardData
-      .getData("text")
-      .replace(/[^0-9]/g, "")
-      .slice(0, 4);
-    const newCode = [...code];
-    for (let i = 0; i < 4; i++) {
-      newCode[i] = pastedData[i] || "";
-    }
-    setCode(newCode);
-    if (pastedData.length === 4) {
-      inputs.current[3]?.focus();
-    } else {
-      inputs.current[pastedData.length]?.focus();
-    }
-  };
-
-  useOutsideClick(verifyRef, () => setIsOpen(false));
+  // useOutsideClick(verifyRef, () => setIsOpen(false));
 
   //   const timer = useTimer(verification.expiryTime, verification.isExpired);
 
-  const submitOTP = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const resetPassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsVerifying(true);
-    const otp = code.join("");
-    console.log(otp);
+
+    switch (true) {
+      case !formdata.code:
+        toast.error("Please enter the code");
+        setIsVerifying(false);
+        return;
+      case !formdata.password:
+        toast.error("Please enter the password");
+        setIsVerifying(false);
+        return;
+      case formdata.password != formdata.passwordmatch:
+        toast.warn("Passwords doesnot match");
+        setIsVerifying(false);
+        return;
+      case formdata.password.length < 6:
+        toast.warn("Make sure the password is longer");
+        setIsVerifying(false);
+        return;
+      case strength < 60:
+        toast.warn("Passwords doesnot meet the criteria");
+        setIsVerifying(false);
+        return;
+    }
+
+    if (formdata.code) {
+      toast.loading("verifying code");
+      const id = path.slug[0].split("%")[0];
+      const data = { id, code: formdata.code };
+      const response = await handleVerification(data);
+      if (response.status !== 200) {
+        toast.dismiss();
+        setIsVerifying(false);
+        return toast.error(`${response.message}`);
+      }
+      if (id) {
+        const response = await fetch("/api/user", {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userId: id, password: formdata.password }),
+        });
+        const resetStatus = await response.json();
+        if (resetStatus !== 200) {
+          toast.error(resetStatus.message);
+        }
+        toast.success(`${resetStatus.message}`);
+        setIsVerifying(false);
+        toast.dismiss();
+        router.push("/auth/signin");
+      }
+    }
   };
-
-  const ActionResendCode = async () => {
-    setIsLoading(true);
-    // try {
-    //   await HandleNewCode(user.id).then((response) => {
-    //     if (response.status === 200) {
-    //       updateVerificationData();
-    //       console.log(verification);
-    //       return toast("New code sent");
-    //     } else {
-    //       toast(response.message);
-    //     }
-    //   });
-    // } catch (error) {
-    //   toast("An error occurred while resending the code");
-    // } finally {
-    //   setIsLoading(false);
-    // }
-  };
-
-  const path = useParams();
-  console.log(path.slug[0].split("%")[0]);
-
-  //   const getResetAccount = async () => {
-  //      path && console
-  //   };
 
   return (
     <motion.div
       //   initial={false}
-      animate={isOpen ? "open" : "closed"}
-      className="tablet:relative grid place-items-center"
-      ref={verifyRef}
+      // animate={isOpen ? "open" : "closed"}
+      className="tablet:relative grid place-items-center border-r"
+      // ref={verifyRef}
     >
-      <motion.button
-        whileTap={{ scale: 0.97 }}
-        onClick={() => setIsOpen(!isOpen)}
-        className="tablet:hidden text-[red] bg-[gray]/50 px-3 py-[2px] flex items-center rounded-full font-[600]"
-      >
-        <RiVerifiedBadgeFill />
-        <FaTimes />
-      </motion.button>
       <motion.div
         variants={{
           open: {
@@ -189,78 +173,94 @@ export default function Verify() {
             },
           },
         }}
-        style={{ pointerEvents: isOpen ? "auto" : "none" }}
-        className="absolute text-center w-full z-[100] inset-0 inset-y-[50%] tablet:inset-y-[150%] tablet:w-fit h-fit p-4 bg-white text-dark grid place-items-center gap-2"
+        // style={{ pointerEvents: isOpen ? "auto" : "none" }}
+        className="w-full z-[100] inset-0 inset-y-[50%] tablet:inset-y-[150%] tablet:w-fit h-fit p-4  text-dark grid place-items-center gap-2"
       >
         <>
-          <motion.div variants={itemVariants}>
+          <motion.div variants={itemVariants} className="w-full">
             <div className="font-semibold text-2xl">
-              <p>Email Verification</p>
+              <p>Reset password</p>
             </div>
-            <div className="flex text-center flex-col gap-1 text-sm font-medium text-dark">
+            <div className="w-full  text-sm font-medium text-dark">
               <p className="whitespace-nowrap">
                 We have sent a code to your email
               </p>
             </div>
           </motion.div>
 
-          <div>
+          <div className="w-[400px] grid gap-2">
             <motion.form
               variants={itemVariants}
               action=""
               method="post"
-              onSubmit={submitOTP}
+              onSubmit={resetPassword}
+              className="w-full grid gap-1"
             >
-              <div className="flex flex-col gap-4">
-                <div className="flex flex-col space-y-5">
-                  <div className="flex gap-2">
-                    {code.map((digit, index) => (
-                      <input
-                        key={index}
-                        type="text"
-                        inputMode="numeric"
-                        maxLength={1}
-                        value={digit}
-                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                          handleChange(index, e.target.value)
-                        }
-                        onKeyDown={(e: KeyboardEvent<HTMLInputElement>) =>
-                          handleKeyDown(index, e)
-                        }
-                        onPaste={handlePaste}
-                        ref={(el) => (inputs.current[index] = el)}
-                        className="w-14 h-14 text-center text-2xl border-2 border-teal-600 rounded"
-                      />
-                    ))}
-                  </div>
-                  <div className="">
-                    <div className="flex items-center gap-2 justify-center">
-                      <span>code expires in </span>
-                      <div className="w-fit flex  px-1 bg-accent text-xl font-bold text-white items-center justify-center leading-[100%] gap-1 "></div>
-                    </div>
-                  </div>
-                  <div>
-                    <motion.button
-                      whileTap={{ scale: 0.97 }}
-                      className="flex flex-row items-center justify-center text-center w-full border rounded-xl outline-none py-2 bg-primary border-none text-white text-sm shadow-sm"
-                      disabled={isVerifying}
-                    >
-                      {isVerifying ? "Verifying Account" : "Verify Account"}
-                    </motion.button>
-                  </div>
-
-                  <div className="flex flex-row items-center justify-center text-center text-sm font-medium space-x-1 text-gray-500">
-                    <p>Didn't receive code?</p>
-                    <div
-                      className="w-fit font-bold text-primary cursor-pointer"
-                      onClick={ActionResendCode}
-                    >
-                      {isLoading ? "Sending..." : "Resend"}
-                    </div>
+              <Input
+                label="Code"
+                placeholder="0000"
+                icon={<BiLock />}
+                color="blue"
+                type="number"
+                data={formdata.code}
+                onchange={handleInputChange}
+              />
+              <Input
+                label="Password"
+                type="password"
+                placeholder="Password"
+                icon={<BsEyeSlash />}
+                secondIcon={<BsEye />}
+                color="green"
+                data={formdata.password}
+                onchange={handleInputChange}
+              />
+              <Input
+                label="Retype Password"
+                name="passwordmatch"
+                type="password"
+                placeholder="Retype-Password"
+                icon={<BsEyeSlash />}
+                secondIcon={<BsEye />}
+                color="green"
+                data={formdata.passwordmatch}
+                onchange={handleInputChange}
+              />
+              {formdata.password ? (
+                <div className="w-full h-2   shadow relative  text-white  rounded-full flex items-center">
+                  <div
+                    style={{ width: `${strength}%` }}
+                    className={`rounded-full relative transition-all h-full  ${
+                      strength < 80
+                        ? "bg-gradient-to-r from-[red]/25 to-[red]/75 "
+                        : "bg-primary"
+                    } flex items-center`}
+                  >
+                    <FaLock
+                      size={8}
+                      color="black"
+                      className="absolute right-2"
+                    />
                   </div>
                 </div>
-              </div>
+              ) : (
+                ""
+              )}
+              <motion.button
+                whileTap={{ scale: 0.97 }}
+                className="flex flex-row items-center justify-center text-center w-full border rounded-xl outline-none py-2 bg-primary border-none text-white text-sm shadow-sm"
+                disabled={isVerifying}
+              >
+                {isVerifying ? "Reseting Password..." : "Reset Password"}
+              </motion.button>
             </motion.form>
+            <motion.button
+              whileTap={{ scale: 0.97 }}
+              className="flex flex-row items-center justify-center text-center w-full border rounded-xl outline-none py-2 bg-primary border-none text-white text-sm shadow-sm"
+              onClick={() => router.push("/auth/signin")}
+            >
+              Sign in
+            </motion.button>
           </div>
         </>
       </motion.div>

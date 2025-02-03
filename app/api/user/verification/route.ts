@@ -54,7 +54,7 @@ export async function GET(req: Request) {
 
 // Handle PATCH requests (resend verification code if expired)
 export async function PATCH(req: Request) {
-  const { id } = await req.json(); // Extracting the user ID from the request body
+  const { id, resetPassword } = await req.json(); // Extracting the user ID from the request body
 
   try {
     const verification = await db.verification.findUnique({
@@ -68,13 +68,70 @@ export async function PATCH(req: Request) {
       });
     }
 
-    // Checking if the verification code is null
-    // if (verification.verificationCode === null) {
-    //   return NextResponse.json({
-    //     status: 400,
-    //     message: "Verification code is null. Please request a new code.",
-    //   });
-    // }
+    if (resetPassword) {
+      const currentTime = new Date();
+      const timeSinceLastUpdate =
+        currentTime.getTime() - new Date(verification.lastUpdated).getTime();
+
+      if (timeSinceLastUpdate < ONE_HOUR_IN_MS) {
+        return NextResponse.json({
+          status: 200,
+          message: "Verification code is still valid. Please check your email.",
+        });
+      }
+
+      // Generate and send a new verification code
+      const verificationCode = RandomCodeGenerator();
+      await db.verification.update({
+        where: { userId: id }, // Use the extracted ID to update the verification record
+        data: { verificationCode, lastUpdated: currentTime },
+      });
+
+      const user = await db.user.findUnique({
+        where: { id }, // Use the extracted ID to find the user
+      });
+
+      if (!user) {
+        return NextResponse.json({
+          status: 404,
+          message: "User not found.",
+        });
+      }
+
+      const sender = {
+        name: "The Linkify",
+        address: process.env.MAILER_EMAIL as string,
+      };
+      const recipients = [
+        {
+          name: user.username,
+          address: user.email,
+        },
+      ];
+
+      try {
+        await sendEmail({
+          sender,
+          receiver: recipients,
+          subject: "Your Linkify Password reset Code",
+          message: `Please Enter the code to reset your password: ${verificationCode}`,
+        });
+
+        return NextResponse.json({
+          status: 200,
+          data: {
+            isExpired: false,
+            lastUpdated: verification.lastUpdated,
+          },
+        });
+      } catch (error) {
+        console.error("Error sending email:", error);
+        return NextResponse.json({
+          status: 500,
+          message: "Error sending verification email.",
+        });
+      }
+    }
 
     const currentTime = new Date();
     const timeSinceLastUpdate =

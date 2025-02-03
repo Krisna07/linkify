@@ -11,6 +11,7 @@ import { FiAlertCircle } from "react-icons/fi";
 import Button from "../../../../components/Global_components/Button";
 import { toast } from "react-toastify";
 import Loading from "../Formcomponents/Loading";
+import sendCode from "../lib/resetcode";
 
 interface User {
   email: string;
@@ -69,14 +70,17 @@ const SignInPage: React.FC = () => {
         password: formData.password,
         redirect: false,
       });
+
       signinData && toast.dismiss();
 
       // Handle sign-in errors
       if (signinData?.error) {
-        toast.warn(signinData.error);
+        const data = JSON.parse(signinData.error);
+        toast.warn(data.message);
         isLoading(false);
         return;
       }
+
       // Success: Redirect and show success toast
       route.push("/dashboard");
       toast.success("Login Successful");
@@ -87,7 +91,27 @@ const SignInPage: React.FC = () => {
       isLoading(false);
     }
   };
+  const Emailregex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>]).{8,}$/;
 
+  //handling verification code for the passwordreset
+  const handleresetCode = async () => {
+    const resetEmail = formData.email && formData.email;
+    // console.log(resetEmail);
+    if (resetEmail) {
+      toast("verifying user and sending code");
+      const data = await sendCode(resetEmail);
+      if (data?.status !== 200) {
+        return toast.warn(data?.message);
+      }
+      toast.done("Reset code sent to the email");
+      route.push(`./reset/${data?.id}=true`);
+
+      // route.push(`./reset/${formData.email.split("@")[0]}`);
+    } else {
+      toast.warn("Please enter the valid email.");
+    }
+  };
   return (
     <>
       {loading ? (
@@ -127,15 +151,16 @@ const SignInPage: React.FC = () => {
               data={formData.password}
               onchange={handleInputChange}
             />
-            <Link
-              href={`./reset/${formData.email}`}
+            <span
+              // href={`./reset/${formData.email.split("@")[0]}`}
+              onClick={handleresetCode}
               className="underline px-2 text-sm"
             >
               Forgot Password?
-            </Link>
+            </span>
 
             <span className="px-2 flex gap-2 items-center text-sm">
-              New here?{" "}
+              New here?
               <Link href={"./signup"} className="underline">
                 signup here
               </Link>

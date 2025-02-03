@@ -45,7 +45,17 @@ export const authOptions: NextAuthOptions = {
         );
 
         if (!passwordMatch) {
-          throw new Error("Password does not match.");
+          const userDetails = {
+            id: `${existingUser.id}`,
+            username: existingUser.username,
+            email: existingUser.email,
+          };
+          throw new Error(
+            JSON.stringify({
+              data: userDetails,
+              message: "Password doesnot match",
+            })
+          );
         }
 
         return {

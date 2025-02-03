@@ -27,7 +27,7 @@ export default function RootLayout({
         <div className="absolute">
           <ToastContainer />
         </div>
-        <Background />
+        {/* <Background /> */}
         <Authlayout children={children} />
       </body>
     </html>
