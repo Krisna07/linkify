@@ -7,11 +7,9 @@ import Image from "next/image";
 import { FaLock, FaMagnifyingGlass } from "react-icons/fa6";
 import { BiChevronUp, BiUserPlus } from "react-icons/bi";
 import { inter } from "../../../../../fonts/fonts";
-import RandomCodeGenerator from "../../../../../lib/radomcodegenerator";
+
 import getProjects, { createProject } from "./projectactions";
-import { toast } from "react-toastify";
-import { BsEye } from "react-icons/bs";
-import { CiLock } from "react-icons/ci";
+
 import Link from "next/link";
 import CreateProject from "../../Forms/ProjectForm/CreateProject";
 export interface NewProjectProps {

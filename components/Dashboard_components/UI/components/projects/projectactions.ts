@@ -1,4 +1,3 @@
-import { ProjectProps } from "../../../utils/Interfaces";
 import { NewProjectProps } from "./ProjectPage";
 
 export default async function getProjects() {
@@ -53,5 +52,33 @@ export async function deleteProject(id: string) {
   } catch (error) {
     console.error("Error deleting project:", error);
     return false; // Return false to indicate failure
+  }
+}
+
+//function to update a project
+export async function updateProject(id: string, formdata: NewProjectProps) {
+  const options = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: formdata.name,
+      type: formdata.type,
+      isPrivate: formdata.isPrivate,
+      image: formdata.image,
+    }),
+  };
+  const api = `/api/user/projects/${id}`;
+  try {
+    const response = await fetch(api, options);
+    if (!response.ok) {
+      throw new Error("Failed to update project");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error updating project:", error);
+    return null;
   }
 }

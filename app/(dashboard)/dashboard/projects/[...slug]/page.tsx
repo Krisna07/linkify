@@ -3,16 +3,27 @@ import React, { useEffect, useState } from "react";
 import { ProjectProps } from "../../../../../components/Dashboard_components/utils/Interfaces";
 import Loading from "../../../../(auth)/auth/Formcomponents/Loading";
 import { useRouter } from "next/navigation";
-import Button from "../../../../../components/Global_components/Button";
-import { deleteProject } from "../../../../../components/Dashboard_components/UI/components/projects/projectactions";
 import { toast } from "react-toastify";
 import { FaLock, FaRegTrashCan } from "react-icons/fa6";
 import { FiEye } from "react-icons/fi";
+import {
+  deleteProject,
+  updateProject,
+} from "../../../../../components/Dashboard_components/UI/components/projects/projectactions";
+import Image from "next/image";
+import { uploadImageToStorage } from "../../../../../components/Dashboard_components/utils/storage";
+import RandomCodeGenerator from "../../../../../lib/radomcodegenerator";
+import GenerateLink from "../../../../../lib/linksluggenerator";
 
 const ProjectPage = ({ params }: { params: { slug: string } }) => {
   const [project, setProject] = useState<ProjectProps | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [editedProject, setEditedProject] = useState<ProjectProps | null>(
+    project
+  );
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -24,6 +35,7 @@ const ProjectPage = ({ params }: { params: { slug: string } }) => {
         }
         const data = await response.json();
         setProject(data.data);
+        setEditedProject(data.data);
       } catch (error) {
         console.error("Error fetching project:", error);
         router.push("/dashboard/projects"); // Redirect if project not found
@@ -37,18 +49,66 @@ const ProjectPage = ({ params }: { params: { slug: string } }) => {
 
   const handleDeleteProject = async () => {
     toast.loading(
-      <>
+      <div className="flex items-center space-x-2">
         <FaRegTrashCan /> Deleting....
-      </>
+      </div>
     );
     if (project) {
-      const response = await deleteProject(project.id);
+      const response = await deleteProject(project?.id);
       if (response && response.ok) {
         toast.dismiss();
         toast.success(`${project.name} deleted successfully`);
         router.push("/dashboard/projects");
       } else {
         console.error("Failed to delete project");
+      }
+    }
+  };
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      toast.loading("Uploading image....");
+      if (e.target?.files[0]) {
+        const file = e.target.files?.[0];
+        if (project) {
+          const Projectimageurl = await uploadImageToStorage(
+            file,
+            project.name,
+            "Projects"
+          );
+
+          if (Projectimageurl) {
+            setImageUrl(Projectimageurl.toString());
+            toast.dismiss();
+            setEditedProject({
+              ...editedProject,
+              image: Projectimageurl,
+            } as ProjectProps);
+            toast.success("Image uploaded successfully");
+          }
+        }
+      }
+    }
+  };
+
+  const handleEditProject = async () => {
+    if (editedProject) {
+      const data = {
+        ...editedProject,
+        image:
+          editedProject.image ||
+          `https://picsum.photos/200/200?random=${RandomCodeGenerator()}`,
+      };
+      const response = await updateProject(editedProject.id, data);
+      if (response.status === 200) {
+        toast.success(`${editedProject.name} updated successfully`);
+        setProject(editedProject);
+        router.refresh();
+        router.push(
+          `/dashboard/projects/${editedProject.name.split(" ").join("_")}`
+        );
+        setIsEditMode(false);
+      } else {
+        console.error("Failed to update project");
       }
     }
   };
@@ -63,21 +123,77 @@ const ProjectPage = ({ params }: { params: { slug: string } }) => {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <div className="bg-accent/50  shadow-md rounded-lg overflow-hidden">
-        <div className="p-6">
+      <div className="bg-accent/50  shadow-md rounded-lg overflow-hidden flex p-2">
+        <div className="h-full  box-border rounded-full overflow-hidden">
+          {isEditMode ? (
+            <div className="flex items-center justify-center relative">
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="w-full h-full text-sm text-gray-500 absolute opacity-0"
+              />
+              <Image
+                src={`${
+                  imageUrl
+                    ? `https://kbglzqgrxnmdqvauagdb.supabase.co/storage/v1/object/public/projects/${imageUrl}`
+                    : project.image
+                    ? project.image
+                    : "https://picsum.photos/200/200?random=${project.id}"
+                }`}
+                width={200}
+                height={200}
+                alt={project.name}
+              />
+            </div>
+          ) : (
+            <Image
+              src={`${
+                project.image
+                  ? project.image
+                  : "https://picsum.photos/200/200?random=${project.id}"
+              }`}
+              width={200}
+              height={200}
+              alt={project.name}
+            />
+          )}
+        </div>
+        <div className="w-full p-6 ">
           <div className="flex justify-between items-center mb-6">
-            <h1 className="text-3xl font-bold text-gray-800 capitalize">
-              {project.name}
-            </h1>
-            <div className="flex space-x-2">
-              <button
-                onClick={() =>
-                  router.push(`/dashboard/projects/edit/${project.name}`)
+            {isEditMode ? (
+              <input
+                type="text"
+                value={editedProject?.name || ""}
+                onChange={(e) =>
+                  setEditedProject({
+                    ...editedProject,
+                    name: e.target.value,
+                  } as ProjectProps)
                 }
-                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
-              >
-                Edit
-              </button>
+                className="text-3xl font-bold text-black capitalize bg-transparent border-b border-black focus:outline-none"
+              />
+            ) : (
+              <h1 className="text-3xl font-bold text-white  capitalize">
+                {project.name}
+              </h1>
+            )}
+            <div className="flex space-x-2">
+              {isEditMode ? (
+                <button
+                  onClick={handleEditProject}
+                  className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition duration-300"
+                >
+                  Save
+                </button>
+              ) : (
+                <button
+                  onClick={() => setIsEditMode(true)}
+                  className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
+                >
+                  Edit
+                </button>
+              )}
               <button
                 onClick={() => setIsDeleteModalOpen(true)}
                 className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition duration-300"
@@ -89,23 +205,66 @@ const ProjectPage = ({ params }: { params: { slug: string } }) => {
           <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-6">
             <div className="flex-1 space-y-2">
               <div className="flex items-center space-x-2">
-                <span
-                  className={`px-2 py-1 rounded-full text-xs font-semibold ${
-                    project.type === "Personal"
-                      ? "bg-green-100 text-green-800"
-                      : "bg-blue-100 text-blue-800"
-                  }`}
-                >
-                  {project.type}
-                </span>
+                {isEditMode ? (
+                  <select
+                    value={editedProject?.type || ""}
+                    onChange={(e) =>
+                      setEditedProject({
+                        ...editedProject,
+                        type: e.target.value,
+                      } as ProjectProps)
+                    }
+                    className="px-2 py-1 rounded-full text-xs font-semibold bg-transparent"
+                  >
+                    {["Educational", "Personal", "Professional", "Other"].map(
+                      (type, index) => (
+                        <option
+                          key={index}
+                          value={type}
+                          className="capitalize bg-dark"
+                          // selected={editedProject?.type === type}
+                        >
+                          {type}
+                        </option>
+                      )
+                    )}
+                  </select>
+                ) : (
+                  <span
+                    className={`px-2 py-1 rounded-full text-xs font-semibold ${
+                      project.type === "Personal"
+                        ? "bg-green-100 text-green-800"
+                        : "bg-blue-100 text-blue-800"
+                    }`}
+                  >
+                    {project.type}
+                  </span>
+                )}
                 <span
                   className={`px-2 py-1 rounded-full text-xs font-semibold ${
                     project.isPrivate
-                      ? "bg-gray-100 text-gray-800"
+                      ? "bg-gray-100 text-black"
                       : "bg-yellow-100 text-yellow-800"
                   }`}
+                  onClick={(e) =>
+                    isEditMode &&
+                    setEditedProject({
+                      ...editedProject,
+                      isPrivate: !editedProject?.isPrivate,
+                    } as ProjectProps)
+                  }
                 >
-                  {project.isPrivate ? <FaLock /> : <FiEye />}
+                  {editedProject?.isPrivate ? (
+                    editedProject.isPrivate ? (
+                      <FaLock />
+                    ) : (
+                      <FiEye />
+                    )
+                  ) : project.isPrivate ? (
+                    <FaLock />
+                  ) : (
+                    <FiEye />
+                  )}
                 </span>
               </div>
               <p className="text-sm text-gray-600">
@@ -114,40 +273,8 @@ const ProjectPage = ({ params }: { params: { slug: string } }) => {
                   new Date(project.createdOn).toLocaleDateString()}
               </p>
             </div>
-            {project.image && (
-              <div className="w-24 h-24 rounded-full overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            )}
           </div>
         </div>
-        {/* <div className="border-t border-gray-200 p-6">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Boards</h2>
-          {project.boards && project.boards.length > 0 ? (
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {project.boards.map((board) => (
-                <div key={board.id} className="bg-gray-50 rounded-lg p-4 shadow">
-                  <h3 className="font-bold text-lg mb-2">{board.title}</h3>
-                  <p className="text-gray-600 mb-4">{board.description}</p>
-                  <a
-                    href={board.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
-                  >
-                    View Board
-                  </a>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p className="text-gray-600">No boards available for this project.</p>
-          )}
-        </div> */}
       </div>
 
       {/* Delete Confirmation Modal */}
@@ -177,58 +304,6 @@ const ProjectPage = ({ params }: { params: { slug: string } }) => {
         </div>
       )}
     </div>
-    // <div className="project-page p-4">
-    //   <div className="flex justify-between items-center mb-4">
-    //     <h1 className="text-2xl font-bold">{project.name}</h1>
-    //     <div className="flex gap-2">
-    //       <Button
-    //         children="Edit"
-    //         variant="default"
-    //         size="default"
-    //         onClick={() =>
-    //           router.push(`/dashboard/projects/edit/${project.name}`)
-    //         }
-    //       />
-    //       <Button
-    //         children="Delete"
-    //         variant="accent"
-    //         size="default"
-    //         onClick={handleDeleteProject}
-    //       />
-    //     </div>
-    //   </div>
-    //   <p className="mb-2">Type: {project.type}</p>
-    //   <p className="mb-2">
-    //     Created On:{" "}
-    //     {project.createdOn && new Date(project.createdOn).toLocaleDateString()}
-    //   </p>
-    //   <p className="mb-4">Private: {project.isPrivate ? "Yes" : "No"}</p>
-    //   {project.image && (
-    //     <img src={project.image} alt={project.name} className="mb-4" />
-    //   )}
-
-    //   <h2 className="text-xl font-semibold mb-2">Boards</h2>
-    //   {/* <div className="grid gap-4">
-    //     {project.boards && project.boards.length > 0 ? (
-    //       project.boards.map((board: boardProps) => (
-    //         <div key={board.id} className="p-4 border rounded-lg shadow-sm">
-    //           <h3 className="font-bold">{board.title}</h3>
-    //           <p>{board.description}</p>
-    //           <a
-    //             href={board.link}
-    //             target="_blank"
-    //             rel="noopener noreferrer"
-    //             className="text-blue-500 hover:underline"
-    //           >
-    //             View Board
-    //           </a>
-    //         </div>
-    //       ))
-    //     ) : (
-    //       <p>No boards available for this project.</p>
-    //     )}
-    //   </div> */}
-    // </div>
   );
 };
 

@@ -17,14 +17,22 @@ export async function deleteImageFromStorage(imagePath: string) {
 }
 
 // Function to upload an image to Supabase storage
-export async function uploadImageToStorage(file: File, name: String) {
+export async function uploadImageToStorage(
+  file: File,
+  name: String,
+  storageName?: string
+) {
   try {
-    const { data } = await supabase.storage
-      .from("Boards")
+    console.log(storageName);
+    const { data, error } = await supabase.storage
+      .from(storageName ? storageName.toString() : "Boards")
       .upload(`${file.name}-${name}`, file, {
         cacheControl: "292500",
         contentType: file.type,
       });
+    if (error) {
+      return error;
+    }
     return data?.path;
   } catch (error) {
     return error;

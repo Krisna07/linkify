@@ -8,7 +8,6 @@ export default async function AddBoard(formdata: NewBoardProps) {
   if (formdata.file) {
     const file = formdata.file;
     imageurl = await uploadImageToStorage(file, formdata.title);
-    console.log(imageurl);
   }
 
   const options = {
