@@ -16,6 +16,7 @@ export interface ProjectProps {
   createdOn?: Date;
   isPrivate: boolean;
   image?: string;
+  boards: boardProps[];
 }
 
 export interface boardProps {

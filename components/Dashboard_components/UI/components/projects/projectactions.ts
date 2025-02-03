@@ -4,7 +4,7 @@ export default async function getProjects() {
   try {
     const response = await fetch("/api/user/projects");
     if (!response.ok) {
-      throw new Error("Failed to fetch boards");
+      throw new Error("Failed to fetch Projects");
     }
     const projects = await response.json();
     return projects.data;

@@ -122,8 +122,8 @@ const ProjectPage = ({ params }: { params: { slug: string } }) => {
   }
 
   return (
-    <div className="container mx-auto py-8 px-4">
-      <div className="bg-accent/50  shadow-md rounded-lg overflow-hidden flex p-2">
+    <div className="container mx-auto py-8 px-4 grid gap-4">
+      <div className="bg-accent/50  shadow-md rounded-lg overflow-hidden tablet:flex p-2">
         <div className="h-full  box-border rounded-full overflow-hidden">
           {isEditMode ? (
             <div className="flex items-center justify-center relative">
@@ -159,8 +159,8 @@ const ProjectPage = ({ params }: { params: { slug: string } }) => {
             />
           )}
         </div>
-        <div className="w-full p-6 ">
-          <div className="flex justify-between items-center mb-6">
+        <div className="w-full p-4 ">
+          <div className="tablet:flex grid place-content-start justify-between items-center mb-6 gap-2">
             {isEditMode ? (
               <input
                 type="text"
@@ -174,29 +174,29 @@ const ProjectPage = ({ params }: { params: { slug: string } }) => {
                 className="text-3xl font-bold text-black capitalize bg-transparent border-b border-black focus:outline-none"
               />
             ) : (
-              <h1 className="text-3xl font-bold text-white  capitalize">
+              <h1 className="text-3xl font-bold text-white  capitalize whitespace-nowrap">
                 {project.name}
               </h1>
             )}
-            <div className="flex space-x-2">
+            <div className="flex space-x-2 leading-4 text-sm">
               {isEditMode ? (
                 <button
                   onClick={handleEditProject}
-                  className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition duration-300"
+                  className="px-2 py-[2px] bg-[green]/50 text-white rounded hover:bg-[green] transition duration-300"
                 >
                   Save
                 </button>
               ) : (
                 <button
                   onClick={() => setIsEditMode(true)}
-                  className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
+                  className="px-2 py-[2px]  bg-[blue]/50 text-white rounded hover:bg-[blue] transition duration-300"
                 >
                   Edit
                 </button>
               )}
               <button
                 onClick={() => setIsDeleteModalOpen(true)}
-                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition duration-300"
+                className="px-4 py-[2px] bg-[red]/50 text-white rounded hover:bg-[red] transition duration-300"
               >
                 Delete
               </button>
@@ -276,6 +276,7 @@ const ProjectPage = ({ params }: { params: { slug: string } }) => {
           </div>
         </div>
       </div>
+      <div>Boards will be displayed here</div>
 
       {/* Delete Confirmation Modal */}
       {isDeleteModalOpen && (

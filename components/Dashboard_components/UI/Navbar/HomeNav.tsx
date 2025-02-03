@@ -3,7 +3,7 @@ import { BiGrid } from "react-icons/bi";
 import { FaBars, FaChevronUp, FaPlusCircle } from "react-icons/fa";
 import Button from "../../../Global_components/Button";
 
-import { boardProps } from "../../utils/Interfaces";
+import { boardProps, ProjectProps } from "../../utils/Interfaces";
 import Search from "./Search";
 import NewBoardForm from "../Forms/Boardform/Boardform";
 
@@ -14,15 +14,14 @@ interface HomeNavProps {
   add?: boolean;
   item?: void;
   list: boolean;
+  projects?: ProjectProps[];
   changeView: (listView: boolean) => void;
-  updateBoard: any;
   handleSearch?: (items: boardProps[]) => void; // Updated type
 }
 
 const HomeNav: React.FC<HomeNavProps> = ({
   list,
   changeView,
-  updateBoard,
   boards,
   handleSearch,
 }) => {
