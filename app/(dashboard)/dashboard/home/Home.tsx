@@ -93,7 +93,7 @@ export default function Home() {
                   transition={{
                     type: "spring",
                   }}
-                  className={`w-full grid grid-cols-3 gap-2    box-border `}
+                  className={`w-full grid grid-cols-3 gap-6   box-border `}
                 >
                   {projects &&
                     projects.map(
@@ -149,7 +149,7 @@ export default function Home() {
                               </div>
                             </div>
                             <Link
-                              href={`./projects/${item.name
+                              href={`/dashboard/projects/${item.name
                                 .split(" ")
                                 .join("_")}`}
                             >
