@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
-import { FaLeaf, FaUser } from "react-icons/fa";
+import { FaLeaf, FaUser, FaUserAltSlash } from "react-icons/fa";
 import Input from "../Formcomponents/Input";
 
 import Link from "next/link";
@@ -76,7 +76,12 @@ const SignInPage: React.FC = () => {
       // Handle sign-in errors
       if (signinData?.error) {
         const data = JSON.parse(signinData.error);
-        toast.warn(data.message);
+        console.log(data);
+        toast(
+          <div className="flex gap-2 items-center text-sm whitespace-nowrap  ">
+            <FaUserAltSlash /> {data.message}
+          </div>
+        );
         isLoading(false);
         return;
       }
@@ -86,7 +91,7 @@ const SignInPage: React.FC = () => {
       toast.success("Login Successful");
     } catch (error) {
       // Handle unexpected errors
-      console.error("Login failed: ", error);
+
       toast.error("An unexpected error occurred. Please try again.");
       isLoading(false);
     }

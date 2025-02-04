@@ -11,12 +11,13 @@ import DisplayBoards from "../../../../components/Dashboard_components/UI/compon
 import HomepageCardConatiner1 from "../../../../components/Dashboard_components/UI/components/Home/HomepageCardConatiner1";
 import { toast } from "react-toastify";
 import Loading from "../../../(auth)/auth/Formcomponents/Loading";
-import getProjects from "../../../../components/Dashboard_components/UI/components/projects/projectactions";
+
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Button from "../../../../components/Global_components/Button";
 import Link from "next/link";
 import { FaLock } from "react-icons/fa";
+import getProjects from "../../../../lib/actions/projectactions";
 
 export default function Home() {
   const [list, setList] = useState<boolean>(false);
@@ -38,9 +39,9 @@ export default function Home() {
     const fetchProjects = async () => {
       try {
         const res = await getProjects();
-        setProjects(res);
-        const boards = await getBoards();
-        setBoards(boards);
+        res && setProjects(res);
+        // const boards = await getBoards();
+        // setBoards(boards);
       } catch (err: any) {
         HandleError(err.message || "An error occurred");
       } finally {
@@ -85,7 +86,7 @@ export default function Home() {
       ) : (
         <>
           <div className="gird grid-cols-3 gap-4">
-            {projects.length > 0 && (
+            {projects && projects.length > 0 && (
               <>
                 <motion.div
                   initial={{ maxHeight: 0 }}

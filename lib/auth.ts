@@ -36,7 +36,12 @@ export const authOptions: NextAuthOptions = {
         });
 
         if (!existingUser) {
-          throw new Error("No user found with the provided credentials.");
+          throw new Error(
+            JSON.stringify({
+              data: credentials,
+              message: "No user found with the provided credentials.",
+            })
+          );
         }
 
         const passwordMatch = await bcrypt.compare(

@@ -13,7 +13,8 @@ import {
 import Image from "next/image";
 import { uploadImageToStorage } from "../../../../../components/Dashboard_components/utils/storage";
 import RandomCodeGenerator from "../../../../../lib/radomcodegenerator";
-import GenerateLink from "../../../../../lib/linksluggenerator";
+
+import { getProjectBySlug } from "../../../../../lib/actions/projectactions";
 
 const ProjectPage = ({ params }: { params: { slug: string } }) => {
   const [project, setProject] = useState<ProjectProps | null>(null);
@@ -29,13 +30,16 @@ const ProjectPage = ({ params }: { params: { slug: string } }) => {
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const response = await fetch(`/api/user/projects/${params.slug}`);
-        if (!response.ok) {
-          throw new Error("Failed to fetch project");
-        }
-        const data = await response.json();
-        setProject(data.data);
-        setEditedProject(data.data);
+        // const response = await fetch(`/api/user/projects/${params.slug}`);
+        // if (!response.ok) {
+        //   throw new Error("Failed to fetch project");
+        // }
+        // const data = await response.json();
+        const response: ProjectProps | null = await getProjectBySlug(
+          params.slug
+        );
+        setProject(response);
+        setEditedProject(response);
       } catch (error) {
         console.error("Error fetching project:", error);
         router.push("/dashboard/projects"); // Redirect if project not found
