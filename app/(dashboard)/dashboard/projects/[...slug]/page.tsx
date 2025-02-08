@@ -36,8 +36,9 @@ const ProjectPage = ({ params }: { params: { slug: string } }) => {
         // }
         // const data = await response.json();
         const response: ProjectProps | null = await getProjectBySlug(
-          params.slug
+          params.slug.split("_").join(" ")
         );
+        console.log(response);
         setProject(response);
         setEditedProject(response);
       } catch (error) {

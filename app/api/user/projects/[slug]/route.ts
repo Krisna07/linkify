@@ -17,7 +17,7 @@ export async function GET(
 
   try {
     const project = await db.project.findFirst({
-      where: { name: params.slug.split("_").join(" ") },
+      where: { name: params.slug },
       include: { boards: true },
     });
 
