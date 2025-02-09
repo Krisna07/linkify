@@ -94,7 +94,7 @@ export default function Home() {
                   transition={{
                     type: "spring",
                   }}
-                  className={`w-full flex flex-wrap gap-6   box-border `}
+                  className={`w-full flex flex-wrap gap-6 tablet:grid tablet:grid-cols-2 laptop:flex   box-border `}
                 >
                   {projects &&
                     projects.map(
@@ -113,18 +113,18 @@ export default function Home() {
                                 index < projects.length ? index * 0.1 : 0.3,
                             }}
                             key={index}
-                            className={`tablet:max-w-[250px] w-full grid p-2 h-[px] shadow-bs rounded-md bg-silver/25`}
+                            className={`laptop:max-w-[350px] w-full  grid p-2 h-[px] gap-2  rounded-md bg-silver/25 hover:shadow-bs group`}
                           >
                             <div className="max-[450px]:grid flex flex-col  gap-1 h-full">
                               <div className="flex  flex-col gap-2 ">
-                                <div className="w-full overflow-hidden bg-gradient-to-tl from-primary to-accent/50">
+                                <div className="w-full h-[300px] overflow-hidden bg-gradient-to-tl from-primary to-accent/50 rounded-md">
                                   {item.image && (
                                     <Image
                                       src={item.image}
                                       alt="boardimage"
                                       width={200}
                                       height={200}
-                                      className="object-fill w-full h-full "
+                                      className="w-full object-cover h-full group-hover:scale-105 transition-transform duration-300 ease-in-out"
                                     />
                                   )}
                                 </div>
@@ -158,15 +158,15 @@ export default function Home() {
                                 children="View"
                                 icon={true}
                                 variant={"default"}
-                                size={"default"}
-                                className="text-sm shadow-bs border-none p-[2px_4px]"
+                                size={"sm"}
+                                className="text-sm shadow-bs border-none text-silver/75 hover:text-silver"
                               />
                             </Link>
                           </motion.div>
                         )
                     )}
                 </motion.div>
-                <DisplayBoards boardList={displayBoard} list={list} />
+                {/* <DisplayBoards boardList={displayBoard} list={list} /> */}
                 {/* {projects.length > 8 && (
                 <div className="p-2">
                   <Button

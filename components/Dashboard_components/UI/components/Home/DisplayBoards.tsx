@@ -1,6 +1,8 @@
 import React from "react";
 import { boardProps } from "../../../utils/Interfaces";
 import Board from "../Board";
+import AddBoard from "../../../utils/addBoard";
+import Button from "../../../../Global_components/Button";
 interface displayBoardProps {
   boardList: boardProps[];
   list: boolean;
@@ -20,7 +22,16 @@ const DisplayBoards = ({ boardList, list }: displayBoardProps) => {
           <Board board={item} key={index} />
         ))
       ) : (
-        <>No matching accounts</>
+        <div className="group w-full h-full grid gap-4 p-2 cursor-pointer  border border-transparent rounded-md transition-all duration-500 hover:border-white/50 relative overflow-hidden">
+          No boards yet
+          <Button
+            children="Create Your First Idea"
+            variant={"default"}
+            size={"default"}
+            icon={true}
+            className=" shadow-bs border-none p-[4px_8px] text-silver/75 hover:text-silver"
+          />
+        </div>
       )}
     </div>
   );

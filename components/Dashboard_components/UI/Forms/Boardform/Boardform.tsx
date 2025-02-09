@@ -2,7 +2,7 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import AddBoard from "../../../utils/addBoard";
-// import { FormLabel } from "./BoardformLabel";
+
 import DescriptionHandler from "./DescriptionHandler";
 import TagHandler from "./TagHandler";
 import ImageHandler from "./ImageHandler";

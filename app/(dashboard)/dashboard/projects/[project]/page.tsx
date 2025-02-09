@@ -18,8 +18,9 @@ import {
 import RandomCodeGenerator from "../../../../../lib/radomcodegenerator";
 
 import { getProjectBySlug } from "../../../../../lib/actions/projectactions";
+import DisplayBoards from "../../../../../components/Dashboard_components/UI/components/Home/DisplayBoards";
 
-const ProjectPage = ({ params }: { params: { slug: string } }) => {
+const ProjectPage = ({ params }: { params: { project: string } }) => {
   const [project, setProject] = useState<ProjectProps | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -32,7 +33,7 @@ const ProjectPage = ({ params }: { params: { slug: string } }) => {
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const projectName = params.slug[0].split("_").join(" ");
+        const projectName = params.project.split("_").join(" ");
         const response: ProjectProps | null = await getProjectBySlug(
           projectName
         );
@@ -47,7 +48,7 @@ const ProjectPage = ({ params }: { params: { slug: string } }) => {
     };
 
     fetchProject();
-  }, [params.slug, router]);
+  }, [params.project, router]);
 
   const handleDeleteProject = async () => {
     toast.loading(
@@ -84,33 +85,38 @@ const ProjectPage = ({ params }: { params: { slug: string } }) => {
     let cacheProject = project;
     if (editedProject) {
       let imageUrl = editedProject.image;
-      if (
-        cacheProject?.image &&
-        cacheProject.image.includes(cacheProject?.id)
-      ) {
-        console.log(cacheProject.image);
-        const filePath = cacheProject.image.split(
-          "https://tudodowthzxrdinszdhz.supabase.co/storage/v1/object/public/Projects/"
-        )[1];
-        const deleteImage = await deleteImageFromStorage(filePath, "Projects");
-        if (deleteImage) {
-          console.log("Image deleted successfully");
-        } else {
-          toast.error("Failed to delete image");
-          return;
-        }
-      }
+
       if (file) {
-        toast.loading("Uploading image....");
+        if (
+          cacheProject?.image &&
+          cacheProject.image.includes(cacheProject?.id)
+        ) {
+          console.log(cacheProject.image);
+          const filePath = cacheProject.image.split(
+            "https://tudodowthzxrdinszdhz.supabase.co/storage/v1/object/public/Projects/"
+          )[1];
+          const deleteImage = await deleteImageFromStorage(
+            filePath,
+            "Projects"
+          );
+          if (deleteImage) {
+            console.log("Image deleted successfully");
+          } else {
+            toast.error("Failed to delete image");
+            return;
+          }
+        }
+
         const uploadedImageUrl = await uploadImageToStorage(
           file,
           editedProject.id,
           "Projects"
         );
-        if (uploadedImageUrl) {
+        // console.log(uploadedImageUrl);
+        if (uploadedImageUrl !== undefined) {
           imageUrl = `https://tudodowthzxrdinszdhz.supabase.co/storage/v1/object/public/Projects/${uploadedImageUrl}`;
+          setImageUrl(imageUrl);
           toast.dismiss();
-          toast.success("Image uploaded successfully");
         } else {
           toast.dismiss();
           toast.error("Failed to upload image");
@@ -308,7 +314,9 @@ const ProjectPage = ({ params }: { params: { slug: string } }) => {
           </div>
         </div>
       </div>
-      <div>{project.boards.length}</div>
+      <div>
+        <DisplayBoards boardList={project.boards} list={false} />
+      </div>
 
       {/* Delete Confirmation Modal */}
       {isDeleteModalOpen && (
