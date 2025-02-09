@@ -18,6 +18,12 @@ const nextConfig = {
         pathname: "/**",
       },
       {
+        hostname: "tudodowthzxrdinszdhz.supabase.co",
+        protocol: "https",
+        port: "",
+        pathname: "/**",
+      },
+      {
         hostname: "avatar.iran.liara.run",
         protocol: "https",
         port: "",

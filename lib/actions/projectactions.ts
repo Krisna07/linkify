@@ -22,13 +22,13 @@ export default async function getProjects() {
 //get project by id
 export async function getProjectBySlug(slug: string) {
   console.log(slug);
-  if (cachedProjects?.length) {
-    const project = await cachedProjects.find(
-      (project) => project.name === slug
-    );
+  // if (cachedProjects?.length) {
+  //   const project = await cachedProjects.find(
+  //     (project) => project.name === slug
+  //   );
 
-    return project;
-  }
+  //   return project;
+  // }
   try {
     const response = await fetch(`/api/user/projects/${slug}`);
     if (!response.ok) {

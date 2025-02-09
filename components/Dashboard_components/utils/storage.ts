@@ -1,15 +1,20 @@
 import { supabase } from "../../../lib/supabase";
 
 // Function to delete an image from Supabase storage
-export async function deleteImageFromStorage(imagePath: string) {
+export async function deleteImageFromStorage(
+  imagePath: string,
+  storageName?: string
+) {
   console.log(imagePath);
   try {
-    const { error } = await supabase.storage.from("Boards").remove([imagePath]);
+    const { error } = await supabase.storage
+      .from(storageName ? storageName.toString() : "Boards")
+      .remove([imagePath]);
     if (error) {
       throw new Error(`Error deleting image: ${error.message}`);
     }
 
-    return true; // Return true if deletion was successful
+    return "Image deleted successfully"; // Return true if deletion was successful
   } catch (error) {
     console.error("Error deleting image from storage:", error);
     return false; // Return false to indicate failure
@@ -23,11 +28,10 @@ export async function uploadImageToStorage(
   storageName?: string
 ) {
   try {
-    console.log(storageName);
     const { data, error } = await supabase.storage
       .from(storageName ? storageName.toString() : "Boards")
       .upload(`${file.name}-${name}`, file, {
-        cacheControl: "292500",
+        cacheControl: "3600",
         contentType: file.type,
       });
     if (error) {

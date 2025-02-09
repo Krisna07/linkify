@@ -24,9 +24,9 @@ export default function Hero() {
   return (
     <motion.section className="w-full h-[100vh] relative grid py-16 place-items-center overflow-hidden text-white  border-box">
       <div className="relative z-10 flex flex-col items-center">
-        <button className=" animate-slidein300 scale-1  mb-1.5 inline-block rounded-full bg-white text-dark font-bold px-3 py-1.5  text-sm overflow-hidden cursor-default">
+        {/* <button className=" animate-slidein300 scale-1  mb-1.5 inline-block rounded-full bg-white text-dark font-bold px-3 py-1.5  text-sm overflow-hidden cursor-default">
           Try Demo
-        </button>
+        </button> */}
         <h1
           className={` animate-slidein700   font-semibold  bg-gradient-to-tr from-white to-[${color}] bg-clip-text text-center text-6xl  leading-tight text-transparent sm:text-5xl sm:leading-tight md:text-7xl md:leading-tight`}
         >

@@ -4,14 +4,17 @@ import { ProjectProps } from "../../../../../components/Dashboard_components/uti
 import Loading from "../../../../(auth)/auth/Formcomponents/Loading";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import { FaLock, FaRegTrashCan } from "react-icons/fa6";
+import { FaLock, FaRegTrashCan, FaTrashCan } from "react-icons/fa6";
 import { FiEye } from "react-icons/fi";
 import {
   deleteProject,
   updateProject,
 } from "../../../../../components/Dashboard_components/UI/components/projects/projectactions";
 import Image from "next/image";
-import { uploadImageToStorage } from "../../../../../components/Dashboard_components/utils/storage";
+import {
+  deleteImageFromStorage,
+  uploadImageToStorage,
+} from "../../../../../components/Dashboard_components/utils/storage";
 import RandomCodeGenerator from "../../../../../lib/radomcodegenerator";
 
 import { getProjectBySlug } from "../../../../../lib/actions/projectactions";
@@ -21,24 +24,18 @@ const ProjectPage = ({ params }: { params: { slug: string } }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
-  const [editedProject, setEditedProject] = useState<ProjectProps | null>(
-    project
-  );
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [editedProject, setEditedProject] = useState<ProjectProps | null>(null);
+  const [imageurl, setImageUrl] = useState<string | null>(null);
+  const [file, setFile] = useState<File | null>(null);
   const router = useRouter();
 
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        // const response = await fetch(`/api/user/projects/${params.slug}`);
-        // if (!response.ok) {
-        //   throw new Error("Failed to fetch project");
-        // }
-        // const data = await response.json();
+        const projectName = params.slug[0].split("_").join(" ");
         const response: ProjectProps | null = await getProjectBySlug(
-          params.slug.split("_").join(" ")
+          projectName
         );
-        console.log(response);
         setProject(response);
         setEditedProject(response);
       } catch (error) {
@@ -59,7 +56,7 @@ const ProjectPage = ({ params }: { params: { slug: string } }) => {
       </div>
     );
     if (project) {
-      const response = await deleteProject(project?.id);
+      const response = await deleteProject(project.id);
       if (response && response.ok) {
         toast.dismiss();
         toast.success(`${project.name} deleted successfully`);
@@ -69,40 +66,65 @@ const ProjectPage = ({ params }: { params: { slug: string } }) => {
       }
     }
   };
-  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      toast.loading("Uploading image....");
-      if (e.target?.files[0]) {
-        const file = e.target.files?.[0];
-        if (project) {
-          const Projectimageurl = await uploadImageToStorage(
-            file,
-            project.name,
-            "Projects"
-          );
 
-          if (Projectimageurl) {
-            setImageUrl(Projectimageurl.toString());
-            toast.dismiss();
-            setEditedProject({
-              ...editedProject,
-              image: Projectimageurl,
-            } as ProjectProps);
-            toast.success("Image uploaded successfully");
-          }
-        }
-      }
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setFile(file);
+      const reader = URL.createObjectURL(file);
+      setImageUrl(reader);
+      setEditedProject({
+        ...editedProject,
+        image: reader,
+      } as ProjectProps);
     }
   };
 
   const handleEditProject = async () => {
+    let cacheProject = project;
     if (editedProject) {
+      let imageUrl = editedProject.image;
+      if (
+        cacheProject?.image &&
+        cacheProject.image.includes(cacheProject?.id)
+      ) {
+        console.log(cacheProject.image);
+        const filePath = cacheProject.image.split(
+          "https://tudodowthzxrdinszdhz.supabase.co/storage/v1/object/public/Projects/"
+        )[1];
+        const deleteImage = await deleteImageFromStorage(filePath, "Projects");
+        if (deleteImage) {
+          console.log("Image deleted successfully");
+        } else {
+          toast.error("Failed to delete image");
+          return;
+        }
+      }
+      if (file) {
+        toast.loading("Uploading image....");
+        const uploadedImageUrl = await uploadImageToStorage(
+          file,
+          editedProject.id,
+          "Projects"
+        );
+        if (uploadedImageUrl) {
+          imageUrl = `https://tudodowthzxrdinszdhz.supabase.co/storage/v1/object/public/Projects/${uploadedImageUrl}`;
+          toast.dismiss();
+          toast.success("Image uploaded successfully");
+        } else {
+          toast.dismiss();
+          toast.error("Failed to upload image");
+          return;
+        }
+      }
+
       const data = {
         ...editedProject,
         image:
-          editedProject.image ||
+          imageUrl ||
           `https://picsum.photos/200/200?random=${RandomCodeGenerator()}`,
       };
+
       const response = await updateProject(editedProject.id, data);
       if (response.status === 200) {
         toast.success(`${editedProject.name} updated successfully`);
@@ -127,9 +149,9 @@ const ProjectPage = ({ params }: { params: { slug: string } }) => {
   }
 
   return (
-    <div className="container mx-auto py-8 px-4 grid gap-4">
-      <div className="bg-accent/50  shadow-md rounded-lg overflow-hidden tablet:flex p-2">
-        <div className="h-full  box-border rounded-full overflow-hidden">
+    <div className="w-full mx-auto py-8 px-4 grid gap-4">
+      <div className="bg-accent/25  hover:shadow-bs transition-shadow duration-500 ease-in-out rounded-lg overflow-hidden grid grid-cols-[150px_1fr] p-2 place-items-center">
+        <div className=" max-w-fit shadow-bs box-border rounded-full overflow-hidden  relative">
           {isEditMode ? (
             <div className="flex items-center justify-center relative">
               <input
@@ -139,32 +161,35 @@ const ProjectPage = ({ params }: { params: { slug: string } }) => {
                 className="w-full h-full text-sm text-gray-500 absolute opacity-0"
               />
               <Image
-                src={`${
-                  imageUrl
-                    ? `https://kbglzqgrxnmdqvauagdb.supabase.co/storage/v1/object/public/projects/${imageUrl}`
-                    : project.image
-                    ? project.image
-                    : "https://picsum.photos/200/200?random=${project.id}"
-                }`}
+                src={
+                  imageurl ||
+                  project.image ||
+                  `https://picsum.photos/200/200?random=${project.id}`
+                }
                 width={200}
                 height={200}
                 alt={project.name}
+                className="w-[150px] h-[150px] object-cover"
+                loading="lazy"
+                // priority
               />
             </div>
           ) : (
             <Image
-              src={`${
-                project.image
-                  ? project.image
-                  : "https://picsum.photos/200/200?random=${project.id}"
-              }`}
+              src={
+                project.image ||
+                `https://picsum.photos/200/200?random=${project.id}`
+              }
               width={200}
               height={200}
               alt={project.name}
+              className="w-[150px] h-[150px] object-center rounded-full"
+              loading="lazy"
+              // priority
             />
           )}
         </div>
-        <div className="w-full p-4 ">
+        <div className="w-full p-4">
           <div className="tablet:flex grid place-content-start justify-between items-center mb-6 gap-2">
             {isEditMode ? (
               <input
@@ -179,32 +204,35 @@ const ProjectPage = ({ params }: { params: { slug: string } }) => {
                 className="text-3xl font-bold text-black capitalize bg-transparent border-b border-black focus:outline-none"
               />
             ) : (
-              <h1 className="text-3xl font-bold text-white  capitalize whitespace-nowrap">
+              <h1 className="text-3xl font-bold text-silver/75 capitalize tablet:whitespace-nowrap leading-[120%]">
                 {project.name}
               </h1>
             )}
-            <div className="flex space-x-2 leading-4 text-sm">
+            <div className="flex space-x-4 leading-4 text-sm">
               {isEditMode ? (
                 <button
                   onClick={handleEditProject}
-                  className="px-2 py-[2px] bg-[green]/50 text-white rounded hover:bg-[green] transition duration-300"
+                  className="px-2 py-[2px]  text-white shadow-bs rounded hover:bg-[green] transition duration-300"
                 >
                   Save
                 </button>
               ) : (
-                <button
-                  onClick={() => setIsEditMode(true)}
-                  className="px-2 py-[2px]  bg-[blue]/50 text-white rounded hover:bg-[blue] transition duration-300"
-                >
-                  Edit
-                </button>
+                <>
+                  {" "}
+                  <button
+                    onClick={() => setIsEditMode(true)}
+                    className="px-4 py-[4px] shadow-bs text-white/75 hover:text-white  rounded hover:bg-[blue] transition duration-300"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => setIsDeleteModalOpen(true)}
+                    className="px-4 py-[4px] shadow-bs text-white/75 hover:text-white bg-[red]/25  rounded flex items-center gap-2 transition duration-300"
+                  >
+                    Delete <FaTrashCan size="12px" />
+                  </button>
+                </>
               )}
-              <button
-                onClick={() => setIsDeleteModalOpen(true)}
-                className="px-4 py-[2px] bg-[red]/50 text-white rounded hover:bg-[red] transition duration-300"
-              >
-                Delete
-              </button>
             </div>
           </div>
           <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-6">
@@ -227,7 +255,6 @@ const ProjectPage = ({ params }: { params: { slug: string } }) => {
                           key={index}
                           value={type}
                           className="capitalize bg-dark"
-                          // selected={editedProject?.type === type}
                         >
                           {type}
                         </option>
@@ -281,7 +308,7 @@ const ProjectPage = ({ params }: { params: { slug: string } }) => {
           </div>
         </div>
       </div>
-      <div>Boards will be displayed here</div>
+      <div>{project.boards.length}</div>
 
       {/* Delete Confirmation Modal */}
       {isDeleteModalOpen && (
