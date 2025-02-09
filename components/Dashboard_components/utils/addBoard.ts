@@ -1,26 +1,16 @@
-import { supabase } from "../../../lib/supabase";
-import { NewBoardProps } from "../UI/Forms/Boardform/Boardform";
-import { uploadImageToStorage } from "./storage";
+// import { NewBoardProps } from "../UI/Forms/Boardform/Boardform";
+// import { newBoardFormData } from "../../../app/(dashboard)/dashboard/projects/[project]/newboard/page";
+import { newBoardFormData } from "../../../app/(dashboard)/dashboard/projects/[project]/newboard/page";
+import { boardProps } from "./Interfaces";
 
-export default async function AddBoard(formdata: NewBoardProps) {
-  let imageurl;
-
-  if (formdata.file) {
-    const file = formdata.file;
-    imageurl = await uploadImageToStorage(file, formdata.title);
-  }
-
+export default async function AddBoard(formdata: newBoardFormData) {
   const options = {
     method: "POST",
     headers: {
       "Content-Type": "application/Json",
     },
     body: JSON.stringify({
-      title: formdata.title,
-      description: formdata.description,
-      link: formdata.link,
-      image: imageurl ? imageurl : "",
-      tags: formdata.tags,
+      formdata,
     }),
   };
   const api = "/api/user/boards";

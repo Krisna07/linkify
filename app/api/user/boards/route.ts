@@ -52,7 +52,19 @@ export async function POST(req: Request) {
     }
 
     const body = await req.json();
-    const { title, description, tags, image, category } = body;
+    const { title, description, tags, image, category, projectName } = body;
+
+    const project = await db.project.findFirst({
+      where: { name: projectName },
+      select: { id: true },
+    });
+
+    if (!project) {
+      return NextResponse.json({
+        status: 400,
+        message: `Board must be associated with a project ${projectName} doesnot exist`,
+      });
+    }
 
     if (!title || !description || !category) {
       return NextResponse.json({
@@ -66,6 +78,7 @@ export async function POST(req: Request) {
       where: {
         title,
         creator: user.username,
+        projectId: project?.id,
       },
     });
 
@@ -80,6 +93,7 @@ export async function POST(req: Request) {
       data: {
         creator: user.username,
         title,
+        projectId: project?.id,
         description,
         link: GenerateLink(title),
         tags,

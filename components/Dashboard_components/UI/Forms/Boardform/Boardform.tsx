@@ -20,8 +20,8 @@ export interface NewBoardProps {
 
 interface NewBoardFormProps {
   add: boolean;
-  handleForm: (state: boolean) => void;
-  updateBoard: (board: NewBoardProps) => void;
+  handleForm?: (state: boolean) => void;
+  updateBoard?: (board: NewBoardProps) => void;
   errorHandler?: (error: any) => void;
 }
 
@@ -100,8 +100,8 @@ const NewBoardForm: React.FC<NewBoardFormProps> = ({
             file: undefined,
             tags: [],
           });
-          handleForm(false);
-          updateBoard(data.newBoard);
+          // handleForm(false);
+          // updateBoard(data.newBoard);
           toast.success(data.message);
           setImagePreview("");
           toast.dismiss();
@@ -130,9 +130,9 @@ const NewBoardForm: React.FC<NewBoardFormProps> = ({
 
   return (
     <form
-      className={`w-[20rem] ${
+      className={` ${
         add ? "translate-x-0 opacity-1" : "translate-x-full opacity-0 z-[-20]"
-      } absolute p-4 top-[140%] right-0 rounded-lg z-40 text-dark bg-white shadow-bs grid gap-4 transition-all duration-500`}
+      }  p-4 top-[140%] right-0 rounded-lg z-40 text-dark bg-white shadow-bs grid gap-4 transition-all duration-500`}
       onSubmit={submitForm}
       onClick={(e) => e.stopPropagation()}
     >
