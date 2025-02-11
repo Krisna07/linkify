@@ -4,7 +4,7 @@ import Image from "next/image";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { uploadImageToStorage } from "../../../../../../components/Dashboard_components/utils/storage";
-import AddBoard from "../../../../../../components/Dashboard_components/utils/addBoard";
+import { AddBoard } from "../../../../../../components/Dashboard_components/utils/boardactions";
 
 interface AddBoardFormProps {
   projectId: string;
@@ -15,8 +15,7 @@ export interface newBoardFormData {
   title: string;
   description: string;
   category: string;
-  link?: string;
-  boardColor: string;
+
   tags: string;
   image?: string;
 }
@@ -30,8 +29,7 @@ const AddBoardForm: React.FC<{ params: { project: string } }> = ({
     title: "",
     description: "",
     category: "",
-    link: "",
-    boardColor: "",
+
     tags: "",
     image: "",
   });
@@ -80,12 +78,11 @@ const AddBoardForm: React.FC<{ params: { project: string } }> = ({
         .filter((tag) => tag.length > 0);
 
       const data = {
-        projectName: projectName.split("-").join(" "),
+        projectName: projectName.split("_").join(" "),
         title: formData.title,
         description: formData.description,
         image: uploadedImage || undefined,
         category: formData.category,
-        boardColor: formData.boardColor,
         tags: tagsArray,
         likes: 0,
       };
@@ -140,7 +137,7 @@ const AddBoardForm: React.FC<{ params: { project: string } }> = ({
             required
           />
         </div>
-        <div>
+        {/* <div>
           <label className="block text-sm font-medium text-gray-700">
             Link (optional)
           </label>
@@ -150,7 +147,7 @@ const AddBoardForm: React.FC<{ params: { project: string } }> = ({
             onChange={handleChange}
             className="mt-1 block w-full bg-transparent border border-white/25 rounded-md p-2"
           />
-        </div>
+        </div> */}
         <div>
           <label className="block text-sm font-medium text-gray-700">
             Category
@@ -163,7 +160,7 @@ const AddBoardForm: React.FC<{ params: { project: string } }> = ({
             required
           />
         </div>
-        <div>
+        {/* <div>
           <label className="block text-sm font-medium text-gray-700">
             Board Color
           </label>
@@ -175,7 +172,7 @@ const AddBoardForm: React.FC<{ params: { project: string } }> = ({
             className="mt-1 block w-full bg-transparent border border-white/25 rounded-md p-2"
             required
           />
-        </div>
+        </div> */}
         <div>
           <label className="block text-sm font-medium text-gray-700">
             Tags (comma separated)

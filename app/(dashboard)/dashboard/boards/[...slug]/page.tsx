@@ -1,13 +1,16 @@
 "use client";
 import { useEffect, useState } from "react";
-import getBoards from "../../../../../components/Dashboard_components/utils/fetchBoards";
+
 import { boardProps } from "../../../../../components/Dashboard_components/utils/Interfaces";
 import { toast } from "react-toastify";
 import Loading from "../../../../(auth)/auth/Formcomponents/Loading";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { updateBoard } from "../../../../../components/Dashboard_components/utils/editBoards";
-import { deleteBoard } from "../../../../../components/Dashboard_components/utils/deleteBoard";
+import {
+  deleteBoard,
+  getBoards,
+  updateBoard,
+} from "../../../../../components/Dashboard_components/utils/boardactions";
 
 export default function Page({ params }: { params: { slug: string } }) {
   const slug = params.slug;

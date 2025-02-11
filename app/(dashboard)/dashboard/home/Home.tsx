@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Homenav from "../../../../components/Dashboard_components/UI/Navbar/HomeNav";
-import getBoards from "../../../../components/Dashboard_components/utils/fetchBoards";
+
 import {
   boardProps,
   ProjectProps,

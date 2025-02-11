@@ -20,72 +20,14 @@ export interface NewProjectProps {
 }
 
 const ProjectsPage = () => {
-  const [projectName, setProjectName] = useState<string>("");
-  const [selectedType, setSelectedType] = useState<string>("");
-  const [showOptions, setShowOptions] = useState<boolean>(false);
-  const [isPrivate, setisPrivate] = useState<boolean>(false);
   const [dispayProject, setDisplayProject] = useState<number>(8);
-  const [projects, setProjects] = useState<ProjectProps[]>([
-    // {
-    //   id: "12",
-    //   name: "Project Alpha",
-    //   type: "Educational",
-    //   createdOn: new Date("2023-01-01"),
-    //   isPrivate: false,
-    //   image: "https://picsum.photos/200/200?random=1",
-    // },
-    // {
-    //   id: "13",
-    //   name: "Project Beta",
-    //   type: "Personal",
-    //   createdOn: new Date("2023-02-01"),
-    //   isPrivate: true,
-    //   image: "https://picsum.photos/200/200?random=2",
-    // },
-    // {
-    //   id: "14",
-    //   name: "Project Gamma",
-    //   type: "Professional",
-    //   createdOn: new Date("2023-03-01"),
-    //   isPrivate: false,
-    //   image: "https://picsum.photos/200/200?random=3",
-    // },
-    // {
-    //   id: "15",
-    //   name: "Project Delta",
-    //   type: "Other",
-    //   createdOn: new Date("2023-04-01"),
-    //   isPrivate: true,
-    //   image: "https://picsum.photos/200/200?random=4",
-    // },
-    // {
-    //   id: "16",
-    //   name: "Project Epsilon",
-    //   type: "Research",
-    //   createdOn: new Date("2023-05-01"),
-    //   isPrivate: false,
-    //   image: "https://picsum.photos/200/200?random=5",
-    // },
-    // {
-    //   id: "18",
-    //   name: "Project Zeta",
-    //   type: "Development",
-    //   createdOn: new Date("2023-06-01"),
-    //   isPrivate: true,
-    //   image: "https://picsum.photos/200/200?random=6",
-    // },
-  ]);
+  const [projects, setProjects] = useState<ProjectProps[]>([]);
 
-  // const updateProjects =(newProjects:)=>{
-  //   setProjects()
-
-  // }
-
-  const fetchProjects = async () => {
-    const projectsinDb = await getProjects();
-    projectsinDb && setProjects(projectsinDb);
-  };
   useEffect(() => {
+    const fetchProjects = async () => {
+      const projectsinDb = await getProjects();
+      projectsinDb && setProjects(projectsinDb);
+    };
     fetchProjects();
   }, []);
   const trendingBoards: any = [
@@ -192,38 +134,37 @@ const ProjectsPage = () => {
                       item && (
                         <motion.div
                           initial={{ y: 50, height: 0, opacity: 0 }}
-                          animate={{ y: 0, height: 320 / 8, opacity: 1 }}
+                          animate={{ y: 0, height: "fit-content", opacity: 1 }}
                           transition={{
                             type: "spring",
                             duration:
                               index < projects.length ? index * 0.1 : 0.3,
                           }}
                           key={index}
-                          className={`flex items-center justify-between p-1 h-[px] `}
+                          className={`flex items-center justify-between p-2 h-[px] gap-2 group `}
                         >
-                          <div className="max-[450px]:grid flex items-center gap-1 h-full">
-                            <div className="flex items-center gap-2 mr-2">
-                              <div className="w-6 h-6 rounded-full overflow-hidden bg-gradient-to-tl from-primary to-accent/50">
-                                {item.image && (
-                                  <Image
-                                    src={item.image}
-                                    alt="boardimage"
-                                    width={1}
-                                    height={1}
-                                    className="object-fill w-full h-full"
-                                  />
-                                )}
-                              </div>
-                              <span className="text-silver/75 font-semibold whitespace-nowrap flex items-center gap-1 capitalize text-sm">
+                          <div className="grid grid-cols-[48px_auto]  place-items-start gap-2 h-full">
+                            <div className="w-fit h-full grid place-items-center ">
+                              {item.image && (
+                                <Image
+                                  src={item.image}
+                                  alt="boardimage"
+                                  width={48}
+                                  height={48}
+                                  className="object-cover w-[48px] h-[48px] shadow-bs rounded-full  overflow-hidden  group-hover:scale-105 transition-all ease-in-out duration-300"
+                                />
+                              )}
+                            </div>
+                            <div className="w-full h-full flex items-center place-items-start  gap-x-2 gap-y-0 mr-2 flex-wrap whitespace-normal">
+                              <span className="text-silver/75 font-semibold  flex items-center gap-1 capitalize text-sm">
                                 {item.name}
                                 {item.isPrivate && <FaLock size={8} color="" />}
                               </span>
+                              <span className="text-silver/75 text-[12px]">
+                                {item.createdOn &&
+                                  new Date(`${item.createdOn}`).toDateString()}
+                              </span>
                             </div>
-
-                            <span className="text-silver/75 text-[12px]">
-                              {item.createdOn &&
-                                new Date(`${item.createdOn}`).toDateString()}
-                            </span>
                           </div>
                           <Link
                             href={`./projects/${item.name

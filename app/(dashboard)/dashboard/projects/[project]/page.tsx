@@ -19,6 +19,9 @@ import RandomCodeGenerator from "../../../../../lib/radomcodegenerator";
 
 import { getProjectBySlug } from "../../../../../lib/actions/projectactions";
 import DisplayBoards from "../../../../../components/Dashboard_components/UI/components/Home/DisplayBoards";
+import { FcAddImage } from "react-icons/fc";
+import { motion } from "framer-motion";
+import Counter from "../../../../../components/Landing_components/Homepage/Features/Counter";
 
 const ProjectPage = ({ params }: { params: { project: string } }) => {
   const [project, setProject] = useState<ProjectProps | null>(null);
@@ -83,6 +86,11 @@ const ProjectPage = ({ params }: { params: { project: string } }) => {
 
   const handleEditProject = async () => {
     let cacheProject = project;
+    if (JSON.stringify(editedProject) === JSON.stringify(cacheProject)) {
+      toast.info("No changes made");
+      setIsEditMode(false);
+      return;
+    }
     if (editedProject) {
       let imageUrl = editedProject.image;
 
@@ -91,7 +99,6 @@ const ProjectPage = ({ params }: { params: { project: string } }) => {
           cacheProject?.image &&
           cacheProject.image.includes(cacheProject?.id)
         ) {
-          console.log(cacheProject.image);
           const filePath = cacheProject.image.split(
             "https://tudodowthzxrdinszdhz.supabase.co/storage/v1/object/public/Projects/"
           )[1];
@@ -153,6 +160,10 @@ const ProjectPage = ({ params }: { params: { project: string } }) => {
   if (!project) {
     return <div>Project not found</div>;
   }
+  const trashCan = {
+    initial: { rotate: 0, scale: 1 },
+    animate: { rotate: ["12deg", "0deg", "-12deg", "0deg"], scale: 1.2 },
+  };
 
   return (
     <div className="w-full mx-auto py-8 px-4 grid gap-4">
@@ -164,7 +175,8 @@ const ProjectPage = ({ params }: { params: { project: string } }) => {
                 type="file"
                 accept="image/*"
                 onChange={handleImageChange}
-                className="w-full h-full text-sm text-gray-500 absolute opacity-0"
+                placeholder="Upload Image"
+                className="w-full h-full text-sm text-gray-500 absolute opacity-0 z-50"
               />
               <Image
                 src={
@@ -179,6 +191,23 @@ const ProjectPage = ({ params }: { params: { project: string } }) => {
                 loading="lazy"
                 // priority
               />
+              {project.image == editedProject?.image ? (
+                <motion.div
+                  whileHover={{ rotate: ["4deg", "0deg", "-4deg", "0deg"] }}
+                  transition={{
+                    type: "keyframes",
+                    duration: 0.2,
+                    repeat: Infinity,
+                  }}
+                  className="absolute bg-blend-darken  text-[80px]"
+                >
+                  <FcAddImage />
+                </motion.div>
+              ) : (
+                <div className="absolute bg-blend-darken  text-[16px]">
+                  Image uploaded
+                </div>
+              )}
             </div>
           ) : (
             <Image
@@ -207,43 +236,58 @@ const ProjectPage = ({ params }: { params: { project: string } }) => {
                     name: e.target.value,
                   } as ProjectProps)
                 }
-                className="text-3xl font-bold text-black capitalize bg-transparent border-b border-black focus:outline-none"
+                className=" font-bold text-black text-sm capitalize bg-transparent border-b border-black focus:outline-none 
+                "
               />
             ) : (
               <h1 className="text-3xl font-bold text-silver/75 capitalize tablet:whitespace-nowrap leading-[120%]">
                 {project.name}
               </h1>
             )}
-            <div className="flex space-x-4 leading-4 text-sm">
-              {isEditMode ? (
-                <button
-                  onClick={handleEditProject}
-                  className="px-2 py-[2px]  text-white shadow-bs rounded hover:bg-[green] transition duration-300"
-                >
-                  Save
-                </button>
-              ) : (
-                <>
-                  {" "}
+            <div className="h-full grid place-items-center  ">
+              <div className="flex space-x-4 leading-4 text-sm">
+                {isEditMode ? (
                   <button
-                    onClick={() => setIsEditMode(true)}
-                    className="px-4 py-[4px] shadow-bs text-white/75 hover:text-white  rounded hover:bg-[blue] transition duration-300"
+                    onClick={handleEditProject}
+                    className="px-2 py-[2px]  text-white shadow-bs rounded hover:bg-[green] transition duration-300"
                   >
-                    Edit
+                    Save
                   </button>
-                  <button
-                    onClick={() => setIsDeleteModalOpen(true)}
-                    className="px-4 py-[4px] shadow-bs text-white/75 hover:text-white bg-[red]/25  rounded flex items-center gap-2 transition duration-300"
-                  >
-                    Delete <FaTrashCan size="12px" />
-                  </button>
-                </>
-              )}
+                ) : (
+                  <>
+                    {" "}
+                    <button
+                      onClick={() => setIsEditMode(true)}
+                      className="px-4 py-[4px] shadow-bs text-white/75 hover:text-white  rounded hover:bg-[blue] transition duration-300"
+                    >
+                      Edit
+                    </button>
+                    <motion.button
+                      initial="initial"
+                      animate="initial"
+                      whileHover="animate"
+                      onClick={() => setIsDeleteModalOpen(true)}
+                      className="px-4 py-[4px] shadow-bs text-white/75 hover:text-white bg-[red]/25  rounded flex items-center gap-2 transition duration-300"
+                    >
+                      Delete
+                      <motion.div
+                        variants={trashCan}
+                        transition={{
+                          duration: 0.2,
+                          type: "tween",
+                        }}
+                      >
+                        <FaTrashCan size="12px" />
+                      </motion.div>
+                    </motion.button>
+                  </>
+                )}
+              </div>
             </div>
           </div>
-          <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-6">
-            <div className="flex-1 space-y-2">
-              <div className="flex items-center space-x-2">
+          <div className="flex items-center justify-between">
+            <div className="flex-1 gap-1 ">
+              <div className="flex items-center ">
                 {isEditMode ? (
                   <select
                     value={editedProject?.type || ""}
@@ -305,11 +349,14 @@ const ProjectPage = ({ params }: { params: { project: string } }) => {
                   )}
                 </span>
               </div>
-              <p className="text-sm text-gray-600">
+              <p className="text-[12px] px-2  text-gray-600">
                 Created on{" "}
                 {project.createdOn &&
                   new Date(project.createdOn).toLocaleDateString()}
               </p>
+            </div>
+            <div className="place-content-end">
+              <Counter number={project.boards.length} />
             </div>
           </div>
         </div>

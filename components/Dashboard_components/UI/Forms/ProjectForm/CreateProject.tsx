@@ -67,26 +67,24 @@ const CreateProject = ({ setProjects }: CreateProjectProps) => {
 
   return (
     <form className="grid gap-2 relative" onSubmit={handleCreateNew}>
-      <div
-        className={`mx-4 p-1 flex border border-accent rounded-lg box-border overflow-hidden relative z-20 ${
-          showOptions && "shadow-bs"
-        } transition-all ease-in-out duration-300`}
-      >
+      <div className={`w-full relative flex items-center gap-2 px-4`}>
         <input
           required
           type="text"
           name="name"
-          className="w-full px-2 py-1 bg-dark border-none outline-none"
+          className={`w-full px-2 py-1 bg-dark outline-none   border border-accent duration-300 rounded-lg box-border overflow-hidden relative z-20 ${
+            showOptions && "shadow-bs"
+          } transition-all ease-in-out`}
           value={formData.name}
           onFocus={() => setShowOptions(true)}
           onBlur={() => !formData.name && setShowOptions(false)}
           onChange={handleInputChange}
+          placeholder="Enter project name"
         />
         <Button
           children="Create New"
           variant="default"
-          size="default"
-          className="min-w-fit shadow-bs border-silver/25 text-silver/75 hover:border-silver/75"
+          className="min-w-fit shadow-bs border-silver/25 text-silver/75 hover:border-silver/75 px-2 text-sm p-1"
           type="submit"
         />
       </div>
