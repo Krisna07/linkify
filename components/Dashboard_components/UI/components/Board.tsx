@@ -13,10 +13,11 @@ interface BoardProps {
 
 const Board = ({ board }: BoardProps) => {
   const Route = useRouter();
+
   return (
     <div
       onClick={() => Route.push(`/dashboard/boards/${board.link}`)}
-      className="group w-full h-full grid gap-4 p-2 cursor-pointer shadow-bs border border-transparent rounded-md transition-all duration-500 hover:border-white/50 relative overflow-hidden"
+      className="group min-w-[300px] h-full grid gap-4 p-2 cursor-pointer shadow-bs border border-transparent rounded-md transition-all duration-500 hover:border-white/50 relative overflow-hidden"
     >
       <div
         style={{ background: `${board.boardColor}` }}
@@ -24,7 +25,7 @@ const Board = ({ board }: BoardProps) => {
       >
         {board.image && (
           <Image
-            src={`https://kbglzqgrxnmdqvauagdb.supabase.co/storage/v1/object/public/Boards/${board.image}`}
+            src={`${board.image}`}
             alt={`${board.title + "_image"}`}
             fill
             className="object-cover"

@@ -162,16 +162,18 @@ export default function Page({ params }: { params: { slug: string } }) {
       <h2 className="text-3xl">{board.title}</h2>
       <div
         style={{ background: board.boardColor }}
-        className="w-full tablet:min-h-[500px] h-[300px] relative opacity-[.8] group-hover:opacity-100 transition-all duration-500"
+        className={`w-full tablet:min-h-[300px] h-[300px] relative  opacity-[.8] p-2 group-hover:opacity-100 transition-all duration-500`}
       >
-        {existingImages.length > 0 && (
-          <Image
-            src={existingImages[0]}
-            alt={`${board.title}_image`}
-            fill
-            className="object-cover object-start"
-          />
-        )}
+        <div className={`grid grid-cols-[${existingImages.length}] p-4`}>
+          {existingImages.length > 0 && (
+            <Image
+              src={existingImages[0]}
+              alt={`${board.title}_image`}
+              fill
+              className="p-4 object-cover "
+            />
+          )}
+        </div>
       </div>
       {/* Edit Form */}
       {isEditing ? (
