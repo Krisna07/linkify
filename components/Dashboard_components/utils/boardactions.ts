@@ -16,7 +16,6 @@ export async function getBoards() {
       throw new Error("Failed to fetch boards");
     }
     const data = await response.json();
-    console.log(data);
 
     return data.data;
   } catch (error) {
@@ -32,7 +31,7 @@ export async function AddBoard(formdata: newBoardFormData) {
     },
     body: JSON.stringify(formdata),
   };
-  console.log(options);
+
   const api = "/api/user/boards";
   try {
     const response = await fetch(api, options);

@@ -67,7 +67,6 @@ export async function POST(req: Request) {
     }
 
     if (!title || !description || !category) {
-      console.log(body);
       return NextResponse.json({
         status: 400, // Bad Request
         message: "Missing required board data",

@@ -22,6 +22,8 @@ import DisplayBoards from "../../../../../components/Dashboard_components/UI/com
 import { FcAddImage } from "react-icons/fc";
 import { motion } from "framer-motion";
 import Counter from "../../../../../components/Landing_components/Homepage/Features/Counter";
+import Link from "next/link";
+import Button from "../../../../../components/Global_components/Button";
 
 const ProjectPage = ({ params }: { params: { project: string } }) => {
   const [project, setProject] = useState<ProjectProps | null>(null);
@@ -363,6 +365,19 @@ const ProjectPage = ({ params }: { params: { project: string } }) => {
       </div>
       <div>
         <DisplayBoards boardList={project.boards} list={false} />
+        <Link href={`${params.project}/newboard`}>
+          <Button
+            children={
+              !project.boards.length
+                ? "Create Your First Idea"
+                : "Create New Idea"
+            }
+            variant={"default"}
+            size={"default"}
+            icon={true}
+            className=" shadow-bs border-none p-[4px_8px] text-silver/75 hover:text-silver"
+          />
+        </Link>
       </div>
 
       {/* Delete Confirmation Modal */}

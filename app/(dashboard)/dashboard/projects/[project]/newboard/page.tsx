@@ -15,7 +15,6 @@ export interface newBoardFormData {
   title: string;
   description: string;
   category: string;
-
   tags: string;
   image?: string;
 }
@@ -59,11 +58,13 @@ const AddBoardForm: React.FC<{ params: { project: string } }> = ({
 
       let uploadedImage = "";
       if (file) {
+        toast.info("Uploading image...");
         const result = await uploadImageToStorage(
           file,
           formData.title,
           "Boards"
         );
+        console.log(result);
         if (!result) {
           toast.error("Image upload failed");
           setLoading(false);
@@ -88,13 +89,12 @@ const AddBoardForm: React.FC<{ params: { project: string } }> = ({
       };
 
       try {
-        console.log(data);
         const response = await AddBoard(data);
-        if (response.ok) {
+        if (response.status === 201) {
           toast.success("Board created successfully");
           router.refresh();
+          router.push(`/dashboard/projects/${projectName}`);
         } else {
-          console.log(response);
           toast.error("Failed to create board");
         }
       } catch (err) {

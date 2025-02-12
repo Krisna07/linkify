@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-
 import { boardProps } from "../../../../../components/Dashboard_components/utils/Interfaces";
 import { toast } from "react-toastify";
 import Loading from "../../../../(auth)/auth/Formcomponents/Loading";
@@ -11,51 +10,139 @@ import {
   getBoards,
   updateBoard,
 } from "../../../../../components/Dashboard_components/utils/boardactions";
+import { uploadImageToStorage } from "../../../../../components/Dashboard_components/utils/storage";
 
 export default function Page({ params }: { params: { slug: string } }) {
-  const slug = params.slug;
+  const slug: string = params.slug[0];
+  const router = useRouter();
 
   const [board, setBoard] = useState<boardProps | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [isEditing, setIsEditing] = useState<boolean>(false);
-  const [updatedData, setUpdatedData] = useState<{
-    title: string;
-    boardColor: string;
-  }>({ title: "", boardColor: "" });
-  const route = useRouter();
+  // For text data
+  const [title, setTitle] = useState("");
+  // We now manage images as two arrays:
+  // existingImages comes from board.image CSV (if any)
+  const [existingImages, setExistingImages] = useState<string[]>([]);
+  // newFiles holds the File objects selected for upload
+  const [newFiles, setNewFiles] = useState<File[]>([]);
+
+  // Generates preview URLs for new files
+  const [newPreviews, setNewPreviews] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchBoards = async () => {
       try {
         const data = await getBoards();
-        const thisData = data.find((board: boardProps) => board.link == slug);
-        if (thisData) {
-          setBoard(thisData);
-          setUpdatedData({
-            title: thisData.title,
-            boardColor: thisData.boardColor,
-          }); // Initialize form with current board data
+        console.log(data);
+
+        const thisBoard = data.find((b: boardProps) => b.link === slug);
+
+        if (thisBoard) {
+          setBoard(thisBoard);
+          setTitle(thisBoard.title);
+          if (thisBoard.image) {
+            // Assume images are stored as comma-separated values
+            const imgs = thisBoard.image
+              .split(",")
+              .filter((img: string) => img.trim() !== "");
+            setExistingImages(imgs);
+          }
         } else {
-          route.push("/dashboard/boards");
+          router.push("/dashboard/boards");
         }
       } catch (err: any) {
-        toast.error(err.message || "An error occurred");
-        setLoading(false);
+        toast.error(err.message || "An error occurred while fetching board");
       } finally {
         setLoading(false);
       }
     };
 
     fetchBoards();
-  }, []);
+  }, [slug, router]);
 
-  board && console.log(board);
+  // Handle change for the file input (multiple allowed)
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) return;
+    const selectedFiles = Array.from(e.target.files);
+    // Remove duplicates based on file name (or you could use size/type)
+    const uniqueFiles = selectedFiles.filter(
+      (f) => !newFiles.find((nf) => nf.name === f.name)
+    );
+
+    // Check total images count (existing + new) does not exceed 3
+    if (existingImages.length + newFiles.length + uniqueFiles.length > 3) {
+      const allowed = 3 - existingImages.length - newFiles.length;
+      toast.info("You can upload maximum 3 images.");
+      uniqueFiles.splice(allowed);
+    }
+    setNewFiles((prev) => [...prev, ...uniqueFiles]);
+
+    // Create previews for new files
+    const previews = uniqueFiles.map((file) => URL.createObjectURL(file));
+    setNewPreviews((prev) => [...prev, ...previews]);
+  };
+
+  // Remove an existing image from the list
+  const removeExistingImage = (imgUrl: string) => {
+    setExistingImages((prev) => prev.filter((img) => img !== imgUrl));
+  };
+
+  // Remove a new file (and its preview) from the list
+  const removeNewFile = (index: number) => {
+    setNewFiles((prev) => prev.filter((_, i) => i !== index));
+    setNewPreviews((prev) => prev.filter((_, i) => i !== index));
+  };
+
   const handleUpdateBoard = async () => {
-    const result = await updateBoard(slug, updatedData);
+    // Overwrite existing image if any new file is provided.
+    // Upload new files and then combine with existing (if no new file, keep them)
+    let finalImages: string[] = [];
+    // If new files exist, upload and then use only them.
+    if (newFiles.length > 0) {
+      for (const file of newFiles) {
+        toast.loading("Uploading image(s)...");
+        const uploadedPath = await uploadImageToStorage(file, title, "Boards");
+        if (uploadedPath) {
+          let filename = uploadedPath;
+          console.log(filename);
+          const url = `https://kbglzqgrxnmdqvauagdb.supabase.co/storage/v1/object/public/Boards/${filename}`;
+          finalImages.push(url);
+        } else {
+          toast.dismiss();
+          toast.error("Failed to upload one or more images.");
+          return;
+        }
+      }
+      toast.dismiss();
+      toast.success("Image(s) uploaded successfully");
+    } else {
+      // No new file: keep the existing images.
+      finalImages = existingImages;
+    }
+    // Remove duplicates if any by using a Set.
+    finalImages = Array.from(new Set(finalImages));
+    // Ensure maximum of 3 images
+    if (finalImages.length > 3) {
+      finalImages = finalImages.slice(0, 3);
+    }
+    // Prepare data for update – join images as CSV if any, or null.
+    const updateData = {
+      title,
+      image: finalImages.length ? finalImages.join(",") : undefined,
+    };
+    const result = await updateBoard(slug, updateData);
     if (result) {
       toast.success("Board updated successfully!");
       setIsEditing(false);
-      setBoard((prev) => (prev ? { ...prev, ...updatedData } : null));
+      setBoard(
+        (prev) =>
+          (prev ? { ...prev, ...updateData } : null) as boardProps | null
+      );
+      // Reset file state
+      setNewFiles([]);
+      setNewPreviews([]);
+      setExistingImages(finalImages);
     } else {
       toast.error("Failed to update board.");
     }
@@ -63,83 +150,124 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   const handleDeleteBoard = async () => {
     console.log("Attempting to delete board with slug:", slug);
-    const result = await deleteBoard(slug, `${board?.image}`);
+    await deleteBoard(slug, board?.image || "");
   };
 
   if (loading || !board) {
     return <Loading />;
-  } else {
-    return (
-      <div className="w-full grid text-left tablet:px-8 px-4 gap-8">
-        <h2 className="text-3xl">{board.title}</h2>
-        <div
-          style={{
-            background: `${board.boardColor}`,
-          }}
-          className="w-full tablet:min-h-[500px] h-[300px] relative opacity-[.8] group-hover:opacity-100 transition-all duration-500 "
-        >
-          {board.image && (
-            <Image
-              src={`https://kbglzqgrxnmdqvauagdb.supabase.co/storage/v1/object/public/Boards/${board.image}`}
-              alt={`${board.title + "_image"}`}
-              fill
-              className="object-cover object-start"
-            />
-          )}
-        </div>
+  }
 
-        {/* Edit Form */}
-        {isEditing ? (
-          <div className="mt-4">
-            <h3 className="text-xl">Edit Board</h3>
+  return (
+    <div className="w-full grid text-left tablet:px-8 px-4 gap-8">
+      <h2 className="text-3xl">{board.title}</h2>
+      <div
+        style={{ background: board.boardColor }}
+        className="w-full tablet:min-h-[500px] h-[300px] relative opacity-[.8] group-hover:opacity-100 transition-all duration-500"
+      >
+        {existingImages.length > 0 && (
+          <Image
+            src={existingImages[0]}
+            alt={`${board.title}_image`}
+            fill
+            className="object-cover object-start"
+          />
+        )}
+      </div>
+      {/* Edit Form */}
+      {isEditing ? (
+        <div className="mt-4 grid gap-4">
+          <h3 className="text-xl">Edit Board</h3>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Board Title"
+            className="border p-2 w-full bg-transparent rounded-md"
+          />
+          <div className="grid gap-2">
+            <label className="font-medium">Upload Images (max 3)</label>
             <input
-              type="text"
-              value={updatedData.title}
-              onChange={(e) =>
-                setUpdatedData({ ...updatedData, title: e.target.value })
-              }
-              placeholder="Board Title"
-              className="border p-2 w-full"
+              type="file"
+              multiple
+              accept="image/*"
+              onChange={handleImageChange}
+              className="border p-2 w-full bg-transparent rounded-md"
             />
-            <input
-              type="text"
-              value={updatedData.boardColor}
-              onChange={(e) =>
-                setUpdatedData({ ...updatedData, boardColor: e.target.value })
-              }
-              placeholder="Board Color"
-              className="border p-2 w-full mt-2"
-            />
+            <div className="flex flex-wrap gap-4">
+              {/* Preview existing images */}
+              {existingImages.map((img, idx) => (
+                <div key={idx} className="relative w-24 h-24">
+                  <Image
+                    src={img}
+                    alt={`existing-${idx}`}
+                    fill
+                    className="object-cover rounded-md"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => removeExistingImage(img)}
+                    className="absolute top-1 right-1 bg-red-500 text-white text-xs rounded-full px-1"
+                  >
+                    X
+                  </button>
+                </div>
+              ))}
+              {/* Preview new files */}
+              {newPreviews.map((preview, idx) => (
+                <div key={idx} className="relative w-24 h-24">
+                  <Image
+                    src={preview}
+                    alt={`new-${idx}`}
+                    fill
+                    className="object-cover rounded-md"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => removeNewFile(idx)}
+                    className="absolute top-1 right-1 bg-red-500 text-white text-xs rounded-full px-1"
+                  >
+                    X
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="flex gap-4">
             <button
               onClick={handleUpdateBoard}
-              className="bg-blue-500 text-white p-2 mt-2"
+              className="bg-blue-500 text-white p-2 rounded-md"
             >
               Update Board
             </button>
             <button
-              onClick={() => setIsEditing(false)}
-              className="bg-gray-500 text-white p-2 mt-2 ml-2"
+              onClick={() => {
+                setIsEditing(false);
+                // Optionally reset new files if user cancels
+                setNewFiles([]);
+                setNewPreviews([]);
+              }}
+              className="bg-gray-500 text-white p-2 rounded-md"
             >
               Cancel
             </button>
           </div>
-        ) : (
+        </div>
+      ) : (
+        <>
           <button
             onClick={() => setIsEditing(true)}
-            className="bg-green-500 text-white p-2 mt-4"
+            className="bg-green-500 text-white p-2 mt-4 rounded-md"
           >
             Edit Board
           </button>
-        )}
-
-        {/* Delete Button */}
-        <button
-          onClick={handleDeleteBoard}
-          className="bg-red-500 text-white p-2 mt-4"
-        >
-          Delete Board
-        </button>
-      </div>
-    );
-  }
+          <button
+            onClick={handleDeleteBoard}
+            className="bg-red-500 text-white p-2 mt-4 rounded-md"
+          >
+            Delete Board
+          </button>
+        </>
+      )}
+    </div>
+  );
 }
