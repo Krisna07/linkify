@@ -4,7 +4,6 @@ interface newBoardFormData {
   title: string;
   description: string;
   category: string;
-
   tags: string[];
   image?: string;
 }
@@ -16,7 +15,6 @@ export async function getBoards() {
       throw new Error("Failed to fetch boards");
     }
     const data = await response.json();
-
     return data.data;
   } catch (error) {
     return error;

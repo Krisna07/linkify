@@ -33,6 +33,7 @@ export const authOptions: NextAuthOptions = {
           where: {
             OR: [{ email: credentials.email }, { username: credentials.email }],
           },
+          include: { verification: true },
         });
 
         if (!existingUser) {
@@ -58,7 +59,7 @@ export const authOptions: NextAuthOptions = {
           throw new Error(
             JSON.stringify({
               data: userDetails,
-              message: "Password doesnot match",
+              message: "Password does not match",
             })
           );
         }
@@ -70,6 +71,7 @@ export const authOptions: NextAuthOptions = {
           image: existingUser.avatar,
           name: existingUser.name,
           timestamp: existingUser.timestamp,
+          verified: existingUser.verification?.verified ?? false,
         };
       },
     }),
@@ -82,11 +84,11 @@ export const authOptions: NextAuthOptions = {
           username: user.username,
           id: user.id,
           timestamp: user.timestamp,
+          verified: user.verified,
         };
       }
       return token;
     },
-
     async session({ session, token }) {
       return {
         ...session,
@@ -95,6 +97,7 @@ export const authOptions: NextAuthOptions = {
           username: token.username,
           timestamp: token.timestamp,
           id: token.id,
+          isVerified: token.verified,
         },
       };
     },

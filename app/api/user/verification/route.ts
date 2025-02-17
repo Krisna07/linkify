@@ -226,19 +226,20 @@ export async function DELETE(req: Request) {
         message: "uh oh ! code didnot match",
       });
     }
+    const updatedData = {
+      verificationCode: null,
+      verified: true,
+      lastUpdated: new Date(),
+    };
     await db.verification.update({
       where: { userId: id },
-      data: { verificationCode: null, verified: true, lastUpdated: new Date() },
+      data: updatedData,
     });
 
     return NextResponse.json({
       status: 200,
       message: "User verified successfully. Verification code cleared.",
-      data: {
-        isVerified: verification.verified,
-        isExpired: false,
-        lastUpdated: verification.lastUpdated,
-      },
+      data: updatedData,
     });
   } catch (error) {
     console.error("Error verifying user:", error);

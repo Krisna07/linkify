@@ -4,6 +4,7 @@ declare module "next-auth" {
   interface User {
     username: string;
     timestamp: int;
+    verified: boolean;
   }
   interface Session {
     user: User & {

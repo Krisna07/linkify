@@ -12,11 +12,12 @@ import { motion, Variants } from "framer-motion";
 import { toast } from "react-toastify";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { FaTimes } from "react-icons/fa";
-
+// import { useSession } from "next-auth/react";
 import { userProps, VerificationProps } from "../../../utils/Interfaces";
 import useOutsideClick from "../../../../../lib/outsideclick";
 import { HandleNewCode, handleVerification } from "../../../utils/verify";
 import Counter from "../../../../Landing_components/Homepage/Features/Counter";
+// import { useSession } from "next-auth/react";
 
 const itemVariants: Variants = {
   open: {
@@ -35,7 +36,7 @@ interface TimerProps {
 interface VerificationComponentProps {
   verification: VerificationProps;
   user: userProps;
-  updateVerificationData: any;
+  updateVerificationData: () => void;
 }
 
 const useTimer = (expiryTime: number, isExpired: boolean) => {
@@ -76,7 +77,7 @@ export default function Verify({
   const [code, setCode] = useState(["", "", "", ""]);
   const inputs = useRef<(HTMLInputElement | null)[]>([]);
   const [isVerifying, setIsVerifying] = useState(false);
-
+  // const { data: session, update } = useSession();
   const handleChange = (index: number, value: string) => {
     const numericValue = value.replace(/[^0-9]/g, "");
     const newCode = [...code];
@@ -137,7 +138,7 @@ export default function Verify({
     e.preventDefault();
     setIsVerifying(true);
     const otp = code.join("");
-    console.log(otp);
+
     if (otp.length !== 4) {
       toast("OTP must be 4 digits");
       setIsVerifying(false);
@@ -165,7 +166,7 @@ export default function Verify({
       await HandleNewCode(user.id).then((response) => {
         if (response.status === 200) {
           updateVerificationData();
-          console.log(verification);
+
           return toast("New code sent");
         } else {
           toast(response.message);
@@ -190,7 +191,7 @@ export default function Verify({
         onClick={() => setIsOpen(!isOpen)}
         className="bg-primary hidden px-3 py-[2px] tablet:flex items-center rounded-full text-[10px] font-[600]"
       >
-        {!verification.isVerified ? "Not verified" : <RiVerifiedBadgeFill />}
+        {!verification.isVerified && "Not verified"}
       </motion.button>
       <motion.button
         whileTap={{ scale: 0.97 }}

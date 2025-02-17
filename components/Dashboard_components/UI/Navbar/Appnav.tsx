@@ -9,35 +9,14 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Counter from "../../../Landing_components/Homepage/Features/Counter";
 import useOutsideClick from "../../../../lib/outsideclick";
-import { fetchVerificationData } from "../../utils/FetchDatas";
-
 import Verification from "./Verification";
-import { VerificationProps } from "../../utils/Interfaces";
-import { HandleNewCode, handleVerification } from "../../utils/verify";
 
 const Appnav = ({ user }: NavProps) => {
   const [accountOptions, setAccountOptions] = useState(false);
-  const [verification, setVerification] = useState<VerificationProps | null>(
-    null
-  );
+
   const getUrl = usePathname();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   useOutsideClick(dropdownRef, () => setAccountOptions(false));
-
-  const updateVerificationData = async () => {
-    await fetchVerificationData().then((response: any) => {
-      const data = response.data;
-      return setVerification({
-        isVerified: data.isVerified,
-        isExpired: data.isExpired,
-        expiryTime: data.expiryTime,
-      });
-    });
-  };
-
-  useEffect(() => {
-    updateVerificationData();
-  }, [HandleNewCode, handleVerification]);
 
   return (
     <div className="w-full flex items-center justify-between px-4 py-1 gap-4">
@@ -66,13 +45,8 @@ const Appnav = ({ user }: NavProps) => {
           </div>
           <span className="hidden tablet:block">{user.username}</span>
         </div>
-        {verification && (
-          <Verification
-            verification={verification}
-            user={user}
-            updateVerificationData={updateVerificationData}
-          />
-        )}
+
+        <Verification user={user} />
       </div>
       <div className="flex items-center gap-4 text-gray-300">
         {getUrl.includes("dashboard") && (

@@ -10,84 +10,84 @@ datasource db {
 }
 
 model User {
-  id                String       @id @default(cuid())
-  name              String
-  email             String       @unique
-  username          String       @unique
-  password          String
-  avatar            String?
-  projects          Project[]
-  userDetails       UserDetails?
-  verification      Verification?
-  timestamp         DateTime     @default(now())
+  id           String        @id @default(cuid())
+  name         String
+  email        String        @unique
+  username     String        @unique
+  password     String
+  avatar       String?
+  timestamp    DateTime      @default(now())
+  projects     Project[]
+  userDetails  UserDetails?
+  verification Verification? @relation("UserVerification")
 }
 
 model Verification {
-  id                String       @id @default(cuid())
-  userId            String       @unique
-  user              User         @relation(fields: [userId], references: [id])
-  verificationCode  Int?
-  verified          Boolean      @default(false)
-  timestamp         DateTime     @default(now())
-  lastUpdated       DateTime     @default(now()) 
+  id               String   @id @default(cuid())
+  userId           String   @unique
+  verificationCode Int?
+  verified         Boolean  @default(false)
+  timestamp        DateTime @default(now())
+  lastUpdated      DateTime @default(now())
+  user             User     @relation("UserVerification", fields: [userId], references: [id])
 }
 
 model UserDetails {
-  id                String       @id @default(cuid())
-  userId            String       @unique
-  user              User         @relation(fields: [userId], references: [id])
-  firstName         String
-  lastName          String
-  dob               DateTime?
-  gender            String?
-  bio               String?
-  phoneNumber       String?
-  imageUrl          String?
-  address           String?
-  occupation        String?
-  company           String?
-  jobTitle          String?
-  socials           String[]
-  website           String?
-  timestamp         DateTime     @default(now())
+  id          String    @id @default(cuid())
+  userId      String    @unique
+  firstName   String
+  lastName    String
+  dob         DateTime?
+  gender      String?
+  bio         String?
+  phoneNumber String?
+  imageUrl    String?
+  address     String?
+  occupation  String?
+  company     String?
+  jobTitle    String?
+  socials     String[]
+  website     String?
+  timestamp   DateTime  @default(now())
+  user        User      @relation(fields: [userId], references: [id])
 }
 
 model Project {
-  id          String   @id @default(cuid())
-  userId      String
-  user        User     @relation(fields: [userId], references: [id])
-  name        String
-  type        String
-  createdOn   DateTime @default(now())
-  isPrivate   Boolean
-  image       String?
-  boards      Board[]  @relation("ProjectBoards")
+  id        String   @id @default(cuid())
+  userId    String
+  name      String
+  type      String
+  createdOn DateTime @default(now())
+  image     String?
+  isPrivate Boolean
+  boards    Board[]  @relation("ProjectBoards")
+  user      User     @relation(fields: [userId], references: [id])
 }
 
 model Board {
-  id                String       @id @default(cuid())
-  projectId         String
-  project           Project? @relation("ProjectBoards", fields: [projectId], references: [id])
-  creator           String
-  description       String
-  title             String
-  link              String?
-  image             String?
-  category          String
-  boardColor        String
-  tags              String[]
-  feedbacks         Feedback[]
-  likes             Float
-  timestamp         DateTime     @default(now())
+  id          String     @id @default(cuid())
+  description String
+  title       String
+  link        String?
+  image       String?
+  category    String
+  boardColor  String
+  tags        String[]
+  timestamp   DateTime   @default(now())
+  creator     String
+  likes       Float
+  projectId   String
+  project     Project    @relation("ProjectBoards", fields: [projectId], references: [id])
+  feedbacks   Feedback[]
 }
 
 model Feedback {
-  id            String       @id @default(cuid())
-  boardId       String
-  board         Board        @relation(fields: [boardId], references: [id])
-  username      String
-  email         String?
-  rating        Float
-  comment       String
-  timestamp     DateTime     @default(now())
+  id        String   @id @default(cuid())
+  boardId   String
+  username  String
+  email     String?
+  rating    Float
+  comment   String
+  timestamp DateTime @default(now())
+  board     Board    @relation(fields: [boardId], references: [id])
 }

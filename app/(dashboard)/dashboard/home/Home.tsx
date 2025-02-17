@@ -18,6 +18,7 @@ import Button from "../../../../components/Global_components/Button";
 import Link from "next/link";
 import { FaLock } from "react-icons/fa";
 import getProjects from "../../../../lib/actions/projectactions";
+import { getBoards } from "../../../../components/Dashboard_components/utils/boardactions";
 
 export default function Home() {
   const [list, setList] = useState<boolean>(false);
@@ -40,8 +41,6 @@ export default function Home() {
       try {
         const res = await getProjects();
         res && setProjects(res);
-        // const boards = await getBoards();
-        // setBoards(boards);
       } catch (err: any) {
         HandleError(err.message || "An error occurred");
       } finally {
@@ -50,6 +49,12 @@ export default function Home() {
     };
     fetchProjects();
   }, []);
+
+  useEffect(() => {
+    projects.forEach((project) =>
+      setBoards((prevBoards) => [...prevBoards, ...project.boards])
+    );
+  }, [projects]);
 
   // const actionBoardUpdate = (newBoard: boardProps) => {
   //   setBoards((prevBoards: boardProps[] | null) => {
