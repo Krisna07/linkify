@@ -99,7 +99,7 @@ export default function Home() {
                   transition={{
                     type: "spring",
                   }}
-                  className={`w-full flex flex-wrap gap-6 tablet:grid tablet:grid-cols-2 laptop:flex   box-border `}
+                  className={`w-full flex flex-wrap gap-6 tablet:grid tablet:grid-cols-2 laptop:grid-cols-3 box-border `}
                 >
                   {projects &&
                     projects.map(
@@ -118,7 +118,7 @@ export default function Home() {
                                 index < projects.length ? index * 0.1 : 0.3,
                             }}
                             key={index}
-                            className={`laptop:max-w-[350px] w-full  grid p-2 h-[px] gap-2  rounded-md bg-silver/25 hover:shadow-bs group`}
+                            className={` w-full  grid p-2 h-[px] gap-2  rounded-md bg-silver/25 hover:shadow-bs group`}
                           >
                             <div className="max-[450px]:grid flex flex-col  gap-1 h-full">
                               <div className="flex  flex-col gap-2 ">

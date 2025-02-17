@@ -168,7 +168,7 @@ const ProjectPage = ({ params }: { params: { project: string } }) => {
   };
 
   return (
-    <div className="w-full mx-auto py-8 px-4 grid gap-4">
+    <div className="max-w-[1000px] mx-auto py-8 px-4 grid gap-4">
       <div className="bg-accent/25  hover:shadow-bs transition-shadow duration-500 ease-in-out rounded-lg overflow-hidden grid grid-cols-[150px_1fr] p-2 place-items-center">
         <div className=" max-w-fit shadow-bs box-border rounded-full overflow-hidden  relative">
           {isEditMode ? (
@@ -357,13 +357,13 @@ const ProjectPage = ({ params }: { params: { project: string } }) => {
                   new Date(project.createdOn).toLocaleDateString()}
               </p>
             </div>
-            <div className="place-content-end">
-              <Counter number={project.boards.length} />
+            <div className="place-content-end flex items-center gap-2">
+              <Counter number={project.boards.length} /> Boards
             </div>
           </div>
         </div>
       </div>
-      <div>
+      <div className="max-w-[1000px]">
         <DisplayBoards boardList={project.boards} list={false} />
         <Link href={`${params.project}/newboard`}>
           <Button

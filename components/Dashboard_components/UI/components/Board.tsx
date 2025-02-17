@@ -1,5 +1,5 @@
 import React from "react";
-import { FaStar } from "react-icons/fa";
+import { FaRegStar, FaStar } from "react-icons/fa";
 import { boardProps } from "../../utils/Interfaces";
 import { BsArrowDownLeftSquare } from "react-icons/bs";
 import Image from "next/image";
@@ -17,7 +17,7 @@ const Board = ({ board }: BoardProps) => {
   return (
     <div
       onClick={() => Route.push(`/dashboard/boards/${board.link}`)}
-      className="group min-w-[300px] h-full grid gap-4 p-2 cursor-pointer shadow-bs border border-transparent rounded-md transition-all duration-500 hover:border-white/50 relative overflow-hidden"
+      className="group min-w-[300px] w-full h-full grid gap-2 p-2 cursor-pointer shadow-bs border border-transparent rounded-md transition-all duration-500 hover:border-white/50 relative overflow-hidden"
     >
       <div
         style={{ background: `${board.boardColor}` }}
@@ -28,35 +28,33 @@ const Board = ({ board }: BoardProps) => {
             src={`${board.image}`}
             alt={`${board.title + "_image"}`}
             fill
-            className="object-cover"
+            className="object-cover w-full"
           />
         )}
       </div>
-      <div className="grid gap-2">
+      <div className="grid gap-1">
         <span className="text-silver leading-[100%] text-2xl font-semibold capitalize">
           {board.title}
         </span>
         <span>{board.description}</span>
       </div>
-      <div className="flex items-center gap-2 flex-wrap">
+      <div className="flex items-center gap-2 flex-wrap ">
         {board.tags.length > 0
           ? board.tags.map((tag: string, index: number) => (
               <span
                 key={index}
-                className="bg-tahiti text-dark px-2  rounded-md"
+                className="bg-tahiti text-dark px-2  rounded-md leading-[140%]"
               >
                 #{tag}
               </span>
             ))
           : "No tags"}
       </div>
-      <div className="grid gap-2">
-        <span className="flex items-center gap-2 text-[yellow]/50">
-          <FaStar />
-          <FaStar />
-          <FaStar />
-          <FaStar />
-          <FaStar />
+      <div className="grid">
+        <span className="flex items-center gap-2 ">
+          {[...Array(5)].map((star, index) => (
+            <FaRegStar key={index} />
+          ))}
         </span>
         <div className="flex items-center justify-between gap-2">
           <span>0 reviwer</span>
