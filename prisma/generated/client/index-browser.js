@@ -127,6 +127,12 @@ exports.Prisma.UserScalarFieldEnum = {
   timestamp: 'timestamp'
 };
 
+exports.Prisma.FollowScalarFieldEnum = {
+  id: 'id',
+  followerId: 'followerId',
+  followingId: 'followingId'
+};
+
 exports.Prisma.VerificationScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -161,14 +167,12 @@ exports.Prisma.ProjectScalarFieldEnum = {
   name: 'name',
   type: 'type',
   createdOn: 'createdOn',
-  isPrivate: 'isPrivate',
-  image: 'image'
+  image: 'image',
+  isPrivate: 'isPrivate'
 };
 
 exports.Prisma.BoardScalarFieldEnum = {
   id: 'id',
-  projectId: 'projectId',
-  creator: 'creator',
   description: 'description',
   title: 'title',
   link: 'link',
@@ -176,8 +180,10 @@ exports.Prisma.BoardScalarFieldEnum = {
   category: 'category',
   boardColor: 'boardColor',
   tags: 'tags',
+  timestamp: 'timestamp',
+  creator: 'creator',
   likes: 'likes',
-  timestamp: 'timestamp'
+  projectId: 'projectId'
 };
 
 exports.Prisma.FeedbackScalarFieldEnum = {
@@ -208,6 +214,7 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   User: 'User',
+  Follow: 'Follow',
   Verification: 'Verification',
   UserDetails: 'UserDetails',
   Project: 'Project',

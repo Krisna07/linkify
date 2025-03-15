@@ -105,6 +105,7 @@ const SignInPage: React.FC = () => {
     // console.log(resetEmail);
     if (resetEmail) {
       toast("verifying user and sending code");
+      console.log(resetEmail);
       const data = await sendCode(resetEmail);
       if (data?.status !== 200) {
         return toast.warn(data?.message);

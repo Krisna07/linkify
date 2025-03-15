@@ -20,7 +20,21 @@ model User {
   projects     Project[]
   userDetails  UserDetails?
   verification Verification? @relation("UserVerification")
+  // Define the relation with the Follow model
+  followers   Follow[] @relation("UserFollowers")
+  following   Follow[] @relation("UserFollowing")
 }
+
+model Follow {
+  id          String   @id @default(cuid())
+  follower    User     @relation("UserFollowers", fields: [followerId], references: [id])
+  followerId  String
+  following   User     @relation("UserFollowing", fields: [followingId], references: [id])
+  followingId String
+
+  @@unique([followerId, followingId]) // Ensure a user can only follow another user once
+}
+
 
 model Verification {
   id               String   @id @default(cuid())

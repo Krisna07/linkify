@@ -34,7 +34,7 @@ const ProjectPage = ({ params }: { params: { project: string } }) => {
   const [imageurl, setImageUrl] = useState<string | null>(null);
   const [file, setFile] = useState<File | null>(null);
   const router = useRouter();
-
+  const imageapi = process.env.IMAGE_API;
   useEffect(() => {
     const fetchProject = async () => {
       try {
@@ -45,7 +45,7 @@ const ProjectPage = ({ params }: { params: { project: string } }) => {
         setProject(response);
         setEditedProject(response);
       } catch (error) {
-        console.error("Error fetching project:", error);
+        toast.error("Error fetching project:");
         router.push("/dashboard/projects"); // Redirect if project not found
       } finally {
         setLoading(false);
@@ -68,7 +68,7 @@ const ProjectPage = ({ params }: { params: { project: string } }) => {
         toast.success(`${project.name} deleted successfully`);
         router.push("/dashboard/projects");
       } else {
-        console.error("Failed to delete project");
+        toast.error("Failed to delete project");
       }
     }
   };
@@ -101,9 +101,7 @@ const ProjectPage = ({ params }: { params: { project: string } }) => {
           cacheProject?.image &&
           cacheProject.image.includes(cacheProject?.id)
         ) {
-          const filePath = cacheProject.image.split(
-            "https://tudodowthzxrdinszdhz.supabase.co/storage/v1/object/public/Projects/"
-          )[1];
+          const filePath = cacheProject.image.split(`${imageapi}`)[1];
           const deleteImage = await deleteImageFromStorage(
             filePath,
             "Projects"
@@ -123,7 +121,7 @@ const ProjectPage = ({ params }: { params: { project: string } }) => {
         );
         // console.log(uploadedImageUrl);
         if (uploadedImageUrl !== undefined) {
-          imageUrl = `https://tudodowthzxrdinszdhz.supabase.co/storage/v1/object/public/Projects/${uploadedImageUrl}`;
+          imageUrl = `${imageapi}${uploadedImageUrl}`;
           setImageUrl(imageUrl);
           toast.dismiss();
         } else {

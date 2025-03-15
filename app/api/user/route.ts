@@ -17,7 +17,9 @@ export const GET = async (req: Request) => {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
+
     const { email, username, password, checkUser } = body;
+
     // Check if the request is to check user existence
     if (checkUser) {
       const existingUser = await db.user.findUnique({ where: { email } });
